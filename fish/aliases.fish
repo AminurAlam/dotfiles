@@ -1,0 +1,1 @@
+/data/data/com.termux/files/home/.config/fish/aliases.fish
