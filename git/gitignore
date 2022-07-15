@@ -1,0 +1,10 @@
+__pycache__/
+*..pylintrc
+pylint.cfgpyc
+
+init.vim
+init.lua
+*~
+*.swp
+
+temp.*
