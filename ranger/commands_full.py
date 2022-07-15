@@ -1,1 +1,0 @@
-/data/data/com.termux/files/home/.config/ranger/commands_full.py
