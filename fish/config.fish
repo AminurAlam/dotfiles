@@ -4,21 +4,21 @@
 ———————————————————————————————————————————————————————————————————
 "
 
+### source
+for function_file in ~/.config/fish/functions/*
+    [ -f "$function_file" ]; and source $function_file
+end
+for completion_file in ~/.config/fish/completions/*
+    [ -f "$completion_file" ]; and source $completion_file
+end
+for config_file in ~/.config/fish/conf.d/*
+    [ -f "$cofig_file" ]; and source $completion_file
+end
+
+
 ### main
 cd
-set fish_greeting "$(fish_logo cyan cyan green \| 0)"
-
-### source
-source $HOME/.config/fish/functions/prompt.fish
-source $HOME/.config/fish/functions/fish_logo.fish
-# source $HOME/.config/fish/functions/starship.fish
-
-source $HOME/.config/fish/completions/exa.fish
-source $HOME/.config/fish/completions/pip.fish
-source $HOME/.config/fish/completions/pkg.fish
-source $HOME/.config/fish/completions/procs.fish
-source $HOME/.config/fish/completions/rclone.fish
-source $HOME/.config/fish/completions/starship.fish
+set fish_greeting \n"$(fish_logo cyan cyan green \| 0)"
 
 ### exports
 set -x EDITOR "vi"
@@ -34,4 +34,8 @@ set --path py "/sdcard/Python"
 set --path tx "/sdcard/termux"
 set --path dl "/sdcard/Download"
 set --path pi "/sdcard/Pictures"
+set --path rp "$HOME/repos"
 set --path sp "$HOME/repos/samples"
+
+### bindings
+bind '[1;5A' "commandline -f history-token-search-backward"

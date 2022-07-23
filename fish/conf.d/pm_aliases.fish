@@ -12,7 +12,6 @@ alias pyfd="pip search"
 # pkg
 alias pin="pkg install"
 alias pun="pkg uninstall"
-alias pup="pkg upgrade"
 
 alias pls="pkg list-installed"
 alias pla="pkg list-all"
@@ -52,6 +51,21 @@ alias cbuild="cargo build"  # compile binary in target/debug/…
 alias crelease="cargo build --release"  # compile binary in target/release/…
 
 # others
-alias clean="pkg clean && pkg autoclean && \
-             apt autoremove && \
-			 pip cache info && pip cache purge"
+function clean
+	apt autoremove
+	pkg clean
+	pkg autoclean
+	echo
+	pip cache info
+	pip cache purge
+end
+
+function pup
+    set -f sources "https://packages.termux.dev/apt/termux-main" \
+                   "https://packages-cf.termux.dev/apt/termux-main" \
+                   "https://grimler.se/termux/termux-main"
+	for source in $sources
+		echo "deb $source stable main" > $HOME/../usr/etc/apt/sources.list
+		apt update && apt upgrade
+	end
+end

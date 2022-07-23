@@ -1,14 +1,13 @@
 # python
 alias py="python3 -q"
-
-alias iab="python3 /sdcard/Python/iab.py"
-alias iar="python3 /sdcard/Python/iar.py"
-alias dibot="python3 /sdcard/Python/dibot.py"
-alias renum="python3 /sdcard/Python/renum.py"
-alias retag="python3 /sdcard/Python/retag.py"
-alias rename="python3 /sdcard/Python/rename.py"
-
 alias mbz="python3 ~/repos/musicbrainzpy/cover_art.py"
+
+alias iab="python3 ~/repos/python-tools/iab.py"
+alias iar="python3 ~/repos/python-tools/iar.py"
+alias dibot="python3 ~/repos/python-tools/dibot.py"
+alias renum="python3 ~/repos/python-tools/renum.py"
+alias retag="python3 ~/repos/python-tools/retag.py"
+alias rename="python3 ~/repos/python-tools/rename.py"
 
 # rclone
 alias rsy="rclone sync -P"
@@ -50,7 +49,6 @@ alias ...="z ../.."
 alias ....="z ../../.."
 
 alias zmu="z /sdcard/Music/"
-alias zpy="z /sdcard/Python"
 alias ztx="z /sdcard/termux"
 alias zdl="z /sdcard/Download"
 alias zpi="z /sdcard/Pictures"
@@ -61,6 +59,7 @@ alias zrp="z ~/repos"
   alias zdr14="z ~/repos/dr14meter"
   alias zexa="z ~/repos/exa"
   alias zmbz="z ~/repos/musicbrainzpy"
+  alias zpy="z ~/repos/python-tools"
   alias zsp="z ~/repos/samples"
     alias zspsh="z ~/repos/samples/bash"
     alias zspjs="z ~/repos/samples/javascript"
@@ -87,15 +86,18 @@ alias ytf="yt-dlp -f"
 
 # nvim
 alias vic="vi ~/.config/nvim/init.lua"
-alias via="vi ~/.config/fish/conf.d/aliases.fish +/^#"
+alias vip="vi ~/.config/nvim/lua/plugins.lua"
+alias via="vi ~/.config/fish/conf.d/aliases.fish ~/.config/fish/conf.d/pm_aliases.fish +/^#"
 alias vif="vi ~/.config/fish/config.fish"
 
 # exa
 alias ls="exa -lF -s ext --icons --no-user --no-permissions --no-time --group-directories-first"
 alias lg="exa -lF -s ext --icons --no-user --no-permissions --no-time --group-directories-first --git"
-alias ll="exa -lF -s ext --icons --group-directories-first --git"
 alias la="exa -laF -s ext --icons --no-user --no-permissions --no-time --group-directories-first"
 alias lt="exa -laTF -s ext --icons --no-user --no-permissions --no-time --group-directories-first"
+alias ll="exa -lF -s ext --icons --group-directories-first --git"
+alias lla="exa -lFa -s ext --icons --group-directories-first --git"
+alias l.="exa -a | rg '^\.'"
 
 # file management
 alias cp="cp -i"
