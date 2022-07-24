@@ -22,6 +22,7 @@ set fish_greeting \n"$(fish_logo cyan cyan green \| 0)"
 
 ### exports
 set -x EDITOR "vi"
+set -x CONFIG "$HOME/.config"
 set -x EXA_COLORS "*.py=38;5;45:*.rs=38;5;208:*.fish=38;5;47:*.png=36:\
 *.flac=36:*.log=38;5;252:*.lrc=38;5;252:*.cue=38;5;39:*.apk=38;5;47:\
 *.css=38;5;135:*.csv=38;5;42:*.go=38;5;45:*.gradle=38;5;24:\

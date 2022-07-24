@@ -4,7 +4,7 @@ alias mbz="python3 ~/repos/musicbrainzpy/cover_art.py"
 
 alias iab="python3 ~/repos/python-tools/iab.py"
 alias iar="python3 ~/repos/python-tools/iar.py"
-alias dibot="python3 ~/repos/python-tools/dibot.py"
+alias dibot="python3 ~/repos/python-tools/dibot.py && procs && fg"
 alias renum="python3 ~/repos/python-tools/renum.py"
 alias retag="python3 ~/repos/python-tools/retag.py"
 alias rename="python3 ~/repos/python-tools/rename.py"
@@ -25,11 +25,10 @@ alias rconf="rclone config"
 alias rbkup="rclone sync -P bkup:Rips bkup:Rips.bkup --transfers 12"
 
 # git
-alias ga="git add ."
 alias gadd="git add ."
 alias gmv="git mv"
-alias gc="git commit"
 alias gcomm="git commit"
+alias gcp="git clone"
 alias gclone="git clone"
 alias ginit="git init"
 alias glog="git log"
@@ -97,6 +96,7 @@ alias la="exa -laF -s ext --icons --no-user --no-permissions --no-time --group-d
 alias lt="exa -laTF -s ext --icons --no-user --no-permissions --no-time --group-directories-first"
 alias ll="exa -lF -s ext --icons --group-directories-first --git"
 alias lla="exa -lFa -s ext --icons --group-directories-first --git"
+alias ld="exa -a | rg '/'"
 alias l.="exa -a | rg '^\.'"
 
 # file management

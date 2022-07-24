@@ -16,7 +16,7 @@ alias pun="pkg uninstall"
 alias pls="pkg list-installed"
 alias pla="pkg list-all"
 alias pfd="pkg search"
-alias pinf="pkg info"
+alias pinf="pkg info -a"
 
 # apt
 alias ain="apt install"

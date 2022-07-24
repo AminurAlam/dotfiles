@@ -1,4 +1,3 @@
-
 # pip fish completion start
 function __fish_complete_pip
     set -lx COMP_WORDS (commandline -o) ""

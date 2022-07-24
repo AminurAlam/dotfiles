@@ -34,22 +34,6 @@ set.mouse = 'nvic'
 set.numberwidth = 2
 set.smartindent = true
 
-
---[[ remaps ]]
-local map = vim.keymap.set
-vim.g.mapleader = ' '
-map('n', '<Leader>ff', '<cmd>lua require(\'telescope.builtin\').find_files()<cr>', { noremap = true })
-map('n', '<leader>tr', '<cmd>:TroubleToggle<cr>', { noremap = true })
-map('n', '<C-q>', '<cmd>:q<cr>', { noremap = true })
-map('n', '<C-w>', '<cmd>:w<cr>', { noremap = true })
-map('i', '<C-q>', '<cmd>:q<cr>', { noremap = true })
-map('i', '<C-w>', '<cmd>:w<cr>', { noremap = true })
-map('n', '<C-n>', '<cmd>:bn<cr>', { noremap = true })
-map('n', '<C-p>', '<cmd>:bp<cr>', { noremap = true })
-map('i', '<C-n>', '<cmd>:bn<cr>', { noremap = true })
-map('i', '<C-p>', '<cmd>:bp<cr>', { noremap = true })
-
-
 --[[ variables ]]
 local cmp = require('cmp')
 local luasnip = require('luasnip')
@@ -71,7 +55,8 @@ local buffer_text = {
 
 
 --[[ reqires pt1 ]]
-require('plugins')  -- sourcing plugins
+require('plugins')  -- lua/plugins
+require('remaps')  -- lua/remaps
 require('lspconfig').sumneko_lua.setup(luadev)
 
 require('colorizer').setup({})
@@ -192,9 +177,8 @@ cmp.setup.cmdline(':', {
 --[[ language-servers ]]
 local servers = {
     'pyright', 'rust_analyzer', 'cssmodules_ls',
-    'eslint', 'jsonls',
-    -- nvim-lsp-installer
-    'bashls'}
+	-- vscode-langservers-extracted
+    'jsonls', 'eslint', 'cssls', 'html'}
 for _, lsp in pairs(servers) do
     require('lspconfig')[lsp].setup({
         capabilities = require('cmp_nvim_lsp').update_capabilities(
