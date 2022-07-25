@@ -11,7 +11,8 @@ return require('packer').startup(function(use)
 
     -- themes and design
     use 'EdenEast/nightfox.nvim'
-    use 'ojroques/nvim-hardline'
+    -- use 'ojroques/nvim-hardline'
+	use 'nvim-lualine/lualine.nvim'
     use 'akinsho/bufferline.nvim'
     use 'kyazdani42/nvim-web-devicons'
     use 'norcalli/nvim-colorizer.lua'

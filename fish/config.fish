@@ -40,3 +40,14 @@ set --path sp "$HOME/repos/samples"
 
 ### bindings
 bind '[1;5A' "commandline -f history-token-search-backward"
+
+### checking installations
+set -l packages bat dust exa fd ffmpeg fzf git vi python rclone wget zoxide
+
+for package in $packages
+	set_color $fish_color_error
+	if ! type -qf "$package"
+		echo "`$package` is not installed"
+	end
+	set_color normal
+end

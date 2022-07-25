@@ -1,9 +1,3 @@
-
-
-
-
-
-
 function fish_prompt
     [ $SSH_CLIENT ] && set prompt_name "$USER@ssh"
     fish_is_root_user && set prompt_logo '# ' || set prompt_logo '> '

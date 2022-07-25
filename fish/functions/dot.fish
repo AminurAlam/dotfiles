@@ -1,12 +1,3 @@
-
-
-
-
-
-
-
-
-
 function dot
     set -f dirs "$HOME/.config/fish/" "$HOME/.config/nvim/"
     rm -rf "$HOME/dotfiles/fish/" "$HOME/dotfiles/nvim/"
