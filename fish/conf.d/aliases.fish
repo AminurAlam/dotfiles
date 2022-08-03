@@ -4,7 +4,7 @@ alias mbz="python3 ~/repos/musicbrainzpy/cover_art.py"
 
 alias iab="python3 ~/repos/python-tools/iab.py"
 alias iar="python3 ~/repos/python-tools/iar.py"
-alias dibot="python3 ~/repos/python-tools/dibot.py && procs"
+alias dibot="python3 ~/repos/python-tools/dibot.py && fg"
 alias renum="python3 ~/repos/python-tools/renum.py"
 alias retag="python3 ~/repos/python-tools/retag.py"
 alias rename="python3 ~/repos/python-tools/rename.py"
@@ -38,7 +38,12 @@ alias grau="git remote add upstream"
 alias gcm="git commit -m"
 alias gpull="git pull origin"
 alias gpush="git push origin"
-alias gupload="git add . && git commit && git push origin"
+
+function gupload
+    git add .
+    git commit
+    git push origin
+end
 
 # cd -> (z)oxide
 alias zz="z -"
@@ -79,15 +84,17 @@ alias zd="z ~/dotfiles"
 
 
 # yt-dlp
-alias yt="yt-dlp -F"
-alias ytF="yt-dlp -F"
-alias ytf="yt-dlp -f"
+function yt
+    yt-dlp -F $argv
+	echo
+    read choice -f -P ">pick one: "
+    yt-dlp -f $choice $argv
+end
 
 # nvim
-alias vic="vi ~/.config/nvim/init.lua"
-alias vip="vi ~/.config/nvim/lua/plugins.lua"
+alias vic="vi ~/.config/nvim/"
 alias via="vi ~/.config/fish/conf.d/aliases.fish ~/.config/fish/conf.d/pm_aliases.fish +/^#"
-alias vif="vi ~/.config/fish/config.fish"
+alias vif="vi ~/.config/fish/"
 
 # exa
 alias ls="exa -lF -s ext --icons --no-user --no-permissions --no-time --group-directories-first"
@@ -112,7 +119,8 @@ alias md="mkdir"
 # bat -> cat
 alias cat="bat --theme Dracula --style full --pager=never -ppf"
 alias bat="bat --theme Dracula --style full -f"
-alias batdiff="bat --theme Dracula --style full -d"
+alias batdiff="git diff --name-only --relative --diff-filter=d | xargs bat --diff"
+alias bathelp="$argv --help | bat -plhelp"
 
 # fuzzy finder
 alias fzf="fzf --cycle --scroll-off 4 --border=rounded --ellipsis …"

@@ -10,23 +10,14 @@ alias pylu="pip list -o"
 alias pyfd="pip search"
 
 # pkg
-alias pin="pkg install"
-alias pun="pkg uninstall"
+alias pin="apt install"
+alias pun="apt remove"
 
-alias pls="pkg list-installed"
-alias pla="pkg list-all"
-alias pfd="pkg search"
-alias pinf="pkg info -a"
-
-# apt
-alias ain="apt install"
-alias aun="apt remove"
-alias aup="apt update && apt upgrade"
-
-alias als="apt list --installed"
-alias ala="apt list"
-alias alu="apt list --upgradeable"
-alias alo="apt list --upgradeable"
+alias pls="apt list --installed"
+alias pla="apt list"
+alias plu="apt list --upgradeable"
+alias pfd="apt search"
+alias pinf="apt show"
 
 # npm
 alias nin="npm install"
@@ -61,11 +52,6 @@ function clean
 end
 
 function pup
-    set -f sources "https://packages.termux.dev/apt/termux-main" \
-                   "https://packages-cf.termux.dev/apt/termux-main" \
-                   "https://grimler.se/termux/termux-main"
-	for source in $sources
-		echo "deb $source stable main" > $HOME/../usr/etc/apt/sources.list
-		apt update && apt upgrade
-	end
+	echo "deb https://grimler.se/termux/termux-main stable main" > $PREFIX/etc/apt/sources.list
+	apt update && apt upgrade
 end

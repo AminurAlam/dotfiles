@@ -1,153 +1,26 @@
---[[ settings ]]
--- https://www.reddit.com/r/neovim/comments/u88dye/moving_from_initvim_to_initlua/
--- https://vonheikemen.github.io/devlog/tools/configuring-neovim-using-lua/
-local set = vim.opt
-set.number = true
-set.hlsearch = false
-set.autoindent = true
-set.tabstop = 4
-set.shiftwidth = 4
-set.smarttab = true
-set.softtabstop = 4
-set.ignorecase = true
-set.smartcase = true
-set.scrolloff = 6
-set.sidescroll = 10
-set.sidescrolloff = 10
-set.wrap = false
-set.showbreak = ' …'
-set.ea = true
-set.incsearch = true
-set.inccommand = 'split'
-set.swapfile = false
-set.termguicolors = true
-set.clipboard:append('unnamedplus')
-set.tgc = true
-set.exrc = true
-set.cmdheight = 0
-set.cursorline = true
-set.cursorlineopt = 'number'
-set.laststatus = 3
-set.fillchars = 'fold: ,eob: '
-set.helpheight = 200
-set.mouse = 'nvic'
-set.numberwidth = 2
-set.smartindent = true
+--[[ reqires pt1 ]]
+require('plugins')  -- lua/plugins.lua
+require('remaps')  -- lua/remaps.lua
+require('settings') -- lua/settings.lua
+require('setups') --lua/setups.lua
+
 
 --[[ variables ]]
 local cmp = require('cmp')
 local luasnip = require('luasnip')
-local luadev = require("lua-dev").setup({
-    lspconfig = {cmd = {"lua-language-server"}}
-})
 local kind_icons = {
-    Text = '', Method = '', Function = '', Constructor = '',
-    Field = '', Variable = '', Class = 'ﴯ', Interface = '',
-    Module = '', Property = 'ﰠ', Unit = '', Value = '', Enum = '',
-    Keyword = '', Snippet = '', Color = '', File = '',
-    Reference = '', Folder = '', EnumMember = '', Constant = '',
-    Struct = 'פּ', Event = '', Operator = '', TypeParameter = ''
+    Text = '', Method = '', Function = '', Constructor = '', Field = '',
+	Variable = '', Class = 'ﴯ', Interface = '', Module = '', Property = 'ﰠ',
+	Unit = '', Value = '', Enum = '', Keyword = '', Snippet = '',
+	Color = '', File = '', Reference = '', Folder = '', EnumMember = '',
+	Constant = '', Struct = 'פּ', Event = '', Operator = '', TypeParameter = ''
 }
 local buffer_text = {
-    buffer='[BUF]', nvim_lsp='[LSP]', nvim_lua='[LUA]',
-    path='[PATH]', luasnip='[LSN]', vsnip='[VSN]', latex_symbols = '[LTX]'
+    buffer='[BUF]', nvim_lsp='[LSP]', nvim_lua='[LUA]', path='[PATH]',
+	luasnip='[LSN]', vsnip='[VSN]', latex_symbols = '[LTX]'
 }
 
 
---[[ reqires pt1 ]]
-require('plugins')  -- lua/plugins
-require('remaps')  -- lua/remaps
-require('lspconfig').sumneko_lua.setup(luadev)
-
-require('colorizer').setup({})
-require('telescope').setup({})
-require('todo-comments').setup({})
-require('nvim-autopairs').setup({})
-require('indent_blankline').setup({})
-require('nvim-lsp-installer').setup({})
-require('trouble').setup({position = 'top', height = 8})
-require('indent_blankline').setup({show_current_context = true})
-require('nvim-treesitter.configs').setup({
-    highlight = {enable = true},
-    indent = {enable = true},
-})
-require('bufferline').setup({
-    options = {
-        max_name_length = 16,
-        tab_size = 12,
-        diagnostics = false, -- separator_style = 'thin', indicator_icon = '',
-    }
-})
-require('nvim-cursorline').setup({
-    cursorline = {enable = false},
-    cursorword = {
-        enable = true,
-        min_length = 3,
-        hl = {underline = true},
-    }
-})
-require('luasnip').config.set_config({
-    history = true,
-    update_events = 'TextChanged,TextChangedI',
-    delete_check_events = 'TextChanged',
-    ext_base_prio = 300,
-    ext_prio_increase = 1,
-    enable_autosnippets = true,
-    store_selection_keys = '<Tab>',
-})
---[[
-require('hardline').setup({sections = {{class='mode', item=' '},
-    {class='mode', item=require('hardline.parts.mode').get_item},
-    {class='mode', item=' '}, {class='low', item=' '},
-    {class='low', item=require('hardline.parts.git').get_item},
-    {class='low', item=require('hardline.parts.filename').get_item},
-    {class='low', item='%='}, {class='mode', item=' '},
-    {class='mode', item=require('hardline.parts.lsp').get_error},
-    {class='mode', item=require('hardline.parts.line').get_item},
-    {class='mode', item='|'},
-    {class='mode', item=require('hardline.parts.filetype').get_item},
-    {class='mode', item=' '},
-}}) --]]
-
-require('lualine').setup {
-  options = {
-    icons_enabled = true,
-    theme = 'auto',
-    component_separators = { left = '', right = ''},
-    section_separators = { left = '', right = ''},
-    disabled_filetypes = {
-      statusline = {},
-      winbar = {},
-    },
-    always_divide_middle = true,
-    globalstatus = false,
-    refresh = {
-      statusline = 1000,
-      tabline = 1000,
-      winbar = 1000,
-    }
-  },
-  sections = {
-    lualine_a = {'mode'},
-    lualine_b = {'branch'},
-    lualine_c = {'filename'},
-    lualine_x = {{'diagnostics', update_in_insert = true}},
-    lualine_y = {'progress'},
-    lualine_z = {'filetype'}
-  },
-  inactive_sections = {
-    lualine_a = {},
-    lualine_b = {},
-    lualine_c = {'filename'},
-    lualine_x = {'location'},
-    lualine_y = {},
-    lualine_z = {}
-  },
-  tabline = {},
-  winbar = {},
-  inactive_winbar = {},
-  extensions = {}
-}
 
 --[[ cmp setup ]]
 cmp.setup({
@@ -229,26 +102,7 @@ for _, lsp in pairs(servers) do
     })
 end
 
-vim.diagnostic.config({
-    underline = false,
-    signs = false,
-    virtual_text = { spacing = 1 },
-    float = {
-      show_header = true,
-      source = true,
-      focus = false,
-      width = 60,  -- border = border,
-    },
-    update_in_insert = true,
-    severity_sort = true,
-})
--- vim.g.tokyonight_style = "night"
-vim.g.tokyonight_italic_comments = false
-vim.g.tokyonight_italic_functions = false
-vim.g.tokyonight_italic_keywords = false
-vim.g.tokyonight_sidebars = {"terminal", "packer", "Trouble"}
--- Change the "hint" color to the "orange" color, and make the "error" color bright red
-vim.g.tokyonight_colors = {hint = "orange", error = "#ff0000"}
+
 
 vim.cmd [[
     set colorcolumn=80

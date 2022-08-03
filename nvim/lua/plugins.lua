@@ -8,10 +8,10 @@ return require('packer').startup(function(use)
     use 'yamatsum/nvim-cursorline'
     use 'nvim-telescope/telescope.nvim'
     use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
+	use 'numToStr/Comment.nvim'
 
     -- themes and design
     use 'EdenEast/nightfox.nvim'
-    -- use 'ojroques/nvim-hardline'
 	use 'nvim-lualine/lualine.nvim'
     use 'akinsho/bufferline.nvim'
     use 'kyazdani42/nvim-web-devicons'
@@ -21,6 +21,7 @@ return require('packer').startup(function(use)
 
     -- correction stuff
     use 'williamboman/nvim-lsp-installer'
+	use 'williamboman/mason.nvim'
     use 'folke/trouble.nvim'
     use "folke/lua-dev.nvim"
     use 'windwp/nvim-autopairs'
@@ -45,12 +46,4 @@ return require('packer').startup(function(use)
     use 'dcampos/cmp-snippy'
     use 'dcampos/nvim-snippy'
     use 'rafamadriz/friendly-snippets'
-
-    -- Lazy loading:
-    -- use {'tpope/vim-dispatch', opt = true, cmd = {'Dispatch', 'Make', 'Focus', 'Start'}}
-
-    -- Load on an autocommand event
-    -- use {'andymass/vim-matchup', event = 'VimEnter'}
-
-    -- Post-install/update hook with neovim command
 end)
