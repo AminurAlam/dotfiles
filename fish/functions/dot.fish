@@ -3,7 +3,7 @@ function dot
     rm -rf "$HOME/dotfiles/fish/" "$HOME/dotfiles/nvim/"
 
     for dir in $dirs
-        $PATH/cp -rf "$dir" "$HOME/dotfiles/"
+        yes | cp -rf "$dir" "$HOME/dotfiles/"
     end
 
 	read choice -f -P "done copying, would you like to commit? [Y/n] "

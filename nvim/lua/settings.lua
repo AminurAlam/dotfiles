@@ -1,8 +1,6 @@
--- https://vonheikemen.github.io/devlog/tools/configuring-neovim-using-lua/
-
-
 local set = vim.opt
 local g = vim.g
+
 
 
 -- indent
@@ -47,12 +45,13 @@ set.swapfile = false
 set.clipboard:append('unnamedplus')
 
 
--- vim.g.tokyonight_style = "night"
+
 g.tokyonight_italic_comments = false
 g.tokyonight_italic_functions = false
 g.tokyonight_italic_keywords = false
 g.tokyonight_sidebars = {'terminal', 'packer', 'Trouble'}
 g.tokyonight_colors = {hint = 'orange', error = '#ff0000'}
+
 
 
 vim.diagnostic.config({

@@ -5,7 +5,7 @@ return require('packer').startup(function(use)
     -- basic plugins
     use 'airblade/vim-gitgutter'
     use 'nvim-lua/plenary.nvim'
-    use 'yamatsum/nvim-cursorline'
+    -- use 'yamatsum/nvim-cursorline'
     use 'nvim-telescope/telescope.nvim'
     use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
 	use 'numToStr/Comment.nvim'
@@ -20,10 +20,11 @@ return require('packer').startup(function(use)
     use 'folke/tokyonight.nvim'
 
     -- correction stuff
-    use 'williamboman/nvim-lsp-installer'
+    -- use 'williamboman/nvim-lsp-installer'
 	use 'williamboman/mason.nvim'
+    use 'williamboman/mason-lspconfig.nvim'
     use 'folke/trouble.nvim'
-    use "folke/lua-dev.nvim"
+    use 'folke/lua-dev.nvim'
     use 'windwp/nvim-autopairs'
     use 'onsails/lspkind-nvim'
     use 'neovim/nvim-lspconfig'

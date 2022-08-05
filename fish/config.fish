@@ -22,6 +22,7 @@ set fish_greeting \n"$(fish_logo cyan cyan green \| 0)"
 
 
 ### exports
+set -x PATH $PATH:$HOME/.cargo/bin/
 set -x EDITOR "vi"
 set -x MANPAGER "vi +Man!"
 set -x CONFIG "$HOME/.config"

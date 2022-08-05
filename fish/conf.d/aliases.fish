@@ -129,11 +129,12 @@ alias fz="z (fd . -t d | fzf)"
 alias fcat="bat (fzf)"
 alias fbat="bat (fzf)"
 
-# du -> dust
-alias du="dust -r -n 30"
+# du, df -> dust, duf
+alias du="dust -r -n 25"
 alias dut="dust -r -n 30 -t"
 alias dud="dust -r -d 1"
 alias anal="$PATH/du -ah -d 1 -t 20000000 | sort -k1hr"
+alias df="duf -only local -output mountpoint,size,avail,usage -width 150 -only-mp '/storage/*'"
 
 # others
 alias nf="neofetch"
