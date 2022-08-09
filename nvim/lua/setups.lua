@@ -3,10 +3,6 @@ local cmp = require('cmp')
 local lspc = require('lspconfig')
 local luasnip = require('luasnip')
 local luadev = require('lua-dev').setup({lspconfig = {cmd = {'lua-language-server'}}})
-local defaults = {
-	capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities()),
-	flags = { debounce_text_changes = 150 }
-}
 local kind_icons = {
     Text = '', Method = '', Function = '', Constructor = '', Field = '',
     Variable = '', Class = 'ﴯ', Interface = '', Module = '', Property = 'ﰠ',
@@ -15,29 +11,38 @@ local kind_icons = {
     Constant = '', Struct = 'פּ', Event = '', Operator = '', TypeParameter = ''
 }
 local buffer_text = {
-    buffer='[BUF]', nvim_lsp='[LSP]', nvim_lua='[LUA]', path='[PATH]',
-    luasnip='[LSN]', vsnip='[VSN]', latex_symbols = '[LTX]'
+    buffer='[BUF]', nvim_lsp='[LSP]', path='[PATH]',
+    vsnip='[VSN]', luasnip='[LSN]', ultisnips='[USN]', snippy='[SNP]', snipmate='[SNM]'
 }
-
+-- local defaults = {
+--     -- on_attach = on_attach,
+--     capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities()),
+--     -- flags = { debounce_text_changes = 150 }
+-- }
 
 
 --[[ language-server setups ]]
 local servers = {
-	-- pip
+    -- pip
     'pyright',
-	-- apt
-	'rust_analyzer',
-	-- npm (vscode-langservers-extracted)
+    -- apt
+    'rust_analyzer',
+    -- npm (vscode-langservers-extracted)
     'jsonls', 'eslint', 'cssls', 'html',
-	-- mason
-	'bashls',
+    -- mason
+    'bashls',
 }
 for _, lsp in pairs(servers) do
-    require('lspconfig')[lsp].setup(defaults)
+    require('lspconfig')[lsp].setup({
+        capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+    })
 end
 
 lspc.sumneko_lua.setup(luadev)
 
+require("luasnip.loaders.from_lua").lazy_load()
+require("luasnip.loaders.from_vscode").lazy_load()
+require("luasnip.loaders.from_snipmate").lazy_load()
 
 
 --[[ setups ]]
@@ -46,39 +51,26 @@ require('Comment').setup({})
 require('colorizer').setup({})
 require('todo-comments').setup({})
 require('nvim-autopairs').setup({})
+require('mason-lspconfig').setup({})
+require('luasnip').config.set_config({})
 require('indent_blankline').setup({})
-require('mason').setup({})
 
 require('trouble').setup({position = 'top', height = 8})
 require('indent_blankline').setup({show_current_context = true})
 require('nvim-treesitter.configs').setup({highlight = {enable = true}})
+
 require('bufferline').setup({
     options = {max_name_length = 16, tab_size = 12, diagnostics = false}
 })
 require('telescope').setup({
-    defaults = {
-        prompt_prefix = '  ',
-        file_ignore_patterns = { 'node_modules' },
-    }
+    defaults = {prompt_prefix = '  ', file_ignore_patterns = { 'node_modules' }}
 })
-require('mason').setup({})
-require('mason-lspconfig').setup({})
-require('luasnip').config.set_config({
-    history = true,
-    update_events = 'TextChanged,TextChangedI',
-    delete_check_events = 'TextChanged',
-    ext_base_prio = 300,
-    ext_prio_increase = 1,
-    enable_autosnippets = true,
-    store_selection_keys = '<Tab>',
-})
-
 require('lualine').setup {
   options = {
     icons_enabled = true,
     theme = 'onedark',
-    component_separators = { left = '', right = ''},
-    section_separators = { left = '', right = ''},
+    component_separators = {left = '', right = ''},
+    section_separators = {left = '', right = ''},
     disabled_filetypes = {
        statusline = {},
        winbar = {},
@@ -124,8 +116,10 @@ cmp.setup({
     },
     snippet = {
         expand = function(args)
-            -- vim.fn["vsnip#anonymous"](args.body)
-            luasnip.lsp_expand(args.body)
+            -- vim.fn["vsnip#anonymous"](args.body) -- vsnip
+            require('luasnip').lsp_expand(args.body) -- luasnip
+            -- require('snippy').expand_snippet(args.body) -- snippy
+            -- vim.fn["UltiSnips#Anon"](args.body) -- ultisnips
         end,
     },
     window = {},
@@ -148,11 +142,11 @@ cmp.setup({
     sources = cmp.config.sources(
         {
             {name = 'path'},
-            {name = 'nvim_lsp'},
-            {name = 'luasnip'},
-            {name = 'vsnip'},
-            {name = 'nvim-snippy'},
-            {name = 'cmp-snippy'},
+            {name = 'nvim_lsp'}, -- main
+            {name = 'vsnip'}, -- For vsnip users.
+            {name = 'luasnip'}, -- For luasnip users.
+            { name = 'ultisnips' }, -- For ultisnips users.
+            { name = 'snippy' }, -- For snippy users.
         },
         {{name = 'buffer'}}
     )

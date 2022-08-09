@@ -1,13 +1,15 @@
 # python
-alias py="python3 -q"
+# alias py="python3 -q"
+alias py="$(__fish_anypython) -q"
 alias mbz="python3 ~/repos/musicbrainzpy/cover_art.py"
 
+alias lfm="python3 ~/repos/python-tools/lfm.py"
 alias iab="python3 ~/repos/python-tools/iab.py"
 alias iar="python3 ~/repos/python-tools/iar.py"
-alias dibot="python3 ~/repos/python-tools/dibot.py && fg"
 alias renum="python3 ~/repos/python-tools/renum.py"
 alias retag="python3 ~/repos/python-tools/retag.py"
 alias rename="python3 ~/repos/python-tools/rename.py"
+alias dibot="python3 ~/repos/python-tools/dibot.py && fg && procs -tp disable"
 
 # rclone
 alias rsy="rclone sync -P"
@@ -23,27 +25,6 @@ alias rstat="rclone about"
 alias rconf="rclone config"
 
 alias rbkup="rclone sync -P bkup:Rips bkup:Rips.bkup --transfers 12"
-
-# git
-alias gadd="git add ."
-alias gmv="git mv"
-alias gcomm="git commit"
-alias gcp="git clone"
-alias gclone="git clone"
-alias ginit="git init"
-alias glog="git log"
-alias gdiff="git diff"
-alias gstat="git status"
-alias grau="git remote add upstream"
-alias gcm="git commit -m"
-alias gpull="git pull origin"
-alias gpush="git push origin"
-
-function gupload
-    git add .
-    git commit
-    git push origin
-end
 
 # cd -> (z)oxide
 alias zz="z -"
@@ -82,7 +63,6 @@ alias zd="z ~/dotfiles"
   alias zdr="z ~/dotfiles/ranger"
   alias zdt="z ~/dotfiles/termux"
 
-
 # yt-dlp
 function yt
     yt-dlp -F $argv
@@ -93,7 +73,7 @@ end
 
 # nvim
 alias vic="vi ~/.config/nvim/"
-alias via="vi ~/.config/fish/conf.d/aliases.fish ~/.config/fish/conf.d/pm_aliases.fish +/^#"
+alias via="vi ~/.config/fish/conf.d/*s.fish"
 alias vif="vi ~/.config/fish/"
 
 # exa
@@ -120,7 +100,9 @@ alias md="mkdir"
 alias cat="bat --theme Dracula --style full --pager=never -ppf"
 alias bat="bat --theme Dracula --style full -f"
 alias batdiff="git diff --name-only --relative --diff-filter=d | xargs bat --diff"
-alias bathelp="$argv --help | bat -plhelp"
+function help
+    $argv --help | bat -pp -l help
+end
 
 # fuzzy finder
 alias fzf="fzf --cycle --scroll-off 4 --border=rounded --ellipsis …"
@@ -147,5 +129,4 @@ alias dr14="dr14_tmeter -d"
 alias less="less --use-color"
 alias cal="cal -my"
 alias mi="mediainfo"
-alias ping="gping google.com 8.8.8.8 discord.com 1.1.1.1\
-            -c blue cyan green yellow --vertical-margin 0"
+alias ping="gping google.com 8.8.8.8 discord.com 1.1.1.1 -c blue cyan green yellow --vertical-margin 0"

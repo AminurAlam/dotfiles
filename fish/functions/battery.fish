@@ -12,7 +12,7 @@ function battery
 		[ $new -gt 1000 ] && set color (set_color cyan)
 
 		if [ $old -ne $new ]
-			for n in (seq (math "round($COLUMNS*(abs($new)/1400))"))
+			for n in (seq (math "round($(tput cols)*(abs($new)/1400))"))
 				echo -n "$color█"
 			end
 			echo (set_color normal) " $new"
