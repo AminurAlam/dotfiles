@@ -75,6 +75,7 @@ end
 alias vic="vi ~/.config/nvim/"
 alias via="vi ~/.config/fish/conf.d/*s.fish"
 alias vif="vi ~/.config/fish/"
+alias vb="vi -u $HOME/.config//nvim/basic.lua"
 
 # exa
 alias ls="exa -lF -s ext --icons --no-user --no-permissions --no-time --group-directories-first"

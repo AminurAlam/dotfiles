@@ -53,7 +53,6 @@ require('todo-comments').setup({})
 require('nvim-autopairs').setup({})
 require('mason-lspconfig').setup({})
 require('luasnip').config.set_config({})
-require('indent_blankline').setup({})
 
 require('trouble').setup({position = 'top', height = 8})
 require('indent_blankline').setup({show_current_context = true})
