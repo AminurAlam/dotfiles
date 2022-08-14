@@ -1,15 +1,15 @@
 function dot
     set -f dirs "$HOME/.config/fish/" "$HOME/.config/nvim/"
-    rm -rf "$HOME/dotfiles/fish/" "$HOME/dotfiles/nvim/"
+    rm -rf "$HOME/repos/dotfiles/fish/" "$HOME/repos/dotfiles/nvim/"
 
     for dir in $dirs
-        yes | cp -rf "$dir" "$HOME/dotfiles/"
+        yes | cp -rf "$dir" "$HOME/repos/dotfiles/"
     end
 
 	read choice -f -P "done copying, would you like to commit? [Y/n] "
 
 	if test -z $choice -o $choice = "y"
-	    cd $HOME/dotfiles/
+	    cd $HOME/repos/dotfiles/
 		git add .
 		git commit
 		git push origin

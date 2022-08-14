@@ -45,39 +45,29 @@ set.clipboard:append('unnamedplus')
 g.tokyonight_italic_comments = false
 g.tokyonight_italic_functions = false
 g.tokyonight_italic_keywords = false
-g.tokyonight_sidebars = {'terminal', 'packer', 'Trouble'}
-g.tokyonight_colors = {hint = 'orange', error = '#ff0000'}
 
 vim.cmd [[
     colorscheme tokyonight
-	set guicursor=n-v-c-i-ci-ve-r-cr-o-a-sm:hor1,v:block
+	set guicursor=n-v-c-i-ci-ve-r-cr-o-a-sm:block,v:block
 ]]
 
-require("remaps")
-require("lualine").setup({})
-require('Comment').setup({})
+require('remaps')
 require('nvim-autopairs').setup({})
-require('indent_blankline').setup({})
-require('lualine').setup {
-  options = {
-    icons_enabled = true,
-    theme = 'onedark',
-    always_divide_middle = true,
-    globalstatus = true,
-    refresh = {
-      statusline = 1000,
-      tabline = 1000,
-      winbar = 1000,
-    }
-  },
-  sections = {
-    lualine_a = {{'mode', padding = 1}},
-    lualine_b = {{'filename'}},
-    lualine_c = {},
-    lualine_x = {},
-    lualine_y = {{'progress'}},
-    lualine_z = {{'filetype', padding = 1}}
-  },
-}
-
-
+require('nvim-treesitter.configs').setup({
+	highlight = {enable = true},
+	indent = {enabled = false}
+})
+require('lualine').setup({
+	options = {
+		theme = 'onedark',
+		section_separators = {left = '', right = ''},
+	},
+	sections = {
+		lualine_a = {{'mode', padding = 2}},
+		lualine_b = {},
+		lualine_c = {},
+		lualine_x = {},
+		lualine_y = {},
+		lualine_z = {{'filename', padding = 2}}
+    },
+})

@@ -22,9 +22,12 @@ nmap('<leader>pi', '<cmd>:PackerInstall<cr>')
 nmap('<leader>pc', '<cmd>:PackerClean<cr>')
 nmap('<leader>pl', '<cmd>:PackerLoad<cr>')
 
--- commands
+-- other plugins
+nmap('<leader>hl', '<cmd>:TSToggle highlight<cr>')
 nmap('<leader>tr', '<cmd>:TroubleToggle<cr>')
 nmap('<leader>ex', '<cmd>:Explore<cr>')
+nmap('<leader>ts', '<cmd>:NeoTreeShowToggle<cr>')
+nmap('<leader>tf', '<cmd>:NeoTreeFloatToggle<cr>')
 nmap('<leader>co', '<cmd>:ColorizerToggle<cr>')
 
 -- write, quit

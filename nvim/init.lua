@@ -1,8 +1,6 @@
 -- https://vonheikemen.github.io/devlog/tools/configuring-neovim-using-lua/
 
-
-
---[[ reqires pt1 ]]
+--[[ sourcing ]]
 require('plugins')  -- lua/plugins.lua
 require('remaps')  -- lua/remaps.lua
 require('settings') -- lua/settings.lua
@@ -13,6 +11,7 @@ require('setups') --lua/setups.lua
 vim.cmd [[
     set colorcolumn=80
     set guicursor=n-v-c-i-ci-ve-r-cr-o-a-sm:hor1,v:block
+	colorscheme tokyonight
 
     " gray
     highlight! CmpItemAbbrDeprecated guibg=NONE gui=strikethrough guifg=#808080
@@ -30,6 +29,4 @@ vim.cmd [[
     highlight! CmpItemKindKeyword guibg=NONE guifg=#D4D4D4
     highlight! CmpItemKindProperty guibg=NONE guifg=#D4D4D4
     highlight! CmpItemKindUnit guibg=NONE guifg=#D4D4D4
-
-	colorscheme tokyonight
 ]]

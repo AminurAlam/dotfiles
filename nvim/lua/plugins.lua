@@ -2,30 +2,39 @@ return require('packer').startup(function(use)
     -- Packer can manage itself
     use 'wbthomason/packer.nvim'
 
+
+
+
+
+
+
     -- basic plugins
-    use 'airblade/vim-gitgutter'
-    use 'nvim-lua/plenary.nvim'
-    use 'nvim-telescope/telescope.nvim'
-    use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
-    use 'numToStr/Comment.nvim'
+    use {'airblade/vim-gitgutter'}
+    use {'nvim-lua/plenary.nvim'}
+    use {'nvim-telescope/telescope.nvim',
+	     cmd = ":Telescope"}
+    use {'nvim-treesitter/nvim-treesitter',
+	     run = ':TSUpdate'}
+    use {'numToStr/Comment.nvim',
+	     event = "BufWinEnter",
+		 config="require('Comment').setup({})"}
+    use {'nvim-neo-tree/neo-tree.nvim', requires = {'MunifTanjim/nui.nvim'}}
 
     -- themes and design
-    use 'EdenEast/nightfox.nvim'
-    use 'nvim-lualine/lualine.nvim'
-    use 'akinsho/bufferline.nvim'
-    use 'kyazdani42/nvim-web-devicons'
-    use 'norcalli/nvim-colorizer.lua'
-    use 'folke/todo-comments.nvim'
-    use 'folke/tokyonight.nvim'
+    use {'nvim-lualine/lualine.nvim'}
+    use {'akinsho/bufferline.nvim'}
+    use {'kyazdani42/nvim-web-devicons'}
+    use {'norcalli/nvim-colorizer.lua', cmd = ":ColorizerToggle"}
+    use {'folke/tokyonight.nvim', event = "BufWinEnter"}
 
     -- correction stuff
-    use 'williamboman/mason.nvim'
-    use 'williamboman/mason-lspconfig.nvim'
-    use 'folke/trouble.nvim'
-    use 'folke/lua-dev.nvim'
-    use 'windwp/nvim-autopairs'
-    use 'onsails/lspkind-nvim'
-    use 'lukas-reineke/indent-blankline.nvim'
+    use {'williamboman/mason.nvim'}
+    use {'williamboman/mason-lspconfig.nvim', event = "BufWinEnter"}
+    use {'folke/trouble.nvim'}
+    use {'folke/lua-dev.nvim'}
+    use {'windwp/nvim-autopairs'}
+    use {'onsails/lspkind-nvim'}
+    use {'lukas-reineke/indent-blankline.nvim'}
 
     -- lsp
     use 'neovim/nvim-lspconfig'  -- Collection of configurations for built-in LSP client

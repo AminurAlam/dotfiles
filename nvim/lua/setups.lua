@@ -47,9 +47,6 @@ require("luasnip.loaders.from_snipmate").lazy_load()
 
 --[[ setups ]]
 require('mason').setup({})
-require('Comment').setup({})
-require('colorizer').setup({})
-require('todo-comments').setup({})
 require('nvim-autopairs').setup({})
 require('mason-lspconfig').setup({})
 require('luasnip').config.set_config({})
@@ -99,6 +96,77 @@ require('lualine').setup {
     lualine_z = {}
   },
 }
+
+require("neo-tree").setup({
+	popup_border_style = "rounded",
+	enable_git_status = false,
+	enable_diagnostics = false,
+	sort_case_insensitive = true, -- used when sorting files and directories in the tree
+	sort_function = nil,
+
+	default_component_configs = {
+	  container = {enable_character_fade = false},
+	  indent = {
+		indent_size = 4,
+		padding = 2,
+		with_markers = true,
+		indent_marker = "│",
+		last_indent_marker = "╰", -- "└",
+		highlight = "NeoTreeIndentMarker",
+		with_expanders = nil, -- if nil and file nesting is enabled, will enable expanders
+		expander_collapsed = "",
+		expander_expanded = "",
+		expander_highlight = "NeoTreeExpander",
+	  },
+	  icon = {
+		folder_closed = "",
+		folder_open = "",
+		folder_empty = "ﰊ",
+		default = "*",
+		highlight = "NeoTreeFileIcon"
+	  },
+	  modified = {
+		symbol = "[+]",
+		highlight = "NeoTreeModified",
+	  },
+	  name = {
+		trailing_slash = true,
+		use_git_status_colors = true,
+		highlight = "NeoTreeFileName",
+	  },
+	},
+	window = {
+	  position = "top",
+	  width = 64,
+	  mapping_options = {
+		noremap = true,
+		nowait = true,
+	  },
+	},
+	nesting_rules = {},
+	filesystem = {
+	  filtered_items = {
+		visible = false, -- when true, they will just be displayed differently than normal items
+		hide_dotfiles = true,
+		hide_gitignored = true,
+		hide_hidden = true, -- only works on Windows for hidden files/directories
+		hide_by_name = {"node_modules", "fish_variables", "plugin"},
+		hide_by_pattern = {},
+		always_show = {},
+		never_show = {},
+	  },
+	  follow_current_file = false,
+	  group_empty_dirs = false,
+	  hijack_netrw_behavior = "open_default",
+	  use_libuv_file_watcher = false,
+	},
+	buffers = {
+	  follow_current_file = true,
+	  group_empty_dirs = true,
+	  show_unloaded = true,
+	},
+})
+
 
 
 

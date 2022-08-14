@@ -2,12 +2,12 @@ local set = vim.opt
 local g = vim.g
 
 
-
 -- indent
 set.autoindent = true
 set.smartindent = true
 set.tabstop = 4
 set.shiftwidth = 4
+set.expandtab = true
 set.smarttab = true
 set.softtabstop = 4
 

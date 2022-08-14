@@ -41,15 +41,6 @@ alias crun="cargo run"  # run w/wo binary
 alias cbuild="cargo build"  # compile binary in target/debug/…
 alias crelease="cargo build --release"  # compile binary in target/release/…
 
-# others
-function clean
-	apt autoremove
-	pkg clean
-	pkg autoclean
-	echo
-	pip cache info
-	pip cache purge
-end
 
 function pup
 	echo "deb https://grimler.se/termux/termux-main stable main" > $PREFIX/etc/apt/sources.list
