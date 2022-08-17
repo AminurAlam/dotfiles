@@ -43,6 +43,6 @@ alias crelease="cargo build --release"  # compile binary in target/release/…
 
 
 function pup
-	echo "deb https://grimler.se/termux/termux-main stable main" > $PREFIX/etc/apt/sources.list
+	echo "deb https://packages-cf.termux.dev/apt/termux-main stable main" > $PREFIX/etc/apt/sources.list
 	apt update && apt upgrade
 end

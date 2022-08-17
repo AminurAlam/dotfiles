@@ -3,6 +3,7 @@ export VISUAL="vi"
 export EDITOR="vi"
 export MANPAGER="vi +Man!"
 export BAT_PAGER="less"
+export BROWSER="termux-open-url"
 export LESSHISTFILE="-"
 export EXA_COLORS="*.py=38;5;45:*.rs=38;5;208:*.fish=38;5;47:*.png=36:*.flac=36:\
 *.log=38;5;252:*.lrc=38;5;252:*.cue=38;5;39:*.apk=38;5;47:*.css=38;5;135:\
@@ -71,16 +72,17 @@ set --path rp "$HOME/repos"
 set --path sp "$HOME/repos/samples"
 
 ### bindings ###
-bind \e\[1\;5A 'commandline -f history-token-search-backward'
-bind \e\[1\;5B 'commandline -f history-token-search-forward'
+fish_vi_key_bindings
+bind -M insert \e\[1\;5A 'commandline -f history-token-search-backward'
+bind -M insert \e\[1\;5B 'commandline -f history-token-search-forward'
 
-bind \' "commandline -i \'\'" 'commandline -f backward-char'
-bind \" 'commandline -i \"\"' 'commandline -f backward-char'
-bind \` 'commandline -i \`\`' 'commandline -f backward-char'
-bind \( 'commandline -i \(\)' 'commandline -f backward-char'
-bind \[ 'commandline -i \[\]' 'commandline -f backward-char'
-bind \{ 'commandline -i \{\}' 'commandline -f backward-char'
-bind \< 'commandline -i \<\>' 'commandline -f backward-char'
+bind -M insert \' "commandline -i \'\'" 'commandline -f backward-char'
+bind -M insert \" 'commandline -i \"\"' 'commandline -f backward-char'
+bind -M insert \` 'commandline -i \`\`' 'commandline -f backward-char'
+bind -M insert \( 'commandline -i \(\)' 'commandline -f backward-char'
+bind -M insert \[ 'commandline -i \[\]' 'commandline -f backward-char'
+bind -M insert \{ 'commandline -i \{\}' 'commandline -f backward-char'
+bind -M insert \< 'commandline -i \<\>' 'commandline -f backward-char'
 
 
 ### functions ###
@@ -114,7 +116,7 @@ function clean
     echo -e (set_color cyan) "\npython" (set_color normal)
 	pip cache info
 	pip cache purge
-	
+
 	echo -e (set_color cyan) "\nfiles in home" (set_color normal)
 	count (ls -a $HOME)
 end

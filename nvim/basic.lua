@@ -1,6 +1,4 @@
 local set = vim.opt
-local g = vim.g
-
 -- indent
 set.autoindent = true
 set.smartindent = true
@@ -8,19 +6,17 @@ set.tabstop = 4
 set.shiftwidth = 4
 set.smarttab = true
 set.softtabstop = 4
-
+set.expandtab = true
 -- search
 set.hlsearch = false
 set.ignorecase = true
 set.smartcase = true
 set.incsearch = true
-
 -- scrolling
 set.scroll = 10
 set.scrolloff = 6
 set.sidescroll = 8
 set.sidescrolloff = 10
-
 -- design
 set.wrap = false
 set.showbreak = ' …'
@@ -28,11 +24,10 @@ set.inccommand = 'split'
 set.fillchars = 'fold: ,eob: '
 set.mouse = 'nvic'
 set.number = true
-
 -- terminal
 set.termguicolors = true
 set.cmdheight = 0
-
+set.background = 'dark'
 -- oters
 set.cursorline = true
 set.laststatus = 3
@@ -42,32 +37,29 @@ set.helpheight = 200
 set.swapfile = false
 set.clipboard:append('unnamedplus')
 
-g.tokyonight_italic_comments = false
-g.tokyonight_italic_functions = false
-g.tokyonight_italic_keywords = false
 
 vim.cmd [[
-    colorscheme tokyonight
-	set guicursor=n-v-c-i-ci-ve-r-cr-o-a-sm:block,v:block
+    set colorcolumn=80
+    set guicursor=n-v-c-i-ci-ve-r-cr-o-a-sm:hor1,v:block
+	augroup packer_user_config
+        autocmd!
+        autocmd BufWritePost plugins.lua source <afile> | PackerCompile
+    augroup end
 ]]
 
 require('remaps')
-require('nvim-autopairs').setup({})
-require('nvim-treesitter.configs').setup({
-	highlight = {enable = true},
-	indent = {enabled = false}
-})
-require('lualine').setup({
-	options = {
-		theme = 'onedark',
-		section_separators = {left = '', right = ''},
-	},
-	sections = {
-		lualine_a = {{'mode', padding = 2}},
-		lualine_b = {},
-		lualine_c = {},
-		lualine_x = {},
-		lualine_y = {},
-		lualine_z = {{'filename', padding = 2}}
+require('main').setup('basic')
+
+vim.diagnostic.config({
+    underline = false,
+    signs = false,
+    virtual_text = { spacing = 1 },
+    float = {
+      show_header = true,
+      source = true,
+      focus = false,
+      width = 60,  -- border = border,
     },
+    update_in_insert = true,
+    severity_sort = true,
 })

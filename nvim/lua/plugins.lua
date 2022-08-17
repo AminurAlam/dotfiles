@@ -1,63 +1,96 @@
-return require('packer').startup(function(use)
-    -- Packer can manage itself
-    use 'wbthomason/packer.nvim'
+local M = {}
 
+local base_plugins = {
+    {'numToStr/Comment.nvim', config = 'require("Comment").setup({})'},
+    {'windwp/nvim-autopairs', config = 'require("nvim-autopairs").setup({})'},
+    {'kylechui/nvim-surround', config = 'require("nvim-surround").setup({})'},
+    {'folke/tokyonight.nvim',
+        config = function()
+            vim.g.tokyonight_italic_comments = false
+            vim.g.tokyonight_italic_functions = false
+            vim.g.tokyonight_italic_keywords = false
+            vim.cmd('colorscheme tokyonight')
+        end},
+}
 
+local full_plugins = {
 
+    -- no config needed
+    {'wbthomason/packer.nvim'},
+    {'nvim-lua/plenary.nvim'},
+    {'kyazdani42/nvim-web-devicons'},
+    {'lukas-reineke/indent-blankline.nvim'},
+    {'folke/lua-dev.nvim'},
+    {'mfussenegger/nvim-dap'},
 
+    -- config in a custom file
+    {'nvim-lualine/lualine.nvim', config = 'require("lualine-config")'},
+    {'akinsho/toggleterm.nvim', config = 'require("toggleterm-config")'},
 
+    -- default config
+    {'williamboman/mason.nvim'},
+    {'williamboman/mason-lspconfig.nvim'},
+    {'rcarriga/nvim-dap-ui', requires = {'mfussenegger/nvim-dap'}},
+    {'norcalli/nvim-colorizer.lua',
+        config = 'require("colorizer").setup({})'},
 
+    -- small ammount of config
+    {'zakharykaplan/nvim-retrail',
+        config = function ()
+            require("retrail").setup({hlgroup = "Search"})
+        end},
+    {'folke/trouble.nvim',
+        config = function() require("trouble").setup({
+            position = "top", height = 8
+        }) end},
+    {'nvim-treesitter/nvim-treesitter',
+        run = ':TSUpdate',
+        config = function() require('nvim-treesitter.configs').setup({
+            highlight = {enable = true},
+            indent = {enable = false},
+        }) end},
+    {'nvim-telescope/telescope.nvim',
+        config = function() require('telescope').setup({defaults = {
+            prompt_prefix = '  ',
+            file_ignore_patterns = {'node_modules'}}
+        }) end},
 
-    -- basic plugins
-    use {'airblade/vim-gitgutter'}
-    use {'nvim-lua/plenary.nvim'}
-    use {'nvim-telescope/telescope.nvim',
-	     cmd = ":Telescope"}
-    use {'nvim-treesitter/nvim-treesitter',
-	     run = ':TSUpdate'}
-    use {'numToStr/Comment.nvim',
-	     event = "BufWinEnter",
-		 config="require('Comment').setup({})"}
-    use {'nvim-neo-tree/neo-tree.nvim', requires = {'MunifTanjim/nui.nvim'}}
+    --[[ i hate lsp configuration ]]
+    {'neovim/nvim-lspconfig'},
+    {'hrsh7th/nvim-cmp'},
+    {'hrsh7th/cmp-nvim-lsp'},
+    {'onsails/lspkind-nvim'},
+    {'hrsh7th/cmp-path'},
+    {'hrsh7th/cmp-buffer'},
+    {'hrsh7th/cmp-cmdline'},
+    {'rafamadriz/friendly-snippets'},
+    --[[ For vsnip users. ]]
+    {'hrsh7th/cmp-vsnip'},
+    {'hrsh7th/vim-vsnip'},
+    --[[ For luasnip users. ]]
+    {'L3MON4D3/LuaSnip'},
+    {'saadparwaiz1/cmp_luasnip'},
+}
 
-    -- themes and design
-    use {'nvim-lualine/lualine.nvim'}
-    use {'akinsho/bufferline.nvim'}
-    use {'kyazdani42/nvim-web-devicons'}
-    use {'norcalli/nvim-colorizer.lua', cmd = ":ColorizerToggle"}
-    use {'folke/tokyonight.nvim', event = "BufWinEnter"}
+function M.load(config)
+    local plugins = {}
 
-    -- correction stuff
-    use {'williamboman/mason.nvim'}
-    use {'williamboman/mason-lspconfig.nvim', event = "BufWinEnter"}
-    use {'folke/trouble.nvim'}
-    use {'folke/lua-dev.nvim'}
-    use {'windwp/nvim-autopairs'}
-    use {'onsails/lspkind-nvim'}
-    use {'lukas-reineke/indent-blankline.nvim'}
+    -- first picks basic plugins
+    for _, value in ipairs(base_plugins) do
+        table.insert(plugins, value)
+    end
 
-    -- lsp
-    use 'neovim/nvim-lspconfig'  -- Collection of configurations for built-in LSP client
-    use 'hrsh7th/nvim-cmp'  -- Autocompletion plugin
-    use 'hrsh7th/cmp-nvim-lsp'  -- LSP source for nvim-cmp
-    use 'hrsh7th/cmp-path'
-    use 'hrsh7th/cmp-buffer'
-    use 'hrsh7th/cmp-cmdline'
-    use 'rafamadriz/friendly-snippets' -- found all snippet data
+    -- then picks full plugins
+    if config == 'full' then
+        for _, value in ipairs(full_plugins) do
+            table.insert(plugins, value)
+        end
+    end
 
-    -- use 'hrsh7th/cmp-nvim-lua'
-    -- use 'hrsh7th/cmp-nvim-lsp-document-symbol'
+    -- using the plugims
+    require('packer').startup({plugins, config = {
+        display = {open_fn = require('packer.util').float},}
+    })
+end
 
-    --[] For vsnip users. []
-    use 'hrsh7th/cmp-vsnip'
-    use 'hrsh7th/vim-vsnip'
-    --[] For luasnip users. []
-    use 'L3MON4D3/LuaSnip'
-    use 'saadparwaiz1/cmp_luasnip'
-    --[] For ultisnips users. []
-    -- use 'SirVer/ultisnips'
-    -- use 'quangnguyen30192/cmp-nvim-ultisnips'
-    --[] For snippy users. []
-    -- use 'dcampos/nvim-snippy'
-    -- use 'dcampos/cmp-snippy'
-end)
+return M

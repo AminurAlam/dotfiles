@@ -1,9 +1,9 @@
 local function nmap(k, v)
-	vim.keymap.set('n', k, v, {noremap = true})
+        vim.keymap.set('n', k, v, {noremap = true})
 end
 
 local function imap(k, v)
-	vim.keymap.set('i', k, v, {noremap = true})
+        vim.keymap.set('i', k, v, {noremap = true})
 end
 
 
@@ -17,10 +17,9 @@ nmap('<leader>fb', '<cmd>:Telescope buffers<cr>')
 nmap('<leader>fh', '<cmd>:Telescope help_tags<cr>')
 
 -- packer
-nmap('<leader>ps', '<cmd>:PackerSync<cr>')
-nmap('<leader>pi', '<cmd>:PackerInstall<cr>')
-nmap('<leader>pc', '<cmd>:PackerClean<cr>')
-nmap('<leader>pl', '<cmd>:PackerLoad<cr>')
+nmap('<leader>pup', '<cmd>:PackerSync<cr>')
+nmap('<leader>pin', '<cmd>:PackerInstall<cr>')
+nmap('<leader>pun', '<cmd>:PackerClean<cr>')
 
 -- other plugins
 nmap('<leader>hl', '<cmd>:TSToggle highlight<cr>')

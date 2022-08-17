@@ -117,6 +117,11 @@ alias dud="dust -r -d 1"
 alias anal="$PATH[1]/du -ah -d 1 -t 20000000 | sort -k1hr"
 alias df="duf -only local -output mountpoint,size,avail,usage -width 150 -only-mp '/storage/*'"
 
+# newsboat
+alias nb="newsboat"
+alias nbt="newsboat -r"
+alias vin="vi $HOME/.config/newsboat/*"
+
 # others
 alias nf="neofetch"
 alias nano="nano -x -e"
