@@ -1,26 +1,10 @@
 function fish_mode_prompt
 end
 
-function fish_prompt
-    [ -n "$SSH_CLIENT" ] && set -l prompt_name "$USER@ssh"
-	# [ -n "$VIRTUAL_ENV" ] && set -l venv "(venv)"
-    fish_is_root_user && set -l prompt_logo ' # ' || set -l prompt_logo ' ❯ '
-
-    # set -l cwd (prompt_pwd -D 2)
-	# set -l prompt_cwd (string replace -r '^'"/d/d/c/f"'($|/)' '≈$1' $cwd)
-
-    echo -s -e \n \
-        (set_color yellow) $prompt_name \
-		(set_color blue) $venv \
-        (set_color cyan) (fish_git_prompt) ' ' \
-        (set_color $fish_color_cwd) (prompt_pwd) \
-        (set_color normal) $prompt_logo
-end
-
-
 function fish_right_prompt
-    set -l last_status $status
-    [ $last_status -ne 0 ] && set prompt_status "[$last_status]"
+    # [ -n "$SSH_CLIENT" ] && set -l prompt_name "$USER@ssh"
+    set -l exit_code $status
+    [ $exit_code -ne 0 ] && set prompt_status "[$exit_code]"
     jobs -q && set prompt_jobs "[$(count (jobs))J]"
 
     [ $CMD_DURATION -gt 10 ] && set time "[$(echo $CMD_DURATION)ms]"
@@ -33,4 +17,20 @@ function fish_right_prompt
         (set_color grey) $prompt_jobs $time \
         (fish_default_mode_prompt) \
         (set_color normal)
+end
+
+function fish_prompt
+	# [ -n "$VIRTUAL_ENV" ] && set -l venv "(venv)"
+    fish_is_root_user && set -l prompt_logo ' # ' || set -l prompt_logo ' ❯ '
+    [ (string length (prompt_pwd)) -gt (math -s 0 (tput cols)/3) ] && set -l prompt_logo "\n$prompt_logo"
+
+    # set -l cwd (prompt_pwd -D 2)
+	# set -l prompt_cwd (string replace -r '^'"/d/d/c/f"'($|/)' '≈$1' $cwd)
+
+    echo -s -e \n \
+        (set_color yellow) $prompt_name \
+		(set_color blue) $venv \
+        (set_color cyan) (fish_git_prompt) ' ' \
+        (set_color $fish_color_cwd) (prompt_pwd) \
+        (set_color normal) $prompt_logo
 end

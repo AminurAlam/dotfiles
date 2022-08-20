@@ -21,16 +21,32 @@ export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_CACHE_HOME="$HOME/.cache"
 export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_STATE_HOME="$HOME/.local/state"
-
-export TEXDIR="$PATH/share/texlive"
-export TEXMFLOCAL="$PATH/share/texlive/texmf-local"
-export TEXMFSYSVAR="$PATH/share/texlive/texmf-var"
-export TEXMFSYSCONFIG="$PATH/share/texlive/texmf-config"
-export TEXMFVAR="$TEXMFSYSVAR"
-export TEXMFCONFIG="$TEXMFSYSCONFIG"
-export TEXMFHOME="$TEXMFLOCAL"
+: "
+TEXDIR (the main TeX directory):
+     /data/data/com.termux/files/usr/share/texlive
+   TEXMFLOCAL (directory for site-wide local files):
+     /data/data/com.termux/files/usr/share/texlive/texmf-local
+   TEXMFSYSVAR (directory for variable and automatically generated data):
+     /data/data/com.termux/files/usr/share/texlive/texmf-var
+   TEXMFSYSCONFIG (directory for local config):
+     /data/data/com.termux/files/usr/share/texlive/texmf-config
+   TEXMFVAR (personal directory for variable and automatically generated data):
+     ~/.texlive2022/texmf-var
+   TEXMFCONFIG (personal directory for local config):
+     ~/.texlive2022/texmf-config
+   TEXMFHOME (directory for user-specific files):
+     ~/texmf"
+export TEXDIR="$PREFIX/share/texlive"
+export TEXMFLOCAL="$TEXDIR/texmf-local"
+export TEXMFSYSVAR="$TEXDIR/texmf-var"
+export TEXMFSYSCONFIG="$TEXDIR/texmf-config"
+export TEXMFVAR="$HOME/.texlive2022/texmf-var"
+export TEXMFCONFIG="$HOME/.texlive2022/texmf-config"
+export TEXMFHOME="$HOME/texmf"
 
 export INPUTRC="$XDG_CONFIG_HOME/readline/inputrc"
+export ICEAUTHORITY="$XDG_CACHE_HOME/ICEauthority"
+export XAUTHORITY="$XDG_RUNTIME_DIR/Xauthority"
 export HISTFILE="$XDG_STATE_HOME/bash/history"
 export PYTHONSTARTUP="$XDG_CONFIG_HOME/python/startup.py"
 export NODE_REPL_HISTORY="$XDG_DATA_HOME/node_repl_history"
@@ -39,7 +55,7 @@ export RUSTUP_HOME="$XDG_DATA_HOME/rustup"
 export CARGO_HOME="$XDG_DATA_HOME/cargo"
 export CARGO_INSTALL_ROOT="$CARGO_HOME"
 
-export PATH="$PATH:$CARGO_HOME/bin:$PREFIX/bin/texlive"
+export PATH="$PATH:$CARGO_HOME/bin"
 
 
 ### source ###
@@ -91,33 +107,39 @@ bind -M insert \< 'commandline -i \<\>' 'commandline -f backward-char'
 set -l PAKS bat dust exa fd fzf git vi python rclone rg wget zoxide
 
 for package in $PAKS
-	set_color $fish_color_error
-	if ! type -qf "$package"
-		echo "`$package` is not installed"
-	end
-	set_color normal
+    set_color $fish_color_error
+    if ! type -qf "$package"
+        echo "`$package` is not installed"
+    end
+    set_color normal
 end
 
 # cleaning
 function clean
     echo -e (set_color cyan) "\napt & pkg" (set_color normal)
-	apt autoremove
-	pkg clean
-	pkg autoclean
+    apt autoremove
+    pkg clean
+    pkg autoclean
 
-	echo -e (set_color cyan) "\nsdcard folders" (set_color normal)
-	echo -en (set_color red) "aurora"  (set_color normal)
-	rm -rfI /sdcard/Aurora/
-	echo -en (set_color red) "xodo" (set_color normal)
-	rm -rfI /sdcard/Android/data/com.xodo.pdf.reader/
-	echo -en (set_color red) "youtube" (set_color normal)
-	rm -rfI /sdcard/Android/data/com.vanced.android.youtube/
+    echo -e (set_color cyan) "\nsdcard folders" (set_color normal)
+    set -l dirs \
+        "/sdcard/Android/data/org.telegram.messenger.web/" \
+        "/sdcard/Android/data/com.vanced.android.youtube/" \
+        "/sdcard/DCIM/.thumbnails/" \
+        "/sdcard/.TotalCommander/" \
+        "/sdcard/Aurora/" \
+        "/sdcard/Telegram/"
+
+    for dir in $dirs
+        echo "  $dir"
+        [ -d $dir ] && command rm -rfI "$dir" || echo "dir doesn't exist"
+    end
 
     echo -e (set_color cyan) "\npython" (set_color normal)
-	pip cache info
-	pip cache purge
+    pip cache info
+    pip cache purge
 
-	echo -e (set_color cyan) "\nfiles in home" (set_color normal)
-	count (ls -a $HOME)
+    echo -e (set_color cyan) "\nfiles in home" (set_color normal)
+    count (ls -a $HOME)
 end
 

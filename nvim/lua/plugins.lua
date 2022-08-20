@@ -1,96 +1,91 @@
-local M = {}
+vim.cmd [[packadd packer.nvim]]
+local packer = require('packer')
+packer.init({display = { open_fn = function()
+	return require('packer.util').float({
+        border = 'rounded'
+    })
+end,},})
 
-local base_plugins = {
-    {'numToStr/Comment.nvim', config = 'require("Comment").setup({})'},
-    {'windwp/nvim-autopairs', config = 'require("nvim-autopairs").setup({})'},
-    {'kylechui/nvim-surround', config = 'require("nvim-surround").setup({})'},
-    {'folke/tokyonight.nvim',
-        config = function()
-            vim.g.tokyonight_italic_comments = false
-            vim.g.tokyonight_italic_functions = false
-            vim.g.tokyonight_italic_keywords = false
-            vim.cmd('colorscheme tokyonight')
-        end},
-}
+return packer.startup(function(use)
+    -- Packer can manage itself
+    use 'wbthomason/packer.nvim'
 
-local full_plugins = {
-
-    -- no config needed
-    {'wbthomason/packer.nvim'},
-    {'nvim-lua/plenary.nvim'},
-    {'kyazdani42/nvim-web-devicons'},
-    {'lukas-reineke/indent-blankline.nvim'},
-    {'folke/lua-dev.nvim'},
-    {'mfussenegger/nvim-dap'},
-
-    -- config in a custom file
-    {'nvim-lualine/lualine.nvim', config = 'require("lualine-config")'},
-    {'akinsho/toggleterm.nvim', config = 'require("toggleterm-config")'},
-
-    -- default config
-    {'williamboman/mason.nvim'},
-    {'williamboman/mason-lspconfig.nvim'},
-    {'rcarriga/nvim-dap-ui', requires = {'mfussenegger/nvim-dap'}},
-    {'norcalli/nvim-colorizer.lua',
-        config = 'require("colorizer").setup({})'},
-
-    -- small ammount of config
-    {'zakharykaplan/nvim-retrail',
-        config = function ()
-            require("retrail").setup({hlgroup = "Search"})
-        end},
-    {'folke/trouble.nvim',
-        config = function() require("trouble").setup({
-            position = "top", height = 8
-        }) end},
-    {'nvim-treesitter/nvim-treesitter',
-        run = ':TSUpdate',
-        config = function() require('nvim-treesitter.configs').setup({
+    -- main plugins
+    use {'nvim-lua/plenary.nvim'}
+    use {'nvim-telescope/telescope.nvim'}
+    use {'kyazdani42/nvim-web-devicons'}
+    use {'folke/lua-dev.nvim'}
+    use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate', config = function()
+        require('nvim-treesitter.configs').setup({
             highlight = {enable = true},
             indent = {enable = false},
-        }) end},
-    {'nvim-telescope/telescope.nvim',
-        config = function() require('telescope').setup({defaults = {
-            prompt_prefix = '  ',
-            file_ignore_patterns = {'node_modules'}}
-        }) end},
+        })
+    end}
+    use {'akinsho/toggleterm.nvim'}
 
-    --[[ i hate lsp configuration ]]
-    {'neovim/nvim-lspconfig'},
-    {'hrsh7th/nvim-cmp'},
-    {'hrsh7th/cmp-nvim-lsp'},
-    {'onsails/lspkind-nvim'},
-    {'hrsh7th/cmp-path'},
-    {'hrsh7th/cmp-buffer'},
-    {'hrsh7th/cmp-cmdline'},
-    {'rafamadriz/friendly-snippets'},
+    -- theme & design
+    use {'norcalli/nvim-colorizer.lua'}
+    use {'lukas-reineke/indent-blankline.nvim'}
+    use {'folke/tokyonight.nvim'}
+    use {'williamboman/mason.nvim',
+        config = 'require("mason").setup({})'}
+    use {"Pocco81/true-zen.nvim",
+        config = 'require("true-zen").setup({})'}
+    use {'nvim-lualine/lualine.nvim', config = function ()
+        require('lualine').setup({
+            options = {theme = 'onedark'},
+            sections = {
+                lualine_a = {{'mode', padding = 1}},
+                lualine_b = {{'branch'}},
+                lualine_c = {{'filename'}},
+                lualine_x = {{'diagnostics', update_in_insert = true}},
+                lualine_y = {{'progress'}},
+                lualine_z = {{'filetype', padding = 1}}
+            },
+        })
+    end}
+    -- typing & correction
+    use {'williamboman/mason-lspconfig.nvim'}
+    use {'kylechui/nvim-surround',
+        config = 'require("nvim-surround").setup({})'}
+    use {'numToStr/Comment.nvim',
+        config = 'require("Comment").setup({})'}
+    use {'windwp/nvim-autopairs',
+        config = 'require("nvim-autopairs").setup({})'}
+    use {'folke/trouble.nvim', config = function()
+        require("trouble").setup({
+            position = "top", height = 8
+        })
+    end}
+    use {'zakharykaplan/nvim-retrail', config = function ()
+        require("retrail").setup({
+            hlgroup = "Search"
+        })
+    end}
+    use {'amrbashir/nvim-docs-view',
+        opt = true, cmd = { "DocsViewToggle" }, config = function()
+        require("docs-view").setup({
+            position = "right",
+            width = 60,
+        })
+    end}
+
+    -- lsp
+    use {'onsails/lspkind-nvim'}
+    use {'neovim/nvim-lspconfig'}
+    use {'hrsh7th/nvim-cmp'}
+    use {'hrsh7th/cmp-nvim-lsp'}
+    use {'hrsh7th/cmp-path'}
+    use {'hrsh7th/cmp-buffer'}
+    use {'hrsh7th/cmp-cmdline'}
+    use {'rafamadriz/friendly-snippets'}
     --[[ For vsnip users. ]]
-    {'hrsh7th/cmp-vsnip'},
-    {'hrsh7th/vim-vsnip'},
+    -- use {'hrsh7th/cmp-vsnip'}
+    -- use {'hrsh7th/vim-vsnip'}
     --[[ For luasnip users. ]]
-    {'L3MON4D3/LuaSnip'},
-    {'saadparwaiz1/cmp_luasnip'},
-}
+    use {'L3MON4D3/LuaSnip'}
+    use {'saadparwaiz1/cmp_luasnip'}
 
-function M.load(config)
-    local plugins = {}
 
-    -- first picks basic plugins
-    for _, value in ipairs(base_plugins) do
-        table.insert(plugins, value)
-    end
 
-    -- then picks full plugins
-    if config == 'full' then
-        for _, value in ipairs(full_plugins) do
-            table.insert(plugins, value)
-        end
-    end
-
-    -- using the plugims
-    require('packer').startup({plugins, config = {
-        display = {open_fn = require('packer.util').float},}
-    })
-end
-
-return M
+end)

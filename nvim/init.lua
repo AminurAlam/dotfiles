@@ -38,18 +38,27 @@ set.swapfile = false
 set.clipboard:append('unnamedplus')
 
 
+require('remaps')
+require('plugins')
+require('configs.lsp-config')
+-- require('configs.lualine-config')
+require('configs.toggleterm-config')
+
+vim.g.tokyonight_italic_comments = false
+vim.g.tokyonight_italic_functions = false
+vim.g.tokyonight_italic_keywords = false
+
 vim.cmd [[
     set colorcolumn=80
     set guicursor=n-v-c-i-ci-ve-r-cr-o-a-sm:hor1,v:block
-	augroup packer_user_config
+    colorscheme tokyonight
+    augroup packer_user_config
         autocmd!
         autocmd BufWritePost plugins.lua source <afile> | PackerCompile
     augroup end
 ]]
 
-require('remaps')
-require('main').setup('full')
-require('lsp-config')
+
 
 vim.diagnostic.config({
     underline = false,

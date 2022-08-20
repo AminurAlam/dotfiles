@@ -1,8 +1,5 @@
 require('lualine').setup {
-  options = {
-    icons_enabled = true,
-    theme = 'onedark',
-  },
+  options = {theme = 'onedark'},
   sections = {
     lualine_a = {{'mode', padding = 1}},
     lualine_b = {{'branch'}},
