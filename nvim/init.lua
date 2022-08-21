@@ -15,8 +15,8 @@ set.incsearch = true
 -- scrolling
 set.scroll = 10
 set.scrolloff = 6
-set.sidescroll = 8
-set.sidescrolloff = 10
+set.sidescroll = 4
+set.sidescrolloff = 8
 -- design
 set.wrap = false
 set.showbreak = ' …'
@@ -40,9 +40,12 @@ set.clipboard:append('unnamedplus')
 
 require('remaps')
 require('plugins')
-require('configs.lsp-config')
--- require('configs.lualine-config')
-require('configs.toggleterm-config')
+
+require('configs.lsp')
+require('configs.lualine')
+require('configs.treesitter')
+require('configs.telescope')
+require('configs.toggleterm')
 
 vim.g.tokyonight_italic_comments = false
 vim.g.tokyonight_italic_functions = false
@@ -57,8 +60,6 @@ vim.cmd [[
         autocmd BufWritePost plugins.lua source <afile> | PackerCompile
     augroup end
 ]]
-
-
 
 vim.diagnostic.config({
     underline = false,

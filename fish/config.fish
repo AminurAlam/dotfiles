@@ -31,18 +31,19 @@ TEXDIR (the main TeX directory):
    TEXMFSYSCONFIG (directory for local config):
      /data/data/com.termux/files/usr/share/texlive/texmf-config
    TEXMFVAR (personal directory for variable and automatically generated data):
-     ~/.texlive2022/texmf-var
+     $TEXMFSYSVAR
    TEXMFCONFIG (personal directory for local config):
-     ~/.texlive2022/texmf-config
+     $TEXMFSYSCONFIG
    TEXMFHOME (directory for user-specific files):
-     ~/texmf"
+     $TEXMFLOCAL"
+
 export TEXDIR="$PREFIX/share/texlive"
 export TEXMFLOCAL="$TEXDIR/texmf-local"
 export TEXMFSYSVAR="$TEXDIR/texmf-var"
 export TEXMFSYSCONFIG="$TEXDIR/texmf-config"
-export TEXMFVAR="$HOME/.texlive2022/texmf-var"
-export TEXMFCONFIG="$HOME/.texlive2022/texmf-config"
-export TEXMFHOME="$HOME/texmf"
+export TEXMFVAR="$TEXMFSYSVAR"
+export TEXMFCONFIG="$TEXMFSYSCONFIG"
+export TEXMFHOME="$TEXMFLOCAL"
 
 export INPUTRC="$XDG_CONFIG_HOME/readline/inputrc"
 export ICEAUTHORITY="$XDG_CACHE_HOME/ICEauthority"
@@ -55,7 +56,7 @@ export RUSTUP_HOME="$XDG_DATA_HOME/rustup"
 export CARGO_HOME="$XDG_DATA_HOME/cargo"
 export CARGO_INSTALL_ROOT="$CARGO_HOME"
 
-export PATH="$PATH:$CARGO_HOME/bin"
+export PATH="$PATH:$CARGO_HOME/bin:$TEXDIR/bin/armhf-linux"
 
 
 ### source ###
@@ -99,6 +100,8 @@ bind -M insert \( 'commandline -i \(\)' 'commandline -f backward-char'
 bind -M insert \[ 'commandline -i \[\]' 'commandline -f backward-char'
 bind -M insert \{ 'commandline -i \{\}' 'commandline -f backward-char'
 bind -M insert \< 'commandline -i \<\>' 'commandline -f backward-char'
+
+bind -M insert \ch 'commandline -i \~'
 
 
 ### functions ###

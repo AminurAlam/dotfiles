@@ -20,7 +20,7 @@ local servers = {
     -- pip
     'pyright',
     -- apt
-    'rust_analyzer',
+    'rust_analyzer', 'texlab',
     -- npm (vscode-langservers-extracted)
     'jsonls', 'eslint', 'cssls', 'html',
     -- mason
