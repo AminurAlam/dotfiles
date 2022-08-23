@@ -1,9 +1,10 @@
 require('telescope').setup({
     defaults = {
         prompt_prefix = '  ',
-        selection_caret = ' » ',
-        entry_prefix = '  ',
+        selection_caret = '» ',
+        entry_prefix = ' ',
         prompt_title = false,
+        winblend = 8,
         file_ignore_patterns = {
             'node_modules',
             '.git',

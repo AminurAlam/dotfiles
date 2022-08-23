@@ -1,14 +1,16 @@
 ### exports ###
+set -l COLORS "*.py=38;5;45:*.rs=38;5;208:*.fish=38;5;47:*.sh=38;5;47:*.bash=38;5;47:\
+*.png=36:*.flac=36:*.log=38;5;252:*.lrc=38;5;252:*.cue=38;5;39:*.apk=38;5;47:*.css=38;5;135:\
+*.csv=38;5;42:*.go=38;5;45:*.gradle=38;5;24:*.html=38;5;202:*.json=38;5;3:\
+*.jl=38;5;213:*.js=33:*.kt=35:*.lua=38;5;27:*.php=38;5;63:"
+export LS_COLORS="$COLORS"
+export EXA_COLORS="$COLORS"
 export VISUAL="vi"
 export EDITOR="vi"
 export MANPAGER="vi +Man!"
 export BAT_PAGER="less"
 export BROWSER="termux-open-url"
 export LESSHISTFILE="-"
-export EXA_COLORS="*.py=38;5;45:*.rs=38;5;208:*.fish=38;5;47:*.png=36:*.flac=36:\
-*.log=38;5;252:*.lrc=38;5;252:*.cue=38;5;39:*.apk=38;5;47:*.css=38;5;135:\
-*.csv=38;5;42:*.go=38;5;45:*.gradle=38;5;24:*.html=38;5;202:*.json=38;5;3:\
-*.jl=38;5;213:*.js=33:*.kt=35:*.lua=38;5;27:*.php=38;5;63:"
 
 [ "$EXTERNAL_STORAGE" ] || export EXTERNAL_STORAGE="$HOME"
 
@@ -21,29 +23,6 @@ export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_CACHE_HOME="$HOME/.cache"
 export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_STATE_HOME="$HOME/.local/state"
-: "
-TEXDIR (the main TeX directory):
-     /data/data/com.termux/files/usr/share/texlive
-   TEXMFLOCAL (directory for site-wide local files):
-     /data/data/com.termux/files/usr/share/texlive/texmf-local
-   TEXMFSYSVAR (directory for variable and automatically generated data):
-     /data/data/com.termux/files/usr/share/texlive/texmf-var
-   TEXMFSYSCONFIG (directory for local config):
-     /data/data/com.termux/files/usr/share/texlive/texmf-config
-   TEXMFVAR (personal directory for variable and automatically generated data):
-     $TEXMFSYSVAR
-   TEXMFCONFIG (personal directory for local config):
-     $TEXMFSYSCONFIG
-   TEXMFHOME (directory for user-specific files):
-     $TEXMFLOCAL"
-
-export TEXDIR="$PREFIX/share/texlive"
-export TEXMFLOCAL="$TEXDIR/texmf-local"
-export TEXMFSYSVAR="$TEXDIR/texmf-var"
-export TEXMFSYSCONFIG="$TEXDIR/texmf-config"
-export TEXMFVAR="$TEXMFSYSVAR"
-export TEXMFCONFIG="$TEXMFSYSCONFIG"
-export TEXMFHOME="$TEXMFLOCAL"
 
 export INPUTRC="$XDG_CONFIG_HOME/readline/inputrc"
 export ICEAUTHORITY="$XDG_CACHE_HOME/ICEauthority"
@@ -56,7 +35,7 @@ export RUSTUP_HOME="$XDG_DATA_HOME/rustup"
 export CARGO_HOME="$XDG_DATA_HOME/cargo"
 export CARGO_INSTALL_ROOT="$CARGO_HOME"
 
-export PATH="$PATH:$CARGO_HOME/bin:$TEXDIR/bin/armhf-linux"
+export PATH="$PATH:$CARGO_HOME/bin"
 
 
 ### source ###
@@ -107,12 +86,14 @@ bind -M insert \ch 'commandline -i \~'
 ### functions ###
 
 # checking installations
-set -l PAKS bat dust exa fd fzf git vi python rclone rg wget zoxide
+set -l PACKAGES bat dust exa fd fzf git vi python rclone rg wget zoxide
 
-for package in $PAKS
+for package in $PACKAGES
     set_color $fish_color_error
     if ! type -qf "$package"
         echo "`$package` is not installed"
+    # else
+    #     echo 'installed!'
     end
     set_color normal
 end

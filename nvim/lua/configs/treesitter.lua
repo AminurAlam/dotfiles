@@ -1,4 +1,4 @@
-require('nvim-treesitter.configs').setup {
+require('nvim-treesitter.configs').setup({
     ensure_installed = {
         'bash', 'fish', 'jsonc', 'lua',
         'markdown', 'python', 'rust', 'vim'
@@ -12,4 +12,4 @@ require('nvim-treesitter.configs').setup {
     indent = { enable = false },
     incremental_selection = { enable = true },
     textobjects = { enable = true },
-  }
+})

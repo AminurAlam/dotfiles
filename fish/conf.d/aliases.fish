@@ -34,6 +34,11 @@ alias ...="z ../.."
 alias ....="z ../../.."
 alias .....="z ../../../.."
 
+alias zp="z $PREFIX"
+  alias zpb="z $PREFIX/bin"
+  alias zpe="z $PREFIX/etc"
+  alias zpl="z $PREFIX/lib"
+
 alias zsd="z /sdcard"
 alias zdoc="z /sdcard/Documents"
 alias zdl="z /sdcard/Download"

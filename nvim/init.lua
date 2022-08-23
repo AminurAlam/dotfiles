@@ -1,3 +1,5 @@
+require('impatient')
+
 local set = vim.opt
 -- indent
 set.autoindent = true
@@ -20,56 +22,50 @@ set.sidescrolloff = 8
 -- design
 set.wrap = false
 set.showbreak = ' …'
-set.inccommand = 'split'
-set.fillchars = 'fold: ,eob: '
-set.mouse = 'nvic'
+-- set.fillchars = 'fold: ,eob: '
+-- set.mouse = 'nvic'
 set.number = true
+set.colorcolumn = '80'
 -- terminal
 set.termguicolors = true
+set.guicursor = { a = 'hor' }
+-- gui
 set.cmdheight = 0
-set.background = 'dark'
--- oters
-set.cursorline = true
 set.laststatus = 3
-set.numberwidth = 2
+set.cursorline = true
 set.cursorlineopt = 'number'
-set.helpheight = 200
+set.background = 'dark'
+set.numberwidth = 2
+set.helpheight = 150
+-- others
 set.swapfile = false
 set.clipboard:append('unnamedplus')
-
 
 require('remaps')
 require('plugins')
 
+require('configs.alpha')
+require('configs.cybu')
 require('configs.lsp')
 require('configs.lualine')
-require('configs.treesitter')
+require('configs.mason')
+-- require('configs.retrail')
+require('configs.switch')
 require('configs.telescope')
 require('configs.toggleterm')
-
-vim.g.tokyonight_italic_comments = false
-vim.g.tokyonight_italic_functions = false
-vim.g.tokyonight_italic_keywords = false
-
-vim.cmd [[
-    set colorcolumn=80
-    set guicursor=n-v-c-i-ci-ve-r-cr-o-a-sm:hor1,v:block
-    colorscheme tokyonight
-    augroup packer_user_config
-        autocmd!
-        autocmd BufWritePost plugins.lua source <afile> | PackerCompile
-    augroup end
-]]
+require('configs.tokyonight')
+require('configs.treesitter')
 
 vim.diagnostic.config({
     underline = false,
     signs = false,
     virtual_text = { spacing = 1 },
     float = {
-      show_header = true,
-      source = true,
-      focus = false,
-      width = 60,  -- border = border,
+        show_header = true,
+        source = true,
+        focus = false,
+        width = 60,
+        border = 'rounded',
     },
     update_in_insert = true,
     severity_sort = true,
