@@ -1,49 +1,51 @@
-local options = {noremap = true, silent = true}
-
-local function nimap(k, v)
-    vim.keymap.set({'n', 'i'}, k, v, options)
-end
-local function nmap(k, v)
-        vim.keymap.set('n', k, v, options)
-end
-local function imap(k, v)
-        vim.keymap.set('i', k, v, options)
-end
-local function vmap(k, v)
-        vim.keymap.set('v', k, v, options)
-end
-
+local tsb = require('telescope.builtin')
+local options = { noremap = true, silent = true }
 vim.g.mapleader = ' '
 
+local function ni_map(k, v) vim.keymap.set({ 'n', 'i' }, k, v, options) end
+local function n_map(k, v) vim.keymap.set('n', k, v, options) end
+local function v_map(k, v) vim.keymap.set('v', k, v, options) end
+
 -- telescope
-nmap('<leader>ff', '<cmd>:Telescope find_files follow=true no_ignore=true hidden=true<cr>')
-nmap('<leader>fg', '<cmd>:Telescope live_grep<cr>')
-nmap('<leader>fb', '<cmd>:Telescope buffers<cr>')
-nmap('<leader>fh', '<cmd>:Telescope help_tags<cr>')
+n_map('<leader>ff', function() tsb.fd { hidden = true } end)
+n_map('<leader>fg', function() tsb.live_grep() end)
+n_map('<leader>fb', function() tsb.buffers() end)
+n_map('<leader>fh', function() tsb.help_tags() end)
+
 -- packer
-nmap('<leader>pup', '<cmd>:PackerSync<cr>')     -- update
-nmap('<leader>pin', '<cmd>:PackerInstall<cr>')  -- install
-nmap('<leader>pun', '<cmd>:PackerClean<cr>')    -- uninstall
-nmap('<leader>pab', '<cmd>:PackerStatus<cr>')   -- info
+n_map('<leader>pup', '<cmd>:PackerSync<cr>')    -- update
+n_map('<leader>pin', '<cmd>:PackerInstall<cr>') -- install
+n_map('<leader>pun', '<cmd>:PackerClean<cr>')   -- uninstall
+n_map('<leader>pab', '<cmd>:PackerStatus<cr>')  -- info
+
 -- zen
-nmap('<leader>zn', '<cmd>:TZNarrow<cr>')
-nmap('<leader>zf', '<cmd>:TZFocus<cr>')
-nmap('<leader>zm', '<cmd>:TZMinimalist<cr>')
-nmap('<leader>za', '<cmd>:TZAtaraxis<cr>')
+n_map('<leader>zn', '<cmd>:TZNarrow<cr>')
+n_map('<leader>zf', '<cmd>:TZFocus<cr>')
+n_map('<leader>zm', '<cmd>:TZMinimalist<cr>')
+n_map('<leader>za', '<cmd>:TZAtaraxis<cr>')
+
 -- cybu / buffer movement
-nimap('<C-n>', '<cmd>:CybuNext<cr>')
-nimap('<C-p>', '<cmd>:CybuPrev<cr>')
+ni_map('<C-n>', '<cmd>:CybuNext<cr>')
+ni_map('<C-p>', '<cmd>:CybuPrev<cr>')
+
 -- other plugins
-nmap('<leader>tr', '<cmd>:TroubleToggle<cr>')
-nmap('<leader>tt', '<cmd>:ToggleTerm<cr>')
-nmap('<leader>co', '<cmd>:ColorizerToggle<cr>')
+n_map('<leader>tr', '<cmd>:TroubleToggle<cr>')
+n_map('<leader>tt', '<cmd>:ToggleTerm<cr>')
+n_map('<leader>co', '<cmd>:ColorizerToggle<cr>')
+
 -- write, quit
-nimap('<C-q>', '<cmd>:q<cr>')
-nimap('<C-w>', '<cmd>:w<cr>')
+ni_map('<C-q>', '<cmd>:q<cr>')
+ni_map('<C-w>', '<cmd>:w<cr>')
+
 -- other
-nmap(';', ':')          -- typing correction
-nimap('<C-c>', '<esc>:')  -- ^c takes you to command mode
-vmap('<C-c>', ':')      -- ^c takes you to command mode
-nmap('x', '"_x')
-nmap('X', '"_x')
-nmap('<del>', '"_x')
+n_map(';', ':')           -- typing correction
+ni_map('<C-c>', '<esc>:') -- ^c takes you to command mode
+v_map('<C-c>', ':')       -- ^c takes you to command mode
+
+n_map('x', '"_x')     -- deleted stuff doesnt do to clipboard
+n_map('X', '"_x')     -- deleted stuff doesnt do to clipboard
+n_map('<del>', '"_x') -- deleted stuff doesnt do to clipboard
+
+n_map('<leader>dc', '<cmd>:%s/--.*//g<cr>')  -- removes lua comments
+n_map('<leader>dl', '<cmd>:g/^\\s*$/d<cr>')  -- removes empty lines
+n_map('<leader>dw', '<cmd>:%s/\\s*$//g<cr>') -- removes trailing whitespace

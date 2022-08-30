@@ -22,13 +22,11 @@ set.sidescrolloff = 8
 -- design
 set.wrap = false
 set.showbreak = ' …'
--- set.fillchars = 'fold: ,eob: '
--- set.mouse = 'nvic'
 set.number = true
 set.colorcolumn = '80'
 -- terminal
 set.termguicolors = true
-set.guicursor = { a = 'hor' }
+set.guicursor = { n = 'hor' }
 -- gui
 set.cmdheight = 0
 set.laststatus = 3
@@ -44,29 +42,29 @@ set.clipboard:append('unnamedplus')
 require('remaps')
 require('plugins')
 
-require('configs.alpha')
-require('configs.cybu')
-require('configs.lsp')
-require('configs.lualine')
-require('configs.mason')
--- require('configs.retrail')
-require('configs.switch')
-require('configs.telescope')
-require('configs.toggleterm')
-require('configs.tokyonight')
-require('configs.treesitter')
+local function load()
+    require('configs.alpha') -- startify
+    -- require('configs.comments') -- only supports //
+    require('configs.cybu')
+    require('configs.dressing') -- doesnt work?
+    require('configs.lsp')
+    require('configs.lualine')
+    require('configs.mason')
+    -- require('configs.retrail')
+    -- require('configs.switch')
+    require('configs.telescope')
+    require('configs.toggleterm')
+    require('configs.tokyonight')
+    require('configs.treesitter')
+end
 
-vim.diagnostic.config({
-    underline = false,
+load()
+
+vim.diagnostic.config {
+    underline = { severity = vim.diagnostic.severity.ERROR },
+    virtual_text = { spacing = 4 },
+    float = { border = 'rounded' },
     signs = false,
-    virtual_text = { spacing = 1 },
-    float = {
-        show_header = true,
-        source = true,
-        focus = false,
-        width = 60,
-        border = 'rounded',
-    },
     update_in_insert = true,
     severity_sort = true,
-})
+}

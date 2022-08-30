@@ -1,4 +1,4 @@
-require('toggleterm').setup({
+require('toggleterm').setup {
     size = 30,
     -- open_mapping = [[<c-\>]],
     --[[   TODO: setup and disable vi bindings automatically ]]
@@ -16,7 +16,7 @@ require('toggleterm').setup({
             -- guibg = "<VALUE-HERE>",
         },
         NormalFloat = {
-            link = 'Normal'
+            link = 'Normal',
         },
         FloatBorder = {
             -- guifg = "<VALUE-HERE>",
@@ -45,6 +45,6 @@ require('toggleterm').setup({
         enabled = false,
         name_formatter = function(term) --  term: Terminal
             return term.name
-        end
+        end,
     },
-})
+}

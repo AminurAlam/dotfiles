@@ -39,10 +39,6 @@ require('cybu').setup {
         },
     },
     display_time = 1500, -- time the cybu window is displayed
-    exclude = { -- filetypes, cybu will not be active
-        'neo-tree',
-        'fugitive',
-        'qf',
-    },
+    exclude = { 'neo-tree', 'fugitive', 'qf' },
     fallback = function() end, -- arbitrary fallback function
 }

@@ -1,7 +1,13 @@
-require('nvim-treesitter.configs').setup({
+require('nvim-treesitter.configs').setup {
     ensure_installed = {
-        'bash', 'fish', 'jsonc', 'lua',
-        'markdown', 'python', 'rust', 'vim'
+        'bash',
+        'fish',
+        'jsonc',
+        'lua',
+        'markdown',
+        'python',
+        'rust',
+        'vim',
     },
 
     sync_install = false, -- Install parsers synchronously (only applied to `ensure_installed`)
@@ -12,4 +18,5 @@ require('nvim-treesitter.configs').setup({
     indent = { enable = false },
     incremental_selection = { enable = true },
     textobjects = { enable = true },
-})
+    rainbow = { enable = true },
+}

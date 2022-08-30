@@ -10,11 +10,13 @@ export EDITOR="vi"
 export MANPAGER="vi +Man!"
 export BAT_PAGER="less"
 export BROWSER="termux-open-url"
+export WWW_HOME="https://searx.be/"
 export LESSHISTFILE="-"
+export RUST_BACKTRACE="full"
 
 [ "$EXTERNAL_STORAGE" ] || export EXTERNAL_STORAGE="$HOME"
 
-export XDG_DOCUMENTS_DIR="$EXTERNAL_STORAGE/Books"
+export XDG_DOCUMENTS_DIR="$EXTERNAL_STORAGE/Documents"
 export XDG_DOWNLOAD_DIR="$EXTERNAL_STORAGE/Download"
 export XDG_MUSIC_DIR="$EXTERNAL_STORAGE/Music"
 export XDG_PICTURES_DIR="$EXTERNAL_STORAGE/Pictures"
@@ -90,10 +92,8 @@ set -l PACKAGES bat dust exa fd fzf git vi python rclone rg wget zoxide
 
 for package in $PACKAGES
     set_color $fish_color_error
-    if ! type -qf "$package"
+    if not command -sq "$package"
         echo "`$package` is not installed"
-    # else
-    #     echo 'installed!'
     end
     set_color normal
 end

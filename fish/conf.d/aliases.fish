@@ -38,6 +38,7 @@ alias zp="z $PREFIX"
   alias zpb="z $PREFIX/bin"
   alias zpe="z $PREFIX/etc"
   alias zpl="z $PREFIX/lib"
+  alias zps="z $PREFIX/share"
 
 alias zsd="z /sdcard"
 alias zdoc="z /sdcard/Documents"
@@ -51,6 +52,7 @@ alias ztx="z /sdcard/termux"
 set -l repo "$HOME/repos"
 set -l sample "$repo/samples"
 
+alias zn="z $HOME/notes"
 alias zrp="z $repo"
   alias zb64="z $repo/base64"
   alias zd="z $repo/dotfiles"
@@ -63,10 +65,9 @@ alias zrp="z $repo"
     alias zsplua="z $sample/lua"
     alias zsppy="z $sample/python"
     alias zsprs="z $sample/rust"
-alias zc="z $XDG_CONFIG_HOME"
+alias zc="z ~/.config"
   alias zcf="z ~/.config/fish"
   alias zcn="z ~/.config/nvim"
-  alias zcr="z ~/.config/rclone"
 
 # yt-dlp
 function yt
