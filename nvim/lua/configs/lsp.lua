@@ -57,9 +57,9 @@ local servers = {
     'eslint',
     'cssls',
     'html',
-    -- mason
-    'bashls',
 }
+
+require('lspconfig.ui.windows').default_options.border = 'rounded'
 
 --[[ cmp setup ]]
 cmp.setup {
@@ -76,10 +76,7 @@ cmp.setup {
         },
     },
     snippet = {
-        expand = function(args)
-            -- vim.fn["vsnip#anonymous"](args.body) -- vsnip
-            require('luasnip').lsp_expand(args.body) -- luasnip
-        end,
+        expand = function(args) luasnip.lsp_expand(args.body) end,
     },
     window = {
         completion = cmp.config.window.bordered(),
@@ -101,6 +98,15 @@ cmp.setup {
                 cmp.select_next_item()
             elseif luasnip.expand_or_jumpable() then
                 luasnip.expand_or_jump()
+            else
+                fallback()
+            end
+        end, { 'i', 's' }),
+        ['<S-Tab>'] = cmp.mapping(function(fallback)
+            if cmp.visible() then
+                cmp.select_prev_item()
+            elseif luasnip.jumpable(-1) then
+                luasnip.jump(-1)
             else
                 fallback()
             end

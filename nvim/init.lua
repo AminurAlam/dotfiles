@@ -1,6 +1,6 @@
 require('impatient')
 
-local set = vim.opt
+local set = vim.opt  -- opt might be depricated in the future
 -- indent
 set.autoindent = true
 set.smartindent = true
@@ -38,27 +38,49 @@ set.helpheight = 150
 -- others
 set.swapfile = false
 set.clipboard:append('unnamedplus')
+set.list = true
+set.listchars = {
+    tab = '> ',
+    trail = ' ',
+    extends = '…',
+    precedes = '…',
+    conceal = 'x',
+}
+
+vim.g.tex_flavor = 'latex'
+vim.opt.fillchars = {
+    fold = " ",
+}
 
 require('remaps')
 require('plugins')
+require('snippets')
 
 local function load()
     require('configs.alpha') -- startify
     -- require('configs.comments') -- only supports //
     require('configs.cybu')
-    require('configs.dressing') -- doesnt work?
+    -- require('configs.dressing') -- doesnt work w/ lsp
+    -- require('configs.fold')
     require('configs.lsp')
     require('configs.lualine')
-    require('configs.mason')
+    -- require('configs.mason')
     -- require('configs.retrail')
     -- require('configs.switch')
     require('configs.telescope')
-    require('configs.toggleterm')
     require('configs.tokyonight')
     require('configs.treesitter')
 end
 
 load()
+
+-- vim.cmd([[
+--     augroup AutoSaveFolds
+--         autocmd!
+--         autocmd BufWinLeave * mkview
+--         autocmd BufWinEnter * silent loadview
+--     augroup END
+-- ]])
 
 vim.diagnostic.config {
     underline = { severity = vim.diagnostic.severity.ERROR },

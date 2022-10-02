@@ -53,6 +53,9 @@ set -l repo "$HOME/repos"
 set -l sample "$repo/samples"
 
 alias zn="z $HOME/notes"
+  alias znp="z $HOME/notes/physics"
+  alias znc="z $HOME/notes/chemistry"
+  alias znm="z $HOME/notes/maths"
 alias zrp="z $repo"
   alias zb64="z $repo/base64"
   alias zd="z $repo/dotfiles"
@@ -72,12 +75,14 @@ alias zc="z ~/.config"
 # yt-dlp
 function yt
     yt-dlp -F $argv
-	echo
+    echo
     read choice -f -P ">pick one: "
     yt-dlp -f $choice $argv
 end
 
 # nvim
+alias vi="nvim"
+alias vim="nvim"
 alias vic="vi ~/.config/nvim/"
 alias via="vi ~/.config/fish/conf.d/*s.fish"
 alias vif="vi ~/.config/fish/"
@@ -92,7 +97,6 @@ alias lta="exa -lFTa -s ext --icons --no-user --no-permissions --no-time --group
 alias ll="exa -lF -s ext --icons --group-directories-first --git"
 alias lla="exa -lFa -s ext --icons --group-directories-first --git"
 alias ld="ls -a1 | rg '/'"
-alias l.="exa -a1 | rg '^\.'"
 
 # file management
 alias cp="cp -i"
@@ -138,6 +142,7 @@ alias wget="wget --hsts-file=\"$XDG_CACHE_HOME/wget-hsts\""
 alias dr14="dr14_tmeter -d"
 alias cal="cal -my"
 alias mi="mediainfo"
-alias pw="pwgen -cnyB -r '\"|\\{}*/^<>[]`~\'' (math -s 0 (tput cols)/4-1) 32"
+alias pw="pwgen -cnyB -r '\"|\\{}*/^<>[]`~\''\
+          (math -s 0 (tput cols)/4-1) 32"
 alias cls="clear && fish_logo cyan cyan green \| 0"
-alias ping="gping google.com 8.8.8.8 discord.com 1.1.1.1 -c blue cyan green yellow --vertical-margin 0"
+# alias ping="gping google.com 8.8.8.8 discord.com 1.1.1.1 -c blue cyan green yellow --vertical-margin 0"

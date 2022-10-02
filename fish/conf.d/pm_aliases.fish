@@ -19,6 +19,13 @@ alias plu="apt list --upgradeable"
 alias pfd="apt search"
 alias pinf="apt show"
 
+# texlive
+alias tin="tlmgr install"
+alias tun="tlmgr remove"
+alias tup="tlmgr update --all"
+alias tfd="tlmgr search"
+alias tinf="tlmgr info"
+
 # npm
 alias nin="npm install"
 alias nun="npm uninstall"

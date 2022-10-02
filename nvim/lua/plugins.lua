@@ -15,36 +15,24 @@ return require('packer').startup {
         use { 'folke/lua-dev.nvim' }
         use { 'nvim-telescope/telescope.nvim' }
         use { 'nvim-treesitter/nvim-treesitter' }
-        use { 'akinsho/toggleterm.nvim', tag = 'v2.*' }
         use { 'lewis6991/impatient.nvim' }
-        -- use {'winston0410/cmd-parser.nvim'}
-        -- use { 'winston0410/range-highlight.nvim',
-        --       config = 'require"range-highlight".setup({})',
-        -- }
 
         -- theme & design
         use { 'lukas-reineke/indent-blankline.nvim' }
         use { 'folke/tokyonight.nvim' }
         use { 'nvim-lualine/lualine.nvim' }
-        use { 'stevearc/dressing.nvim' }
-        use { 'NvChad/nvim-colorizer.lua',
-              opt = true,
-              cmd = { 'ColorizerToggle' },
-        }
-        use { 'williamboman/mason.nvim' }
-        use { 'Pocco81/true-zen.nvim',
-              opt = true,
-              cmd = { 'TZNarrow', 'TZFocus', 'TZMinimalist', 'TZAtaraxis' },
-              config = 'require("true-zen").setup({})',
-        }
         use { 'goolord/alpha-nvim' }
+        use { 'stevearc/dressing.nvim' }
+        -- use { 'kevinhwang91/nvim-ufo', requires = 'kevinhwang91/promise-async'}
+        use { 'NvChad/nvim-colorizer.lua',
+              opt = true, cmd = { 'ColorizerToggle' },
+        }
         use { 'ghillb/cybu.nvim' }
-        use { 'Djancyp/better-comments.nvim' }
 
         -- typing & correction
-        use { 'williamboman/mason-lspconfig.nvim' }
-        use { 'zakharykaplan/nvim-retrail' }
+        use { 'mong8se/actually.nvim' }
         use { 'gaoDean/autolist.nvim',
+              ft = { 'markdown' },
               config = 'require("autolist").setup({})'
         }
         use { 'kylechui/nvim-surround',
@@ -57,16 +45,20 @@ return require('packer').startup {
               config = 'require("nvim-autopairs").setup({})',
         }
         use { 'folke/trouble.nvim',
-              opt = true,
-              cmd = { 'TroubleToggle' },
+              opt = true, cmd = { 'TroubleToggle' },
               config = function()
                   require('trouble').setup { position = 'top', height = 8 }
               end,
+        }
+        use { 'akinsho/toggleterm.nvim', tag = 'v2.*',
+              opt = true, cmd = { 'ToggleTerm' },
+              config = 'require("configs.toggleterm")'
         }
 
         -- lsp
         use { 'neovim/nvim-lspconfig' }
         use { 'onsails/lspkind-nvim' }
+        use { 'WhoIsSethDaniel/lualine-lsp-progress' }
         -- cmp
         use { 'hrsh7th/nvim-cmp' }
         use { 'hrsh7th/cmp-nvim-lsp' }
@@ -110,6 +102,7 @@ return require('packer').startup {
         },
         log = { level = 'warn' },
         display = {
+            compact = true,
             non_interactive = false,
             open_fn = function()
                 return require('packer.util').float { border = 'rounded' }

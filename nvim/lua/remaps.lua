@@ -1,6 +1,6 @@
+vim.g.mapleader = ' '
 local tsb = require('telescope.builtin')
 local options = { noremap = true, silent = true }
-vim.g.mapleader = ' '
 
 local function ni_map(k, v) vim.keymap.set({ 'n', 'i' }, k, v, options) end
 local function n_map(k, v) vim.keymap.set('n', k, v, options) end
@@ -13,20 +13,18 @@ n_map('<leader>fb', function() tsb.buffers() end)
 n_map('<leader>fh', function() tsb.help_tags() end)
 
 -- packer
-n_map('<leader>pup', '<cmd>:PackerSync<cr>')    -- update
+n_map('<leader>pup', '<cmd>:PackerUpdate<cr>')    -- update
 n_map('<leader>pin', '<cmd>:PackerInstall<cr>') -- install
 n_map('<leader>pun', '<cmd>:PackerClean<cr>')   -- uninstall
 n_map('<leader>pab', '<cmd>:PackerStatus<cr>')  -- info
 
--- zen
-n_map('<leader>zn', '<cmd>:TZNarrow<cr>')
-n_map('<leader>zf', '<cmd>:TZFocus<cr>')
-n_map('<leader>zm', '<cmd>:TZMinimalist<cr>')
-n_map('<leader>za', '<cmd>:TZAtaraxis<cr>')
-
 -- cybu / buffer movement
 ni_map('<C-n>', '<cmd>:CybuNext<cr>')
 ni_map('<C-p>', '<cmd>:CybuPrev<cr>')
+
+-- ufo (ultra fold)
+-- n_map('zr', require('ufo').openAllFolds)
+-- n_map('zm', require('ufo').closeAllFolds)
 
 -- other plugins
 n_map('<leader>tr', '<cmd>:TroubleToggle<cr>')
@@ -46,6 +44,8 @@ n_map('x', '"_x')     -- deleted stuff doesnt do to clipboard
 n_map('X', '"_x')     -- deleted stuff doesnt do to clipboard
 n_map('<del>', '"_x') -- deleted stuff doesnt do to clipboard
 
-n_map('<leader>dc', '<cmd>:%s/--.*//g<cr>')  -- removes lua comments
-n_map('<leader>dl', '<cmd>:g/^\\s*$/d<cr>')  -- removes empty lines
-n_map('<leader>dw', '<cmd>:%s/\\s*$//g<cr>') -- removes trailing whitespace
+-- n_map('<leader>dc', '<cmd>:%s/--.*//g<cr>')  -- removes lua comments
+-- n_map('<leader>dl', '<cmd>:g/^\\s*$/d<cr>')  -- removes empty lines
+-- n_map('<leader>dw', '<cmd>:%s/\\s*$//g<cr>') -- removes trailing whitespace
+
+ni_map('<c-space>', '<cmd>:!cd %:p:h && pdflatex %:p <cr>')

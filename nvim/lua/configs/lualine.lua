@@ -55,6 +55,26 @@ local filename = {
     },
 }
 
+local lsp_progress = {
+    'lsp_progress',
+    separators = {
+        component = ' ',
+        progress = '',
+        message = { pre = '', post = '' },
+        title = { pre = '', post = ' ' },
+        lsp_client_name = { pre = '[', post = ']' },
+        spinner = { pre = '', post = '' },
+    },
+    display_components = { { 'title', 'message' } },
+    timer = {
+        progress_enddelay = 500,
+        spinner = 1000,
+        lsp_client_name_enddelay = 1000,
+    },
+    message = { commenced = '…', completed = '✓' },
+    max_message_length = 30,
+}
+
 require('lualine').setup {
     options = {
         icons_enabled = true,
@@ -77,7 +97,7 @@ require('lualine').setup {
     sections = {
         lualine_a = { { 'mode', padding = 1 } },
         lualine_b = { filename },
-        lualine_c = { { 'branch' }, { whitespace } },
+        lualine_c = { { 'branch' }, { whitespace }, lsp_progress },
         lualine_x = { { 'diagnostics', update_in_insert = true } },
         lualine_y = { { 'progress' } },
         lualine_z = { { 'filetype', padding = 1 } },

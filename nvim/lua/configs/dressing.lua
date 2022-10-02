@@ -10,15 +10,10 @@ require('dressing').setup {
         relative = 'cursor', -- 'editor' and 'win' will default to being centered
         prefer_width = 40, -- These can be integers or a float between 0 and 1 (e.g. 0.4 for 40%)
         width = nil,
-        -- min_width and max_width can be a list of mixed types.
-        -- min_width = {20, 0.2} means "the greater of 20 columns or 20% of total"
         max_width = { 140, 0.9 },
         min_width = { 20, 0.2 },
-
         winblend = 10, -- Window transparency (0-100)
         winhighlight = '', -- Change default highlight groups (see :help winhl)
-
-        -- Set to `false` to disable
         mappings = {
             n = {
                 ['<Esc>'] = 'Close',
@@ -107,14 +102,15 @@ require('dressing').setup {
             -- max_width = {140, 0.8} means "the lesser of 140 columns or 80% of total"
             width = nil,
             max_width = { 140, 0.8 },
-            min_width = { 40, 0.2 },
+            min_width = { 50, 0.2 },
             height = nil,
-            max_height = 0.9,
+            max_height = { 50, 0.8 },
             min_height = { 10, 0.2 },
 
             -- Set to `false` to disable
             mappings = {
                 ['<Esc>'] = 'Close',
+                ['q'] = 'Close',
                 ['<C-c>'] = 'Close',
                 ['<CR>'] = 'Confirm',
             },
