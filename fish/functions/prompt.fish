@@ -43,13 +43,13 @@ function fish_right_prompt
     echo -se (set_color normal)\
         (set_color $fish_color_error) $prompt_status \
         (set_color grey) $time \
-        (fish_default_mode_prompt) \
+        # (fish_default_mode_prompt) \
         (set_color normal)
 end
 
 function fish_prompt
     [ -n "$SSH_CLIENT" ] && set -l prompt_name " @ssh"
-    fish_is_root_user && set -l fish_color_cwd "$fish_color_cwd_root" # || set -l cwd_color "$fish_color_cwd"
+    fish_is_root_user && set -l fish_color_cwd "$fish_color_cwd_root"
     set -l prompt_logo ' ❯ '
     __fish_is_git_repository && set -l git_branch " (" (git symbolic-ref --short HEAD) ")"
     [ (echo -n (prompt_pwd) $git_branch $prompt_name | wc -c) -gt (math -s 0 (tput cols)/3) ] && set -l prompt_logo "\n$prompt_logo"

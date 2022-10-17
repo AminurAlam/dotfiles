@@ -12,9 +12,9 @@ return require('packer').startup {
         use { 'wbthomason/packer.nvim' }
         use { 'nvim-lua/plenary.nvim' }
         use { 'kyazdani42/nvim-web-devicons' }
-        use { 'folke/lua-dev.nvim' }
+        use { 'folke/neodev.nvim' }
         use { 'nvim-telescope/telescope.nvim' }
-        use { 'nvim-treesitter/nvim-treesitter' }
+        use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
         use { 'lewis6991/impatient.nvim' }
 
         -- theme & design
@@ -23,36 +23,48 @@ return require('packer').startup {
         use { 'nvim-lualine/lualine.nvim' }
         use { 'goolord/alpha-nvim' }
         use { 'stevearc/dressing.nvim' }
-        -- use { 'kevinhwang91/nvim-ufo', requires = 'kevinhwang91/promise-async'}
-        use { 'NvChad/nvim-colorizer.lua',
-              opt = true, cmd = { 'ColorizerToggle' },
-        }
         use { 'ghillb/cybu.nvim' }
+        use { 'rcarriga/nvim-notify' }
+        use {
+            'NvChad/nvim-colorizer.lua',
+            opt = true,
+            cmd = { 'ColorizerToggle' },
+        }
 
         -- typing & correction
         use { 'mong8se/actually.nvim' }
-        use { 'gaoDean/autolist.nvim',
-              ft = { 'markdown' },
-              config = 'require("autolist").setup({})'
+        use { 'folke/which-key.nvim' }
+        use {
+            'gaoDean/autolist.nvim',
+            ft = { 'markdown' },
+            config = 'require("autolist").setup({})',
         }
-        use { 'kylechui/nvim-surround',
-              config = 'require("nvim-surround").setup({})',
+        use {
+            'kylechui/nvim-surround',
+            config = 'require("nvim-surround").setup({})',
         }
-        use { 'numToStr/Comment.nvim',
-              config = 'require("Comment").setup({})',
+        use {
+            'numToStr/Comment.nvim',
+            config = 'require("Comment").setup({})',
         }
-        use { 'windwp/nvim-autopairs',
-              config = 'require("nvim-autopairs").setup({})',
+        use {
+            'windwp/nvim-autopairs',
+            config = 'require("nvim-autopairs").setup({})',
         }
-        use { 'folke/trouble.nvim',
-              opt = true, cmd = { 'TroubleToggle' },
-              config = function()
-                  require('trouble').setup { position = 'top', height = 8 }
-              end,
+        use {
+            'akinsho/toggleterm.nvim',
+            tag = 'v2.*',
+            opt = true,
+            cmd = { 'ToggleTerm' },
+            config = 'require("configs.toggleterm")',
         }
-        use { 'akinsho/toggleterm.nvim', tag = 'v2.*',
-              opt = true, cmd = { 'ToggleTerm' },
-              config = 'require("configs.toggleterm")'
+        use {
+            'folke/trouble.nvim',
+            opt = true,
+            cmd = { 'TroubleToggle' },
+            config = function()
+                require('trouble').setup { position = 'top', height = 8 }
+            end,
         }
 
         -- lsp

@@ -1,6 +1,6 @@
 require('impatient')
 
-local set = vim.opt  -- opt might be depricated in the future
+local set = vim.opt -- opt might be depricated in the future
 -- indent
 set.autoindent = true
 set.smartindent = true
@@ -35,10 +35,12 @@ set.cursorlineopt = 'number'
 set.background = 'dark'
 set.numberwidth = 2
 set.helpheight = 150
+-- set.mousescroll = { ver = 3 }
 -- others
+set.timeoutlen = 500
 set.swapfile = false
-set.clipboard:append('unnamedplus')
 set.list = true
+set.clipboard:append('unnamedplus')
 set.listchars = {
     tab = '> ',
     trail = ' ',
@@ -49,30 +51,36 @@ set.listchars = {
 
 vim.g.tex_flavor = 'latex'
 vim.opt.fillchars = {
-    fold = " ",
+    fold = ' ',
 }
 
 require('remaps')
 require('plugins')
 require('snippets')
 
-local function load()
+local function load_plugins()
     require('configs.alpha') -- startify
-    -- require('configs.comments') -- only supports //
     require('configs.cybu')
     -- require('configs.dressing') -- doesnt work w/ lsp
     -- require('configs.fold')
     require('configs.lsp')
     require('configs.lualine')
     -- require('configs.mason')
+    require('configs.notify')
     -- require('configs.retrail')
     -- require('configs.switch')
     require('configs.telescope')
     require('configs.tokyonight')
     require('configs.treesitter')
+    require('configs.which')
 end
 
-load()
+load_plugins()
+
+-- require('silicon').setup({
+--   font = 'FantasqueSansMono Nerd Font=16',
+--   theme = 'Monokai Extended',
+-- })
 
 -- vim.cmd([[
 --     augroup AutoSaveFolds
