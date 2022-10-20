@@ -99,13 +99,13 @@ alias lla="exa -lFa -s ext --icons --group-directories-first --git"
 alias ld="ls -a1 | rg '/'"
 
 # file management
-alias cp="cp -i"
-alias mv="mv -i"
+alias cp="cp -iv"
+alias mv="mv -iv"
 alias rm="rm -i"
 alias rf="rm -rfI"
 
 alias rd="rmdir"
-alias md="mkdir"
+alias md="mkdir -pv"
 
 # bat -> cat
 alias cat="bat --theme Dracula --style full --pager=never -ppf"

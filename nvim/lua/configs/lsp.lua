@@ -128,10 +128,7 @@ cmp.setup.cmdline(':', {
         -- entries = {name = 'wildmenu', separator = '|' }
     },
     mapping = cmp.mapping.preset.cmdline(),
-    sources = cmp.config.sources(
-        { { name = 'path' } },
-        { { name = 'cmdline' } }
-    ),
+    sources = cmp.config.sources({ { name = 'path' } }, { { name = 'cmdline' } }),
 })
 
 for _, lsp in pairs(servers) do

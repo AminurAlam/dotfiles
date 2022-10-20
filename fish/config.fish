@@ -4,8 +4,9 @@ set -l COLORS "*.py=38;5;45:*.rs=38;5;208:*.fish=38;5;47:*.sh=38;5;47:*.bash=38;
 *.kt=35:*.lua=38;5;27:*.php=38;5;63:*.pdf=38;5;124:*.md=38;5;111:*.tex=38;5;71"
 export LS_COLORS="$COLORS"
 export EXA_COLORS="$COLORS"
-export VISUAL="vi"
 export EDITOR="vi"
+export VISUAL=$EDITOR
+export SUDO_EDITOR=$EDITOR
 export MANPAGER="vi +Man!"
 export BAT_PAGER="less"
 export BROWSER="termux-open-url"
@@ -46,7 +47,8 @@ export RUSTUP_HOME="$XDG_DATA_HOME/rustup"
 export CARGO_HOME="$XDG_DATA_HOME/cargo"
 export CARGO_INSTALL_ROOT="$CARGO_HOME"
 
-export PATH="$PATH:$PREFIX/bin/texlive:$CARGO_HOME/bin"
+# export PATH="$PATH:$PREFIX/bin/texlive:$CARGO_HOME/bin"
+fish_add_path -a $CARGO_HOME/bin
 
 
 ### source ###
@@ -81,23 +83,25 @@ set --path sp "$HOME/repos/samples"
 ### bindings ###
 fish_vi_key_bindings
 bind -M insert \ch 'commandline -i \~'
+bind -M insert \cq 'exit'
+bind -M normal \cq 'exit'
 bind -M insert \e\[1\;5A 'commandline -f history-token-search-backward'
 bind -M insert \e\[1\;5B 'commandline -f history-token-search-forward'
 
-bind -M insert \' "commandline -i \'\'" 'commandline -f backward-char'
-bind -M insert \" 'commandline -i \"\"' 'commandline -f backward-char'
-bind -M insert \` 'commandline -i \`\`' 'commandline -f backward-char'
+# bind -M insert \' "commandline -i \'\'" 'commandline -f backward-char'
+# bind -M insert \" 'commandline -i \"\"' 'commandline -f backward-char'
+# bind -M insert \` 'commandline -i \`\`' 'commandline -f backward-char'
 bind -M insert \( 'commandline -i \(\)' 'commandline -f backward-char'
 bind -M insert \[ 'commandline -i \[\]' 'commandline -f backward-char'
 bind -M insert \{ 'commandline -i \{\}' 'commandline -f backward-char'
-bind -M insert \< 'commandline -i \<\>' 'commandline -f backward-char'
+# bind -M insert \< 'commandline -i \<\>' 'commandline -f backward-char'
 
 
 
 ### functions ###
 
 # checking installations
-set -l PACKAGES bat dust exa fd fzf git vi python rclone rg wget zoxide
+set -l PACKAGES bat dust exa fd fzf git nvim python rclone rg wget zoxide
 
 for package in $PACKAGES
     set_color $fish_color_error
@@ -148,4 +152,10 @@ function texsetup
     termux-patch-texlive
     # somehow makes `pdflatex` work
     $PREFIX/share/texlive/texmf-dist/scripts/texlive-extra/texlinks.sh
+end
+
+# terminal title
+function fish_title
+    # echo (prompt_pwd): (string split -r ' ' $argv)[1]
+    echo (prompt_pwd): (status current-command)
 end

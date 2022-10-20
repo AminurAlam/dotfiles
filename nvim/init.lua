@@ -1,6 +1,6 @@
 require('impatient')
 
-local set = vim.opt -- opt might be depricated in the future
+local set = vim.o -- opt might be depricated in the future
 -- indent
 set.autoindent = true
 set.smartindent = true
@@ -10,7 +10,7 @@ set.smarttab = true
 set.softtabstop = 4
 set.expandtab = true
 -- search
-set.hlsearch = false
+set.hlsearch = true
 set.ignorecase = true
 set.smartcase = true
 set.incsearch = true
@@ -24,9 +24,12 @@ set.wrap = false
 set.showbreak = ' …'
 set.number = true
 set.colorcolumn = '80'
+set.pumblend = 10
+set.relativenumber = true
+set.shiftround = true
 -- terminal
 set.termguicolors = true
-set.guicursor = { n = 'hor' }
+vim.opt.guicursor = { n = 'hor' }
 -- gui
 set.cmdheight = 0
 set.laststatus = 3
@@ -40,47 +43,48 @@ set.helpheight = 150
 set.timeoutlen = 500
 set.swapfile = false
 set.list = true
-set.clipboard:append('unnamedplus')
-set.listchars = {
+set.confirm = true
+vim.opt.clipboard:append('unnamedplus')
+vim.opt.listchars = {
     tab = '> ',
     trail = ' ',
     extends = '…',
     precedes = '…',
     conceal = 'x',
 }
-
-vim.g.tex_flavor = 'latex'
 vim.opt.fillchars = {
     fold = ' ',
+    foldopen = "",
+    foldclose = "",
 }
 
-require('remaps')
+require('mappings')
 require('plugins')
 require('snippets')
 
 local function load_plugins()
-    require('configs.alpha') -- startify
+    require('configs.alpha')
     require('configs.cybu')
     -- require('configs.dressing') -- doesnt work w/ lsp
     -- require('configs.fold')
     require('configs.lsp')
     require('configs.lualine')
     -- require('configs.mason')
+    -- require('configs.noice')
     require('configs.notify')
     -- require('configs.retrail')
     -- require('configs.switch')
     require('configs.telescope')
     require('configs.tokyonight')
     require('configs.treesitter')
-    require('configs.which')
+    require('configs.trouble')
+    require('nvim-cursorline').setup {
+        cursorline = { enable = false },
+        cursorword = { enable = true },
+    }
 end
 
 load_plugins()
-
--- require('silicon').setup({
---   font = 'FantasqueSansMono Nerd Font=16',
---   theme = 'Monokai Extended',
--- })
 
 -- vim.cmd([[
 --     augroup AutoSaveFolds
@@ -90,6 +94,7 @@ load_plugins()
 --     augroup END
 -- ]])
 
+vim.g.tex_flavor = 'latex'
 vim.diagnostic.config {
     underline = { severity = vim.diagnostic.severity.ERROR },
     virtual_text = { spacing = 4 },

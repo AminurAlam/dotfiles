@@ -9,6 +9,7 @@ require('cybu').setup {
     },
     style = {
         path = 'relative',
+        path_abbreviation = 'shortened',
         border = 'rounded',
         separator = ' ',
         prefix = '…',
@@ -18,12 +19,6 @@ require('cybu').setup {
             enabled = true,
             colored = true,
             truncate = true,
-        },
-        highlights = { -- see highlights via :highlight
-            -- current_buffer = "CybuFocus",       -- current / selected buffer
-            -- adjacent_buffers = "CybuAdjacent",  -- buffers not in focus
-            -- background = "CybuBackground",      -- window background
-            -- border = "CybuBorder",              -- border of the window
         },
     },
     behavior = { -- set behavior for different modes

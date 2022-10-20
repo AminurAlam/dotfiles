@@ -53,7 +53,7 @@ function pup
     # https://grimler.se/termux/termux-main
     # https://packages.termux.org/apt/termux-main
     # https://packages.termux.dev/apt/termux-main
-    # echo "deb https://packages-cf.termux.dev/apt/termux-main stable main" > $PREFIX/etc/apt/sources.list
-    # echo "deb https://packages-cf.termux.dev/apt/termux-x11 x11 main" > $PREFIX/etc/apt/sources.list.d/x11.list
+    echo "deb https://packages-cf.termux.dev/apt/termux-main stable main" > $PREFIX/etc/apt/sources.list
+    echo "deb https://packages-cf.termux.dev/apt/termux-x11 x11 main" > $PREFIX/etc/apt/sources.list.d/x11.list
     apt update && apt upgrade
 end

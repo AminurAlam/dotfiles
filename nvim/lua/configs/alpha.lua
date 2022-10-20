@@ -25,20 +25,12 @@ local function button(sc, txt, keybind, keybind_opts)
         hl_shortcut = 'Number',
     }
     if keybind then
-        keybind_opts = vim.F.if_nil(
-            keybind_opts,
-            { noremap = true, silent = true, nowait = true }
-        )
+        keybind_opts = vim.F.if_nil(keybind_opts, { noremap = true, silent = true, nowait = true })
         opts.keymap = { 'n', sc, keybind, keybind_opts }
     end
 
     local function on_press()
-        local key = vim.api.nvim_replace_termcodes(
-            keybind or sc .. '<Ignore>',
-            true,
-            false,
-            true
-        )
+        local key = vim.api.nvim_replace_termcodes(keybind or sc .. '<Ignore>', true, false, true)
         vim.api.nvim_feedkeys(key, 't', false)
     end
 
@@ -79,6 +71,7 @@ require('alpha').setup {
             val = {
                 button('f', '  Find file', '<cmd>:Telescope find_files<cr>'),
                 button('g', '  Find word', '<cmd>:Telescope live_grep<cr>'),
+                button('h', '?  Find help', '<cmd>:Telescope help_tags<cr>'),
                 button('t', '  File browser', '<cmd>:Explore<cr>'),
                 button('i', '  New file', '<cmd>:ene <BAR> startinsert<cr>'),
                 button('u', '  Update plugins', '<cmd>:PackerUpdate<cr>'),

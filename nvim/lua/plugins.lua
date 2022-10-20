@@ -6,6 +6,8 @@ vim.cmd([[
     augroup end
 ]])
 
+local get = function(plugin) require(plugin).setup {} end
+
 return require('packer').startup {
     function(use)
         -- main plugins
@@ -25,47 +27,30 @@ return require('packer').startup {
         use { 'stevearc/dressing.nvim' }
         use { 'ghillb/cybu.nvim' }
         use { 'rcarriga/nvim-notify' }
+        use { 'yamatsum/nvim-cursorline' }
+        use { 'MunifTanjim/nui.nvim' }
+        use { 'gorbit99/codewindow.nvim', config = get('codewindow') }
         use {
             'NvChad/nvim-colorizer.lua',
             opt = true,
             cmd = { 'ColorizerToggle' },
         }
+        use { 'folke/noice.nvim' } -- event = 'VimEnter', config = get('noice')
 
         -- typing & correction
         use { 'mong8se/actually.nvim' }
         use { 'folke/which-key.nvim' }
-        use {
-            'gaoDean/autolist.nvim',
-            ft = { 'markdown' },
-            config = 'require("autolist").setup({})',
-        }
-        use {
-            'kylechui/nvim-surround',
-            config = 'require("nvim-surround").setup({})',
-        }
-        use {
-            'numToStr/Comment.nvim',
-            config = 'require("Comment").setup({})',
-        }
-        use {
-            'windwp/nvim-autopairs',
-            config = 'require("nvim-autopairs").setup({})',
-        }
+        use { 'kylechui/nvim-surround', config = get('nvim-surround') }
+        use { 'numToStr/Comment.nvim', config = get('Comment') }
+        use { 'windwp/nvim-autopairs', config = get('nvim-autopairs') }
         use {
             'akinsho/toggleterm.nvim',
-            tag = 'v2.*',
+            tag = '*',
             opt = true,
             cmd = { 'ToggleTerm' },
             config = 'require("configs.toggleterm")',
         }
-        use {
-            'folke/trouble.nvim',
-            opt = true,
-            cmd = { 'TroubleToggle' },
-            config = function()
-                require('trouble').setup { position = 'top', height = 8 }
-            end,
-        }
+        use { 'folke/trouble.nvim', opt = true, cmd = { 'TroubleToggle' } }
 
         -- lsp
         use { 'neovim/nvim-lspconfig' }
