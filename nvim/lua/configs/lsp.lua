@@ -1,6 +1,6 @@
 --[[ variables ]]
 local cmp = require('cmp')
-local lspc = require('lspconfig')
+-- local lspc = require('lspconfig')
 local lspkind = require('lspkind')
 local luasnip = require('luasnip')
 local kind_icons = {
@@ -43,6 +43,7 @@ local buffer_text = {
     snipmate = '[SNM]',
 }
 local servers = {
+    'sumneko_lua',
     -- pip
     'pyright',
     -- npm (vscode-langservers-extracted)
@@ -131,6 +132,20 @@ cmp.setup.cmdline(':', {
     sources = cmp.config.sources({ { name = 'path' } }, { { name = 'cmdline' } }),
 })
 
+require('neodev').setup {
+    library = {
+        enabled = true, -- when not enabled, neodev will not change any settings to the LSP server
+        -- these settings will be used for your Neovim config directory
+        runtime = true, -- runtime path
+        types = true, -- full signature, docs and completion of vim.api, vim.treesitter, vim.lsp and others
+        plugins = false, -- installed opt or start plugins in packpath
+        -- you can also specify the list of plugins to make available as a workspace library
+        -- plugins = { "nvim-treesitter", "plenary.nvim", "telescope.nvim" },
+    },
+    setup_jsonls = false, -- configures jsonls to provide completion for project specific .luarc.json files
+    -- override = function(root_dir, options) end,
+}
+
 for _, lsp in pairs(servers) do
     require('lspconfig')[lsp].setup {
         autostart = true,
@@ -140,23 +155,9 @@ for _, lsp in pairs(servers) do
     }
 end
 
-require('neodev').setup {
-    library = {
-        enabled = true, -- when not enabled, neodev will not change any settings to the LSP server
-        -- these settings will be used for your Neovim config directory
-        runtime = true, -- runtime path
-        types = true, -- full signature, docs and completion of vim.api, vim.treesitter, vim.lsp and others
-        plugins = true, -- installed opt or start plugins in packpath
-        -- you can also specify the list of plugins to make available as a workspace library
-        -- plugins = { "nvim-treesitter", "plenary.nvim", "telescope.nvim" },
-    },
-    setup_jsonls = false, -- configures jsonls to provide completion for project specific .luarc.json files
-    override = function(root_dir, options) end,
-}
-
-lspc.sumneko_lua.setup {
-    settings = { Lua = { completion = { callSnippet = 'Replace' } } },
-}
+-- lspc.sumneko_lua.setup {
+--     settings = { Lua = { completion = { callSnippet = 'Replace' } } },
+-- }
 require('lspconfig.ui.windows').default_options.border = 'rounded'
 require('luasnip.loaders.from_lua').lazy_load()
 require('luasnip.loaders.from_vscode').lazy_load()

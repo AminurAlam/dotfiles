@@ -30,12 +30,12 @@ return require('packer').startup {
         use { 'yamatsum/nvim-cursorline' }
         use { 'MunifTanjim/nui.nvim' }
         use { 'gorbit99/codewindow.nvim', config = get('codewindow') }
+        use { 'folke/noice.nvim' }
         use {
             'NvChad/nvim-colorizer.lua',
             opt = true,
             cmd = { 'ColorizerToggle' },
         }
-        use { 'folke/noice.nvim' } -- event = 'VimEnter', config = get('noice')
 
         -- typing & correction
         use { 'mong8se/actually.nvim' }
@@ -43,6 +43,7 @@ return require('packer').startup {
         use { 'kylechui/nvim-surround', config = get('nvim-surround') }
         use { 'numToStr/Comment.nvim', config = get('Comment') }
         use { 'windwp/nvim-autopairs', config = get('nvim-autopairs') }
+        use { 'folke/trouble.nvim', opt = true, cmd = { 'TroubleToggle' } }
         use {
             'akinsho/toggleterm.nvim',
             tag = '*',
@@ -50,7 +51,6 @@ return require('packer').startup {
             cmd = { 'ToggleTerm' },
             config = 'require("configs.toggleterm")',
         }
-        use { 'folke/trouble.nvim', opt = true, cmd = { 'TroubleToggle' } }
 
         -- lsp
         use { 'neovim/nvim-lspconfig' }
@@ -101,9 +101,7 @@ return require('packer').startup {
         display = {
             compact = true,
             non_interactive = false,
-            open_fn = function()
-                return require('packer.util').float { border = 'rounded' }
-            end,
+            open_fn = function() return require('packer.util').float { border = 'rounded' } end,
             open_cmd = '65vnew \\[packer\\]',
             working_sym = '↓',
             error_sym = '✗',

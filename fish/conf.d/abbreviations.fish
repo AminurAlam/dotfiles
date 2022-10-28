@@ -4,7 +4,7 @@ abbr -ag gup "git add . && git commit && git push origin"
 
 abbr -ag gadd "git add ."
 abbr -ag gmv "git mv"
-abbr -ag gcp "git clone --depth 1 ''"
+abbr -ag gcp "git clone --depth 1"
 
 abbr -ag gcm "git commit"
 abbr -ag gl "git log"

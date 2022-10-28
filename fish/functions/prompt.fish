@@ -39,23 +39,16 @@ function fish_right_prompt
         set -f time "[$(echo $CMD_DURATION)ms]"
     end
 
-    echo -se (set_color normal)\
+    printf "%s%s" \
         (set_color $fish_color_error) $prompt_status \
-        (set_color grey) $time \
-        # (fish_default_mode_prompt) \
-        (set_color normal)
+        (set_color grey) $time
 end
 
 function fish_prompt
-    [ -n "$SSH_CLIENT" ] && set -l prompt_name " @ssh"
-    fish_is_root_user && set -l fish_color_cwd "$fish_color_cwd_root"
-    set -l prompt_logo ' ❯ '
-    __fish_is_git_repository && set -l git_branch " (" (git symbolic-ref --short HEAD) ")"
-    [ (echo -n (prompt_pwd) $git_branch $prompt_name | wc -c) -gt (math -s 0 (tput cols)/3) ] && set -l prompt_logo "\n$prompt_logo"
-
-    echo -se \n \
-        (set_color yellow) $prompt_name \
-        (set_color cyan) $git_branch ' ' \
-        (set_color $fish_color_cwd) (prompt_pwd) \
-        (set_color normal) $prompt_logo
+    echo
+    printf "%b%b " \
+        (set_color cyan) (git symbolic-ref --short HEAD 2> /dev/null) \
+        (set_color $fish_color_cwd) (prompt_pwd)
+    set_color normal
+    [ (string length (prompt_pwd)) -gt 20 ] && printf "\n ❯ " || printf "❯ "
 end

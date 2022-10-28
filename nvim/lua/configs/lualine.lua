@@ -57,7 +57,7 @@ local filename = {
     },
 }
 
---[[ local lsp_progress = {
+local lsp_progress = {
     'lsp_progress',
     separators = {
         component = ' ',
@@ -75,7 +75,7 @@ local filename = {
     },
     message = { commenced = '…', completed = '✓' },
     max_message_length = 30,
-} ]]
+}
 
 local check_git = {
     function()
@@ -97,7 +97,7 @@ require('lualine').setup {
         component_separators = { left = '', right = '' },
         section_separators = { left = '', right = '' },
         disabled_filetypes = {
-            statusline = { 'alpha' },
+            statusline = { 'alpha', 'Trouble', 'packer', 'lspinfo', 'TelescopePrompt' },
             winbar = {},
         },
         ignore_focus = {},
@@ -112,7 +112,7 @@ require('lualine').setup {
     sections = {
         lualine_a = { { 'mode', padding = 1 } },
         lualine_b = { filename, check_git, whitespace },
-        lualine_c = { { 'diagnostics', update_in_insert = true } },
+        lualine_c = { { 'diagnostics', update_in_insert = true }, lsp_progress },
         lualine_x = { { 'searchcount' } },
         lualine_y = { { 'progress' } },
         lualine_z = { { 'filetype', padding = 1 } },

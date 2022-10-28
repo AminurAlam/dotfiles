@@ -10,6 +10,7 @@ alias renum="python3 ~/repos/python-tools/renum.py"
 alias retag="python3 ~/repos/python-tools/retag.py"
 alias rename="python3 ~/repos/python-tools/rename.py"
 alias dibot="python3 ~/repos/python-tools/dibot.py && fg && procs -tp disable"
+alias http="py ~/repos/http/server.py -d /sdcard/"
 
 # rclone
 alias rsy="rclone sync -P"
@@ -129,12 +130,8 @@ alias dud="dust -r -d 1"
 alias anal="$PATH[1]/du -ah -d 1 -t 20000000 | sort -k1hr"
 alias df="duf -only local -output mountpoint,size,avail,usage -width 150 -only-mp '/storage/*'"
 
-# newsboat
-alias nb="newsboat"
-alias nbt="newsboat -r"
-alias vin="vi $HOME/.config/newsboat/*"
-
 # others
+alias nb="newsboat"
 alias tdl="tidal-dl -l"
 alias wdu="wget --hsts-file=\"$XDG_CACHE_HOME/wget-hsts\" --spider"
 alias wdl="wget --hsts-file=\"$XDG_CACHE_HOME/wget-hsts\""

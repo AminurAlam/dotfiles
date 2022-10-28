@@ -54,13 +54,14 @@ vim.opt.listchars = {
 }
 vim.opt.fillchars = {
     fold = ' ',
-    foldopen = "",
-    foldclose = "",
+    foldopen = '',
+    foldclose = '',
 }
 
 require('mappings')
 require('plugins')
 require('snippets')
+require('colors')
 
 local function load_plugins()
     require('configs.alpha')
@@ -70,17 +71,21 @@ local function load_plugins()
     require('configs.lsp')
     require('configs.lualine')
     -- require('configs.mason')
-    -- require('configs.noice')
+    require('configs.noice')
     require('configs.notify')
-    -- require('configs.retrail')
     -- require('configs.switch')
     require('configs.telescope')
-    require('configs.tokyonight')
     require('configs.treesitter')
     require('configs.trouble')
     require('nvim-cursorline').setup {
         cursorline = { enable = false },
         cursorword = { enable = true },
+    }
+    require('indent_blankline').setup {
+        show_trailing_blankline_indent = false,
+        show_current_context = false,
+        show_current_context_start = false,
+        show_first_indent_level = false,
     }
 end
 

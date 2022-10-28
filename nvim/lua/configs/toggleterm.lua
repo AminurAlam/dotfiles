@@ -39,7 +39,7 @@ require('toggleterm').setup {
         border = 'curved',
         width = 60,
         height = 26,
-        winblend = 3,
+        winblend = 10,
     },
     winbar = {
         enabled = false,

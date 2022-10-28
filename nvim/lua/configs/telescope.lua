@@ -5,7 +5,7 @@ require('telescope').setup {
         entry_prefix = ' ',
         prompt_title = false,
         results_title = false,
-        winblend = 8,
+        winblend = 10,
         file_ignore_patterns = { 'node_modules', '.git', '__pycache__' },
         path_display = {
             shorten = { len = 1, exclude = { 1, -1 } },

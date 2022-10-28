@@ -1,6 +1,6 @@
 require('noice').setup {
     cmdline = {
-        enabled = true, -- enables the Noice cmdline UI
+        enabled = false, -- enables the Noice cmdline UI
         view = 'cmdline_popup', -- view for rendering the cmdline. Change to `cmdline` to get a classic cmdline at the bottom
         view_search = 'cmdline_popup_search', -- view for rendering the cmdline for search
         opts = { buf_options = { filetype = 'vim' } }, -- enable syntax highlighting in the cmdline
@@ -25,7 +25,7 @@ require('noice').setup {
         view_search = 'virtualtext', -- view for search count messages. Set to `false` to disable
     },
     popupmenu = {
-        enabled = false, -- enables the Noice popupmenu UI
+        enabled = true, -- enables the Noice popupmenu UI
         ---@type 'nui'|'cmp'
         backend = 'nui', -- backend to use to show regular cmdline completions
     },

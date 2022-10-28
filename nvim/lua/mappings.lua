@@ -1,7 +1,7 @@
 vim.g.mapleader = ' '
 local options = { noremap = true, silent = true }
 
-require('which-key').setup {
+--[[ require('which-key').setup {
     plugins = {
         marks = true, -- shows a list of your marks on ' and `
         registers = false, -- shows your registers on " in NORMAL or <C-r> in INSERT mode
@@ -62,7 +62,7 @@ require('which-key').setup {
         buftypes = {},
         filetypes = { 'TelescopePrompt' },
     },
-}
+} ]]
 
 local function nmap(k, v) vim.keymap.set('n', k, v, options) end
 local function imap(k, v) vim.keymap.set('i', k, v, options) end
@@ -90,6 +90,7 @@ imap('<C-p>', '<cmd>:CybuPrev<cr>')
 nmap('<leader>tr', '<cmd>:TroubleToggle document_diagnostics<cr>')
 nmap('<leader>tt', '<cmd>:ToggleTerm<cr>')
 nmap('<leader>co', '<cmd>:ColorizerToggle<cr>')
+nmap('<leader>ib', '<cmd>:IndentBlanklineToggle<cr>')
 nmap('<leader>mm', function() require('codewindow').toggle_minimap() end)
 nmap('<leader>mf', function() require('codewindow').toggle_focus() end)
 
