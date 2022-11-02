@@ -1,0 +1,56 @@
+feedlist-title-format ""
+feedlist-format       " [%2U/%-2c]  %t %S"
+articlelist-title-format " [%2U/%-2t] %T"
+articlelist-format       "%D %f %t"
+itemview-title-format ""
+
+reload-threads 10
+show-title-bar yes
+show-keymap-hint no
+wrap-scroll yes
+
+# unbind keys
+unbind-key j
+unbind-key k
+unbind-key J
+unbind-key K
+
+# bind keys
+bind-key u reload
+bind-key BACKSPACE quit
+bind-key j down
+bind-key k up
+bind-key l open
+bind-key h quit
+
+bind-key LEFT quit
+bind-key RIGHT open
+bind-key TAB reload
+bind-key ^q hard-quit
+
+# pager "most"
+
+
+# color background          default default
+# color listnormal          default default
+color listfocus           default color24 bold
+# color listnormal_unread   default default
+color listfocus_unread    default color24 bold
+color title               default default
+# color info                default default
+# color hint-key            default default
+# color hint-keys-delimiter default default
+# color hint-separator      default default
+# color hint-description    default default
+# color article             default default
+# color end-of-text-marker  default default
+
+# highlight feedlist "———.*———" green default bold
+highlight article "^>.*" green
+highlight article " >.*" green
+highlight article ">>.*" red
+highlight article " /[a-z0-9]{1,9}/" red
+highlight article "[ ]/?[ru]/[-a-zA-Z0-9_]{1,25}" red
+
+highlight article "https?://[^ ]+" cyan default underline
+highlight article "^(Feed|Title|Author|Link|Date):" blue

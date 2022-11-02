@@ -1,1 +1,3 @@
 termux/shell
+termux/font.ttf
+nvim/plugin/packer_compiled.lua
