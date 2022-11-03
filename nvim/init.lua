@@ -27,7 +27,9 @@ set.colorcolumn = '80'
 set.pumblend = 10
 set.relativenumber = true
 set.shiftround = true
--- terminal
+-- terminal & cursor
+set.virtualedit = 'onemore'
+set.winblend = 10
 set.termguicolors = true
 vim.opt.guicursor = { n = 'hor' }
 -- gui

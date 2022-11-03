@@ -9,8 +9,8 @@ export VISUAL=$EDITOR
 export SUDO_EDITOR=$EDITOR
 export MANPAGER="vi +Man!"
 export BAT_PAGER="less"
-export BROWSER="termux-open-url"
-export WWW_HOME="https://searx.be/"
+export BROWSER="w3m"  # "termux-open-url"
+export WWW_HOME="https://searx.work/"
 export LESSHISTFILE="-"
 export RUST_BACKTRACE="full"
 
@@ -48,7 +48,8 @@ export CARGO_HOME="$XDG_DATA_HOME/cargo"
 export CARGO_INSTALL_ROOT="$CARGO_HOME"
 
 # export PATH="$PATH:$PREFIX/bin/texlive:$CARGO_HOME/bin"
-fish_add_path -a $CARGO_HOME/bin
+fish_add_path $HOME/bin
+fish_add_path $CARGO_HOME/bin
 
 
 ### source ###
@@ -71,11 +72,10 @@ set fish_greeting "$(fish_logo cyan cyan green \| 0)"
 
 ### paths ###
 set --path mu "/sdcard/Music"
-set --path py "/sdcard/Python"
 set --path tx "/sdcard/termux"
 set --path dl "/sdcard/Download"
-set --path pi "/sdcard/Pictures"
-set --path mv "/sdcard/Movies"
+set --path pic "/sdcard/Pictures"
+set --path mov "/sdcard/Movies"
 
 set --path rp "$HOME/repos"
 set --path sp "$HOME/repos/samples"
@@ -158,4 +158,15 @@ end
 function fish_title
     # echo (prompt_pwd): (string split -r ' ' $argv)[1]
     echo (prompt_pwd): (status current-command)
+end
+
+# password generator
+function pw
+    set -l chars 'A-Za-z0-9|{[(<>)]}@&%#^$"`_:;!?|~+\-*/='
+    sleep (math (random 1 100)/1000)
+    for __ in (seq 8)
+        sleep (math (random 1 100)/1000)
+        :;: && tr -dc "$chars" < /dev/urandom | head -c 32
+        echo
+    end
 end

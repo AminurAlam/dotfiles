@@ -46,5 +46,5 @@ vim.cmd([[
     colorscheme tokyonight
 
     hi Whitespace guibg=#364a82
-    hi FloatBorder guifg=#c0caf5
+    " hi FloatBorder guifg=#c0caf5
 ]])
