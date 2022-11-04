@@ -5,6 +5,7 @@ function dot
     for dir in $dirs
         yes | cp -rf "$dir" "$HOME/repos/dotfiles/"
     end
+    rm -rf "$HOME/repos/dotfiles/nvim/plugin/"
 
     read choice -f -P "done copying, would you like to commit? [Y/n] "
 
