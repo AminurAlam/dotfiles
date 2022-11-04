@@ -101,7 +101,7 @@ bind -M insert \{ 'commandline -i \{\}' 'commandline -f backward-char'
 ### functions ###
 
 # checking installations
-set -l PACKAGES bat dust exa fd fzf git nvim python rclone rg wget zoxide
+set -l PACKAGES dust exa fd git nvim python rclone rg wget zoxide
 
 for package in $PACKAGES
     set_color $fish_color_error

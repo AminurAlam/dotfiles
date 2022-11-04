@@ -1,15 +1,5 @@
 require('nvim-treesitter.configs').setup {
-    ensure_installed = {
-        'bash',
-        'fish',
-        'jsonc',
-        'lua',
-        'markdown',
-        'python',
-        'rust',
-        'vim',
-    },
-
+    ensure_installed = { 'fish', 'lua', 'python', 'vim' },
     sync_install = false, -- Install parsers synchronously (only applied to `ensure_installed`)
     auto_install = false, -- Automatically install missing parsers when entering buffer
     ignore_install = {}, -- List of parsers to ignore installing (for "all")

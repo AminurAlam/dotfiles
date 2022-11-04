@@ -1,17 +1,17 @@
 function install-packages # TODO: support other package managers
-    # setting up mirror links
+    apt update && apt upgrade
+    mkdir $PREFIX/etc/apt/
+    touch $PREFIX/etc/apt/sources.list
     echo "deb https://packages-cf.termux.dev/apt/termux-main stable main" > $PREFIX/etc/apt/sources.list
-    echo "deb https://packages-cf.termux.dev/apt/termux-x11 x11 main" > $PREFIX/etc/apt/sources.list.d/x11.list
 
     apt update && apt upgrade
-    apt install -y dust exa fd fish git neovim python rclone ripgrep wget zoxide
-    apt install -y termux-api tur-repo lua-language-server
-    apt install duf ffmpeg fzf glow mediainfo newsboat sox stylua tealdeer w3m zip
+    apt install -y dust exa fd fish git neovim python rclone ripgrep wget zoxide termux-api tur-repo lua-language-server
+    apt install ffmpeg glow stylua tealdeer
     apt install luarocks stylua nodejs-lts rust
     pip install yt-dlp deflacue pyright
 end
 
-function get-repository
+function get-repos
     # checking if git exists
     command -sq git || apt install git
 
@@ -34,9 +34,7 @@ end
 
 chsh -s fish
 
-read choice -P "download packages? [y/n] "
-[ $choice = "y" ] && install-packages
-
+install-packages
 get-repos
 restore-configs
 
@@ -45,6 +43,7 @@ ln -s "$PREFIX/bin/nvim" "$HOME/bin/termux-file-editor"
 
 [ -d "/sdcard/termux/home" ] && command cp -fr "/sdcard/termux/home" "$HOME/"
 
-nvim +PackerInstall
+echo "" > $PREFIX/etc/motd
+echo "" > $PREFIX/etc/motd.sh
 
 source $HOME/.config/fish/config.fish

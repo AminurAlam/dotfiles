@@ -1,4 +1,4 @@
-require('impatient')
+-- require('impatient')
 
 local set = vim.o -- opt might be depricated in the future
 -- indent
@@ -69,17 +69,18 @@ require('colors')
 local function load_plugins()
     require('configs.alpha')
     require('configs.cybu')
-    -- require('configs.dressing') -- doesnt work w/ lsp
-    -- require('configs.fold')
     require('configs.lsp')
     require('configs.lualine')
-    -- require('configs.mason')
     require('configs.noice')
     require('configs.notify')
-    -- require('configs.switch')
     require('configs.telescope')
+    require('configs.toggleterm')
     require('configs.treesitter')
     require('configs.trouble')
+    require('codewindow').setup {}
+    require('nvim-surround').setup {}
+    require('Comment').setup {}
+    require('nvim-autopairs').setup {}
     require('nvim-cursorline').setup {
         cursorline = { enable = false },
         cursorword = { enable = true },

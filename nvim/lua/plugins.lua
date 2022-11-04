@@ -6,8 +6,6 @@ vim.cmd([[
     augroup end
 ]])
 
-local get = function(plugin) require(plugin).setup {} end
-
 return require('packer').startup {
     function(use)
         -- main plugins
@@ -16,10 +14,9 @@ return require('packer').startup {
         use { 'kyazdani42/nvim-web-devicons' }
         use { 'folke/neodev.nvim' }
         use { 'nvim-telescope/telescope.nvim' }
-        use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
+        use { 'nvim-treesitter/nvim-treesitter' }
         use { 'lewis6991/impatient.nvim' }
-
-        -- theme & design
+        -- theme & design }
         use { 'lukas-reineke/indent-blankline.nvim' }
         use { 'folke/tokyonight.nvim' }
         use { 'nvim-lualine/lualine.nvim' }
@@ -29,41 +26,29 @@ return require('packer').startup {
         use { 'rcarriga/nvim-notify' }
         use { 'yamatsum/nvim-cursorline' }
         use { 'MunifTanjim/nui.nvim' }
-        use { 'gorbit99/codewindow.nvim', config = get('codewindow') }
+        use { 'gorbit99/codewindow.nvim' }
         use { 'folke/noice.nvim' }
-        use {
-            'NvChad/nvim-colorizer.lua',
-            opt = true,
-            cmd = { 'ColorizerToggle' },
-        }
-
-        -- typing & correction
+        use { 'NvChad/nvim-colorizer.lua' }
+        -- typing & correction }
         use { 'mong8se/actually.nvim' }
         use { 'folke/which-key.nvim' }
-        use { 'kylechui/nvim-surround', config = get('nvim-surround') }
-        use { 'numToStr/Comment.nvim', config = get('Comment') }
-        use { 'windwp/nvim-autopairs', config = get('nvim-autopairs') }
-        use { 'folke/trouble.nvim', opt = true, cmd = { 'TroubleToggle' } }
-        use {
-            'akinsho/toggleterm.nvim',
-            tag = '*',
-            opt = true,
-            cmd = { 'ToggleTerm' },
-            config = 'require("configs.toggleterm")',
-        }
-
-        -- lsp
+        use { 'kylechui/nvim-surround' }
+        use { 'numToStr/Comment.nvim' }
+        use { 'windwp/nvim-autopairs' }
+        use { 'folke/trouble.nvim' }
+        use { 'akinsho/toggleterm.nvim' }
+        -- lsp }
         use { 'neovim/nvim-lspconfig' }
         use { 'onsails/lspkind-nvim' }
         use { 'WhoIsSethDaniel/lualine-lsp-progress' }
-        -- cmp
+        -- cmp }
         use { 'hrsh7th/nvim-cmp' }
         use { 'hrsh7th/cmp-nvim-lsp' }
         use { 'hrsh7th/cmp-nvim-lua' }
         use { 'hrsh7th/cmp-path' }
         use { 'hrsh7th/cmp-buffer' }
         use { 'hrsh7th/cmp-cmdline' }
-        -- snippets
+        -- snippets }
         use { 'L3MON4D3/LuaSnip' }
         use { 'saadparwaiz1/cmp_luasnip' }
         use { 'rafamadriz/friendly-snippets' }
