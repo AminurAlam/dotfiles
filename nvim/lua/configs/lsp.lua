@@ -47,10 +47,10 @@ local servers = {
     -- pip
     'pyright',
     -- npm (vscode-langservers-extracted)
-    'jsonls',
-    'eslint',
-    'cssls',
-    'html',
+    -- 'jsonls',
+    -- 'eslint',
+    -- 'cssls',
+    -- 'html',
 }
 
 --[[ cmp setup ]]

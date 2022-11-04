@@ -61,6 +61,7 @@ vim.opt.fillchars = {
 }
 
 require('mappings')
+require('autocommands')
 require('plugins')
 require('snippets')
 require('colors')

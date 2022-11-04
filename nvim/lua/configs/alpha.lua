@@ -1,19 +1,5 @@
---[[ local alpha = require('alpha')
-local dashboard = require("alpha.themes.dashboard")
--- local plugins = #vim.tbl_keys(packer_plugins)
+local icons = require('icons')
 local v = vim.version()
--- local startify = require('alpha.themes.startify')
-
-dashboard.section.buttons.val = {
-    dashboard.button('i', ' New file', ':ene <BAR> startinsert<CR>'),
-    dashboard.button('q', ' Quit', ':q<CR>'),
-    dashboard.button('f', ' Find file', ':Telescope find_files<CR>'),
-    dashboard.button('h', ' Find help', ':Telescope help_tags<CR>')
-}
-
--- startify.section.mru_cwd.val = { { type = 'padding', val = 0 } }
-alpha.setup(dashboard.config) ]]
-
 local function button(sc, txt, keybind, keybind_opts)
     local opts = {
         position = 'center',
@@ -41,8 +27,15 @@ local function button(sc, txt, keybind, keybind_opts)
         opts = opts,
     }
 end
-
-local v = vim.version()
+local buttons = {
+    button('f', icons.documents.Files .. '  Find file', '<cmd>:Telescope find_files<cr>'),
+    button('g', icons.type.String .. '  Find word', '<cmd>:Telescope live_grep<cr>'),
+    button('h', '?  Find help', '<cmd>:Telescope help_tags<cr>'),
+    button('t', icons.documents.OpenFolder .. '  Explore directory', '<cmd>:Explore<cr>'),
+    button('i', icons.ui.Pencil .. '  New file', '<cmd>:ene <BAR> startinsert<cr>'),
+    button('u', icons.ui.Rotate .. '  Update plugins', '<cmd>:PackerUpdate<cr>'),
+    button('q', icons.ui.RoundClose .. '  Quit', '<cmd>:qa<cr>'),
+}
 
 require('alpha').setup {
     layout = {
@@ -68,15 +61,7 @@ require('alpha').setup {
         { type = 'padding', val = 2 },
         {
             type = 'group',
-            val = {
-                button('f', '  Find file', '<cmd>:Telescope find_files<cr>'),
-                button('g', '  Find word', '<cmd>:Telescope live_grep<cr>'),
-                button('h', '?  Find help', '<cmd>:Telescope help_tags<cr>'),
-                button('t', '  File browser', '<cmd>:Explore<cr>'),
-                button('i', '  New file', '<cmd>:ene <BAR> startinsert<cr>'),
-                button('u', '  Update plugins', '<cmd>:PackerUpdate<cr>'),
-                button('q', '  Quit', '<cmd>:qa<cr>'),
-            },
+            val = buttons,
             opts = { spacing = 0 },
         },
         { type = 'padding', val = 2 },

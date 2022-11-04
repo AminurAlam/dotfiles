@@ -1,5 +1,54 @@
 vim.g.mapleader = ' '
-local options = { noremap = true, silent = true }
+local opts = { noremap = true, silent = true }
+
+local function nmap(k, v) vim.keymap.set('n', k, v, opts) end
+local function imap(k, v) vim.keymap.set('i', k, v, opts) end
+local function vmap(k, v) vim.keymap.set('v', k, v, opts) end
+
+-- telescope
+nmap('<leader>ff', function() require('telescope.builtin').fd { hidden = true } end)
+nmap('<leader>fg', function() require('telescope.builtin').live_grep() end)
+nmap('<leader>fb', function() require('telescope.builtin').buffers() end)
+nmap('<leader>fh', function() require('telescope.builtin').help_tags() end)
+
+-- packer
+nmap('<leader>pup', '<cmd>:PackerUpdate<cr>') -- update
+nmap('<leader>pin', '<cmd>:PackerInstall<cr>') -- install
+nmap('<leader>pun', '<cmd>:PackerClean<cr>') -- uninstall
+nmap('<leader>pab', '<cmd>:PackerStatus<cr>') -- info
+
+-- cybu / buffer movement
+nmap('<C-n>', '<cmd>:CybuNext<cr>')
+imap('<C-n>', '<cmd>:CybuNext<cr>')
+nmap('<C-p>', '<cmd>:CybuPrev<cr>')
+imap('<C-p>', '<cmd>:CybuPrev<cr>')
+
+-- other plugins
+nmap('<leader>tr', '<cmd>:TroubleToggle document_diagnostics<cr>')
+nmap('<leader>tt', '<cmd>:ToggleTerm<cr>')
+nmap('<leader>co', '<cmd>:ColorizerToggle<cr>')
+nmap('<leader>ib', '<cmd>:IndentBlanklineToggle<cr>')
+nmap('<leader>mm', function() require('codewindow').toggle_minimap() end)
+nmap('<leader>mf', function() require('codewindow').toggle_focus() end)
+
+-- other
+nmap('<C-q>', '<cmd>:q<cr>')
+imap('<C-q>', '<cmd>:q<cr>')
+nmap('<C-w>', '<cmd>:w<cr>')
+imap('<C-w>', '<cmd>:w<cr>')
+
+nmap(';', ':') -- typing correction
+nmap('<C-c>', '<esc>:') -- ^c takes you to command mode
+imap('<C-c>', '<esc>:') -- ^c takes you to command mode
+vmap('<C-c>', ':') -- ^c takes you to command mode
+
+nmap('x', '"_x') -- deleted stuff doesnt do to clipboard
+nmap('X', '"_x') -- deleted stuff doesnt do to clipboard
+nmap('<del>', '"_x') -- deleted stuff doesnt do to clipboard
+
+nmap('<leader>li', '<cmd>:LspInfo<cr>')
+nmap('<leader>/', '<cmd>:nohlsearch<cr>') -- remove highlight after search
+nmap('<leader>d ', '<cmd>:%s/\\s*$//g<cr><cmd>:nohlsearch<cr>') -- removes trailing whitespace
 
 --[[ require('which-key').setup {
     plugins = {
@@ -63,52 +112,3 @@ local options = { noremap = true, silent = true }
         filetypes = { 'TelescopePrompt' },
     },
 } ]]
-
-local function nmap(k, v) vim.keymap.set('n', k, v, options) end
-local function imap(k, v) vim.keymap.set('i', k, v, options) end
-local function vmap(k, v) vim.keymap.set('v', k, v, options) end
-
--- telescope
-nmap('<leader>ff', function() require('telescope.builtin').fd { hidden = true } end)
-nmap('<leader>fg', function() require('telescope.builtin').live_grep() end)
-nmap('<leader>fb', function() require('telescope.builtin').buffers() end)
-nmap('<leader>fh', function() require('telescope.builtin').help_tags() end)
-
--- packer
-nmap('<leader>pup', '<cmd>:PackerUpdate<cr>') -- update
-nmap('<leader>pin', '<cmd>:PackerInstall<cr>') -- install
-nmap('<leader>pun', '<cmd>:PackerClean<cr>') -- uninstall
-nmap('<leader>pab', '<cmd>:PackerStatus<cr>') -- info
-
--- cybu / buffer movement
-nmap('<C-n>', '<cmd>:CybuNext<cr>')
-imap('<C-n>', '<cmd>:CybuNext<cr>')
-nmap('<C-p>', '<cmd>:CybuPrev<cr>')
-imap('<C-p>', '<cmd>:CybuPrev<cr>')
-
--- other plugins
-nmap('<leader>tr', '<cmd>:TroubleToggle document_diagnostics<cr>')
-nmap('<leader>tt', '<cmd>:ToggleTerm<cr>')
-nmap('<leader>co', '<cmd>:ColorizerToggle<cr>')
-nmap('<leader>ib', '<cmd>:IndentBlanklineToggle<cr>')
-nmap('<leader>mm', function() require('codewindow').toggle_minimap() end)
-nmap('<leader>mf', function() require('codewindow').toggle_focus() end)
-
--- other
-nmap('<C-q>', '<cmd>:q<cr>')
-imap('<C-q>', '<cmd>:q<cr>')
-nmap('<C-w>', '<cmd>:w<cr>')
-imap('<C-w>', '<cmd>:w<cr>')
-
-nmap(';', ':') -- typing correction
-nmap('<C-c>', '<esc>:') -- ^c takes you to command mode
-imap('<C-c>', '<esc>:') -- ^c takes you to command mode
-vmap('<C-c>', ':') -- ^c takes you to command mode
-
-nmap('x', '"_x') -- deleted stuff doesnt do to clipboard
-nmap('X', '"_x') -- deleted stuff doesnt do to clipboard
-nmap('<del>', '"_x') -- deleted stuff doesnt do to clipboard
-
-nmap('<leader>li', '<cmd>:LspInfo<cr>')
-nmap('<leader>/', '<cmd>:nohlsearch<cr>') -- remove highlight after search
-nmap('<leader>d ', '<cmd>:%s/\\s*$//g<cr><cmd>:nohlsearch<cr>') -- removes trailing whitespace

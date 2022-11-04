@@ -38,13 +38,15 @@ require('tokyonight').setup {
     ---@param colors ColorScheme
     on_highlights = function(highlights, colors) end,
 }
+
+-- local function hl(name, val) vim.api.nvim_set_hl(0, name, val) end
+-- hl('CmpItemAbbrDeprecated', { bg = nil, strikethrough = true, fg='#808080' } )
 vim.cmd([[
     highlight! CmpItemAbbrDeprecated guibg=NONE gui=strikethrough guifg=#808080
     highlight! CmpItemAbbrMatch guibg=NONE guifg=#569CD6
     highlight! CmpItemAbbrMatchFuzzy guibg=NONE guifg=#569CD6
-
-    colorscheme tokyonight
-
     hi Whitespace guibg=#364a82
     " hi FloatBorder guifg=#c0caf5
+
+    colorscheme tokyonight
 ]])
