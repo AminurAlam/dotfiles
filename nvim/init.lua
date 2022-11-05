@@ -1,4 +1,4 @@
-require('impatient')
+pcall(require, 'impatient')
 
 local set = vim.o -- opt might be depricated in the future
 -- indent

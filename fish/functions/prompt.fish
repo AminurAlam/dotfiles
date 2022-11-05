@@ -52,4 +52,3 @@
 #     set_color normal
 #     [ (string length (prompt_pwd)) -gt 20 ] && printf "\n ❯ " || printf "❯ "
 # end
-source (starship init fish --print-full-init | psub)

@@ -25,7 +25,7 @@ function restore-configs
         [ -d "$directory" ] && command cp -fr "$directory" $HOME/.config/
     end
     command cp -f "$HOME/repos/dotfiles/starship.toml" "$HOME/.config"
-    command cp -fr "$HOME/repos/dotfiles/termux/*" "$HOME/.termux/"
+    command cp -fr $HOME/repos/dotfiles/termux/* "$HOME/.termux/"
     # curl -o $HOME/.termux/font.ttf "https://cdn.discordapp.com/attachments/775578261173698563/1038110725987635210/font.ttf"
     termux-reload-settings
 end
@@ -36,14 +36,16 @@ install-packages
 get-repos
 restore-configs
 
-[ -d "/sdcard/termux/home" ] && command cp -fr "/sdcard/termux/home/*" "$HOME/"
-[ -d "$PREFIX/etc/motd" ] && echo "" > $PREFIX/etc/motd
-[ -d "$PREFIX/etc/motd.sh" ] && echo "" > $PREFIX/etc/motd.sh
+[ -d "/sdcard/termux/home" ] && command cp -fr /sdcard/termux/home/* "$HOME/"
+echo "" > $PREFIX/etc/motd
+echo "" > $PREFIX/etc/motd.sh
 command rm -fr "$HOME/storage/"
 
 nvim +PackerInstall
 nvim +PackerCompile
 
+mkdir $HOME/.config/git/
+touch $HOME/.config/git/config
 git config --global user.name 'AminurAlam'
 read GIT_AUTHOR_EMAIL -f -P "enter your git email: " && git config --global user.email "$GIT_AUTHOR_EMAIL"
 set -e GIT_AUTHOR_EMAIL
