@@ -4,12 +4,12 @@ set -l COLORS "*.py=38;5;45:*.rs=38;5;208:*.fish=38;5;47:*.sh=38;5;47:*.bash=38;
 *.kt=35:*.lua=38;5;27:*.php=38;5;63:*.pdf=38;5;124:*.md=38;5;111:*.tex=38;5;71"
 export LS_COLORS="$COLORS"
 export EXA_COLORS="$COLORS"
-export EDITOR="vi"
+export EDITOR="nvim"
 export VISUAL=$EDITOR
 export SUDO_EDITOR=$EDITOR
 export MANPAGER="vi +Man!"
 export BAT_PAGER="less"
-export BROWSER="w3m"  # "termux-open-url"
+export BROWSER="termux-open"
 export WWW_HOME="https://searx.work/"
 export LESSHISTFILE="-"
 export RUST_BACKTRACE="full"
@@ -23,7 +23,7 @@ export RUST_BACKTRACE="full"
 # export TEXMFHOME="$TEXMFLOCAL"
 # # export TEXINPUTS="/opt/tex/cur/texmf-dist/tex/latex/latexconfig"
 
-[ "$EXTERNAL_STORAGE" ] || export EXTERNAL_STORAGE="$HOME"
+[ -d "$EXTERNAL_STORAGE" ] || export EXTERNAL_STORAGE="$HOME"
 
 export XDG_DOCUMENTS_DIR="$EXTERNAL_STORAGE/Documents"
 export XDG_DOWNLOAD_DIR="$EXTERNAL_STORAGE/Download"
@@ -53,29 +53,24 @@ fish_add_path $CARGO_HOME/bin
 
 
 ### source ###
-for function_file in ~/.config/fish/functions/*
-    [ -f "$function_file" ]; and source $function_file
-end
-
-for completion_file in ~/.config/fish/completions/*
-    [ -f "$completion_file" ]; and source $completion_file
-end
-
-for config_file in ~/.config/fish/conf.d/*
-    [ -f "$cofig_file" ]; and source $completion_file
-end
-
+# source $HOME/.config/fish/completions/*.fish
+# source $HOME/.config/fish/functions/*.fish
+# source $HOME/.config/fish/conf.d/*.fish
+source (starship init fish --print-full-init | psub)
 
 ### main ###
-cd
 set fish_greeting "$(fish_logo cyan cyan green \| 0)"
 
 ### paths ###
-set --path mu "/sdcard/Music"
-set --path tx "/sdcard/termux"
+set --path sd "/sdcard"
+set --path doc "/sdcard/Documents"
 set --path dl "/sdcard/Download"
-set --path pic "/sdcard/Pictures"
 set --path mov "/sdcard/Movies"
+set --path mu "/sdcard/Music"
+set --path pic "/sdcard/Pictures"
+set --path td "/sdcard/Tachiyomi/downloads"
+set --path tl "/sdcard/Tachiyomi/local"
+set --path tx "/sdcard/termux"
 
 set --path rp "$HOME/repos"
 set --path sp "$HOME/repos/samples"
@@ -88,46 +83,28 @@ bind -M normal \cq 'exit'
 bind -M insert \e\[1\;5A 'commandline -f history-token-search-backward'
 bind -M insert \e\[1\;5B 'commandline -f history-token-search-forward'
 
-# bind -M insert \' "commandline -i \'\'" 'commandline -f backward-char'
-# bind -M insert \" 'commandline -i \"\"' 'commandline -f backward-char'
-# bind -M insert \` 'commandline -i \`\`' 'commandline -f backward-char'
 bind -M insert \( 'commandline -i \(\)' 'commandline -f backward-char'
 bind -M insert \[ 'commandline -i \[\]' 'commandline -f backward-char'
 bind -M insert \{ 'commandline -i \{\}' 'commandline -f backward-char'
-# bind -M insert \< 'commandline -i \<\>' 'commandline -f backward-char'
 
 
 
 ### functions ###
 
-# checking installations
-set -l PACKAGES dust exa fd git nvim python rclone rg wget zoxide
-
-for package in $PACKAGES
-    set_color $fish_color_error
-    if not command -sq "$package"
-        echo "`$package` is not installed"
-    end
-    set_color normal
-end
-
-# cleaning
 function clean
     echo -e (set_color cyan) "\napt & pkg" (set_color normal)
-    apt autoremove
     pkg clean
-    pkg autoclean
+    apt autoremove
 
     echo -e (set_color cyan) "\nsdcard folders" (set_color normal)
     set -l dirs \
-        "/sdcard/Android/data/com.vanced.android.youtube/" \
-        "/sdcard/Android/data/app.revanced.android.youtube/" \
+        "/sdcard/Android/data/com.*.youtube/" \
         "/sdcard/Android/data/org.telegram.messenger.web/" \
+        "/sdcard/Android/data/com.spotify.music/" \
         "/sdcard/Android/data/com.xodo.pdf.reader/" \
         "/sdcard/DCIM/.thumbnails/" \
         "/sdcard/.TotalCommander/" \
-        "/sdcard/Aurora/" \
-        "/sdcard/Telegram/"
+        "/sdcard/Aurora/"
 
     for dir in $dirs
         echo "  $dir"
@@ -135,32 +112,25 @@ function clean
     command rm -rfI $dirs
 
     echo -e (set_color cyan) "\npython" (set_color normal)
-    pip cache info
-    pip cache purge
+    command -sq python && pip cache purge
 
     echo -e (set_color cyan) "\nfiles in home" (set_color normal)
     count (ls -a $HOME)
 end
 
-# wolfram alpha
 function wa
     curl -s "https://api.wolframalpha.com/v1/result?appid=PJHXKQ-UP492G48WW&i=$(echo $argv | string escape --style=url)"
 end
 
-# latex
 function texsetup
     termux-patch-texlive
-    # somehow makes `pdflatex` work
     $PREFIX/share/texlive/texmf-dist/scripts/texlive-extra/texlinks.sh
 end
 
-# terminal title
 function fish_title
-    # echo (prompt_pwd): (string split -r ' ' $argv)[1]
     echo (prompt_pwd): (status current-command)
 end
 
-# password generator
 function pw
     set -l chars 'A-Za-z0-9|{[(<>)]}@&%#^$"`_:;!?|~+\-*/='
     sleep (math (random 1 100)/1000)

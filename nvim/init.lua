@@ -1,4 +1,4 @@
--- require('impatient')
+require('impatient')
 
 local set = vim.o -- opt might be depricated in the future
 -- indent
@@ -44,6 +44,8 @@ set.helpheight = 150
 -- others
 set.timeoutlen = 500
 set.swapfile = false
+set.backup = false
+set.undofile = true
 set.list = true
 set.confirm = true
 vim.opt.clipboard:append('unnamedplus')

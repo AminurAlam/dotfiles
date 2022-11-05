@@ -1,0 +1,224 @@
+# Warning: This config does not include keys that have an unset value
+
+# $all is shorthand for $username$hostname$localip$shlvl$singularity$kubernetes$directory$vcsh$git_branch$git_commit$git_state$git_metrics$git_status$hg_branch$docker_context$package$bun$c$cmake$cobol$daml$dart$deno$dotnet$elixir$elm$erlang$golang$haskell$helm$java$julia$kotlin$lua$nim$nodejs$ocaml$perl$php$pulumi$purescript$python$raku$rlang$red$ruby$rust$scala$swift$terraform$vlang$vagrant$zig$buf$nix_shell$conda$meson$spack$memory_usage$aws$gcloud$openstack$azure$env_var$crystal$custom$sudo$cmd_duration$line_break$jobs$time$status$container$shell$character
+"$schema" = 'https://starship.rs/config-schema.json'
+# format = '$all'
+format = '$username$hostname$localip$shlvl$directory$vcsh$git_branch$package$lua$python$rust$nix_shell$memory_usage$env_var$sudo$line_break$time$container$custom$character'
+right_format = '$status$cmd_duration$jobs$error_symbol'
+continuation_prompt = '[∙](bright-black) '
+scan_timeout = 30
+command_timeout = 1000
+add_newline = true
+
+[palettes]
+
+[character]
+format = '$symbol '
+success_symbol = '[❯](bold)'
+error_symbol = '[❯](bold red)'
+vimcmd_symbol = '[❯](bold green)'
+vimcmd_visual_symbol = '[❯](bold purple)'
+vimcmd_replace_symbol = '[❯](bold purple)'
+vimcmd_replace_one_symbol = '[❯](bold purple)'
+disabled = false
+
+[cmd_duration]
+min_time = 100
+format = '\[[$duration]($style)\]'
+style = 'yellow bold'
+show_milliseconds = false
+disabled = false
+show_notifications = false
+min_time_to_notify = 45000
+
+[directory]
+truncation_length = 1
+truncate_to_repo = true
+fish_style_pwd_dir_length = 1
+use_logical_path = true
+format = '[$path]($style)[$read_only]($read_only_style) '
+repo_root_format = '[$before_root_path]($style)[$repo_root]($repo_root_style)[$path]($style)[$read_only]($read_only_style) '
+style = 'cyan bold'
+disabled = false
+read_only = ' '
+read_only_style = 'red'
+truncation_symbol = ''
+home_symbol = '~'
+use_os_path_sep = true
+
+[directory.substitutions]
+
+[env_var]
+
+[fill]
+style = 'bold black'
+symbol = '.'
+disabled = false
+
+[git_branch]
+format = '[$symbol$branch]($style) '
+symbol = ' '
+style = 'bold purple'
+truncation_length = 922
+truncation_symbol = '…'
+only_attached = false
+always_show_remote = false
+ignore_branches = []
+disabled = false
+
+[git_commit]
+disabled = true
+
+[git_metrics]
+disabled = true
+
+[git_state]
+disabled = true
+
+[git_status]
+disabled = true
+
+[hostname]
+ssh_only = true
+ssh_symbol = '🌐 '
+trim_at = '.'
+format = '[$ssh_symbol$hostname]($style) in '
+style = 'green dimmed bold'
+disabled = false
+
+[jobs]
+threshold = 1
+symbol_threshold = 1
+number_threshold = 2
+format = '\[[$symbol$number]($style)\]'
+symbol = '✦'
+style = 'bold blue'
+disabled = false
+
+[line_break]
+disabled = true
+
+[localip]
+ssh_only = true
+format = '[$localipv4]($style) '
+style = 'yellow bold'
+disabled = true
+
+[lua]
+format = '[$symbol($version )]($style)'
+version_format = 'v${raw}'
+symbol = ' '
+style = 'bold blue'
+lua_binary = 'lua'
+disabled = true
+detect_extensions = ['lua']
+detect_files = ['.lua-version']
+detect_folders = ['lua']
+
+[nodejs]
+format = ' [$symbol($version )]($style)'
+version_format = 'v${raw}'
+symbol = ' '
+style = 'bold green'
+disabled = true
+not_capable_style = 'bold red'
+detect_extensions = [ 'js', 'mjs', 'cjs', 'ts', 'mts', 'cts' ]
+detect_files = [ 'package.json', '.node-version', '.nvmrc' ]
+detect_folders = ['node_modules']
+
+[package]
+format = 'is [$symbol$version]($style) '
+symbol = '📦 '
+style = '208 bold'
+display_private = false
+disabled = false
+version_format = 'v${raw}'
+
+[python]
+pyenv_version_name = false
+pyenv_prefix = 'pyenv '
+python_binary = [ 'python', 'python3', 'python2' ]
+format = ' [${symbol}${pyenv_prefix}(${version} )(\($virtualenv\) )]($style)'
+version_format = 'v${raw}'
+style = 'yellow bold'
+symbol = ' '
+disabled = true
+detect_extensions = ['py']
+detect_files = [
+    'requirements.txt',
+    '.python-version',
+    'pyproject.toml',
+    'Pipfile',
+    'tox.ini',
+    'setup.py',
+    '__init__.py',
+]
+detect_folders = []
+
+[rust]
+format = ' [$symbol($version )]($style)'
+version_format = 'v${raw}'
+symbol = '🦀 '
+style = 'bold red'
+disabled = true
+detect_extensions = ['rs']
+detect_files = ['Cargo.toml']
+detect_folders = []
+
+[shell]
+format = '[$indicator]($style) '
+bash_indicator = 'bsh'
+fish_indicator = 'fsh'
+zsh_indicator = 'zsh'
+powershell_indicator = 'psh'
+ion_indicator = 'ion'
+elvish_indicator = 'esh'
+tcsh_indicator = 'tsh'
+nu_indicator = 'nu'
+xonsh_indicator = 'xsh'
+cmd_indicator = 'cmd'
+unknown_indicator = ''
+style = 'white bold'
+disabled = true
+
+[status]
+format = '\[[$symbol$status]($style)\]'
+symbol = '✘'
+success_symbol = ''
+not_executable_symbol = ''
+not_found_symbol = ''
+sigint_symbol = '🧱'
+signal_symbol = '⚡'
+style = 'bold red'
+map_symbol = false
+recognize_signal_code = true
+pipestatus = true
+pipestatus_separator = '|'
+pipestatus_format = '\[$pipestatus\] => [$symbol$common_meaning$signal_name$maybe_int]($style)'
+disabled = false
+
+[sudo]
+format = '[as $symbol]($style)'
+symbol = '🧙 '
+style = 'bold blue'
+allow_windows = false
+disabled = true
+
+[time]
+format = 'at [$time]($style) '
+style = 'bold yellow'
+use_12hr = false
+disabled = true
+utc_time_offset = 'local'
+time_range = '-'
+
+[username]
+format = '[$user]($style) in '
+style_root = 'red bold'
+style_user = 'yellow bold'
+show_always = false
+disabled = false
+
+# [custom.new]
+# format = 'tttt'
+# when = 'true'

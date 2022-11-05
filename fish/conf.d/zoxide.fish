@@ -1,4 +1,7 @@
-### Utility functions for zoxide.
+# =============================================================================
+#
+# Utility functions for zoxide.
+#
 
 # pwd based on the value of _ZO_RESOLVE_SYMLINKS.
 function __zoxide_pwd
@@ -20,8 +23,10 @@ function __zoxide_cd
     __zoxide_cd_internal $argv
 end
 
-
-### Hook configuration for zoxide.
+# =============================================================================
+#
+# Hook configuration for zoxide.
+#
 
 # Initialize hook to add new entries to the database.
 function __zoxide_hook --on-variable PWD
@@ -29,10 +34,12 @@ function __zoxide_hook --on-variable PWD
     and command zoxide add -- (__zoxide_pwd)
 end
 
+# =============================================================================
+#
+# When using zoxide with --no-cmd, alias these internal functions as desired.
+#
 
-### When using zoxide with --no-cmd, alias these internal functions as desired.
-
-set __zoxide_z_prefix 'z#'
+set __zoxide_z_prefix 'z!'
 
 # Jump to a directory using only keywords.
 function __zoxide_z
@@ -76,18 +83,29 @@ function __zoxide_zi
     and __zoxide_cd $result
 end
 
-
-### Commands for zoxide. Disable these using --no-cmd.
+# =============================================================================
+#
+# Commands for zoxide. Disable these using --no-cmd.
+#
 
 abbr --erase z &>/dev/null
-complete -c z -e
+complete --command z --erase
 function z
     __zoxide_z $argv
 end
-complete -c z -f -a '(__zoxide_z_complete)'
+complete --command z --no-files --arguments '(__zoxide_z_complete)'
 
 abbr --erase zi &>/dev/null
-complete -c zi -e
+complete --command zi --erase
 function zi
     __zoxide_zi $argv
 end
+
+# =============================================================================
+#
+# To initialize zoxide, add this to your configuration (usually
+# ~/.config/fish/config.fish):
+#
+#   zoxide init fish | source
+#
+# Note: zoxide only supports fish v3.4.0 and above.

@@ -13,19 +13,19 @@ alias dibot="python3 ~/repos/python-tools/dibot.py && fg && procs -tp disable"
 alias http="py ~/repos/http/server.py -d /sdcard/"
 
 # rclone
-alias rsy="rclone sync -P"
-alias rcp="rclone copy -P"
-alias rmv="rclone move -P"
-
-alias rls="rclone lsf"
-alias rlt="rclone tree --level"
-alias rdu="rclone size"
-alias rln="rclone link"
-alias rcat="rclone cat"
-alias rstat="rclone about"
-alias rconf="rclone config"
-
-alias rbkup="rclone sync -P bkup:Rips bkup:Rips.bkup --transfers 12"
+# alias rsy="rclone sync -P"
+# alias rcp="rclone copy -P"
+# alias rmv="rclone move -P"
+#
+# alias rls="rclone lsf"
+# alias rlt="rclone tree --level"
+# alias rdu="rclone size"
+# alias rln="rclone link"
+# alias rcat="rclone cat"
+# alias rstat="rclone about"
+# alias rconf="rclone config"
+#
+# alias rbkup="rclone sync -P bkup:Rips bkup:Rips.bkup --transfers 12"
 
 # cd -> (z)oxide
 alias zz="z -"
@@ -47,6 +47,8 @@ alias zmov="z /sdcard/Movies"
 alias zmu="z /sdcard/Music"
 alias zpic="z /sdcard/Pictures"
 alias ztx="z /sdcard/termux"
+alias ztd="z /sdcard/Tachiyomi/downloads"
+alias ztl="z /sdcard/Tachiyomi/local"
 
 set -l repo "$HOME/repos"
 set -l sample "$repo/samples"
@@ -98,16 +100,16 @@ alias rd="rmdir"
 alias md="mkdir -pv"
 
 # bat -> cat
-alias cat="bat --theme Dracula --style full --pager=never -ppf"
-alias bat="bat --theme Dracula --style full -f"
-alias batdiff="git diff --name-only --relative --diff-filter=d | xargs bat --diff"
-function help
-    $argv --help | bat -pp -l help
-end
+# alias cat="bat --theme Dracula --style full --pager=never -ppf"
+# alias bat="bat --theme Dracula --style full -f"
+# alias batdiff="git diff --name-only --relative --diff-filter=d | xargs bat --diff"
+# function help
+#     $argv --help | bat -pp -l help
+# end
 
 # fuzzy finder
-alias fzf="fzf --cycle --scroll-off 4 --border=rounded --ellipsis …"
-alias fz="z (fd . -t d | fzf)"
+# alias fzf="fzf --cycle --scroll-off 4 --border=rounded --ellipsis …"
+# alias fz="z (fd . -t d | fzf)"
 
 # du, df -> dust, duf
 alias du="dust -r -n 25"
