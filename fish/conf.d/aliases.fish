@@ -1,6 +1,6 @@
 # python
 # alias py="python3 -q"
-alias py="$(__fish_anypython) -q"
+alias py="python -q"
 alias mbz="python3 ~/repos/musicbrainzpy/cover_art.py"
 
 alias lfm="python3 ~/repos/python-tools/lfm.py"
@@ -27,46 +27,53 @@ alias http="py ~/repos/http/server.py -d /sdcard/"
 #
 # alias rbkup="rclone sync -P bkup:Rips bkup:Rips.bkup --transfers 12"
 
+function adir
+    echo "
+    function $argv[1]
+        z $argv[2]
+    end" | source
+end
+
+adir ztest "/sdcard/Tachiyomi"
+
 # cd -> (z)oxide
-alias zz="z -"
-alias ..="z .."
-alias ...="z ../.."
-alias ....="z ../../.."
-alias .....="z ../../../.."
+adir zz "-"
+adir .. ".."
+adir ... "../.."
+adir .... "../../.."
+adir ..... "../../../.."
 
-alias zp="z $PREFIX"
-  alias zpb="z $PREFIX/bin"
-  alias zpe="z $PREFIX/etc"
-  alias zpl="z $PREFIX/lib"
-  alias zps="z $PREFIX/share"
+adir zp "$PREFIX"
+  adir zpb "$PREFIX/bin"
+  adir zpe "$PREFIX/etc"
+  adir zpl "$PREFIX/lib"
+  adir zps "$PREFIX/share"
 
-alias zsd="z /sdcard"
-alias zdoc="z /sdcard/Documents"
-alias zdl="z /sdcard/Download"
-alias zmov="z /sdcard/Movies"
-alias zmu="z /sdcard/Music"
-alias zpic="z /sdcard/Pictures"
-alias ztx="z /sdcard/termux"
-alias ztd="z /sdcard/Tachiyomi/downloads"
-alias ztl="z /sdcard/Tachiyomi/local"
+adir zsd "/sdcard"
+adir zdoc "/sdcard/Documents"
+adir zdl "/sdcard/Download"
+adir zmov "/sdcard/Movies"
+adir zmu "/sdcard/Music"
+adir zpic "/sdcard/Pictures"
+adir ztx "/sdcard/termux"
+adir zt "/sdcard/Tachiyomi"
+adir ztd "/sdcard/Tachiyomi/downloads"
+adir ztl "/sdcard/Tachiyomi/local"
 
-set -l repo "$HOME/repos"
-set -l sample "$repo/samples"
-
-alias zn="z $HOME/notes"
-alias zrp="z $repo"
-  alias zd="z $repo/dotfiles"
-  alias zmbz="z $repo/musicbrainzpy"
-  alias zpy="z $repo/python-tools"
-  alias zsp="z $sample"
-    alias zspsh="z $sample/bash"
-    alias zspjs="z $sample/javascript"
-    alias zsplua="z $sample/lua"
-    alias zsppy="z $sample/python"
-    alias zsprs="z $sample/rust"
-alias zc="z ~/.config"
-  alias zcf="z ~/.config/fish"
-  alias zcn="z ~/.config/nvim"
+adir zn "$HOME/notes"
+adir zrp "$HOME/repos"
+  adir zd "$HOME/repos/dotfiles"
+  adir zmbz "$HOME/repos/musicbrainzpy"
+  adir zpy "$HOME/repos/python-tools"
+  adir zsp "$HOME/repos/samples"
+    adir zspsh "$HOME/repos/samples/bash"
+    adir zspjs "$HOME/repos/samples/javascript"
+    adir zsplua "$HOME/repos/samples/lua"
+    adir zsppy "$HOME/repos/samples/python"
+    adir zsprs "$HOME/repos/samples/rust"
+adir zc "$HOME/.config"
+  adir zcf "$HOME/.config/fish"
+  adir zcn "$HOME/.config/nvim"
 
 # yt-dlp
 function yt

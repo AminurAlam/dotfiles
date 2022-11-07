@@ -42,11 +42,52 @@ require('tokyonight').setup {
 -- local function hl(name, val) vim.api.nvim_set_hl(0, name, val) end
 -- hl('CmpItemAbbrDeprecated', { bg = nil, strikethrough = true, fg='#808080' } )
 vim.cmd([[
+    colorscheme tokyonight
     highlight! CmpItemAbbrDeprecated guibg=NONE gui=strikethrough guifg=#808080
     highlight! CmpItemAbbrMatch guibg=NONE guifg=#569CD6
     highlight! CmpItemAbbrMatchFuzzy guibg=NONE guifg=#569CD6
     hi Whitespace guibg=#364a82
     " hi FloatBorder guifg=#c0caf5
-
-    colorscheme tokyonight
 ]])
+
+local color = {
+    yellow = '#e0af68',
+    purple = '#c678dd',
+    blue = '#7aa2f7',
+    green = '#98c379',
+    grey = '#3b4261',
+    red = '#f7768e',
+    white = '#a9b1d6',
+    black = '#1D202F',
+}
+
+return {
+    normal = {
+        a = { fg = color.black, bg = color.green, gui = 'bold' },
+        b = { fg = color.green, bg = color.grey },
+        c = { fg = color.white, bg = nil },
+    },
+    insert = {
+        a = { fg = color.black, bg = color.blue, gui = 'bold' },
+        b = { fg = color.blue, bg = color.grey },
+    },
+    command = {
+        a = { fg = color.black, bg = color.red, gui = 'bold' },
+        b = { fg = color.white, bg = color.grey },
+    },
+    visual = {
+        a = { fg = color.black, bg = color.purple, gui = 'bold' },
+        b = { fg = color.purple, bg = color.grey },
+    },
+    terminal = {
+        a = { fg = color.grey, bg = '#56b6c2', gui = 'bold' },
+    },
+    inactive = {
+        a = { fg = color.blue, bg = '#1f2335', gui = 'bold' },
+        b = { fg = color.grey, bg = '#1f2335' },
+    },
+    replace = {
+        a = { fg = color.black, bg = color.yellow, gui = 'bold' },
+        b = { fg = color.yellow, bg = color.grey },
+    },
+}

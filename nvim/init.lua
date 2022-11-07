@@ -1,67 +1,6 @@
 pcall(require, 'impatient')
 
-local set = vim.o -- opt might be depricated in the future
--- indent
-set.autoindent = true
-set.smartindent = true
-set.tabstop = 4
-set.shiftwidth = 4
-set.smarttab = true
-set.softtabstop = 4
-set.expandtab = true
--- search
-set.hlsearch = true
-set.ignorecase = true
-set.smartcase = true
-set.incsearch = true
--- scrolling
-set.scroll = 10
-set.scrolloff = 6
-set.sidescroll = 4
-set.sidescrolloff = 8
--- design
-set.wrap = false
-set.showbreak = ' …'
-set.number = true
-set.colorcolumn = '80'
-set.pumblend = 10
-set.relativenumber = true
-set.shiftround = true
--- terminal & cursor
-set.virtualedit = 'onemore'
-set.winblend = 10
-set.termguicolors = true
-vim.opt.guicursor = { n = 'hor' }
--- gui
-set.cmdheight = 0
-set.laststatus = 3
-set.cursorline = true
-set.cursorlineopt = 'number'
-set.background = 'dark'
-set.numberwidth = 2
-set.helpheight = 150
--- set.mousescroll = { ver = 3 }
--- others
-set.timeoutlen = 500
-set.swapfile = false
-set.backup = false
-set.undofile = true
-set.list = true
-set.confirm = true
-vim.opt.clipboard:append('unnamedplus')
-vim.opt.listchars = {
-    tab = '> ',
-    trail = ' ',
-    extends = '…',
-    precedes = '…',
-    conceal = 'x',
-}
-vim.opt.fillchars = {
-    fold = ' ',
-    foldopen = '',
-    foldclose = '',
-}
-
+require('options')
 require('mappings')
 require('autocommands')
 require('plugins')
@@ -71,39 +10,19 @@ require('colors')
 local function load_plugins()
     require('configs.alpha')
     require('configs.cybu')
+    require('configs.fold')
     require('configs.lsp')
     require('configs.lualine')
     require('configs.noice')
     require('configs.notify')
+    require('configs.other')
     require('configs.telescope')
     require('configs.toggleterm')
     require('configs.treesitter')
     require('configs.trouble')
-    require('codewindow').setup {}
-    require('nvim-surround').setup {}
-    require('Comment').setup {}
-    require('nvim-autopairs').setup {}
-    require('nvim-cursorline').setup {
-        cursorline = { enable = false },
-        cursorword = { enable = true },
-    }
-    require('indent_blankline').setup {
-        show_trailing_blankline_indent = false,
-        show_current_context = false,
-        show_current_context_start = false,
-        show_first_indent_level = false,
-    }
 end
 
 load_plugins()
-
--- vim.cmd([[
---     augroup AutoSaveFolds
---         autocmd!
---         autocmd BufWinLeave * mkview
---         autocmd BufWinEnter * silent loadview
---     augroup END
--- ]])
 
 vim.g.tex_flavor = 'latex'
 vim.diagnostic.config {
@@ -114,3 +33,22 @@ vim.diagnostic.config {
     update_in_insert = true,
     severity_sort = true,
 }
+
+vim.cmd([[
+    function s:HelpCurwin(subject) abort
+        let mods = 'silent noautocmd keepalt'
+        if !s:did_open_help
+            execute mods .. ' help'
+            execute mods .. ' helpclose'
+            let s:did_open_help = v:true
+        endif
+        if !empty(getcompletion(a:subject, 'help'))
+            execute mods .. ' edit ' .. &helpfile
+            set buftype=help
+        endif
+        return 'help ' .. a:subject
+    endfunction
+
+    command -bar -nargs=? -complete=help HelpCurwin execute s:HelpCurwin(<q-args>)
+    let s:did_open_help = v:false
+]])

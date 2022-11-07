@@ -79,7 +79,8 @@ set --path sp "$HOME/repos/samples"
 fish_vi_key_bindings
 bind -M insert \ch 'commandline -i \~'
 bind -M insert \cq 'exit'
-bind -M normal \cq 'exit'
+bind -M normal \cq ':q'
+bind -M normal q ':q'
 bind -M insert \e\[1\;5A 'commandline -f history-token-search-backward'
 bind -M insert \e\[1\;5B 'commandline -f history-token-search-forward'
 
@@ -138,5 +139,21 @@ function pw
         sleep (math (random 1 100)/1000)
         :;: && tr -dc "$chars" < /dev/urandom | head -c 32
         echo
+    end
+end
+
+function style
+    set -l sheet "$HOME/.config/nvim/stylua.toml"
+
+    stylua -f $sheet $HOME/.config/nvim/lua/*.lua -c
+    read choice -fP "apply the changes? [Y/n] "
+    if test -z $choice -o $choice = "y"
+        stylua -f $sheet $HOME/.config/nvim/lua/*.lua
+    end
+
+    stylua -f $sheet $HOME/.config/nvim/lua/configs/*.lua -c
+    read choice -fP "apply the changes? [Y/n] "
+    if test -z $choice -o $choice = "y"
+        stylua -f $sheet $HOME/.config/nvim/lua/configs/*.lua
     end
 end

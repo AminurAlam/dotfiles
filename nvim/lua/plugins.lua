@@ -16,7 +16,7 @@ return require('packer').startup {
         use { 'nvim-telescope/telescope.nvim' }
         use { 'nvim-treesitter/nvim-treesitter' }
         use { 'lewis6991/impatient.nvim' }
-        -- theme & design }
+        -- theme & design
         use { 'lukas-reineke/indent-blankline.nvim' }
         use { 'folke/tokyonight.nvim' }
         use { 'nvim-lualine/lualine.nvim' }
@@ -29,7 +29,9 @@ return require('packer').startup {
         use { 'gorbit99/codewindow.nvim' }
         use { 'folke/noice.nvim' }
         use { 'NvChad/nvim-colorizer.lua' }
-        -- typing & correction }
+        use { 'kevinhwang91/nvim-ufo' }
+        use { 'kevinhwang91/promise-async' }
+        -- typing & correction
         use { 'mong8se/actually.nvim' }
         use { 'folke/which-key.nvim' }
         use { 'kylechui/nvim-surround' }
@@ -37,18 +39,18 @@ return require('packer').startup {
         use { 'windwp/nvim-autopairs' }
         use { 'folke/trouble.nvim' }
         use { 'akinsho/toggleterm.nvim' }
-        -- lsp }
+        use { 'nguyenvukhang/nvim-toggler' }
+        -- lsp
         use { 'neovim/nvim-lspconfig' }
         use { 'onsails/lspkind-nvim' }
-        use { 'WhoIsSethDaniel/lualine-lsp-progress' }
-        -- cmp }
+        -- cmp
         use { 'hrsh7th/nvim-cmp' }
         use { 'hrsh7th/cmp-nvim-lsp' }
         use { 'hrsh7th/cmp-nvim-lua' }
         use { 'hrsh7th/cmp-path' }
         use { 'hrsh7th/cmp-buffer' }
         use { 'hrsh7th/cmp-cmdline' }
-        -- snippets }
+        -- snippets
         use { 'L3MON4D3/LuaSnip' }
         use { 'saadparwaiz1/cmp_luasnip' }
         use { 'rafamadriz/friendly-snippets' }

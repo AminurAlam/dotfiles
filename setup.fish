@@ -22,11 +22,12 @@ end
 
 function restore-configs
     for directory in $HOME/repos/dotfiles/*
-        [ -d "$directory" ] && command cp -fr "$directory" $HOME/.config/
+        [ -d "$directory" ] && cp -fr "$directory" $HOME/.config/
     end
-    command cp -f "$HOME/repos/dotfiles/starship.toml" "$HOME/.config"
-    command cp -fr $HOME/repos/dotfiles/termux/* "$HOME/.termux/"
-    # curl -o $HOME/.termux/font.ttf "https://cdn.discordapp.com/attachments/775578261173698563/1038110725987635210/font.ttf"
+    cp -fr "$HOME/repos/dotfiles/starship.toml" "$HOME/.config"
+    cp -fr $HOME/repos/dotfiles/termux/* "$HOME/.termux/"
+    [ -e "$HOME/.termux/font.ttf" ] && mv $HOME/.termux/font.ttf $HOME/.termux/font.ttf.bkup
+    curl -o $HOME/.termux/font.ttf "https://cdn.discordapp.com/attachments/775578261173698563/1038110725987635210/font.ttf"
     termux-reload-settings
 end
 
@@ -36,10 +37,9 @@ install-packages
 get-repos
 restore-configs
 
-[ -d "/sdcard/termux/home" ] && command cp -fr /sdcard/termux/home/* "$HOME/"
-echo "" > $PREFIX/etc/motd
-echo "" > $PREFIX/etc/motd.sh
-command rm -fr "$HOME/storage/"
+[ -d "/sdcard/termux/home" ] && cp -fr /sdcard/termux/home/* "$HOME/"
+truncate -s 0 $PREFIX/etc/motd $PREFIX/etc/motd.sh
+rm -fr "$HOME/storage/"
 
 nvim +PackerInstall
 nvim +PackerCompile

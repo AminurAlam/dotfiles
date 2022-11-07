@@ -42,22 +42,12 @@ local buffer_text = {
     snippy = '[SNP]',
     snipmate = '[SNM]',
 }
-local servers = {
-    'sumneko_lua',
-    -- pip
-    'pyright',
-    -- npm (vscode-langservers-extracted)
-    -- 'jsonls',
-    -- 'eslint',
-    -- 'cssls',
-    -- 'html',
-}
+local servers = { 'sumneko_lua', 'pyright' }
+-- vscode-langservers-extracted -> 'jsonls', 'eslint', 'cssls', 'html'
 
 --[[ cmp setup ]]
 cmp.setup {
-    view = {
-        entries = 'custom',
-    },
+    view = { entries = 'custom' },
     formatting = {
         format = lspkind.cmp_format {
             mode = 'symbol',
@@ -67,16 +57,12 @@ cmp.setup {
             menu = buffer_text,
         },
     },
-    snippet = {
-        expand = function(args) luasnip.lsp_expand(args.body) end,
-    },
+    snippet = { expand = function(args) luasnip.lsp_expand(args.body) end },
     window = {
         completion = cmp.config.window.bordered(),
         documentation = cmp.config.window.bordered(),
     },
-    experimental = {
-        ghost_text = true,
-    },
+    experimental = { ghost_text = true },
     mapping = cmp.mapping.preset.insert {
         ['<C-Up>'] = cmp.mapping.scroll_docs(-4),
         ['<C-Down>'] = cmp.mapping.scroll_docs(4),
@@ -125,9 +111,7 @@ cmp.setup.cmdline('/', {
     ),
 })
 cmp.setup.cmdline(':', {
-    view = {
-        -- entries = {name = 'wildmenu', separator = '|' }
-    },
+    -- view = { -- entries = {name = 'wildmenu', separator = '|' } },
     mapping = cmp.mapping.preset.cmdline(),
     sources = cmp.config.sources({ { name = 'path' } }, { { name = 'cmdline' } }),
 })
@@ -143,7 +127,6 @@ require('neodev').setup {
         -- plugins = { "nvim-treesitter", "plenary.nvim", "telescope.nvim" },
     },
     setup_jsonls = false, -- configures jsonls to provide completion for project specific .luarc.json files
-    -- override = function(root_dir, options) end,
 }
 
 for _, lsp in pairs(servers) do

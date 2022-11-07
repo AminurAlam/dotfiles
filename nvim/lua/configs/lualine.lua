@@ -1,63 +1,4 @@
-local color = {
-    yellow = '#e0af68',
-    purple = '#c678dd',
-    blue = '#7aa2f7',
-    green = '#98c379',
-    grey = '#3b4261',
-    red = '#f7768e',
-    white = '#a9b1d6',
-    black = '#1D202F',
-}
-local theme = {
-    normal = {
-        a = { fg = color.black, bg = color.green, gui = 'bold' },
-        b = { fg = color.green, bg = color.grey },
-        c = { fg = color.white, bg = nil },
-    },
-    insert = {
-        a = { fg = color.black, bg = color.blue, gui = 'bold' },
-        b = { fg = color.blue, bg = color.grey },
-    },
-    command = {
-        a = { fg = color.black, bg = color.red, gui = 'bold' },
-        b = { fg = color.white, bg = color.grey },
-    },
-    visual = {
-        a = { fg = color.black, bg = color.purple, gui = 'bold' },
-        b = { fg = color.purple, bg = color.grey },
-    },
-    terminal = {
-        a = { fg = color.grey, bg = '#56b6c2', gui = 'bold' },
-    },
-    inactive = {
-        a = { fg = color.blue, bg = '#1f2335', gui = 'bold' },
-        b = { fg = color.grey, bg = '#1f2335' },
-    },
-    replace = {
-        a = { fg = color.black, bg = color.yellow, gui = 'bold' },
-        b = { fg = color.yellow, bg = color.grey },
-    },
-}
-
-local whitespace = {
-    function() return vim.fn.search([[\s\+$]], 'nwc') ~= 0 and '␣ ' or '' end,
-    padding = 0,
-}
-
-local filename = {
-    'filename',
-    filestatus = false,
-    symbols = {
-        modified = '', -- ' ●',
-        readonly = '',
-        unnamed = '[nil]',
-        newfile = '[new]',
-        alternate_file = '#',
-        directory = 'D',
-    },
-}
-
-local lsp_progress = {
+--[[ local lsp_progress = {
     'lsp_progress',
     separators = {
         component = ' ',
@@ -75,6 +16,35 @@ local lsp_progress = {
     },
     message = { commenced = '…', completed = '✓' },
     max_message_length = 30,
+} --]]
+
+local whitespace = {
+    function() return vim.fn.search([[\s\+$]], 'nwc') ~= 0 and '␣ ' or '' end,
+    padding = 0,
+}
+
+local filename = {
+    'filename',
+    filestatus = false,
+    symbols = {
+        modified = '', -- ' ●',
+        readonly = '',
+        unnamed = '[new]',
+        newfile = '[new]',
+        alternate_file = '#',
+        directory = 'D',
+    },
+}
+
+local diagnostics = {
+    'diagnostics',
+    update_in_insert = true,
+    symbols = {
+        error = require('icons').diagnostics.BoldError .. ' ',
+        warn = require('icons').diagnostics.BoldWarning .. ' ',
+        info = require('icons').diagnostics.BoldInformation .. ' ',
+        hint = require('icons').diagnostics.BoldHint .. ' ',
+    },
 }
 
 local check_git = {
@@ -90,14 +60,18 @@ local check_git = {
     padding = 0,
 }
 
+local trouble =
+    { filetypes = { 'Trouble' }, sections = { lualine_a = { function() return 'Trouble' end } } }
+local help = { filetypes = { 'help' }, sections = { lualine_a = { { 'filename', symbols = {} } } } }
+
 require('lualine').setup {
     options = {
         icons_enabled = true,
-        theme = theme,
+        theme = require('colors'),
         component_separators = { left = '', right = '' },
         section_separators = { left = '', right = '' },
         disabled_filetypes = {
-            statusline = { 'alpha', 'Trouble', 'packer', 'lspinfo', 'TelescopePrompt' },
+            statusline = { 'alpha', 'packer', 'lspinfo', 'TelescopePrompt' },
             winbar = {},
         },
         ignore_focus = {},
@@ -112,7 +86,7 @@ require('lualine').setup {
     sections = {
         lualine_a = { { 'mode', padding = 1 } },
         lualine_b = { filename, check_git, whitespace },
-        lualine_c = { { 'diagnostics', update_in_insert = true }, lsp_progress },
+        lualine_c = { diagnostics },
         lualine_x = { { 'searchcount' } },
         lualine_y = { { 'progress' } },
         lualine_z = { { 'filetype', padding = 1 } },
@@ -121,5 +95,22 @@ require('lualine').setup {
     tabline = {},
     winbar = {},
     inactive_winbar = {},
-    extensions = { 'man', 'toggleterm' },
+    extensions = {
+        'aerial',
+        'chadtree',
+        'fern',
+        'fugitive',
+        'fzf',
+        'man',
+        'mundo',
+        'neo-tree',
+        'nerdtree',
+        'nvim-dap-ui',
+        'nvim-tree',
+        'quickfix',
+        'symbols-outline',
+        'toggleterm',
+        trouble,
+        help,
+    },
 }
