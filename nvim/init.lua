@@ -1,28 +1,32 @@
 pcall(require, 'impatient')
 
-require('options')
-require('mappings')
-require('autocommands')
-require('plugins')
-require('snippets')
-require('colors')
-
-local function load_plugins()
-    require('configs.alpha')
-    require('configs.cybu')
-    require('configs.fold')
-    require('configs.lsp')
-    require('configs.lualine')
-    require('configs.noice')
-    require('configs.notify')
-    require('configs.other')
-    require('configs.telescope')
-    require('configs.toggleterm')
-    require('configs.treesitter')
-    require('configs.trouble')
+local load_main = function()
+    require('options')
+    require('plugins')
+    require('mappings')
+    require('autocommands')
+    require('colors')
 end
 
+local load_plugins = function()
+    pcall(require, 'configs.ala')
+    pcall(require, 'configs.cybu')
+    pcall(require, 'configs.fold')
+    pcall(require, 'configs.lsp')
+    pcall(require, 'configs.lualine')
+    pcall(require, 'configs.notify')
+    pcall(require, 'configs.other')
+    pcall(require, 'configs.telescope')
+    pcall(require, 'configs.toggleterm')
+    pcall(require, 'configs.treesitter')
+    pcall(require, 'configs.trouble')
+end
+
+if not pcall(load_main) then
+    vim.notify('main files couldnt be loaded')
+end
 load_plugins()
+
 
 vim.g.tex_flavor = 'latex'
 vim.diagnostic.config {
@@ -35,7 +39,7 @@ vim.diagnostic.config {
 }
 
 vim.cmd([[
-    function s:HelpCurwin(subject) abort
+    function s:Help(subject) abort
         let mods = 'silent noautocmd keepalt'
         if !s:did_open_help
             execute mods .. ' help'
@@ -49,6 +53,6 @@ vim.cmd([[
         return 'help ' .. a:subject
     endfunction
 
-    command -bar -nargs=? -complete=help HelpCurwin execute s:HelpCurwin(<q-args>)
+    command -bar -nargs=? -complete=help Help execute s:Help(<q-args>)
     let s:did_open_help = v:false
 ]])

@@ -10,7 +10,7 @@ alias renum="python3 ~/repos/python-tools/renum.py"
 alias retag="python3 ~/repos/python-tools/retag.py"
 alias rename="python3 ~/repos/python-tools/rename.py"
 alias dibot="python3 ~/repos/python-tools/dibot.py && fg && procs -tp disable"
-alias http="py ~/repos/http/server.py -d /sdcard/"
+alias http="py ~/server.py -d /sdcard/"
 
 # rclone
 # alias rsy="rclone sync -P"
@@ -32,6 +32,11 @@ function adir
     function $argv[1]
         z $argv[2]
     end" | source
+    echo "
+    function l$argv[1]
+        z $argv[2] && ls $argv[2]
+    end" | source
+
 end
 
 adir ztest "/sdcard/Tachiyomi"

@@ -1,3 +1,15 @@
+local fn = vim.fn
+local path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
+
+if fn.empty(fn.glob(path)) > 0 then
+    vim.api.nvim_set_hl(0, 'NormalFloat', { bg = '#1e222a' })
+    print('Cloning packer ..')
+    fn.system { 'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', path }
+
+    vim.cmd('packadd packer.nvim')
+    vim.cmd('PackerSync')
+end
+
 vim.cmd([[
     packadd packer.nvim
     augroup packer_user_config
@@ -24,10 +36,8 @@ return require('packer').startup {
         use { 'stevearc/dressing.nvim' }
         use { 'ghillb/cybu.nvim' }
         use { 'rcarriga/nvim-notify' }
-        use { 'yamatsum/nvim-cursorline' }
         use { 'MunifTanjim/nui.nvim' }
         use { 'gorbit99/codewindow.nvim' }
-        use { 'folke/noice.nvim' }
         use { 'NvChad/nvim-colorizer.lua' }
         use { 'kevinhwang91/nvim-ufo' }
         use { 'kevinhwang91/promise-async' }

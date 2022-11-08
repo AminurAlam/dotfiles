@@ -6,7 +6,7 @@ local function vmap(k, v) vim.keymap.set('v', k, v, opts) end
 local function umap(k, v) vim.keymap.set({ '', 'i' }, k, v, opts) end
 
 -- telescope
-nmap('<leader>ff', function() require('telescope.builtin').fd() end)
+nmap('<leader>ff', require('telescope.builtin').fd)
 nmap('<leader>fg', function() require('telescope.builtin').live_grep() end)
 nmap('<leader>fb', function() require('telescope.builtin').buffers() end)
 nmap('<leader>fh', function() require('telescope.builtin').help_tags() end)
@@ -20,6 +20,10 @@ nmap('<leader>pab', '<cmd>:PackerStatus<cr>')
 -- cybu / buffer movement
 umap('<C-n>', '<cmd>:CybuNext<cr>')
 umap('<C-p>', '<cmd>:CybuPrev<cr>')
+
+-- ufo
+nmap('zu', require('ufo').openAllFolds)
+nmap('zf', require('ufo').closeAllFolds)
 
 -- other plugins
 nmap('<leader>tr', '<cmd>:TroubleToggle document_diagnostics<cr>')

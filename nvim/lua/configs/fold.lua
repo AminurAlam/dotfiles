@@ -1,4 +1,4 @@
-local handler = function(virtText, lnum, endLnum, width, truncate)
+--[[ local handler = function(virtText, lnum, endLnum, width, truncate)
     local newVirtText = {}
     local suffix = ('  %d '):format(endLnum - lnum)
     local sufWidth = vim.fn.strdisplaywidth(suffix)
@@ -24,21 +24,21 @@ local handler = function(virtText, lnum, endLnum, width, truncate)
     end
     table.insert(newVirtText, { suffix, 'MoreMsg' })
     return newVirtText
-end
+end --]]
 
 require('ufo').setup {
-    provider_selector = function(bufnr, filetype, buftype) return { 'treesitter', 'indent' } end,
-    fold_virt_text_handler = handler,
     open_fold_hl_timeout = 150,
-    close_fold_kinds = { 'imports', 'comment' },
+    provider_selector = nil,
+    close_fold_kinds = {},
+    fold_virt_text_handler = nil,
+    enable_get_fold_virt_text = false,
     preview = {
         win_config = {
             border = 'rounded',
             winblend = 10,
-            winhighlight = 'Normal:Folded',
+            winhighlight = 'Normal:Normal',
+            maxheight = 20,
         },
+        mappings = nil,
     },
 }
-
-local bufnr = vim.api.nvim_get_current_buf()
-require('ufo').setFoldVirtTextHandler(bufnr, handler)
