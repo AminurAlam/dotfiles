@@ -1,4 +1,4 @@
-local icons = require('icons')
+local icons = require('core.icons')
 local v = vim.version()
 local function button(sc, txt, keybind, keybind_opts)
     local opts = {

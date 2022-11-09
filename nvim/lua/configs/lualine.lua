@@ -40,10 +40,10 @@ local diagnostics = {
     'diagnostics',
     update_in_insert = true,
     symbols = {
-        error = require('icons').diagnostics.BoldError .. ' ',
-        warn = require('icons').diagnostics.BoldWarning .. ' ',
-        info = require('icons').diagnostics.BoldInformation .. ' ',
-        hint = require('icons').diagnostics.BoldHint .. ' ',
+        error = require('core.icons').diagnostics.BoldError .. ' ',
+        warn = require('core.icons').diagnostics.BoldWarning .. ' ',
+        info = require('core.icons').diagnostics.BoldInformation .. ' ',
+        hint = require('core.icons').diagnostics.BoldHint .. ' ',
     },
 }
 
@@ -67,7 +67,7 @@ local help = { filetypes = { 'help' }, sections = { lualine_a = { { 'filename', 
 require('lualine').setup {
     options = {
         icons_enabled = true,
-        theme = require('colors'),
+        theme = require('core.colors'),
         component_separators = { left = '', right = '' },
         section_separators = { left = '', right = '' },
         disabled_filetypes = {

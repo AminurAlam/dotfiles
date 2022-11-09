@@ -29,11 +29,18 @@ function restore-configs
     termux-reload-settings
 end
 
+function prepare-bin
+    mkdir $HOME/bin/
+    [ -x "$PREFIX/bin/nvim" ] && ln -s "$PREFIX/bin/nvim" "$HOME/bin/termux-file-editor"
+    printf 'echo $1 > $HOME/shared' > $HOME/bin/termux-url-opener
+end
+
 ### ### ###
 
 install-packages
 get-repos
 restore-configs
+prepare-bin
 
 [ -d "/sdcard/termux/home" ] && command cp -fr /sdcard/termux/home/* "$HOME/"
 truncate -s 0 $PREFIX/etc/motd $PREFIX/etc/motd.sh

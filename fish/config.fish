@@ -1,4 +1,16 @@
 ### exports ###
+[ -d "$EXTERNAL_STORAGE" ] || export EXTERNAL_STORAGE="$HOME"
+export XDG_DOCUMENTS_DIR="$EXTERNAL_STORAGE/Documents"
+export XDG_DOWNLOAD_DIR="$EXTERNAL_STORAGE/Download"
+export XDG_MUSIC_DIR="$EXTERNAL_STORAGE/Music"
+export XDG_PICTURES_DIR="$EXTERNAL_STORAGE/Pictures"
+export XDG_VIDEOS_DIR="$EXTERNAL_STORAGE/Movies"
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_CACHE_HOME="$HOME/.cache"
+export XDG_DATA_HOME="$HOME/.local/share"
+export XDG_STATE_HOME="$HOME/.local/state"
+export XDG_RUNTIME_DIR="$TMPDIR"
+
 set -l COLORS "*.py=38;5;45:*.rs=38;5;208:*.fish=38;5;47:*.sh=38;5;47:*.bash=38;5;47:*.png=36:*.flac=36:*.log=38;5;252:*.lrc=38;5;252:\
 *.cue=38;5;39:*.apk=38;5;47:*.css=38;5;135:*.csv=38;5;42:*.go=38;5;45:*.gradle=38;5;24:*.html=38;5;202:*.json=38;5;3:*.jl=38;5;213:*.js=33:\
 *.kt=35:*.lua=38;5;27:*.php=38;5;63:*.pdf=38;5;124:*.md=38;5;111:*.tex=38;5;71"
@@ -13,28 +25,8 @@ export BROWSER="termux-open"
 export WWW_HOME="https://searx.work/"
 export LESSHISTFILE="-"
 export RUST_BACKTRACE="full"
-
-# export TEXDIR="$PREFIX/share/texlive"
-# export TEXMFLOCAL="$PREFIX/share/texlive/texmf-local"
-# export TEXMFSYSVAR="$PREFIX/share/texlive/texmf-var"
-# export TEXMFSYSCONFIG="$PREFIX/share/texlive/texmf-config"
-# export TEXMFVAR="$TEXMFSYSVAR"
-# export TEXMFCONFIG="$TEXMFSYSCONFIG"
-# export TEXMFHOME="$TEXMFLOCAL"
-# # export TEXINPUTS="/opt/tex/cur/texmf-dist/tex/latex/latexconfig"
-
-[ -d "$EXTERNAL_STORAGE" ] || export EXTERNAL_STORAGE="$HOME"
-
-export XDG_DOCUMENTS_DIR="$EXTERNAL_STORAGE/Documents"
-export XDG_DOWNLOAD_DIR="$EXTERNAL_STORAGE/Download"
-export XDG_MUSIC_DIR="$EXTERNAL_STORAGE/Music"
-export XDG_PICTURES_DIR="$EXTERNAL_STORAGE/Pictures"
-export XDG_VIDEOS_DIR="$EXTERNAL_STORAGE/Movies"
-export XDG_CONFIG_HOME="$HOME/.config"
-export XDG_CACHE_HOME="$HOME/.cache"
-export XDG_DATA_HOME="$HOME/.local/share"
-export XDG_STATE_HOME="$HOME/.local/state"
-export XDG_RUNTIME_DIR="$TMPDIR"
+export FB_DATABASE="$XDG_CONFIG_HOME/filebrowser.db"
+export FB_CONFIG="$XDG_CONFIG_HOME/filebrowser.json"
 
 export INPUTRC="$XDG_CONFIG_HOME/readline/inputrc"
 export ICEAUTHORITY="$XDG_CACHE_HOME/ICEauthority"
@@ -47,15 +39,11 @@ export RUSTUP_HOME="$XDG_DATA_HOME/rustup"
 export CARGO_HOME="$XDG_DATA_HOME/cargo"
 export CARGO_INSTALL_ROOT="$CARGO_HOME"
 
-# export PATH="$PATH:$PREFIX/bin/texlive:$CARGO_HOME/bin"
 fish_add_path $HOME/bin
 fish_add_path $CARGO_HOME/bin
 
-
 ### source ###
-# source $HOME/.config/fish/completions/*.fish
-# source $HOME/.config/fish/functions/*.fish
-# source $HOME/.config/fish/conf.d/*.fish
+# source $HOME/.config/fish/completions/*.fish $HOME/.config/fish/functions/*.fish $HOME/.config/fish/conf.d/*.fish
 source (starship init fish --print-full-init | psub)
 
 ### main ###
@@ -87,8 +75,6 @@ bind -M insert \e\[1\;5B 'commandline -f history-token-search-forward'
 bind -M insert \( 'commandline -i \(\)' 'commandline -f backward-char'
 bind -M insert \[ 'commandline -i \[\]' 'commandline -f backward-char'
 bind -M insert \{ 'commandline -i \{\}' 'commandline -f backward-char'
-
-
 
 ### functions ###
 

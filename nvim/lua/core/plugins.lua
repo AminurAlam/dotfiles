@@ -50,6 +50,7 @@ return require('packer').startup {
         use { 'folke/trouble.nvim' }
         use { 'akinsho/toggleterm.nvim' }
         use { 'nguyenvukhang/nvim-toggler' }
+        use { 'mrjones2014/legendary.nvim' }
         -- lsp
         use { 'neovim/nvim-lspconfig' }
         use { 'onsails/lspkind-nvim' }

@@ -1,32 +1,8 @@
-pcall(require, 'impatient')
+local status, impatient = pcall(require, "impatient")
+if status then impatient.enable_profile() end
 
-local load_main = function()
-    require('options')
-    require('plugins')
-    require('mappings')
-    require('autocommands')
-    require('colors')
-end
-
-local load_plugins = function()
-    pcall(require, 'configs.ala')
-    pcall(require, 'configs.cybu')
-    pcall(require, 'configs.fold')
-    pcall(require, 'configs.lsp')
-    pcall(require, 'configs.lualine')
-    pcall(require, 'configs.notify')
-    pcall(require, 'configs.other')
-    pcall(require, 'configs.telescope')
-    pcall(require, 'configs.toggleterm')
-    pcall(require, 'configs.treesitter')
-    pcall(require, 'configs.trouble')
-end
-
-if not pcall(load_main) then
-    vim.notify('main files couldnt be loaded')
-end
-load_plugins()
-
+require("core")
+require('configs')
 
 vim.g.tex_flavor = 'latex'
 vim.diagnostic.config {
