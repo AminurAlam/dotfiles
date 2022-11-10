@@ -27,6 +27,7 @@ export LESSHISTFILE="-"
 export RUST_BACKTRACE="full"
 export FB_DATABASE="$XDG_CONFIG_HOME/filebrowser.db"
 export FB_CONFIG="$XDG_CONFIG_HOME/filebrowser.json"
+export STARSHIP_CACHE="$XDG_DATA_HOME/starship/logs"
 
 export INPUTRC="$XDG_CONFIG_HOME/readline/inputrc"
 export ICEAUTHORITY="$XDG_CACHE_HOME/ICEauthority"

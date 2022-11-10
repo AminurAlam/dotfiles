@@ -35,22 +35,26 @@ function prepare-bin
     printf 'echo $1 > $HOME/shared' > $HOME/bin/termux-url-opener
 end
 
+function setup-git
+    mkdir $HOME/.config/git/
+    touch $HOME/.config/git/config
+    git config --global init.defaultBranch 'dev'
+    git config --global user.name 'AminurAlam'
+    read GIT_AUTHOR_EMAIL -f -P "enter your git email: " && git config --global user.email "$GIT_AUTHOR_EMAIL"
+    set -e GIT_AUTHOR_EMAIL
+end
+
 ### ### ###
 
 install-packages
 get-repos
 restore-configs
 prepare-bin
+setup-git
 
 [ -d "/sdcard/termux/home" ] && command cp -fr /sdcard/termux/home/* "$HOME/"
 truncate -s 0 $PREFIX/etc/motd $PREFIX/etc/motd.sh
 command rm -fr "$HOME/storage/"
-
-mkdir $HOME/.config/git/
-touch $HOME/.config/git/config
-git config --global user.name 'AminurAlam'
-read GIT_AUTHOR_EMAIL -f -P "enter your git email: " && git config --global user.email "$GIT_AUTHOR_EMAIL"
-set -e GIT_AUTHOR_EMAIL
 
 apt autoclean
 apt remove bash-completion dos2unix ed nano
