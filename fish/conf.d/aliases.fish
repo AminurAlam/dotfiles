@@ -2,15 +2,8 @@
 # alias py="python3 -q"
 alias py="python -q"
 alias mbz="python3 ~/repos/musicbrainzpy/cover_art.py"
-
-alias lfm="python3 ~/repos/python-tools/lfm.py"
 alias iab="python3 ~/repos/python-tools/iab.py"
 alias iar="python3 ~/repos/python-tools/iar.py"
-alias renum="python3 ~/repos/python-tools/renum.py"
-alias retag="python3 ~/repos/python-tools/retag.py"
-alias rename="python3 ~/repos/python-tools/rename.py"
-alias dibot="python3 ~/repos/python-tools/dibot.py && fg && procs -tp disable"
-alias http="py ~/server.py -d /sdcard/"
 
 # rclone
 # alias rsy="rclone sync -P"

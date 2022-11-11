@@ -44,8 +44,8 @@ set.startofline = true
 
 -- fold
 set.foldcolumn = '1'
-set.foldlevel = 6
-set.foldlevelstart = 2
+set.foldlevel = 7
+set.foldlevelstart = 5
 set.foldenable = true
 
 -- gui

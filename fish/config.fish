@@ -21,10 +21,10 @@ export VISUAL=$EDITOR
 export SUDO_EDITOR=$EDITOR
 export MANPAGER="vi +Man!"
 export BAT_PAGER="less"
+export TERMINFO="$PREFIX/share/terminfo/"
 export BROWSER="termux-open"
 export WWW_HOME="https://searx.work/"
 export LESSHISTFILE="-"
-export RUST_BACKTRACE="full"
 export FB_DATABASE="$XDG_CONFIG_HOME/filebrowser.db"
 export FB_CONFIG="$XDG_CONFIG_HOME/filebrowser.json"
 export STARSHIP_CACHE="$XDG_DATA_HOME/starship/logs"
@@ -36,9 +36,12 @@ export HISTFILE="$XDG_STATE_HOME/bash/history"
 export PYTHONSTARTUP="$XDG_CONFIG_HOME/python/startup.py"
 export NODE_REPL_HISTORY="$XDG_DATA_HOME/node_repl_history"
 export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npm/npmrc"
+
+export RUST_BACKTRACE="full"
 export RUSTUP_HOME="$XDG_DATA_HOME/rustup"
 export CARGO_HOME="$XDG_DATA_HOME/cargo"
 export CARGO_INSTALL_ROOT="$CARGO_HOME"
+export CARGO_LOG="info"
 
 fish_add_path $HOME/bin
 fish_add_path $CARGO_HOME/bin
@@ -79,31 +82,12 @@ bind -M insert \{ 'commandline -i \{\}' 'commandline -f backward-char'
 
 ### functions ###
 
-function clean
-    echo -e (set_color cyan) "\napt & pkg" (set_color normal)
-    pkg clean
-    apt autoremove
+function fish_title
+    echo (prompt_pwd): (status current-command)
+end
 
-    echo -e (set_color cyan) "\nsdcard folders" (set_color normal)
-    set -l dirs \
-        "/sdcard/Android/data/com.*.youtube/" \
-        "/sdcard/Android/data/org.telegram.messenger.web/" \
-        "/sdcard/Android/data/com.spotify.music/" \
-        "/sdcard/Android/data/com.xodo.pdf.reader/" \
-        "/sdcard/DCIM/.thumbnails/" \
-        "/sdcard/.TotalCommander/" \
-        "/sdcard/Aurora/"
-
-    for dir in $dirs
-        echo "  $dir"
-    end
-    command rm -rfI $dirs
-
-    echo -e (set_color cyan) "\npython" (set_color normal)
-    command -sq python && pip cache purge
-
-    echo -e (set_color cyan) "\nfiles in home" (set_color normal)
-    count (ls -a $HOME)
+function ua
+    random choice (cat ~/notes/user_agents)
 end
 
 function wa
@@ -115,32 +99,31 @@ function texsetup
     $PREFIX/share/texlive/texmf-dist/scripts/texlive-extra/texlinks.sh
 end
 
-function fish_title
-    echo (prompt_pwd): (status current-command)
+function style
+    stylua -f "$XDG_CONFIG_HOME/nvim/stylua.toml" $XDG_CONFIG_HOME/nvim/lua/co*/*.lua -c
+    read choice -fP "apply the changes? [Y/n] "
+    [ -z $choice -o $choice = "y" ] && stylua -f $sheet $XDG_CONFIG_HOME/nvim/lua/co*/*.lua
+end
+
+function clean
+    set -l dirs \
+        "/sdcard/Android/data/com.*.youtube/" \
+        "/sdcard/Android/data/com.spotify.music/" \
+        "/sdcard/Android/data/com.xodo.pdf.reader/" \
+        "/sdcard/DCIM/.thumbnails/" "/sdcard/Aurora/"
+
+    pkg clean && apt autoremove
+    for dir in $dirs; echo "  $dir"; end
+    command rm -rfI $dirs
+    command -sq python && pip cache purge
+    count (ls -a $HOME)
 end
 
 function pw
-    set -l chars 'A-Za-z0-9|{[(<>)]}@&%#^$"`_:;!?|~+\-*/='
-    sleep (math (random 1 100)/1000)
+    sleep 0.0(random 1 100)
     for __ in (seq 8)
-        sleep (math (random 1 100)/1000)
-        :;: && tr -dc "$chars" < /dev/urandom | head -c 32
+        sleep 0.0(random 1 100)
+        tr -dc 'A-Za-z0-9|{[(<>)]}@&%#^$"`_:;!?|~+\-*/=' < /dev/urandom | head -c 32
         echo
-    end
-end
-
-function style
-    set -l sheet "$HOME/.config/nvim/stylua.toml"
-
-    stylua -f $sheet $HOME/.config/nvim/lua/*.lua -c
-    read choice -fP "apply the changes? [Y/n] "
-    if test -z $choice -o $choice = "y"
-        stylua -f $sheet $HOME/.config/nvim/lua/*.lua
-    end
-
-    stylua -f $sheet $HOME/.config/nvim/lua/configs/*.lua -c
-    read choice -fP "apply the changes? [Y/n] "
-    if test -z $choice -o $choice = "y"
-        stylua -f $sheet $HOME/.config/nvim/lua/configs/*.lua
     end
 end

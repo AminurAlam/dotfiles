@@ -1,12 +1,12 @@
 _G.__luacache_config = {
-  chunks = { enable = true, path = vim.fn.stdpath('data')..'/luacache_chunks' },
-  modpaths = { enable = true, path = vim.fn.stdpath('data')..'/luacache_modpaths' }
+    chunks = { enable = true, path = vim.fn.stdpath('data') .. '/luacache_chunks' },
+    modpaths = { enable = true, path = vim.fn.stdpath('data') .. '/luacache_modpaths' },
 }
 
-local status, impatient = pcall(require, "impatient")
+local status, impatient = pcall(require, 'impatient')
 if status then impatient.enable_profile() end
 
-require("core")
+require('core')
 require('configs')
 
 vim.g.tex_flavor = 'latex'
