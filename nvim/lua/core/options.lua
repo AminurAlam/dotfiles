@@ -63,9 +63,9 @@ set.timeoutlen = 500
 set.swapfile = false
 set.backup = false
 set.undofile = true
-set.list = true
 set.confirm = true
 vim.opt.clipboard:append('unnamedplus')
+set.list = true
 vim.opt.listchars = {
     tab = '> ',
     trail = ' ',

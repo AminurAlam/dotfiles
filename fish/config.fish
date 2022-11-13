@@ -102,7 +102,15 @@ end
 function style
     stylua -f "$XDG_CONFIG_HOME/nvim/stylua.toml" $XDG_CONFIG_HOME/nvim/lua/co*/*.lua -c
     read choice -fP "apply the changes? [Y/n] "
-    [ -z $choice -o $choice = "y" ] && stylua -f $sheet $XDG_CONFIG_HOME/nvim/lua/co*/*.lua
+    [ -z $choice -o $choice = "y" ] && stylua -f "$XDG_CONFIG_HOME/nvim/stylua.toml" $XDG_CONFIG_HOME/nvim/lua/co*/*.lua
+end
+
+function fish_colors
+    set -l bclr (set_color normal)
+    for var in (set -n | grep _color)
+        set -l clr (set_color $$var)
+        printf "$clr%-40s $clr%-1s$bclr\n" "$var$bclr" "$$var"
+    end
 end
 
 function clean
@@ -114,9 +122,10 @@ function clean
 
     pkg clean && apt autoremove
     for dir in $dirs; echo "  $dir"; end
-    command rm -rfI $dirs
+    printf "delete these folders? [y/N] "
+    command rm -rfI $dirs 2> /dev/null
     command -sq python && pip cache purge
-    count (ls -a $HOME)
+    echo (count (ls -a $HOME)) files in HOME
 end
 
 function pw

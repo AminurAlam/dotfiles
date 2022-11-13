@@ -3,7 +3,7 @@ function dot
     rm -rf "$HOME/repos/dotfiles/fish/" "$HOME/repos/dotfiles/nvim/"
 
     for dir in $dirs
-        yes | cp -rf "$dir" "$HOME/repos/dotfiles/"
+        yes | command cp -rf "$dir" "$HOME/repos/dotfiles/"
     end
     rm -rf "$HOME/repos/dotfiles/nvim/plugin/"
 

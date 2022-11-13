@@ -23,7 +23,7 @@ vimcmd_replace_one_symbol = '[❯](bold purple)'
 disabled = false
 
 [cmd_duration]
-min_time = 100
+min_time = 20
 format = '\[[$duration]($style)\]'
 style = 'yellow bold'
 show_milliseconds = false
@@ -131,28 +131,20 @@ format = 'is [$symbol$version]($style) '
 symbol = '📦 '
 style = '208 bold'
 display_private = false
-disabled = false
+disabled = true
 version_format = 'v${raw}'
 
 [python]
 pyenv_version_name = false
 pyenv_prefix = 'pyenv '
 python_binary = [ 'python', 'python3', 'python2' ]
-format = ' [${symbol}${pyenv_prefix}(${version} )(\($virtualenv\) )]($style)'
+format = '[${symbol}($virtualenv)]($style) '
 version_format = 'v${raw}'
 style = 'yellow bold'
 symbol = ' '
-disabled = true
+disabled = false
 detect_extensions = ['py']
-detect_files = [
-    'requirements.txt',
-    '.python-version',
-    'pyproject.toml',
-    'Pipfile',
-    'tox.ini',
-    'setup.py',
-    '__init__.py',
-]
+detect_files = [ 'requirements.txt', 'pyproject.toml', 'setup.py', '__init__.py' ]
 detect_folders = []
 
 [rust]

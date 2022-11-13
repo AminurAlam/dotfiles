@@ -50,6 +50,10 @@ nmap('<leader>li', '<cmd>:LspInfo<cr>')
 nmap('<leader>/', '<cmd>:nohlsearch<cr>') -- remove highlight after search
 nmap('<leader>d ', '<cmd>:%s/\\s*$//g<cr><cmd>:nohlsearch<cr>') -- removes trailing whitespace
 
+nmap('cn', '*``cgn')
+nmap('cN', '*``cgN')
+
+-- https://www.kevinli.co/posts/2017-01-19-multiple-cursors-in-500-bytes-of-vimscript/
 --[[ require('which-key').setup {
     plugins = {
         marks = true, -- shows a list of your marks on ' and `
