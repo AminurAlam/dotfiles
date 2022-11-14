@@ -1,10 +1,9 @@
-#!/usr/bin/env sh
+yes "Y" | apt update
+yes "Y" | apt upgrade
 
 termux-setup-storage
 termux-change-repo
-yes "Y" | apt update
-yes "Y" | apt upgrade
-apt -y install fish
-chsh -s fish
+
+apt install fish
 curl -o setup.fish "https://raw.githubusercontent.com/AminurAlam/dotfiles/main/setup.fish"
 fish setup.fish

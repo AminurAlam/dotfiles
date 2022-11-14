@@ -1,5 +1,5 @@
 require('Comment').setup {}
-require('codewindow').setup {}
+-- require('codewindow').setup {}
 require('nvim-autopairs').setup {}
 require('nvim-surround').setup {}
 require('nvim-toggler').setup {}

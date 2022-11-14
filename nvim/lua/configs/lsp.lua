@@ -1,6 +1,6 @@
 --[[ variables ]]
 local cmp = require('cmp')
--- local lspc = require('lspconfig')
+local lspconfig = require('lspconfig')
 local lspkind = require('lspkind')
 local luasnip = require('luasnip')
 local kind_icons = {
@@ -42,8 +42,15 @@ local buffer_text = {
     snippy = '[SNP]',
     snipmate = '[SNM]',
 }
-local servers = { 'sumneko_lua', 'pyright' }
--- vscode-langservers-extracted -> 'jsonls', 'eslint', 'cssls', 'html'
+local servers = {
+    'sumneko_lua',
+    'pyright',
+    -- vscode-langservers-extracted
+    'jsonls',
+    'eslint',
+    'cssls',
+    'html',
+}
 
 --[[ cmp setup ]]
 cmp.setup {
@@ -94,6 +101,7 @@ cmp.setup {
         { name = 'path' },
         { name = 'nvim_lsp' },
         { name = 'nvim_lua' },
+        { name = 'conjure' },
         { name = 'dap' },
         { name = 'vsnip' }, -- For vsnip users.
         { name = 'luasnip' }, -- For luasnip users.
@@ -116,6 +124,7 @@ cmp.setup.cmdline(':', {
     sources = cmp.config.sources({ { name = 'path' } }, { { name = 'cmdline' } }),
 })
 
+-- lua server with neodev
 require('neodev').setup {
     library = {
         enabled = true, -- when not enabled, neodev will not change any settings to the LSP server
@@ -129,8 +138,44 @@ require('neodev').setup {
     setup_jsonls = false, -- configures jsonls to provide completion for project specific .luarc.json files
 }
 
+-- fennel-ls
+require('lspconfig.configs')['fennel-ls'] = {
+    default_config = {
+        cmd = { 'fennel-ls' },
+        filetypes = { 'fennel' },
+        root_dir = function(dir) return lspconfig.util.find_git_ancestor(dir) end,
+        settings = {},
+    },
+}
+
+lspconfig['fennel-ls'].setup(vim.lsp.protocol.make_client_capabilities())
+
+-- fennel-language-server
+require('lspconfig.configs').fennel_language_server = {
+    default_config = {
+        -- replace it with true path
+        cmd = { 'fennel-language-server' },
+        filetypes = { 'fennel' },
+        single_file_support = true,
+        -- source code resides in directory `fnl/`
+        root_dir = lspconfig.util.root_pattern('fnl'),
+        settings = {
+            fennel = {
+                workspace = {
+                    -- If you are using hotpot.nvim or aniseed,
+                    -- make the server aware of neovim runtime files.
+                    library = vim.api.nvim_list_runtime_paths(),
+                },
+                diagnostics = { globals = { 'vim' } },
+            },
+        },
+    },
+}
+
+lspconfig.fennel_language_server.setup {}
+
 for _, lsp in pairs(servers) do
-    require('lspconfig')[lsp].setup {
+    lspconfig[lsp].setup {
         autostart = true,
         -- capabilities = require('cmp_nvim_lsp').update_capabilities(
         --     vim.lsp.protocol.make_client_capabilities()

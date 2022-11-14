@@ -37,7 +37,6 @@ return require('packer').startup {
         use { 'ghillb/cybu.nvim' }
         use { 'rcarriga/nvim-notify' }
         use { 'MunifTanjim/nui.nvim' }
-        use { 'gorbit99/codewindow.nvim' }
         use { 'NvChad/nvim-colorizer.lua' }
         use { 'kevinhwang91/nvim-ufo' }
         use { 'kevinhwang91/promise-async' }
@@ -50,10 +49,11 @@ return require('packer').startup {
         use { 'folke/trouble.nvim' }
         use { 'akinsho/toggleterm.nvim' }
         use { 'nguyenvukhang/nvim-toggler' }
-        use { 'mrjones2014/legendary.nvim' }
+        use { 'cshuaimin/ssr.nvim', module = 'ssr' }
         -- lsp
         use { 'neovim/nvim-lspconfig' }
         use { 'onsails/lspkind-nvim' }
+        use { 'dag/vim-fish' }
         -- cmp
         use { 'hrsh7th/nvim-cmp' }
         use { 'hrsh7th/cmp-nvim-lsp' }
@@ -64,7 +64,7 @@ return require('packer').startup {
         -- snippets
         use { 'L3MON4D3/LuaSnip' }
         use { 'saadparwaiz1/cmp_luasnip' }
-        use { 'rafamadriz/friendly-snippets' }
+        use { 'AminurAlam/friendly-snippets', branch = 'dev' }
     end,
     config = {
         ensure_dependencies = true,

@@ -11,6 +11,7 @@ function install-packages
     apt -yq=10 install dust exa fd git neovim ripgrep starship zoxide lua-language-server
     apt install ffmpeg stylua tealdeer nodejs-lts rust python
     command -sq pip && pip install deflacue pyright
+    command -sq cargo && cargo install skim
 end
 
 function get-repos
@@ -53,8 +54,6 @@ function setup-git
     set -e GIT_AUTHOR_EMAIL
 end
 
-### ### ###
-
 install-packages
 get-repos
 restore-configs
@@ -65,7 +64,7 @@ setup-git
 truncate -s 0 $PREFIX/etc/motd $PREFIX/etc/motd.sh
 command rm -fr "$HOME/storage/"
 
-apt autoclean
 apt remove bash-completion dos2unix ed nano
+apt autoclean
 
 source $HOME/.config/fish/config.fish

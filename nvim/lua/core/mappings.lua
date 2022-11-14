@@ -30,8 +30,8 @@ nmap('<leader>tr', '<cmd>:TroubleToggle document_diagnostics<cr>')
 nmap('<leader>tt', '<cmd>:ToggleTerm<cr>')
 nmap('<leader>co', '<cmd>:ColorizerToggle<cr>')
 nmap('<leader>ib', '<cmd>:IndentBlanklineToggle<cr>')
-nmap('<leader>mm', function() require('codewindow').toggle_minimap() end)
-nmap('<leader>mf', function() require('codewindow').toggle_focus() end)
+-- nmap('<leader>mm', function() require('codewindow').toggle_minimap() end)
+-- nmap('<leader>mf', function() require('codewindow').toggle_focus() end)
 
 -- other
 nmap('Q', '<cmd>:bdelete<cr>')
@@ -54,7 +54,7 @@ nmap('cn', '*``cgn')
 nmap('cN', '*``cgN')
 
 -- https://www.kevinli.co/posts/2017-01-19-multiple-cursors-in-500-bytes-of-vimscript/
---[[ require('which-key').setup {
+require('which-key').setup {
     plugins = {
         marks = true, -- shows a list of your marks on ' and `
         registers = false, -- shows your registers on " in NORMAL or <C-r> in INSERT mode
@@ -115,4 +115,4 @@ nmap('cN', '*``cgN')
         buftypes = {},
         filetypes = { 'TelescopePrompt' },
     },
-} ]]
+}

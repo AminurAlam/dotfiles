@@ -29,14 +29,14 @@ require('tokyonight').setup {
 
     --- You can override specific color groups to use other groups or a hex color
     --- fucntion will be called with a ColorScheme table
-    ---@param colors ColorScheme
-    on_colors = function(colors) end,
+    -- @param colors ColorScheme
+    -- on_colors = function(colors) end,
 
     --- You can override specific highlights to use other groups or a hex color
     --- fucntion will be called with a Highlights and ColorScheme table
-    ---@param highlights Highlights
-    ---@param colors ColorScheme
-    on_highlights = function(highlights, colors) end,
+    -- @param highlights Highlights
+    -- @param colors ColorScheme
+    -- on_highlights = function(highlights, colors) end,
 }
 
 -- local function hl(name, val) vim.api.nvim_set_hl(0, name, val) end
@@ -47,6 +47,7 @@ vim.cmd([[
     highlight! CmpItemAbbrMatch guibg=NONE guifg=#569CD6
     highlight! CmpItemAbbrMatchFuzzy guibg=NONE guifg=#569CD6
     hi Whitespace guibg=#364a82
+    hi! @text.uri gui=underline
     " hi FloatBorder guifg=#c0caf5
 ]])
 

@@ -16,10 +16,15 @@ function bm
         else; echo "skim, fzf, fzy, pick not installed" && return 1
         end
 
-        set LINK (cat $BMPATH | uniq | $ff -q "$argv")
+        set LINK (
+            cat $BMPATH |
+            uniq |
+            sed --regexp-extended 's#^https?://(www.)?##' |
+            $ff -q "$argv"
+        )
 
         if [ -n "$LINK" ]
-            xdg-open $LINK
+            xdg-open "https://$LINK"
         else
             echo "nothing selected $HELP_TEXT"
         end
@@ -52,7 +57,7 @@ function bm
         if set -q EDITOR; set EDIT $EDITOR
         else if command -sq vi;   set EDIT vi
         else if command -sq nano; set EDIT nano
-        else; echo "editor not installed" && return 1
+        else; echo "no EDITOR found" && return 1
         end
 
         $EDIT $BMPATH
