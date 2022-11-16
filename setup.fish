@@ -14,12 +14,17 @@ function install-packages
     command -sq cargo && cargo install skim
 end
 
-function get-repos
+function setup-git
     command -sq git || apt -yq=10 install git
 
+    mkdir -p $HOME/.config/git/
+    touch $HOME/.config/git/config
+
+    git config --global init.defaultBranch 'dev'
+    git config --global user.name 'AminurAlam'
+    read GIT_AUTHOR_EMAIL -f -P "enter your git email: " && git config --global user.email "$GIT_AUTHOR_EMAIL"
+    set -e GIT_AUTHOR_EMAIL
     git clone --depth 1 "https://github.com/AminurAlam/dotfiles.git" $HOME/repos/dotfiles/
-    git clone --depth 1 "https://github.com/AminurAlam/musicbrainzpy.git" $HOME/repos/musicbrainzpy/
-    git clone --depth 1 "https://github.com/AminurAlam/samples.git" $HOME/repos/samples/
 end
 
 function restore-configs
@@ -36,6 +41,7 @@ function restore-configs
     command mv $HOME/.config/termux/* $HOME/.termux/
 
     echo "$sha256hash $HOME/.termux/font.ttf" | sha256sum -c || curl -o $HOME/.termux/font.ttf "$font_url"
+    # https://github.com/ryanoasis/nerd-fonts/releases/download/v2.2.2/SourceCodePro.zip
     termux-reload-settings
 end
 
@@ -45,20 +51,13 @@ function prepare-bin
     printf 'echo $1 > $HOME/shared' > $HOME/bin/termux-url-opener
 end
 
-function setup-git
-    mkdir -p $HOME/.config/git/
-    touch $HOME/.config/git/config
-    git config --global init.defaultBranch 'dev'
-    git config --global user.name 'AminurAlam'
-    read GIT_AUTHOR_EMAIL -f -P "enter your git email: " && git config --global user.email "$GIT_AUTHOR_EMAIL"
-    set -e GIT_AUTHOR_EMAIL
-end
-
 install-packages
-get-repos
+setup-git
 restore-configs
 prepare-bin
-setup-git
+
+vi +"PackerCompile"
+vi +"PackerInstall"
 
 [ -d "/sdcard/termux/home" ] && command cp -fr /sdcard/termux/home/* "$HOME/"
 truncate -s 0 $PREFIX/etc/motd $PREFIX/etc/motd.sh

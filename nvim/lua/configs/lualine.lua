@@ -69,7 +69,7 @@ require('lualine').setup {
         icons_enabled = true,
         theme = require('core.colors'),
         component_separators = { left = '', right = '' },
-        section_separators = { left = '', right = '' },
+        section_separators = { left = '', right = '' },
         disabled_filetypes = {
             statusline = { 'alpha', 'packer', 'lspinfo', 'TelescopePrompt' },
             winbar = {},
