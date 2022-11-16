@@ -1,2 +1,4 @@
 termux/shell
 termux/font.ttf
+
+packer_compiled.lua

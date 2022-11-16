@@ -30,6 +30,7 @@ nmap('<leader>tr', '<cmd>:TroubleToggle document_diagnostics<cr>')
 nmap('<leader>tt', '<cmd>:ToggleTerm<cr>')
 nmap('<leader>co', '<cmd>:ColorizerToggle<cr>')
 nmap('<leader>ib', '<cmd>:IndentBlanklineToggle<cr>')
+nmap('<leader>sr', function() require('ssr').open() end)
 -- nmap('<leader>mm', function() require('codewindow').toggle_minimap() end)
 -- nmap('<leader>mf', function() require('codewindow').toggle_focus() end)
 

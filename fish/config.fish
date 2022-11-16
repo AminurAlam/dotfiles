@@ -28,6 +28,8 @@ set -gx LESSHISTFILE "-"
 set -gx FB_DATABASE "$XDG_CONFIG_HOME/filebrowser.db"
 set -gx FB_CONFIG "$XDG_CONFIG_HOME/filebrowser.json"
 set -gx STARSHIP_CACHE "$XDG_DATA_HOME/starship/logs"
+set -gx ATUIN_NOBIND "true"
+set -gx ATUIN_SUPPRESS_TUI "true"
 
 set -gx INPUTRC "$XDG_CONFIG_HOME/readline/inputrc"
 set -gx ICEAUTHORITY "$XDG_CACHE_HOME/ICEauthority"
@@ -48,7 +50,9 @@ fish_add_path $CARGO_HOME/bin
 
 ### source ###
 # source $HOME/.config/fish/completions/*.fish $HOME/.config/fish/functions/*.fish $HOME/.config/fish/conf.d/*.fish
-source (starship init fish --print-full-init | psub)
+starship init fish --print-full-init | source
+atuin init fish | source
+zoxide init fish | source
 
 ### main ###
 set fish_greeting "$(fish_logo cyan cyan green \| 0)"
@@ -79,6 +83,14 @@ bind -M insert \e\[1\;5B 'commandline -f history-token-search-forward'
 bind -M insert \( 'commandline -i \(\)' 'commandline -f backward-char'
 bind -M insert \[ 'commandline -i \[\]' 'commandline -f backward-char'
 bind -M insert \{ 'commandline -i \{\}' 'commandline -f backward-char'
+
+bind \cr _atuin_search
+
+if bind -M insert > /dev/null 2>&1
+    bind -M insert \cr _atuin_search
+end
+
+
 
 ### functions ###
 

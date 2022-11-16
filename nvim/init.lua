@@ -9,7 +9,6 @@ if status then impatient.enable_profile() end
 require('core')
 require('configs')
 
-vim.g.tex_flavor = 'latex'
 vim.diagnostic.config {
     underline = { severity = vim.diagnostic.severity.ERROR },
     virtual_text = { spacing = 4 },

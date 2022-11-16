@@ -57,7 +57,7 @@ disabled = false
 
 [git_branch]
 format = '[$symbol$branch]($style) '
-symbol = ' '
+symbol = ' '
 style = 'bold purple'
 truncation_length = 922
 truncation_symbol = '…'
@@ -105,72 +105,29 @@ style = 'yellow bold'
 disabled = true
 
 [lua]
-format = '[$symbol($version )]($style)'
-version_format = 'v${raw}'
-symbol = ' '
-style = 'bold blue'
-lua_binary = 'lua'
 disabled = true
-detect_extensions = ['lua']
-detect_files = ['.lua-version']
-detect_folders = ['lua']
 
 [nodejs]
-format = ' [$symbol($version )]($style)'
-version_format = 'v${raw}'
-symbol = ' '
-style = 'bold green'
 disabled = true
-not_capable_style = 'bold red'
-detect_extensions = [ 'js', 'mjs', 'cjs', 'ts', 'mts', 'cts' ]
-detect_files = [ 'package.json', '.node-version', '.nvmrc' ]
-detect_folders = ['node_modules']
 
 [package]
-format = 'is [$symbol$version]($style) '
-symbol = '📦 '
-style = '208 bold'
-display_private = false
 disabled = true
-version_format = 'v${raw}'
 
 [python]
 pyenv_version_name = false
 pyenv_prefix = 'pyenv '
-python_binary = [ 'python', 'python3', 'python2' ]
 format = '[${symbol}($virtualenv)]($style) '
-version_format = 'v${raw}'
 style = 'yellow bold'
 symbol = ' '
 disabled = false
-detect_extensions = ['py']
-detect_files = [ 'requirements.txt', 'pyproject.toml', 'setup.py', '__init__.py' ]
-detect_folders = []
+python_binary = [ ]
+detect_extensions = [ ]
+detect_files = [ ]
 
 [rust]
-format = ' [$symbol($version )]($style)'
-version_format = 'v${raw}'
-symbol = '🦀 '
-style = 'bold red'
 disabled = true
-detect_extensions = ['rs']
-detect_files = ['Cargo.toml']
-detect_folders = []
 
 [shell]
-format = '[$indicator]($style) '
-bash_indicator = 'bsh'
-fish_indicator = 'fsh'
-zsh_indicator = 'zsh'
-powershell_indicator = 'psh'
-ion_indicator = 'ion'
-elvish_indicator = 'esh'
-tcsh_indicator = 'tsh'
-nu_indicator = 'nu'
-xonsh_indicator = 'xsh'
-cmd_indicator = 'cmd'
-unknown_indicator = ''
-style = 'white bold'
 disabled = true
 
 [status]
@@ -180,7 +137,7 @@ success_symbol = ''
 not_executable_symbol = ''
 not_found_symbol = ''
 sigint_symbol = '🧱'
-signal_symbol = '⚡'
+signal_symbol = ''
 style = 'bold red'
 map_symbol = false
 recognize_signal_code = true

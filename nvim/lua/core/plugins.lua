@@ -49,7 +49,6 @@ return require('packer').startup {
         use { 'folke/trouble.nvim' }
         use { 'akinsho/toggleterm.nvim' }
         use { 'nguyenvukhang/nvim-toggler' }
-        use { 'cshuaimin/ssr.nvim', module = 'ssr' }
         -- lsp
         use { 'neovim/nvim-lspconfig' }
         use { 'onsails/lspkind-nvim' }

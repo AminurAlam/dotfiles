@@ -90,6 +90,7 @@ return {
         BigUnfilledCircle = '',
         NewFile = '',
         Search = '',
+        Search2 = '',
         Lightbulb = '',
         Project = '',
         Dashboard = '',
@@ -129,6 +130,7 @@ return {
         Stacks = ' ',
         Scopes = '',
         Watches = '',
+        Keyboard = '',
         DebugConsole = ' ',
         ChevronShortDown = '',
         ChevronShortLeft = '',
@@ -161,6 +163,7 @@ return {
         TriangleShortArrowLeft = '',
         TriangleShortArrowRight = '',
         TriangleShortArrowUp = '',
+        Recent = '',
     },
     diagnostics = {
         BoldError = '',

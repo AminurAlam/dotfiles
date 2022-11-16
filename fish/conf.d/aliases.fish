@@ -29,7 +29,6 @@ function adir
     function l$argv[1]
         z $argv[2] && ls $argv[2]
     end" | source
-
 end
 
 adir ztest "/sdcard/Tachiyomi"
@@ -117,20 +116,18 @@ alias md="mkdir -pv"
 # alias fz="z (fd . -t d | fzf)"
 
 # du, df -> dust, duf
-alias du="dust -r -n 25"
-alias dut="dust -r -n 30 -t"
-alias dud="dust -r -d 1"
+alias du="dust -n 25"
+alias dut="dust -n 30 -t"
+alias dud="dust -d 1"
 alias anal="command du -ah -d 1 -t 20000000 | sort -k1hr"
 alias df="duf -only local -output mountpoint,size,avail,usage -width 150 /storage/*"
 
 # others
 alias nb="newsboat"
 alias tdl="tidal-dl -l"
-alias wdu="wget --hsts-file=\"$XDG_CACHE_HOME/wget-hsts\" --spider"
-alias wdl="wget --hsts-file=\"$XDG_CACHE_HOME/wget-hsts\""
-alias wget="wget --hsts-file=\"$XDG_CACHE_HOME/wget-hsts\""
-alias dr14="dr14_tmeter -d"
+alias wdu="wget --hsts-file=$XDG_CACHE_HOME/wget-hsts --spider"
+alias wdl="wget --hsts-file=$XDG_CACHE_HOME/wget-hsts"
+alias wget="wget --hsts-file=$XDG_CACHE_HOME/wget-hsts"
 alias cal="cal -my"
 alias mi="mediainfo"
 alias cls="clear && fish_logo cyan cyan green \| 0"
-# alias ping="gping google.com 8.8.8.8 discord.com 1.1.1.1 -c blue cyan green yellow --vertical-margin 0"

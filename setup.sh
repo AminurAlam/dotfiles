@@ -7,3 +7,6 @@ termux-change-repo
 apt install fish
 curl -o setup.fish "https://raw.githubusercontent.com/AminurAlam/dotfiles/main/setup.fish"
 fish setup.fish
+chsh -s fish
+
+echo "SETUP COMPLETE"
