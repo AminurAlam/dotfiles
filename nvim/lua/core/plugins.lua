@@ -24,7 +24,6 @@ return require('packer').startup {
         use { 'wbthomason/packer.nvim' }
         use { 'nvim-lua/plenary.nvim' }
         use { 'kyazdani42/nvim-web-devicons' }
-        use { 'folke/neodev.nvim' }
         use { 'nvim-telescope/telescope.nvim' }
         use { 'nvim-treesitter/nvim-treesitter' }
         use { 'lewis6991/impatient.nvim' }
@@ -35,24 +34,17 @@ return require('packer').startup {
         use { 'goolord/alpha-nvim' }
         use { 'stevearc/dressing.nvim' }
         use { 'ghillb/cybu.nvim' }
-        use { 'rcarriga/nvim-notify' }
-        use { 'MunifTanjim/nui.nvim' }
         use { 'NvChad/nvim-colorizer.lua' }
-        use { 'kevinhwang91/nvim-ufo' }
-        use { 'kevinhwang91/promise-async' }
         -- typing & correction
         use { 'mong8se/actually.nvim' }
-        use { 'folke/which-key.nvim' }
         use { 'kylechui/nvim-surround' }
         use { 'numToStr/Comment.nvim' }
         use { 'windwp/nvim-autopairs' }
         use { 'folke/trouble.nvim' }
-        use { 'akinsho/toggleterm.nvim' }
-        use { 'nguyenvukhang/nvim-toggler' }
+        use { 'gbprod/yanky.nvim' }
         -- lsp
         use { 'neovim/nvim-lspconfig' }
         use { 'onsails/lspkind-nvim' }
-        use { 'dag/vim-fish' }
         -- cmp
         use { 'hrsh7th/nvim-cmp' }
         use { 'hrsh7th/cmp-nvim-lsp' }

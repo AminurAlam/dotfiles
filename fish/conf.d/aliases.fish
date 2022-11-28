@@ -6,19 +6,19 @@ alias iab="python3 ~/repos/python-tools/iab.py"
 alias iar="python3 ~/repos/python-tools/iar.py"
 
 # rclone
-# alias rsy="rclone sync -P"
-# alias rcp="rclone copy -P"
-# alias rmv="rclone move -P"
-#
-# alias rls="rclone lsf"
-# alias rlt="rclone tree --level"
-# alias rdu="rclone size"
-# alias rln="rclone link"
-# alias rcat="rclone cat"
-# alias rstat="rclone about"
-# alias rconf="rclone config"
-#
-# alias rbkup="rclone sync -P bkup:Rips bkup:Rips.bkup --transfers 12"
+alias rsy="rclone sync -P"
+alias rcp="rclone copy -P"
+alias rmv="rclone move -P"
+
+alias rls="rclone lsf"
+alias rlt="rclone tree --level"
+alias rdu="rclone size"
+alias rln="rclone link"
+alias rcat="rclone cat"
+alias rstat="rclone about"
+alias rconf="rclone config"
+
+alias rbkup="rclone sync -P bkup:Rips bkup:Rips.bkup --transfers 12"
 
 function adir
     echo "
@@ -130,4 +130,4 @@ alias wdl="wget --hsts-file=$XDG_CACHE_HOME/wget-hsts"
 alias wget="wget --hsts-file=$XDG_CACHE_HOME/wget-hsts"
 alias cal="cal -my"
 alias mi="mediainfo"
-alias cls="clear && fish_logo cyan cyan green \| 0"
+alias cls="clear && fish_logo brcyan brcyan brgreen \| 0"

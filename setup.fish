@@ -49,6 +49,7 @@ function prepare-bin
     mkdir -p $HOME/bin/
     [ -x "$PREFIX/bin/nvim" ] && ln -s "$PREFIX/bin/nvim" "$HOME/bin/termux-file-editor"
     printf 'echo $1 > $HOME/shared' > $HOME/bin/termux-url-opener
+    chmod +x bin/*
 end
 
 install-packages

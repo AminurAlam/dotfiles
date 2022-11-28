@@ -41,18 +41,10 @@ local buffer_text = {
     ultisnips = '[USN]',
     snippy = '[SNP]',
     snipmate = '[SNM]',
+    nvim_lsp_document_symbol = '[DOC]',
 }
-local servers = {
-    'sumneko_lua',
-    'pyright',
-    -- vscode-langservers-extracted
-    'jsonls',
-    'eslint',
-    'cssls',
-    'html',
-}
+local servers = { 'sumneko_lua', 'pyright' }
 
---[[ cmp setup ]]
 cmp.setup {
     view = { entries = 'custom' },
     formatting = {
@@ -101,12 +93,7 @@ cmp.setup {
         { name = 'path' },
         { name = 'nvim_lsp' },
         { name = 'nvim_lua' },
-        { name = 'conjure' },
-        { name = 'dap' },
-        { name = 'vsnip' }, -- For vsnip users.
         { name = 'luasnip' }, -- For luasnip users.
-        -- {name = 'ultisnips'}, -- For ultisnips users.
-        -- {name = 'snippy'}, -- For snippy users.
     }, { { name = 'buffer' } }),
 }
 
@@ -119,67 +106,27 @@ cmp.setup.cmdline('/', {
     ),
 })
 cmp.setup.cmdline(':', {
-    -- view = { -- entries = {name = 'wildmenu', separator = '|' } },
     mapping = cmp.mapping.preset.cmdline(),
     sources = cmp.config.sources({ { name = 'path' } }, { { name = 'cmdline' } }),
 })
 
 -- lua server with neodev
-require('neodev').setup {
-    library = {
-        enabled = true, -- when not enabled, neodev will not change any settings to the LSP server
-        -- these settings will be used for your Neovim config directory
-        runtime = true, -- runtime path
-        types = true, -- full signature, docs and completion of vim.api, vim.treesitter, vim.lsp and others
-        plugins = false, -- installed opt or start plugins in packpath
-        -- you can also specify the list of plugins to make available as a workspace library
-        -- plugins = { "nvim-treesitter", "plenary.nvim", "telescope.nvim" },
-    },
-    setup_jsonls = false, -- configures jsonls to provide completion for project specific .luarc.json files
-}
-
--- fennel-ls
-require('lspconfig.configs')['fennel-ls'] = {
-    default_config = {
-        cmd = { 'fennel-ls' },
-        filetypes = { 'fennel' },
-        root_dir = function(dir) return lspconfig.util.find_git_ancestor(dir) end,
-        settings = {},
-    },
-}
-
-lspconfig['fennel-ls'].setup(vim.lsp.protocol.make_client_capabilities())
-
--- fennel-language-server
-require('lspconfig.configs').fennel_language_server = {
-    default_config = {
-        -- replace it with true path
-        cmd = { 'fennel-language-server' },
-        filetypes = { 'fennel' },
-        single_file_support = true,
-        -- source code resides in directory `fnl/`
-        root_dir = lspconfig.util.root_pattern('fnl'),
-        settings = {
-            fennel = {
-                workspace = {
-                    -- If you are using hotpot.nvim or aniseed,
-                    -- make the server aware of neovim runtime files.
-                    library = vim.api.nvim_list_runtime_paths(),
-                },
-                diagnostics = { globals = { 'vim' } },
-            },
-        },
-    },
-}
-
-lspconfig.fennel_language_server.setup {}
+-- require('neodev').setup {
+--     library = {
+--         enabled = true, -- when not enabled, neodev will not change any settings to the LSP server
+--         -- these settings will be used for your Neovim config directory
+--         runtime = true, -- runtime path
+--         types = true, -- full signature, docs and completion of vim.api, vim.treesitter, vim.lsp and others
+--         plugins = false, -- installed opt or start plugins in packpath
+--         -- you can also specify the list of plugins to make available as a workspace library
+--         -- plugins = { "nvim-treesitter", "plenary.nvim", "telescope.nvim" },
+--     },
+--     setup_jsonls = false, -- configures jsonls to provide completion for project specific .luarc.json files
+-- }
 
 for _, lsp in pairs(servers) do
     lspconfig[lsp].setup {
         autostart = true,
-        -- capabilities = require('cmp_nvim_lsp').update_capabilities(
-        --     vim.lsp.protocol.make_client_capabilities()
-        -- ),
     }
 end
 

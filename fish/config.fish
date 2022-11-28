@@ -50,12 +50,12 @@ fish_add_path $CARGO_HOME/bin
 
 ### source ###
 # source $HOME/.config/fish/completions/*.fish $HOME/.config/fish/functions/*.fish $HOME/.config/fish/conf.d/*.fish
-starship init fish --print-full-init | source
-atuin init fish | source
-zoxide init fish | source
+command -sq starship && starship init fish | source
+command -sq atuin && atuin init fish | source
+command -sq zoxide && zoxide init fish | source
 
 ### main ###
-set fish_greeting "$(fish_logo cyan cyan green \| 0)"
+set fish_greeting "$(fish_logo brcyan brcyan brgreen \| 0)"
 
 ### paths ###
 set --path sd /sdcard
@@ -117,6 +117,15 @@ function style
     [ -z $choice -o $choice = y ] && stylua -f "$XDG_CONFIG_HOME/nvim/stylua.toml" $XDG_CONFIG_HOME/nvim/lua/co*/*.lua
 end
 
+function fade_in
+    echo
+    for n in (seq 236 255)
+        printf '\x1b[1A\x1b[2K'
+        echo -e "\033[38;5;"$n"m $argv"
+        sleep 0.07
+    end
+end
+
 function fish_colors
     set -l bclr (set_color normal)
     for var in (set -n | grep _color)
@@ -126,7 +135,7 @@ function fish_colors
 end
 
 function clean
-    set -l dirs "/sdcard/Android/data/" "/sdcard/DCIM/.thumbnails/" "/sdcard/Aurora/"
+    set -l dirs /sdcard/Android/data/*youtube "/sdcard/Android/data/com.spotify.music/" "/sdcard/DCIM/.thaumbnails/" "/sdcard/Aurora/"
 
     pkg clean && apt autoremove
     for dir in $dirs
@@ -145,4 +154,23 @@ function pw
         tr -dc 'A-Za-z0-9|{[(<>)]}@&%#^$"`_:;!?|~+\-*/=' </dev/urandom | head -c 32
         echo
     end
+end
+
+
+builtin functions -e prompt_pwd
+
+function prompt_pwd
+    set -l path "$PWD"
+
+    # replacing $HOME -> ~
+    set -l path (string replace -r '^'"$HOME"'($|/)' '~$1' $path)
+    set -l path (string replace -r '^'"$PREFIX"'($|/)' '…$1' $path)
+
+    # splitting to preserve last directory
+    set -l all (string split -m 1 -r / $path)
+    set -l path $all[1]
+    set -l last $all[2..]
+
+    # shortening and then rejoining
+    echo -n (string join / (string replace -ar '(\.?[^/]{1})[^/]*' '$1' $path) $last )
 end

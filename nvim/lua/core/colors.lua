@@ -47,7 +47,6 @@ vim.cmd([[
     highlight! CmpItemAbbrMatch guibg=NONE guifg=#569CD6
     highlight! CmpItemAbbrMatchFuzzy guibg=NONE guifg=#569CD6
     hi Whitespace guibg=#364a82
-    hi! @text.uri gui=underline
     " hi FloatBorder guifg=#c0caf5
 ]])
 

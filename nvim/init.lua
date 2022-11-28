@@ -17,22 +17,3 @@ vim.diagnostic.config {
     update_in_insert = true,
     severity_sort = true,
 }
-
-vim.cmd([[
-    function s:Help(subject) abort
-        let mods = 'silent noautocmd keepalt'
-        if !s:did_open_help
-            execute mods .. ' help'
-            execute mods .. ' helpclose'
-            let s:did_open_help = v:true
-        endif
-        if !empty(getcompletion(a:subject, 'help'))
-            execute mods .. ' edit ' .. &helpfile
-            set buftype=help
-        endif
-        return 'help ' .. a:subject
-    endfunction
-
-    command -bar -nargs=? -complete=help Help execute s:Help(<q-args>)
-    let s:did_open_help = v:false
-]])
