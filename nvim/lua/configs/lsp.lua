@@ -43,7 +43,7 @@ local buffer_text = {
     snipmate = '[SNM]',
     nvim_lsp_document_symbol = '[DOC]',
 }
-local servers = { 'sumneko_lua', 'pyright' }
+local servers = { 'sumneko_lua' }
 
 cmp.setup {
     view = { entries = 'custom' },

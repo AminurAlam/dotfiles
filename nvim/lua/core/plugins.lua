@@ -35,6 +35,7 @@ return require('packer').startup {
         use { 'stevearc/dressing.nvim' }
         use { 'ghillb/cybu.nvim' }
         use { 'NvChad/nvim-colorizer.lua' }
+        use { 'AminurAlam/netrw.nvim' }
         -- typing & correction
         use { 'mong8se/actually.nvim' }
         use { 'kylechui/nvim-surround' }

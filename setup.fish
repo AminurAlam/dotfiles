@@ -24,6 +24,7 @@ function setup-git
     git config --global user.name 'AminurAlam'
     read GIT_AUTHOR_EMAIL -f -P "enter your git email: " && git config --global user.email "$GIT_AUTHOR_EMAIL"
     set -e GIT_AUTHOR_EMAIL
+    [ -d "$HOME/repos/dotfiles" ] && rm -fr "$HOME/repos/dotfiles/"
     git clone --depth 1 "https://github.com/AminurAlam/dotfiles.git" $HOME/repos/dotfiles/
 end
 
