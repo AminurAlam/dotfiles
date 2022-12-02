@@ -1,10 +1,17 @@
-—————[[MAIN]]—————
+-
+-
+-
+-
+-
+-
+-
+-
+-
 https://lukesmith.xyz/rss.xml "~Luke Smith's Webpage" blog
 https://this-week-in-neovim.org/rss "~This Week In Neovim" blog
 https://opensource.com/feed "~opensource.com" article tech
 https://torrentfreak.com/feed "~TorrentFreak" article torrent
 https://letterboxd.com/journal/rss "~Letterboxd: Journal" article movie
-http://www.feed43.com/2835452328150467.xml "~Letterboxd: Lists"
 https://xkcd.com/atom.xml "~xkcd: atom" comics
 https://lifehacker.com/rss "~Lifehacker"
 https://feeds.npr.org/1039/rss.xml "~NPR: Music" music
@@ -12,25 +19,15 @@ https://www.androidpolice.com/feed "~Android Police" tech
 https://feeds.feedburner.com/TEDTalks_video "~TED Talks Daily" vid
 https://news.ycombinator.com/rss "~Hacker News"
 http://rss.slashdot.org/Slashdot/slashdotMain
+
 https://blog.rust-lang.org/feed.xml blog tech
 https://blog.rust-lang.org/inside-rust/feed.xml blog tech
 https://blog.mozilla.org/en/feed blog tech
+https://blog.nightly.mozilla.org/feed blog tech
+
 https://news.samsung.com/global/feed/rss
 https://blog.cloudflare.com/rss
-
-—————[[FORUMS]]—————
-https://reddit.com/r/nvim/hot.rss "~r/nvim: hot" forum reddit
-https://reddit.com/r/termux/hot.rss "~r/termux: hot" forum reddit
-https://reddit.com/r/otomusic/new.rss "~r/OtoMusic: new" forum music reddit
 https://forums.stevehoffman.tv/forums/-/index.rss "~Steve Hoffman" forum music
-
-—————[[YOUTUBE]]—————
 # https://www.youtube.com/feeds/videos.xml?channel_id=
 https://www.youtube.com/feeds/videos.xml?channel_id=UC7YOGHUfC1Tb6E4pudI9STA "~Mental Outlaw" vid yt
-https://www.youtube.com/feeds/videos.xml?channel_id=UCsooa4yRKGN_zEE8iknghZA "~TED-Ed" vid yt
 https://www.youtube.com/feeds/videos.xml?channel_id=UC3cpN6gcJQqcCM6mxRUo_dA "~Wendigoon" vid yt
-https://www.youtube.com/feeds/videos.xml?channel_id=UC-4NAdFIP6h9BmtGUFL94Pg "~Carly Rae Jepsen" vid music yt
-
-—————[[TORRENTS]]—————
-https://manga4life.com/rss/Komi-san-Wa-Komyushou-Desu.xml
-https://nyaa.si/?page=rss&q=chainsaw+man&c=0_0&f=0

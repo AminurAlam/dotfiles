@@ -41,7 +41,7 @@ nmap('cN', '*``cgN')
 
 nmap('<leader>li', '<cmd>:LspInfo<cr>')
 nmap('<leader>/', '<cmd>:nohlsearch<cr>')
-nmap('<esc>', '<cmd>:nohlsearch<cr><esc>')
+umap('<esc>', '<cmd>:nohlsearch<cr><esc>')
 nmap('<leader>d ', '<cmd>:%s/\\s*$//g<cr><cmd>:nohlsearch<cr>') -- removes trailing whitespace
 
 vmap('<s-j>', ":m '>+1<cr>gv")

@@ -58,8 +58,7 @@ setup-git
 restore-configs
 prepare-bin
 
-vi +"PackerCompile"
-vi +"PackerInstall"
+nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
 
 [ -d "/sdcard/termux/home" ] && command cp -fr /sdcard/termux/home/* "$HOME/"
 truncate -s 0 $PREFIX/etc/motd $PREFIX/etc/motd.sh

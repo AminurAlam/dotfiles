@@ -14,6 +14,9 @@ set -gx XDG_RUNTIME_DIR "$TMPDIR"
 set -l COLORS "*.py=38;5;45:*.rs=38;5;208:*.fish=38;5;47:*.sh=38;5;47:*.bash=38;5;47:*.png=36:*.flac=36:*.log=38;5;252:*.lrc=38;5;252:\
 *.cue=38;5;39:*.apk=38;5;47:*.css=38;5;135:*.csv=38;5;42:*.go=38;5;45:*.gradle=38;5;24:*.html=38;5;202:*.json=38;5;3:*.jl=38;5;213:*.js=33:\
 *.kt=35:*.lua=38;5;27:*.php=38;5;63:*.pdf=38;5;124:*.md=38;5;111:*.tex=38;5;71"
+set -l SKIM_COLORS "dark,fg:,bg:,matched:,matched_bg:#364A82,current:#7dcfff,current_bg:,current_match:#1d202f,current_match_bg:#ff9e64,\
+query:,query_bg:,info:,border:#c0caf5,prompt:,pointer:,marker:,spinner:,header:"
+
 set -gx LS_COLORS "$COLORS"
 set -gx EXA_COLORS "$COLORS"
 set -gx EDITOR "nvim"
@@ -23,6 +26,7 @@ set -gx MANPAGER "vi +Man!"
 set -gx BAT_PAGER "less"
 set -gx TERMINFO "$PREFIX/share/terminfo/"
 set -gx BROWSER "termux-open"
+set -gx LAUNCHER sk --prompt '  ' --inline-info --no-multi --margin 0,3,1,3 --color "$SKIM_COLORS" --header "$(printf '─%.0s' (seq $COLUMNS))"
 set -gx WWW_HOME "https://searx.work/"
 set -gx LESSHISTFILE "-"
 set -gx FB_DATABASE "$XDG_CONFIG_HOME/filebrowser.db"

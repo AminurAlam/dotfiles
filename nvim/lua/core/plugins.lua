@@ -27,6 +27,7 @@ return require('packer').startup {
         use { 'nvim-telescope/telescope.nvim' }
         use { 'nvim-treesitter/nvim-treesitter' }
         use { 'lewis6991/impatient.nvim' }
+        use { '~/repos/netrw.nvim' }
         -- theme & design
         use { 'lukas-reineke/indent-blankline.nvim' }
         use { 'folke/tokyonight.nvim' }
@@ -35,7 +36,6 @@ return require('packer').startup {
         use { 'stevearc/dressing.nvim' }
         use { 'ghillb/cybu.nvim' }
         use { 'NvChad/nvim-colorizer.lua' }
-        use { 'AminurAlam/netrw.nvim' }
         -- typing & correction
         use { 'mong8se/actually.nvim' }
         use { 'kylechui/nvim-surround' }
@@ -56,7 +56,7 @@ return require('packer').startup {
         -- snippets
         use { 'L3MON4D3/LuaSnip' }
         use { 'saadparwaiz1/cmp_luasnip' }
-        use { 'AminurAlam/friendly-snippets', branch = 'dev' }
+        use { '~/repos/friendly-snippets' }
     end,
     config = {
         ensure_dependencies = true,

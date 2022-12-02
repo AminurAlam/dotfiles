@@ -7,18 +7,21 @@ function bm
 
     # you can add more paths here
     set -q BMPATH || set -g BMPATH $HOME/.config/bookmarks
+    touch "$BMPATH"
 
     function _bm_find
-        set -l colors "dark,fg:,bg:,matched:,matched_bg:#364A82,current:#7dcfff,current_bg:,current_match:#1d202f,current_match_bg:#ff9e64,query:,query_bg:,info:,border:#c0caf5,prompt:,pointer:,marker:,spinner:,header:"
-        set -l opts --prompt '  ' --inline-info --no-multi --margin 0,3,1,3 --border
-        set -l FZF_DEFAULT_OPTS $opts
-        set -l SKIM_DEFAULT_OPTIONS $opts --color $colors --header (printf '─%.0s' (seq $COLUMNS) )
+        set -l OPTS --prompt '  ' --inline-info --no-multi --margin 0,3,1,3 --border
 
-        if command -sq fzf;       set ff fzf $FZF_DEFAULT_OPTS
-        else if command -sq sk;   set ff sk $SKIM_DEFAULT_OPTIONS
-        else if command -sq fzy;  set ff fzy
-        else if command -sq pick; set ff pick
-        else; echo "skim, fzf, fzy, pick not installed" && return 1
+        if set -q LAUNCHER;       :
+        else if command -sq fzf;  set LAUNCHER fzf $OPTS
+        else if command -sq sk;   set LAUNCHER sk $OPTS
+        else; echo "LAUNCHER not found, try installing skim or fzf" && return 1
+        end
+
+        if set -q BROWSER;            :
+        else if command -sq open;     set BROWSER open
+        else if command -sq xdg-open; set BROWSER xdg-open
+        else; echo "BROWSER not found, try installing xdg-open or xdg-utils" && return 1
         end
 
         set LINK (
@@ -26,30 +29,32 @@ function bm
             grep '^http' |
             uniq |
             sed --regexp-extended 's#^https?://(www.)?##' |
-            $ff --query "$argv"
+            $LAUNCHER --query "$argv"
         )
 
-        [ -n "$LINK" ] && xdg-open "https://$LINK" || echo "nothing selected"
-    end
-
-    function _bm_get
-        grep -i --no-filename "$argv" "$BMPATH"
-    end
-
-    function _bm_add
-        touch "$BMPATH"
-        [ -n "$argv" ] && echo "$argv" >> "$BMPATH" || echo "nothing to add"
-    end
-
-    function _bm_edit
-        set -q EDITOR && $EDITOR $BMPATH || echo "no EDITOR found" && return 1
+        [ -n "$LINK" ] &&
+            $BROWSER "https://$LINK" ||
+            echo "nothing selected"
     end
 
     switch "$argv[1]"
-        case f fd find; _bm_find $argv[2]
-        case g get; _bm_get $argv[2]
-        case a add; _bm_add $argv[2]
-        case e ed edit; _bm_edit
-        case '*'; echo $HELP_TEXT
+        case f fd find
+            _bm_find $argv[2]
+
+        case g get
+            grep -i --no-filename "$argv[2]" "$BMPATH"
+
+        case a add
+            [ -n "$argv[2]" ] &&
+                echo "$argv[2]" >> "$BMPATH" ||
+                echo "nothing to add"
+
+        case e ed edit
+            set -q EDITOR &&
+                $EDITOR $BMPATH ||
+                echo "no EDITOR found"
+
+        case '*'
+            echo $HELP_TEXT
     end
 end

@@ -59,6 +59,7 @@ set.helpheight = 150
 set.mouse = 'a'
 
 -- others
+set.grepprg = 'rg --vimgrep '
 set.timeoutlen = 500
 set.swapfile = false
 set.backup = false

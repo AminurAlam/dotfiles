@@ -16,7 +16,7 @@ autocmd({ 'FileType' }, {
 })
 
 autocmd({ 'FileType' }, {
-    pattern = { 'help', 'text', 'markdown' },
+    pattern = { 'help', 'text', 'markdown', 'gitcommit' },
     callback = function()
         set.number = false
         set.relativenumber = false
