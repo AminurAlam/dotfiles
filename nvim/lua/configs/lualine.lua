@@ -60,9 +60,15 @@ local check_git = {
     padding = 0,
 }
 
-local trouble =
-    { filetypes = { 'Trouble' }, sections = { lualine_a = { function() return 'Trouble' end } } }
-local help = { filetypes = { 'help' }, sections = { lualine_a = { { 'filename', symbols = {} } } } }
+local trouble = { filetypes = { 'Trouble' },
+    sections = { lualine_a = { function() return 'Trouble' end } }
+}
+local help = { filetypes = { 'help' },
+    sections = {
+        lualine_a = { function() return vim.fn.expand('%:t') end },
+        lualine_z = { 'progress' }
+    }
+}
 
 require('lualine').setup {
     options = {

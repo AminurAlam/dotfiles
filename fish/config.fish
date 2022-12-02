@@ -79,8 +79,8 @@ set --path sp "$HOME/repos/samples"
 fish_vi_key_bindings
 bind -M insert \ch 'commandline -i \~'
 bind -M insert \cq exit
-bind -M normal \cq ':q'
-bind -M normal q ':q'
+bind -M normal \cq 'commandline -f exit'
+bind -M normal q 'commandline -f exit'
 bind -M insert \e\[1\;5A 'commandline -f history-token-search-backward'
 bind -M insert \e\[1\;5B 'commandline -f history-token-search-forward'
 

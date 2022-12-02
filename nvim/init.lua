@@ -10,8 +10,24 @@ local g = vim.g
 g.netrw_banner = 0
 g.netrw_liststyle = 3
 
-require('core')
-require('configs')
+require('core.options')
+require('core.plugins')
+require('core.mappings')
+require('core.autocommands')
+require('core.colors')
+
+require('configs.alpha')
+require('configs.cybu')
+-- require('configs.fold')
+require('configs.lsp')
+require('configs.lualine')
+-- require('configs.notify')
+require('configs.other')
+require('configs.telescope')
+-- require('configs.toggleterm')
+require('configs.treesitter')
+require('configs.trouble')
+-- require('configs.yanky')
 
 vim.diagnostic.config {
     underline = { severity = vim.diagnostic.severity.ERROR },
