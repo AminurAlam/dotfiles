@@ -1,6 +1,5 @@
 local augroup = vim.api.nvim_create_augroup
 local autocmd = vim.api.nvim_create_autocmd
-local set = vim.o
 
 autocmd({ 'TextYankPost' }, {
     callback = function() vim.highlight.on_yank { higroup = 'IncSearch', timeout = 300 } end,
@@ -10,19 +9,28 @@ autocmd({ 'FileType' }, {
     pattern = { 'qf', 'help', 'lspinfo', 'DressingSelect', 'Trouble' },
     callback = function()
         vim.keymap.set('n', 'q', '<cmd>:close<cr>', { silent = true, buffer = true })
-        vim.keymap.set('n', '<esc>', '<cmd>:close<cr>', { silent = true, buffer = true })
-        set.buflisted = false -- vim.cmd 'set nobuflisted'
+        vim.keymap.set('n', '<esc>', function()
+            if vim.v.hlsearch == 1 then
+                vim.cmd('nohlsearch')
+            else
+                vim.cmd('close')
+            end
+        end)
+        vim.opt.buflisted = false
     end,
 })
 
 autocmd({ 'FileType' }, {
-    pattern = { 'help', 'text', 'markdown', 'gitcommit' },
+    pattern = { '', 'help', 'text', 'markdown', 'gitcommit' },
     callback = function()
+        local set = vim.opt
         set.number = false
         set.relativenumber = false
         set.wrap = true
+        set.linebreak = true
         set.colorcolumn = ''
-        vim.opt.listchars = {
+        set.signcolumn = 'no'
+        set.listchars = {
             tab = '  ',
             trail = ' ',
             extends = '…',

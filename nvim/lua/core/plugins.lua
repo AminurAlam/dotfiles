@@ -18,7 +18,12 @@ vim.cmd([[
     augroup end
 ]])
 
-return require('packer').startup {
+local status, packer = pcall(require, 'packer')
+if not status then
+    return
+end
+
+return packer.startup {
     function(use)
         -- main plugins
         use { 'wbthomason/packer.nvim' }

@@ -70,7 +70,7 @@ set --path mu /sdcard/Music
 set --path pic /sdcard/Pictures
 set --path td /sdcard/Tachiyomi/downloads
 set --path tl /sdcard/Tachiyomi/local
-set --path tx /sdcard/termux
+set --path m /sdcard/main
 
 set --path rp "$HOME/repos"
 set --path sp "$HOME/repos/samples"
@@ -145,10 +145,9 @@ function clean
     for dir in $dirs
         echo "  $dir"
     end
-    printf "delete these folders? [y/N] "
-    command rm -rfI $dirs 2>/dev/null
+    command rm -rf $dirs 2>/dev/null
     command -sq python && pip cache purge
-    echo (count (ls -a $HOME)) files in HOME
+    echo (count (command ls -1N)) files in HOME
 end
 
 function pw

@@ -18,10 +18,10 @@ See set_color --help for more on available colors.'
     end
 
     # shortcuts:
-    set o (set_color $outer_color)
-    set m (set_color $medium_color)
-    set i (set_color $inner_color)
-    set pad (printf "%.0s " (seq (   math -s 0 \($COLUMNS/2\) - 20  )))
+    set -l o (set_color $outer_color)
+    set -l m (set_color $medium_color)
+    set -l i (set_color $inner_color)
+    set -l pad (printf "%.0s " (seq (   math -s 0 \($COLUMNS/2\) - 20  )))
 
     if test (count $o) != 1; or test (count $m) != 1; or test (count $i) != 1
         echo 'Invalid color argument'
@@ -60,6 +60,7 @@ See set_color --help for more on available colors.'
     echo "$pad$lined"
     echo "$pad$linee"
     echo "$pad$linef"
+
 
 #     echo $pad'                 '$o'___
 # '$pad'  ___======____='$m'-'$i'-'$m'-='$o')

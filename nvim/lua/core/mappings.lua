@@ -12,10 +12,10 @@ nmap('<leader>fb', require('telescope.builtin').buffers)
 nmap('<leader>fh', require('telescope.builtin').help_tags)
 
 -- packer
-nmap('<leader>pup', '<cmd>:PackerUpdate<cr>')
-nmap('<leader>pin', '<cmd>:PackerInstall<cr>')
-nmap('<leader>pun', '<cmd>:PackerClean<cr>')
-nmap('<leader>pab', '<cmd>:PackerStatus<cr>')
+nmap('<leader>pu', '<cmd>:PackerUpdate<cr>')
+nmap('<leader>pi', '<cmd>:PackerInstall<cr>')
+nmap('<leader>pr', '<cmd>:PackerClean<cr>')
+nmap('<leader>pa', '<cmd>:PackerStatus<cr>')
 
 -- cybu / buffer movement
 umap('<c-right>', '<cmd>:CybuNext<cr>')
@@ -50,7 +50,9 @@ vmap('<s-k>', ":m '<-2<cr>gv")
 umap('<c-q>', '<cmd>:q<cr>')
 umap('<c-w>', '<cmd>:w<cr>')
 
-umap('<c-u>', '<c-y><c-y><c-y><c-y><c-y><c-y><c-y><c-y><c-y><c-y><c-y><c-y><c-y><c-y><c-y>')
-umap('<c-d>', '<c-e><c-e><c-e><c-e><c-e><c-e><c-e><c-e><c-e><c-e><c-e><c-e><c-e><c-e><c-e>')
+nmap('<c-^>', '<c-home>')
+nmap('<c-$>', '<c-end>')
 
+nmap('+', '<c-a>')
+nmap('-', '<c-x>')
 -- https://kevinli.co/posts/2017-01-19-multiple-cursors-in-500-bytes-of-vimscript/

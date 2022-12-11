@@ -1,4 +1,4 @@
-local set = vim.o -- opt might be depricated in the future
+local set = vim.opt -- opt might be depricated in the future
 
 -- indent
 set.autoindent = true
@@ -14,6 +14,7 @@ set.hlsearch = true
 set.ignorecase = true
 set.smartcase = true
 set.incsearch = true
+set.iskeyword:append('-,$')
 
 -- scrolling
 set.scroll = 10
@@ -32,14 +33,16 @@ set.wrap = false
 set.colorcolumn = '80'
 set.shiftround = true
 set.ruler = false
-vim.opt.shortmess = 'acoOsSWIF'
+set.signcolumn = 'yes'
+set.shortmess = 'acoOsSWIF'
 
 -- terminal & cursor
 set.virtualedit = 'onemore'
+set.belloff = ''
 set.winblend = 10
 set.pumblend = 10
 set.termguicolors = true
-vim.opt.guicursor = { n = 'hor' }
+set.guicursor = { n = 'hor' }
 set.startofline = true
 
 -- fold
@@ -65,16 +68,16 @@ set.swapfile = false
 set.backup = false
 set.undofile = true
 set.confirm = true
-vim.opt.clipboard:append('unnamedplus')
+set.clipboard:append('unnamedplus')
 set.list = true
-vim.opt.listchars = {
+set.listchars = {
     tab = '> ',
     trail = ' ',
     extends = '…',
     precedes = '…',
     conceal = 'x',
 }
-vim.opt.fillchars = {
+set.fillchars = {
     eob = ' ',
     fold = ' ',
     foldopen = '',
