@@ -18,6 +18,48 @@
     max_message_length = 30,
 } --]]
 
+local color = {
+    yellow = '#e0af68',
+    purple = '#c678dd',
+    blue = '#7aa2f7',
+    green = '#98c379',
+    grey = '#3b4261',
+    red = '#f7768e',
+    white = '#a9b1d6',
+    black = '#1D202F',
+}
+
+local theme = {
+    normal = {
+        a = { fg = color.black, bg = color.green, gui = 'bold' },
+        b = { fg = color.green, bg = color.grey },
+        c = { fg = color.white, bg = nil },
+    },
+    insert = {
+        a = { fg = color.black, bg = color.blue, gui = 'bold' },
+        b = { fg = color.blue, bg = color.grey },
+    },
+    command = {
+        a = { fg = color.black, bg = color.red, gui = 'bold' },
+        b = { fg = color.white, bg = color.grey },
+    },
+    visual = {
+        a = { fg = color.black, bg = color.purple, gui = 'bold' },
+        b = { fg = color.purple, bg = color.grey },
+    },
+    terminal = {
+        a = { fg = color.grey, bg = '#56b6c2', gui = 'bold' },
+    },
+    inactive = {
+        a = { fg = color.blue, bg = '#1f2335', gui = 'bold' },
+        b = { fg = color.grey, bg = '#1f2335' },
+    },
+    replace = {
+        a = { fg = color.black, bg = color.yellow, gui = 'bold' },
+        b = { fg = color.yellow, bg = color.grey },
+    },
+}
+
 local whitespace = {
     function() return vim.fn.search([[\s\+$]], 'nwc') ~= 0 and '␣ ' or '' end,
     padding = 0,
@@ -60,20 +102,22 @@ local check_git = {
     padding = 0,
 }
 
-local trouble = { filetypes = { 'Trouble' },
-    sections = { lualine_a = { function() return 'Trouble' end } }
+local trouble = {
+    filetypes = { 'Trouble' },
+    sections = { lualine_a = { function() return 'Trouble' end } },
 }
-local help = { filetypes = { 'help' },
+local help = {
+    filetypes = { 'help' },
     sections = {
         lualine_a = { function() return vim.fn.expand('%:t') end },
-        lualine_z = { 'progress' }
-    }
+        lualine_z = { 'progress' },
+    },
 }
 
 require('lualine').setup {
     options = {
         icons_enabled = true,
-        theme = require('core.colors'),
+        theme = theme,
         component_separators = { left = '', right = '' },
         section_separators = { left = '', right = '' },
         disabled_filetypes = {

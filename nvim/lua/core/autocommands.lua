@@ -21,7 +21,7 @@ autocmd({ 'FileType' }, {
 })
 
 autocmd({ 'FileType' }, {
-    pattern = { '', 'help', 'text', 'markdown', 'gitcommit' },
+    pattern = { 'help', 'text', 'markdown', 'gitcommit' },
     callback = function()
         local set = vim.opt
         set.number = false
@@ -38,10 +38,13 @@ autocmd({ 'FileType' }, {
             conceal = 'x',
         }
         vim.cmd('hi Whitespace guibg=NONE')
+        -- smooth scrolling with wrapped lines
+        vim.keymap.set('n', '<c-e>', 'gj')
+        vim.keymap.set('n', '<c-y>', 'gk')
+        vim.keymap.set('n', 'q', '<cmd>:quit<cr>')
     end,
 })
 
--- autocmd({ 'UserGettingBored' }, { callback = function() print('user is bored') end })
 -- autocmd({ 'BufEnter' }, {
 --     pattern = { '' },
 --     callback = function()

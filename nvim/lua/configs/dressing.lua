@@ -1,20 +1,29 @@
-require('dressing').setup {
+local status, dressing = pcall(require, 'dressing')
+if not status then return end
+
+dressing.setup {
     input = {
         enabled = true, -- Set to false to disable the vim.ui.input implementation
         default_prompt = 'Input:', -- Default prompt string
         prompt_align = 'left', -- Can be 'left', 'right', or 'center'
         insert_only = true, -- When true, <Esc> will close the modal
         start_in_insert = true, -- When true, input will start in insert mode.
-        anchor = 'SW', -- These are passed to nvim_open_win
+        -- These are passed to nvim_open_win
+        anchor = 'SW',
         border = 'rounded',
         relative = 'cursor', -- 'editor' and 'win' will default to being centered
         prefer_width = 40, -- These can be integers or a float between 0 and 1 (e.g. 0.4 for 40%)
         width = nil,
+        -- min_width and max_width can be a list of mixed types.
+        -- min_width = {20, 0.2} means "the greater of 20 columns or 20% of total"
         max_width = { 140, 0.9 },
         min_width = { 20, 0.2 },
-        winblend = 10, -- Window transparency (0-100)
-        winhighlight = '', -- Change default highlight groups (see :help winhl)
-        mappings = {
+        buf_options = {},
+        win_options = {
+            winblend = 10, -- Window transparency (0-100)
+            wrap = false, -- Disable line wrapping
+        },
+        mappings = { -- Set to `false` to disable
             n = {
                 ['<Esc>'] = 'Close',
                 ['<CR>'] = 'Confirm',
@@ -26,45 +35,34 @@ require('dressing').setup {
                 ['<Down>'] = 'HistoryNext',
             },
         },
-
-        override = function(conf) return conf end,
-
-        -- see :help dressing_get_config
-        get_config = nil,
+        override = function(conf)
+            -- This is the config that will be passed to nvim_open_win.
+            -- Change values here to customize the layout
+            return conf
+        end,
+        get_config = nil, -- see :help dressing_get_config
     },
     select = {
-        -- Set to false to disable the vim.ui.select implementation
-        enabled = true,
-
-        -- Priority list of preferred vim.select implementations
-        backend = { 'builtin', 'nui' },
-
-        -- Trim trailing `:` from prompt
-        trim_prompt = true,
-
+        enabled = true, -- Set to false to disable the vim.ui.select implementation
+        backend = { 'telescope', 'fzf_lua', 'fzf', 'builtin', 'nui' }, -- Priority list of preferred vim.select implementations
+        trim_prompt = true, -- Trim trailing `:` from prompt
         -- Options for telescope selector
         -- These are passed into the telescope picker directly. Can be used like:
         -- telescope = require('telescope.themes').get_ivy({...})
         telescope = nil,
-
-        -- Options for fzf selector
-        fzf = {
+        fzf = { -- Options for fzf selector
             window = {
                 width = 0.5,
                 height = 0.4,
             },
         },
-
-        -- Options for fzf_lua selector
-        fzf_lua = {
+        fzf_lua = { -- Options for fzf_lua selector
             winopts = {
                 width = 0.5,
                 height = 0.4,
             },
         },
-
-        -- Options for nui Menu
-        nui = {
+        nui = { -- Options for nui Menu
             position = '50%',
             size = nil,
             relative = 'editor',
@@ -83,49 +81,36 @@ require('dressing').setup {
             min_width = 40,
             min_height = 10,
         },
-
-        -- Options for built-in selector
-        builtin = {
-            -- These are passed to nvim_open_win
-            anchor = 'NW',
+        builtin = { -- Options for built-in selector
+            anchor = 'NW', -- These are passed to nvim_open_win
             border = 'rounded',
-            -- 'editor' and 'win' will default to being centered
-            relative = 'editor',
+            relative = 'editor', -- 'editor' and 'win' will default to being centered
+            buf_options = {},
+            win_options = {
 
-            -- Window transparency (0-100)
-            winblend = 10,
-            -- Change default highlight groups (see :help winhl)
-            winhighlight = '',
-
+                winblend = 10, -- Window transparency (0-100)
+            },
             -- These can be integers or a float between 0 and 1 (e.g. 0.4 for 40%)
             -- the min_ and max_ options can be a list of mixed types.
             -- max_width = {140, 0.8} means "the lesser of 140 columns or 80% of total"
             width = nil,
             max_width = { 140, 0.8 },
-            min_width = { 50, 0.2 },
+            min_width = { 40, 0.2 },
             height = nil,
-            max_height = { 50, 0.8 },
+            max_height = 0.9,
             min_height = { 10, 0.2 },
-
-            -- Set to `false` to disable
-            mappings = {
+            mappings = { -- Set to `false` to disable
                 ['<Esc>'] = 'Close',
-                ['q'] = 'Close',
                 ['<C-c>'] = 'Close',
                 ['<CR>'] = 'Confirm',
             },
-
             override = function(conf)
                 -- This is the config that will be passed to nvim_open_win.
                 -- Change values here to customize the layout
                 return conf
             end,
         },
-
-        -- Used to override format_item. See :help dressing-format
-        format_item_override = {},
-
-        -- see :help dressing_get_config
-        get_config = nil,
+        format_item_override = {}, -- Used to override format_item. See :help dressing-format
+        get_config = nil, -- see :help dressing_get_config
     },
 }

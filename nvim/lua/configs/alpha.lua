@@ -1,3 +1,6 @@
+local status, alpha = pcall(require, 'alpha')
+if not status then return end
+
 local icons = require('core.icons')
 local v = vim.version()
 local function button(sc, txt, keybind, keybind_opts)
@@ -33,12 +36,12 @@ local buttons = {
     button('r', icons.ui.Recent .. ' Recently Opened Files', '<cmd>:Telescope oldfiles<cr>'),
     button('h', '?  Find help', '<cmd>:Telescope help_tags<cr>'),
     button('t', icons.documents.OpenFolder .. '  Explore directory', '<cmd>:Explore<cr>'),
-    button('i', icons.ui.Pencil .. '  New file', '<cmd>:ene <BAR> startinsert<cr>'),
+    button('i', icons.ui.Pencil .. '  New file', '<cmd>:enew <BAR> startinsert<cr>'),
     button('u', icons.ui.Rotate .. '  Update plugins', '<cmd>:PackerUpdate<cr>'),
     button('q', icons.ui.RoundClose .. '  Quit', '<cmd>:qa<cr>'),
 }
 
-require('alpha').setup {
+alpha.setup {
     layout = {
         { type = 'padding', val = 2 },
         {

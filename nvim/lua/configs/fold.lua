@@ -26,7 +26,10 @@
     return newVirtText
 end --]]
 
-require('ufo').setup {
+local status, ufo = pcall(require, 'ufo')
+if not status then return end
+
+ufo.setup {
     open_fold_hl_timeout = 150,
     provider_selector = nil,
     close_fold_kinds = {},

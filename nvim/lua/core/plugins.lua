@@ -1,12 +1,13 @@
 local ensure_packer = function()
-  local fn = vim.fn
-  local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
-  if fn.empty(fn.glob(install_path)) > 0 then
-    fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
-    vim.cmd [[packadd packer.nvim]]
-    return true
-  end
-  return false
+    local fn = vim.fn
+    local path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
+    local url = 'https://github.com/wbthomason/packer.nvim'
+    if fn.empty(fn.glob(path)) > 0 then
+        fn.system { 'git', 'clone', '--depth', '1', url, path }
+        vim.cmd('packadd packer.nvim')
+        return true
+    end
+    return false
 end
 
 local packer_bootstrap = ensure_packer()
@@ -19,9 +20,7 @@ vim.cmd([[
 ]])
 
 local status, packer = pcall(require, 'packer')
-if not status then
-    return
-end
+if not status then return end
 
 return packer.startup {
     function(use)
@@ -32,7 +31,6 @@ return packer.startup {
         use { 'nvim-telescope/telescope.nvim' }
         use { 'nvim-treesitter/nvim-treesitter' }
         use { 'lewis6991/impatient.nvim' }
-        use { '~/repos/netrw.nvim' }
         -- theme & design
         use { 'lukas-reineke/indent-blankline.nvim' }
         use { 'folke/tokyonight.nvim' }
@@ -41,13 +39,13 @@ return packer.startup {
         use { 'stevearc/dressing.nvim' }
         use { 'ghillb/cybu.nvim' }
         use { 'NvChad/nvim-colorizer.lua' }
+        use { 'folke/which-key.nvim' }
         -- typing & correction
         use { 'mong8se/actually.nvim' }
         use { 'kylechui/nvim-surround' }
         use { 'numToStr/Comment.nvim' }
         use { 'windwp/nvim-autopairs' }
         use { 'folke/trouble.nvim' }
-        use { 'gbprod/yanky.nvim' }
         -- lsp
         use { 'neovim/nvim-lspconfig' }
         use { 'onsails/lspkind-nvim' }
@@ -62,9 +60,7 @@ return packer.startup {
         use { 'L3MON4D3/LuaSnip' }
         use { 'saadparwaiz1/cmp_luasnip' }
         use { '~/repos/friendly-snippets' }
-        if packer_bootstrap then
-            require('packer').sync()
-        end
+        if packer_bootstrap then require('packer').sync() end
     end,
     config = {
         ensure_dependencies = true,

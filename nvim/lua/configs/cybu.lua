@@ -1,4 +1,7 @@
-require('cybu').setup {
+local status, cybu = pcall(require, 'cybu')
+if not status then return end
+
+cybu.setup {
     position = {
         relative_to = 'win', -- win, editor, cursor
         anchor = 'bottomright',

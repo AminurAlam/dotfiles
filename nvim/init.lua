@@ -18,16 +18,17 @@ require('core.colors')
 
 require('configs.alpha')
 require('configs.cybu')
--- require('configs.fold')
+require('configs.dressing')
+require('configs.fold')
 require('configs.lsp')
 require('configs.lualine')
--- require('configs.notify')
 require('configs.other')
+require('configs.switch')
 require('configs.telescope')
--- require('configs.toggleterm')
+require('configs.toggleterm')
 require('configs.treesitter')
 require('configs.trouble')
--- require('configs.yanky')
+require('configs.which-key')
 
 vim.diagnostic.config {
     underline = { severity = vim.diagnostic.severity.ERROR },

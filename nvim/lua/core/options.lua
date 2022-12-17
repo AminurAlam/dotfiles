@@ -1,6 +1,6 @@
 local set = vim.opt -- opt might be depricated in the future
 
--- indent
+-- indent and spacing
 set.autoindent = true
 set.smartindent = true
 set.tabstop = 4
@@ -22,23 +22,26 @@ set.scrolloff = 6
 set.sidescroll = 4
 set.sidescrolloff = 8
 
+-- column
+set.wrap = false
+set.showbreak = ' …'
+set.breakindent = true
+set.colorcolumn = '80'
+set.signcolumn = 'auto'
+set.number = true
+set.relativenumber = true
+
 -- design
 set.showmode = false
 set.showcmd = false
 set.showtabline = 0
-set.showbreak = ' …'
-set.number = true
-set.relativenumber = true
-set.wrap = false
-set.colorcolumn = '80'
 set.shiftround = true
 set.ruler = false
-set.signcolumn = 'yes'
 set.shortmess = 'acoOsSWIF'
 
 -- terminal & cursor
 set.virtualedit = 'onemore'
-set.belloff = ''
+set.belloff = 'showmatch'
 set.winblend = 10
 set.pumblend = 10
 set.termguicolors = true
@@ -52,14 +55,14 @@ set.foldlevelstart = 99
 set.foldenable = true
 
 -- gui
-set.cmdheight = 0
 set.laststatus = 3
+set.cmdheight = 0
+set.helpheight = 150
+set.numberwidth = 1
 set.cursorline = true
 set.cursorlineopt = 'number'
-set.background = 'dark'
-set.numberwidth = 1
-set.helpheight = 150
 set.mouse = 'a'
+set.background = 'dark'
 
 -- others
 set.grepprg = 'rg --vimgrep '
@@ -82,4 +85,9 @@ set.fillchars = {
     fold = ' ',
     foldopen = '',
     foldclose = '',
+}
+set.runtimepath = {
+    '~/.config/nvim',
+    '~/.local/share/nvim/site',
+    '/data/data/com.termux/files/usr/share/nvim/runtime/'
 }
