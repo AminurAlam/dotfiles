@@ -29,9 +29,6 @@ function setup-git
 end
 
 function restore-configs
-    set -l sha256hash b7918f3b8674f48a8f41d82411adb64549f55134dcf600d5afafe73f08fc2600
-    set -l font_url https://cdn.discordapp.com/attachments/775578261173698563/1038110725987635210/font.ttf
-
     for directory in $HOME/repos/dotfiles/*
         [ -d "$directory" ] && command cp -fr "$directory" $HOME/.config/
     end
@@ -41,7 +38,6 @@ function restore-configs
     command mv $HOME/.config/cargo/ $HOME/.local/share/
     command mv $HOME/.config/termux/* $HOME/.termux/
 
-    echo "$sha256hash $HOME/.termux/font.ttf" | sha256sum -c || curl -o $HOME/.termux/font.ttf "$font_url"
     # https://github.com/ryanoasis/nerd-fonts/releases/download/v2.2.2/SourceCodePro.zip
     termux-reload-settings
 end
