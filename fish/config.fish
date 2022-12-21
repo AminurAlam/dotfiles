@@ -22,7 +22,7 @@ set -gx EXA_COLORS "$COLORS"
 set -gx EDITOR "nvim"
 set -gx VISUAL $EDITOR
 set -gx SUDO_EDITOR $EDITOR
-set -gx MANPAGER "vi +Man!"
+set -gx MANPAGER "nvim +Man!"
 set -gx BAT_PAGER "less"
 set -gx TERMINFO "$PREFIX/share/terminfo/"
 set -gx BROWSER "termux-open"
@@ -68,8 +68,7 @@ set --path dl /sdcard/Download
 set --path mov /sdcard/Movies
 set --path mu /sdcard/Music
 set --path pic /sdcard/Pictures
-set --path td /sdcard/Tachiyomi/downloads
-set --path tl /sdcard/Tachiyomi/local
+set --path tl /sdcard/Tachiyomi/logs
 set --path m /sdcard/main
 
 set --path rp "$HOME/repos"

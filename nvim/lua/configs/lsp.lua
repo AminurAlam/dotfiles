@@ -43,7 +43,6 @@ local buffer_text = {
     snipmate = '[SNM]',
     nvim_lsp_document_symbol = '[DOC]',
 }
-local servers = { 'sumneko_lua' }
 
 cmp.setup {
     view = { entries = 'custom' },
@@ -110,29 +109,50 @@ cmp.setup.cmdline(':', {
     sources = cmp.config.sources({ { name = 'path' } }, { { name = 'cmdline' } }),
 })
 
--- lua server with neodev
 -- require('neodev').setup {
 --     library = {
 --         enabled = true, -- when not enabled, neodev will not change any settings to the LSP server
---         -- these settings will be used for your Neovim config directory
 --         runtime = true, -- runtime path
 --         types = true, -- full signature, docs and completion of vim.api, vim.treesitter, vim.lsp and others
 --         plugins = false, -- installed opt or start plugins in packpath
---         -- you can also specify the list of plugins to make available as a workspace library
---         -- plugins = { "nvim-treesitter", "plenary.nvim", "telescope.nvim" },
 --     },
 --     setup_jsonls = false, -- configures jsonls to provide completion for project specific .luarc.json files
 -- }
 
-for _, lsp in pairs(servers) do
-    lspconfig[lsp].setup {
-        autostart = true,
-    }
-end
+lspconfig.pyright.setup {
+    settings = {
+        python = {
+            analysis = {
+                autoSearchPaths = true,
+                diagnosticMode = 'document',
+                useLibraryCodeForTypes = true,
+            },
+        },
+    },
+}
 
--- lspc.sumneko_lua.setup {
---     settings = { Lua = { completion = { callSnippet = 'Replace' } } },
--- }
+lspconfig.pylsp.setup {
+    settings = {
+        pylsp = {
+            plugins = {
+                pycodestyle = {
+                    ignore = { 'E128' },
+                    maxLineLength = 100,
+                },
+            },
+        },
+    },
+}
+lspconfig.sumneko_lua.setup {
+    settings = {
+        Lua = {
+            diagnostics = { globals = { 'vim' } },
+            workspace = { library = vim.api.nvim_get_runtime_file("", true) },
+            telemetry = { enable = false },
+        },
+    },
+}
+
 require('lspconfig.ui.windows').default_options.border = 'rounded'
 require('luasnip.loaders.from_lua').lazy_load()
 require('luasnip.loaders.from_vscode').lazy_load()

@@ -31,8 +31,6 @@ function adir
     end" | source
 end
 
-adir ztest "/sdcard/Tachiyomi"
-
 # cd -> (z)oxide
 adir zz "-"
 adir .. ".."
@@ -54,7 +52,6 @@ adir zmu "/sdcard/Music"
 adir zpic "/sdcard/Pictures"
 adir zm "/sdcard/main"
 adir zt "/sdcard/Tachiyomi"
-adir ztd "/sdcard/Tachiyomi/downloads"
 adir ztl "/sdcard/Tachiyomi/local"
 
 adir zn "$HOME/notes"

@@ -59,7 +59,7 @@ return packer.startup {
         -- snippets
         use { 'L3MON4D3/LuaSnip' }
         use { 'saadparwaiz1/cmp_luasnip' }
-        use { '~/repos/friendly-snippets' }
+        use { 'rafamadriz/friendly-snippets' }
         if packer_bootstrap then require('packer').sync() end
     end,
     config = {

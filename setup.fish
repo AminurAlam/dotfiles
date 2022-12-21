@@ -10,7 +10,7 @@ function install-packages
 
     apt -yq=10 install dust exa fd git neovim ripgrep starship zoxide lua-language-server
     apt install ffmpeg stylua tealdeer nodejs-lts rust python
-    command -sq pip && pip install deflacue pyright
+    command -sq pip && pip install deflacue pyright requests
     command -sq cargo && cargo install skim
 end
 
@@ -58,7 +58,7 @@ setup-git
 restore-configs
 prepare-bin
 
-[ -d "/sdcard/termux/home" ] && command cp -fr /sdcard/termux/home/* "$HOME/"
+[ -d "/sdcard/termux/home" ] && command cp -fr /sdcard/main/home/* "$HOME/"
 truncate -s 0 $PREFIX/etc/motd $PREFIX/etc/motd.sh
 command rm -fr "$HOME/storage/"
 

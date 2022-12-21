@@ -23,7 +23,7 @@ autocmd({ 'FileType' }, {
 autocmd({ 'FileType' }, {
     pattern = { 'help', 'text', 'markdown', 'gitcommit' },
     callback = function()
-        local set = vim.opt
+        local set = vim.opt_local
         set.number = false
         set.relativenumber = false
         set.wrap = true

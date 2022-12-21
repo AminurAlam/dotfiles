@@ -44,11 +44,12 @@ nmap('<leader>/', '<cmd>:nohlsearch<cr>')
 umap('<esc>', '<cmd>:nohlsearch<cr><esc>')
 nmap('<leader>d ', '<cmd>:%s/\\s*$//g<cr><cmd>:nohlsearch<cr>') -- removes trailing whitespace
 
-vmap('<s-j>', ":m '>+1<cr>gv")
-vmap('<s-k>', ":m '<-2<cr>gv")
+vmap('<c-up>', ":m '<-2<cr>gv")
+vmap('<c-down>', ":m '>+1<cr>gv")
 
 umap('<c-q>', '<cmd>:q<cr>')
 umap('<c-w>', '<cmd>:w<cr>')
+umap('<c-j>', '<cmd>:normal va%J<cr>')
 
 nmap('<c-^>', '<c-home>')
 nmap('<c-$>', '<c-end>')

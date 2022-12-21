@@ -15,7 +15,7 @@ trouble.setup {
         close = 'q', -- close the list
         cancel = {}, -- cancel the preview and get back to your last window / buffer / cursor
         refresh = 'r', -- manually refresh
-        jump = {}, -- jump to the diagnostic or open / close folds
+        jump = 'o', -- jump to the diagnostic or open / close folds
         open_split = {}, -- open buffer in new split
         open_vsplit = {}, -- open buffer in new vsplit
         open_tab = {}, -- open buffer in new tab

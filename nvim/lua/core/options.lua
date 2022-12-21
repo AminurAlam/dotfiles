@@ -89,5 +89,5 @@ set.fillchars = {
 set.runtimepath = {
     '~/.config/nvim',
     '~/.local/share/nvim/site',
-    '/data/data/com.termux/files/usr/share/nvim/runtime/'
+    '/data/data/com.termux/files/usr/share/nvim/runtime/',
 }
