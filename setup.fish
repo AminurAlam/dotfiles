@@ -8,7 +8,7 @@ function install-packages
     apt -y update > /dev/null 2> /dev/null
     apt -y upgrade > /dev/null 2> /dev/null
 
-    apt -yq=10 install dust exa fd git neovim ripgrep starship zoxide lua-language-server
+    apt -yq=10 install dust exa fd git neovim-nightly ripgrep starship zoxide lua-language-server termux-api
     apt install ffmpeg stylua tealdeer nodejs-lts rust python
     command -sq pip && pip install deflacue pyright requests
     command -sq cargo && cargo install skim
@@ -54,7 +54,7 @@ setup-git
 restore-configs
 prepare-bin
 
-[ -d "/sdcard/termux/home" ] && command cp -fr /sdcard/main/home/* "$HOME/"
+[ -d "/sdcard/main/home" ] && command cp -fr /sdcard/main/home/* "$HOME/"
 truncate -s 0 $PREFIX/etc/motd $PREFIX/etc/motd.sh
 command rm -fr "$HOME/storage/"
 
