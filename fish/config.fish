@@ -53,7 +53,6 @@ fish_add_path $HOME/bin
 fish_add_path $CARGO_HOME/bin
 
 ### source ###
-# source $HOME/.config/fish/completions/*.fish $HOME/.config/fish/functions/*.fish $HOME/.config/fish/conf.d/*.fish
 command -sq starship && starship init fish | source
 command -sq atuin && atuin init fish | source
 command -sq zoxide && zoxide init fish | source
@@ -146,7 +145,7 @@ function clean
     end
     command rm -rf $dirs 2>/dev/null
     command -sq python && pip cache purge
-    echo (count (command ls -1N)) files in HOME
+    echo (count (command ls -1Na)) files in HOME
 end
 
 function pw

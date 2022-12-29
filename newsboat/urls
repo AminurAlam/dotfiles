@@ -1,33 +1,27 @@
--
--
--
--
--
--
--
--
--
-https://lukesmith.xyz/rss.xml "~Luke Smith's Webpage" blog
-https://this-week-in-neovim.org/rss "~This Week In Neovim" blog
-https://opensource.com/feed "~opensource.com" article tech
-https://torrentfreak.com/feed "~TorrentFreak" article torrent
-https://letterboxd.com/journal/rss "~Letterboxd: Journal" article movie
-https://xkcd.com/atom.xml "~xkcd: atom" comics
-https://lifehacker.com/rss "~Lifehacker"
-https://feeds.npr.org/1039/rss.xml "~NPR: Music" music
-https://www.androidpolice.com/feed "~Android Police" tech
-https://feeds.feedburner.com/TEDTalks_video "~TED Talks Daily" vid
-https://news.ycombinator.com/rss "~Hacker News"
+# vim: set filetype=markdown :
+https://lukesmith.xyz/rss.xml
+https://xkcd.com/atom.xml
+https://this-week-in-neovim.org/rss
+https://forums.stevehoffman.tv/forums/-/index.rss
+
+# news / articles
+https://www.cbr.com/feed/
+https://lifehacker.com/rss
+https://www.androidpolice.com/feed
+https://torrentfreak.com/feed
+https://opensource.com/feed
+https://letterboxd.com/journal/rss
+https://news.ycombinator.com/rss
 http://rss.slashdot.org/Slashdot/slashdotMain
+https://timesofindia.indiatimes.com/rss.cms
 
-https://blog.rust-lang.org/feed.xml blog tech
-https://blog.rust-lang.org/inside-rust/feed.xml blog tech
-https://blog.mozilla.org/en/feed blog tech
-https://blog.nightly.mozilla.org/feed blog tech
-
-https://news.samsung.com/global/feed/rss
+# corpo blogs / newsletters
+https://blog.rust-lang.org/feed.xml
+https://blog.rust-lang.org/inside-rust/feed.xml
+https://brave.com/blog/index.xml
+https://blog.mozilla.org/en/feed
+https://blog.nightly.mozilla.org/feed
 https://blog.cloudflare.com/rss
-https://forums.stevehoffman.tv/forums/-/index.rss "~Steve Hoffman" forum music
+https://news.samsung.com/global/feed/rss
+
 # https://www.youtube.com/feeds/videos.xml?channel_id=
-https://www.youtube.com/feeds/videos.xml?channel_id=UC7YOGHUfC1Tb6E4pudI9STA "~Mental Outlaw" vid yt
-https://www.youtube.com/feeds/videos.xml?channel_id=UC3cpN6gcJQqcCM6mxRUo_dA "~Wendigoon" vid yt

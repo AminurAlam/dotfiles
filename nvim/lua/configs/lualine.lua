@@ -1,3 +1,6 @@
+local status, lualine = pcall(require, 'lualine')
+if not status then return end
+
 --[[ local lsp_progress = {
     'lsp_progress',
     separators = {
@@ -47,9 +50,7 @@ local theme = {
         a = { fg = color.black, bg = color.purple, gui = 'bold' },
         b = { fg = color.purple, bg = color.grey },
     },
-    terminal = {
-        a = { fg = color.grey, bg = '#56b6c2', gui = 'bold' },
-    },
+    terminal = { a = { fg = color.grey, bg = '#56b6c2', gui = 'bold' } },
     inactive = {
         a = { fg = color.blue, bg = '#1f2335', gui = 'bold' },
         b = { fg = color.grey, bg = '#1f2335' },
@@ -58,7 +59,7 @@ local theme = {
         a = { fg = color.black, bg = color.yellow, gui = 'bold' },
         b = { fg = color.yellow, bg = color.grey },
     },
-}
+} --]]
 
 local whitespace = {
     function() return vim.fn.search([[\s\+$]], 'nwc') ~= 0 and '␣ ' or '' end,
@@ -114,7 +115,7 @@ local help = {
     },
 }
 
-require('lualine').setup {
+lualine.setup {
     options = {
         icons_enabled = true,
         theme = theme,

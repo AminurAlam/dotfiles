@@ -26,7 +26,6 @@ set.sidescrolloff = 8
 set.wrap = false
 set.showbreak = ' …'
 set.breakindent = true
-set.colorcolumn = '80'
 set.signcolumn = 'auto'
 set.number = true
 set.relativenumber = true

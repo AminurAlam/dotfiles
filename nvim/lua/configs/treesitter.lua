@@ -1,4 +1,7 @@
-require('nvim-treesitter.configs').setup {
+local status, treesitter = pcall(require, 'nvim-treesitter.configs')
+if not status then return end
+
+treesitter.setup {
     -- ensure_installed = { 'fish', 'lua', 'python', 'vim' },
     ensure_installed = {},
     sync_install = false, -- Install parsers synchronously (only applied to `ensure_installed`)

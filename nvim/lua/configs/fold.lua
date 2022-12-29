@@ -1,3 +1,6 @@
+local status, ufo = pcall(require, 'ufo')
+if not status then return end
+
 --[[ local handler = function(virtText, lnum, endLnum, width, truncate)
     local newVirtText = {}
     local suffix = ('  %d '):format(endLnum - lnum)
@@ -25,9 +28,6 @@
     table.insert(newVirtText, { suffix, 'MoreMsg' })
     return newVirtText
 end --]]
-
-local status, ufo = pcall(require, 'ufo')
-if not status then return end
 
 ufo.setup {
     open_fold_hl_timeout = 150,

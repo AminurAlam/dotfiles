@@ -53,8 +53,8 @@ adir zpic "/sdcard/Pictures"
 adir zm "/sdcard/main"
 adir zt "/sdcard/Tachiyomi"
 adir ztl "/sdcard/Tachiyomi/local"
+adir zn "/sdcard/main/notes"
 
-adir zn "$HOME/notes"
 adir zrp "$HOME/repos"
   adir zd "$HOME/repos/dotfiles"
   adir zmbz "$HOME/repos/musicbrainzpy"
@@ -82,6 +82,7 @@ alias vi="nvim"
 alias vim="nvim"
 alias vn="cd ~/.config/nvim/ && vi -c 'Telescope find_files'"
 alias vf="cd ~/.config/fish/ && vi -c 'Telescope find_files'"
+alias note="cd /sdcard/main/notes/ && vi -c 'Telescope find_files'"
 
 # exa
 alias ls="exa -lF -s ext --icons --no-user --no-permissions --no-time --group-directories-first"
@@ -114,10 +115,12 @@ alias md="mkdir -pv"
 
 # du, df -> dust, duf
 alias du="dust -n 25"
-alias dut="dust -n 30 -t"
 alias dud="dust -d 1"
-alias anal="command du -ah -d 1 -t 20000000 | sort -k1hr"
 alias df="duf -only local -output mountpoint,size,avail,usage -width 150 /storage/*"
+
+# tar
+alias compress-tar-gz="tar czf"
+alias extract-tar-gz="tar xzvf"
 
 # others
 alias nb="newsboat"

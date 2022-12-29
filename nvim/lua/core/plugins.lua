@@ -31,6 +31,7 @@ return packer.startup {
         use { 'nvim-telescope/telescope.nvim' }
         use { 'nvim-treesitter/nvim-treesitter' }
         use { 'lewis6991/impatient.nvim' }
+        use { 'cvigilv/esqueleto.nvim', branch = 'develop' }
         -- theme & design
         use { 'lukas-reineke/indent-blankline.nvim' }
         use { 'folke/tokyonight.nvim' }
@@ -46,10 +47,8 @@ return packer.startup {
         use { 'numToStr/Comment.nvim' }
         use { 'windwp/nvim-autopairs' }
         use { 'folke/trouble.nvim' }
-        -- lsp
+        -- lsp/cmp
         use { 'neovim/nvim-lspconfig' }
-        use { 'onsails/lspkind-nvim' }
-        -- cmp
         use { 'hrsh7th/nvim-cmp' }
         use { 'hrsh7th/cmp-nvim-lsp' }
         use { 'hrsh7th/cmp-nvim-lua' }

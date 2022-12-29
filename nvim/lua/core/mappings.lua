@@ -1,15 +1,8 @@
-vim.g.mapleader = ' '
 local opts = { noremap = true, silent = true }
 
 local function nmap(k, v) vim.keymap.set('n', k, v, opts) end
 local function vmap(k, v) vim.keymap.set('v', k, v, opts) end
 local function umap(k, v) vim.keymap.set({ '', 'i' }, k, v, opts) end
-
--- telescope
-nmap('<leader>ff', require('telescope.builtin').fd)
-nmap('<leader>fg', require('telescope.builtin').live_grep)
-nmap('<leader>fb', require('telescope.builtin').buffers)
-nmap('<leader>fh', require('telescope.builtin').help_tags)
 
 -- packer
 nmap('<leader>pu', '<cmd>:PackerUpdate<cr>')
@@ -24,24 +17,30 @@ umap('<c-l>', '<cmd>:CybuNext<cr>')
 umap('<c-h>', '<cmd>:CybuPrev<cr>')
 
 -- other plugins
--- nmap('<leader>tr', '<cmd>:TroubleToggle document_diagnostics<cr>')
 nmap('<leader>tr', require('trouble').toggle)
 nmap('<leader>tt', '<cmd>:ToggleTerm<cr>')
 nmap('<leader>co', '<cmd>:ColorizerToggle<cr>')
 nmap('<leader>ib', '<cmd>:IndentBlanklineToggle<cr>')
+nmap('<leader>li', '<cmd>:LspInfo<cr>')
+
+-- void register
+nmap('_', '"_')
+nmap('x', '"_x')
+nmap('X', '"_x')
+nmap('<del>', '"_x')
 
 -- other
+umap('<c-c>', '<cmd>:normal m0viw~`0<cr>') -- switch word case
 nmap('Q', '<cmd>:bdelete<cr>')
 nmap('r', '<cmd>:redo<cr>')
-nmap('x', '"_x') -- deleted stuff doesnt go to clipboard
-nmap('X', '"_x') -- deleted stuff doesnt go to clipboard
-nmap('<del>', '"_x') -- deleted stuff doesnt go to clipboard
-nmap('cn', '*``cgn')
-nmap('cN', '*``cgN')
+nmap('cn', '*``cgn') -- search and replace
+nmap('>', '>>')
+nmap('<', '<<')
+vmap('>', '>gv')
+vmap('<', '<gv')
 
-nmap('<leader>li', '<cmd>:LspInfo<cr>')
-nmap('<leader>/', '<cmd>:nohlsearch<cr>')
 umap('<esc>', '<cmd>:nohlsearch<cr><esc>')
+nmap('<leader>/', '<cmd>:nohlsearch<cr>')
 nmap('<leader>d ', '<cmd>:%s/\\s*$//g<cr><cmd>:nohlsearch<cr>') -- removes trailing whitespace
 
 vmap('<c-up>', ":m '<-2<cr>gv")

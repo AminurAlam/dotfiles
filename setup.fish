@@ -58,7 +58,6 @@ prepare-bin
 truncate -s 0 $PREFIX/etc/motd $PREFIX/etc/motd.sh
 command rm -fr "$HOME/storage/"
 
-apt remove bash-completion dos2unix ed nano
 apt autoclean
 
 source $HOME/.config/fish/config.fish
