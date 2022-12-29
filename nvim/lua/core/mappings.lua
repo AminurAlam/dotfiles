@@ -5,22 +5,12 @@ local function vmap(k, v) vim.keymap.set('v', k, v, opts) end
 local function umap(k, v) vim.keymap.set({ '', 'i' }, k, v, opts) end
 
 -- packer
-nmap('<leader>pu', '<cmd>:PackerUpdate<cr>')
-nmap('<leader>pi', '<cmd>:PackerInstall<cr>')
-nmap('<leader>pr', '<cmd>:PackerClean<cr>')
-nmap('<leader>pa', '<cmd>:PackerStatus<cr>')
-
--- cybu / buffer movement
-umap('<c-right>', '<cmd>:CybuNext<cr>')
-umap('<c-left>', '<cmd>:CybuPrev<cr>')
-umap('<c-l>', '<cmd>:CybuNext<cr>')
-umap('<c-h>', '<cmd>:CybuPrev<cr>')
+nmap('<leader>pu', '<cmd>:Lazy update<cr>')
+nmap('<leader>pr', '<cmd>:Lazy clean<cr>')
+nmap('<leader>pa', '<cmd>:Lazy show<cr>')
 
 -- other plugins
-nmap('<leader>tr', require('trouble').toggle)
-nmap('<leader>tt', '<cmd>:ToggleTerm<cr>')
 nmap('<leader>co', '<cmd>:ColorizerToggle<cr>')
-nmap('<leader>ib', '<cmd>:IndentBlanklineToggle<cr>')
 nmap('<leader>li', '<cmd>:LspInfo<cr>')
 
 -- void register

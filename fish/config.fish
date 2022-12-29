@@ -114,9 +114,9 @@ function texsetup
 end
 
 function style
-    stylua -f "$XDG_CONFIG_HOME/nvim/stylua.toml" $XDG_CONFIG_HOME/nvim/lua/co*/*.lua -c
+    stylua -f "$HOME/.config/nvim/stylua.toml" $HOME/.config/nvim/lua/*/*.lua -c
     read choice -fP "apply the changes? [Y/n] "
-    [ -z $choice -o $choice = y ] && stylua -f "$XDG_CONFIG_HOME/nvim/stylua.toml" $XDG_CONFIG_HOME/nvim/lua/co*/*.lua
+    [ -z $choice -o $choice = y ] && stylua -f "$HOME/.config/nvim/stylua.toml" $HOME/.config/nvim/lua/*/*.lua
 end
 
 function fade_in

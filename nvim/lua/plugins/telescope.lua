@@ -1,15 +1,15 @@
 local M = {
-    'nvim-telescope/telescope.nvim', branch = '0.1.x',
+    'nvim-telescope/telescope.nvim',
+    branch = '0.1.x',
     dependencies = {
-        {'nvim-lua/plenary.nvim'}
+        { 'nvim-lua/plenary.nvim' },
     },
-    cmd = { "Telescope", "Tel" }, -- lazy loads on these commands
-    keys = { "<leader>f" }, -- lazy loads on this pattern
+    cmd = { 'Telescope', 'Tel' }, -- lazy loads on these commands
+    keys = { '<leader>f' }, -- lazy loads on this pattern
 }
 
 function M.config()
-    local telescope = require("telescope")
-    telescope.setup({
+    require('telescope').setup {
         defaults = {
             prompt_prefix = '  ',
             selection_caret = '» ',
@@ -35,7 +35,7 @@ function M.config()
                 },
             },
         },
-    })
+    }
 
     local builtin = require('telescope.builtin')
 
