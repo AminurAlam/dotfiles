@@ -21,7 +21,7 @@ autocmd({ 'FileType' }, {
 })
 
 autocmd({ 'FileType' }, {
-    pattern = { 'help', 'text', 'markdown', 'gitcommit' },
+    pattern = { 'help', 'text', 'markdown', 'gitcommit', 'conf' },
     callback = function()
         local set = vim.opt_local
         set.number = false
@@ -43,6 +43,33 @@ autocmd({ 'FileType' }, {
         vim.keymap.set('n', '<c-y>', 'gk')
         vim.keymap.set('n', 'q', '<cmd>:quit<cr>')
     end,
+})
+
+-- https://github.com/mong8se/actually.nvim
+vim.api.nvim_create_autocmd('BufNewFile', {
+    pattern = '*',
+    callback = function(details)
+        if vim.fn.filereadable(details.file) == 1 then return end
+
+        local possibles = vim.split(vim.fn.glob(details.file .. '*'), '\n')
+
+        if #possibles > 0 and possibles[1] ~= '' then
+            vim.ui.select(possibles, {
+                prompt = 'Actually! You probably meant:',
+                format_item = function(item)
+                    local parts = vim.split(item, '/')
+                    return parts[#parts]
+                end,
+            }, function(choice)
+                if choice then
+                    local empty_bufnr = vim.api.nvim_win_get_buf(0)
+                    vim.cmd('edit ' .. vim.fn.fnameescape(choice))
+                    vim.api.nvim_buf_delete(empty_bufnr, {})
+                end
+            end)
+        end
+    end,
+    group = augroup('actually-au', {clear = true})
 })
 
 -- autocmd({ 'BufEnter' }, {

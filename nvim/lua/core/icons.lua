@@ -85,6 +85,7 @@ return {
         ArrowClosed = '',
         ArrowOpen = '',
         Lock = '',
+        Lock2 = '',
         Circle = '',
         BigCircle = '',
         BigUnfilledCircle = '',

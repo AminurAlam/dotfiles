@@ -4,13 +4,28 @@ local function nmap(k, v) vim.keymap.set('n', k, v, opts) end
 local function vmap(k, v) vim.keymap.set('v', k, v, opts) end
 local function umap(k, v) vim.keymap.set({ '', 'i' }, k, v, opts) end
 
+-- telescope
+nmap('<leader>ff', '<cmd>:Telescope find_files<cr>')
+nmap('<leader>fr', '<cmd>:Telescope oldfiles<cr>')
+nmap('<leader>fg', '<cmd>:Telescope live_grep<cr>')
+nmap('<leader>fb', '<cmd>:Telescope buffers<cr>')
+nmap('<leader>fh', '<cmd>:Telescope help_tags<cr>')
+
 -- packer
-nmap('<leader>pu', '<cmd>:Lazy update<cr>')
-nmap('<leader>pr', '<cmd>:Lazy clean<cr>')
-nmap('<leader>pa', '<cmd>:Lazy show<cr>')
+nmap('<leader>pu', '<cmd>:PackerUpdate<cr>')
+nmap('<leader>pi', '<cmd>:PackerInstall<cr>')
+nmap('<leader>pr', '<cmd>:PackerClean<cr>')
+nmap('<leader>pa', '<cmd>:PackerStatus<cr>')
+
+-- cybu
+umap('<c-left>', '<cmd>:CybuPrev<cr>')
+umap('<c-right>', '<cmd>:CybuNext<cr>')
 
 -- other plugins
+nmap('<leader>tr', require('trouble').toggle)
+nmap('<leader>tt', '<cmd>:ToggleTerm<cr>')
 nmap('<leader>co', '<cmd>:ColorizerToggle<cr>')
+nmap('<leader>ib', '<cmd>:IndentBlanklineToggle<cr>')
 nmap('<leader>li', '<cmd>:LspInfo<cr>')
 
 -- void register

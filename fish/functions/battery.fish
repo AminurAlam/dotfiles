@@ -7,10 +7,10 @@ function battery
 
         # [ $current -lt 0 ] && set_color red
         [ $current -gt 0 ] && set_color brred
-        [ $current -gt 300 ] && set_color bryellow
-        [ $current -gt 600 ] && set_color brgreen
-        [ $current -gt 900 ] && set_color brcyan
-        printf '█%.0s' (seq (math -s 0 (tput cols) x $current/1000 ))
+        [ $current -gt 400 ] && set_color bryellow
+        [ $current -gt 700 ] && set_color brgreen
+        [ $current -gt 1000 ] && set_color brcyan
+        printf '█%.0s' (seq (math -s 0 (tput cols) x $current/1200 ))
         echo
         set_color normal
         sleep 0.5
