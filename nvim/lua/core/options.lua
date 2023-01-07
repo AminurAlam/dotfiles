@@ -1,4 +1,4 @@
-local set = vim.opt -- opt might be depricated in the future
+local set = vim.opt -- opt might be deprecated in the future?
 
 -- indent and spacing
 set.autoindent = true

@@ -54,8 +54,8 @@ fish_add_path $CARGO_HOME/bin
 
 ### source ###
 command -sq starship && starship init fish | source
-command -sq atuin && atuin init fish | source
-command -sq zoxide && zoxide init fish | source
+command -sq atuin    && atuin init fish    | source
+command -sq zoxide   && zoxide init fish   | source || alias z cd
 
 ### main ###
 set fish_greeting "$(fish_logo brcyan brcyan brgreen \| 0)"
@@ -86,26 +86,10 @@ bind -M insert \( 'commandline -i \(\)' 'commandline -f backward-char'
 bind -M insert \[ 'commandline -i \[\]' 'commandline -f backward-char'
 bind -M insert \{ 'commandline -i \{\}' 'commandline -f backward-char'
 
-bind \cr _atuin_search
-
-if bind -M insert > /dev/null 2>&1
-    bind -M insert \cr _atuin_search
-end
-
-
-
 ### functions ###
 
 function fish_title
     echo (prompt_pwd): (status current-command)
-end
-
-function ua
-    random choice (cat ~/notes/user_agents)
-end
-
-function wa
-    curl -s "https://api.wolframalpha.com/v1/result?appid=PJHXKQ-UP492G48WW&i=$(echo $argv | string escape --style=url)"
 end
 
 function texsetup
@@ -114,7 +98,7 @@ function texsetup
 end
 
 function style
-    stylua -f "$HOME/.config/nvim/stylua.toml" $HOME/.config/nvim/lua/*/*.lua -c
+    stylua -cf "$XDG_CONFIG_HOME/nvim/stylua.toml" $XDG_CONFIG_HOME/nvim/lua/*/*.lua
     read choice -fP "apply the changes? [Y/n] "
     [ -z $choice -o $choice = y ] && stylua -f "$HOME/.config/nvim/stylua.toml" $HOME/.config/nvim/lua/*/*.lua
 end
@@ -137,7 +121,14 @@ function fish_colors
 end
 
 function clean
-    set -l dirs /sdcard/Android/data/*youtube "/sdcard/Android/data/com.spotify.music/" "/sdcard/DCIM/.thaumbnails/" "/sdcard/Aurora/"
+    set -l dirs \
+        /sdcard/Android/data/*youtube/ \
+        /sdcard/Android/data/org.schabi.newpipe/ \
+        /sdcard/Android/data/org.*messenger/ \
+        "/sdcard/Android/data/com.spotify.music/" \
+        "/sdcard/DCIM/.thumbnails/" \
+        "/sdcard/Aurora/" \
+        "/sdcard/Telegram/"
 
     pkg clean && apt autoremove
     for dir in $dirs
@@ -174,4 +165,42 @@ function prompt_pwd
 
     # shortening and then rejoining
     echo -n (string join / (string replace -ar '(\.?[^/]{1})[^/]*' '$1' $path) $last )
+end
+
+# Defined in /data/data/com.termux/files/usr/share/fish/functions/open.fish @ line 6
+function open --description 'Open file in default application'
+        set -l options h/help
+        argparse -n open $options -- $argv
+        or return
+
+        if set -q _flag_help
+            __fish_print_help open
+            return 0
+        end
+
+        if not set -q argv[1]
+            printf (_ "%ls: Expected at least %d args, got only %d\n") open 1 0 >&2
+            return 1
+        end
+
+        if [ -d "$argv" ]
+            cd "$argv"
+        else if [ -f "$argv" ]
+            if file "$argv" | grep 'ASCII text'
+                $EDITOR "$argv"
+            end
+        else if type -q -f xdg-open
+            for i in $argv
+                # In the "generic" path where it doesn't use a helper utility,
+                # xdg-open fails to fork off, so it blocks the terminal.
+                xdg-open $i &
+                # Note: We *need* to pass $last_pid, or it will disown the last *existing* job.
+                # In case xdg-open forks, that would be whatever else the user has backgrounded.
+                #
+                # Yes, this has a (hopefully theoretical) race of the PID being recycled.
+                disown $last_pid 2>/dev/null
+            end
+        else
+            echo (_ 'No open utility found. Try installing "xdg-open" or "xdg-utils".') >&2
+        end
 end

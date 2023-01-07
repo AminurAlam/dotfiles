@@ -3,7 +3,7 @@ function install-packages
     touch $PREFIX/etc/apt/sources.list
     echo "deb https://packages-cf.termux.dev/apt/termux-main stable main" > $PREFIX/etc/apt/sources.list
 
-    printf "\nRUNNING PACKAGE UPDATES PLEASE BE PATIENT\n"
+    printf "\nRUNNING PACKAGE UPDATES PLEASE BE PATIENT\n\n"
 
     apt -y update > /dev/null 2> /dev/null
     apt -y upgrade > /dev/null 2> /dev/null
@@ -18,8 +18,7 @@ function setup-git
 
     git config --global init.defaultBranch 'dev'
     git config --global user.name 'AminurAlam'
-    read GIT_AUTHOR_EMAIL -f -P "enter your git email: " && git config --global user.email "$GIT_AUTHOR_EMAIL"
-    set -e GIT_AUTHOR_EMAIL
+    git config --global user.email (read -fP 'enter your git email: ')
 
     command rm -fr "$HOME/repos/dotfiles/"
     git clone -q --depth 1 "https://github.com/AminurAlam/dotfiles.git" $HOME/repos/dotfiles/
@@ -32,7 +31,7 @@ function restore-configs
 
     command cp -fr $HOME/repos/dotfiles/starship.toml $HOME/.config/
     mkdir -p $HOME/.local/share/
-    command mv $HOME/.config/cargo/ $HOME/.local/share/
+    command mv -f $HOME/.config/cargo/ $HOME/.local/share/
     command mv $HOME/.config/termux/* $HOME/.termux/
     rmdir $HOME/.config/termux/
 
@@ -43,8 +42,15 @@ end
 function prepare-bin
     mkdir -p $HOME/bin/
     [ -d "/sdcard/main/bin/" ] && command cp -fr /sdcard/main/bin/* $HOME/bin/
-    [ -x "$PREFIX/bin/nvim" ] && ln -s "$PREFIX/bin/nvim" "$HOME/bin/termux-file-editor"
+    [ -x "$PREFIX/bin/nvim" ] && ln -fs "$PREFIX/bin/nvim" "$HOME/bin/termux-file-editor"
     chmod +x $HOME/bin/*
+end
+
+function cleanup
+    truncate -s 0 $PREFIX/etc/motd $PREFIX/etc/motd.sh
+    command rm -fr "$HOME/storage/"
+
+    apt autoclean
 end
 
 
@@ -52,10 +58,6 @@ install-packages
 setup-git
 restore-configs
 prepare-bin
-
-truncate -s 0 $PREFIX/etc/motd $PREFIX/etc/motd.sh
-command rm -fr "$HOME/storage/"
-
-apt autoclean
+cleanup
 
 source $HOME/.config/fish/config.fish

@@ -30,7 +30,6 @@ return packer.startup {
         use { 'kyazdani42/nvim-web-devicons' }
         use { 'nvim-telescope/telescope.nvim' }
         use { 'nvim-treesitter/nvim-treesitter' }
-        use { 'lewis6991/impatient.nvim' }
         -- theme & design
         use { 'lukas-reineke/indent-blankline.nvim' }
         use { 'folke/tokyonight.nvim' }
@@ -38,12 +37,15 @@ return packer.startup {
         use { 'goolord/alpha-nvim' }
         use { 'ghillb/cybu.nvim' }
         use { 'NvChad/nvim-colorizer.lua' }
-        use { 'folke/which-key.nvim' }
+        use { 'lewis6991/gitsigns.nvim' }
+        use { 'karb94/neoscroll.nvim' }
+        use { 'rcarriga/nvim-notify' }
         -- typing & correction
         use { 'kylechui/nvim-surround' }
         use { 'numToStr/Comment.nvim' }
         use { 'windwp/nvim-autopairs' }
         use { 'folke/trouble.nvim' }
+        use { 'monaqa/dial.nvim' }
         -- lsp/cmp
         use { 'neovim/nvim-lspconfig' }
         use { 'hrsh7th/nvim-cmp' }

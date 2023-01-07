@@ -2,6 +2,7 @@ local status, lspconfig = pcall(require, 'lspconfig')
 if not status then return end
 
 require('lspconfig.ui.windows').default_options.border = 'rounded'
+local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
 -- require('neodev').setup {
 --     library = { enabled = true, runtime = true, types = true, plugins = false },
@@ -9,6 +10,7 @@ require('lspconfig.ui.windows').default_options.border = 'rounded'
 -- }
 
 lspconfig.pylsp.setup {
+    capabilities = capabilities,
     settings = {
         pylsp = {
             plugins = {
@@ -20,6 +22,7 @@ lspconfig.pylsp.setup {
 }
 
 lspconfig.pyright.setup {
+    capabilities = capabilities,
     settings = {
         python = {
             analysis = {
@@ -32,10 +35,11 @@ lspconfig.pyright.setup {
 }
 
 lspconfig.sumneko_lua.setup {
+    capabilities = capabilities,
     settings = {
         Lua = {
             workspace = {
-                library = vim.api.nvim_get_runtime_file('', true),
+                -- library = vim.api.nvim_get_runtime_file('', true),
                 checkThirdParty = false,
             },
             diagnostics = { globals = { 'vim' } },

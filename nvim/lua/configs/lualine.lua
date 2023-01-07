@@ -46,7 +46,7 @@ lualine.setup {
         globalstatus = true,
     },
     sections = {
-        lualine_a = { 'mode' },
+        lualine_a = { { 'mode' } },
         lualine_b = {
             {
                 'filename',
@@ -59,15 +59,15 @@ lualine.setup {
                 },
             },
             {
+                function() return vim.fn.search([[\s\+$]], 'nwc') ~= 0 and '␣ ' or '' end,
+                padding = 0,
+            },
+            {
                 function()
                     local filepath = vim.fn.expand('%:p:h')
                     local gitdir = vim.fn.finddir('.git', filepath .. ';')
                     return (gitdir and #gitdir > 0 and #gitdir < #filepath) and ' ' or ''
                 end,
-                padding = 0,
-            },
-            {
-                function() return vim.fn.search([[\s\+$]], 'nwc') ~= 0 and '␣ ' or '' end,
                 padding = 0,
             },
         },
@@ -78,10 +78,14 @@ lualine.setup {
             { 'searchcount' },
         },
         lualine_y = {
-            { 'filetype', padding = 1 },
+            { 'progress' },
         },
         lualine_z = {
-            { 'progress' },
+            {
+                function() return ' ' .. vim.bo.filetype end,
+                padding = 0,
+            },
+            { 'fileformat' },
         },
     },
     inactive_sections = {},

@@ -1,17 +1,12 @@
 # git
-abbr -ag g "git"
 abbr -ag gup "git add . && git commit && git push origin"
-
-abbr -ag gadd "git add ."
-abbr -ag gmv "git mv"
 abbr -ag gcp "git clone --depth 1"
 
-abbr -ag gcm "git commit"
-abbr -ag gl "git log"
+alias gl "git log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(bold yellow)%d%C(reset)' --all"
 abbr -ag gd "git diff"
-abbr -ag gab "git status -s"
-abbr -ag gst "git status -s"
+abbr -ag ga "git status -s"
+abbr -ag gs "git status -s"
+abbr -ag gc "git checkout"
 
 abbr -ag grau "git remote add upstream"
-abbr -ag gpl "git pull origin"
-abbr -ag gph "git push origin"
+abbr -ag gp "git pull origin"

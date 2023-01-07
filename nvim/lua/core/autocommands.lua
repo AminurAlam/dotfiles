@@ -1,4 +1,4 @@
-local augroup = vim.api.nvim_create_augroup
+-- local augroup = vim.api.nvim_create_augroup
 local autocmd = vim.api.nvim_create_autocmd
 
 autocmd({ 'TextYankPost' }, {
@@ -15,13 +15,13 @@ autocmd({ 'FileType' }, {
             else
                 vim.cmd('close')
             end
-        end)
+        end, { silent = true, buffer = true })
         vim.opt.buflisted = false
     end,
 })
 
 autocmd({ 'FileType' }, {
-    pattern = { 'help', 'text', 'markdown', 'gitcommit', 'conf' },
+    pattern = { 'help', 'text', 'markdown', 'gitcommit', 'conf', 'log' },
     callback = function()
         local set = vim.opt_local
         set.number = false
@@ -30,6 +30,7 @@ autocmd({ 'FileType' }, {
         set.linebreak = true
         set.colorcolumn = ''
         set.signcolumn = 'no'
+        set.spell = true
         set.listchars = {
             tab = '  ',
             trail = ' ',
@@ -38,10 +39,6 @@ autocmd({ 'FileType' }, {
             conceal = 'x',
         }
         vim.cmd('hi Whitespace guibg=NONE')
-        -- smooth scrolling with wrapped lines
-        vim.keymap.set('n', '<c-e>', 'gj')
-        vim.keymap.set('n', '<c-y>', 'gk')
-        vim.keymap.set('n', 'q', '<cmd>:quit<cr>')
     end,
 })
 
@@ -50,56 +47,53 @@ vim.api.nvim_create_autocmd('BufNewFile', {
     pattern = '*',
     callback = function(details)
         if vim.fn.filereadable(details.file) == 1 then return end
+        local possibles = vim.split(vim.fn.glob(details.file .. '*'), '\n', { trimempty = true })
 
-        local possibles = vim.split(vim.fn.glob(details.file .. '*'), '\n')
-
-        if #possibles > 0 and possibles[1] ~= '' then
-            vim.ui.select(possibles, {
-                prompt = 'Actually! You probably meant:',
-                format_item = function(item)
-                    local parts = vim.split(item, '/')
-                    return parts[#parts]
-                end,
-            }, function(choice)
-                if choice then
-                    local empty_bufnr = vim.api.nvim_win_get_buf(0)
-                    vim.cmd('edit ' .. vim.fn.fnameescape(choice))
-                    vim.api.nvim_buf_delete(empty_bufnr, {})
-                end
+        if #possibles > 0 then
+            vim.ui.select(possibles, { prompt = 'You probably meant:' }, function(choice)
+                if choice then vim.cmd('edit ' .. vim.fn.fnameescape(choice)) end
             end)
         end
     end,
-    group = augroup('actually-au', {clear = true})
 })
 
--- autocmd({ 'BufEnter' }, {
---     pattern = { '' },
---     callback = function()
---         local buf_ft = vim.bo.filetype
---         if buf_ft == '' or buf_ft == nil then
---             vim.cmd([[
---       nnoremap <silent> <buffer> q :close<CR>
---       nnoremap <silent> <buffer> <c-j> j<CR>
---       nnoremap <silent> <buffer> <c-k> k<CR>
---       set nobuflisted
---     ]])
---         end
---     end,
--- })
--- vim.api.nvim_create_autocmd({ 'FileType' }, {
---     pattern = { 'gitcommit', 'markdown' },
---     callback = function()
---         vim.opt_local.wrap = true
---         vim.opt_local.spell = true
---     end,
--- })
--- vim.api.nvim_create_autocmd({ 'FileType' }, {
---     pattern = { 'lir' },
---     callback = function()
---         vim.opt_local.number = false
---         vim.opt_local.relativenumber = false
---     end,
--- })
+-- https://github.com/mawkler/modicator.nvim
+vim.api.nvim_create_autocmd('ModeChanged', {
+    callback = function()
+        local modes = {
+            ['i'] = '#7aa2f7',
+            ['c'] = '#e0af68',
+            ['v'] = '#c678dd',
+            ['V'] = '#c678dd',
+            [''] = '#c678dd',
+        }
+        vim.api.nvim_set_hl(0, 'CursorLineNr', {
+            foreground = modes[vim.api.nvim_get_mode().mode] or '#737aa2',
+        })
+    end,
+})
+
+-- restore cursor position
+autocmd('BufReadPost', {
+    callback = function()
+        local mark = vim.api.nvim_buf_get_mark(0, '"')
+        local lcount = vim.api.nvim_buf_line_count(0)
+        if mark[1] > 0 and mark[1] <= lcount then pcall(vim.api.nvim_win_set_cursor, 0, mark) end
+    end,
+})
+
+autocmd('BufWritePre', {
+    group = vim.api.nvim_create_augroup('auto_create_dir', { clear = true }),
+    callback = function(event)
+        local file = vim.loop.fs_realpath(event.match) or event.match
+
+        vim.fn.mkdir(vim.fn.fnamemodify(file, ':p:h'), 'p')
+        local backup = vim.fn.fnamemodify(file, ':p:~:h')
+        backup = backup:gsub('[/\\]', '%%')
+        vim.go.backupext = backup
+    end,
+})
+
 -- vim.cmd(
 --     "autocmd BufEnter * ++nested if winnr('$') == 1 && bufname() == 'NvimTree_' . tabpagenr() | quit | endif"
 -- )
