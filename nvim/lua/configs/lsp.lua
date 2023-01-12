@@ -36,6 +36,9 @@ lspconfig.pyright.setup {
 
 lspconfig.sumneko_lua.setup {
     capabilities = capabilities,
+    on_attach = function(client, bufnr)
+        client.server_capabilities.semanticTokensProvider = nil
+    end,
     settings = {
         Lua = {
             workspace = {

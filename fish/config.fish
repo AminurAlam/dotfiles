@@ -26,14 +26,12 @@ set -gx MANPAGER "nvim +Man!"
 set -gx BAT_PAGER "less"
 set -gx TERMINFO "$PREFIX/share/terminfo/"
 set -gx BROWSER "termux-open"
-set -gx LAUNCHER sk --prompt '  ' --inline-info --no-multi --margin 0,3,1,3 --color "$SKIM_COLORS" --header "$(printf '─%.0s' (seq $COLUMNS))"
+set -gx LAUNCHER sk --prompt '  ' --inline-info --no-multi --margin 0,3,1,3 --color "$SKIM_COLORS"
 set -gx WWW_HOME "https://searx.work/"
 set -gx LESSHISTFILE "-"
 set -gx FB_DATABASE "$XDG_CONFIG_HOME/filebrowser.db"
 set -gx FB_CONFIG "$XDG_CONFIG_HOME/filebrowser.json"
 set -gx STARSHIP_CACHE "$XDG_DATA_HOME/starship/logs"
-set -gx ATUIN_NOBIND "true"
-set -gx ATUIN_SUPPRESS_TUI "true"
 
 set -gx INPUTRC "$XDG_CONFIG_HOME/readline/inputrc"
 set -gx ICEAUTHORITY "$XDG_CACHE_HOME/ICEauthority"
@@ -75,16 +73,15 @@ set --path sp "$HOME/repos/samples"
 
 ### bindings ###
 fish_vi_key_bindings
-bind -M insert \ch 'commandline -i \~'
 bind -M insert \cq exit
-bind -M normal \cq 'commandline -f exit'
-bind -M normal q 'commandline -f exit'
+bind -M insert \cr 'commandline -f history-pager'
 bind -M insert \e\[1\;5A 'commandline -f history-token-search-backward'
 bind -M insert \e\[1\;5B 'commandline -f history-token-search-forward'
 
 bind -M insert \( 'commandline -i \(\)' 'commandline -f backward-char'
 bind -M insert \[ 'commandline -i \[\]' 'commandline -f backward-char'
 bind -M insert \{ 'commandline -i \{\}' 'commandline -f backward-char'
+
 
 ### functions ###
 

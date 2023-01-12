@@ -14,11 +14,8 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require('lazy').setup({
-    -- { 'nvim-lua/plenary.nvim' },
-    -- { 'kyazdani42/nvim-web-devicons' },
-    { 'nvim-telescope/telescope.nvim', dependencies = { 'nvim-lua/plenary.nvim' } },
-    -- { 'nvim-treesitter/nvim-treesitter' },
     -- theme & design
+    { 'nvim-telescope/telescope.nvim', dependencies = { 'nvim-lua/plenary.nvim' } },
     { 'lukas-reineke/indent-blankline.nvim' },
     { 'folke/tokyonight.nvim' },
     { 'nvim-lualine/lualine.nvim', dependencies = { 'kyazdani42/nvim-web-devicons' } },

@@ -19,6 +19,10 @@ autocmd({ 'FileType' }, {
         vim.opt.buflisted = false
     end,
 })
+autocmd({ 'FileType' }, {
+    pattern = 'cuesheet',
+    callback = function() vim.opt.syntax = 'cuesheet' end,
+})
 
 autocmd({ 'FileType' }, {
     pattern = { 'help', 'text', 'markdown', 'gitcommit', 'conf', 'log' },

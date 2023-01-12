@@ -37,6 +37,7 @@ alias zt "z $EXTERNAL_STORAGE/Tachiyomi"
 alias ztl "z $EXTERNAL_STORAGE/Tachiyomi/local"
 alias zn "z $EXTERNAL_STORAGE/main/notes"
 
+alias zr 'z (command ls -1N $HOME/repos | $LAUNCHER)'
 alias zrp "z $HOME/repos"
 alias zmbz "z $HOME/repos/musicbrainzpy"
 alias zd "z $HOME/repos/dotfiles"
@@ -44,12 +45,11 @@ alias zc "z $HOME/.config"
 alias zcf "z $HOME/.config/fish"
 alias zcn "z $HOME/.config/nvim"
 
+
 # yt-dlp
 function yt
     yt-dlp -F $argv
-    echo
-    read choice -f -P ">pick one: "
-    yt-dlp -f $choice $argv
+    yt-dlp -f (read choice -fP ">pick one: ") $argv
 end
 
 # nvim
@@ -109,3 +109,4 @@ alias cal "cal -my"
 alias mi "mediainfo"
 alias cls "clear && fish_logo brcyan brcyan brgreen \| 0"
 alias wa "curl -s https://api.wolframalpha.com/v1/result?appid=PJHXKQ-UP492G48WW&i=$(echo $argv | string escape --style=url) && :"
+alias dd ":"

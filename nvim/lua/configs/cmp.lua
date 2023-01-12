@@ -4,6 +4,8 @@ if not status then return end
 local status, luasnip = pcall(require, 'luasnip')
 if not status then return end
 
+local buffer = { { name = 'buffer' } }
+
 local kind_icons = {
     Text = '',
     Method = '',
@@ -87,17 +89,40 @@ cmp.setup {
         { name = 'nvim_lsp' },
         { name = 'nvim_lua' },
         { name = 'luasnip' },
-    }, { { name = 'buffer' } }),
+    }, buffer),
 }
 
 cmp.setup.cmdline('/', {
     mapping = cmp.mapping.preset.cmdline(),
-    sources = cmp.config.sources({ { name = 'nvim_lsp_document_symbol' } }, { { name = 'buffer' } }),
+    sources = cmp.config.sources({
+        { name = 'nvim_lsp_document_symbol' }
+    }, buffer),
 })
 
 cmp.setup.cmdline(':', {
     mapping = cmp.mapping.preset.cmdline(),
-    sources = cmp.config.sources({ { name = 'path' } }, { { name = 'cmdline' } }),
+    sources = cmp.config.sources({
+        { name = 'path' },
+    }, { { name = 'cmdline' } }),
+})
+
+cmp.setup.filetype('markdown', {
+    sources = cmp.config.sources({
+        { name = 'spell' },
+    }, buffer),
+})
+
+cmp.setup.filetype('text', {
+    sources = cmp.config.sources({
+        { name = 'spell' },
+    }, buffer),
+})
+
+cmp.setup.filetype('fish', {
+    sources = cmp.config.sources({
+        { name = 'path' },
+        { name = 'fish' },
+    }, buffer),
 })
 
 require('luasnip.loaders.from_lua').lazy_load()

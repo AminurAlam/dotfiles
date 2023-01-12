@@ -17,7 +17,7 @@ set.incsearch = true
 set.iskeyword:append('-,$')
 
 -- scrolling
-set.scroll = 10
+set.scroll = 20
 set.scrolloff = 6
 set.sidescroll = 4
 set.sidescrolloff = 8

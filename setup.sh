@@ -1,3 +1,4 @@
+# TODO: switch to pacman
 yes "Y" | apt update
 yes "Y" | apt upgrade
 

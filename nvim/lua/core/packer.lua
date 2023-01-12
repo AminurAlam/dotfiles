@@ -38,7 +38,6 @@ return packer.startup {
         use { 'ghillb/cybu.nvim' }
         use { 'NvChad/nvim-colorizer.lua' }
         use { 'lewis6991/gitsigns.nvim' }
-        use { 'karb94/neoscroll.nvim' }
         use { 'rcarriga/nvim-notify' }
         -- typing & correction
         use { 'kylechui/nvim-surround' }
@@ -54,6 +53,9 @@ return packer.startup {
         use { 'hrsh7th/cmp-path' }
         use { 'hrsh7th/cmp-buffer' }
         use { 'hrsh7th/cmp-cmdline' }
+        use { 'mtoohey31/cmp-fish' }
+        use { 'f3fora/cmp-spell' }
+
         -- snippets
         use { 'L3MON4D3/LuaSnip' }
         use { 'saadparwaiz1/cmp_luasnip' }

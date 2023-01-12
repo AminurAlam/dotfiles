@@ -18,7 +18,7 @@ function setup-git
 
     git config --global init.defaultBranch 'dev'
     git config --global user.name 'AminurAlam'
-    git config --global user.email (read -fP 'enter your git email: ')
+    git config --global user.email '64137875+AminurAlam@users.noreply.github.com'
 
     command rm -fr "$HOME/repos/dotfiles/"
     git clone -q --depth 1 "https://github.com/AminurAlam/dotfiles.git" $HOME/repos/dotfiles/
