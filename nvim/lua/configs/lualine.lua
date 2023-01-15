@@ -36,18 +36,12 @@ local theme = {
 }
 
 local sections = {
-    lualine_a = {
-        { 'mode' },
-    },
+    lualine_a = { { 'mode' } },
     lualine_b = {
         {
             'filename',
             filestatus = false,
-            symbols = {
-                modified = icons.ui.Pencil,
-                readonly = icons.ui.Lock,
-                unnamed = '…',
-            },
+            symbols = { modified = icons.ui.Pencil, readonly = icons.ui.Lock, unnamed = '…', },
         },
         {
             function() return vim.fn.search([[\s\+$]], 'nwc') ~= 0 and '␣ ' or '' end,
@@ -62,16 +56,12 @@ local sections = {
             padding = 0,
         },
     },
-    lualine_c = {
-        { 'diagnostics', update_in_insert = true },
-    },
+    lualine_c = { { 'diagnostics', update_in_insert = true } },
     lualine_x = {
         { 'searchcount' },
         { function() return vim.fn.reg_recording() == '' and '' or '@' .. vim.fn.reg_recording() end },
     },
-    lualine_y = {
-        { 'progress' },
-    },
+    lualine_y = { { 'progress' } },
     lualine_z = {
         { function() return ' ' .. vim.bo.filetype end, padding = 0 },
         { 'fileformat' },
@@ -104,7 +94,7 @@ lualine.setup {
         component_separators = { left = '', right = '' },
         section_separators = { left = '', right = '' },
         disabled_filetypes = {
-            statusline = { 'alpha', 'packer', 'lspinfo', 'TelescopePrompt' },
+            statusline = { 'alpha', 'packer', 'TelescopePrompt' },
             winbar = {},
         },
         globalstatus = true,

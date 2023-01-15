@@ -10,3 +10,5 @@ abbr -ag gc "git checkout"
 
 abbr -ag grau "git remote add upstream"
 abbr -ag gp "git pull origin"
+
+abbr cls clear

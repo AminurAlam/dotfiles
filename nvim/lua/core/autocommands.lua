@@ -5,6 +5,17 @@ autocmd({ 'TextYankPost' }, {
     callback = function() vim.highlight.on_yank { higroup = 'IncSearch', timeout = 300 } end,
 })
 
+-- https://github.com/ibhagwan/smartyank.nvim
+-- autocmd("TextYankPost", {
+--     desc = 'stop certain stuff from going to clipboard',
+--     callback = function()
+--         local ok, yank_data = pcall(vim.fn.getreg, "0")
+--         if ok and #yank_data > 1 then
+--             pcall(vim.fn.setreg, "+", yank_data)
+--         end
+--     end
+-- })
+
 autocmd({ 'FileType' }, {
     pattern = { 'qf', 'help', 'lspinfo', 'DressingSelect', 'Trouble' },
     callback = function()
@@ -25,7 +36,7 @@ autocmd({ 'FileType' }, {
 })
 
 autocmd({ 'FileType' }, {
-    pattern = { 'help', 'text', 'markdown', 'gitcommit', 'conf', 'log' },
+    pattern = { 'Terminal', 'help', 'text', 'markdown', 'gitcommit', 'conf', 'log' },
     callback = function()
         local set = vim.opt_local
         set.number = false
@@ -34,7 +45,6 @@ autocmd({ 'FileType' }, {
         set.linebreak = true
         set.colorcolumn = ''
         set.signcolumn = 'no'
-        set.spell = true
         set.listchars = {
             tab = '  ',
             trail = ' ',
@@ -87,7 +97,7 @@ autocmd('BufReadPost', {
 })
 
 autocmd('BufWritePre', {
-    group = vim.api.nvim_create_augroup('auto_create_dir', { clear = true }),
+    desc = 'automatically create missing directories when saving files',
     callback = function(event)
         local file = vim.loop.fs_realpath(event.match) or event.match
 

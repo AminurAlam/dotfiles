@@ -55,7 +55,6 @@ return packer.startup {
         use { 'hrsh7th/cmp-cmdline' }
         use { 'mtoohey31/cmp-fish' }
         use { 'f3fora/cmp-spell' }
-
         -- snippets
         use { 'L3MON4D3/LuaSnip' }
         use { 'saadparwaiz1/cmp_luasnip' }
