@@ -1,3 +1,11 @@
+_G.__luacache_config = {
+    chunks = { enable = true, path = vim.fn.stdpath('data') .. '/luacache_chunks' },
+    modpaths = { enable = true, path = vim.fn.stdpath('data') .. '/luacache_modpaths' },
+}
+
+local status, impatient = pcall(require, 'impatient')
+if status then impatient.enable_profile() end
+
 local g = vim.g
 
 g.netrw_banner = 0
@@ -5,6 +13,10 @@ g.netrw_hide = 0
 g.netrw_liststyle = 3
 
 g.mapleader = ' '
+g.maplocalleader = ' '
+g.sign_cur = '❯'
+g.sign_sep = '❯'
+g.do_filetype_lua = 1
 g.editorconfig = false
 
 -- disabling plugins
@@ -25,11 +37,10 @@ g.loaded_rrhelper = 1
 
 -- [[ core ]]
 require('core.packer') -- packer.nvim
--- require('core.lazy')  -- lazy.nvim
+-- require('core.lazy') -- lazy.nvim
 require('core.options')
 require('core.mappings')
 require('core.autocommands')
-require('core.colors')
 
 -- [[ plugin configs ]]
 require('configs.alpha')
@@ -42,16 +53,25 @@ require('configs.lsp')
 require('configs.lualine')
 require('configs.notify')
 require('configs.telescope')
+require('configs.tokyonight')
 require('configs.treesitter')
 require('configs.trouble')
+-- require('configs.which')
 
-local function setup_plugins()
+local setup_plugins = function()
     require('Comment').setup {}
     require('nvim-autopairs').setup {}
     require('nvim-surround').setup {}
 end
-
 if not pcall(setup_plugins) then vim.notify('some plugins are not loaded') end
+
+vim.cmd.colorscheme { 'tokyonight' }
+
+local hl = function(name, val) vim.api.nvim_set_hl(0, name, val) end
+
+hl('Whitespace', { bg = '#364a82' })
+hl('CursorLineNr', { fg = '#98c379' })
+hl('LineNr', { fg = '#3b4261' })
 
 vim.diagnostic.config {
     underline = { severity = vim.diagnostic.severity.ERROR },

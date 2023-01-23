@@ -1,18 +1,5 @@
-function install-packages
-    mkdir -p $PREFIX/etc/apt/
-    touch $PREFIX/etc/apt/sources.list
-    echo "deb https://packages-cf.termux.dev/apt/termux-main stable main" > $PREFIX/etc/apt/sources.list
-
-    printf "\nRUNNING PACKAGE UPDATES PLEASE BE PATIENT\n\n"
-
-    apt -y update > /dev/null 2> /dev/null
-    apt -y upgrade > /dev/null 2> /dev/null
-
-    apt -yq=10 install dust exa fd git neovim-nightly ripgrep starship zoxide lua-language-server termux-api stylua
-    apt install python && pip install requests
-end
-
 function setup-git
+    printf "\nSETTING UP GIT\n\n"
     mkdir -p $HOME/.config/git/
     touch $HOME/.config/git/config
 
@@ -25,6 +12,7 @@ function setup-git
 end
 
 function restore-configs
+    printf "\nRESTORING CONFIG FILES\n\n"
     for directory in $HOME/repos/dotfiles/*
         [ -d "$directory" ] && command cp -fr "$directory" $HOME/.config/
     end
@@ -40,24 +28,22 @@ function restore-configs
 end
 
 function prepare-bin
-    mkdir -p $HOME/bin/
-    [ -d "/sdcard/main/bin/" ] && command cp -fr /sdcard/main/bin/* $HOME/bin/
-    [ -x "$PREFIX/bin/nvim" ] && ln -fs "$PREFIX/bin/nvim" "$HOME/bin/termux-file-editor"
+    printf "\nPREPARING LOCAL BINARIES\n\n"
+    mkdir -p $HOME/.local/bin/
+    [ -d "/sdcard/main/bin/" ] && command cp -fr /sdcard/main/bin/* $HOME/.local/bin/
+    command -sq nvim && ln -fs (command -s nvim) "$HOME/.local/bin/termux-file-editor"
     chmod +x $HOME/bin/*
 end
 
-function cleanup
-    truncate -s 0 $PREFIX/etc/motd $PREFIX/etc/motd.sh
-    command rm -fr "$HOME/storage/"
 
-    apt autoclean
-end
+pkg install dust exa fd git neovim-nightly ripgrep starship zoxide lua-language-server termux-api stylua
+pkg install python python-pip && pip install requests deflacue
 
-
-install-packages
 setup-git
 restore-configs
 prepare-bin
-cleanup
+
+truncate -s 0 $PREFIX/etc/motd $PREFIX/etc/motd.sh
+[ -d  "$HOME/storage/" ] && command rm -fr "$HOME/storage/"
 
 source $HOME/.config/fish/config.fish

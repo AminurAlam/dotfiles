@@ -137,11 +137,17 @@ alias .... "z ../../.."
 ### ABBREVIATIONS ###
 abbr cp "cp -ivr"
 abbr mv "mv -iv"
-abbr rm "rm -i"
-abbr rf "rm -rfI"
-abbr rd "rmdir"
+if command -sq rip
+    abbr rm "rip -i"
+else
+    abbr rm "rm -i"
+    abbr rf "rm -rfI"
+    abbr rd "rmdir"
+end
 abbr md "mkdir -pv"
 abbr cls "clear"
+abbr cal "cal -my"
+abbr wget "wget --hsts-file=$XDG_CACHE_HOME/wget-hsts"
 
 abbr -ag gup "git add . && git commit && git push origin"
 abbr -ag gcp "git clone --depth 1"
@@ -154,20 +160,12 @@ abbr -ag gp "git pull origin"
 
 ### FUNCTIONS ###
 
-function cal
-    cal -my
-end
-
-function wget
-    wget --hsts-file=$XDG_CACHE_HOME/wget-hsts
-end
-
 function fish_title
     echo (prompt_pwd): (status current-command)
 end
 
 function wa
-    curl -s https://api.wolframalpha.com/v1/result?appid=PJHXKQ-UP492G48WW&i=$(echo $argv | string escape --style=url) && :
+    curl -s https://api.wolframalpha.com/v1/result?appid=PJHXKQ-UP492G48WW&i=$(echo $argv | string escape --style=url)
 end
 
 # in /usr/share/fish/functions/open.fish

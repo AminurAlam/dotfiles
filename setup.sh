@@ -1,20 +1,19 @@
 #!/usr/bin/env bash
 
 bootstrap-pacman() {
-    printf 'BOOTSTRAPPING PACMAN'
+    printf "\nBOOTSTRAPPING PACMAN\n\n"
 
     mkdir ~/../usr-n/
-    unzip -d ~/../usr-n/ /sdcard/main/bootstrap-arm.zip
+    unzip -d ~/../usr-n/ /sdcard/main/bootstrap-arm.zip || return
     cat ~/../usr-n/SYMLINKS.txt | awk -F "←" '{system("ln -s '"'"'"$1"'"'"' '"'"'"$2"'"'"'")}'
 
-    printf 'RUN THESE COMMANDS IN FAILSAFE MODE
-    rm -fr ~/../usr/
-    mv ~/../usr-n/ ~/../usr/
-    '
+    printf "RUN THIS COMMAND IN FAILSAFE MODE
+    [ -d ~/../usr-n/ ] && rm -fr ~/../usr/ && mv ~/../usr-n/ ~/../usr/
+    "
 }
 
 configure-fish() {
-    printf "RUNNING FISH CONFIG"
+    printf "\nRUNNING FISH CONFIG\n\n"
     fish setup.fish
     chsh -s fish
 }

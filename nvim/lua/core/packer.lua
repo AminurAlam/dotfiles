@@ -26,8 +26,9 @@ return packer.startup {
     function(use)
         -- main plugins
         use { 'wbthomason/packer.nvim' }
+        use { 'lewis6991/impatient.nvim' }
         use { 'nvim-lua/plenary.nvim' }
-        use { 'kyazdani42/nvim-web-devicons' }
+        use { 'nvim-tree/nvim-web-devicons' }
         use { 'nvim-telescope/telescope.nvim' }
         use { 'nvim-treesitter/nvim-treesitter' }
         -- theme & design
@@ -38,12 +39,12 @@ return packer.startup {
         use { 'ghillb/cybu.nvim' }
         use { 'NvChad/nvim-colorizer.lua' }
         use { 'lewis6991/gitsigns.nvim' }
-        use { 'rcarriga/nvim-notify' }
         -- typing & correction
         use { 'kylechui/nvim-surround' }
         use { 'numToStr/Comment.nvim' }
         use { 'windwp/nvim-autopairs' }
         use { 'folke/trouble.nvim' }
+        use { 'folke/which-key.nvim' }
         use { 'monaqa/dial.nvim' }
         -- lsp/cmp
         use { 'neovim/nvim-lspconfig' }

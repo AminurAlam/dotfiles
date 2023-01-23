@@ -24,15 +24,20 @@ set.sidescrolloff = 8
 
 -- column
 set.wrap = false
-set.showbreak = ' …'
-set.breakindent = true
-set.signcolumn = 'auto'
 set.number = true
 set.relativenumber = true
+set.breakindent = true
+set.showbreak = ''
+set.signcolumn = 'auto'
+set.foldcolumn = 'auto'
+local num = '%=%{ v:virtnum ? " " : ( v:relnum ? v:relnum : v:lnum ) }'
+local symbol = '%{v:virtnum ? "…" : ( v:relnum ? "│" : "❯" ) }'
+set.statuscolumn = num .. symbol .. '%s%C'
 
 -- design
 set.showmode = false
-set.showcmd = false
+set.showcmd = true
+set.showcmdloc = 'statusline'
 set.showtabline = 0
 set.shiftround = true
 set.ruler = false
@@ -48,7 +53,6 @@ set.guicursor = { n = 'hor' }
 set.startofline = true
 
 -- fold
-set.foldcolumn = '1'
 set.foldlevel = 5
 set.foldlevelstart = 99
 set.foldenable = true
@@ -65,7 +69,7 @@ set.background = 'dark'
 
 -- others
 set.grepprg = 'rg --vimgrep '
-set.timeoutlen = 500
+set.timeout = false
 set.swapfile = false
 set.backup = false
 set.undofile = true
@@ -84,6 +88,7 @@ set.fillchars = {
     fold = ' ',
     foldopen = '',
     foldclose = '',
+    lastline = '.',
 }
 set.runtimepath = {
     '~/.config/nvim',

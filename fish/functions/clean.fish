@@ -13,7 +13,8 @@ function clean
     for dir in $dirs
         echo "  $dir"
     end
-    command rm -rf $dirs 2>/dev/null
-    command -sq python && pip cache purge
+    command rm -rf $dirs 2> /dev/null
+    command -sq rip && rip --decompose
+    command -sq pip && pip cache purge
     echo (count (command ls -1Na)) files in HOME
 end

@@ -1,42 +1,32 @@
--- local augroup = vim.api.nvim_create_augroup
 local autocmd = vim.api.nvim_create_autocmd
+-- local augroup = vim.api.nvim_create_augroup
 
-autocmd({ 'TextYankPost' }, {
-    callback = function() vim.highlight.on_yank { higroup = 'IncSearch', timeout = 300 } end,
-})
-
--- https://github.com/ibhagwan/smartyank.nvim
--- autocmd("TextYankPost", {
---     desc = 'stop certain stuff from going to clipboard',
---     callback = function()
---         local ok, yank_data = pcall(vim.fn.getreg, "0")
---         if ok and #yank_data > 1 then
---             pcall(vim.fn.setreg, "+", yank_data)
---         end
---     end
--- })
-
+-- stylua: ignore
 autocmd({ 'FileType' }, {
+    desc = 'exit by pressing q or <esc>',
     pattern = { 'qf', 'help', 'lspinfo', 'DressingSelect', 'Trouble' },
     callback = function()
         vim.keymap.set('n', 'q', '<cmd>:close<cr>', { silent = true, buffer = true })
         vim.keymap.set('n', '<esc>', function()
-            if vim.v.hlsearch == 1 then
-                vim.cmd('nohlsearch')
-            else
-                vim.cmd('close')
-            end
-        end, { silent = true, buffer = true })
+            vim.cmd(vim.v.hlsearch == 1 and 'nohlsearch' or 'close')
+        end, { silent = true, buffer = true }
+        )
         vim.opt.buflisted = false
     end,
 })
-autocmd({ 'FileType' }, {
-    pattern = 'cuesheet',
-    callback = function() vim.opt.syntax = 'cuesheet' end,
+
+autocmd({ 'TermOpen', 'TermEnter' }, {
+    callback = function()
+        local set = vim.opt_local
+        set.colorcolumn = ''
+        set.signcolumn = 'no'
+        set.statuscolumn = ''
+    end,
 })
 
-autocmd({ 'FileType' }, {
-    pattern = { 'Terminal', 'help', 'text', 'markdown', 'gitcommit', 'conf', 'log' },
+autocmd({ 'FileType', 'BufNewFile' }, {
+    desc = 'reading mode for some filetypes',
+    pattern = { 'alpha', 'Terminal', 'help', 'text', 'markdown', 'gitcommit', 'conf', 'log' },
     callback = function()
         local set = vim.opt_local
         set.number = false
@@ -52,12 +42,15 @@ autocmd({ 'FileType' }, {
             precedes = '…',
             conceal = 'x',
         }
+        set.statuscolumn = '%{v:virtnum ? "…" : ( v:relnum ? " " : "❯" ) }'
         vim.cmd('hi Whitespace guibg=NONE')
+        -- if set.filetype:get() == 'help' then vim.cmd('wincmd T') end
     end,
 })
 
 -- https://github.com/mong8se/actually.nvim
 vim.api.nvim_create_autocmd('BufNewFile', {
+    desc = 'when tab completion doesnt work',
     pattern = '*',
     callback = function(details)
         if vim.fn.filereadable(details.file) == 1 then return end
@@ -68,27 +61,43 @@ vim.api.nvim_create_autocmd('BufNewFile', {
                 if choice then vim.cmd('edit ' .. vim.fn.fnameescape(choice)) end
             end)
         end
+        vim.g.did_load_filetypes = 0
+    end,
+})
+
+autocmd({ 'TermOpen' }, {
+    callback = function()
+        local set = vim.opt_local
+        set.number = false
+        set.relativenumber = false
     end,
 })
 
 -- https://github.com/mawkler/modicator.nvim
 vim.api.nvim_create_autocmd('ModeChanged', {
+    desc = 'change cursor line number based on mode',
     callback = function()
         local modes = {
             ['i'] = '#7aa2f7',
-            ['c'] = '#e0af68',
+            ['c'] = '#e06c75',
+            ['cv'] = '#e06c75',
+            ['ce'] = '#e06c75',
+            ['R'] = '#e06c75',
             ['v'] = '#c678dd',
             ['V'] = '#c678dd',
-            [''] = '#c678dd',
+            ['\22'] = '#c678dd',
+            ['s'] = '#c678dd',
+            ['S'] = '#c678dd',
+            ['\19'] = '#c678dd',
         }
         vim.api.nvim_set_hl(0, 'CursorLineNr', {
-            foreground = modes[vim.api.nvim_get_mode().mode] or '#737aa2',
+            foreground = modes[vim.api.nvim_get_mode().mode] or '#98c379',
         })
     end,
 })
 
--- restore cursor position
 autocmd('BufReadPost', {
+    desc = 'restore cursor position',
     callback = function()
         local mark = vim.api.nvim_buf_get_mark(0, '"')
         local lcount = vim.api.nvim_buf_line_count(0)
@@ -108,6 +117,25 @@ autocmd('BufWritePre', {
     end,
 })
 
+autocmd({ 'TextYankPost' }, {
+    callback = function() vim.highlight.on_yank { higroup = 'IncSearch', timeout = 300 } end,
+})
+
+autocmd({ 'FileType' }, {
+    pattern = 'cuesheet',
+    callback = function() vim.opt.syntax = 'cuesheet' end,
+})
+
+-- https://github.com/ibhagwan/smartyank.nvim
+-- autocmd({ "TextYankPost" }, {
+--     desc = 'stop certain stuff from going to clipboard',
+--     callback = function()
+--         local ok, yank_data = pcall(vim.fn.getreg, "0")
+--         if ok and #yank_data > 1 then
+--             pcall(vim.fn.setreg, "+", yank_data)
+--         end
+--     end
+-- })
 -- vim.cmd(
 --     "autocmd BufEnter * ++nested if winnr('$') == 1 && bufname() == 'NvimTree_' . tabpagenr() | quit | endif"
 -- )

@@ -2,36 +2,39 @@ local status, lualine = pcall(require, 'lualine')
 if not status then return end
 
 local color = {
-    yellow = '#e0af68',
+    red = '#e06c75',
     purple = '#c678dd',
     blue = '#7aa2f7',
     green = '#98c379',
-    grey = '#3b4261',
-    black = '#1D202F',
+    grey = '#30354A',
 }
 
 local icons = require('core.icons')
 
 local theme = {
     normal = {
-        a = { fg = color.black, bg = color.green, gui = 'bold' },
+        a = { fg = color.grey, bg = color.green, gui = 'bold' },
         b = { fg = color.green, bg = color.grey },
         c = { fg = '#a9b1d6', bg = nil },
     },
     insert = {
-        a = { fg = color.black, bg = color.blue, gui = 'bold' },
+        a = { fg = color.grey, bg = color.blue, gui = 'bold' },
         b = { fg = color.blue, bg = color.grey },
     },
     visual = {
-        a = { fg = color.black, bg = color.purple, gui = 'bold' },
+        a = { fg = color.grey, bg = color.purple, gui = 'bold' },
         b = { fg = color.purple, bg = color.grey },
     },
+    command = {
+        a = { fg = color.grey, bg = color.red, gui = 'bold' },
+        b = { fg = color.red, bg = color.grey },
+    },
     replace = {
-        a = { fg = color.black, bg = color.yellow, gui = 'bold' },
-        b = { fg = color.yellow, bg = color.grey },
+        a = { fg = color.grey, bg = color.red, gui = 'bold' },
+        b = { fg = color.red, bg = color.grey },
     },
     terminal = {
-        a = { fg = color.black, bg = '#56b6c2', gui = 'bold' },
+        a = { fg = color.grey, bg = '#56b6c2', gui = 'bold' },
     },
 }
 
@@ -41,7 +44,7 @@ local sections = {
         {
             'filename',
             filestatus = false,
-            symbols = { modified = icons.ui.Pencil, readonly = icons.ui.Lock, unnamed = '…', },
+            symbols = { modified = icons.ui.Pencil, readonly = icons.ui.Lock, unnamed = '…' },
         },
         {
             function() return vim.fn.search([[\s\+$]], 'nwc') ~= 0 and '␣ ' or '' end,
@@ -58,13 +61,14 @@ local sections = {
     },
     lualine_c = { { 'diagnostics', update_in_insert = true } },
     lualine_x = {
+        -- { function() return '%S' end },
         { 'searchcount' },
         { function() return vim.fn.reg_recording() == '' and '' or '@' .. vim.fn.reg_recording() end },
     },
     lualine_y = { { 'progress' } },
     lualine_z = {
-        { function() return ' ' .. vim.bo.filetype end, padding = 0 },
-        { 'fileformat' },
+        { 'filetype' },
+        { 'fileformat', symbols = { unix = '' } },
     },
 }
 

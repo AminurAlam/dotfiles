@@ -11,14 +11,10 @@ local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
 -- lspconfig.pylsp.setup {
 --     capabilities = capabilities,
---     settings = {
---         pylsp = {
---             plugins = {
---                 pycodestyle = { ignore = { 'E128', 'E701' }, maxLineLength = 100 },
---                 flake8 = { enabled = true, maxLineLength = 100, ignore = { 'E128', 'E701' } },
---             },
---         },
---     },
+--     settings = { pylsp = { plugins = {
+--         pycodestyle = { ignore = { 'E128', 'E701' }, maxLineLength = 100 },
+--         flake8 = { enabled = true, maxLineLength = 100, ignore = { 'E128', 'E701' } },
+--     } } }
 -- }
 
 lspconfig.pyright.setup {
@@ -36,9 +32,7 @@ lspconfig.pyright.setup {
 
 lspconfig.sumneko_lua.setup {
     capabilities = capabilities,
-    on_attach = function(client, bufnr)
-        client.server_capabilities.semanticTokensProvider = nil
-    end,
+    on_attach = function(client, bufnr) client.server_capabilities.semanticTokensProvider = nil end,
     settings = {
         Lua = {
             workspace = {

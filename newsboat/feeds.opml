@@ -1,89 +1,44 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <opml version="2.0">
   <head>
-    <title>new</title>
-    <dateCreated>Tue Jan 03 22:06:46 GMT+05:30 2023</dateCreated>
+    <title>fresh</title>
+    <dateCreated>Tue Jan 17 18:18:05 GMT+05:30 2023</dateCreated>
   </head>
   <body>
-<outline isDefault="true" text="Default" title="Default">
-          <outline isFullContent="false" htmlUrl="https://www.aclu.org/issues/privacy-technology/feed" text="ACLU" title="ACLU" isNotification="false" xmlUrl="https://www.aclu.org/issues/privacy-technology/feed" />
+<outline isDefault="true" text="Default" title="Default" />
+<outline isDefault="false" text="socials" title="socials">
+    <outline isFullContent="false" htmlUrl="https://alongtheray.com/feed.rss" text=" Along the Ray" title=" Along the Ray" isNotification="false" xmlUrl="https://alongtheray.com/feed.rss" />
+    <outline isFullContent="false" htmlUrl="https://nitter.net/carlyraejepsen/rss" text="Twitter - Carly Rae Jepsen" title="Twitter - Carly Rae Jepsen" isNotification="false" xmlUrl="https://nitter.net/carlyraejepsen/rss" />
+    <outline isFullContent="false" htmlUrl="https://github.com/AminurAlam.private.atom" text="GitHub - AminurAlam" title="GitHub - AminurAlam" isNotification="false" xmlUrl="https://github.com/AminurAlam.private.atom?token=APJKVE3SKCPQXO4G3ZJEQIGBY3BC6" />
 </outline>
 <outline isDefault="false" text="forums &amp; aggregators" title="forums &amp; aggregators">
     <outline isFullContent="true" htmlUrl="https://waxy.org/feed/" text="Waxy.org" title="Waxy.org" isNotification="false" xmlUrl="https://waxy.org/feed/" />
-    <outline isFullContent="true" htmlUrl="https://lobste.rs/rss" text="Lobsters" title="Lobsters" isNotification="false" xmlUrl="https://lobste.rs/rss" />
-    <outline isFullContent="true" htmlUrl="https://news.ycombinator.com/rss" text="Hacker News" title="Hacker News" isNotification="false" xmlUrl="https://news.ycombinator.com/rss" />
     <outline isFullContent="false" htmlUrl="https://forums.stevehoffman.tv/forums/-/index.rss" text="Steve Hoffman Music Forums" title="Steve Hoffman Music Forums" isNotification="false" xmlUrl="https://forums.stevehoffman.tv/forums/-/index.rss" />
-    <outline isFullContent="false" htmlUrl="https://reddit.com/r/OtoMusic/new.rss" text="OtoMusic" title="OtoMusic" isNotification="false" xmlUrl="https://reddit.com/r/OtoMusic/new.rss" />
-    <outline isFullContent="false" htmlUrl="https://this-week-in-neovim.org/rss" text="This Week In Neovim" title="This Week In Neovim" isNotification="false" xmlUrl="https://this-week-in-neovim.org/rss" />
-    <outline isFullContent="false" htmlUrl="https://boards.4channel.org/mu/index.rss" text="/mu/ - Music" title="/mu/ - Music" isNotification="false" xmlUrl="https://boards.4channel.org/mu/index.rss" />
-    <outline isFullContent="false" htmlUrl="https://stallman.org/rss/rss.xml" text="Richard Stallman's Political Notes" title="Richard Stallman's Political Notes" isNotification="false" xmlUrl="https://stallman.org/rss/rss.xml" />
-</outline>
-<outline isDefault="false" text="blogs - corpo" title="blogs - corpo">
-    <outline isFullContent="false" htmlUrl="https://blog.python.org/feeds/posts/default" text="Python Insider" title="Python Insider" isNotification="false" xmlUrl="https://blog.python.org/feeds/posts/default" />
-    <outline isFullContent="false" htmlUrl="https://blog.rust-lang.org/feed.xml" text="Rust Blog" title="Rust Blog" isNotification="false" xmlUrl="https://blog.rust-lang.org/feed.xml" />
-    <outline isFullContent="false" htmlUrl="https://blog.rust-lang.org/inside-rust/feed.xml" text="Inside Rust Blog" title="Inside Rust Blog" isNotification="false" xmlUrl="https://blog.rust-lang.org/inside-rust/feed.xml" />
-    <outline isFullContent="false" htmlUrl="https://blog.mozilla.org/en/feed" text="The Mozilla Blog" title="The Mozilla Blog" isNotification="false" xmlUrl="https://blog.mozilla.org/en/feed" />
-    <outline isFullContent="false" htmlUrl="https://blog.nightly.mozilla.org/feed" text="Firefox Nightly News" title="Firefox Nightly News" isNotification="false" xmlUrl="https://blog.nightly.mozilla.org/feed" />
-    <outline isFullContent="true" htmlUrl="https://brave.com/blog/index.xml" text="Brave Browser" title="Brave Browser" isNotification="false" xmlUrl="https://brave.com/blog/index.xml" />
-    <outline isFullContent="false" htmlUrl="https://blog.torproject.org/feed" text="Tor Project blog" title="Tor Project blog" isNotification="false" xmlUrl="https://blog.torproject.org/feed" />
-    <outline isFullContent="false" htmlUrl="https://blog.cloudflare.com/rss" text="The Cloudflare Blog" title="The Cloudflare Blog" isNotification="false" xmlUrl="https://blog.cloudflare.com/rss" />
-    <outline isFullContent="false" htmlUrl="https://blog.metabrainz.org/feed/" text="MetaBrainz Blog" title="MetaBrainz Blog" isNotification="false" xmlUrl="https://blog.metabrainz.org/feed/" />
-    <outline isFullContent="false" htmlUrl="https://bitwarden.com/blog/feed.xml" text="Bitwarden Blog" title="Bitwarden Blog" isNotification="false" xmlUrl="https://bitwarden.com/blog/feed.xml" />
-    <outline isFullContent="false" htmlUrl="https://tutanota.com/blog/feed.xml" text="The Tutanota Blog" title="The Tutanota Blog" isNotification="false" xmlUrl="https://tutanota.com/blog/feed.xml" />
-    <outline isFullContent="false" htmlUrl="https://proton.me/blog/feed" text="The Proton Blog" title="The Proton Blog" isNotification="false" xmlUrl="https://proton.me/blog/feed" />
-    <outline isFullContent="false" htmlUrl="https://stackoverflow.blog/feed/" text="Stack Overflow Blog" title="Stack Overflow Blog" isNotification="false" xmlUrl="https://stackoverflow.blog/feed/" />
-    <outline isFullContent="false" htmlUrl="https://blog.archive.org/feed/" text="Internet Archive Blogs" title="Internet Archive Blogs" isNotification="false" xmlUrl="https://blog.archive.org/feed/" />
-    <outline isFullContent="false" htmlUrl="https://www.eff.org/rss/updates.xml" text="eff.org - Deeplinks" title="eff.org - Deeplinks" isNotification="false" xmlUrl="https://www.eff.org/rss/updates.xml" />
-    <outline isFullContent="false" htmlUrl="https://news.samsung.com/global/feed/rss" text="Samsung Global Newsroom" title="Samsung Global Newsroom" isNotification="false" xmlUrl="https://news.samsung.com/global/feed/rss" />
-</outline>
-<outline isDefault="false" text="blogs - active" title="blogs - active">
-    <outline isFullContent="false" htmlUrl="https://xkcd.com/atom.xml" text="xkcd.com" title="xkcd.com" isNotification="false" xmlUrl="https://xkcd.com/atom.xml" />
-    <outline isFullContent="false" htmlUrl="https://jacobwsmith.xyz/feed.xml" text="Jacob's Unnamed Blog" title="Jacob's Unnamed Blog" isNotification="false" xmlUrl="https://jacobwsmith.xyz/feed.xml" />
-    <outline isFullContent="false" htmlUrl="https://daringfireball.net/feeds/articles" text="Daring Fireball" title="Daring Fireball" isNotification="false" xmlUrl="https://daringfireball.net/feeds/articles" />
-    <outline isFullContent="false" htmlUrl="https://rachelbythebay.com/w/atom.xml" text="rachelbythebay - Writing" title="rachelbythebay - Writing" isNotification="false" xmlUrl="https://rachelbythebay.com/w/atom.xml" />
-    <outline isFullContent="false" htmlUrl="https://jvns.ca/atom.xml" text="Julia Evans" title="Julia Evans" isNotification="false" xmlUrl="https://jvns.ca/atom.xml" />
-    <outline isFullContent="false" htmlUrl="https://wingolog.org/feed/atom" text="wingolog" title="wingolog" isNotification="false" xmlUrl="https://wingolog.org/feed/atom" />
-    <outline isFullContent="true" htmlUrl="https://www.harihareswara.net/rss/" text="Cogito, Ergo Sumana" title="Cogito, Ergo Sumana" isNotification="false" xmlUrl="https://www.harihareswara.net/rss/" />
-    <outline isFullContent="false" htmlUrl="https://lethain.com/feeds.xml" text="Irrational Exuberance" title="Irrational Exuberance" isNotification="false" xmlUrl="https://lethain.com/feeds.xml" />
-    <outline isFullContent="false" htmlUrl="https://feeds.feedburner.com/avc" text="AVC" title="AVC" isNotification="false" xmlUrl="https://feeds.feedburner.com/avc" />
-</outline>
-<outline isDefault="false" text="blogs - inactive" title="blogs - inactive">
-    <outline isFullContent="false" htmlUrl="https://lukesmith.xyz/rss.xml" text="Luke's Webpage" title="Luke's Webpage" isNotification="true" xmlUrl="https://lukesmith.xyz/rss.xml" />
-    <outline isFullContent="true" htmlUrl="https://thevaluable.dev/index.xml" text="The Valuable Dev" title="The Valuable Dev" isNotification="false" xmlUrl="https://thevaluable.dev/index.xml" />
-    <outline isFullContent="false" htmlUrl="https://monstro1.com/rss.xml" text="MONSTRO's Website" title="MONSTRO's Website" isNotification="false" xmlUrl="https://monstro1.com/rss.xml" />
-    <outline isFullContent="true" htmlUrl="http://www.aaronsw.com/2002/feeds/pgessays.rss" text="Paul Graham: Essays" title="Paul Graham: Essays" isNotification="false" xmlUrl="http://www.aaronsw.com/2002/feeds/pgessays.rss" />
-    <outline isFullContent="false" htmlUrl="https://www.joelonsoftware.com/feed" text="Joel on Software" title="Joel on Software" isNotification="false" xmlUrl="https://www.joelonsoftware.com/feed" />
-    <outline isFullContent="false" htmlUrl="https://chelseatroy.com/feed" text="Chelsea Troy" title="Chelsea Troy" isNotification="false" xmlUrl="https://chelseatroy.com/feed" />
-    <outline isFullContent="false" htmlUrl="https://vicki.substack.com/feed" text="Normcore Tech" title="Normcore Tech" isNotification="false" xmlUrl="https://vicki.substack.com/feed" />
-    <outline isFullContent="false" htmlUrl="https://phaazon.net/blog/feed" text="phaazon.net blog" title="phaazon.net blog" isNotification="false" xmlUrl="https://phaazon.net/blog/feed" />
+    <outline isFullContent="false" htmlUrl="https://this-week-in-neovim.org/rss" text="This Week In Neovim" title="This Week In Neovim" isNotification="true" xmlUrl="https://this-week-in-neovim.org/rss" />
+    <outline isFullContent="true" htmlUrl="https://werd.io/feed" text="Ben Werdmuller" title="Ben Werdmuller" isNotification="false" xmlUrl="https://werd.io/feed" />
+    <outline isFullContent="true" htmlUrl="https://lobste.rs/rss" text="Lobsters" title="Lobsters" isNotification="false" xmlUrl="https://lobste.rs/rss" />
+    <outline isFullContent="true" htmlUrl="https://hnrss.org/newest.atom?points=100&amp;count=20&amp;description=0" text="Hacker News" title="Hacker News" isNotification="false" xmlUrl="https://hnrss.org/newest.atom?points=100&amp;count=20&amp;description=0" />
+    <outline isFullContent="false" htmlUrl="https://reddit.com/r/OtoMusic/new.rss" text="r/OtoMusic" title="r/OtoMusic" isNotification="true" xmlUrl="https://reddit.com/r/OtoMusic/new.rss" />
+    <outline isFullContent="false" htmlUrl="https://reddit.com/r/neovim.rss" text="r/neovim" title="r/neovim" isNotification="false" xmlUrl="https://reddit.com/r/neovim.rss" />
+    <outline isFullContent="false" htmlUrl="https://reddit.com/r/jeeneetards.rss" text="r/JEENEETards" title="r/JEENEETards" isNotification="false" xmlUrl="https://reddit.com/r/jeeneetards.rss" />
 </outline>
 <outline isDefault="false" text="news" title="news">
-    <outline isFullContent="true" htmlUrl="https://lifehacker.com/rss" text="Lifehacker" title="Lifehacker" isNotification="false" xmlUrl="https://lifehacker.com/rss" />
-    <outline isFullContent="false" htmlUrl="https://torrentfreak.com/feed" text="TorrentFreak" title="TorrentFreak" isNotification="false" xmlUrl="https://torrentfreak.com/feed" />
-    <outline isFullContent="false" htmlUrl="https://letterboxd.com/journal/rss" text="Letterboxd Journal" title="Letterboxd Journal" isNotification="false" xmlUrl="https://letterboxd.com/journal/rss" />
-    <outline isFullContent="false" htmlUrl="http://timesofindia.indiatimes.com/rssfeeds/-2128936835.cms" text="Times Of India: India" title="Times Of India: India" isNotification="false" xmlUrl="http://timesofindia.indiatimes.com/rssfeeds/-2128936835.cms" />
     <outline isFullContent="true" htmlUrl="https://www.deccanchronicle.com/rss_feed" text="Deccan Chronicle" title="Deccan Chronicle" isNotification="false" xmlUrl="https://www.deccanchronicle.com/rss_feed" />
-    <outline isFullContent="false" htmlUrl="https://theintercept.com/feed/?lang=en" text="The Intercept" title="The Intercept" isNotification="false" xmlUrl="https://theintercept.com/feed/?lang=en" />
+    <outline isFullContent="false" htmlUrl="http://feeds2.feedburner.com/itsnicethat/SlXC" text="It's Nice That" title="It's Nice That" isNotification="false" xmlUrl="http://feeds2.feedburner.com/itsnicethat/SlXC" />
+    <outline isFullContent="false" htmlUrl="https://feeds.feedburner.com/mcsweeneys" text="McSweeney’s" title="McSweeney’s" isNotification="false" xmlUrl="https://feeds.feedburner.com/mcsweeneys" />
+    <outline isFullContent="false" htmlUrl="http://www.openculture.com/feed" text="Open Culture" title="Open Culture" isNotification="false" xmlUrl="http://www.openculture.com/feed" />
 </outline>
 <outline isDefault="false" text="news - tech" title="news - tech">
+    <outline isFullContent="false" htmlUrl="https://torrentfreak.com/feed" text="TorrentFreak" title="TorrentFreak" isNotification="true" xmlUrl="https://torrentfreak.com/feed" />
     <outline isFullContent="true" htmlUrl="https://rss.slashdot.org/Slashdot/slashdotMain" text="Slashdot" title="Slashdot" isNotification="false" xmlUrl="https://rss.slashdot.org/Slashdot/slashdotMain" />
-    <outline isFullContent="true" htmlUrl="https://www.stuff.tv/feed/" text="Stuff" title="Stuff" isNotification="false" xmlUrl="https://www.stuff.tv/feed/" />
-    <outline isFullContent="false" htmlUrl="https://www.schneier.com/feed/atom" text="Schneier on Security" title="Schneier on Security" isNotification="false" xmlUrl="https://www.schneier.com/feed/atom" />
     <outline isFullContent="false" htmlUrl="https://reclaimthenet.org/feed/" text="Reclaim The Net" title="Reclaim The Net" isNotification="false" xmlUrl="https://reclaimthenet.org/feed/" />
     <outline isFullContent="true" htmlUrl="https://www.bleepingcomputer.com/feed/" text="BleepingComputer" title="BleepingComputer" isNotification="false" xmlUrl="https://www.bleepingcomputer.com/feed/" />
-    <outline isFullContent="false" htmlUrl="https://www.howtogeek.com/feed/" text="How-To Geek" title="How-To Geek" isNotification="false" xmlUrl="https://www.howtogeek.com/feed/" />
     <outline isFullContent="false" htmlUrl="https://techcrunch.com/feed" text="TechCrunch" title="TechCrunch" isNotification="false" xmlUrl="https://techcrunch.com/feed" />
-    <outline isFullContent="false" htmlUrl="https://dev.to/feed" text="DEV Community &#128105;‍&#128187;&#128104;‍&#128187;" title="DEV Community &#128105;‍&#128187;&#128104;‍&#128187;" isNotification="false" xmlUrl="https://dev.to/feed" />
     <outline isFullContent="true" htmlUrl="https://feeds.arstechnica.com/arstechnica/technology-lab" text="Ars Technica - Biz &amp; IT" title="Ars Technica - Biz &amp; IT" isNotification="false" xmlUrl="https://feeds.arstechnica.com/arstechnica/technology-lab" />
     <outline isFullContent="true" htmlUrl="https://feeds.arstechnica.com/arstechnica/tech-policy" text="Ars Technica - Policy" title="Ars Technica - Policy" isNotification="false" xmlUrl="https://feeds.arstechnica.com/arstechnica/tech-policy" />
-    <outline isFullContent="false" htmlUrl="https://www.theverge.com/rss/tech/index.xml" text="The Verge -  Teches" title="The Verge -  Teches" isNotification="false" xmlUrl="https://www.theverge.com/rss/tech/index.xml" />
-    <outline isFullContent="true" htmlUrl="https://www.wired.com/feed/category/gear/latest/rss" text="WIRED - Gear" title="WIRED - Gear" isNotification="false" xmlUrl="https://www.wired.com/feed/category/gear/latest/rss" />
-    <outline isFullContent="false" htmlUrl="https://www.theatlantic.com/feed/technology/" text="The Atlantic - Technology" title="The Atlantic - Technology" isNotification="false" xmlUrl="https://www.theatlantic.com/feed/technology/" />
-    <outline isFullContent="false" htmlUrl="https://www.theguardian.com/uk/technology/rss" text="The Guardian - Technology" title="The Guardian - Technology" isNotification="false" xmlUrl="https://www.theguardian.com/uk/technology/rss" />
-    <outline isFullContent="false" htmlUrl="https://search.cnbc.com/rs/search/combinedcms/view.xml?partnerId=wrss01&amp;id=19854910" text="CNBC - Tech" title="CNBC - Tech" isNotification="false" xmlUrl="https://search.cnbc.com/rs/search/combinedcms/view.xml?partnerId=wrss01&amp;id=19854910" />
-    <outline isFullContent="false" htmlUrl="https://www.androidheadlines.com/feed" text="Android Headlines" title="Android Headlines" isNotification="false" xmlUrl="https://www.androidheadlines.com/feed" />
-    <outline isFullContent="false" htmlUrl="https://www.bitdefender.com/blog/api/rss/labs/" text="Bitdefender - Labs" title="Bitdefender - Labs" isNotification="false" xmlUrl="https://www.bitdefender.com/blog/api/rss/labs/" />
     <outline isFullContent="false" htmlUrl="https://www.bitdefender.com/blog/api/rss/hotforsecurity/" text="Bitdefender - Consumer Insights" title="Bitdefender - Consumer Insights" isNotification="false" xmlUrl="https://www.bitdefender.com/blog/api/rss/hotforsecurity/" />
+    <outline isFullContent="false" htmlUrl="https://alt2-feed-proxy.azurewebsites.net/api/FeedTrigger?name=all-news" text="AlternativeTo News" title="AlternativeTo News" isNotification="false" xmlUrl="https://alt2-feed-proxy.azurewebsites.net/api/FeedTrigger?name=all-news" />
+    <outline isFullContent="true" htmlUrl="https://themarkup.org/feeds/rss.xml" text="The Markup - All Stories" title="The Markup - All Stories" isNotification="false" xmlUrl="https://themarkup.org/feeds/rss.xml" />
 </outline>
 <outline isDefault="false" text="news - music" title="news - music">
     <outline isFullContent="false" htmlUrl="https://www.qobuz.com/gb-en/rss/best-sellers/pop-rock/download-streaming-albums" text="Qobuz UK - Pop/Rock" title="Qobuz UK - Pop/Rock" isNotification="false" xmlUrl="https://www.qobuz.com/gb-en/rss/best-sellers/pop-rock/download-streaming-albums" />
@@ -91,7 +46,76 @@
     <outline isFullContent="false" htmlUrl="https://www.qobuz.com/gb-en/rss/best-sellers/metal/download-streaming-albums" text="Qobuz UK - Metal" title="Qobuz UK - Metal" isNotification="false" xmlUrl="https://www.qobuz.com/gb-en/rss/best-sellers/metal/download-streaming-albums" />
     <outline isFullContent="false" htmlUrl="https://www.qobuz.com/us-en/rss/best-sellers/metal/download-streaming-albums" text="Qobuz US - Metal" title="Qobuz US - Metal" isNotification="false" xmlUrl="https://www.qobuz.com/us-en/rss/best-sellers/metal/download-streaming-albums" />
     <outline isFullContent="false" htmlUrl="https://www.qobuz.com/rss/magazine/Qobuz-info97" text="Qobuz - News &amp; Magazine" title="Qobuz - News &amp; Magazine" isNotification="false" xmlUrl="https://www.qobuz.com/rss/magazine/Qobuz-info97" />
-    <outline isFullContent="false" htmlUrl="https://www.rollingstone.com/music/music-news/feed" text="Rolling Stone - Music" title="The Rolling Stones" isNotification="false" xmlUrl="https://www.rollingstone.com/music/music-news/feed" />
+    <outline isFullContent="true" htmlUrl="https://www.rollingstone.com/music/music-news/feed" text="The Rolling Stones" title="The Rolling Stones" isNotification="false" xmlUrl="https://www.rollingstone.com/music/music-news/feed" />
+    <outline isFullContent="true" htmlUrl="https://feeds.npr.org/1039/rss.xml" text="NPR - Music" title="NPR - Music" isNotification="false" xmlUrl="https://feeds.npr.org/1039/rss.xml" />
+    <outline isFullContent="false" htmlUrl="https://faroutmagazine.co.uk/articles/music-news-reviews-updates-listings-category/new-music/album-reviews/rss" text="Far Out Magzine - music" title="Far Out Magzine - music" isNotification="false" xmlUrl="https://faroutmagazine.co.uk/articles/music-news-reviews-updates-listings-category/new-music/album-reviews/rss" />
+    <outline isFullContent="true" htmlUrl="https://www.allmusic.com/rss" text="AllMusic Blog" title="AllMusic Blog" isNotification="false" xmlUrl="https://www.allmusic.com/rss" />
+    <outline isFullContent="false" htmlUrl="https://pitchfork.com/feed/feed-news/rss" text="Pitchfork - News" title="Pitchfork - News" isNotification="false" xmlUrl="https://pitchfork.com/feed/feed-news/rss" />
+    <outline isFullContent="false" htmlUrl="https://pitchfork.com/rss/reviews/best/albums/" text="Pitchfork - Best New Albums" title="Pitchfork - Best New Albums" isNotification="false" xmlUrl="https://pitchfork.com/rss/reviews/best/albums/" />
+    <outline isFullContent="false" htmlUrl="https://pitchfork.com/rss/reviews/best/tracks/" text="Pitchfork - Best New Tracks" title="Pitchfork - Best New Tracks" isNotification="false" xmlUrl="https://pitchfork.com/rss/reviews/best/tracks/" />
+</outline>
+<outline isDefault="false" text="news - foss" title="news - foss">
+    <outline isFullContent="false" htmlUrl="https://news.itsfoss.com/rss" text="It's FOSS News" title="It's FOSS News" isNotification="false" xmlUrl="https://news.itsfoss.com/rss" />
+    <outline isFullContent="true" htmlUrl="https://9to5linux.com/feed/atom" text="9to5Linux" title="9to5Linux" isNotification="false" xmlUrl="https://9to5linux.com/feed/atom" />
+    <outline isFullContent="false" htmlUrl="http://www.archlinux.org/feeds/news/" text="Arch Linux: Recent news updates" title="Arch Linux: Recent news updates" isNotification="false" xmlUrl="http://www.archlinux.org/feeds/news/" />
+    <outline isFullContent="false" htmlUrl="https://www.fsf.org/static/fsforg/rss/news.xml" text="FSF News" title="FSF News" isNotification="false" xmlUrl="https://www.fsf.org/static/fsforg/rss/news.xml" />
+    <outline isFullContent="false" htmlUrl="https://www.fsf.org/static/fsforg/rss/blogs.xml" text="FSF blogs" title="FSF blogs" isNotification="false" xmlUrl="https://www.fsf.org/static/fsforg/rss/blogs.xml" />
+    <outline isFullContent="false" htmlUrl="https://www.fosslife.org/rss.xml" text="FOSSlife" title="FOSSlife" isNotification="false" xmlUrl="https://www.fosslife.org/rss.xml" />
+</outline>
+<outline isDefault="false" text="blogs - corpo" title="blogs - corpo">
+    <outline isFullContent="false" htmlUrl="https://blog.rust-lang.org/feed.xml" text="Rust Blog" title="Rust Blog" isNotification="false" xmlUrl="https://blog.rust-lang.org/feed.xml" />
+    <outline isFullContent="false" htmlUrl="https://blog.rust-lang.org/inside-rust/feed.xml" text="Inside Rust Blog" title="Inside Rust Blog" isNotification="false" xmlUrl="https://blog.rust-lang.org/inside-rust/feed.xml" />
+    <outline isFullContent="false" htmlUrl="https://blog.mozilla.org/en/feed" text="The Mozilla Blog" title="The Mozilla Blog" isNotification="false" xmlUrl="https://blog.mozilla.org/en/feed" />
+    <outline isFullContent="false" htmlUrl="https://blog.nightly.mozilla.org/feed" text="Firefox Nightly News" title="Firefox Nightly News" isNotification="false" xmlUrl="https://blog.nightly.mozilla.org/feed" />
+    <outline isFullContent="false" htmlUrl="https://blog.torproject.org/feed" text="Tor Project blog" title="Tor Project blog" isNotification="false" xmlUrl="https://blog.torproject.org/feed" />
+    <outline isFullContent="false" htmlUrl="https://blog.metabrainz.org/feed/" text="MetaBrainz Blog" title="MetaBrainz Blog" isNotification="false" xmlUrl="https://blog.metabrainz.org/feed/" />
+    <outline isFullContent="false" htmlUrl="https://bitwarden.com/blog/feed.xml" text="Bitwarden Blog" title="Bitwarden Blog" isNotification="false" xmlUrl="https://bitwarden.com/blog/feed.xml" />
+    <outline isFullContent="false" htmlUrl="https://tutanota.com/blog/feed.xml" text="The Tutanota Blog" title="The Tutanota Blog" isNotification="false" xmlUrl="https://tutanota.com/blog/feed.xml" />
+    <outline isFullContent="false" htmlUrl="https://proton.me/blog/feed" text="The Proton Blog" title="The Proton Blog" isNotification="false" xmlUrl="https://proton.me/blog/feed" />
+    <outline isFullContent="false" htmlUrl="https://stackoverflow.blog/feed/" text="Stack Overflow Blog" title="Stack Overflow Blog" isNotification="false" xmlUrl="https://stackoverflow.blog/feed/" />
+    <outline isFullContent="false" htmlUrl="https://blog.archive.org/feed/" text="Internet Archive Blogs" title="Internet Archive Blogs" isNotification="false" xmlUrl="https://blog.archive.org/feed/" />
+    <outline isFullContent="false" htmlUrl="https://www.eff.org/rss/updates.xml" text="eff.org - Deeplinks" title="eff.org - Deeplinks" isNotification="false" xmlUrl="https://www.eff.org/rss/updates.xml" />
+    <outline isFullContent="false" htmlUrl="https://www.lumendatabase.org/blog_feed.rss" text="Lumen Database Blog" title="Lumen Database Blog" isNotification="false" xmlUrl="https://www.lumendatabase.org/blog_feed.rss" />
+</outline>
+<outline isDefault="false" text="blogs - active" title="blogs - active">
+    <outline isFullContent="false" htmlUrl="https://xkcd.com/atom.xml" text="xkcd.com" title="xkcd.com" isNotification="false" xmlUrl="https://xkcd.com/atom.xml" />
+    <outline isFullContent="false" htmlUrl="https://jacobwsmith.xyz/feed.xml" text="Jacob's Unnamed Blog" title="Jacob's Unnamed Blog" isNotification="false" xmlUrl="https://jacobwsmith.xyz/feed.xml" />
+    <outline isFullContent="false" htmlUrl="https://rachelbythebay.com/w/atom.xml" text="rachelbythebay - Writing" title="rachelbythebay - Writing" isNotification="false" xmlUrl="https://rachelbythebay.com/w/atom.xml" />
+    <outline isFullContent="false" htmlUrl="https://jvns.ca/atom.xml" text="Julia Evans" title="Julia Evans" isNotification="false" xmlUrl="https://jvns.ca/atom.xml" />
+    <outline isFullContent="false" htmlUrl="https://wingolog.org/feed/atom" text="wingolog" title="wingolog" isNotification="false" xmlUrl="https://wingolog.org/feed/atom" />
+    <outline isFullContent="true" htmlUrl="https://www.harihareswara.net/rss/" text="Cogito, Ergo Sumana" title="Cogito, Ergo Sumana" isNotification="false" xmlUrl="https://www.harihareswara.net/rss/" />
+    <outline isFullContent="false" htmlUrl="https://lethain.com/feeds.xml" text="Irrational Exuberance" title="Irrational Exuberance" isNotification="false" xmlUrl="https://lethain.com/feeds.xml" />
+    <outline isFullContent="false" htmlUrl="https://feeds.feedburner.com/avc" text="AVC" title="AVC" isNotification="false" xmlUrl="https://feeds.feedburner.com/avc" />
+    <outline isFullContent="false" htmlUrl="https://www.schneier.com/feed/atom" text="Schneier on Security" title="Schneier on Security" isNotification="false" xmlUrl="https://www.schneier.com/feed/atom" />
+    <outline isFullContent="false" htmlUrl="https://kevquirk.com/feed.xml" text="Kev Quirk" title="Kev Quirk" isNotification="false" xmlUrl="https://kevquirk.com/feed.xml" />
+    <outline isFullContent="false" htmlUrl="https://hacdias.com/articles.rss" text="Henrique Dias" title="Henrique Dias" isNotification="false" xmlUrl="https://hacdias.com/articles.rss" />
+    <outline isFullContent="false" htmlUrl="https://barryfrost.com/feed" text="Barry Frost" title="Barry Frost" isNotification="false" xmlUrl="https://barryfrost.com/feed" />
+    <outline isFullContent="true" htmlUrl="https://hasbrouck.org/blog/index.xml" text="The Practical Nomad" title="The Practical Nomad" isNotification="false" xmlUrl="https://hasbrouck.org/blog/index.xml" />
+    <outline isFullContent="false" htmlUrl="https://www.roboleary.net/feed.xml" text="Rob O'Leary" title="Rob O'Leary" isNotification="false" xmlUrl="https://www.roboleary.net/feed.xml" />
+    <outline isFullContent="false" htmlUrl="https://daringfireball.net/feeds/main" text="Daring Fireball" title="Daring Fireball" isNotification="false" xmlUrl="https://daringfireball.net/feeds/main" />
+    <outline isFullContent="false" htmlUrl="https://brainbaking.com/index.xml" text="Brain Baking" title="Brain Baking" isNotification="false" xmlUrl="https://brainbaking.com/index.xml" />
+    <outline isFullContent="false" htmlUrl="https://chriswiegman.com/feed" text="Chris Wiegman" title="Chris Wiegman" isNotification="false" xmlUrl="https://chriswiegman.com/feed" />
+    <outline isFullContent="false" htmlUrl="https://daverupert.com/atom.xml" text="daverupert.com" title="daverupert.com" isNotification="false" xmlUrl="https://daverupert.com/atom.xml" />
+    <outline isFullContent="false" htmlUrl="https://zerokspot.com/index.xml" text="zerokspot.com" title="zerokspot.com" isNotification="false" xmlUrl="https://zerokspot.com/index.xml" />
+</outline>
+<outline isDefault="false" text="blogs - inactive" title="blogs - inactive">
+    <outline isFullContent="false" htmlUrl="https://lukesmith.xyz/rss.xml" text="Luke's Webpage" title="Luke's Webpage" isNotification="false" xmlUrl="https://lukesmith.xyz/rss.xml" />
+    <outline isFullContent="true" htmlUrl="https://thevaluable.dev/index.xml" text="The Valuable Dev" title="The Valuable Dev" isNotification="false" xmlUrl="https://thevaluable.dev/index.xml" />
+    <outline isFullContent="false" htmlUrl="https://monstro1.com/rss.xml" text="MONSTRO's Website" title="MONSTRO's Website" isNotification="false" xmlUrl="https://monstro1.com/rss.xml" />
+    <outline isFullContent="true" htmlUrl="http://www.aaronsw.com/2002/feeds/pgessays.rss" text="Paul Graham: Essays" title="Paul Graham: Essays" isNotification="false" xmlUrl="http://www.aaronsw.com/2002/feeds/pgessays.rss" />
+    <outline isFullContent="false" htmlUrl="https://www.joelonsoftware.com/feed" text="Joel on Software" title="Joel on Software" isNotification="false" xmlUrl="https://www.joelonsoftware.com/feed" />
+    <outline isFullContent="false" htmlUrl="https://chelseatroy.com/feed" text="Chelsea Troy" title="Chelsea Troy" isNotification="false" xmlUrl="https://chelseatroy.com/feed" />
+    <outline isFullContent="false" htmlUrl="https://vicki.substack.com/feed" text="Normcore Tech" title="Normcore Tech" isNotification="false" xmlUrl="https://vicki.substack.com/feed" />
+    <outline isFullContent="false" htmlUrl="https://phaazon.net/blog/feed" text="phaazon.net blog" title="phaazon.net blog" isNotification="false" xmlUrl="https://phaazon.net/blog/feed" />
+    <outline isFullContent="false" htmlUrl="https://adlrocha.substack.com/feed" text="@adlrocha Weekly Newsletter" title="@adlrocha Weekly Newsletter" isNotification="false" xmlUrl="https://adlrocha.substack.com/feed" />
+    <outline isFullContent="false" htmlUrl="https://alistairshepherd.uk/feed.xml" text="Alistair Shepherd" title="Alistair Shepherd" isNotification="false" xmlUrl="https://alistairshepherd.uk/feed.xml" />
+    <outline isFullContent="false" htmlUrl="https://ar.al/index.xml" text="Aral Balkan" title="Aral Balkan" isNotification="false" xmlUrl="https://ar.al/index.xml" />
+    <outline isFullContent="true" htmlUrl="https://austinhenley.com/blog/feed.rss" text="Austin Z. Henley's Blog" title="Austin Z. Henley's Blog" isNotification="false" xmlUrl="https://austinhenley.com/blog/feed.rss" />
+    <outline isFullContent="false" htmlUrl="https://benjamincongdon.me/blog/feed.xml" text="Ben Congdon" title="Ben Congdon" isNotification="false" xmlUrl="https://benjamincongdon.me/blog/feed.xml" />
+    <outline isFullContent="false" htmlUrl="http://www.jonandnic.com/feed" text="jonandnic dot com" title="jonandnic dot com" isNotification="false" xmlUrl="http://www.jonandnic.com/feed" />
+    <outline isFullContent="false" htmlUrl="https://arjunyadav.xyz/rss.xml" text="Arjun Yadav's Webpage" title="Arjun Yadav's Webpage" isNotification="false" xmlUrl="https://arjunyadav.xyz/rss.xml" />
+    <outline isFullContent="false" htmlUrl="https://www.dannyvankooten.com/atom.xml" text="Danny van Kooten" title="Danny van Kooten" isNotification="false" xmlUrl="https://www.dannyvankooten.com/atom.xml" />
+    <outline isFullContent="false" htmlUrl="https://drewdevault.com/blog/index.xml" text="Drew DeVault's blog" title="Drew DeVault's blog" isNotification="false" xmlUrl="https://drewdevault.com/blog/index.xml" />
 </outline>
   </body>
 </opml>
