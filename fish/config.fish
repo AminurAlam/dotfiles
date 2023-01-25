@@ -44,7 +44,7 @@ set --path m $XDG_DIR/main
 set --path rp $XDG_PROJECTS_DIR
 
 set -gx LS_COLORS "$COLORS"
-set -gx EXA_COLORS "$COLORS"
+# set -gx EXA_COLORS "$COLORS"
 set -gx VISUAL $EDITOR
 set -gx SUDO_EDITOR $EDITOR
 
@@ -55,7 +55,7 @@ set -gx LAUNCHER sk --prompt '  ' --inline-info --no-multi --margin 0,3,1,3 -
 set -gx WWW_HOME "https://searx.work/"
 
 # command config
-set -gx LESSHISTFILE "-"
+set -gx LESSHISTFILE -
 set -gx FB_DATABASE $XDG_CONFIG_HOME/filebrowser.db
 set -gx FB_CONFIG $XDG_CONFIG_HOME/filebrowser.json
 set -gx STARSHIP_CACHE $XDG_CACHE_HOME/starship
@@ -68,11 +68,11 @@ set -gx HISTFILE $XDG_STATE_HOME/bash/history
 set -gx PYTHONSTARTUP $XDG_CONFIG_HOME/python/startup.py
 set -gx NODE_REPL_HISTORY $XDG_STATE_HOME/node_repl_history
 set -gx NPM_CONFIG_USERCONFIG $XDG_CONFIG_HOME/npm/npmrc
-set -gx RUST_BACKTRACE "full"
+set -gx RUST_BACKTRACE full
 set -gx RUSTUP_HOME $XDG_DATA_HOME/rustup
 set -gx CARGO_HOME $XDG_DATA_HOME/cargo
 set -gx CARGO_INSTALL_ROOT $CARGO_HOME
-set -gx CARGO_LOG "info"
+set -gx CARGO_LOG info
 
 ### PATH ###
 [ -d "$HOME/bin" ]        && fish_add_path $HOME/bin
@@ -139,6 +139,7 @@ abbr cp "cp -ivr"
 abbr mv "mv -iv"
 if command -sq rip
     abbr rm "rip -i"
+    abbr rf "rip -d"
 else
     abbr rm "rm -i"
     abbr rf "rm -rfI"
@@ -170,23 +171,23 @@ end
 
 # in /usr/share/fish/functions/open.fish
 function open
-        if not set -q argv[1]
-            printf (_ "%ls: Expected at least %d args, got only %d\n") open 1 0 >&2
-            return 1
-        end
+    if not set -q argv[1]
+        printf (_ "%ls: Expected at least %d args, got only %d\n") open 1 0 >&2
+        return 1
+    end
 
-        if [ -d "$argv" ]
-            cd "$argv"
-        else if [ -f "$argv" ]
-            if file "$argv" | grep 'ASCII text'
-                $EDITOR "$argv"
-            end
-        else if type -qf xdg-open
-            for i in $argv
-                xdg-open $i &
-                disown $last_pid 2>/dev/null
-            end
-        else
-            echo (_ 'No open utility found. Try installing "xdg-open" or "xdg-utils".') >&2
+    if [ -d "$argv" ]
+        cd "$argv"
+    else if [ -f "$argv" ]
+        if file "$argv" | grep 'ASCII text'
+            $EDITOR "$argv"
         end
+    else if type -qf xdg-open
+        for i in $argv
+            xdg-open $i &
+            disown $last_pid 2>/dev/null
+        end
+    else
+        echo (_ 'No open utility found. Try installing "xdg-open" or "xdg-utils".') >&2
+    end
 end

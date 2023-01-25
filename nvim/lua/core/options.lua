@@ -8,6 +8,7 @@ set.shiftwidth = 4
 set.smarttab = true
 set.softtabstop = 4
 set.expandtab = true
+set.shiftround = true
 
 -- search
 set.hlsearch = true
@@ -24,23 +25,18 @@ set.sidescrolloff = 8
 
 -- column
 set.wrap = false
-set.number = true
-set.relativenumber = true
+set.number = false
+set.relativenumber = false
 set.breakindent = true
-set.showbreak = ''
-set.signcolumn = 'auto'
-set.foldcolumn = 'auto'
-local num = '%=%{ v:virtnum ? " " : ( v:relnum ? v:relnum : v:lnum ) }'
-local symbol = '%{v:virtnum ? "…" : ( v:relnum ? "│" : "❯" ) }'
-set.statuscolumn = num .. symbol .. '%s%C'
+set.statuscolumn = vim.g.stc_number .. vim.g.stc_symbol .. '%s%C'
 
 -- design
 set.showmode = false
-set.showcmd = true
-set.showcmdloc = 'statusline'
-set.showtabline = 0
-set.shiftround = true
 set.ruler = false
+set.showcmd = true
+set.showmatch = true
+set.matchtime = 2
+set.showcmdloc = 'statusline' -- https://github.com/neovim/neovim/issues/20087
 set.shortmess = 'acoOsSWIF'
 
 -- terminal & cursor
@@ -49,7 +45,7 @@ set.belloff = 'showmatch'
 set.winblend = 10
 set.pumblend = 10
 set.termguicolors = true
-set.guicursor = { n = 'hor' }
+set.guicursor = 'n-sm:hor25,v-o-i-r-c-ci-cr:ver25' -- { n = 'hor', v = 'ver', c = 'ver', o = 'block' }
 set.startofline = true
 
 -- fold

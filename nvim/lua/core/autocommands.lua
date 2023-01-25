@@ -1,23 +1,22 @@
 local autocmd = vim.api.nvim_create_autocmd
 -- local augroup = vim.api.nvim_create_augroup
 
+local nmap = function(lhs, rhs, opts) vim.keymap.set('n', lhs, rhs, opts or { buffer = true, silent = true }) end
+local set = vim.opt_local
+
 -- stylua: ignore
 autocmd({ 'FileType' }, {
     desc = 'exit by pressing q or <esc>',
     pattern = { 'qf', 'help', 'lspinfo', 'DressingSelect', 'Trouble' },
     callback = function()
-        vim.keymap.set('n', 'q', '<cmd>:close<cr>', { silent = true, buffer = true })
-        vim.keymap.set('n', '<esc>', function()
-            vim.cmd(vim.v.hlsearch == 1 and 'nohlsearch' or 'close')
-        end, { silent = true, buffer = true }
-        )
+        nmap('q', '<cmd>:close<cr>')
+        nmap('<esc>', function() vim.cmd(vim.v.hlsearch == 1 and 'nohlsearch' or 'close') end)
         vim.opt.buflisted = false
     end,
 })
 
 autocmd({ 'TermOpen', 'TermEnter' }, {
     callback = function()
-        local set = vim.opt_local
         set.colorcolumn = ''
         set.signcolumn = 'no'
         set.statuscolumn = ''
@@ -26,25 +25,19 @@ autocmd({ 'TermOpen', 'TermEnter' }, {
 
 autocmd({ 'FileType', 'BufNewFile' }, {
     desc = 'reading mode for some filetypes',
-    pattern = { 'alpha', 'Terminal', 'help', 'text', 'markdown', 'gitcommit', 'conf', 'log' },
+    pattern = { 'alpha', 'man', 'help', 'text', 'markdown', 'gitcommit', 'log' },
     callback = function()
-        local set = vim.opt_local
-        set.number = false
-        set.relativenumber = false
         set.wrap = true
         set.linebreak = true
-        set.colorcolumn = ''
-        set.signcolumn = 'no'
-        set.listchars = {
-            tab = '  ',
-            trail = ' ',
-            extends = '…',
-            precedes = '…',
-            conceal = 'x',
-        }
-        set.statuscolumn = '%{v:virtnum ? "…" : ( v:relnum ? " " : "❯" ) }'
+        set.listchars = { tab = '  ' }
+        set.statuscolumn = vim.g.stc_symbol
+
         vim.cmd('hi Whitespace guibg=NONE')
-        -- if set.filetype:get() == 'help' then vim.cmd('wincmd T') end
+        if set.filetype:get() == 'help' then
+            -- vim.cmd('wincmd T')
+            nmap('<cr>', 'K')
+            nmap('<bs>', '<c-o>')
+        end
     end,
 })
 
@@ -61,13 +54,12 @@ vim.api.nvim_create_autocmd('BufNewFile', {
                 if choice then vim.cmd('edit ' .. vim.fn.fnameescape(choice)) end
             end)
         end
-        vim.g.did_load_filetypes = 0
+        vim.g.did_load_filetypes = 1
     end,
 })
 
 autocmd({ 'TermOpen' }, {
     callback = function()
-        local set = vim.opt_local
         set.number = false
         set.relativenumber = false
     end,
@@ -124,6 +116,9 @@ autocmd({ 'TextYankPost' }, {
 autocmd({ 'FileType' }, {
     pattern = 'cuesheet',
     callback = function() vim.opt.syntax = 'cuesheet' end,
+})
+autocmd('VimLeave', {
+    callback = function() vim.opt.guicursor = 'a:hor25' end
 })
 
 -- https://github.com/ibhagwan/smartyank.nvim

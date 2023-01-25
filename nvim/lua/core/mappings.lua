@@ -1,6 +1,6 @@
-local function nmap(k, v, opts) vim.keymap.set('n', k, v, opts or { noremap = true, silent = true }) end
-local function vmap(k, v, opts) vim.keymap.set('v', k, v, opts or { noremap = true, silent = true }) end
-local function umap(k, v, opts) vim.keymap.set({ '', 'i' }, k, v, opts or { noremap = true, silent = true }) end
+local nmap = function(k, v, opts) vim.keymap.set('n', k, v, opts or { noremap = true, silent = true }) end
+local vmap = function(k, v, opts) vim.keymap.set('v', k, v, opts or { noremap = true, silent = true }) end
+local umap = function(k, v, opts) vim.keymap.set({ '', 'i' }, k, v, opts or { noremap = true, silent = true }) end
 
 -- https://kevinli.co/posts/2017-01-19-multiple-cursors-in-500-bytes-of-vimscript/
 
@@ -51,8 +51,11 @@ nmap('<leader>d ', 'm`<cmd>:%s/\\s\\+$//ge<cr><cmd>:nohlsearch<cr>``') -- remove
 nmap('<leader>ss', function() vim.opt_local.spell = not vim.opt_local.spell:get() end)
 nmap('<leader>sw', function() vim.opt_local.wrap = not vim.opt_local.wrap:get() end)
 nmap('<leader>sn', function()
-    vim.opt_local.relativenumber = not vim.opt_local.number:get()
-    vim.opt_local.number = not vim.opt_local.number:get()
+    if vim.opt_local.statuscolumn:get() == vim.g.stc_symbol then
+        vim.opt_local.statuscolumn = vim.g.stc_number .. vim.g.stc_symbol .. '%s%C'
+    else
+        vim.opt_local.statuscolumn = vim.g.stc_symbol
+    end
 end)
 nmap('<leader>ol', "@='ywo<c-v><esc>p<c-a>'<cr>") -- https://jdhao.github.io/2019/04/29/nvim_map_with_a_count/
 

@@ -10,6 +10,7 @@ bootstrap-pacman() {
     printf "RUN THIS COMMAND IN FAILSAFE MODE
     [ -d ~/../usr-n/ ] && rm -fr ~/../usr/ && mv ~/../usr-n/ ~/../usr/
     "
+    exit
 }
 
 configure-fish() {
@@ -19,6 +20,9 @@ configure-fish() {
 }
 
 command -v pacman || bootstrap-pacman
+pacman-key --init
+pacman-key --populate
+
 termux-setup-storage
 pacman -S fish
 curl -o setup.fish "https://raw.githubusercontent.com/AminurAlam/dotfiles/main/setup.fish"

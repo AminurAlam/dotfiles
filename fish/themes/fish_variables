@@ -1,6 +1,7 @@
 # This file contains fish universal variable definitions.
 # VERSION: 3.0
 SETUVAR __fish_initialized:3400
+SETUVAR _fish_abbr_weather:curl\x20\x2ds\x20wttr\x2ein/Ghent\x20\x7c\x20grep\x20\x2dv\x20Follow
 SETUVAR fish_color_autosuggestion:6e738d
 SETUVAR fish_color_cancel:ed8796
 SETUVAR fish_color_command:8aadf4
@@ -15,7 +16,6 @@ SETUVAR fish_color_history_current:\x2d\x2dbold
 SETUVAR fish_color_host:8aadf4
 SETUVAR fish_color_host_remote:a6da95
 SETUVAR fish_color_keyword:ed8796
-SETUVAR fish_color_match:\x2d\x2dbackground\x3dbrblue
 SETUVAR fish_color_normal:cad3f5
 SETUVAR fish_color_operator:f5bde6
 SETUVAR fish_color_option:\x1d
@@ -41,4 +41,5 @@ SETUVAR fish_pager_color_selected_background:\x1d
 SETUVAR fish_pager_color_selected_completion:\x1d
 SETUVAR fish_pager_color_selected_description:\x1d
 SETUVAR fish_pager_color_selected_prefix:\x1d
-SETUVAR fish_user_paths:/data/data/com\x2etermux/files/home/\x2elocal/bin
+SETUVAR fish_user_paths:/data/data/com\x2etermux/files/home/\x2elocal/bin\x1e/data/data/com\x2etermux/files/home/bin\x1e/data/data/com\x2etermux/files/home/\x2elocal/share/cargo/bin
+SETUVAR pisces_pairs:\x28\x2c\x29\x1e\x5b\x2c\x5d\x1e\x7b\x2c\x7d\x1e\x22\x2c\x22\x1e\x27\x2c\x27

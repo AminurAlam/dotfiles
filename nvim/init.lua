@@ -8,16 +8,15 @@ if status then impatient.enable_profile() end
 
 local g = vim.g
 
+g.mapleader = ' '
+g.maplocalleader = ' '
+g.stc_number = '%=%{ v:virtnum ? " " : ( v:relnum ? v:relnum : v:lnum ) }'
+g.stc_symbol = '%=%{ v:virtnum ? "…" : ( v:relnum ? "│" : "❯" ) }'
+g.do_filetype_lua = 1
+g.editorconfig = false
 g.netrw_banner = 0
 g.netrw_hide = 0
 g.netrw_liststyle = 3
-
-g.mapleader = ' '
-g.maplocalleader = ' '
-g.sign_cur = '❯'
-g.sign_sep = '❯'
-g.do_filetype_lua = 1
-g.editorconfig = false
 
 -- disabling plugins
 g.loaded_gzip = 1
@@ -36,8 +35,8 @@ g.loaded_logiPat = 1
 g.loaded_rrhelper = 1
 
 -- [[ core ]]
-require('core.packer') -- packer.nvim
 -- require('core.lazy') -- lazy.nvim
+require('core.packer') -- packer.nvim
 require('core.options')
 require('core.mappings')
 require('core.autocommands')
