@@ -10,8 +10,8 @@ local g = vim.g
 
 g.mapleader = ' '
 g.maplocalleader = ' '
-g.stc_number = '%=%{ v:virtnum ? " " : ( v:relnum ? v:relnum : v:lnum ) }'
-g.stc_symbol = '%=%{ v:virtnum ? "…" : ( v:relnum ? "│" : "❯" ) }'
+g.stc_number = '%=%{ v:virtnum ? " " : v:lnum }'
+g.stc_symbol = '%{ v:virtnum ? "…" : ( v:relnum ? "│" : "❯" ) }'
 g.do_filetype_lua = 1
 g.editorconfig = false
 g.netrw_banner = 0

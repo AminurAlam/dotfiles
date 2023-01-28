@@ -1,4 +1,6 @@
 termux/shell
 termux/font.ttf
+rclone
+rclone.conf
 
 packer_compiled.lua

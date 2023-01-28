@@ -11,7 +11,7 @@ autocmd({ 'FileType' }, {
     callback = function()
         nmap('q', '<cmd>:close<cr>')
         nmap('<esc>', function() vim.cmd(vim.v.hlsearch == 1 and 'nohlsearch' or 'close') end)
-        vim.opt.buflisted = false
+        set.buflisted = false
     end,
 })
 
@@ -25,19 +25,11 @@ autocmd({ 'TermOpen', 'TermEnter' }, {
 
 autocmd({ 'FileType', 'BufNewFile' }, {
     desc = 'reading mode for some filetypes',
-    pattern = { 'alpha', 'man', 'help', 'text', 'markdown', 'gitcommit', 'log' },
+    pattern = { 'alpha', 'man', 'text', 'markdown', 'gitcommit', 'log' },
     callback = function()
         set.wrap = true
         set.linebreak = true
-        set.listchars = { tab = '  ' }
         set.statuscolumn = vim.g.stc_symbol
-
-        vim.cmd('hi Whitespace guibg=NONE')
-        if set.filetype:get() == 'help' then
-            -- vim.cmd('wincmd T')
-            nmap('<cr>', 'K')
-            nmap('<bs>', '<c-o>')
-        end
     end,
 })
 
@@ -118,7 +110,7 @@ autocmd({ 'FileType' }, {
     callback = function() vim.opt.syntax = 'cuesheet' end,
 })
 autocmd('VimLeave', {
-    callback = function() vim.opt.guicursor = 'a:hor25' end
+    callback = function() vim.opt.guicursor = 'a:hor25' end,
 })
 
 -- https://github.com/ibhagwan/smartyank.nvim

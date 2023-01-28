@@ -1,5 +1,6 @@
 function setup-git
     printf "\nSETTING UP GIT\n\n"
+
     mkdir -p $HOME/.config/git/
     touch $HOME/.config/git/config
 
@@ -11,19 +12,33 @@ function setup-git
     git clone -q --depth 1 "https://github.com/AminurAlam/dotfiles.git" $HOME/repos/dotfiles/
 end
 
-function restore-configs
-    printf "\nRESTORING CONFIG FILES\n\n"
-    for directory in $HOME/repos/dotfiles/*
-        [ -d "$directory" ] && command cp -fr "$directory" $HOME/.config/
+function relink
+    if test -L "$argv[1]"
+        ln -fs $argv[1] $argv[2]
+    else
+        command rm -fr $argv[2] &> /dev/null
+        ln -fs $argv[1] $argv[2]
     end
+end
 
-    command cp -fr $HOME/repos/dotfiles/starship.toml $HOME/.config/
+function restore-configs
+    printf "\nLINKING CONFIG FILES\n\n"
+
+    mkdir -p $HOME/.config/
     mkdir -p $HOME/.local/share/
-    command mv -f $HOME/.config/cargo/ $HOME/.local/share/
-    command mv $HOME/.config/termux/* $HOME/.termux/
-    rmdir $HOME/.config/termux/
 
-    # https://github.com/ryanoasis/nerd-fonts/releases/download/v2.2.2/SourceCodePro.zip
+    ln -fs $HOME/repos/dotfiles/cargo/ $HOME/.local/share/
+    ln -fs $HOME/repos/dotfiles/fish/ $HOME/.config/
+    ln -fs $HOME/repos/dotfiles/newsboat/ $HOME/.config/
+    ln -fs $HOME/repos/dotfiles/neomutt/ $HOME/.config/
+    ln -fs $HOME/repos/dotfiles/npm/ $HOME/.config/
+    ln -fs $HOME/repos/dotfiles/nvim/ $HOME/.config/
+    ln -fs $HOME/repos/dotfiles/python/ $HOME/.config/
+
+    ln -fs $HOME/repos/dotfiles/termux/colors.properties $HOME/.termux/colors.properties
+    ln -fs $HOME/repos/dotfiles/termux/termux.properties $HOME/.termux/termux.properties
+    ln -fs $HOME/repos/dotfiles/starship.toml $HOME/.config/starship.toml
+
     termux-reload-settings
 end
 
@@ -47,3 +62,5 @@ truncate -s 0 $PREFIX/etc/motd $PREFIX/etc/motd.sh
 [ -d  "$HOME/storage/" ] && command rm -fr "$HOME/storage/"
 
 source $HOME/.config/fish/config.fish
+
+# https://github.com/ryanoasis/nerd-fonts/releases/download/v2.2.2/SourceCodePro.zip

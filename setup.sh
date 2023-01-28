@@ -3,6 +3,8 @@
 bootstrap-pacman() {
     printf "\nBOOTSTRAPPING PACMAN\n\n"
 
+    # https://github.com/termux/termux-packages/releases
+
     mkdir ~/../usr-n/
     unzip -d ~/../usr-n/ /sdcard/main/bootstrap-arm.zip || return
     cat ~/../usr-n/SYMLINKS.txt | awk -F "←" '{system("ln -s '"'"'"$1"'"'"' '"'"'"$2"'"'"'")}'
