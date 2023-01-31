@@ -16,5 +16,5 @@ function clean
     command rm -rf $dirs 2> /dev/null
     command -sq rip && rip --decompose
     command -sq pip && pip cache purge
-    echo (count (command ls -1Na)) files in HOME
+    echo (count (command exa -al)) files in HOME
 end

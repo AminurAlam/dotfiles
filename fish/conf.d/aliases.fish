@@ -15,9 +15,9 @@ alias rconf "rclone config"
 
 # nvim
 alias vm "nvim ~/repos/musicbrainzpy/cover_art.py"
-alias vn "cd ~/.config/nvim/ && nvim -c 'Telescope find_files'"
-alias vf "cd ~/.config/fish/ && nvim -c 'Telescope find_files'"
-alias n  "cd $EXTERNAL_STORAGE/main/notes/ && nvim -c 'Telescope find_files'"
+alias vn "nvim --cmd 'cd ~/.config/nvim/'"
+alias vf "nvim --cmd 'cd ~/.config/fish/'"
+alias n  "nvim --cmd 'cd /sdcard/main/notes/'"
 
 # ls -> exa
 alias l  "exa -lFa -s ext --icons --no-user --no-permissions --no-time --group-directories-first"

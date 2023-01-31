@@ -3,6 +3,7 @@ if not status then return end
 
 local icons = require('core.icons')
 local ver = vim.version()
+local version = 'v' .. ver.major .. '.' .. ver.minor .. '.' .. ver.patch .. (ver.prerelease and '-dev' or '')
 local function button(sc, txt, keybind, keybind_opts)
     local opts = {
         position = 'center',
@@ -59,7 +60,7 @@ alpha.setup {
         { type = 'padding', val = 1 },
         {
             type = 'text',
-            val = 'v' .. ver.major .. '.' .. ver.minor .. '.' .. ver.patch,
+            val = string.gsub(vim.fn.getcwd(), vim.env.HOME, '~') .. ' | ' .. version,
             opts = { position = 'center' },
         },
         { type = 'padding', val = 2 },

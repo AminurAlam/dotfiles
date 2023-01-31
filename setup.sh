@@ -1,32 +1,30 @@
 #!/usr/bin/env bash
 
 bootstrap-pacman() {
-    printf "\nBOOTSTRAPPING PACMAN\n\n"
-
-    # https://github.com/termux/termux-packages/releases
+    printf "BOOTSTRAPPING PACMAN
+    https://github.com/termux/termux-packages/releases\r\n"
 
     mkdir ~/../usr-n/
     unzip -d ~/../usr-n/ /sdcard/main/bootstrap-arm.zip || return
     cat ~/../usr-n/SYMLINKS.txt | awk -F "←" '{system("ln -s '"'"'"$1"'"'"' '"'"'"$2"'"'"'")}'
 
     printf "RUN THIS COMMAND IN FAILSAFE MODE
-    [ -d ~/../usr-n/ ] && rm -fr ~/../usr/ && mv ~/../usr-n/ ~/../usr/
-    "
+    [ -d ~/../usr-n/ ] && rm -fr ~/../usr/ && mv ~/../usr-n/ ~/../usr/\r\n"
     exit
 }
 
-configure-fish() {
-    printf "\nRUNNING FISH CONFIG\n\n"
-    fish setup.fish
+setup-fish-shell() {
+    pacman -S fish
     chsh -s fish
+    curl -o setup.fish "https://raw.githubusercontent.com/AminurAlam/dotfiles/main/setup.fish"
+
+    printf "BASE SETUP COMPLETE RUN THIS
+    fish setup.fish\r\n"
 }
 
-command -v pacman || bootstrap-pacman
+command -v pacman > /dev/null || bootstrap-pacman
 pacman-key --init
 pacman-key --populate
 
 termux-setup-storage
-pacman -S fish
-curl -o setup.fish "https://raw.githubusercontent.com/AminurAlam/dotfiles/main/setup.fish"
-
-printf "SETUP COMPLETE"
+setup-fish-shell

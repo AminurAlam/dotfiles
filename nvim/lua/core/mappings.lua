@@ -41,6 +41,7 @@ nmap('Q', '<cmd>:bdelete<cr>')
 nmap('r', '<cmd>:redo<cr>')
 nmap('<cr>', 'o<esc>')
 nmap('cn', '*``cgn') -- search and replace
+nmap('dn', 'diw') -- search and replace
 nmap('>', '>>')
 nmap('<', '<<')
 vmap('>', '>gv')

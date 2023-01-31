@@ -87,10 +87,11 @@ set fish_greeting "$(fish_logo brcyan brcyan brgreen \| 0)"
 
 ### BINDINGS ###
 fish_vi_key_bindings
-bind -M insert \cq exit
 bind -M insert \cr 'commandline -f history-pager'
 bind -M insert \e\[1\;5A 'commandline -f history-token-search-backward'
 bind -M insert \e\[1\;5B 'commandline -f history-token-search-forward'
+
+command -sq starship && bind -M insert \r transient_execute
 
 # auto pair - https://github.com/laughedelic/pisces
 set fish_function_path $fish_function_path $XDG_CONFIG_HOME/fish/functions/pisces
@@ -139,6 +140,10 @@ function fish_title
     echo (prompt_pwd): (status current-command)
 end
 
+function starship_transient_prompt_func
+    printf ' ❯ '
+end
+
 function wa
     curl -s https://api.wolframalpha.com/v1/result?appid=PJHXKQ-UP492G48WW&i=$(echo $argv | string escape --style=url)
 end
@@ -165,3 +170,15 @@ function open
         echo (_ 'No open utility found. Try installing "xdg-open" or "xdg-utils".') >&2
     end
 end
+
+function quit
+    if test "$(count $(ps -C fish))" = 2
+        pkill com.termux
+    else
+        exit
+    end
+end
+
+bind -M insert \cq quit
+bind -M insert \cd quit
+bind q quit

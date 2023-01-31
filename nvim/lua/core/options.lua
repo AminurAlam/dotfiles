@@ -1,4 +1,4 @@
-local set = vim.opt -- opt might be deprecated in the future?
+local set = vim.opt
 
 -- indent and spacing
 set.autoindent = true
@@ -45,7 +45,7 @@ set.belloff = 'showmatch'
 set.winblend = 10
 set.pumblend = 10
 set.termguicolors = true
-set.guicursor = 'n-sm:hor25,v-o-i-r-c-ci-cr:ver25' -- { n = 'hor', v = 'ver', c = 'ver', o = 'block' }
+set.guicursor = 'n-sm:hor25,v-o-i-r-c-ci-cr:ver25'
 set.startofline = true
 
 -- fold
