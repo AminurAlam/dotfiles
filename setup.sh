@@ -6,6 +6,7 @@ bootstrap-pacman() {
 
     mkdir ~/../usr-n/
     unzip -d ~/../usr-n/ /sdcard/main/bootstrap-arm.zip || return
+    cd ~/../usr-n/
     cat ~/../usr-n/SYMLINKS.txt | awk -F "←" '{system("ln -s '"'"'"$1"'"'"' '"'"'"$2"'"'"'")}'
 
     printf "RUN THIS COMMAND IN FAILSAFE MODE
@@ -14,7 +15,7 @@ bootstrap-pacman() {
 }
 
 setup-fish-shell() {
-    pacman -S fish
+    pacman -syu && pacman -S fish
     chsh -s fish
     curl -o setup.fish "https://raw.githubusercontent.com/AminurAlam/dotfiles/main/setup.fish"
 

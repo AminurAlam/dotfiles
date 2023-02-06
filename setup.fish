@@ -1,8 +1,7 @@
 function setup-git
     printf "\nSETTING UP GIT\n\n"
 
-    mkdir -p $HOME/.config/git/
-    touch $HOME/.config/git/config
+    mkdir -p $HOME/.config/git/ && touch $HOME/.config/git/config
 
     git config --global init.defaultBranch 'dev'
     git config --global user.name 'AminurAlam'
@@ -19,50 +18,37 @@ end
 function restore-configs
     printf "\nLINKING CONFIG FILES\n\n"
 
-    mkdir -p $HOME/.config/backup/
+    mkdir -p $HOME/.config/backup/ $HOME/.local/share/
 
-    function relink
-        [ -d "$argv[1]" -o -e "$argv[1]" ] || return
-        command mv -f $argv[2] $HOME/.config/backup/ &> /dev/null
-        ln -fs $argv[1] $argv[2]
+    for config in fish newsboat npm nvim python
+        [ -e "$HOME/repos/dotfiles/$config" ] || continue
+        command mv -f "$HOME/.config/$config" $HOME/.config/backup/ &> /dev/null
+        ln -fs "$HOME/repos/dotfiles/$config" "$HOME/.config/"
     end
 
-    mkdir -p $HOME/.config/
-    mkdir -p $HOME/.local/share/
+    command rm -fr $HOME/.termux/*.properties $HOME/.config/starship.toml &> /dev/null
+    ln -fs $HOME/repos/dotfiles/starship.toml            $HOME/.config/starship.toml
+    ln -fs $HOME/repos/dotfiles/termux/colors.properties $HOME/.termux/colors.properties
+    ln -fs $HOME/repos/dotfiles/termux/termux.properties $HOME/.termux/termux.properties
 
-    relink $HOME/repos/dotfiles/cargo/    $HOME/.local/share/cargo/
-    relink $HOME/repos/dotfiles/fish/     $HOME/.config/fish/
-    relink $HOME/repos/dotfiles/newsboat/ $HOME/.config/newsboat/
-    relink $HOME/repos/dotfiles/npm/      $HOME/.config/npm/
-    relink $HOME/repos/dotfiles/nvim/     $HOME/.config/nvim/
-    relink $HOME/repos/dotfiles/python/   $HOME/.config/python/
-
-    relink $HOME/repos/dotfiles/termux/colors.properties $HOME/.termux/colors.properties
-    relink $HOME/repos/dotfiles/termux/termux.properties $HOME/.termux/termux.properties
-    relink $HOME/repos/dotfiles/starship.toml            $HOME/.config/starship.toml
-
-    rmdir $HOME/.config/backup/ &> /dev/null
-    termux-reload-settings
-end
-
-function prepare-bin
-    printf "\nPREPARING LOCAL BINARIES\n\n"
-
-    mkdir -p $HOME/.local/bin/
-    [ -d "/sdcard/main/bin/" ] && command cp -fr /sdcard/main/bin/* $HOME/.local/bin/
-    command -sq nvim && ln -fs (command -s nvim) "$HOME/.local/bin/termux-file-editor"
-    chmod +x $HOME/bin/*
+    rmdir --ignore-fail-on-non-empty $HOME/.config/backup/ &> /dev/null
 end
 
 
-pkg install dust exa fd git neovim-nightly rip ripgrep starship zoxide lua-language-server termux-api
-pkg install python python-pip && pip install requests deflacue
+printf "\nFETCHING UPDATES\n\n"
+yes | pacman -Syu > /dev/null
+yes | pacman -S dust exa fd git neovim-nightly rip ripgrep starship zoxide lua-language-server termux-api > /dev/null
+pacman -S python python-pip && pip install requests deflacue
 
 setup-git
 restore-configs
-prepare-bin
 
+printf "\nPREPARING LOCAL BINARIES\n\n"
+mkdir -p $HOME/.local/bin/
+[ -d "/sdcard/main/bin/" ] && command cp -fr /sdcard/main/bin/* $HOME/.local/bin/
+command -sq nvim && ln -fs (command -s nvim) "$HOME/.local/bin/termux-file-editor"
+chmod +x $HOME/.local/bin/*
+
+printf "\nFINAL TOUCH\n\n"
 truncate -s 0 $PREFIX/etc/motd $PREFIX/etc/motd.sh
-[ -d  "$HOME/storage/" ] && command rm -fr "$HOME/storage/"
-
-source $HOME/.config/fish/config.fish
+[ -d "$HOME/storage/" ] && command rm -fr "$HOME/storage/"

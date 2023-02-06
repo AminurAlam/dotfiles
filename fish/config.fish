@@ -145,7 +145,7 @@ function starship_transient_prompt_func
 end
 
 function wa
-    curl -s https://api.wolframalpha.com/v1/result?appid=PJHXKQ-UP492G48WW&i=$(echo $argv | string escape --style=url)
+    curl -s "https://api.wolframalpha.com/v1/result?appid=PJHXKQ-UP492G48WW&i=$(echo $argv | string escape --style=url)"
 end
 
 # in /usr/share/fish/functions/open.fish

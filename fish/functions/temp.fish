@@ -1,6 +1,5 @@
 function temp
-    mkdir -p $XDG_CACHE_HOME/temp/
-    cd $XDG_CACHE_HOME/temp/
+    mkdir -p $XDG_CACHE_HOME/temp/ && cd $XDG_CACHE_HOME/temp/ || return
 
     switch $argv
         case 'fish'; $EDITOR temp.fish
@@ -10,12 +9,8 @@ function temp
         case 'txt';  $EDITOR temp.txt
         case 'md';   $EDITOR temp.md
         case '*'
-            mkdir -p a/b/c/
-            mkdir -p x/y/z/
-            touch x/y/z/0
-            touch 1
-            touch 2
-            touch 3
+            mkdir -p a/b/c/d dir/{x,y,z}
+            touch 1 2 3 dir/0
             lt
     end
 
