@@ -1,6 +1,6 @@
 local set = vim.opt
 
--- indent and spacing
+-- indent & spacing
 set.autoindent = true
 set.smartindent = true
 set.tabstop = 4
@@ -17,29 +17,34 @@ set.smartcase = true
 set.incsearch = true
 set.iskeyword:append('-,$')
 
+-- spell
+set.spellcapcheck = ''
+set.spelloptions = 'camel'
+set.spellsuggest = { 'best', '10' }
+
 -- scrolling
 set.scroll = 20
 set.scrolloff = 6
 set.sidescroll = 4
 set.sidescrolloff = 8
 
--- column
-set.wrap = false
-set.number = false
-set.relativenumber = false
-set.breakindent = true
-set.statuscolumn = vim.g.stc_number .. vim.g.stc_symbol .. '%s%C'
-
--- design
+-- cmdline, statusline & statuscolumn
 set.showmode = false
 set.ruler = false
-set.showcmd = true
-set.showmatch = true
-set.matchtime = 2
+set.showcmd = false
+set.laststatus = 3
+set.cmdheight = 0
 set.showcmdloc = 'statusline' -- https://github.com/neovim/neovim/issues/20087
+set.numberwidth = 1
 set.shortmess = 'acoOsSWIF'
+set.number = false
+set.relativenumber = false
+set.statuscolumn = vim.g.stc_number .. vim.g.stc_symbol .. '%s%C'
+set.foldlevel = 5
+set.foldlevelstart = 99
+set.foldenable = true
 
--- terminal & cursor
+-- terminal, cursor & gui
 set.virtualedit = 'onemore'
 set.belloff = 'showmatch'
 set.winblend = 10
@@ -47,23 +52,17 @@ set.pumblend = 10
 set.termguicolors = true
 set.guicursor = 'n-sm:hor25,v-o-i-r-c-ci-cr:ver25'
 set.startofline = true
-
--- fold
-set.foldlevel = 5
-set.foldlevelstart = 99
-set.foldenable = true
-
--- gui
-set.laststatus = 3
-set.cmdheight = 0
-set.helpheight = 150
-set.numberwidth = 1
 set.cursorline = true
 set.cursorlineopt = 'number'
 set.mouse = 'a'
 set.background = 'dark'
+set.helpheight = 150
+set.wrap = false
+set.breakindent = true
 
 -- others
+set.showmatch = true
+set.matchtime = 2
 set.grepprg = 'rg --vimgrep '
 set.timeout = false
 set.swapfile = false
@@ -85,9 +84,4 @@ set.fillchars = {
     foldopen = '',
     foldclose = '',
     lastline = '.',
-}
-set.runtimepath = {
-    '~/.config/nvim',
-    '~/.local/share/nvim/site',
-    '/data/data/com.termux/files/usr/share/nvim/runtime/',
 }

@@ -15,17 +15,16 @@ bootstrap-pacman() {
 }
 
 setup-fish-shell() {
-    pacman -syu && pacman -S fish
+    pacman -Syu fish
     chsh -s fish
-    curl -o setup.fish "https://raw.githubusercontent.com/AminurAlam/dotfiles/main/setup.fish"
+    curl -s -o setup.fish "https://raw.githubusercontent.com/AminurAlam/dotfiles/main/setup.fish"
 
     printf "BASE SETUP COMPLETE RUN THIS
     fish setup.fish\r\n"
 }
 
+termux-setup-storage
 command -v pacman > /dev/null || bootstrap-pacman
 pacman-key --init
 pacman-key --populate
-
-termux-setup-storage
 setup-fish-shell
