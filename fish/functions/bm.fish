@@ -6,43 +6,26 @@ function bm
     bm <e|ed|edit>          edit the entries"
 
     # you can add more paths here
-    set -q BMPATH || set -g BMPATH $HOME/.config/bookmarks
-    touch "$BMPATH"
-
-    function _bm_find
-        set -l OPTS --prompt '  ' --inline-info --no-multi --margin 0,3,1,3 --border
-
-        if set -q LAUNCHER;       :
-        else if command -sq fzf;  set LAUNCHER fzf $OPTS
-        else if command -sq sk;   set LAUNCHER sk $OPTS
-        else; echo "LAUNCHER not found, try installing skim or fzf" && return 1
-        end
-
-        if set -q BROWSER;            :
-        else if command -sq open;     set BROWSER open
-        else if command -sq xdg-open; set BROWSER xdg-open
-        else; echo "BROWSER not found, try installing xdg-open or xdg-utils" && return 1
-        end
-
-        set LINK (
-            cat "$BMPATH" |
-            grep '^http' |
-            uniq |
-            sed --regexp-extended 's#^https?://(www.)?##' |
-            $LAUNCHER --query "$argv"
-        )
-
-        [ -n "$LINK" ] &&
-            $BROWSER "https://$LINK" ||
-            echo "nothing selected"
-    end
+    set -g BMPATH $HOME/.config/bookmarks /sdcard/main/notes/bookmarks.md
 
     switch "$argv[1]"
         case f fd find
-            _bm_find $argv[2]
+            set LINK (
+                cat $BMPATH | grep '^http' | sort | uniq |
+                sed --regexp-extended 's#^https?://(www.)?##' |
+                $LAUNCHER --print-query --query "$argv"
+            )
+
+            if [ -z "$LINK" ];
+                echo "nothing selected"
+            else if [ (count $LINK) = 1 ];
+                $BROWSER "$WWW_HOME/search?q=$(printf $LINK | string escape --style=url)"
+            else if [ (count $LINK) = 2 ];
+                $BROWSER "https://$LINK[2]"
+            end
 
         case g get
-            grep -i --no-filename "$argv[2]" "$BMPATH"
+            grep -i --no-filename "$argv[2]" $BMPATH
 
         case a add
             [ -n "$argv[2]" ] &&
