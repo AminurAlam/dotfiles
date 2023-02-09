@@ -35,42 +35,10 @@ g.loaded_logiPat = 1
 g.loaded_rrhelper = 1
 
 -- [[ core ]]
--- require('core.lazy') -- lazy.nvim
-require('core.packer') -- packer.nvim
+require('core.lazy') -- require('core.packer')
 require('core.options')
 require('core.mappings')
 require('core.autocommands')
-
--- [[ plugin configs ]]
-require('configs.alpha')
-require('configs.cmp')
-require('configs.cybu')
-require('configs.dial')
-require('configs.gitsigns')
-require('configs.indent')
-require('configs.lsp')
-require('configs.lualine')
-require('configs.notify')
-require('configs.telescope')
-require('configs.tokyonight')
-require('configs.treesitter')
-require('configs.trouble')
--- require('configs.which')
-
-local setup_plugins = function()
-    require('Comment').setup {}
-    require('nvim-autopairs').setup {}
-    require('nvim-surround').setup {}
-end
-if not pcall(setup_plugins) then vim.notify('some plugins are not loaded') end
-
-vim.cmd.colorscheme { 'tokyonight' }
-
-local hl = function(name, val) vim.api.nvim_set_hl(0, name, val) end
-
-hl('Whitespace', { bg = '#364a82' })
-hl('CursorLineNr', { fg = '#98c379' })
-hl('LineNr', { fg = '#3b4261' })
 
 vim.diagnostic.config {
     underline = { severity = vim.diagnostic.severity.ERROR },
@@ -88,3 +56,11 @@ vim.filetype.add {
         ['.*%.note'] = 'note',
     },
 }
+
+vim.cmd.colorscheme { 'tokyonight' }
+
+local hl = function(name, val) vim.api.nvim_set_hl(0, name, val) end
+
+hl('Whitespace', { bg = '#364a82' })
+hl('CursorLineNr', { fg = '#98c379' })
+hl('LineNr', { fg = '#3b4261' })

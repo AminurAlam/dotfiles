@@ -15,8 +15,12 @@ vim.opt.rtp:prepend(lazypath)
 
 require('lazy').setup({
     -- theme & design
-    { 'folke/tokyonight.nvim', init = function() require('core.colors') end },
-    { 'nvim-treesitter/nvim-treesitter', config = require('configs.treesitter') },
+    { 'folke/tokyonight.nvim', config = function() require('configs.tokyonight') end },
+    {
+        'nvim-treesitter/nvim-treesitter',
+        build = ":TSUpdate",
+        config = function() require('configs.treesitter') end,
+    },
     {
         'nvim-telescope/telescope.nvim',
         dependencies = { 'nvim-lua/plenary.nvim' },
@@ -24,10 +28,10 @@ require('lazy').setup({
         cmd = 'Telescope',
         config = function() require('configs.telescope') end,
     },
-    { 'lukas-reineke/indent-blankline.nvim', config = require('configs.indent') },
+    { 'lukas-reineke/indent-blankline.nvim', config = function() require('configs.indent') end },
     {
         'nvim-lualine/lualine.nvim',
-        dependencies = { 'kyazdani42/nvim-web-devicons' },
+        dependencies = { 'nvim-tree/nvim-web-devicons' },
         config = function() require('configs.lualine') end,
     },
     {
@@ -42,13 +46,12 @@ require('lazy').setup({
         config = function() require('configs.cybu') end,
     },
     { 'NvChad/nvim-colorizer.lua', cmd = 'ColorizerToggle' },
-    -- { 'lewis6991/gitsigns.nvim', config = function() require('configs.gitsigns') end },
-    { 'rcarriga/nvim-notify' },
+    { 'lewis6991/gitsigns.nvim', config = function() require('configs.gitsigns') end },
     -- typing & correction
     { 'kylechui/nvim-surround', keys = { 'cs', 'ds', 'ys' }, config = true },
     { 'numToStr/Comment.nvim', keys = { 'gc' }, config = true },
     { 'windwp/nvim-autopairs', event = { 'InsertEnter' }, config = true },
-    { 'folke/trouble.nvim', cmd = { 'TroubleToggle' } },
+    { 'folke/trouble.nvim', cmd = { 'TroubleToggle' }, config = function() require('configs.trouble') end },
     { 'monaqa/dial.nvim', config = function() require('configs.dial') end },
     -- lsp/cmp
     { 'neovim/nvim-lspconfig', config = function() require('configs.lsp') end },

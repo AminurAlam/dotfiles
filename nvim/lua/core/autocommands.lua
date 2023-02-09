@@ -25,7 +25,7 @@ autocmd({ 'TermOpen', 'TermEnter' }, {
 
 autocmd({ 'FileType', 'BufNewFile' }, {
     desc = 'reading mode for some filetypes',
-    pattern = { 'alpha', 'man', 'text', 'markdown', 'gitcommit', 'log', 'Trouble' },
+    pattern = { 'alpha', 'man', 'text', 'markdown', 'gitcommit', 'log', 'lazy', 'Trouble' },
     callback = function()
         set.wrap = true
         set.linebreak = true

@@ -1,5 +1,8 @@
 local status, alpha = pcall(require, 'alpha')
-if not status then return end
+if not status then
+    vim.notify(' not found')
+    return
+end
 
 local icons = require('core.icons')
 local ver = vim.version()
@@ -34,7 +37,7 @@ end
 local buttons = {
     button('f', icons.documents.Files .. '  Find file', '<cmd>:Telescope find_files<cr>'),
     button('g', icons.type.String .. '  Find word', '<cmd>:Telescope live_grep<cr>'),
-    button('r', icons.ui.Recent .. ' Recently Opened Files', '<cmd>:Telescope oldfiles<cr>'),
+    button('r', icons.ui.Recent .. '  Recently Opened Files', '<cmd>:Telescope oldfiles<cr>'),
     button('h', '?  Find help', '<cmd>:Telescope help_tags<cr>'),
     button('t', icons.documents.OpenFolder .. '  Explore directory', '<cmd>:Explore<cr>'),
     button('i', icons.ui.Pencil .. '  New file', '<cmd>:enew <BAR> startinsert<cr>'),

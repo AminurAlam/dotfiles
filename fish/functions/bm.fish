@@ -1,7 +1,7 @@
 function bm
     set HELP_TEXT "usage:
     bm <f|fd|find> [query]  find something with fuzzy search
-    bm <g|get> /regex/      list entries with matching regex pattern
+    bm <g|get> /pattern/      list entries with matching regex pattern
     bm <a|add> <text>       add a new entry
     bm <e|ed|edit>          edit the entries"
 
@@ -13,7 +13,7 @@ function bm
             set LINK (
                 cat $BMPATH | grep '^http' | sort | uniq |
                 sed --regexp-extended 's#^https?://(www.)?##' |
-                $LAUNCHER --print-query --query "$argv"
+                $LAUNCHER --print-query --query "$argv[2]"
             )
 
             if [ -z "$LINK" ];

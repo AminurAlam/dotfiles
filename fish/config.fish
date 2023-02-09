@@ -39,7 +39,7 @@ set --path dl $XDG_DOWNLOAD_DIR
 set --path mov $XDG_VIDEOS_DIR
 set --path mu $XDG_MUSIC_DIR
 set --path pic $XDG_PICTURES_DIR
-set --path tl $XDG_DIR/Tachiyomi/local
+set --path tl $XDG_DIR/Tachiyomi*/local
 set --path m $XDG_DIR/main
 set --path rp $XDG_PROJECTS_DIR
 
@@ -113,8 +113,8 @@ alias zsd "z $XDG_DIR"
   alias zmov "z $XDG_VIDEOS_DIR"
   alias zmu "z $XDG_MUSIC_DIR"
   alias zpic "z $XDG_PICTURES_DIR"
-  alias zt "z $XDG_DIR/Tachiyomi"
-    alias ztl "z $XDG_DIR/Tachiyomi/local"
+  alias zt "z $XDG_DIR/Tachiyomi*"
+    alias ztl "z $XDG_DIR/Tachiyomi*/local"
   alias zm "z $XDG_DIR/main"
     alias zn "z $XDG_DIR/main/notes"
 
