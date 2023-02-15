@@ -29,7 +29,7 @@ autocmd({ 'FileType', 'BufNewFile' }, {
     callback = function()
         set.wrap = true
         set.linebreak = true
-        set.statuscolumn = vim.g.stc_symbol
+        set.statuscolumn = ' '
     end,
 })
 
@@ -43,10 +43,11 @@ vim.api.nvim_create_autocmd('BufNewFile', {
 
         if #possibles > 0 then
             vim.ui.select(possibles, { prompt = 'You probably meant:' }, function(choice)
-                if choice then vim.cmd('edit ' .. vim.fn.fnameescape(choice)) end
+                local bufnr = vim.api.nvim_win_get_buf(0)
+                vim.cmd('edit ' .. vim.fn.fnameescape(choice) .. ' | filetype detect')
+                vim.api.nvim_buf_delete(bufnr, {})
             end)
         end
-        vim.g.did_load_filetypes = 1
     end,
 })
 
@@ -112,7 +113,12 @@ autocmd({ 'FileType' }, {
 })
 autocmd({ 'FileType' }, {
     pattern = 'note',
-    callback = function() vim.opt.syntax = 'note' end,
+    callback = function()
+        set.syntax = 'note'
+        set.statuscolumn = ' │ '
+        set.conceallevel = 3
+        set.concealcursor = 'n'
+    end,
 })
 autocmd('VimLeave', {
     callback = function() vim.opt.guicursor = 'a:hor25' end,

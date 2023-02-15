@@ -3,8 +3,8 @@
 format = '$directory$git_branch$sudo$custom$character'
 right_format = '$status$cmd_duration$jobs'
 continuation_prompt = '[∙](bright-black) '
-scan_timeout = 30
-command_timeout = 100
+scan_timeout = 50
+command_timeout = 200
 add_newline = true
 
 [character]
@@ -19,8 +19,7 @@ disabled = false
 
 [cmd_duration]
 min_time = 20
-format = '\[[$duration]($style)\]'
-style = 'cyan'
+format = '\[[$duration](cyan)\]'
 show_milliseconds = false
 disabled = false
 show_notifications = false
@@ -31,21 +30,18 @@ truncation_length = 1
 truncate_to_repo = false
 fish_style_pwd_dir_length = 1
 use_logical_path = true
-format = ' [$path]($style)[$read_only]($read_only_style) '
-style = 'bold green'
+format = ' [$path](bold green)[$read_only](red) '
 disabled = false
 read_only = ' '
-read_only_style = 'red'
-truncation_symbol = ''
+truncation_symbol = '…/'
 home_symbol = '~'
 use_os_path_sep = true
 
-[directory.substitutions]
+# [directory.substitutions]
 
 [git_branch]
-format = '[$symbol$branch]($style) '
+format = '[$symbol$branch](bold purple) '
 symbol = ' '
-style = 'bold purple'
 truncation_length = 922
 truncation_symbol = '…'
 only_attached = false
@@ -57,51 +53,45 @@ disabled = false
 ssh_only = true
 ssh_symbol = '🌐 '
 trim_at = '.'
-format = '[$ssh_symbol$hostname]($style) in '
-style = 'green dimmed bold'
+format = '[$ssh_symbol$hostname](green dimmed bold) in '
 disabled = false
 
 [jobs]
 threshold = 1
 symbol_threshold = 1
 number_threshold = 2
-format = '\[[$symbol$number]($style)\]'
+format = '\[[$symbol$number](blue)\]'
 symbol = '✦'
-style = 'blue'
 disabled = false
 
 [localip]
 ssh_only = true
-format = '[$localipv4]($style) '
-style = 'yellow bold'
+format = '[$localipv4](yellow bold) '
 disabled = true
 
 [status]
-format = '\[[$symbol$status]($style)\]'
+format = '\[[$symbol$status](red)\]'
 symbol = '✘'
 success_symbol = ''
 not_executable_symbol = ''
 not_found_symbol = ''
 sigint_symbol = '🧱'
 signal_symbol = ''
-style = 'red'
 map_symbol = false
 recognize_signal_code = true
 pipestatus = true
 pipestatus_separator = '|'
-pipestatus_format = '\[$pipestatus\] => [$symbol$common_meaning$signal_name$maybe_int]($style)'
+pipestatus_format = '\[$pipestatus\] => [$symbol$common_meaning$signal_name$maybe_int](red)'
 disabled = false
 
 [sudo]
-format = '[$symbol sudo]($style) '
+format = '[$symbol sudo](bold blue) '
 symbol = '#'
-style = 'bold blue'
 allow_windows = false
 disabled = true
 
 [time]
-format = 'at [$time]($style) '
-style = 'bold yellow'
+format = 'at [$time](bold yellow) '
 use_12hr = false
 disabled = true
 utc_time_offset = 'local'

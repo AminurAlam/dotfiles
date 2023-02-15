@@ -4,3 +4,5 @@ rclone
 rclone.conf
 
 packer_compiled.lua
+nvim/lazy-lock.json
+lazy-lock.json

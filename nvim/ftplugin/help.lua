@@ -2,7 +2,7 @@ local set = vim.opt
 
 set.wrap = true
 set.linebreak = true
-set.statuscolumn = vim.g.stc_symbol
+set.statuscolumn = ' '
 
 vim.keymap.set('n', '<cr>', 'K', { buffer = true })
 vim.keymap.set('n', '<bs>', '<c-o>', { buffer = true })

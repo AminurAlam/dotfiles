@@ -17,20 +17,14 @@ local capabilities = require('cmp_nvim_lsp').default_capabilities()
 --     } } }
 -- }
 
-lspconfig.pyright.setup {
-    capabilities = capabilities,
-    settings = {
-        python = {
-            analysis = {
-                autoSearchPaths = true,
-                diagnosticMode = 'document',
-                useLibraryCodeForTypes = true,
-            },
-        },
-    },
-}
+-- lspconfig.pyright.setup {
+--     capabilities = capabilities,
+--     settings = { python = { analysis = {
+--         autoSearchPaths = true, diagnosticMode = 'document', useLibraryCodeForTypes = true
+--     } } }
+-- }
 
-lspconfig.sumneko_lua.setup {
+lspconfig.lua_ls.setup {
     capabilities = capabilities,
     on_attach = function(client, bufnr) client.server_capabilities.semanticTokensProvider = nil end,
     settings = {
@@ -44,3 +38,5 @@ lspconfig.sumneko_lua.setup {
         },
     },
 }
+
+require('lspconfig').clangd.setup {}

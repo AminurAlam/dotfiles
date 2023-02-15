@@ -1,15 +1,10 @@
 abbr cp "cp -ivr"
 abbr mv "mv -iv"
-if command -sq rip
-    abbr rm "rip -i"
-    abbr rf "rip -d"
-else
-    abbr rm "rm -i"
-    abbr rf "rm -rfI"
-    abbr rd "rmdir"
-end
-abbr vi "nvim"
+abbr rm "rm -i"
+abbr rf "rm -rfI"
+abbr rd "rmdir -pv"
 abbr md "mkdir -pv"
+abbr vi "nvim"
 abbr cls "clear"
 abbr cal "cal -my"
 abbr qmv "qmv -f do"

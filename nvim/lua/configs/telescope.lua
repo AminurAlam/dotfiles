@@ -9,7 +9,7 @@ telescope.setup {
         prompt_title = false,
         results_title = false,
         winblend = 10,
-        file_ignore_patterns = { 'node_modules', '\\.git', '__pycache__' },
+        file_ignore_patterns = { 'node_modules', '\\.git', '__pycache__', 'stylua.toml' },
         path_display = {
             shorten = { len = 1, exclude = { 1, -1 } },
         },

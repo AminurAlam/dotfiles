@@ -72,4 +72,5 @@ gitsigns.setup {
     yadm = {
         enable = false,
     },
+    trouble = false,
 }

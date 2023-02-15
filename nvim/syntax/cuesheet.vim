@@ -1,8 +1,7 @@
-" Vim syntax file
-
 if exists('b:current_syntax')
-  finish
+    finish
 endif
+
 " https://wiki.hydrogenaud.io/index.php?title=Cue_sheet
 syn match cueEscape /\\[btnfr"/\\]/ display contained
 syn match cueEscape /\\u\x\{4}/ contained
@@ -29,5 +28,3 @@ hi def link cueEscape SpecialChar
 
 syn sync minlines=500
 let b:current_syntax = 'cuesheet'
-
-" vim: et sw=2 sts=2

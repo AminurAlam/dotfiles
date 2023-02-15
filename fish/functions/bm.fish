@@ -6,7 +6,7 @@ function bm
     bm <e|ed|edit>          edit the entries"
 
     # you can add more paths here
-    set -g BMPATH $HOME/.config/bookmarks /sdcard/main/notes/bookmarks.md
+    set BMPATH /sdcard/main/notes/bookmarks.note
 
     switch "$argv[1]"
         case f fd find
@@ -16,11 +16,11 @@ function bm
                 $LAUNCHER --print-query --query "$argv[2]"
             )
 
-            if [ -z "$LINK" ];
+            if [ -z "$LINK" ]
                 echo "nothing selected"
-            else if [ (count $LINK) = 1 ];
+            else if [ (count $LINK) = 1 ]
                 $BROWSER "$WWW_HOME/search?q=$(printf $LINK | string escape --style=url)"
-            else if [ (count $LINK) = 2 ];
+            else if [ (count $LINK) = 2 ]
                 $BROWSER "https://$LINK[2]"
             end
 

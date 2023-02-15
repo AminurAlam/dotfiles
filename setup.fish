@@ -1,5 +1,5 @@
 function setup-git
-    printf "\nSETTING UP GIT\n\n"
+    printf "SETTING UP GIT...\n"
 
     mkdir -p $HOME/.config/git/ && touch $HOME/.config/git/config
 
@@ -16,7 +16,7 @@ function setup-git
 end
 
 function restore-configs
-    printf "\nLINKING CONFIG FILES\n\n"
+    printf "LINKING CONFIG FILES...\n"
 
     mkdir -p $HOME/.config/backup/ $HOME/.local/share/
 
@@ -35,20 +35,27 @@ function restore-configs
 end
 
 
-printf "\nFETCHING UPDATES\n\n"
-yes | pacman -Syu > /dev/null
-yes | pacman -S dust exa fd git neovim-nightly rip ripgrep starship zoxide lua-language-server termux-api > /dev/null
-pacman -S python python-pip && pip install requests deflacue
+printf "FETCHING UPDATES...\n"
+yes | pacman -Syu &> /dev/null
+yes | pacman -S dust exa fd git neovim-nightly rip ripgrep starship zoxide lua-language-server termux-api &> /dev/null
+
+printf "install python related stuff?"
+pacman -S python python-pip > /dev/null && pip install requests deflacue > /dev/null
 
 setup-git
 restore-configs
 
-printf "\nPREPARING LOCAL BINARIES\n\n"
+printf "LOCAL BINARIES...\n"
 mkdir -p $HOME/.local/bin/
 [ -d "/sdcard/main/bin/" ] && command cp -fr /sdcard/main/bin/* $HOME/.local/bin/
 command -sq nvim && ln -fs (command -s nvim) "$HOME/.local/bin/termux-file-editor"
 chmod +x $HOME/.local/bin/*
 
-printf "\nFINAL TOUCH\n\n"
-truncate -s 0 $PREFIX/etc/motd $PREFIX/etc/motd.sh
+printf "NO MOTD...\n"
+truncate -s 0 $PREFIX/etc/motd $PREFIX/etc/motd.sh &> /dev/null
+
+printf "ADDING FONT...\n"
+[ -e "/sdcard/main/Sauce Code Pro Nerd Font Complete Mono.ttf" ] && command cp -f "/sdcard/main/Sauce Code Pro Nerd Font Complete Mono.ttf" ~/.termux/font.ttf
+
+printf "REMOVING ~/storage ...\n"
 [ -d "$HOME/storage/" ] && command rm -fr "$HOME/storage/"

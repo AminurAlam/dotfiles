@@ -67,7 +67,6 @@ set -gx HISTFILE $XDG_STATE_HOME/bash/history
 set -gx PYTHONSTARTUP $XDG_CONFIG_HOME/python/startup.py
 set -gx NODE_REPL_HISTORY $XDG_STATE_HOME/node_repl_history
 set -gx NPM_CONFIG_USERCONFIG $XDG_CONFIG_HOME/npm/npmrc
-set -gx RUST_BACKTRACE full
 set -gx RUSTUP_HOME $XDG_DATA_HOME/rustup
 set -gx CARGO_HOME $XDG_DATA_HOME/cargo
 set -gx CARGO_INSTALL_ROOT $CARGO_HOME

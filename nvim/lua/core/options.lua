@@ -39,16 +39,17 @@ set.numberwidth = 1
 set.shortmess = 'acoOsSWIF'
 set.number = false
 set.relativenumber = false
-set.statuscolumn = vim.g.stc_number .. vim.g.stc_symbol .. '%s%C'
+set.statuscolumn = '%=%{ v:virtnum ? " " : v:lnum }%{ v:virtnum ? "…" : ( v:relnum ? "│" : "❯" ) }%s%C'
 set.foldlevel = 5
 set.foldlevelstart = 99
 set.foldenable = true
 
 -- terminal, cursor & gui
-set.virtualedit = 'onemore'
+set.virtualedit = { 'onemore', 'block' }
 set.belloff = 'showmatch'
 set.winblend = 10
 set.pumblend = 10
+set.pumheight = 15
 set.termguicolors = true
 set.guicursor = 'n-sm:hor25,v-o-i-r-c-ci-cr:ver25'
 set.startofline = true
@@ -67,6 +68,7 @@ set.grepprg = 'rg --vimgrep '
 set.timeout = false
 set.swapfile = false
 set.backup = false
+set.writebackup = false
 set.undofile = true
 set.confirm = true
 set.clipboard:append('unnamedplus')
@@ -76,7 +78,8 @@ set.listchars = {
     trail = ' ',
     extends = '…',
     precedes = '…',
-    conceal = 'x',
+    conceal = '●',
+    nbsp = '␣',
 }
 set.fillchars = {
     eob = ' ',
