@@ -1,23 +1,46 @@
+# common
+abbr cp "cp -ivr"
+abbr mv "mv -iv"
+abbr rm "rm -i"
+abbr rf "rm -rfI"
+abbr rd "rmdir -pv"
+abbr md "mkdir -pv"
+abbr vi "nvim"
+abbr cls "clear"
+abbr cal "cal -my"
+abbr qmv "qmv -f do"
+abbr wget 'wget --hsts-file=$XDG_CACHE_HOME/wget-hsts'
+abbr ps "ps -faxo pid,command"
+abbr bin-integrity "sha256sum --check /sdcard/main/bin-checksums"
+
+# parent dir
+abbr .. "z .."
+abbr ... "z ../.."
+abbr .... "z ../../.."
+
+# git
+abbr gup "git add . && git commit && git push origin"
+abbr gcp "git clone --depth 1"
+abbr gd "git diff"
+abbr ga "git status -s"
+abbr gs "git status -s"
+abbr gc "git checkout"
+abbr grau "git remote add upstream"
+abbr gp "git pull origin"
+
+# rclone
+abbr rcp "rclone copy -P"
+abbr rmv "rclone move -P"
+abbr rls "rclone lsf"
+abbr rlt "rclone tree --level"
+abbr rdu "rclone size"
+abbr rcat "rclone cat"
+abbr rstat "rclone about"
+abbr rconf "rclone config"
+
 # python
 alias py "python3 -q"
 alias mbz "python3 ~/repos/musicbrainzpy/cover_art.py"
-
-# rclone
-alias rcp "rclone copy -P"
-alias rmv "rclone move -P"
-
-alias rls "rclone lsf"
-alias rlt "rclone tree --level"
-alias rdu "rclone size"
-alias rcat "rclone cat"
-alias rstat "rclone about"
-alias rconf "rclone config"
-
-# nvim
-alias vm "nvim ~/repos/musicbrainzpy/cover_art.py"
-alias vn "nvim --cmd 'cd ~/.config/nvim/'"
-alias vf "nvim --cmd 'cd ~/.config/fish/'"
-alias n  "nvim --cmd 'cd /sdcard/main/notes/'"
 
 # ls -> exa
 alias l  "exa -lFa -s ext --icons --no-user --no-permissions --no-time --group-directories-first"
@@ -25,16 +48,46 @@ alias lt "exa -lFT -s ext --icons --no-user --no-permissions --no-time --group-d
 alias ll "exa -lFa -s ext --icons --no-user --group-directories-first --git"
 
 # du, df -> dust, duf
-alias du "dust -n 25"
-alias dud "dust -d 1"
+abbr du "dust -n 25"
+abbr dud "dust -d 1"
 alias df "duf -only local -output mountpoint,size,avail,usage -width 150 /storage/*"
 
 # tar
-alias tar-compress    "tar cf"
-alias tar-compress-gz "tar czf"
+abbr tar-compress    "tar cf"
+abbr tar-compress-gz "tar czf"
 
-alias tar-extract    "tar xf"
-alias tar-extract-gz "tar xzf"
+abbr tar-extract    "tar xf"
+abbr tar-extract-gz "tar xzf"
 
-alias tar-extract-verbose    "tar xvf"
-alias tar-extract-verbose-gz "tar xvzf"
+abbr tar-extract-verbose    "tar xvf"
+abbr tar-extract-verbose-gz "tar xvzf"
+
+if command -sq apt
+    abbr pi "apt install"
+    abbr pr "apt remove"
+    abbr pf "apt search"
+    abbr pa "apt show"
+    function pu
+        echo "deb https://packages-cf.termux.dev/apt/termux-main stable main" > $PREFIX/etc/apt/sources.list
+        apt update && apt upgrade
+    end
+else if command -sq pacman
+    abbr pi "pacman -S"
+    abbr pr "pacman -Rs"
+    abbr pf "pacman -Ss"
+    abbr pu "pacman -Syu"
+    abbr pa "pacman -Si"
+end
+
+if command -sq pip
+    abbr pyi "pip install"
+    abbr pyu "pip install --upgrade"
+    abbr pyr "pip uninstall"
+    abbr pyf "pip search"
+end
+
+if command -sq npm
+    abbr ni "npm install --location global"
+    abbr nr "npm uninstall"
+    abbr nu "npm update"
+end

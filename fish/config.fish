@@ -55,8 +55,6 @@ set -gx WWW_HOME "https://search.rowie.at"
 
 # command config
 set -gx LESSHISTFILE -
-set -gx FB_DATABASE $XDG_CONFIG_HOME/filebrowser.db
-set -gx FB_CONFIG $XDG_CONFIG_HOME/filebrowser.json
 set -gx STARSHIP_CACHE $XDG_CACHE_HOME/starship
 set -gx INPUTRC $XDG_CONFIG_HOME/readline/inputrc
 set -gx ICEAUTHORITY $XDG_CACHE_HOME/ICEauthority
@@ -106,35 +104,31 @@ bind -M insert \177 _pisces_backspace # Terminal.app sends DEL code on ⌫:
 bind -M insert \t _pisces_complete # overrides TAB to provide completion of vars before a closing '"'
 
 ### ALIASES ###
-alias zsd "z $XDG_DIR"
-  alias zdoc "z $XDG_DOCUMENTS_DIR"
-  alias zdl "z $XDG_DOWNLOAD_DIR"
-  alias zmov "z $XDG_VIDEOS_DIR"
-  alias zmu "z $XDG_MUSIC_DIR"
-  alias zpic "z $XDG_PICTURES_DIR"
-  alias zt "z $XDG_DIR/Tachiyomi*"
-    alias ztl "z $XDG_DIR/Tachiyomi*/local"
-  alias zm "z $XDG_DIR/main"
-    alias zn "z $XDG_DIR/main/notes"
+abbr zsd "z $XDG_DIR/"
+  abbr zdoc "z $XDG_DOCUMENTS_DIR/"
+  abbr zdl "z $XDG_DOWNLOAD_DIR/"
+  abbr zmov "z $XDG_VIDEOS_DIR/"
+  abbr zmu "z $XDG_MUSIC_DIR/"
+  abbr zpic "z $XDG_PICTURES_DIR/"
+  abbr zt "z $XDG_DIR/Tachiyomi*/"
+    abbr ztl "z $XDG_DIR/Tachiyomi*/local/"
+  abbr zm "z $XDG_DIR/main/"
+    abbr zn "z $XDG_DIR/main/notes/"
 
-alias zr 'z (command ls -1N $XDG_PROJECTS_DIR | $LAUNCHER)'
-alias zrp "z $XDG_PROJECTS_DIR"
-  alias zmbz "z $XDG_PROJECTS_DIR/musicbrainzpy"
-  alias zd "z $XDG_PROJECTS_DIR/dotfiles"
+abbr zr 'z (command ls -1N $XDG_PROJECTS_DIR | $LAUNCHER)'
+abbr zrp "z $XDG_PROJECTS_DIR/"
+  abbr zmbz "z $XDG_PROJECTS_DIR/musicbrainzpy/"
+  abbr zd "z $XDG_PROJECTS_DIR/dotfiles/"
 
-alias zc "z $XDG_CONFIG_HOME"
-  alias zcf "z $XDG_CONFIG_HOME/fish"
-  alias zcn "z $XDG_CONFIG_HOME/nvim"
+abbr zc "z $XDG_CONFIG_HOME/"
+  abbr zcf "z $XDG_CONFIG_HOME/fish/"
+  abbr zcn "z $XDG_CONFIG_HOME/nvim/"
 
-alias zp "z $PREFIX"
-alias gl "git log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(bold yellow)%d%C(reset)' --all"
-alias zz "z -"
-alias .. "z .."
-alias ... "z ../.."
-alias .... "z ../../.."
+abbr zp "z $PREFIX/"
+abbr gl "git log --format=format:'%C(green)(%ar)%C(reset) %s %C(yellow)%d%C(reset)'"
+abbr zz "z -"
 
 ### FUNCTIONS ###
-
 function fish_title
     echo (prompt_pwd): (status current-command)
 end
@@ -171,7 +165,7 @@ function open
 end
 
 function quit
-    if test "$(count $(ps -C fish))" = 2
+    if [ (count (ps -C fish)) = 2 ]
         pkill com.termux
     else
         exit

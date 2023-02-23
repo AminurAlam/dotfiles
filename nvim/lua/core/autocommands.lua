@@ -1,22 +1,26 @@
 local autocmd = vim.api.nvim_create_autocmd
--- local augroup = vim.api.nvim_create_augroup
-
-local nmap = function(lhs, rhs, opts) vim.keymap.set('n', lhs, rhs, opts or { buffer = true, silent = true }) end
+local nmap = require('core.utils').map('n')
 local set = vim.opt_local
 
--- stylua: ignore
 autocmd({ 'FileType' }, {
     desc = 'exit by pressing q or <esc>',
-    pattern = { 'qf', 'help', 'lspinfo', 'DressingSelect', 'Trouble' },
+    pattern = { 'qf', 'help', 'lazy', 'lspinfo', 'DressingSelect', 'Trouble' },
     callback = function()
-        nmap('q', '<cmd>:close<cr>')
-        nmap('<esc>', function() vim.cmd(vim.v.hlsearch == 1 and 'nohlsearch' or 'close') end)
+        nmap('q', '<cmd>:close<cr>', { buffer = true })
+        nmap('<esc>', function()
+            if vim.v.hlsearch == 1 then
+                vim.cmd('nohlsearch')
+            else
+                vim.cmd('close')
+            end
+        end, { buffer = true })
         set.buflisted = false
     end,
 })
 
-autocmd({ 'TermOpen', 'TermEnter' }, {
+autocmd({ 'TermOpen' }, {
     callback = function()
+        vim.cmd('startinsert')
         set.colorcolumn = ''
         set.signcolumn = 'no'
         set.statuscolumn = ''
@@ -40,14 +44,14 @@ vim.api.nvim_create_autocmd('BufNewFile', {
     callback = function(details)
         if vim.fn.filereadable(details.file) == 1 then return end
         local possibles = vim.split(vim.fn.glob(details.file .. '*'), '\n', { trimempty = true })
+        if #possibles == 0 then return end
 
-        if #possibles > 0 then
-            vim.ui.select(possibles, { prompt = 'You probably meant:' }, function(choice)
-                local bufnr = vim.api.nvim_win_get_buf(0)
-                vim.cmd('edit ' .. vim.fn.fnameescape(choice) .. ' | filetype detect')
-                vim.api.nvim_buf_delete(bufnr, {})
-            end)
-        end
+        vim.ui.select(possibles, {}, function(choice)
+            if not choice then return end
+            local bufnr = vim.api.nvim_win_get_buf(0)
+            vim.cmd('edit ' .. vim.fn.fnameescape(choice) .. ' | filetype detect')
+            vim.api.nvim_buf_delete(bufnr, {})
+        end)
     end,
 })
 

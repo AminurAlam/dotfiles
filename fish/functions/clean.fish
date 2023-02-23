@@ -8,13 +8,18 @@ function clean
         "/sdcard/Aurora/" \
         "/sdcard/Telegram/"
 
-    yes | pkg autoclean
+    pacman -Scc --noconfirm 2> /dev/null
+    echo
 
     for dir in $dirs
         echo "  $dir"
     end
+
     command rm -rf $dirs 2> /dev/null
-    command -sq rip && yes | rip --decompose &> /dev/null
-    command -sq pip && pip cache purge
+    echo
+
+    command -sq rip && yes | rip --decompose &> /dev/null && echo
+    command -sq pip && pip cache purge && echo
+
     echo (count (command exa -al ~)) files in HOME
 end

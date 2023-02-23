@@ -1,11 +1,3 @@
-_G.__luacache_config = {
-    chunks = { enable = true, path = vim.fn.stdpath('data') .. '/luacache_chunks' },
-    modpaths = { enable = true, path = vim.fn.stdpath('data') .. '/luacache_modpaths' },
-}
-
-local status, impatient = pcall(require, 'impatient')
-if status then impatient.enable_profile() end
-
 local g = vim.g
 
 g.mapleader = ' '
@@ -18,9 +10,10 @@ g.netrw_hide = 0
 g.netrw_liststyle = 3
 
 -- [[ core ]]
-require('core.lazy') -- require('core.packer')
+require('core.lazy')
 require('core.options')
 require('core.mappings')
+require('core.commands')
 require('core.autocommands')
 
 vim.diagnostic.config {
