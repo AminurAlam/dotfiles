@@ -59,6 +59,7 @@ set.mouse = 'a'
 set.background = 'dark'
 set.helpheight = 150
 set.wrap = false
+set.linebreak = true
 set.breakindent = true
 
 -- others

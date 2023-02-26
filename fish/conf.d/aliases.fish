@@ -12,6 +12,7 @@ abbr qmv "qmv -f do"
 abbr wget 'wget --hsts-file=$XDG_CACHE_HOME/wget-hsts'
 abbr ps "ps -faxo pid,command"
 abbr bin-integrity "sha256sum --check /sdcard/main/bin-checksums"
+abbr n "nvim --cmd 'cd /sdcard/main/notes/'"
 
 # parent dir
 abbr .. "z .."
@@ -25,7 +26,6 @@ abbr gd "git diff"
 abbr ga "git status -s"
 abbr gs "git status -s"
 abbr gc "git checkout"
-abbr grau "git remote add upstream"
 abbr gp "git pull origin"
 
 # rclone
@@ -59,9 +59,6 @@ abbr tar-compress-gz "tar czf"
 abbr tar-extract    "tar xf"
 abbr tar-extract-gz "tar xzf"
 
-abbr tar-extract-verbose    "tar xvf"
-abbr tar-extract-verbose-gz "tar xvzf"
-
 if command -sq apt
     abbr pi "apt install"
     abbr pr "apt remove"
@@ -73,10 +70,12 @@ if command -sq apt
     end
 else if command -sq pacman
     abbr pi "pacman -S"
-    abbr pr "pacman -Rs"
+    abbr pr "pacman -Rus"
     abbr pf "pacman -Ss"
     abbr pu "pacman -Syu"
     abbr pa "pacman -Si"
+else
+    echo "UNKNOWN PACKAGE MANAGER"
 end
 
 if command -sq pip

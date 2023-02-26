@@ -12,6 +12,7 @@ return {
             'help',
             'man',
             'log',
+            'diff',
             '',
         },
     },

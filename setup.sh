@@ -8,10 +8,10 @@ bootstrap-pacman() {
     cd ~/../usr-n/
 
     printf "checking for bootstrap...\n"
-    [ -e "/sdcard/main/bootstrap-arm.zip" ] || return
+    [ -e "/sdcard/main/termux/bootstrap-arm.zip" ] || return
 
     printf "extracting bootstrap...\n"
-    unzip -q -d ~/../usr-n/ /sdcard/main/bootstrap-arm.zip
+    unzip -q -d ~/../usr-n/ /sdcard/main/termux/bootstrap-arm.zip
 
     printf "creating symlinks...\n"
     cat ~/../usr-n/SYMLINKS.txt | awk -F "←" '{system("ln -s '"'"'"$1"'"'"' '"'"'"$2"'"'"'")}'

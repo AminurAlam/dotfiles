@@ -8,6 +8,7 @@ g.editorconfig = false
 g.netrw_banner = 0
 g.netrw_hide = 0
 g.netrw_liststyle = 3
+g.special_ft = { 'alpha', 'diff', 'gitcommit', 'help', 'lazy', 'lspinfo', 'log', 'man', 'text', 'netrw', 'Trouble' }
 
 -- [[ core ]]
 require('core.lazy')
@@ -40,3 +41,4 @@ local hl = function(name, val) vim.api.nvim_set_hl(0, name, val) end
 hl('Whitespace', { bg = '#364a82' })
 hl('CursorLineNr', { fg = '#98c379' })
 hl('LineNr', { fg = '#3b4261' })
+hl('Folded', {link = 'Visual' })

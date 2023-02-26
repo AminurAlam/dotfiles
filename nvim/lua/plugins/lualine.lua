@@ -3,8 +3,6 @@ local M = {
     dependencies = { 'nvim-tree/nvim-web-devicons' },
 }
 M.config = function()
-    local icons = require('core.utils').icons
-
     local color = {
         red = '#e06c75',
         purple = '#c678dd',
@@ -46,7 +44,7 @@ M.config = function()
             {
                 'filename',
                 filestatus = false,
-                symbols = { modified = icons.ui.Pencil, readonly = icons.ui.Lock, unnamed = '...' },
+                symbols = { modified = '', readonly = '', unnamed = '...' },
             },
             {
                 function() return '␣ ' end,
@@ -79,11 +77,11 @@ M.config = function()
         'nerdtree',
         'toggleterm',
         {
-            filetypes = { 'help', 'man', 'Trouble' },
+            filetypes = vim.g.special_ft,
             sections = {
                 lualine_a = { function() return vim.fn.expand('%:t') end },
+                lualine_b = { 'progress' },
                 lualine_x = { 'searchcount' },
-                lualine_z = { 'progress' },
             },
         },
     }

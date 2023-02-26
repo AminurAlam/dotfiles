@@ -67,7 +67,7 @@ require('lazy').setup('plugins', {
                 'tarPlugin',
                 'tohtml',
                 'tutor',
-                'netrwPlugin',
+                -- 'netrwPlugin',
                 'zipPlugin',
                 'matchparen',
             },

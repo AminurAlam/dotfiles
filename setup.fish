@@ -1,61 +1,69 @@
-function setup-git
-    printf "SETTING UP GIT...\n"
+set dotfiles  $HOME/repos/dotfiles
+set main  /sdcard/main/termux
+set packages  dust exa fd git neovim-nightly ripgrep starship zoxide lua-language-server termux-api
 
-    mkdir -p $HOME/.config/git/ && touch $HOME/.config/git/config
+mkdir -p $HOME/backup/ $HOME/.shortcuts/ $HOME/.local/{share,bin}/
 
-    git config --global init.defaultBranch 'dev'
-    git config --global user.name 'AminurAlam'
-    git config --global user.email '64137875+AminurAlam@users.noreply.github.com'
-    git config --global author.name 'AminurAlam'
-    git config --global author.email '64137875+AminurAlam@users.noreply.github.com'
-    git config --global commiter.name 'AminurAlam'
-    git config --global commiter.email '64137875+AminurAlam@users.noreply.github.com'
+printf "UPDATING DATABASE...\n"
+pacman -Syu --noconfirm &>/dev/null
 
-    command rm -fr "$HOME/repos/dotfiles/" &> /dev/null
-    git clone -q --depth 1 "https://github.com/AminurAlam/dotfiles.git" $HOME/repos/dotfiles/
+printf "INSTALLING NEW PACKAGES...\n"
+pacman -Syu --noconfirm $packages &>/dev/null
+
+command -sq python || begin
+    printf "INSTALLING PYTHON "
+    pacman -S --needed python >/dev/null
 end
 
-function restore-configs
-    printf "LINKING CONFIG FILES...\n"
-
-    mkdir -p $HOME/.config/backup/ $HOME/.local/share/
-
-    for config in fish newsboat npm nvim python
-        [ -e "$HOME/repos/dotfiles/$config" ] || continue
-        command mv -f "$HOME/.config/$config" $HOME/.config/backup/ &> /dev/null
-        ln -fs "$HOME/repos/dotfiles/$config" "$HOME/.config/"
-    end
-
-    command rm -fr $HOME/.termux/*.properties $HOME/.config/starship.toml &> /dev/null
-    ln -fs $HOME/repos/dotfiles/starship.toml            $HOME/.config/starship.toml
-    ln -fs $HOME/repos/dotfiles/termux/colors.properties $HOME/.termux/colors.properties
-    ln -fs $HOME/repos/dotfiles/termux/termux.properties $HOME/.termux/termux.properties
-
-    rmdir --ignore-fail-on-non-empty $HOME/.config/backup/ &> /dev/null
+command -sq python && command -sq pip || begin
+    printf "INSTALLING PIP & CLANG "
+    pacman -S --needed python-pip >/dev/null
 end
 
+command -sq python && command -sq pip && begin
+    printf "INSTALLING REQUESTS & DEFLACUE "
+    pip install requests deflacue >/dev/null
+end
 
-printf "FETCHING UPDATES...\n"
-yes | pacman -Syu &> /dev/null
-yes | pacman -S dust exa fd git neovim-nightly rip ripgrep starship zoxide lua-language-server termux-api &> /dev/null
+printf "DOWNLOADING DOTFILES...\n"
+[ -d "$dotfiles" ] && command mv "$dotfiles" ~/backup/ &>/dev/null
+git clone -q --depth 1 "https://github.com/AminurAlam/dotfiles.git" "$dotfiles"
 
-printf "install python related stuff?"
-pacman -S python python-pip > /dev/null && pip install requests deflacue > /dev/null
+printf "LINKING CONFIG DIRECTORIES...\n"
+for config in fish git newsboat npm nvim python
+    [ -e "$dotfiles/$config" ] || continue
+    command mv -f ~/.config/$config ~/backup/ &>/dev/null
+    ln -fs "$dotfiles/$config" ~/.config/
+end
 
-setup-git
-restore-configs
+printf "LINKING CONFIG FILES...\n"
+command mv ~/.termux/*.properties ~/.config/starship.toml ~/backup/ &>/dev/null
+ln -fs "$dotfiles/starship.toml" ~/.config/starship.toml
+ln -fs "$dotfiles/termux/colors.properties" ~/.termux/colors.properties
+ln -fs "$dotfiles/termux/termux.properties" ~/.termux/termux.properties
+
 
 printf "LOCAL BINARIES...\n"
-mkdir -p $HOME/.local/bin/
-[ -d "/sdcard/main/bin/" ] && command cp -fr /sdcard/main/bin/* $HOME/.local/bin/
-command -sq nvim && ln -fs (command -s nvim) "$HOME/.local/bin/termux-file-editor"
-chmod +x $HOME/.local/bin/*
+[ -d "$main/bin/" ] &&
+    command cp -fr $main/bin/* ~/.local/bin/ &&
+    chmod +x ~/.local/bin/*
+[ -d "$main/widget/" ] &&
+    command cp -fr $main/widget/* ~/.shortcuts/ &&
+    chmod +x ~/.shortcuts/*
+[ -e "$main/bin-checksums" ] &&
+    sha256sum --check $main/bin-checksums | awk -F '/' '{print $9}' ||
+    printf "no checksum"
 
-printf "NO MOTD...\n"
-truncate -s 0 $PREFIX/etc/motd $PREFIX/etc/motd.sh &> /dev/null
+printf "CLEANUP...\n"
+truncate -s 0 $PREFIX/etc/motd $PREFIX/etc/motd.sh &>/dev/null
+[ -d ~/storage/ ] && command rm -fr ~/storage/
+rmdir --ignore-fail-on-non-empty ~/backup/ &>/dev/null
 
-printf "ADDING FONT...\n"
-[ -e "/sdcard/main/Sauce Code Pro Nerd Font Complete Mono.ttf" ] && command cp -f "/sdcard/main/Sauce Code Pro Nerd Font Complete Mono.ttf" ~/.termux/font.ttf
 
-printf "REMOVING ~/storage ...\n"
-[ -d "$HOME/storage/" ] && command rm -fr "$HOME/storage/"
+printf "FINAL INSTRUCTIONS:
+add `rclone.conf` manually:
+    $(set_color $fish_color_command)cp $(set_color $fish_color_quote)$main/rclone.conf ~/.termux/font.ttf$(set_color normal)
+change font manually:
+    $(set_color $fish_color_command)cp $(set_color $fish_color_option)-f $(set_color $fish_color_quote)'$main/font.ttf' ~/.termux/font.ttf$(set_color normal)
+zoom in and out to fix screen
+"

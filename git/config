@@ -1,0 +1,9 @@
+[core]
+    pager = nvim +'set ft=diff | setlocal buftype=nofile | setlocal bufhidden=hide | setlocal noswapfile'
+
+[init]
+    defaultBranch = dev
+
+[user]
+    name = AminurAlam
+    email = 64137875+AminurAlam@users.noreply.github.com

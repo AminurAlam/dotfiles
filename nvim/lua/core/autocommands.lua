@@ -29,7 +29,7 @@ autocmd({ 'TermOpen' }, {
 
 autocmd({ 'FileType', 'BufNewFile' }, {
     desc = 'reading mode for some filetypes',
-    pattern = { 'alpha', 'man', 'text', 'markdown', 'gitcommit', 'log', 'lazy', 'Trouble' },
+    pattern = vim.g.special_ft,
     callback = function()
         set.wrap = true
         set.linebreak = true

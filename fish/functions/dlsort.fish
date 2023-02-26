@@ -5,17 +5,19 @@ function dlsort
     for file in *
         switch (file -b --mime-type "$file")
             case 'application/zip'
-                command mv -- "$file" "/sdcard/apk/"
+                command mv -v -- "$file" "$XDG_DOWNLOAD_DIR/apk/"
             case 'application/x-bittorrent'
-                command mv -- "$file" "/sdcard/main/torrents/"
+                command mv -v -- "$file" "/sdcard/main/torrents/"
             case 'application/pdf'
-                command mv -- "$file" "$XDG_DOCUMENTS_DIR/"
+                command mv -v -- "$file" "$XDG_DOCUMENTS_DIR/"
             case 'image/*'
-                command mv -- "$file" "$XDG_PICTURES_DIR/"
+                command mv -v -- "$file" "$XDG_PICTURES_DIR/"
             case 'audio/*'
-                command mv -- "$file" "$XDG_MUSIC_DIR/"
+                command mv -v -- "$file" "$XDG_MUSIC_DIR/"
             case 'video/*'
-                command mv -- "$file" "$XDG_VIDEOS_DIR/"
+                command mv -v -- "$file" "$XDG_VIDEOS_DIR/"
+            case 'inode/directory'
+                :
             case '*'
                 echo "$file: unknown type"
         end
