@@ -27,8 +27,8 @@ require('lazy').setup('plugins', {
         wrap = false, -- wrap the lines in the ui
         border = 'rounded',
         icons = {
-            import = ' ',
-            lazy = '鈴 ',
+            import = '',
+            lazy = '鈴',
             loaded = '●',
             not_loaded = '○',
             cmd = '',

@@ -1,5 +1,6 @@
 return {
     'folke/trouble.nvim',
+    enabled = false,
     cmd = { 'TroubleToggle' },
     opts = {
         position = 'top', -- position of the list can be: bottom, top, left, right

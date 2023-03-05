@@ -1,6 +1,6 @@
 local M = {
     'neovim/nvim-lspconfig',
-    ft = { 'python', 'lua', "c", "cpp", "objc", "objcpp", "cuda", "proto" }
+    ft = { 'python', 'lua', 'c', 'cpp', 'objc', 'objcpp', 'cuda', 'proto' },
 }
 M.config = function()
     local lspconfig = require('lspconfig')
@@ -19,9 +19,15 @@ M.config = function()
     }
 
     lspconfig.pyright.setup {
-        settings = { python = { analysis = {
-            autoSearchPaths = true, diagnosticMode = 'document', useLibraryCodeForTypes = true
-        } } }
+        settings = {
+            python = {
+                analysis = {
+                    autoSearchPaths = true,
+                    diagnosticMode = 'document',
+                    useLibraryCodeForTypes = true,
+                },
+            },
+        },
     }
 
     lspconfig.clangd.setup {}

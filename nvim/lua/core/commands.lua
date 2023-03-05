@@ -3,11 +3,12 @@ local command = vim.api.nvim_create_user_command
 command('Run', function(opts)
     local code = vim.fn.join(vim.fn.getline(opts.line1, opts.line2), '\n')
     local ft = vim.o.filetype
-    if ft == 'fish' or ft == 'bash' or ft == 'sh' then
-        print(vim.fn.system(code))
+    if ft == 'fish' then
+        print(vim.fn.system("fish -c '" .. vim.fn.escape(code, "'") .. "'"))
+    elseif ft == 'sh' or ft == 'bash' then
+        print(vim.fn.system("bash -c '" .. vim.fn.escape(code, "'") .. "'"))
     elseif ft == 'python' then
-        code = vim.fn.escape(code, '"')
-        print(vim.fn.system('python -c "' .. code .. '"'))
+        print(vim.fn.system("python -c '" .. vim.fn.escape(code, "'") .. "'"))
     elseif ft == 'nim' then
         code = vim.fn.escape(code, '"')
         print(vim.fn.system('nim --hints:off --eval:"' .. code .. '"'))

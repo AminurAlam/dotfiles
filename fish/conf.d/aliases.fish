@@ -11,7 +11,7 @@ abbr cal "cal -my"
 abbr qmv "qmv -f do"
 abbr wget 'wget --hsts-file=$XDG_CACHE_HOME/wget-hsts'
 abbr ps "ps -faxo pid,command"
-abbr bin-integrity "sha256sum --check /sdcard/main/bin-checksums"
+abbr bin-integrity "sha256sum --check /sdcard/main/termux/bin-checksums"
 abbr n "nvim --cmd 'cd /sdcard/main/notes/'"
 
 # parent dir
@@ -70,7 +70,7 @@ if command -sq apt
     end
 else if command -sq pacman
     abbr pi "pacman -S"
-    abbr pr "pacman -Rus"
+    abbr pr "pacman -Rs"
     abbr pf "pacman -Ss"
     abbr pu "pacman -Syu"
     abbr pa "pacman -Si"

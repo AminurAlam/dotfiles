@@ -4,14 +4,14 @@ local vmap = map('v') -- mappings for visual mode
 local umap = map { '', 'i' } -- mappings for normal, visual & insert mode
 
 -- telescope
-nmap('<leader>ff', '<cmd>Telescope find_files hidden=true<cr>')
-nmap('<leader>fr', '<cmd>Telescope oldfiles<cr>')
-nmap('<leader>fg', '<cmd>Telescope live_grep disable_coordinates=true<cr>')
-nmap('<leader>fb', '<cmd>Telescope buffers<cr>')
-nmap('<leader>fh', '<cmd>Telescope help_tags<cr>')
-nmap('<leader>fs', '<cmd>Telescope spell_suggest<cr>')
+nmap('<leader>ff', '<cmd>Telescope find_files hidden=true<cr>', { desc = 'find files' })
+nmap('<leader>fr', '<cmd>Telescope oldfiles<cr>', { desc = 'find recent files' })
+nmap('<leader>fg', '<cmd>Telescope live_grep disable_coordinates=true<cr>', { desc = 'find text' })
+nmap('<leader>fb', '<cmd>Telescope buffers<cr>', { desc = 'find buffers' })
+nmap('<leader>fh', '<cmd>Telescope help_tags<cr>', { desc = 'find help' })
+nmap('<leader>fs', '<cmd>Telescope spell_suggest<cr>', { desc = 'find spelling' })
 
--- packer
+-- lazy
 nmap('<leader>pu', '<cmd>Lazy update<cr>', { desc = 'update plugins' })
 nmap('<leader>pi', '<cmd>Lazy install<cr>', { desc = 'install plugins' })
 nmap('<leader>pr', '<cmd>Lazy clean<cr>', { desc = 'remove plugins' })
@@ -21,17 +21,27 @@ nmap('<leader>pa', '<cmd>Lazy<cr>', { desc = 'plugins info' })
 umap('<c-left>', '<cmd>CybuPrev<cr>', { desc = 'previous buffer' })
 umap('<c-right>', '<cmd>CybuNext<cr>', { desc = 'next buffer' })
 
+-- git
+nmap('<leader>gd', '<cmd>Gitsigns diffthis<cr>', { desc = 'view diff in split' })
+nmap('<leader>gh', '<cmd>Gitsigns preview_hunk<cr>', { desc = 'preview hunk' })
+nmap('<leader>gr', '<cmd>Gitsigns reset_hunk<cr>', { desc = 'undo hunk' })
+nmap('<leader>gu', '<cmd>Gitsigns reset_hunk<cr>', { desc = 'undo hunk' })
+nmap('<leader>gn', '<cmd>Gitsigns next_hunk<cr>', { desc = 'goto next hunk' })
+nmap('<leader>gp', '<cmd>Gitsigns prev_hunk<cr>', { desc = 'goto previous hunk' })
+
+-- lsp
+nmap('<leader>li', '<cmd>LspInfo<cr>', { desc = 'LSP status' })
+nmap('<leader>lf', function() vim.lsp.buf.format() end, { desc = 'format code using LSP' })
+nmap('<leader>lr', function() vim.lsp.buf.rename() end, { desc = 'rename symbol under cursor' })
+nmap('<leader>ld', function() vim.diagnostic.open_float() end, { desc = 'view line diagnostics' })
+nmap('<leader>lb', function() vim.diagnostic.open_float({ scope = 'buffer' }) end, { desc = 'view all diagnostics' })
+
 -- other plugins
-nmap('<leader>tr', '<cmd>TroubleToggle<cr><cmd>wincmd b<cr>')
 nmap('<leader>co', '<cmd>ColorizerToggle<cr>')
 nmap('<leader>ib', '<cmd>IndentBlanklineRefresh<cr>')
-nmap('<leader>tt', '<cmd>topleft 8sp | term <cr>')
-nmap('<leader>li', '<cmd>LspInfo<cr>')
+nmap('<leader>tt', function() require('lazy.util').float_term() end)
 nmap('<leader>cs', '<cmd>CmpStatus<cr>')
-nmap('+', '<cmd>DialIncrement<cr>')
-nmap('-', '<cmd>DialDecrement<cr>')
 nmap('<leader>j', '<cmd>TSJToggle<cr>')
-nmap('<leader>lf', function() vim.lsp.buf.format() end)
 
 -- deleting & registers
 nmap('_', '"_', { desc = 'use void register' })
@@ -45,6 +55,7 @@ nmap('<cr>', 'o<esc>', { desc = 'enter in normal mode' })
 umap('<c-c>', '<cmd>norm m`viw~``<cr>', { desc = 'toggle word case' })
 umap('<c-z>', '<cmd>norm 1z=<cr>', { desc = 'spell correction' })
 nmap('Q', '<cmd>bdelete<cr>')
+nmap('<leader>q', '<cmd>bdelete<cr>')
 nmap('r', '<cmd>silent redo <bar> redraw <cr>', { desc = 'shortcut for redo' })
 nmap('cn', '*``cgn', { desc = 'search and replace' }) -- https://kevinli.co/posts/2017-01-19-multiple-cursors-in-500-bytes-of-vimscript/
 nmap('dn', '*``diw', { desc = 'search and delete' })

@@ -6,16 +6,16 @@ syn match noteHead1 /^\#\{1\}\s.\+$/ contains=noteHeadDelim
 syn match noteHead2 /^\#\{2\}\s.\+$/ contains=noteHeadDelim
 syn match noteHead3 /^\#\{3\}\s.\+$/ contains=noteHeadDelim
 syn match noteHead4 /^\#\{4\}\s.\+$/ contains=noteHeadDelim
-syn match noteBo /\*.\+\*/ contains=noteSurround
-syn match noteSt /\~.\+\~/ contains=noteSurround
-syn match noteBt /\`.\+\`/ contains=noteSurround
-syn match noteUl /_.\+_/   contains=noteSurround
+syn match noteBo /\*[^\*]*\*/ contains=noteSurround
+syn match noteSt /\~[^\~]*\~/ contains=noteSurround
+syn match noteBt /\`[^\`]*\`/ contains=noteSurround
+syn match noteUl /_[^_]*_/   contains=noteSurround
 
 syn region noteBt start=/^\`\{3\}/ end=/\`\{3\}$/
-syn match noteUrl /https\?:\/\/[^ \]\)]\+/
-syn match noteDef /[a-zA-Z0-9 _-]\+\:\s/
+syn match noteUrl /https\?:\/\/[^ \]\)\>]\+/
+syn match noteDef /[a-zA-Z0-9-_ ]\+\:\s/
 syn match noteList /^\d\+\.\s/
-syn match noteDash / \->\? /
+syn match noteDash /\s\+\->\? /
 syn match noteQuote /^>.\+/
 syn match noteSeporator /^\-\{3,\}$/
 syn match noteEllipsis /\.\{3,\}/

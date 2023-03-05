@@ -8,7 +8,19 @@ g.editorconfig = false
 g.netrw_banner = 0
 g.netrw_hide = 0
 g.netrw_liststyle = 3
-g.special_ft = { 'alpha', 'diff', 'gitcommit', 'help', 'lazy', 'lspinfo', 'log', 'man', 'text', 'netrw', 'Trouble' }
+g.special_ft = {
+    'alpha',
+    'diff',
+    'gitcommit',
+    'help',
+    'lazy',
+    'lspinfo',
+    'log',
+    'man',
+    'text',
+    'netrw',
+    'Trouble',
+}
 
 -- [[ core ]]
 require('core.lazy')
@@ -19,9 +31,14 @@ require('core.autocommands')
 
 vim.diagnostic.config {
     underline = { severity = vim.diagnostic.severity.ERROR },
-    virtual_text = { spacing = 2, prefix = '' },
+    virtual_text = {
+        format = function(diagnostic)
+            if diagnostic.severity == vim.diagnostic.severity.HINT then return ' ' end
+            return diagnostic.message
+        end,
+    },
     signs = false,
-    float = { border = 'rounded' },
+    float = { border = 'rounded', header = '', prefix = '', suffix = '' },
     update_in_insert = true,
     severity_sort = true,
 }
@@ -41,4 +58,3 @@ local hl = function(name, val) vim.api.nvim_set_hl(0, name, val) end
 hl('Whitespace', { bg = '#364a82' })
 hl('CursorLineNr', { fg = '#98c379' })
 hl('LineNr', { fg = '#3b4261' })
-hl('Folded', {link = 'Visual' })

@@ -8,10 +8,7 @@ return {
         { 'hrsh7th/cmp-buffer' },
         { 'hrsh7th/cmp-cmdline' },
         { 'mtoohey31/cmp-fish' },
-        { 'f3fora/cmp-spell' },
         { 'L3MON4D3/LuaSnip' },
-        { 'saadparwaiz1/cmp_luasnip' },
-        { 'rafamadriz/friendly-snippets' },
     },
     config = function()
         local cmp = require('cmp')
@@ -74,7 +71,10 @@ return {
             },
             mapping = cmp.mapping.preset.insert {
                 ['<C-e>'] = cmp.mapping.abort(),
-                [','] = cmp.mapping.confirm { select = true },
+                ['<c-space>'] = cmp.mapping.confirm {
+                    select = true,
+                    behavior = cmp.ConfirmBehavior.Insert,
+                },
                 ['<Tab>'] = cmp.mapping(function(fallback)
                     if cmp.visible() then
                         cmp.select_next_item()

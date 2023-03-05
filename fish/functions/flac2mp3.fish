@@ -10,5 +10,5 @@ function flac2mp3 -a bitrate
             ffmpeg -y -hide_banner -stats -loglevel error -i "$filename.flac" -b:a $bitrate"k" -r:a 44100 "$filename.mp3"
         end
     end &&
-    printf "\nREMOVE FLAC FILES??? [y/N]" && command rm -rfI *.flac &>/dev/null
+    printf "\nREMOVE FLAC FILES??? [y/N] " && command rm -rfI *.flac &>/dev/null
 end

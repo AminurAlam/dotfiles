@@ -20,7 +20,8 @@ M.config = function()
             utils.fish_path(vim.fn.getcwd()),
             require('lazy').stats().startuptime,
             v.major .. '.' .. v.minor .. '.' .. v.patch,
-            (v.prerelease and 'dev' or 'stable'))
+            (v.prerelease and 'dev' or 'stable')
+        )
     end
 
     local button = function(sc, text, keybind, icon_hl)
@@ -69,9 +70,9 @@ M.config = function()
     require('alpha').setup {
         layout = {
             { type = 'padding', val = 3 },
-            { type = 'text',    val = art,     opts = { position = 'center', hl = 'Type' } },
+            { type = 'text', val = art, opts = { position = 'center', hl = 'Type' } },
             { type = 'padding', val = 1 },
-            { type = 'text',    val = details, opts = { position = 'center' } },
+            { type = 'text', val = details, opts = { position = 'center' } },
             { type = 'padding', val = 1 },
             button('f', '  Find file', '<cmd>Telescope find_files hidden=true<cr>'),
             button('g', '  Find word', '<cmd>Telescope live_grep<cr>'),
@@ -80,7 +81,7 @@ M.config = function()
             button('u', '  Update plugins', '<cmd>Lazy update<cr>'),
             button('q', '  Quit', '<cmd>qa<cr>'),
             { type = 'padding', val = 1 },
-            { type = 'group',   val = oldfiles },
+            { type = 'group', val = oldfiles },
             { type = 'padding', val = 1 },
             button('6', '  /s/m/notes/', '<cmd>cd /sdcard/main/notes/' .. rep),
             button('7', '  ~/r/musicbrainzpy/', '<cmd>cd ~/repos/musicbrainzpy/ ' .. rep),

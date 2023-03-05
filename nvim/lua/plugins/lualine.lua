@@ -2,6 +2,7 @@ local M = {
     'nvim-lualine/lualine.nvim',
     dependencies = { 'nvim-tree/nvim-web-devicons' },
 }
+
 M.config = function()
     local color = {
         red = '#e06c75',
@@ -58,7 +59,7 @@ M.config = function()
             },
         },
         lualine_c = { { 'diagnostics', update_in_insert = true } },
-        lualine_x = { -- { '%S' },
+        lualine_x = { -- { '%S' }, -- https://github.com/nvim-lualine/lualine.nvim/issues/949
             { 'searchcount' },
             {
                 function() return '@' .. vim.fn.reg_recording() end,
