@@ -1,35 +1,35 @@
 local M = {}
 
 M.map = function(mode)
-    return function(lhs, rhs, opts)
-        vim.keymap.set(
-            mode,
-            lhs,
-            rhs,
-            vim.tbl_extend('force', {
-                noremap = true,
-                silent = true,
-            }, opts or {})
-        )
-    end
+  return function(lhs, rhs, opts)
+    vim.keymap.set(
+      mode,
+      lhs,
+      rhs,
+      vim.tbl_extend('force', {
+        noremap = true,
+        silent = true,
+      }, opts or {})
+    )
+  end
 end
 
 M.rsplit = function(str, sep)
-    local str_parts = vim.fn.split(str, sep) ---@type table
-    return str_parts[#str_parts] ---@type string
+  local str_parts = vim.fn.split(str, sep) ---@type table
+  return str_parts[#str_parts] ---@type string
 end
 
 M.fish_path = function(path)
-    local mod_path = vim.fn.fnamemodify(path, ':~')
-    return string.gsub(mod_path, '/(%.?.)[^/]*', '/%1', vim.fn.count(mod_path, '/') - 1)
+  local mod_path = vim.fn.fnamemodify(path, ':~')
+  return string.gsub(mod_path, '/(%.?.)[^/]*', '/%1', vim.fn.count(mod_path, '/') - 1)
 end
 
 M.rsplit_alt = function(str, sep)
-    local match = str:match('^.+(' .. sep .. '.+)$')
-    local ext = ''
-    if match ~= nil then ext = match:sub(2) end
-    print(ext)
-    return ext
+  local match = str:match('^.+(' .. sep .. '.+)$')
+  local ext = ''
+  if match ~= nil then ext = match:sub(2) end
+  print(ext)
+  return ext
 end
 
 M.git = function() return #vim.fn.finddir('.git', vim.fn.expand('%:p:h') .. ';') > 0 end

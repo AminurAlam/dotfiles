@@ -43,8 +43,8 @@ alias py "python3 -q"
 alias mbz "python3 ~/repos/musicbrainzpy/cover_art.py"
 
 # ls -> exa
-alias l  "exa -lFa -s ext --icons --no-user --no-permissions --no-time --group-directories-first"
-alias lt "exa -lFT -s ext --icons --no-user --no-permissions --no-time --group-directories-first --no-filesize"
+alias l  "exa -lFa -s ext --icons --no-user --group-directories-first --no-permissions --no-time"
+alias lt "exa -lFT -s ext --icons --no-user --group-directories-first --no-permissions --no-time"
 alias ll "exa -lFa -s ext --icons --no-user --group-directories-first --git"
 
 # du, df -> dust, duf

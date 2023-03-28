@@ -1,3 +1,4 @@
+# https://github.com/laughedelic/fish_logo
 function fish_logo \
     --description="Fish-shell colorful ASCII-art logo" \
     --argument-names outer_color medium_color inner_color mouth eye

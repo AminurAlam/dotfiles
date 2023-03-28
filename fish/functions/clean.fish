@@ -8,7 +8,7 @@ function clean
         "/sdcard/Aurora/" \
         "/sdcard/Telegram/"
 
-    pacman -Scc --noconfirm 2> /dev/null
+    yes | pacman -Scc 2> /dev/null
     echo
 
     for dir in $dirs

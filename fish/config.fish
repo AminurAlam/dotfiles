@@ -60,6 +60,7 @@ set -gx INPUTRC $XDG_CONFIG_HOME/readline/inputrc
 set -gx ICEAUTHORITY $XDG_CACHE_HOME/ICEauthority
 set -gx XAUTHORITY $XDG_RUNTIME_DIR/Xauthority
 set -gx HISTFILE $XDG_STATE_HOME/bash/history
+set -gx NVIM_APPNAME nvim
 
 # lang config
 set -gx PYTHONSTARTUP $XDG_CONFIG_HOME/python/startup.py
@@ -93,36 +94,37 @@ command -sq starship && bind -M insert \r transient_execute
 # auto pair - https://github.com/laughedelic/pisces
 set fish_function_path $fish_function_path $XDG_CONFIG_HOME/fish/functions/pisces
 
-bind -M insert '(' "_pisces_insert_left \( \)"
-bind -M insert '[' "_pisces_insert_left \[ \]"
-bind -M insert '{' "_pisces_insert_left \{ \}"
-bind -M insert '"' '_pisces_insert_left \" \"'
-bind -M insert "'" "_pisces_insert_left \' \'"
+for pair in '(,)' '[,]' '{,}' '","' "','"
+    _pisces_bind_pair insert (string split -- ',' $pair)
+end
 
-bind -M insert \b _pisces_backspace # normal backspace, also known as \010 or ^H:
-bind -M insert \177 _pisces_backspace # Terminal.app sends DEL code on ⌫:
-bind -M insert \t _pisces_complete # overrides TAB to provide completion of vars before a closing '"'
+bind -M insert \b _pisces_backspace
+bind -M insert \177 _pisces_backspace
+bind -M insert \t _pisces_complete
 
 ### ALIASES ###
 abbr zsd "z $XDG_DIR/"
   abbr zdoc "z $XDG_DOCUMENTS_DIR/"
-  abbr zdl "z $XDG_DOWNLOAD_DIR/"
+  abbr zdl  "z $XDG_DOWNLOAD_DIR/"
   abbr zmov "z $XDG_VIDEOS_DIR/"
-  abbr zmu "z $XDG_MUSIC_DIR/"
+  abbr zmu  "z $XDG_MUSIC_DIR/"
   abbr zpic "z $XDG_PICTURES_DIR/"
-  abbr zt "z $XDG_DIR/Tachiyomi*/"
-    abbr ztl "z $XDG_DIR/Tachiyomi*/local/"
-  abbr zm "z $XDG_DIR/main/"
-    abbr zn "z $XDG_DIR/main/notes/"
+  abbr zt   "z $XDG_DIR/Tachiyomi*/"
+    abbr ztl  "z $XDG_DIR/Tachiyomi*/local/"
+  abbr zm   "z $XDG_DIR/main/"
+    abbr zn   "z $XDG_DIR/main/notes/"
+    abbr zmb  "z $XDG_DIR/main/backup/"
+    abbr zmt  "z $XDG_DIR/main/torrents/"
+    abbr zmn  "z $XDG_DIR/main/notes/"
 
-abbr zr 'z (command ls -1N $XDG_PROJECTS_DIR | $LAUNCHER)'
-abbr zrp "z $XDG_PROJECTS_DIR/"
+abbr zr   'z (command ls -1N $XDG_PROJECTS_DIR | $LAUNCHER)'
+abbr zrp  "z $XDG_PROJECTS_DIR/"
   abbr zmbz "z $XDG_PROJECTS_DIR/musicbrainzpy/"
-  abbr zd "z $XDG_PROJECTS_DIR/dotfiles/"
+  abbr zd   "z $XDG_PROJECTS_DIR/dotfiles/"
 
-abbr zc "z $XDG_CONFIG_HOME/"
-  abbr zcf "z $XDG_CONFIG_HOME/fish/"
-  abbr zcn "z $XDG_CONFIG_HOME/nvim/"
+abbr zc   "z $XDG_CONFIG_HOME/"
+  abbr zcf  "z $XDG_CONFIG_HOME/fish/"
+  abbr zcn  "z $XDG_CONFIG_HOME/nvim/"
 
 abbr zp "z $PREFIX/"
 abbr gl "git log --format=format:'%C(green)(%ar)%C(reset) %s %C(yellow)%d%C(reset)'"
@@ -141,28 +143,6 @@ function wa
     curl -s "https://api.wolframalpha.com/v1/result?appid=PJHXKQ-UP492G48WW&i=$(echo $argv | string escape --style=url)"
 end
 
-# in /usr/share/fish/functions/open.fish
-function open
-    if not set -q argv[1]
-        printf (_ "%ls: Expected at least %d args, got only %d\n") open 1 0 >&2
-        return 1
-    end
-
-    if [ -d "$argv" ]
-        cd "$argv"
-    else if [ -f "$argv" ]
-        if file "$argv" | grep 'ASCII text'
-            $EDITOR "$argv"
-        end
-    else if type -qf xdg-open
-        for i in $argv
-            xdg-open $i &
-            disown $last_pid 2>/dev/null
-        end
-    else
-        echo (_ 'No open utility found. Try installing "xdg-open" or "xdg-utils".') >&2
-    end
-end
 
 function quit
     if [ (count (ps -C fish)) = 2 ]

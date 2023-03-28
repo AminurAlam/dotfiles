@@ -1,7 +1,6 @@
-local map = require('core.utils').map
-local nmap = map('n') -- mappings for normal mode
-local vmap = map('v') -- mappings for visual mode
-local umap = map { '', 'i' } -- mappings for normal, visual & insert mode
+local nmap = require('core.utils').map('n') -- mappings for normal mode
+local vmap = require('core.utils').map('v') -- mappings for visual mode
+local umap = require('core.utils').map { '', 'i' } -- mappings for normal, visual & insert mode
 
 -- telescope
 nmap('<leader>ff', '<cmd>Telescope find_files hidden=true<cr>', { desc = 'find files' })
@@ -34,14 +33,17 @@ nmap('<leader>li', '<cmd>LspInfo<cr>', { desc = 'LSP status' })
 nmap('<leader>lf', function() vim.lsp.buf.format() end, { desc = 'format code using LSP' })
 nmap('<leader>lr', function() vim.lsp.buf.rename() end, { desc = 'rename symbol under cursor' })
 nmap('<leader>ld', function() vim.diagnostic.open_float() end, { desc = 'view line diagnostics' })
-nmap('<leader>lb', function() vim.diagnostic.open_float({ scope = 'buffer' }) end, { desc = 'view all diagnostics' })
+nmap(
+  '<leader>lb',
+  function() vim.diagnostic.open_float { scope = 'buffer' } end,
+  { desc = 'view all diagnostics' }
+)
 
 -- other plugins
 nmap('<leader>co', '<cmd>ColorizerToggle<cr>')
 nmap('<leader>ib', '<cmd>IndentBlanklineRefresh<cr>')
 nmap('<leader>tt', function() require('lazy.util').float_term() end)
-nmap('<leader>cs', '<cmd>CmpStatus<cr>')
-nmap('<leader>j', '<cmd>TSJToggle<cr>')
+nmap('<leader>j', '<cmd>TSJToggle<cr>') -- norm v%J
 
 -- deleting & registers
 nmap('_', '"_', { desc = 'use void register' })
@@ -52,10 +54,13 @@ nmap('<bs>', 'i<bs><esc>l', { desc = 'backspace in normal mode' })
 nmap('<cr>', 'o<esc>', { desc = 'enter in normal mode' })
 
 -- other
+umap('<leader>w', '<cmd>silent w <bar> redraw <cr>', { desc = 'write' })
+umap('<c-w>', '<cmd>silent w <bar> redraw <cr>', { desc = 'write' })
+umap('<c-q>', '<cmd>q<cr>', { desc = 'quit' })
+nmap('<leader>q', '<cmd>bdelete<cr>', { desc = 'quit buffer' })
+nmap('Q', '<cmd>bdelete<cr>', { desc = 'quit buffer' })
 umap('<c-c>', '<cmd>norm m`viw~``<cr>', { desc = 'toggle word case' })
 umap('<c-z>', '<cmd>norm 1z=<cr>', { desc = 'spell correction' })
-nmap('Q', '<cmd>bdelete<cr>')
-nmap('<leader>q', '<cmd>bdelete<cr>')
 nmap('r', '<cmd>silent redo <bar> redraw <cr>', { desc = 'shortcut for redo' })
 nmap('cn', '*``cgn', { desc = 'search and replace' }) -- https://kevinli.co/posts/2017-01-19-multiple-cursors-in-500-bytes-of-vimscript/
 nmap('dn', '*``diw', { desc = 'search and delete' })
@@ -64,7 +69,7 @@ umap('<esc>', '<cmd>nohlsearch<cr><esc>')
 nmap('<leader>d ', [[m`<cmd>keeppatterns %s/\s\+$//e<cr>``]], { desc = 'delete trailing whitespace' })
 nmap('<leader>d#', [[m`<cmd>keeppatterns s/\s*#.*$//e<cr>``]], { desc = 'delete # comment' })
 nmap('<leader>d-', [[m`<cmd>keeppatterns s/\s*--.*$//e<cr>``]], { desc = 'delete -- comment' })
-nmap('<leader>ol', [[@='^"1yiwo<c-v><esc>"1p<c-a>0'<cr>]]) -- https://jdhao.github.io/2019/04/29/nvim_map_with_a_count/
+nmap('<leader>ol', [[@='^"1yiwo<c-v><esc>"1p<c-a>0'<cr>]], { desc = 'ordered list' }) -- https://jdhao.github.io/2019/04/29/nvim_map_with_a_count/
 
 -- indent
 nmap('>', '>>')
@@ -87,11 +92,8 @@ umap('<c-down>', '<c-end>')
 -- toggles
 nmap('<leader>ss', '<cmd>setlocal spell!<cr>', { desc = 'toggle spell' })
 nmap('<leader>sw', '<cmd>setlocal wrap!<cr>', { desc = 'toggle wrap' })
-nmap('<leader>sn', function() vim.opt_local.stc = vim.o.stc ~= ' ' and ' ' or vim.g.stc end, {
-    desc = 'toggle statuscolumn',
-})
-
-umap('<c-q>', '<cmd>q<cr>')
-umap('<c-w>', '<cmd>silent w <bar> redraw <cr>')
-umap('<c-m>', '')
-umap('<c-j>', '<cmd>norm v%J<cr>')
+nmap(
+  '<leader>sn',
+  function() vim.opt_local.stc = vim.o.stc ~= ' ' and ' ' or vim.g.stc end,
+  { desc = 'toggle statuscolumn' }
+)

@@ -8,19 +8,6 @@ g.editorconfig = false
 g.netrw_banner = 0
 g.netrw_hide = 0
 g.netrw_liststyle = 3
-g.special_ft = {
-    'alpha',
-    'diff',
-    'gitcommit',
-    'help',
-    'lazy',
-    'lspinfo',
-    'log',
-    'man',
-    'text',
-    'netrw',
-    'Trouble',
-}
 
 -- [[ core ]]
 require('core.lazy')
@@ -30,25 +17,25 @@ require('core.commands')
 require('core.autocommands')
 
 vim.diagnostic.config {
-    underline = { severity = vim.diagnostic.severity.ERROR },
-    virtual_text = {
-        format = function(diagnostic)
-            if diagnostic.severity == vim.diagnostic.severity.HINT then return ' ' end
-            return diagnostic.message
-        end,
-    },
-    signs = false,
-    float = { border = 'rounded', header = '', prefix = '', suffix = '' },
-    update_in_insert = true,
-    severity_sort = true,
+  underline = { severity = vim.diagnostic.severity.ERROR },
+  virtual_text = {
+    format = function(diagnostic)
+      if diagnostic.severity == vim.diagnostic.severity.HINT then return ' ' end
+      return diagnostic.message
+    end,
+  },
+  signs = false,
+  float = { border = 'rounded', header = '', prefix = '', suffix = '' },
+  update_in_insert = true,
+  severity_sort = true,
 }
 
 vim.filetype.add {
-    pattern = {
-        ['.*%.log'] = 'log',
-        ['.*%.cue'] = 'cuesheet',
-        ['.*%.note'] = 'note',
-    },
+  pattern = {
+    ['.*%.log'] = 'log',
+    ['.*%.cue'] = 'cuesheet',
+    ['.*%.note'] = 'note',
+  },
 }
 
 vim.cmd.colorscheme { 'tokyonight' }

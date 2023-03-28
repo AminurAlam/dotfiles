@@ -63,6 +63,7 @@ set.linebreak = true
 set.breakindent = true
 
 -- others
+-- set.completeopt = 'menu,menuone,noinsert,noselect'
 set.showmatch = true
 set.matchtime = 2
 set.grepprg = 'rg --vimgrep '
@@ -75,17 +76,17 @@ set.confirm = true
 set.clipboard:append('unnamedplus')
 set.list = true
 set.listchars = {
-    tab = '> ',
-    trail = ' ',
-    extends = '…',
-    precedes = '…',
-    conceal = '●',
-    nbsp = '␣',
+  tab = '> ',
+  trail = ' ',
+  extends = '…',
+  precedes = '…',
+  conceal = '●',
+  nbsp = '␣',
 }
 set.fillchars = {
-    eob = ' ',
-    fold = ' ',
-    foldopen = '',
-    foldclose = '',
-    lastline = '.',
+  eob = ' ',
+  fold = ' ',
+  foldopen = '',
+  foldclose = '',
+  lastline = '.',
 }
