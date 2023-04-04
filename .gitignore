@@ -4,7 +4,9 @@ rclone/
 rclone.conf
 
 nvim/lazy-lock.json
+nvim/spell/*
 nvim/spell/
+nvim/spell
 spell
 
 mutt/passwords.gpg
