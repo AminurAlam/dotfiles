@@ -131,7 +131,7 @@ autocmd({ 'FileType' }, {
   pattern = 'note',
   callback = function()
     set.syntax = 'note'
-    set.statuscolumn = ' │ '
+    set.statuscolumn = ' '
     set.conceallevel = 3
     set.concealcursor = 'n'
   end,

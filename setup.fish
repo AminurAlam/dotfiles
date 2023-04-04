@@ -5,32 +5,40 @@ set packages  dust exa fd git neovim-nightly ripgrep starship zoxide lua-languag
 mkdir -p $HOME/backup/ $HOME/.shortcuts/ $HOME/.local/{share,bin}/
 
 printf "UPDATING DATABASE...\n"
-pacman -Syu --noconfirm &>/dev/null
+pacman -Syu --noconfirm &>/dev/null || begin
+    printf "update failed, try updating manually:
+    $(set_color $fish_color_command)pacman $(set_color $fish_color_option)-Syu $(set_color normal)\n"
+    exit
+end
 
 printf "INSTALLING NEW PACKAGES...\n"
-pacman -Syu --noconfirm $packages &>/dev/null
+pacman -S --noconfirm --needed $packages &>/dev/null || begin
+    printf "installation failed, try installing manually:
+    $(set_color $fish_color_command)pacman $(set_color $fish_color_option)-S --needed $(set_color $fish_color_param)$packages $(set_color normal)\n"
+    exit
+end
 
-command -sq python || begin
+if not command -sq python
     printf "INSTALLING PYTHON "
     pacman -S --needed python >/dev/null
 end
 
-command -sq python && command -sq pip || begin
+if command -sq python && not command -sq pip
     printf "INSTALLING PIP & CLANG "
     pacman -S --needed python-pip >/dev/null
 end
 
-command -sq python && command -sq pip && begin
+if command -sq python && command -sq pip
     printf "INSTALLING REQUESTS & DEFLACUE "
     pip install requests deflacue >/dev/null
 end
 
 printf "DOWNLOADING DOTFILES...\n"
-[ -d "$dotfiles" ] && command mv "$dotfiles" ~/backup/ &>/dev/null
+[ -d "$dotfiles" ] && command mv "$dotfiles" ~/backup/ &>/dev/null  # TODO: maybe just delete it
 git clone -q --depth 1 "https://github.com/AminurAlam/dotfiles.git" "$dotfiles"
 
 printf "LINKING CONFIG DIRECTORIES...\n"
-for config in fish git newsboat npm nvim python
+for config in fish git mutt newsboat npm nvim python
     [ -e "$dotfiles/$config" ] || continue
     command mv -f ~/.config/$config ~/backup/ &>/dev/null
     ln -fs "$dotfiles/$config" ~/.config/

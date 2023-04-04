@@ -29,6 +29,7 @@ nmap('<leader>gn', '<cmd>Gitsigns next_hunk<cr>', { desc = 'goto next hunk' })
 nmap('<leader>gp', '<cmd>Gitsigns prev_hunk<cr>', { desc = 'goto previous hunk' })
 
 -- lsp
+nmap('<leader>ni', '<cmd>:NullLsInfo<cr>', { desc = 'null-ls status' })
 nmap('<leader>li', '<cmd>LspInfo<cr>', { desc = 'LSP status' })
 nmap('<leader>lf', function() vim.lsp.buf.format() end, { desc = 'format code using LSP' })
 nmap('<leader>lr', function() vim.lsp.buf.rename() end, { desc = 'rename symbol under cursor' })
@@ -40,6 +41,7 @@ nmap(
 )
 
 -- other plugins
+nmap('<leader>al', '<cmd>Alpha<cr>')
 nmap('<leader>co', '<cmd>ColorizerToggle<cr>')
 nmap('<leader>ib', '<cmd>IndentBlanklineRefresh<cr>')
 nmap('<leader>tt', function() require('lazy.util').float_term() end)
@@ -70,6 +72,7 @@ nmap('<leader>d ', [[m`<cmd>keeppatterns %s/\s\+$//e<cr>``]], { desc = 'delete t
 nmap('<leader>d#', [[m`<cmd>keeppatterns s/\s*#.*$//e<cr>``]], { desc = 'delete # comment' })
 nmap('<leader>d-', [[m`<cmd>keeppatterns s/\s*--.*$//e<cr>``]], { desc = 'delete -- comment' })
 nmap('<leader>ol', [[@='^"1yiwo<c-v><esc>"1p<c-a>0'<cr>]], { desc = 'ordered list' }) -- https://jdhao.github.io/2019/04/29/nvim_map_with_a_count/
+nmap('<leader>fd', '<cmd>filetype detect<cr>', { desc = 'recheck the filetype' })
 
 -- indent
 nmap('>', '>>')

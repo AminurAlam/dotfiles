@@ -23,11 +23,6 @@ M.config = function()
         word = false,
         cyclic = true,
       },
-      augend.constant.new {
-        elements = { 'true', 'false' },
-        word = true,
-        cyclic = true,
-      },
     },
   }
 end

@@ -80,7 +80,7 @@ M.config = function()
     },
     sections = sections,
     extensions = {
-      { filetypes = { 'lazy', 'alpha', 'lspinfo' }, sections = {} },
+      { filetypes = { 'lazy', 'alpha', 'lspinfo', 'TelescopePrompt' }, sections = {} },
     },
   }
 end

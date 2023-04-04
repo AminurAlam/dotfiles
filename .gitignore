@@ -1,8 +1,11 @@
 termux/shell
 termux/font.ttf
-rclone
+rclone/
 rclone.conf
 
-packer_compiled.lua
 nvim/lazy-lock.json
-lazy-lock.json
+nvim/spell/
+spell
+
+mutt/passwords.gpg
+passwords.gpg

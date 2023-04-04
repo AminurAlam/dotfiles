@@ -1,7 +1,7 @@
 function bm
     set HELP_TEXT "usage:
     bm <f|fd|find> [query]  find something with fuzzy search
-    bm <g|get> /pattern/      list entries with matching regex pattern
+    bm <g|get> /pattern/    list entries with matching regex pattern
     bm <a|add> <text>       add a new entry
     bm <e|ed|edit>          edit the entries"
 
@@ -16,7 +16,8 @@ function bm
                 $LAUNCHER --query "$argv[2]")
 
             if echo $LINK | grep -q '%s'
-                $BROWSER https://(string replace '%s' (read -fP 'search for: ' | string escape --style=url) $LINK)
+                echo "  $LINK"
+                $BROWSER https://(string replace '%s' (read -fP '  ' | string escape --style=url) $LINK)
             else
                 $BROWSER https://$LINK
             end
@@ -29,6 +30,12 @@ function bm
 
         case e ed edit
             set -q EDITOR && $EDITOR $BMPATH || echo "no EDITOR found"
+
+        case c check
+            cat $BMPATH | rg '^http' | sort | uniq -c | sort
+
+        case d delete
+            echo 'TODO'
 
         case '*'
             echo $HELP_TEXT

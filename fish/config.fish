@@ -7,7 +7,9 @@ switch (uname -o)
 end
 
 set -l COLORS "*.py=38;5;45:*.rs=38;5;208:*.fish=38;5;47:*.sh=38;5;47:*.bash=38;5;47:*.png=36:*.flac=36:*.log=38;5;252:*.lrc=38;5;252:*.cue=38;5;39:*.apk=38;5;47:*.css=38;5;135:*.csv=38;5;42:*.go=38;5;45:*.gradle=38;5;24:*.html=38;5;202:*.json=38;5;3:*.jl=38;5;213:*.js=33:*.kt=35:*.lua=38;5;27:*.php=38;5;63:*.pdf=38;5;124:*.md=38;5;111:*.tex=38;5;71"
-set -l SKIM_COLORS "dark,fg:,bg:,matched:,matched_bg:#364A82,current:#7dcfff,current_bg:,current_match:#1d202f,current_match_bg:#ff9e64,query:,query_bg:,info:,border:#c0caf5,prompt:,pointer:,marker:,spinner:,header:"
+set -l SKIM_COLORS "dark,fg:,bg:,matched:#ff9e64,matched_bg:,current:,\
+current_bg:#2e3c64,current_match:,current_match_bg:,query:,query_bg:,info:,\
+border:#c0caf5,prompt:,pointer:,marker:,spinner:,header:"
 
 if      command -sq nvim;   set -gx EDITOR "nvim"
 else if command -sq neovim; set -gx EDITOR "neovim"
@@ -72,9 +74,7 @@ set -gx CARGO_INSTALL_ROOT $CARGO_HOME
 set -gx CARGO_LOG info
 
 ### PATH ###
-[ -d "$HOME/bin" ]        && fish_add_path $HOME/bin
-[ -d "$HOME/.local/bin" ] && fish_add_path $HOME/.local/bin
-[ -d "$CARGO_HOME/bin" ]  && fish_add_path $CARGO_HOME/bin
+fish_add_path $HOME/bin $HOME/.local/bin $CARGO_HOME/bin
 
 ### SOURCE ###
 command -sq starship && starship init fish | source || source $XDG_CONFIG_HOME/fish/functions/load_prompt.fish

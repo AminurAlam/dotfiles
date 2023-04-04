@@ -1,4 +1,7 @@
-local M = { 'goolord/alpha-nvim', dependencies = { 'nvim-tree/nvim-web-devicons' } }
+local M = {
+  'goolord/alpha-nvim',
+  dependencies = { 'nvim-tree/nvim-web-devicons' },
+}
 
 M.config = function()
   local utils = require('core.utils')
@@ -55,10 +58,10 @@ M.config = function()
             local icon, hl = dev_icon.get_icon(utils.rsplit(filename, '/'), utils.rsplit(filename, '\\.'))
             filename = vim.fn.fnamemodify(filename, ':~')
             table.insert(of_buttons, button(
-                tostring(len),
-                (icon or '') .. '  ' .. utils.fish_path(filename),
-                '<cmd>e ' .. filename .. ' <cr>',
-                hl
+              tostring(len),
+              (icon or '') .. '  ' .. utils.fish_path(filename),
+              '<cmd>e ' .. filename .. ' <cr>',
+              hl
             ));
             ::continue::
         end
@@ -83,9 +86,9 @@ M.config = function()
       { type = 'padding', val = 1 },
       { type = 'group', val = oldfiles },
       { type = 'padding', val = 1 },
-      button('6', '  /s/m/notes/', '<cmd>cd /sdcard/main/notes/' .. rep),
-      button('7', '  ~/r/musicbrainzpy/', '<cmd>cd ~/repos/musicbrainzpy/ ' .. rep),
-      button('8', '  ~/r/dotfiles/', '<cmd>cd ~/repos/dotfiles/' .. rep),
+      button('6', '  ~/r/dotfiles/', '<cmd>cd ~/repos/dotfiles/' .. rep),
+      button('7', '  /s/m/notes/', '<cmd>cd /sdcard/main/notes/' .. rep),
+      button('8', '  ~/r/musicbrainzpy/', '<cmd>cd ~/repos/musicbrainzpy/ ' .. rep),
     },
   }
 end
