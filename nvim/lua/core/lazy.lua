@@ -15,11 +15,16 @@ vim.opt.rtp:prepend(lazypath)
 
 require('lazy').setup('plugins', {
   root = vim.fn.stdpath('data') .. '/lazy',
-  defaults = { lazy = false, version = nil },
+  defaults = { lazy = false, version = nil, cond = nil },
   spec = nil,
   lockfile = vim.fn.stdpath('state') .. '/lazy/lazy-lock.json',
-  concurrency = 8,
-  git = { log = { '--since=3 days ago' } },
+  concurrency = 4,
+  git = {
+    log = { '--since=3 days ago' },
+    timeout = 120,
+    url_format = 'https://github.com/%s.git',
+    filter = true,
+  },
   dev = {
     path = '~/repos',
     patterns = {},
@@ -27,33 +32,33 @@ require('lazy').setup('plugins', {
   },
   install = {
     missing = true,
-    colorscheme = { 'default', 'tokyonight' },
+    colorscheme = { 'habamax' },
   },
   ui = {
-    size = { width = 0.9, height = 0.8 }, -- a number <1 is a percentage., >1 is a fixed size
-    wrap = false, -- wrap the lines in the ui
+    size = { width = 0.9, height = 0.8 },
+    wrap = false,
     border = 'rounded',
     icons = {
-      import = '',
-      lazy = '鈴',
-      loaded = '●',
-      not_loaded = '○',
       cmd = '',
       config = '',
       event = '',
       ft = '',
+      import = '',
       init = '',
       keys = '',
+      lazy = '󰒲',
+      loaded = '●',
+      not_loaded = '○',
       plugin = '',
       runtime = '',
       source = '',
-      start = '',
+      start = '',
       task = '',
       list = { '-', '-', '-', '‒' },
     },
     custom_keys = {},
     browser = nil,
-    throttle = 20, -- how frequently should the ui process render events
+    throttle = 20,
   },
   diff = { cmd = 'git' },
   checker = { enabled = false },

@@ -12,7 +12,7 @@ return {
     }
 
     require('nvim-treesitter.configs').setup {
-      -- ensure_installed = { 'bash', 'diff', 'fish', 'help', 'lua', 'python', 'vim' },
+      -- ensure_installed = { 'bash', 'diff', 'fish', 'vimdoc', 'lua', 'python', 'vim' },
       highlight = { enable = true },
       incremental_selection = { enable = true },
       textobjects = { enable = true },

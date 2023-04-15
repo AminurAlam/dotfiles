@@ -14,12 +14,6 @@ return {
         cterm_color = '67',
         name = 'note',
       },
-      nim = {
-        icon = '',
-        color = '#f3d400',
-        cterm_color = '67',
-        name = 'nim',
-      },
     }
   end,
 }

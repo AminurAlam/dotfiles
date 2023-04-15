@@ -44,11 +44,11 @@ set -g fish_color_host_remote $color11
 set -g fish_color_keyword $color5 --bold
 set -g fish_color_match --background=$selection
 set -g fish_color_normal $foreground
-set -g fish_color_operator $color11
+set -g fish_color_operator $color14
 set -g fish_color_option $color11
 set -g fish_color_param $color4
 set -g fish_color_quote $color2
-set -g fish_color_redirection $color11
+set -g fish_color_redirection $color14
 set -g fish_color_search_match --background=$selection
 set -g fish_color_selection --background=$selection
 set -g fish_color_status $color9

@@ -85,6 +85,14 @@ if command -sq pip
     abbr pyf "pip search"
 end
 
+if command -sq cargo
+    abbr cb "cargo build"
+    abbr cr "cargo run"
+    abbr ct "cargo test"
+    abbr cf "cargo search"
+    abbr ci "cargo install"
+end
+
 if command -sq npm
     abbr ni "npm install --location global"
     abbr nr "npm uninstall"

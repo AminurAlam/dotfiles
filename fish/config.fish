@@ -62,6 +62,7 @@ set -gx INPUTRC $XDG_CONFIG_HOME/readline/inputrc
 set -gx ICEAUTHORITY $XDG_CACHE_HOME/ICEauthority
 set -gx XAUTHORITY $XDG_RUNTIME_DIR/Xauthority
 set -gx HISTFILE $XDG_STATE_HOME/bash/history
+set -gx GNUPGHOME $XDG_DATA_HOME/gnupg
 set -gx NVIM_APPNAME nvim
 
 # lang config

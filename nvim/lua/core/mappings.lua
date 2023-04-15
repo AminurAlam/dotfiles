@@ -39,6 +39,11 @@ nmap(
   function() vim.diagnostic.open_float { scope = 'buffer' } end,
   { desc = 'view all diagnostics' }
 )
+nmap(
+  '<leader>lc',
+  function() vim.lsp.codelens.display(vim.lsp.codelens.get(0), 0, 0) end,
+  { desc = 'view all diagnostics' }
+)
 
 -- other plugins
 nmap('<leader>al', '<cmd>Alpha<cr>')
@@ -56,7 +61,7 @@ nmap('<bs>', 'i<bs><esc>l', { desc = 'backspace in normal mode' })
 nmap('<cr>', 'o<esc>', { desc = 'enter in normal mode' })
 
 -- other
-umap('<leader>w', '<cmd>silent w <bar> redraw <cr>', { desc = 'write' })
+nmap('<leader>w', '<cmd>silent w <bar> redraw <cr>', { desc = 'write' })
 umap('<c-w>', '<cmd>silent w <bar> redraw <cr>', { desc = 'write' })
 umap('<c-q>', '<cmd>q<cr>', { desc = 'quit' })
 nmap('<leader>q', '<cmd>bdelete<cr>', { desc = 'quit buffer' })

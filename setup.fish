@@ -1,6 +1,6 @@
 set dotfiles  $HOME/repos/dotfiles
 set main  /sdcard/main/termux
-set packages  dust exa fd git neovim-nightly ripgrep starship zoxide lua-language-server termux-api
+set packages  dust exa fd git neomutt neovim-nightly openssh ripgrep starship zoxide lua-language-server termux-api
 
 mkdir -p $HOME/backup/ $HOME/.shortcuts/ $HOME/.local/{share,bin}/
 

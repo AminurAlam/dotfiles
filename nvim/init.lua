@@ -9,6 +9,8 @@ g.netrw_banner = 0
 g.netrw_hide = 0
 g.netrw_liststyle = 3
 
+g.ft_man_folding_enable = 1
+
 -- [[ core ]]
 require('core.lazy')
 require('core.options')

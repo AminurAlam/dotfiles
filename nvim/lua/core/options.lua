@@ -30,11 +30,11 @@ set.sidescrolloff = 8
 
 -- cmdline, statusline & statuscolumn
 set.showmode = false
-set.ruler = false
-set.showcmd = false
+set.ruler = true
+set.showcmd = true
+set.showcmdloc = 'statusline' -- https://github.com/neovim/neovim/issues/20087
 set.laststatus = 3
 set.cmdheight = 0
-set.showcmdloc = 'statusline' -- https://github.com/neovim/neovim/issues/20087
 set.numberwidth = 1
 set.shortmess = 'acoOsSWIF'
 set.number = false
@@ -63,11 +63,11 @@ set.linebreak = true
 set.breakindent = true
 
 -- others
--- set.completeopt = 'menu,menuone,noinsert,noselect'
-set.showmatch = true
-set.matchtime = 2
+set.showmatch = true -- briefly jump to the matching bracket
+set.matchtime = 1
 set.grepprg = 'rg --vimgrep '
-set.timeoutlen = 0
+set.timeout = false -- remove for which-key
+set.timeoutlen = 1000 -- use 0 for which-key
 set.swapfile = false
 set.backup = false
 set.writebackup = false

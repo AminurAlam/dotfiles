@@ -60,7 +60,7 @@ M.config = function()
     },
     lualine_c = { { 'diagnostics', update_in_insert = true } },
     lualine_x = {
-      -- { '%S' }, -- https://github.com/nvim-lualine/lualine.nvim/issues/949
+      { '%S' }, -- https://github.com/nvim-lualine/lualine.nvim/issues/949
       { 'searchcount' },
       {
         function() return '@' .. vim.fn.reg_recording() end,
@@ -81,6 +81,14 @@ M.config = function()
     sections = sections,
     extensions = {
       { filetypes = { 'lazy', 'alpha', 'lspinfo', 'TelescopePrompt' }, sections = {} },
+      {
+        filetypes = { 'man', 'help' },
+        sections = {
+          lualine_a = { { 'filename', symbols = { readonly = '' } } },
+          lualine_x = { { 'searchcount' } },
+          lualine_z = { { 'progress' } },
+        },
+      },
     },
   }
 end

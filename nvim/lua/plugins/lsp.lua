@@ -1,6 +1,7 @@
 local M = {
   'neovim/nvim-lspconfig',
 }
+
 M.config = function()
   local lspconfig = require('lspconfig')
 
@@ -18,8 +19,12 @@ M.config = function()
 
   lspconfig.clangd.setup {}
 
+  lspconfig.rust_analyzer.setup {
+    -- settings = { ['rust-analyzer'] = { diagnostics = { enable = false } } },
+  }
+
   lspconfig.lua_ls.setup {
-    on_attach = function(client, bufnr) client.server_capabilities.semanticTokensProvider = nil end,
+    -- on_attach = function(client, bufnr) client.server_capabilities.semanticTokensProvider = nil end,
     settings = {
       Lua = {
         workspace = { checkThirdParty = false },
@@ -30,17 +35,17 @@ M.config = function()
     },
   }
 
-  lspconfig.pyright.setup {
-    settings = {
-      python = {
-        analysis = {
-          autoSearchPaths = true,
-          diagnosticMode = 'document',
-          useLibraryCodeForTypes = true,
-        },
-      },
-    },
-  }
+  -- lspconfig.pyright.setup {
+  --   settings = {
+  --     python = {
+  --       analysis = {
+  --         autoSearchPaths = true,
+  --         diagnosticMode = 'document',
+  --         useLibraryCodeForTypes = true,
+  --       },
+  --     },
+  --   },
+  -- }
 
   -- lspconfig.pylsp.setup {
   --     settings = { pylsp = { plugins = {

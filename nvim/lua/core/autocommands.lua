@@ -107,35 +107,10 @@ autocmd('BufReadPost', {
   end,
 })
 
-autocmd('BufWritePre', {
-  desc = 'automatically create missing directories when saving files',
-  callback = function(event)
-    local file = vim.loop.fs_realpath(event.match) or event.match
-
-    vim.fn.mkdir(vim.fn.fnamemodify(file, ':p:h'), 'p')
-    local backup = vim.fn.fnamemodify(file, ':p:~:h')
-    backup = backup:gsub('[/\\]', '%%')
-    vim.go.backupext = backup
-  end,
-})
-
 autocmd({ 'TextYankPost' }, {
   callback = function() vim.highlight.on_yank { higroup = 'IncSearch', timeout = 300 } end,
 })
 
-autocmd({ 'FileType' }, {
-  pattern = 'cuesheet',
-  callback = function() vim.opt.syntax = 'cuesheet' end,
-})
-autocmd({ 'FileType' }, {
-  pattern = 'note',
-  callback = function()
-    set.syntax = 'note'
-    set.statuscolumn = ' '
-    set.conceallevel = 3
-    set.concealcursor = 'n'
-  end,
-})
 autocmd('VimLeave', {
   callback = function() vim.opt.guicursor = 'a:hor25' end,
 })
