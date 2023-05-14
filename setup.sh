@@ -1,8 +1,12 @@
 #!/usr/bin/env bash
 
+download-bootstrap() {
+    curl "https://github.com/termux/termux-packages/releases/latest/download/bootstrap-$arch.zip"
+}
+
 bootstrap-pacman() {
     printf "BOOTSTRAPPING PACMAN...
-    https://github.com/termux/termux-packages/releases\n"
+    https://github.com/termux/termux-packages/releases/latest/download/bootstrap-arm.zip\n"
 
     printf "determining arch...\n"
     case "$(uname -m)" in
@@ -18,7 +22,7 @@ bootstrap-pacman() {
 
     printf "checking for bootstrap...\n"
     bootstrap_path="/sdcard/main/termux/bootstrap-${arch}.zip"
-    [ -e "${bootstrap_path}" ] && printf "path: ${bootstrap_path}" || exit
+    [ -e "${bootstrap_path}" ] && printf "path: ${bootstrap_path}" || download-bootstrap
 
     mkdir -p ~/../usr-n/
     cd ~/../usr-n/

@@ -103,7 +103,7 @@ style_user = 'yellow bold'
 show_always = false
 disabled = false
 
-[custom.newline]
-format = "\n  "
-when = '[ (string length (prompt_pwd)) -gt 18 ]'
-shell = [ "fish", "--no-config", "--private" ]
+# [custom.newline]
+# format = "\n  "
+# when = '[ (string length (prompt_pwd)) -gt 18 ]'
+# shell = [ "fish", "--no-config", "--private" ]

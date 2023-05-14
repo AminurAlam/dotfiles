@@ -1,6 +1,6 @@
 return {
   'folke/which-key.nvim',
-  -- enabled = false,
+  enabled = false,
   opts = {
     plugins = {
       marks = true, -- shows a list of your marks on ' and `

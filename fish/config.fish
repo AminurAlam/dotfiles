@@ -50,6 +50,7 @@ set -gx VISUAL $EDITOR
 set -gx SUDO_EDITOR $EDITOR
 
 set -gx MANPAGER "$EDITOR +Man!"
+set -gx MANPATH $PREFIX/share/man
 set -gx TERMINFO "$PREFIX/share/terminfo"
 set -gx BROWSER "termux-open"
 set -gx LAUNCHER sk --prompt '  ' --inline-info --no-multi --margin 0,3,1,3 --color "$SKIM_COLORS"
@@ -86,22 +87,10 @@ set fish_greeting "$(fish_logo brcyan brcyan brgreen \| 0)"
 
 ### BINDINGS ###
 fish_vi_key_bindings
-bind -M insert \cr 'commandline -f history-pager'
 bind -M insert \e\[1\;5A 'commandline -f history-token-search-backward'
 bind -M insert \e\[1\;5B 'commandline -f history-token-search-forward'
 
 command -sq starship && bind -M insert \r transient_execute
-
-# auto pair - https://github.com/laughedelic/pisces
-set fish_function_path $fish_function_path $XDG_CONFIG_HOME/fish/functions/pisces
-
-for pair in '(,)' '[,]' '{,}' '","' "','"
-    _pisces_bind_pair insert (string split -- ',' $pair)
-end
-
-bind -M insert \b _pisces_backspace
-bind -M insert \177 _pisces_backspace
-bind -M insert \t _pisces_complete
 
 ### ALIASES ###
 abbr zsd "z $XDG_DIR/"
@@ -137,7 +126,19 @@ function fish_title
 end
 
 function starship_transient_prompt_func
-    printf ' ❯ '
+    if [ $CMD_DURATION -gt 3600000 ]
+        set -f time " [$(math -s 0 $CMD_DURATION/3600_000)h$(math -s 0 \($CMD_DURATION%3600_000\)/60_000)m]"
+    else if [ $CMD_DURATION -gt 60000 ]
+        set -f time " [$(math -s 0 $CMD_DURATION/60_000)m$(math -s 0 \($CMD_DURATION%60_000\)/1_000)s]"
+    else if [ $CMD_DURATION -gt 800 ]
+        set -f time " [$(math -s 1 $CMD_DURATION/1_000)s]"
+    else if [ $CMD_DURATION -gt 10 ]
+        set -f time " [$(echo $CMD_DURATION)ms]"
+    end
+
+    printf "%s%s %s%s " \
+        (set_color cyan) $time \
+        (set_color normal) "❯"
 end
 
 function wa

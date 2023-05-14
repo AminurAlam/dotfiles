@@ -19,10 +19,6 @@ M.config = function()
 
   lspconfig.clangd.setup {}
 
-  lspconfig.rust_analyzer.setup {
-    -- settings = { ['rust-analyzer'] = { diagnostics = { enable = false } } },
-  }
-
   lspconfig.lua_ls.setup {
     -- on_attach = function(client, bufnr) client.server_capabilities.semanticTokensProvider = nil end,
     settings = {
@@ -36,15 +32,11 @@ M.config = function()
   }
 
   -- lspconfig.pyright.setup {
-  --   settings = {
-  --     python = {
-  --       analysis = {
-  --         autoSearchPaths = true,
-  --         diagnosticMode = 'document',
-  --         useLibraryCodeForTypes = true,
-  --       },
-  --     },
-  --   },
+  --   settings = { python = { analysis = {
+  --     autoSearchPaths = true,
+  --     diagnosticMode = 'document',
+  --     useLibraryCodeForTypes = true,
+  --   } } }
   -- }
 
   -- lspconfig.pylsp.setup {

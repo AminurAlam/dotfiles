@@ -63,6 +63,7 @@ set.linebreak = true
 set.breakindent = true
 
 -- others
+set.formatoptions = ''
 set.showmatch = true -- briefly jump to the matching bracket
 set.matchtime = 1
 set.grepprg = 'rg --vimgrep '

@@ -115,6 +115,12 @@ autocmd('VimLeave', {
   callback = function() vim.opt.guicursor = 'a:hor25' end,
 })
 
+autocmd('BufEnter', {
+  callback = function()
+    set.formatoptions = ''
+  end
+})
+
 -- https://github.com/ibhagwan/smartyank.nvim
 -- autocmd({ "TextYankPost" }, {
 --     desc = 'stop certain stuff from going to clipboard',

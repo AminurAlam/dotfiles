@@ -43,9 +43,9 @@ alias py "python3 -q"
 alias mbz "python3 ~/repos/musicbrainzpy/cover_art.py"
 
 # ls -> exa
-alias l  "exa -lFa -s ext --icons --no-user --group-directories-first --no-permissions --no-time"
-alias lt "exa -lFT -s ext --icons --no-user --group-directories-first --no-permissions --no-time"
-alias ll "exa -lFa -s ext --icons --no-user --group-directories-first --git"
+alias l  "exa -lFas ext --icons --no-user --group-directories-first --no-permissions --no-time"
+alias lt "exa -lFTs ext --icons --no-user --group-directories-first --no-permissions --no-time"
+alias ll "exa -lFas ext --icons --no-user --group-directories-first --git"
 
 # du, df -> dust, duf
 abbr du "dust -n 25"
@@ -74,6 +74,11 @@ else if command -sq pacman
     abbr pf "pacman -Ss"
     abbr pu "pacman -Syu"
     abbr pa "pacman -Si"
+else if command -sq rpm
+    abbr pi "rpm install"
+    abbr pr "rpm remove"
+    abbr pf "rpm search"
+    abbr pa "rpm show"
 else
     echo "UNKNOWN PACKAGE MANAGER"
 end

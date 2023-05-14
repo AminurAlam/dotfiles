@@ -57,7 +57,7 @@ return {
 
     cmp.setup {
       view = { entries = 'custom' },
-      experimental = { ghost_text = true },
+      -- experimental = { ghost_text = true },
       snippet = { expand = function(args) luasnip.lsp_expand(args.body) end },
       preselect = cmp.PreselectMode.None,
       window = { completion = cmp.config.window.bordered() },
