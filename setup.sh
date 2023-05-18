@@ -10,15 +10,24 @@ download-bootstrap() {
     esac
 
     printf "downloading bootstrap to:
-    $bootstrap_path\n"
+    bootstrap-${arch}.zip\n"
 
-    curl --progress-bar -Lo "$bootstrap_path" -- \
-    "https://github.com/termux-pacman/termux-packages/releases/latest/download/bootstrap-$arch.zip"
+    curl --progress-bar -LO -- "${root_url}/latest/download/bootstrap-$arch.zip"
+}
+
+check-hash() {
+    printf "checking hash of cached archive...\n"
+    curl -sLO -- "${root_url}/latest/download/CHECKSUMS-md5.txt" \
+    | cut -f '2 1' \
+    | md5sum --status --check --ignore-missing - 2>/dev/null \
+    || download-bootstrap
 }
 
 bootstrap-pacman() {
+    root_url="https://github.com/termux-pacman/termux-packages/releases"
+
     printf "\nBOOTSTRAPPING PACMAN...
-    https://github.com/termux-pacman/termux-packages/releases/\n"
+    ${root_url}/\n"
 
     printf "determining arch...\n"
     case "$(uname -m)" in
@@ -27,29 +36,32 @@ bootstrap-pacman() {
         i686)    arch=i686    ;; # not tested
         x86_64)  arch=x86_64  ;; # not tested
         *)
-        printf "$(uname -m) is not valid arch\n"
+        printf "$(uname -m) is not a valid arch\n"
         exit ;;
     esac
     printf "arch: $arch\n"
 
-    printf "checking for bootstrap...\n"
     bootstrap_path="/sdcard/main/termux/bootstrap-${arch}.zip"
-    [ -e "${bootstrap_path}" ] && printf "path: ${bootstrap_path}\n" || download-bootstrap
+    cd /sdcard/main/termux/
+
+    printf "checking for bootstrap...\n"
+    [ -e "bootstrap-${arch}.zip" ] && check-hash || download-bootstrap
 
     mkdir -p ~/../usr-n/
     cd ~/../usr-n/
 
     printf "extracting bootstrap...\n"
-    unzip -q -d ~/../usr-n/ "$bootstrap_path"
+    unzip -q -d ~/../usr-n/ "/sdcard/main/termux/bootstrap-${arch}.zip"
 
     printf "creating symlinks...\n"
     cat ~/../usr-n/SYMLINKS.txt | awk -F "←" '{system("ln -s '"'"'"$1"'"'"' '"'"'"$2"'"'"'")}'
+
+    cd
 
     printf "\nRUN THIS COMMAND IN FAILSAFE MODE
     cd .. && rm -fr usr/ && mv usr-n/ usr/\n"
 
     unset arch
-    unset bootstrap_path
 
     exit
 }
