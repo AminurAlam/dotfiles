@@ -1,17 +1,29 @@
 #!/usr/bin/env bash
 
 download-bootstrap() {
-    curl "https://github.com/termux/termux-packages/releases/latest/download/bootstrap-$arch.zip"
+    printf "\nDOWNLOAD BOOTSTRAP? [y/N] "
+    read choice
+
+    case "$choice" in
+        y|Y|yes|Yes|YES) true;;
+        *) exit;;
+    esac
+
+    printf "downloading bootstrap to:
+    $bootstrap_path\n"
+
+    curl --progress-bar -Lo "$bootstrap_path" -- \
+    "https://github.com/termux-pacman/termux-packages/releases/latest/download/bootstrap-$arch.zip"
 }
 
 bootstrap-pacman() {
-    printf "BOOTSTRAPPING PACMAN...
-    https://github.com/termux/termux-packages/releases/\n"
+    printf "\nBOOTSTRAPPING PACMAN...
+    https://github.com/termux-pacman/termux-packages/releases/\n"
 
     printf "determining arch...\n"
     case "$(uname -m)" in
+        aarch64) arch=aarch64 ;;
         arm*)    arch=arm     ;;
-        aarch64) arch=aarch64 ;; # not tested
         i686)    arch=i686    ;; # not tested
         x86_64)  arch=x86_64  ;; # not tested
         *)
@@ -22,7 +34,7 @@ bootstrap-pacman() {
 
     printf "checking for bootstrap...\n"
     bootstrap_path="/sdcard/main/termux/bootstrap-${arch}.zip"
-    [ -e "${bootstrap_path}" ] && printf "path: ${bootstrap_path}" || download-bootstrap
+    [ -e "${bootstrap_path}" ] && printf "path: ${bootstrap_path}\n" || download-bootstrap
 
     mkdir -p ~/../usr-n/
     cd ~/../usr-n/
@@ -33,7 +45,7 @@ bootstrap-pacman() {
     printf "creating symlinks...\n"
     cat ~/../usr-n/SYMLINKS.txt | awk -F "←" '{system("ln -s '"'"'"$1"'"'"' '"'"'"$2"'"'"'")}'
 
-    printf "RUN THIS COMMAND IN FAILSAFE MODE
+    printf "\nRUN THIS COMMAND IN FAILSAFE MODE
     cd .. && rm -fr usr/ && mv usr-n/ usr/\n"
 
     unset arch
@@ -45,14 +57,15 @@ bootstrap-pacman() {
 yes | termux-setup-storage &> /dev/null
 command -v pacman > /dev/null || bootstrap-pacman
 
-printf "GENERATING PACMAN KEYS...\n"
+printf "\nGENERATING PACMAN KEYS...\n"
 pacman-key --init &> /dev/null
 pacman-key --populate &> /dev/null
 
-printf "INSTALLING FISH...\n"
-pacman -Syu --noconfirm fish &> /dev/null
+printf "\nINSTALLING FISH...\n"
+pacman -Syu --noconfirm --needed fish
+printf "CHANGING SHELL...\n"
 chsh -s fish
-curl -so setup.fish "https://raw.githubusercontent.com/AminurAlam/dotfiles/main/setup.fish"
 
-printf "BASE SETUP COMPLETE RUN THIS
+curl -so setup.fish "https://raw.githubusercontent.com/AminurAlam/dotfiles/main/setup.fish"
+printf "\nBASE SETUP COMPLETE RUN THIS
     fish setup.fish\n"

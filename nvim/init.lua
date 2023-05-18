@@ -1,15 +1,14 @@
-local g = vim.g
-
-g.mapleader = ' '
-g.maplocalleader = ' '
-g.stc = '%=%{ v:virtnum ? " " : v:lnum }%{ v:virtnum ? "…" : ( v:relnum ? "│" : "❯" ) }%s%C'
-g.do_filetype_lua = 1
-g.editorconfig = false
-g.netrw_banner = 0
-g.netrw_hide = 0
-g.netrw_liststyle = 3
-
-g.ft_man_folding_enable = 1
+do local g = vim.g
+  g.mapleader = ' '
+  g.maplocalleader = ' '
+  g.stc = '%=%{ v:virtnum ? " " : v:lnum }%{ v:virtnum ? "…" : ( v:relnum ? "│" : "❯" ) }%s%C'
+  g.do_filetype_lua = 1
+  g.editorconfig = false
+  g.netrw_banner = 0
+  g.netrw_hide = 0
+  g.netrw_liststyle = 3
+  g.ft_man_folding_enable = 1
+end
 
 -- [[ core ]]
 require('core.lazy')

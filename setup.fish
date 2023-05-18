@@ -18,6 +18,8 @@ pacman -S --noconfirm --needed $packages &>/dev/null || begin
     exit
 end
 
+printf "\n"
+
 if not command -sq python
     printf "INSTALLING PYTHON "
     pacman -S --needed python >/dev/null
@@ -33,7 +35,7 @@ if command -sq python && command -sq pip
     pip install requests deflacue >/dev/null
 end
 
-printf "DOWNLOADING DOTFILES...\n"
+printf "\nDOWNLOADING DOTFILES...\n"
 [ -d "$dotfiles" ] && command mv "$dotfiles" ~/backup/ &>/dev/null  # TODO: maybe just delete it
 git clone -q --depth 1 "https://github.com/AminurAlam/dotfiles.git" "$dotfiles"
 
@@ -51,7 +53,7 @@ ln -fs "$dotfiles/termux/colors.properties" ~/.termux/colors.properties
 ln -fs "$dotfiles/termux/termux.properties" ~/.termux/termux.properties
 
 
-printf "LOCAL BINARIES...\n"
+printf "\nLOCAL BINARIES...\n"
 [ -d "$main/bin/" ] &&
     command cp -fr $main/bin/* ~/.local/bin/ &&
     chmod +x ~/.local/bin/*
@@ -63,10 +65,10 @@ printf "LOCAL BINARIES...\n"
     printf "no checksum"
 
 printf "CLEANUP...\n"
-truncate -s 0 $PREFIX/etc/motd $PREFIX/etc/motd.sh &>/dev/null
+truncate -s 0 "$PREFIX/etc/motd" "$PREFIX/etc/motd.sh"
 [ -d ~/storage/ ] && command rm -fr ~/storage/
-rmdir --ignore-fail-on-non-empty ~/backup/ &>/dev/null
-# TODO: bash history
+rmdir --ignore-fail-on-non-empty ~/backup/
+command mv "$HOME/.bash_history" ~/.local/cache/
 
 
 printf "FINAL INSTRUCTIONS:
