@@ -19,9 +19,10 @@ M.config = function()
   local details = function()
     local v = vim.version()
     return string.format(
-      '%s | %dms | v%s-%s',
+      '%s | v%s-%s',
+      -- '%s | %dms | v%s-%s',
       utils.fish_path(vim.fn.getcwd()),
-      require('lazy').stats().startuptime,
+      -- require('lazy').stats().startuptime,
       v.major .. '.' .. v.minor .. '.' .. v.patch,
       (v.prerelease and 'dev' or 'stable')
     )
@@ -78,9 +79,9 @@ M.config = function()
       { type = 'text', val = details, opts = { position = 'center' } },
       { type = 'padding', val = 1 },
       button('f', '  Find file', '<cmd>Telescope find_files hidden=true<cr>'),
-      button('g', '  Find word', '<cmd>Telescope live_grep<cr>'),
+      button('g', '󰙩  Find word', '<cmd>Telescope live_grep<cr>'),
       button('h', '?  Find help', '<cmd>Telescope help_tags<cr>'),
-      button('i', '  New file', '<cmd>enew <BAR> startinsert<cr>'),
+      button('i', '  New file', '<cmd>enew <BAR> startinsert<cr>'),
       button('u', '  Update plugins', '<cmd>Lazy update<cr>'),
       button('q', '  Quit', '<cmd>qa<cr>'),
       { type = 'padding', val = 1 },

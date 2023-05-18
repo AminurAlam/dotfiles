@@ -12,7 +12,7 @@ return {
         null_ls.builtins.diagnostics.fish,
         null_ls.builtins.formatting.fish_indent,
         null_ls.builtins.diagnostics.clang_check,
-        null_ls.builtins.code_actions.shellcheck,
+        -- null_ls.builtins.code_actions.shellcheck,
         null_ls.builtins.diagnostics.shellcheck,
       },
     }

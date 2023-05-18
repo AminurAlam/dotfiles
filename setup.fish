@@ -1,6 +1,6 @@
 set dotfiles  $HOME/repos/dotfiles
 set main  /sdcard/main/termux
-set packages  dust exa fd git neomutt neovim-nightly openssh ripgrep starship zoxide lua-language-server termux-api
+set packages  dust exa fd git neovim-nightly openssh ripgrep starship lua-language-server termux-api
 
 mkdir -p $HOME/backup/ $HOME/.shortcuts/ $HOME/.local/{share,bin}/
 
@@ -59,13 +59,14 @@ printf "LOCAL BINARIES...\n"
     command cp -fr $main/widget/* ~/.shortcuts/ &&
     chmod +x ~/.shortcuts/*
 [ -e "$main/bin-checksums" ] &&
-    sha256sum --check $main/bin-checksums | awk -F '/' '{print $9}' ||
+    sha256sum --check $main/bin-checksums | awk -F '/' '{print "  "$9}' ||
     printf "no checksum"
 
 printf "CLEANUP...\n"
 truncate -s 0 $PREFIX/etc/motd $PREFIX/etc/motd.sh &>/dev/null
 [ -d ~/storage/ ] && command rm -fr ~/storage/
 rmdir --ignore-fail-on-non-empty ~/backup/ &>/dev/null
+# TODO: bash history
 
 
 printf "FINAL INSTRUCTIONS:

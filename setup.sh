@@ -6,7 +6,7 @@ download-bootstrap() {
 
 bootstrap-pacman() {
     printf "BOOTSTRAPPING PACMAN...
-    https://github.com/termux/termux-packages/releases/latest/download/bootstrap-arm.zip\n"
+    https://github.com/termux/termux-packages/releases/\n"
 
     printf "determining arch...\n"
     case "$(uname -m)" in
@@ -28,7 +28,7 @@ bootstrap-pacman() {
     cd ~/../usr-n/
 
     printf "extracting bootstrap...\n"
-    unzip -q -d ~/../usr-n/ /sdcard/main/termux/bootstrap-arm.zip
+    unzip -q -d ~/../usr-n/ "$bootstrap_path"
 
     printf "creating symlinks...\n"
     cat ~/../usr-n/SYMLINKS.txt | awk -F "←" '{system("ln -s '"'"'"$1"'"'"' '"'"'"$2"'"'"'")}'

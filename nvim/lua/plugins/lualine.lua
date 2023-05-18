@@ -45,7 +45,7 @@ M.config = function()
       {
         'filename',
         filestatus = false,
-        symbols = { modified = '', readonly = '', unnamed = '...' },
+        symbols = { modified = '', readonly = '', unnamed = '...' },
       },
       {
         function() return '␣ ' end,
