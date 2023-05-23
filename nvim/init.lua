@@ -8,6 +8,7 @@ do local g = vim.g
   g.netrw_hide = 0
   g.netrw_liststyle = 3
   g.ft_man_folding_enable = 1
+  g.loaded_python3_provider = 0
 end
 
 -- [[ core ]]
@@ -21,7 +22,7 @@ vim.diagnostic.config {
   underline = { severity = vim.diagnostic.severity.ERROR },
   virtual_text = {
     format = function(diagnostic)
-      if diagnostic.severity == vim.diagnostic.severity.HINT then return ' ' end
+      if diagnostic.severity == vim.diagnostic.severity.HINT then return '󰌶 ' end
       return diagnostic.message
     end,
   },

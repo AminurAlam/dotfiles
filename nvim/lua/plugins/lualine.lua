@@ -45,10 +45,10 @@ M.config = function()
       {
         'filename',
         filestatus = false,
-        symbols = { modified = '', readonly = '', unnamed = '...' },
+        symbols = { modified = '󰆓', readonly = '󰌾', unnamed = '' },
       },
       {
-        function() return '␣ ' end,
+        function() return '󱁐 ' end,
         cond = function() return vim.fn.search([[\s\+$]], 'nwc') ~= 0 end,
         padding = 0,
       },

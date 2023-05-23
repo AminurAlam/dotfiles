@@ -76,8 +76,9 @@ umap('<esc>', '<cmd>nohlsearch<cr><esc>')
 nmap('<leader>d ', [[m`<cmd>keeppatterns %s/\s\+$//e<cr>``]], { desc = 'delete trailing whitespace' })
 nmap('<leader>d#', [[m`<cmd>keeppatterns s/\s*#.*$//e<cr>``]], { desc = 'delete # comment' })
 nmap('<leader>d-', [[m`<cmd>keeppatterns s/\s*--.*$//e<cr>``]], { desc = 'delete -- comment' })
-nmap('<leader>ol', [[@='^"1yiwo<c-v><esc>"1p<c-a>0'<cr>]], { desc = 'ordered list' }) -- https://jdhao.github.io/2019/04/29/nvim_map_with_a_count/
+nmap('<leader>ol', [[@='^"1yiwo<c-v><esc>"1pA.<space><c-v><esc>0<c-a>$'<cr>]], { desc = 'create an ordered list' }) -- https://jdhao.github.io/2019/04/29/nvim_map_with_a_count/
 nmap('<leader>fd', '<cmd>filetype detect<cr>', { desc = 'recheck the filetype' })
+nmap('gj', [[@='j^"_d0kgJ'<cr>]], { desc = 'join without leaving space' })
 
 -- indent
 nmap('>', '>>')

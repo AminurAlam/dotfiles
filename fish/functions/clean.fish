@@ -15,7 +15,7 @@ function clean
         echo "  $dir"
     end
 
-    command rm -rf $dirs 2> /dev/null
+    command rm -fr $dirs 2> /dev/null
     echo
 
     command -sq rip && yes | rip --decompose &> /dev/null && echo

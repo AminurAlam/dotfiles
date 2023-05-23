@@ -6,6 +6,7 @@ local M = {
 M.config = function()
   local utils = require('core.utils')
   local dev_icon = require('nvim-web-devicons')
+  local scratch = '<cmd>enew <bar>setlocal buftype=nofile<bar>setlocal bufhidden=hide <bar>'
 
   local art = {
     [[                               __                ]],
@@ -39,10 +40,10 @@ M.config = function()
       opts = {
         position = 'center',
         shortcut = '[' .. sc .. ']',
-        cursor = 5,
+        cursor = 3,
         width = 50,
         align_shortcut = 'right',
-        hl = { { icon_hl or 'Normal', 0, 3 }, { 'Directory', 3, 47 } },
+        hl = { { icon_hl or 'Normal', 0, 3 }, { 'Directory', 4, 47 } },
         hl_shortcut = { { 'Number', 1, 2 } },
         keymap = { 'n', sc, keybind, { noremap = true, silent = true, nowait = true } },
       },
@@ -79,11 +80,12 @@ M.config = function()
       { type = 'text', val = details, opts = { position = 'center' } },
       { type = 'padding', val = 1 },
       button('f', '  Find file', '<cmd>Telescope find_files hidden=true<cr>'),
-      button('g', '󰙩  Find word', '<cmd>Telescope live_grep<cr>'),
-      button('h', '?  Find help', '<cmd>Telescope help_tags<cr>'),
-      button('i', '  New file', '<cmd>enew <BAR> startinsert<cr>'),
-      button('u', '  Update plugins', '<cmd>Lazy update<cr>'),
-      button('q', '  Quit', '<cmd>qa<cr>'),
+      button('g', '  Find word', '<cmd>Telescope live_grep<cr>'),
+      button('h', '  Find help', '<cmd>Telescope help_tags<cr>'),
+      button('i', '󱇨  New file', scratch .. 'startinsert<cr>'),
+      button('p', '󰆒  Paste in NF', scratch .. 'norm p <bar>startinsert<cr>'),
+      button('u', '󰚰  Update plugins', '<cmd>Lazy update<cr>'),
+      button('q', '󰗼  Quit', '<cmd>qa<cr>'),
       { type = 'padding', val = 1 },
       { type = 'group', val = oldfiles },
       { type = 'padding', val = 1 },

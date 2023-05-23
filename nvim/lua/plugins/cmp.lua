@@ -2,13 +2,21 @@ return {
   'hrsh7th/nvim-cmp',
   event = { 'CmdlineEnter', 'InsertEnter' },
   dependencies = {
-    { 'hrsh7th/cmp-nvim-lsp' },
-    { 'hrsh7th/cmp-nvim-lua' },
-    { 'hrsh7th/cmp-path' },
-    { 'hrsh7th/cmp-buffer' },
-    { 'hrsh7th/cmp-cmdline' },
-    { 'mtoohey31/cmp-fish' },
-    { 'L3MON4D3/LuaSnip' },
+    'hrsh7th/cmp-nvim-lsp',
+    'hrsh7th/cmp-nvim-lua',
+    'hrsh7th/cmp-path',
+    'hrsh7th/cmp-buffer',
+    'hrsh7th/cmp-cmdline',
+    'mtoohey31/cmp-fish',
+    'uga-rosa/cmp-dictionary',
+    'f3fora/cmp-spell',
+    'saadparwaiz1/cmp_luasnip',
+    {
+      'L3MON4D3/LuaSnip',
+      dependencies = {
+        'rafamadriz/friendly-snippets',
+      },
+    },
   },
   config = function()
     local cmp = require('cmp')
@@ -93,15 +101,16 @@ return {
       },
       sources = cmp.config.sources({
         { name = 'path' },
+        { name = 'fish' },
+        { name = 'luasnip' },
         { name = 'nvim_lsp' },
         { name = 'nvim_lua' },
-        { name = 'luasnip' },
-        { name = 'fish' },
+        { name = 'dictionary' },
         { name = 'spell' },
       }, buffer),
     }
 
-    cmp.setup.cmdline('/', {
+    cmp.setup.cmdline({ '/', '?' }, {
       mapping = cmp.mapping.preset.cmdline(),
       sources = cmp.config.sources({
         { name = 'nvim_lsp_document_symbol' },
@@ -113,12 +122,23 @@ return {
       sources = cmp.config.sources({ { name = 'path' } }, { { name = 'cmdline' } }),
     })
 
-    cmp.setup.filetype({ 'markdown', 'text', 'note' }, {
-      sources = cmp.config.sources({ { name = 'spell' } }, buffer),
-    })
+    -- cmp.setup.filetype({ 'markdown', 'text', 'note' }, {
+    --   sources = cmp.config.sources({ { name = 'spell' } }, buffer),
+    -- })
 
     require('luasnip.loaders.from_lua').lazy_load()
     require('luasnip.loaders.from_vscode').lazy_load()
     require('luasnip.loaders.from_snipmate').lazy_load()
+    require('cmp_dictionary').switcher {
+      filetype = {
+        -- lua = { '/path/to/lua.dict' },
+      },
+      filepath = {
+        -- ['.*xmake.lua'] = { '/path/to/xmake.dict', '/path/to/lua.dict' },
+      },
+      spelllang = {
+        -- en = '/path/to/english.dict',
+      },
+    }
   end,
 }

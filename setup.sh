@@ -17,8 +17,8 @@ download-bootstrap() {
 
 check-hash() {
     printf "checking hash of cached archive...\n"
-    curl -sLO -- "${root_url}/latest/download/CHECKSUMS-md5.txt" \
-    | cut -f '2 1' \
+    curl -sL -- "${root_url}/latest/download/CHECKSUMS-md5.txt" \
+    | awk -F '\t' '{print $2 "  " $1}' \
     | md5sum --status --check --ignore-missing - 2>/dev/null \
     || download-bootstrap
 }
@@ -75,7 +75,7 @@ pacman-key --populate &> /dev/null
 
 printf "\nINSTALLING FISH...\n"
 pacman -Syu --noconfirm --needed fish
-printf "CHANGING SHELL...\n"
+printf "\nCHANGING SHELL...\n"
 chsh -s fish
 
 curl -so setup.fish "https://raw.githubusercontent.com/AminurAlam/dotfiles/main/setup.fish"

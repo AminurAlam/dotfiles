@@ -2,19 +2,12 @@ set dotfiles  $HOME/repos/dotfiles
 set main  /sdcard/main/termux
 set packages  dust exa fd git neovim-nightly openssh ripgrep starship lua-language-server termux-api
 
-mkdir -p $HOME/backup/ $HOME/.shortcuts/ $HOME/.local/{share,bin}/
-
-printf "UPDATING DATABASE...\n"
-pacman -Syu --noconfirm &>/dev/null || begin
-    printf "update failed, try updating manually:
-    $(set_color $fish_color_command)pacman $(set_color $fish_color_option)-Syu $(set_color normal)\n"
-    exit
-end
+mkdir -p $HOME/backup/ $HOME/.shortcuts/ $HOME/.local/{share,bin,cache}/
 
 printf "INSTALLING NEW PACKAGES...\n"
-pacman -S --noconfirm --needed $packages &>/dev/null || begin
+pacman -Syu --noconfirm --needed $packages &>/dev/null || begin
     printf "installation failed, try installing manually:
-    $(set_color $fish_color_command)pacman $(set_color $fish_color_option)-S --needed $(set_color $fish_color_param)$packages $(set_color normal)\n"
+    $(set_color $fish_color_command)pacman $(set_color $fish_color_option)-Syu --needed $(set_color $fish_color_param)$packages $(set_color normal)\n"
     exit
 end
 
@@ -64,16 +57,16 @@ printf "\nLOCAL BINARIES...\n"
     sha256sum --check $main/bin-checksums | awk -F '/' '{print "  "$9}' ||
     printf "no checksum"
 
-printf "CLEANUP...\n"
+printf "\nCLEANUP...\n"
 truncate -s 0 "$PREFIX/etc/motd" "$PREFIX/etc/motd.sh"
 [ -d ~/storage/ ] && command rm -fr ~/storage/
 rmdir --ignore-fail-on-non-empty ~/backup/
-command mv "$HOME/.bash_history" ~/.local/cache/
+command mv "$HOME/.bash_history" ~/.local/cache/ &>/dev/null
 
 
-printf "FINAL INSTRUCTIONS:
+printf "
 add `rclone.conf` manually:
-    $(set_color $fish_color_command)cp $(set_color $fish_color_quote)$main/rclone.conf ~/.termux/font.ttf$(set_color normal)
+    $(set_color $fish_color_command)cp $(set_color $fish_color_quote)$main/rclone.conf ~/.config/rclone/rclone.conf$(set_color normal)
 change font manually:
     $(set_color $fish_color_command)cp $(set_color $fish_color_option)-f $(set_color $fish_color_quote)'$main/font.ttf' ~/.termux/font.ttf$(set_color normal)
 zoom in and out to fix screen

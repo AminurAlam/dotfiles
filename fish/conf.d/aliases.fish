@@ -2,7 +2,7 @@
 abbr cp "cp -ivr"
 abbr mv "mv -iv"
 abbr rm "rm -i"
-abbr rf "rm -rfI"
+abbr rf "rm -frI"
 abbr rd "rmdir -pv"
 abbr md "mkdir -pv"
 abbr vi "nvim"
@@ -74,11 +74,11 @@ else if command -sq pacman
     abbr pf "pacman -Ss"
     abbr pu "pacman -Syu"
     abbr pa "pacman -Si"
-else if command -sq rpm
-    abbr pi "rpm install"
-    abbr pr "rpm remove"
-    abbr pf "rpm search"
-    abbr pa "rpm show"
+else if command -sq dnf
+    abbr pi "dnf install"
+    abbr pr "dnf remove"
+    abbr pf "dnf search"
+    abbr pa "dnf show"
 else
     echo "UNKNOWN PACKAGE MANAGER"
 end
