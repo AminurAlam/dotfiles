@@ -29,21 +29,26 @@ nmap('<leader>gn', '<cmd>Gitsigns next_hunk<cr>', { desc = 'goto next hunk' })
 nmap('<leader>gp', '<cmd>Gitsigns prev_hunk<cr>', { desc = 'goto previous hunk' })
 
 -- lsp
-nmap('<leader>ni', '<cmd>:NullLsInfo<cr>', { desc = 'null-ls status' })
+nmap('<leader>ni', '<cmd>NullLsInfo<cr>', { desc = 'null-ls status' })
 nmap('<leader>li', '<cmd>LspInfo<cr>', { desc = 'LSP status' })
-nmap('<leader>lf', function() vim.lsp.buf.format() end, { desc = 'format code using LSP' })
-nmap('<leader>lr', function() vim.lsp.buf.rename() end, { desc = 'rename symbol under cursor' })
-nmap('<leader>ld', function() vim.diagnostic.open_float() end, { desc = 'view line diagnostics' })
-nmap(
-  '<leader>lb',
-  function() vim.diagnostic.open_float { scope = 'buffer' } end,
-  { desc = 'view all diagnostics' }
-)
-nmap(
-  '<leader>lc',
-  function() vim.lsp.codelens.display(vim.lsp.codelens.get(0), 0, 0) end,
-  { desc = 'view all diagnostics' }
-)
+
+vim.api.nvim_create_autocmd('LspAttach', {
+  callback = function()
+    nmap('<leader>lf', function() vim.lsp.buf.format() end, { desc = 'format code using LSP' })
+    nmap('<leader>lr', function() vim.lsp.buf.rename() end, { desc = 'rename symbol under cursor' })
+    nmap('<leader>ld', function() vim.diagnostic.open_float() end, { desc = 'view line diagnostics' })
+    nmap(
+      '<leader>lb',
+      function() vim.diagnostic.open_float { scope = 'buffer' } end,
+      { desc = 'view all diagnostics' }
+    )
+    nmap(
+      '<leader>lc',
+      function() vim.lsp.codelens.display(vim.lsp.codelens.get(0), 0, 0) end,
+      { desc = 'view all diagnostics' }
+    )
+  end,
+})
 
 -- other plugins
 nmap('<leader>al', '<cmd>Alpha<cr>')
@@ -72,13 +77,18 @@ nmap('r', '<cmd>silent redo <bar> redraw <cr>', { desc = 'shortcut for redo' })
 nmap('cn', '*``cgn', { desc = 'search and replace' }) -- https://kevinli.co/posts/2017-01-19-multiple-cursors-in-500-bytes-of-vimscript/
 nmap('dn', '*``diw', { desc = 'search and delete' })
 nmap('dw', 'diw', { desc = 'delete word' })
+vmap('.', ':norm .<cr>', { desc = 'dot repeat on all selected lines' })
 umap('<esc>', '<cmd>nohlsearch<cr><esc>')
 nmap('<leader>d ', [[m`<cmd>keeppatterns %s/\s\+$//e<cr>``]], { desc = 'delete trailing whitespace' })
 nmap('<leader>d#', [[m`<cmd>keeppatterns s/\s*#.*$//e<cr>``]], { desc = 'delete # comment' })
 nmap('<leader>d-', [[m`<cmd>keeppatterns s/\s*--.*$//e<cr>``]], { desc = 'delete -- comment' })
-nmap('<leader>ol', [[@='^"1yiwo<c-v><esc>"1pA.<space><c-v><esc>0<c-a>$'<cr>]], { desc = 'create an ordered list' }) -- https://jdhao.github.io/2019/04/29/nvim_map_with_a_count/
 nmap('<leader>fd', '<cmd>filetype detect<cr>', { desc = 'recheck the filetype' })
 nmap('gj', [[@='j^"_d0kgJ'<cr>]], { desc = 'join without leaving space' })
+nmap(
+  '<leader>ol',
+  [[@='^"1yiwo<c-v><esc>"1pA.<space><c-v><esc>0<c-a>$'<cr>]],
+  { desc = 'create an ordered list' }
+) -- https://jdhao.github.io/2019/04/29/nvim_map_with_a_count/
 
 -- indent
 nmap('>', '>>')

@@ -40,7 +40,7 @@ return {
         linehl = 'GitSignsAdd',
       },
     },
-    signcolumn = false, -- Toggle with `:Gitsigns toggle_signs`
+    signcolumn = true, -- Toggle with `:Gitsigns toggle_signs`
     numhl = true, -- Toggle with `:Gitsigns toggle_numhl`
     linehl = false, -- Toggle with `:Gitsigns toggle_linehl`
     word_diff = false, -- Toggle with `:Gitsigns toggle_word_diff`
@@ -69,7 +69,7 @@ return {
       row = 1,
       col = 1,
       width = 50,
-      height = 5
+      height = 5,
     },
     yadm = {
       enable = false,

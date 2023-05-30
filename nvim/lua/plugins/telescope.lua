@@ -8,7 +8,7 @@ local M = {
 M.config = function()
   require('telescope').setup {
     defaults = {
-      prompt_prefix = '  ',
+      prompt_prefix = '  ',
       selection_caret = '» ',
       entry_prefix = ' ',
       prompt_title = false,

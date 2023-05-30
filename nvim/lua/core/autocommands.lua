@@ -1,7 +1,7 @@
 local autocmd = vim.api.nvim_create_autocmd
 local set = vim.opt_local
 
-autocmd({ 'FileType' }, {
+autocmd('FileType', {
   desc = 'exit by pressing q or <esc>',
   pattern = { 'qf', 'help', 'lazy', 'lspinfo', 'DressingSelect', 'Trouble' },
   callback = function()
@@ -15,15 +15,6 @@ autocmd({ 'FileType' }, {
       end
     end, { buffer = true })
     set.buflisted = false
-  end,
-})
-
-autocmd({ 'TermOpen' }, {
-  callback = function()
-    vim.cmd('startinsert')
-    set.colorcolumn = ''
-    set.signcolumn = 'no'
-    set.statuscolumn = ''
   end,
 })
 
@@ -49,10 +40,19 @@ autocmd({ 'FileType', 'BufNewFile' }, {
   end,
 })
 
+autocmd('VimEnter', {
+  desc = 'open directory in telescope',
+  callback = function(details)
+    if vim.fn.isdirectory(details.file) == 1 then
+      vim.cmd.cd(details.file)
+      vim.cmd('Telescope find_files')
+    end
+  end,
+})
+
 -- https://github.com/mong8se/actually.nvim
-vim.api.nvim_create_autocmd('BufNewFile', {
+autocmd('BufNewFile', {
   desc = 'when tab completion doesnt work',
-  pattern = '*',
   callback = function(details)
     if vim.fn.filereadable(details.file) == 1 then return end
     local possibles = vim.split(vim.fn.glob(details.file .. '*'), '\n', { trimempty = true })
@@ -67,34 +67,20 @@ vim.api.nvim_create_autocmd('BufNewFile', {
   end,
 })
 
-autocmd({ 'TermOpen' }, {
+autocmd('TermOpen', {
   callback = function()
+    set.colorcolumn = ''
+    set.signcolumn = 'no'
+    set.statuscolumn = ''
     set.number = false
     set.relativenumber = false
+    vim.cmd('startinsert')
   end,
 })
 
--- https://github.com/mawkler/modicator.nvim
-vim.api.nvim_create_autocmd('ModeChanged', {
-  desc = 'change cursor line number based on mode',
-  callback = function()
-    local modes = {
-      ['i'] = '#7aa2f7',
-      ['c'] = '#e06c75',
-      ['cv'] = '#e06c75',
-      ['ce'] = '#e06c75',
-      ['R'] = '#e06c75',
-      ['v'] = '#c678dd',
-      ['V'] = '#c678dd',
-      ['\22'] = '#c678dd',
-      ['s'] = '#c678dd',
-      ['S'] = '#c678dd',
-      ['\19'] = '#c678dd',
-    }
-    vim.api.nvim_set_hl(0, 'CursorLineNr', {
-      foreground = modes[vim.api.nvim_get_mode().mode] or '#98c379',
-    })
-  end,
+autocmd('VimResized', {
+  pattern = 'lazy',
+  callback = function() set.wrap = false end,
 })
 
 autocmd('BufReadPost', {
@@ -107,7 +93,7 @@ autocmd('BufReadPost', {
   end,
 })
 
-autocmd({ 'TextYankPost' }, {
+autocmd('TextYankPost', {
   callback = function() vim.highlight.on_yank { higroup = 'IncSearch', timeout = 300 } end,
 })
 
@@ -116,10 +102,31 @@ autocmd('VimLeave', {
 })
 
 autocmd('BufEnter', {
-  callback = function()
-    set.formatoptions = ''
-  end
+  callback = function() set.formatoptions:remove { 'c', 'r', 'o' } end,
 })
+
+-- https://github.com/mawkler/modicator.nvim
+-- vim.api.nvim_create_autocmd('ModeChanged', {
+--   desc = 'change cursor line number based on mode',
+--   callback = function()
+--     local modes = {
+--       ['i'] = '#7aa2f7',
+--       ['c'] = '#e06c75',
+--       ['cv'] = '#e06c75',
+--       ['ce'] = '#e06c75',
+--       ['R'] = '#e06c75',
+--       ['v'] = '#c678dd',
+--       ['V'] = '#c678dd',
+--       ['\22'] = '#c678dd',
+--       ['s'] = '#c678dd',
+--       ['S'] = '#c678dd',
+--       ['\19'] = '#c678dd',
+--     }
+--     vim.api.nvim_set_hl(0, 'CursorLineNr', {
+--       foreground = modes[vim.api.nvim_get_mode().mode] or '#98c379',
+--     })
+--   end,
+-- })
 
 -- https://github.com/ibhagwan/smartyank.nvim
 -- autocmd({ "TextYankPost" }, {
@@ -131,6 +138,19 @@ autocmd('BufEnter', {
 --         end
 --     end
 -- })
+
+-- autocmd('BufWinLeave', {
+--   desc = 'remember folds',
+--   pattern = '?*',
+--   command = 'silent! mkview 1',
+-- })
+
+-- autocmd('BufWinEnter', {
+--   desc = 'auto load folds',
+--   pattern = '?*',
+--   command = 'silent! loadview 1',
+-- })
+
 -- vim.cmd(
 --     "autocmd BufEnter * ++nested if winnr('$') == 1 && bufname() == 'NvimTree_' . tabpagenr() | quit | endif"
 -- )

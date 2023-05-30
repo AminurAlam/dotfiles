@@ -68,7 +68,17 @@ M.config = function()
       },
     },
     lualine_y = { { 'progress' } },
-    lualine_z = { { 'filetype' } },
+    lualine_z = {
+      {
+        'fileformat',
+        symbols = {
+          unix = '', -- e712
+          dos = '', -- e70f
+          mac = '', -- e711
+        },
+      },
+      { 'filetype', colored = false },
+    },
   }
 
   require('lualine').setup {

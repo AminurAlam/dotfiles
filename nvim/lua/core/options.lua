@@ -39,10 +39,17 @@ set.numberwidth = 1
 set.shortmess = 'acoOsSWIF'
 set.number = false
 set.relativenumber = false
-set.statuscolumn = '%=%{ v:virtnum ? " " : v:lnum }%{ v:virtnum ? "…" : ( v:relnum ? "│" : "❯" ) }%s%C'
-set.foldlevel = 5
-set.foldlevelstart = 99
+set.statuscolumn = vim.g.stc -- '%=%{ v:virtnum ? " " : v:lnum }%{ v:virtnum ? "…" : ( v:relnum ? "│" : "❯" ) }%s%C'
+set.signcolumn = 'yes:1'
+
+-- folding
+set.foldlevel = 3
+set.foldminlines = 3
+set.foldnestmax = vim.o.foldlevel + 1
 set.foldenable = true
+set.foldmethod = 'expr'
+set.foldexpr = 'nvim_treesitter#foldexpr()'
+set.foldtext = 'getline(v:foldstart)." ... ".trim(getline(v:foldend))." [".(v:foldend-v:foldstart)." lines]"'
 
 -- terminal, cursor & gui
 set.virtualedit = { 'onemore', 'block' }
@@ -63,7 +70,7 @@ set.linebreak = true
 set.breakindent = true
 
 -- others
-set.formatoptions = ''
+set.formatoptions:remove { 'c', 'r', 'o' }
 set.showmatch = true -- briefly jump to the matching bracket
 set.matchtime = 1
 set.grepprg = 'rg --vimgrep '
