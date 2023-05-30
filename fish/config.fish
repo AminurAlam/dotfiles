@@ -53,7 +53,7 @@ set -gx MANPAGER "$EDITOR +Man!"
 set -gx MANPATH $PREFIX/share/man
 set -gx TERMINFO "$PREFIX/share/terminfo"
 set -gx BROWSER "termux-open"
-set -gx LAUNCHER sk --prompt '  ' --inline-info --no-multi --margin 0,3,1,3 --color "$SKIM_COLORS"
+set -gx LAUNCHER sk --prompt '  ' --inline-info --no-multi --margin 0,3,1,3 --color "$SKIM_COLORS"
 set -gx WWW_HOME "https://search.rowie.at"
 
 # command config

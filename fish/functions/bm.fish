@@ -12,12 +12,14 @@ function bm
         case f fd find
             set LINK (
                 grep '^http' $BMPATH |
-                sed --regexp-extended 's#^https?://(www.)?##' |
-                $LAUNCHER --query "$argv[2]")
+                sed -E 's#^https?://(www.)?##' |
+                $LAUNCHER --query "$argv[2]"
+            )
 
-            if echo $LINK | grep -q '%s'
-                echo "  $LINK"
-                $BROWSER https://(string replace '%s' (read -fP '  ' | string escape --style=url) $LINK)
+            if echo "$LINK" | grep -q '%s'
+                printf "  $LINK" | grep -E '^\s\s(\w+\.)+\w+'
+                read e -fP "  ╭───────────────────────────────────────────────╮"\n\n"  ╰───────────────────────────────────────────────╯"\n\033\[2A"  │   " && printf "╰─────────────────────────────────────────────────╯\n"
+                $BROWSER https://(string replace '%s' (printf "$e" | string escape --style=url) $LINK)
             else
                 $BROWSER https://$LINK
             end
@@ -32,7 +34,7 @@ function bm
             set -q EDITOR && $EDITOR $BMPATH || echo "no EDITOR found"
 
         case c check
-            cat $BMPATH | rg '^http' | sort | uniq -c | sort
+            cat $BMPATH | grep '^http' | sort | uniq -c | sort
 
         case d delete
             echo 'TODO'
