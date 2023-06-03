@@ -7,23 +7,18 @@ local M = {
     'hrsh7th/cmp-path',
     'hrsh7th/cmp-buffer',
     'hrsh7th/cmp-cmdline',
-    'mtoohey31/cmp-fish',
     'uga-rosa/cmp-dictionary',
     'f3fora/cmp-spell',
-    'saadparwaiz1/cmp_luasnip',
-    {
-      'L3MON4D3/LuaSnip',
-      dependencies = {
-        'rafamadriz/friendly-snippets',
-      },
-    },
+    'L3MON4D3/LuaSnip', -- helps create snippets
+    'saadparwaiz1/cmp_luasnip', -- adds snippets to cmp
+    'rafamadriz/friendly-snippets', -- provides multiple snippets
+    { 'mtoohey31/cmp-fish', ft = 'fish' },
   },
 }
 
 M.config = function()
   local cmp = require('cmp')
   local luasnip = require('luasnip')
-  local buffer = { { name = 'buffer' } }
   local kind_icons = {
     Text = '',
     Method = '󰆧',
@@ -63,18 +58,18 @@ M.config = function()
     snippy = '[SNP]',
     snipmate = '[SNM]',
     nvim_lsp_document_symbol = '[DOC]',
+    fish = '[FISH]',
   }
 
   cmp.setup {
     view = { entries = 'custom' },
-    experimental = { ghost_text = true },
+    experimental = { ghost_text = { hl_group = 'Comment' } },
     snippet = { expand = function(args) luasnip.lsp_expand(args.body) end },
     preselect = cmp.PreselectMode.None,
     window = {
       completion = cmp.config.window.bordered(),
       documentation = cmp.config.window.bordered(),
     },
-    -- completion = { keyword_length = 3 },
     formatting = {
       format = function(entry, vim_item)
         vim_item.kind = kind_icons[vim_item.kind]
@@ -106,41 +101,46 @@ M.config = function()
     },
     sources = cmp.config.sources({
       { name = 'path' },
-      { name = 'fish' },
       { name = 'luasnip' },
+      { name = 'fish' },
       { name = 'nvim_lsp' },
       { name = 'nvim_lua' },
       { name = 'dictionary' },
       { name = 'spell' },
-    }, buffer),
+    }, { { name = 'buffer' } }),
   }
 
   cmp.setup.cmdline({ '/', '?' }, {
     mapping = cmp.mapping.preset.cmdline(),
-    sources = cmp.config.sources({}, buffer),
+    sources = cmp.config.sources { { name = 'buffer' } },
+    formatting = {
+      format = function(_, vim_item)
+        vim_item.kind = ''
+        return vim_item
+      end,
+    },
   })
 
   cmp.setup.cmdline(':', {
     mapping = cmp.mapping.preset.cmdline(),
     sources = cmp.config.sources({ { name = 'path' } }, { { name = 'cmdline' } }),
+    formatting = {
+      format = function(_, vim_item)
+        vim_item.kind = ''
+        return vim_item
+      end,
+    },
   })
-
-  -- cmp.setup.filetype({ 'markdown', 'text', 'note' }, {
-  --   sources = cmp.config.sources({ { name = 'spell' } }, buffer),
-  -- })
 
   require('luasnip.loaders.from_lua').lazy_load()
   require('luasnip.loaders.from_vscode').lazy_load()
   require('luasnip.loaders.from_snipmate').lazy_load()
   require('cmp_dictionary').switcher {
-    filetype = {
-      -- lua = { '/path/to/lua.dict' },
+    filetype = { -- lua = { '/path/to/lua.dict' },
     },
-    filepath = {
-      -- ['.*xmake.lua'] = { '/path/to/xmake.dict', '/path/to/lua.dict' },
+    filepath = { -- ['.*xmake.lua'] = { '/path/to/xmake.dict', '/path/to/lua.dict' },
     },
-    spelllang = {
-      -- en = '/path/to/english.dict',
+    spelllang = { -- en = '/path/to/english.dict',
     },
   }
 end

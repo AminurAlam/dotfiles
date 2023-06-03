@@ -58,7 +58,7 @@ printf "\nLOCAL BINARIES...\n"
     printf "no checksum"
 
 printf "\nCLEANUP...\n"
-truncate -s 0 "$PREFIX/etc/motd" "$PREFIX/etc/motd.sh"
+truncate -s 0 "$PREFIX"/etc/motd*
 [ -d ~/storage/ ] && command rm -fr ~/storage/
 rmdir --ignore-fail-on-non-empty ~/backup/
 command mv "$HOME/.bash_history" ~/.local/cache/ &>/dev/null

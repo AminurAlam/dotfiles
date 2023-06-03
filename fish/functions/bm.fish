@@ -18,7 +18,13 @@ function bm
 
             if echo "$LINK" | grep -q '%s'
                 printf "  $LINK" | grep -E '^\s\s(\w+\.)+\w+'
-                read e -fP "  ╭───────────────────────────────────────────────╮"\n\n"  ╰───────────────────────────────────────────────╯"\n\033\[2A"  │   " && printf "╰─────────────────────────────────────────────────╯\n"
+                printf            "  ╭───────────────────────────────────────────────╮"\n\n
+                printf            "  ╰───────────────────────────────────────────────╯"
+                read e -fP \033\[A"  │   "
+                printf     \033\[A"  ╭───────────────────────────────────────────────╮"\n
+                printf            "  │   %s%s│"\n $e (string repeat -n (math 43 - (string length "$e")) " ")
+                printf            "  ╰───────────────────────────────────────────────╯"\n
+
                 $BROWSER https://(string replace '%s' (printf "$e" | string escape --style=url) $LINK)
             else
                 $BROWSER https://$LINK

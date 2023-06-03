@@ -5,7 +5,7 @@ return {
   opts = {
     use_default_keymaps = false,
     check_syntax_error = true,
-    max_join_length = 120,
+    max_join_length = 150,
     -- hold - cursor follows the node/place on which it was called
     -- start - cursor jumps to the first symbol of the node being formatted
     -- end - cursor jumps to the last symbol of the node being formatted

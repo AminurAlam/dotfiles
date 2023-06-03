@@ -1,3 +1,7 @@
+if exists('b:current_syntax')
+    finish
+endif
+
 syn match comment /^!\s.\+$/
 syn match item /^.*\..*###\?.*$/ contains=main,point,nth
 

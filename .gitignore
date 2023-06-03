@@ -8,6 +8,10 @@ nvim/spell/*
 nvim/spell/
 nvim/spell
 spell
+nvim/parser/*
+nvim/parser/
+nvim/parser
+parser
 
 mutt/passwords.gpg
 passwords.gpg

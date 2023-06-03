@@ -84,7 +84,7 @@ set.confirm = true
 set.clipboard:append('unnamedplus')
 set.list = true
 set.listchars = {
-  tab = '> ',
+  tab = '  ',
   trail = ' ',
   extends = '…',
   precedes = '…',

@@ -1,7 +1,7 @@
 function flac2mp3 -a bitrate
     [ -n "$bitrate" ] && set bitrate $bitrate || set bitrate 320
     for file in *.flac
-        set filename (string split -n ".flac" "$file")
+        set -l filename (string split -n ".flac" "$file")
         printf "\n$filename.flac -> $filename.mp3"
 
         if command -sq sox

@@ -1,6 +1,7 @@
 vim.loader.enable()
 
 local g = vim.g
+local autocmd = vim.api.nvim_create_autocmd
 
 g.mapleader = ' '
 g.maplocalleader = ' '
@@ -17,9 +18,16 @@ g.loaded_python3_provider = 0
 -- [[ core ]]
 require('core.lazy')
 require('core.options')
-require('core.mappings')
-require('core.commands')
 require('core.autocommands')
+
+autocmd('CmdLineEnter', {
+  callback = function() require('core.commands') end,
+})
+
+autocmd('User', {
+  pattern = 'VeryLazy',
+  callback = function() require('core.mappings') end,
+})
 
 vim.diagnostic.config {
   underline = { severity = vim.diagnostic.severity.ERROR },

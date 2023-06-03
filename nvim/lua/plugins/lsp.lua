@@ -1,16 +1,13 @@
-local M = {
-  'neovim/nvim-lspconfig',
-}
+local M = { 'neovim/nvim-lspconfig' }
 
 M.config = function()
   local lspconfig = require('lspconfig')
+
   local setup_lsp = function(name, bin, config)
+    local bin = bin or name
     if vim.fn.executable(bin) == 0 then return end
     lspconfig[name].setup {
       settings = config or {},
-      -- on_attach = function(client, bufnr)
-      --   client.server_capabilities.semanticTokensProvider = nil
-      -- end,
     }
   end
 
@@ -26,17 +23,17 @@ M.config = function()
     setup_jsonls = false,
   }
 
-  setup_lsp('clangd', 'clangd')
+  setup_lsp('clangd')
 
   setup_lsp('lua_ls', 'lua-language-server', {
     Lua = {
       library = vim.api.nvim_get_runtime_file('', true),
-      typeFormat = {
-        config = { auto_complete_end = true },
-      },
+      typeFormat = { config = { auto_complete_end = true } },
+      completion = { callSnippet = 'Replace', displayContext = 5 },
       diagnostics = {
         globals = { 'vim' },
         disable = { 'lowercase-global' },
+        libraryFiles = 'Disable',
       },
       format = {
         enable = false, -- using stylua instead
@@ -45,13 +42,12 @@ M.config = function()
           indent_size = '2',
         },
       },
-      completion = {
-        callSnippet = 'Replace',
-        displayContext = 5,
-      },
+      hint = { enable = true },
       runtime = { version = 'LuaJIT' },
-      workspace = { checkThirdParty = false },
+      semantic = { enable = false },
       telemetry = { enable = false },
+      window = { progressBar = false },
+      workspace = { checkThirdParty = false },
     },
   })
 

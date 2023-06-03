@@ -28,6 +28,8 @@ M.config = function()
           ['<esc>'] = 'close',
           ['<C-Down>'] = 'cycle_history_next',
           ['<C-Up>'] = 'cycle_history_prev',
+          ['<S-Tab>'] = 'move_selection_next',
+          ['<Tab>'] = 'move_selection_previous',
         },
         n = {
           ['<C-q>'] = 'close',

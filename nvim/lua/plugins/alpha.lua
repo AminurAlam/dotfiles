@@ -7,8 +7,9 @@ M.config = function()
   local utils = require('core.utils')
   local dev_icon = require('nvim-web-devicons')
   local scratch = '<cmd>enew <bar>setlocal buftype=nofile<bar>setlocal bufhidden=hide <bar>'
+  local rep = ' | AlphaRedraw | Telescope find_files hidden=true<cr>'
 
-  local art = {
+  local banner = {
     [[                               __                ]],
     [[  ___      __    ___   __  __ /\_\    ___ ___    ]],
     [[/' _ `\  /'__`\ / __`\/\ \/\ \\/\ \ /' __` __`\  ]],
@@ -21,9 +22,7 @@ M.config = function()
     local v = vim.version()
     return string.format(
       '%s | v%s-%s',
-      -- '%s | %dms | v%s-%s',
       utils.fish_path(vim.fn.getcwd()),
-      -- require('lazy').stats().startuptime,
       v.major .. '.' .. v.minor .. '.' .. v.patch,
       (v.prerelease and 'dev' or 'stable')
     )
@@ -52,30 +51,28 @@ M.config = function()
 
   local oldfiles = function()
     local of_buttons = {}
-        -- stylua: ignore
-        for _, filename in pairs(vim.v.oldfiles) do
-            if vim.fn.filereadable(filename) == 0 then goto continue end
-            local len = #of_buttons + 1
-            if len == 6 then break end
-            local icon, hl = dev_icon.get_icon(utils.rsplit(filename, '/'), utils.rsplit(filename, '\\.'))
-            filename = vim.fn.fnamemodify(filename, ':~')
-            table.insert(of_buttons, button(
-              tostring(len),
-              (icon or '') .. '  ' .. utils.fish_path(filename),
-              '<cmd>e ' .. filename .. ' <cr>',
-              hl
-            ));
-            ::continue::
-        end
+    for _, filename in pairs(vim.v.oldfiles) do
+      if vim.fn.filereadable(filename) == 0 then goto continue end
+      local len = #of_buttons + 1
+      if len == 6 then break end
+      local icon, hl = dev_icon.get_icon(utils.rsplit(filename, '/'), utils.rsplit(filename, '\\.'))
+      filename = vim.fn.fnamemodify(filename, ':~')
+      -- stylua: ignore
+      table.insert(of_buttons, button(
+        tostring(len),
+        (icon or '') .. '  ' .. utils.fish_path(filename),
+        '<cmd>e ' .. filename .. ' <cr>',
+        hl
+      ))
+      ::continue::
+    end
     return of_buttons
   end
-
-  local rep = ' | AlphaRedraw | Telescope find_files hidden=true<cr>'
 
   require('alpha').setup {
     layout = {
       { type = 'padding', val = 3 },
-      { type = 'text', val = art, opts = { position = 'center', hl = 'Type' } },
+      { type = 'text', val = banner, opts = { position = 'center', hl = 'Type' } },
       { type = 'padding', val = 1 },
       { type = 'text', val = details, opts = { position = 'center' } },
       { type = 'padding', val = 1 },
@@ -89,9 +86,9 @@ M.config = function()
       { type = 'padding', val = 1 },
       { type = 'group', val = oldfiles },
       { type = 'padding', val = 1 },
-      button('6', '  ~/r/dotfiles/', '<cmd>cd ~/repos/dotfiles/' .. rep),
-      button('7', '  /s/m/notes/', '<cmd>cd /sdcard/main/notes/' .. rep),
-      button('8', '  ~/r/musicbrainzpy/', '<cmd>cd ~/repos/musicbrainzpy/ ' .. rep),
+      button('6', '  ~/r/dotfiles/', '<cmd>cd ~/repos/dotfiles/' .. rep, 'Comment'),
+      button('7', '  /s/m/notes/', '<cmd>cd /sdcard/main/notes/' .. rep, 'Title'),
+      button('8', '  ~/r/musicbrainzpy/', '<cmd>cd ~/repos/musicbrainzpy/ ' .. rep, 'Identifier'),
     },
   }
 end
