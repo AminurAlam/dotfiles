@@ -1,17 +1,15 @@
-termux/shell
-termux/font.ttf
-rclone/
-rclone.conf
+fish_variables
+fish/fish_variables
 
 nvim/lazy-lock.json
-nvim/spell/*
-nvim/spell/
-nvim/spell
-spell
-nvim/parser/*
 nvim/parser/
-nvim/parser
-parser
+nvim/parser/*
+nvim/spell/
+nvim/spell/*
 
+rclone/
+rclone/rclone.conf
+termux/font.ttf
+termux/shell
 mutt/passwords.gpg
 passwords.gpg

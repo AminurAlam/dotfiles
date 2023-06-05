@@ -2,4 +2,4 @@
 # VERSION: 3.0
 SETUVAR __fish_initialized:3400
 SETUVAR fish_key_bindings:fish_vi_key_bindings
-SETUVAR fish_user_paths:/data/data/com\x2etermux/files/home/\x2elocal/bin
+SETUVAR fish_user_paths:/data/data/com\x2etermux/files/home/bin\x1e/data/data/com\x2etermux/files/home/\x2elocal/bin

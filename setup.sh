@@ -3,11 +3,11 @@
 fish_setup_url="https://raw.githubusercontent.com/AminurAlam/dotfiles/main/setup.fish"
 
 download-bootstrap() {
-    printf "$1\n"
+    printf "%s\n" "$1"
 
     if [[ "$1" = "outdated" ]]; then
         printf "\ndownload new bootstrap? [y/N] "
-        read choice
+        read -r choice
 
         case "$choice" in
             y|Y|yes|Yes|YES) true;;
@@ -16,7 +16,7 @@ download-bootstrap() {
     fi
 
     printf "downloading bootstrap to:
-    bootstrap-${arch}.zip\n"
+    bootstrap-%s.zip\n" "$arch"
     curl -#LO -- "${root_url}/latest/download/bootstrap-$arch.zip"
 }
 
@@ -41,36 +41,38 @@ bootstrap-pacman() {
         i686)    arch=i686    ;; # not tested
         x86_64)  arch=x86_64  ;; # not tested
         *)
-        printf "$(uname -m) is not a recognised arch\n"
+        printf "%s is not a recognised arch\n" "$(uname -m)"
         exit ;;
     esac
-    printf "$arch\n"
+    printf "%s\n" "$arch"
 
-    bootstrap_path="/sdcard/main/termux/bootstrap-${arch}.zip"
+    bootstrap_path="/sdcard/main/termux/bootstrap-%s.zip" $arch
     main="/sdcard/main/termux/"
-    cd "$main"
+    cd "$main" || exit
 
     printf "checking for bootstrap... "
-    [ -e "bootstrap-${arch}.zip" ] && check-hash || download-bootstrap
+    if [ -e "bootstrap-${arch}.zip" ]; then
+        check-hash
+    else
+        download-bootstrap
+    fi
 
     mkdir -p ~/../usr-n/
-    cd ~/../usr-n/
+    cd ~/../usr-n/ || exit
 
     printf "extracting bootstrap...\n"
     unzip -q -d ~/../usr-n/ "$main/bootstrap-${arch}.zip"
 
     printf "creating symlinks...\n"
-    cat ~/../usr-n/SYMLINKS.txt | awk -F "←" '{system("ln -s '"'"'"$1"'"'"' '"'"'"$2"'"'"'")}'
+    awk -F "←" '{system("ln -s '"'"'"$1"'"'"' '"'"'"$2"'"'"'")}' ~/../usr-n/SYMLINKS.txt
 
-    cd
+    cd || exit
 
     printf "\nRUN THIS COMMAND IN FAILSAFE MODE
     cd .. && rm -fr usr/ && mv usr-n/ usr/\n"
 
     exit
 }
-
-# TODO: move everything to fish
 
 yes | termux-setup-storage &>/dev/null
 command -v pacman >/dev/null || bootstrap-pacman
@@ -91,5 +93,6 @@ printf "done\n"
 printf "DOWNLAODING setup.fish..."
     curl -#O "$fish_setup_url"
 
-printf "\nBASE SETUP COMPLETE RUN THIS
-    fish setup.fish\n"
+printf "\nBASE SETUP COMPLETE\n"
+
+fish setup.fish
