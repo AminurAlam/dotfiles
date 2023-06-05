@@ -54,7 +54,7 @@ printf "\nLOCAL BINARIES...\n"
 [ -d "$main/widget/" ] &&
     command cp -fr $main/widget/* ~/.shortcuts/ &&
     chmod +x ~/.shortcuts/*
-[ -e "$main/bin-checksums" ] &&
+[ -e "$main/bin.sha256" ] &&
     sha256sum --check $main/bin.sha256 | awk -F '/' '{print "  "$9}' ||
     printf "no checksum"
 

@@ -15,8 +15,7 @@ download-bootstrap() {
         esac
     fi
 
-    printf "downloading bootstrap to:
-    bootstrap-%s.zip\n" "$arch"
+    printf "downloading bootstrap to: bootstrap-%s.zip\n" "$arch"
     curl -#LO -- "${root_url}/latest/download/bootstrap-$arch.zip"
 }
 
@@ -32,7 +31,7 @@ check-hash() {
 bootstrap-pacman() {
     root_url="https://github.com/termux-pacman/termux-packages/releases"
 
-    printf "\nBOOTSTRAPPING PACMAN...\n"
+    printf "BOOTSTRAPPING PACMAN...\n"
 
     printf "determining arch... "
     case "$(uname -m)" in
@@ -46,11 +45,11 @@ bootstrap-pacman() {
     esac
     printf "%s\n" "$arch"
 
-    bootstrap_path="/sdcard/main/termux/bootstrap-%s.zip" $arch
+    bootstrap_path="/sdcard/main/termux/bootstrap-$arch.zip"
     main="/sdcard/main/termux/"
     cd "$main" || exit
 
-    printf "checking for bootstrap... "
+    printf "looking for bootstrap... "
     if [ -e "bootstrap-${arch}.zip" ]; then
         check-hash
     else
@@ -64,9 +63,9 @@ bootstrap-pacman() {
     unzip -q -d ~/../usr-n/ "$main/bootstrap-${arch}.zip"
 
     printf "creating symlinks...\n"
-    awk -F "←" '{system("ln -s '"'"'"$1"'"'"' '"'"'"$2"'"'"'")}' ~/../usr-n/SYMLINKS.txt
+    awk -F "←" '{system("ln -s '"'"'"$1"'"'"' '"'"'"$2"'"'"'")}' < ~/../usr-n/SYMLINKS.txt
 
-    cd || exit
+    cd
 
     printf "\nRUN THIS COMMAND IN FAILSAFE MODE
     cd .. && rm -fr usr/ && mv usr-n/ usr/\n"
@@ -90,7 +89,7 @@ printf "CHANGING SHELL... "
     chsh -s fish
 printf "done\n"
 
-printf "DOWNLAODING setup.fish..."
+printf "DOWNLAODING setup.fish...\n"
     curl -#O "$fish_setup_url"
 
 printf "\nBASE SETUP COMPLETE\n"
