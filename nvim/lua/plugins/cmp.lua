@@ -51,6 +51,7 @@ M.config = function()
     nvim_lua = '[LUA]',
     path = '[PATH]',
     buffer = '[BUF]',
+    dictionary = '[DICT]',
     dap = '[DAP]',
     vsnip = '[VSN]',
     luasnip = '[LSN]',

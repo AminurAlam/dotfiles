@@ -4,9 +4,7 @@ local umap = require('core.utils').map { '', 'i' } -- mappings for normal, visua
 
 -- telescope
 nmap('<leader>ff', '<cmd>Telescope find_files hidden=true<cr>', { desc = 'find files' })
-nmap('<leader>fr', '<cmd>Telescope oldfiles<cr>', { desc = 'find recent files' })
 nmap('<leader>fg', '<cmd>Telescope live_grep disable_coordinates=true<cr>', { desc = 'find text' })
-nmap('<leader>fb', '<cmd>Telescope buffers<cr>', { desc = 'find buffers' })
 nmap('<leader>fh', '<cmd>Telescope help_tags<cr>', { desc = 'find help' })
 nmap('<leader>fs', '<cmd>Telescope spell_suggest<cr>', { desc = 'find spelling' })
 
@@ -24,7 +22,6 @@ umap('<c-right>', '<cmd>CybuNext<cr>', { desc = 'next buffer' })
 nmap('<leader>gd', '<cmd>Gitsigns diffthis<cr>', { desc = 'view diff in split' })
 nmap('<leader>gh', '<cmd>Gitsigns preview_hunk<cr>', { desc = 'preview hunk' })
 nmap('<leader>gr', '<cmd>Gitsigns reset_hunk<cr>', { desc = 'undo hunk' })
-nmap('<leader>gu', '<cmd>Gitsigns reset_hunk<cr>', { desc = 'undo hunk' })
 nmap('<leader>gn', '<cmd>Gitsigns next_hunk<cr>', { desc = 'goto next hunk' })
 nmap('<leader>gp', '<cmd>Gitsigns prev_hunk<cr>', { desc = 'goto previous hunk' })
 
@@ -40,7 +37,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
     nmap(
       '<leader>lb',
       function() vim.diagnostic.open_float { scope = 'buffer' } end,
-      { desc = 'view all diagnostics' }
+      { desc = 'view all diagnostics in a buffer' }
     )
     nmap(
       '<leader>lc',

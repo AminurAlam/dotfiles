@@ -8,7 +8,7 @@ function rar2zip
     pacman -S --needed unrar zip >/dev/null
 
     printf "extracting $filename.cbr to $stuff\n"
-    unrar x "$filename.cbr" &>/dev/null || exit
+    unrar x "$filename.cbr" &>/dev/null || return
 
     printf "compressing $stuff\n"
     printf "to $filename.cbz\n"

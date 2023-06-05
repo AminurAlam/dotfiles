@@ -37,11 +37,20 @@ vim.diagnostic.config {
       return diagnostic.message
     end,
   },
-  signs = false,
+  signs = true,
   float = { border = 'rounded', header = '', prefix = '', suffix = '' },
   update_in_insert = true,
   severity_sort = true,
 }
+
+for _, name in pairs {
+  'DiagnosticSignError',
+  'DiagnosticSignWarn',
+  'DiagnosticSignInfo',
+  'DiagnosticSignHint',
+} do
+  vim.fn.sign_define(name, { numhl = name })
+end
 
 vim.filetype.add {
   pattern = {
@@ -58,3 +67,4 @@ local hl = function(name, val) vim.api.nvim_set_hl(0, name, val) end
 hl('Whitespace', { bg = '#364a82' })
 hl('CursorLineNr', { fg = '#c0caf5' })
 hl('LineNr', { fg = '#3b4261' })
+hl('Folded', { bg= '#3b4261', fg='NONE' })

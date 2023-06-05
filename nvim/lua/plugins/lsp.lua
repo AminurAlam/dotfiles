@@ -27,7 +27,7 @@ M.config = function()
 
   setup_lsp('lua_ls', 'lua-language-server', {
     Lua = {
-      library = vim.api.nvim_get_runtime_file('', true),
+      -- library = vim.api.nvim_get_runtime_file('', true),
       typeFormat = { config = { auto_complete_end = true } },
       completion = { callSnippet = 'Replace', displayContext = 5 },
       diagnostics = {

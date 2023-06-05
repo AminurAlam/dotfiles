@@ -47,7 +47,7 @@ end
 function fish_prompt
     echo
     printf "%b%b " \
-        (set_color cyan) (git symbolic-ref --short HEAD 2> /dev/null) \
+        (set_color cyan) (git symbolic-ref --short HEAD 2>/dev/null) \
         (set_color $fish_color_cwd) (prompt_pwd)
     set_color normal
     [ (string length (prompt_pwd)) -gt 20 ] && printf "\n ❯ " || printf "❯ "

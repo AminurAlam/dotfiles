@@ -1,22 +1,39 @@
 local command = vim.api.nvim_create_user_command
 
+-- TODO: run in a floating terminal
 command('Run', function(opts)
-  local code = vim.fn.join(vim.fn.getline(opts.line1, opts.line2), '\n')
+  local fn = vim.fn
+  local code = fn.shellescape(fn.join(fn.getline(opts.line1, opts.line2), '\n'))
   local ft = vim.o.filetype
-  if ft == 'fish' then
-    print(vim.fn.system("fish -c '" .. vim.fn.escape(code, "'") .. "'"))
+
+  ---@param bins table[str]
+  ---@param struct string
+  local run = function(bins, struct)
+    local bin = vim.tbl_filter(function(bin) return fn.executable(bin) == 1 and true or false end, bins)[1]
+
+    if bin == nil then
+      vim.notify(fn.join(bins, ', ') .. ' is not executable', 3)
+      return
+    end
+
+    local cmd = string.format(struct, bin, code)
+    vim.print(fn.system(cmd))
+  end
+
+  if ft == nil then
+    vim.notify('ft is nil', 3)
+  elseif ft == 'fish' then
+    run({ 'fish' }, "%s -c '%s'")
   elseif ft == 'sh' or ft == 'bash' then
-    print(vim.fn.system("bash -c '" .. vim.fn.escape(code, "'") .. "'"))
+    run({ 'bash', 'sh' }, "%s -c '%s'")
   elseif ft == 'python' then
-    print(vim.fn.system("python -c '" .. vim.fn.escape(code, "'") .. "'"))
+    run({ 'python' }, "%s -c '%s'")
   elseif ft == 'nim' then
-    code = vim.fn.escape(code, '"')
-    print(vim.fn.system('nim --hints:off --eval:"' .. code .. '"'))
+    run({ 'nim' }, '%s --hints:off --eval:"%s"')
   elseif ft == 'lua' then
-    code = vim.fn.escape(code, '"')
-    print(vim.fn.system('luajit -e "' .. code .. '"'))
+    run({ 'luajit', 'luvit' }, "%s -e '%s'")
   else
-    print(ft .. ' cant be run')
+    vim.notify(ft .. ' doesnt have a runner implemented', 3)
   end
 end, {
   desc = 'run selected code based on the filetype',

@@ -1,6 +1,7 @@
 set dotfiles  $HOME/repos/dotfiles
 set main  /sdcard/main/termux
-set packages  dust exa fd git neovim-nightly openssh ripgrep starship lua-language-server termux-api
+set packages  dust exa fd git neovim openssh ripgrep starship lua-language-server termux-api
+set font_url "https://raw.githubusercontent.com/ryanoasis/nerd-fonts/master/patched-fonts/SourceCodePro/Regular/SauceCodeProNerdFont-Regular.ttf"
 
 mkdir -p $HOME/backup/ $HOME/.shortcuts/ $HOME/.local/{share,bin,cache}/
 
@@ -54,7 +55,7 @@ printf "\nLOCAL BINARIES...\n"
     command cp -fr $main/widget/* ~/.shortcuts/ &&
     chmod +x ~/.shortcuts/*
 [ -e "$main/bin-checksums" ] &&
-    sha256sum --check $main/bin-checksums | awk -F '/' '{print "  "$9}' ||
+    sha256sum --check $main/bin.sha256 | awk -F '/' '{print "  "$9}' ||
     printf "no checksum"
 
 printf "\nCLEANUP...\n"
@@ -63,11 +64,12 @@ truncate -s 0 "$PREFIX"/etc/motd*
 rmdir --ignore-fail-on-non-empty ~/backup/
 command mv "$HOME/.bash_history" ~/.local/cache/ &>/dev/null
 
+# TODO: proot-distro and gui
 
 printf "
 add `rclone.conf` manually:
     $(set_color $fish_color_command)cp $(set_color $fish_color_quote)$main/rclone.conf ~/.config/rclone/rclone.conf$(set_color normal)
 change font manually:
-    $(set_color $fish_color_command)cp $(set_color $fish_color_option)-f $(set_color $fish_color_quote)'$main/font.ttf' ~/.termux/font.ttf$(set_color normal)
+    $(set_color $fish_color_command)curl $(set_color $fish_color_option)-#so ~/.termux/font.ttf $(set_color $fish_color_quote)'$font_url'$(set_color normal)
 zoom in and out to fix screen
 "

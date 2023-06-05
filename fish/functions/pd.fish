@@ -5,20 +5,20 @@ function pd
         return
     end
 
-    set -l distros   alpine archlinux debian fedora manjaro-aarch64 opensuse pardus ubuntu void
+    set -l distros alpine archlinux debian fedora manjaro-aarch64 opensuse pardus ubuntu void
     set -l distro $argv[1]
-
-    string replace manjaro manjaro-aarch64 $distro
-    string replace arch    archlinux       $distro
-    string replace suse    opensuse        $distro
+    set -l distro (string replace manjaro-aarch64 manjaro $distro)
+    set -l distro (string replace archlinux       arch    $distro)
+    set -l distro (string replace opensuse        suse    $distro)
 
     switch $distro
         case $distros
-            proot-distro login $distro
-            or read install -fP "cant login to %s, try installing it? [y/N] "
-            [ $install = "y" ] && proot-distro install $distro
+            proot-distro login $distro || begin
+                read install -fP "cant login to %s, try installing it? [y/N] " "$distro"
+                [ $install = y ] && proot-distro install $distro
+            end
         case "*"
-            printf "$distro is not a supported distro\n"
+            printf "%s is not a supported distro\n" "$distro"
             return
     end
 

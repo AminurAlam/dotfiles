@@ -108,7 +108,7 @@ abbr zsd "z $XDG_DIR/"
     abbr zmn  "z $XDG_DIR/main/notes/"
 
 abbr zr   'z (command ls -1N $XDG_PROJECTS_DIR | $LAUNCHER)'
-abbr zrp  "z $XDG_PROJECTS_DIR/"
+abbr zrp  "z $XDG_PROJECTS_DIR/ && git clone --depth 1"
   abbr zmbz "z $XDG_PROJECTS_DIR/musicbrainzpy/"
   abbr zd   "z $XDG_PROJECTS_DIR/dotfiles/"
 

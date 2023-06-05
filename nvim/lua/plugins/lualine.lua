@@ -60,7 +60,7 @@ M.config = function()
     },
     lualine_c = { { 'diagnostics', update_in_insert = true } },
     lualine_x = {
-      { '%S' }, -- https://github.com/nvim-lualine/lualine.nvim/issues/949
+      { '%S' },
       { 'searchcount' },
       {
         function() return '@' .. vim.fn.reg_recording() end,

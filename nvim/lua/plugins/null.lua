@@ -8,22 +8,38 @@ M.config = function()
   local null_ls = require('null-ls')
   local sources = {}
 
-  local add = function(info)
-    local name = info[1]
-    local group = info[2]
-    if vim.fn.executable(info.bin or name) == 0 then return end
-    table.insert(sources, null_ls.builtins[group][name].with(info.config or {}))
+  ---@param name string
+  ---@param group string
+  ---@param info nil|table
+  local add = function(name, group, info)
+    local bin = info and info.bin
+    local config = info and info.config
+
+    if bin and vim.fn.executable(bin) == 0 then return end
+
+    -- avoid indexing .with() when theres no config
+    table.insert(
+      sources,
+      config and null_ls.builtins[group][name].with(config) or null_ls.builtins[group][name]
+    )
   end
 
-  add { 'ruff', 'diagnostics' }
-  add {'stylua', 'formatting', config = { extra_args = {
-    '-f', vim.fn.stdpath('config') .. '/stylua.toml',
-  } } }
-  add { 'fish', 'diagnostics' }
-  add { 'fish_indent', 'formatting' }
-  add { 'clang_check', 'diagnostics', bin = 'clang-check' }
-  add { 'shellcheck', 'code_actions' }
-  add { 'shellcheck', 'diagnostics' }
+  add('stylua', 'formatting', {
+    bin = 'stylua',
+    config = { extra_args = {
+      '-f',
+      vim.fn.stdpath('config') .. '/stylua.toml',
+    } },
+  })
+  add('ruff', 'diagnostics', { bin = 'ruff' })
+  add('fish', 'diagnostics', { bin = 'fish' })
+  add('fish_indent', 'formatting', { bin = 'fish_indent' })
+  add('shellcheck', 'diagnostics', { bin = 'shellcheck' })
+  add('clang_check', 'diagnostics', { bin = 'clang-check' })
+  add('shellcheck', 'code_actions', { bin = 'shellcheck' })
+  add('gitsigns', 'code_actions')
+  add('ts_node_action', 'code_actions')
+  -- add('spell', 'completion')
 
   null_ls.setup {
     border = 'rounded',
