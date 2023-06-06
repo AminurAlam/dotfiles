@@ -5,7 +5,7 @@ local autocmd = vim.api.nvim_create_autocmd
 
 g.mapleader = ' '
 g.maplocalleader = ' '
-g.stc = '%=%{ v:virtnum ? "…" : v:lnum }%s%C'
+g.stc = '%=%{ v:virtnum ? "…" : v:lnum }%s'
 g.tex_flavor = 'latex'
 g.editorconfig = false
 g.do_filetype_lua = 1
@@ -53,10 +53,14 @@ for _, name in pairs {
 end
 
 vim.filetype.add {
+  extention = {
+    -- ['conf'] = 'confini',
+  },
   pattern = {
     ['.*%.log'] = 'log',
     ['.*%.cue'] = 'cuesheet',
     ['.*%.note'] = 'note',
+    -- ['.*%.conf'] = 'confini',
   },
 }
 
@@ -67,4 +71,4 @@ local hl = function(name, val) vim.api.nvim_set_hl(0, name, val) end
 hl('Whitespace', { bg = '#364a82' })
 hl('CursorLineNr', { fg = '#c0caf5' })
 hl('LineNr', { fg = '#3b4261' })
-hl('Folded', { bg= '#3b4261', fg='NONE' })
+hl('Folded', { bg = '#3b4261', fg = 'NONE' })

@@ -1,5 +1,6 @@
 function clean
-    set -f dirs \
+    set -f hist_dirs (fd -Hd1 '^\..*_history$' ~)
+    set -f big_dirs \
         /sdcard/Android/data/*youtube/ \
         /sdcard/Android/data/org.schabi.newpipe/ \
         /sdcard/Android/data/org.*messenger/ \
@@ -8,22 +9,31 @@ function clean
         /sdcard/Aurora/ \
         /sdcard/Telegram/
 
-    yes | pacman -Scc
+    pacman -Scc --noconfirm
     echo
 
-    for dir in $dirs
-        [ -d $dir ] && command du -hs $dir
+    for dir in $big_dirs
+        [ -d $dir ] && set -fa dirs $dir
     end
 
-    printf "delete these directories? [y/N] "
-    command rm -frI $dirs &>/dev/null
+    if count $dirs &>/dev/null
+        command du -hs $dirs
+        printf "delete these directories? [y/N] "
+        command rm -frI -- $dirs &>/dev/null
+        echo
+    end
+
+    count $hist_dirs &>/dev/null &&
+        command rm -i $hist_dirs &&
     echo
 
-    command rm -i ~/.*_history
+    command -sq rip &&
+        yes | rip --decompose &>/dev/null &&
     echo
 
-    command -sq rip && yes | rip --decompose &>/dev/null && echo
-    command -sq pip && pip cache purge && echo
+    command -sq pip &&
+        pip cache purge &&
+    echo
 
     echo (count (command exa -al ~)) files in HOME
 end

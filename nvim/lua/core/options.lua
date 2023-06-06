@@ -15,7 +15,7 @@ set.hlsearch = true
 set.ignorecase = true
 set.smartcase = true
 set.incsearch = true
-set.iskeyword:append('-,$')
+set.iskeyword:append('-')
 
 -- spell
 set.spellcapcheck = ''

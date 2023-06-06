@@ -21,7 +21,7 @@ return {
       highlight = { enable = true },
       incremental_selection = { enable = true },
       textobjects = { enable = true },
-      indent = { enable = true },
+      indent = { enable = false },
     }
   end,
 }
