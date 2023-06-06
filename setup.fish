@@ -30,9 +30,10 @@ if command -sq python && command -sq pip
     pip install requests deflacue
 end
 
-printf "DOWNLOADING DOTFILES...\n"
+printf "DOWNLOADING DOTFILES... "
 [ -d "$dotfiles" ] && command rm -fr "$dotfiles" &>/dev/null
 git clone -q --depth 1 "$dotfiles_url" "$dotfiles"
+printf "done\n"
 
 printf "LINKING CONFIG DIRECTORIES... "
 for config in aria2 fish git mutt newsboat npm nvim python
@@ -64,18 +65,15 @@ else
     printf "bin.sha256 is missing\n"
 end
 
-printf "CLEANUP...\n"
+printf "CLEANUP... "
 truncate -s 0 "$PREFIX"/etc/motd*
 [ -d ~/storage/ ] && command rm -fr ~/storage/
 rmdir --ignore-fail-on-non-empty ~/backup/
 command mv "$HOME/.bash_history" ~/.local/cache/ &>/dev/null
+echo "done\n"
+
+if [ (read -P 'downlad font? [y/N]') = y ]
+    curl -so ~/.termux/font.ttf "$font_url" &>/dev/null
+end
 
 # TODO: proot-distro and gui
-
-printf "
-add `rclone.conf` manually:
-    $(set_color $fish_color_command)cp $(set_color $fish_color_quote)$main/rclone.conf ~/.config/rclone/rclone.conf$(set_color normal)
-change font manually:
-    $(set_color $fish_color_command)curl $(set_color $fish_color_option)-#so ~/.termux/font.ttf $(set_color $fish_color_quote)'$font_url'$(set_color normal)
-zoom in and out to fix screen
-"

@@ -80,7 +80,9 @@ printf "\nGENERATING PACMAN KEYS... "
 printf "done\n"
 
 printf "INSTALLING FISH... "
-    pacman -Syuq --noconfirm --needed -- fish 1>/dev/null || printf 'failed' && exit
+    pacman -Syuq --noconfirm --needed -- fish 1>/dev/null || {
+        printf 'failed\n'; exit
+    }
 printf "done\n"
 
 printf "CHANGING SHELL... "
@@ -92,5 +94,5 @@ printf "DOWNLAODING setup.fish...\n"
 
 printf "\nBASE SETUP COMPLETE\n"
 
-# for debugging
-printf "%s: %s\n" "type -fP" "$(type -fP fish)" "SHELL" "$SHELL" "whereis -b" "$(whereis -b fish)"
+fish=$(type -fP fish)
+$fish setup.fish
