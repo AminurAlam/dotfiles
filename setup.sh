@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 
 fish_setup_url="https://raw.githubusercontent.com/AminurAlam/dotfiles/main/setup.fish"
+root_url="https://github.com/termux-pacman/termux-packages/releases"
+main="/sdcard/main/termux/"
 
 download-bootstrap() {
     printf "%s\n" "$1"
@@ -22,17 +24,14 @@ download-bootstrap() {
 check-hash() {
     printf "present\n"
     printf "checking hash of cached archive...\n"
-    curl -sL -- "${root_url}/latest/download/CHECKSUMS-md5.txt" \
-    | awk -F '\t' '{print $2 "  " $1}' \
-    | md5sum --status --check --ignore-missing - 2>/dev/null \
+    curl -sL -- "https://github.com/termux-pacman/termux-packages/releases/latest/download/CHECKSUMS-md5.txt" \
+    | awk -F '\t' " /$arch/ {print \$2 \"  \" \$1}" \
+    | md5sum --status --check \
     || download-bootstrap "outdated"
 }
 
 bootstrap-pacman() {
-    root_url="https://github.com/termux-pacman/termux-packages/releases"
-
     printf "BOOTSTRAPPING PACMAN...\n"
-
     printf "determining arch... "
     case "$(uname -m)" in
         aarch64) arch=aarch64 ;;
@@ -46,7 +45,6 @@ bootstrap-pacman() {
     printf "%s\n" "$arch"
 
     bootstrap_path="/sdcard/main/termux/bootstrap-$arch.zip"
-    main="/sdcard/main/termux/"
     cd "$main" || exit
 
     printf "looking for bootstrap... "
