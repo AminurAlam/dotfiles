@@ -15,9 +15,9 @@ abbr bin-integrity "sha256sum --check /sdcard/main/termux/bin-checksums"
 abbr n "nvim --cmd 'cd /sdcard/main/notes/'"
 
 # parent dir
-abbr .. "z .."
-abbr ... "z ../.."
-abbr .... "z ../../.."
+abbr .. "cd .."
+abbr ... "cd ../.."
+abbr .... "cd ../../.."
 
 # git
 abbr gup "git add . && git commit && git push origin"
@@ -39,7 +39,7 @@ abbr rstat "rclone about"
 abbr rconf "rclone config"
 
 # python
-alias py "python3 -q"
+abbr py "python3 -q"
 alias mbz "python3 ~/repos/musicbrainzpy/cover_art.py"
 
 # ls -> exa
@@ -55,7 +55,6 @@ alias df "duf -only local -output mountpoint,size,avail,usage -width 150 /storag
 # tar
 abbr tar-compress    "tar cf"
 abbr tar-compress-gz "tar czf"
-
 abbr tar-extract    "tar xf"
 abbr tar-extract-gz "tar xzf"
 
@@ -81,25 +80,4 @@ else if command -sq dnf
     abbr pa "dnf show"
 else
     echo "UNKNOWN PACKAGE MANAGER"
-end
-
-if command -sq pip
-    abbr pyi "pip install"
-    abbr pyu "pip install --upgrade"
-    abbr pyr "pip uninstall"
-    abbr pyf "pip search"
-end
-
-if command -sq cargo
-    abbr cb "cargo build"
-    abbr cr "cargo run"
-    abbr ct "cargo test"
-    abbr cf "cargo search"
-    abbr ci "cargo install"
-end
-
-if command -sq npm
-    abbr ni "npm install --location global"
-    abbr nr "npm uninstall"
-    abbr nu "npm update"
 end

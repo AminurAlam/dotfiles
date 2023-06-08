@@ -40,19 +40,10 @@ autocmd({ 'FileType', 'BufNewFile' }, {
   end,
 })
 
-autocmd('VimEnter', {
-  desc = 'open directory in telescope',
-  callback = function(details)
-    if vim.fn.isdirectory(details.file) == 1 then
-      vim.cmd.cd(details.file)
-      vim.cmd('Telescope find_files')
-    end
-  end,
-})
-
 -- https://github.com/mong8se/actually.nvim
 autocmd('BufNewFile', {
   desc = 'when tab completion doesnt work',
+  once = true,
   callback = function(details)
     if vim.fn.filereadable(details.file) == 1 then return end
     local possibles = vim.split(vim.fn.glob(details.file .. '*'), '\n', { trimempty = true })
@@ -78,11 +69,6 @@ autocmd('TermOpen', {
   end,
 })
 
-autocmd('VimResized', {
-  pattern = 'lazy',
-  callback = function() set.wrap = false end,
-})
-
 autocmd('BufReadPost', {
   desc = 'restore cursor position',
   callback = function()
@@ -90,6 +76,14 @@ autocmd('BufReadPost', {
     if mark[1] > 0 and mark[1] <= vim.api.nvim_buf_line_count(0) then
       pcall(vim.api.nvim_win_set_cursor, 0, mark)
     end
+  end,
+})
+
+autocmd('BufWritePre', {
+  desc = 'automatically create missing directories when saving files',
+  callback = function(details)
+    local path = vim.fs.dirname(details.match)
+    if vim.fn.isdirectory(path) == 0 then vim.fn.mkdir(path, 'p') end
   end,
 })
 
@@ -127,7 +121,6 @@ autocmd('BufEnter', {
 --     })
 --   end,
 -- })
-
 -- https://github.com/ibhagwan/smartyank.nvim
 -- autocmd({ "TextYankPost" }, {
 --     desc = 'stop certain stuff from going to clipboard',
@@ -138,19 +131,25 @@ autocmd('BufEnter', {
 --         end
 --     end
 -- })
-
+-- autocmd('VimEnter', {
+--   desc = 'open directory in telescope',
+--   callback = function(details)
+--     if vim.fn.isdirectory(details.file) == 1 then
+--       vim.cmd.cd(details.file)
+--       vim.cmd('Telescope find_files')
+--     end
+--   end,
+-- })
 -- autocmd('BufWinLeave', {
 --   desc = 'remember folds',
 --   pattern = '?*',
 --   command = 'silent! mkview 1',
 -- })
-
 -- autocmd('BufWinEnter', {
 --   desc = 'auto load folds',
 --   pattern = '?*',
 --   command = 'silent! loadview 1',
 -- })
-
 -- vim.cmd(
 --     "autocmd BufEnter * ++nested if winnr('$') == 1 && bufname() == 'NvimTree_' . tabpagenr() | quit | endif"
 -- )
@@ -160,13 +159,6 @@ autocmd('BufEnter', {
 -- vim.api.nvim_create_autocmd({ 'CmdWinEnter' }, {
 --     callback = function() vim.cmd('quit') end,
 -- })
--- vim.api.nvim_create_autocmd({ 'BufWinEnter' }, {
---     callback = function() vim.cmd('set formatoptions-=cro') end,
--- })
 -- vim.api.nvim_create_autocmd({ 'VimEnter' }, {
 --     callback = function() vim.cmd('hi link illuminatedWord LspReferenceText') end,
--- })
--- vim.api.nvim_create_autocmd({ 'BufWinEnter' }, {
---     pattern = { '*' },
---     callback = function() vim.cmd('checktime') end,
 -- })

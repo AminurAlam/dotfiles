@@ -1,9 +1,7 @@
 function pd
 
-    command -sq proot-distro || begin
-        printf "proot-distro is not installed\n"
-        return
-    end
+    command -sq proot-distro || pacman -S proot-distro || return
+    [ -z "$argv[1]" ] && proot-distro list 2>&1 | rg '^\s+' && return
 
     set -l distros alpine archlinux debian fedora manjaro-aarch64 opensuse pardus ubuntu void
     set -l distro $argv[1]
@@ -14,8 +12,8 @@ function pd
     switch $distro
         case $distros
             proot-distro login $distro || begin
-                read install -fP "cant login to %s, try installing it? [y/N] " "$distro"
-                [ $install = y ] && proot-distro install $distro
+                read install -fP "cant login to '$distro', try installing it? [y/N] "
+                [ "$install" = "y" ] && proot-distro install $distro
             end
         case "*"
             printf "%s is not a supported distro\n" "$distro"

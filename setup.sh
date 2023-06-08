@@ -79,11 +79,10 @@ printf "\nGENERATING PACMAN KEYS... "
     pacman-key --populate &>/dev/null
 printf "done\n"
 
-printf "INSTALLING FISH... "
-    pacman -Syuq --noconfirm --needed -- fish 1>/dev/null || {
+printf "INSTALLING FISH...\n"
+    pacman -Syuq --noconfirm --needed -- fish || {
         printf 'failed\n'; exit
     }
-printf "done\n"
 
 printf "CHANGING SHELL... "
     chsh -s fish
@@ -92,7 +91,8 @@ printf "done\n"
 printf "DOWNLAODING setup.fish...\n"
     curl -#O "$fish_setup_url"
 
-printf "\nBASE SETUP COMPLETE\n"
+printf "BASE SETUP COMPLETE\n"
+printf "RUNNING FISH SETUP...\n"
 
-fish=$(type -fP fish)
+fish=$(command -v fish)
 $fish setup.fish
