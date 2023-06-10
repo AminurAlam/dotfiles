@@ -20,16 +20,15 @@ M.config = function()
     -- avoid indexing .with() when theres no config
     table.insert(
       sources,
-      config and null_ls.builtins[group][name].with(config) or null_ls.builtins[group][name]
+      config and
+      null_ls.builtins[group][name].with(config) or
+      null_ls.builtins[group][name]
     )
   end
 
   add('stylua', 'formatting', {
     bin = 'stylua',
-    config = { extra_args = {
-      '-f',
-      vim.fn.stdpath('config') .. '/stylua.toml',
-    } },
+    config = { extra_args = { '-f', vim.fn.stdpath('config') .. '/stylua.toml' } },
   })
   add('ruff', 'diagnostics', { bin = 'ruff' })
   add('fish', 'diagnostics', { bin = 'fish' })
