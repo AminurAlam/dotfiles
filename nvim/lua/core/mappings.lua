@@ -34,16 +34,16 @@ vim.api.nvim_create_autocmd('LspAttach', {
     nmap('<leader>lf', function() vim.lsp.buf.format() end, { desc = 'format code using LSP' })
     nmap('<leader>lr', function() vim.lsp.buf.rename() end, { desc = 'rename symbol under cursor' })
     nmap('<leader>ld', function() vim.diagnostic.open_float() end, { desc = 'view line diagnostics' })
-    nmap(
-      '<leader>lb',
-      function() vim.diagnostic.open_float { scope = 'buffer' } end,
-      { desc = 'view all diagnostics in a buffer' }
-    )
-    nmap(
-      '<leader>lc',
-      function() vim.lsp.codelens.display(vim.lsp.codelens.get(0), 0, 0) end,
-      { desc = 'view all diagnostics' }
-    )
+
+    nmap('<leader>da', function() vim.diagnostic.open_float { scope = 'buffer' } end, {
+      desc = 'view all diagnostics in a buffer',
+    })
+    nmap('<leader>dp', function() vim.diagnostic.goto_prev() end, {
+      desc = 'goto prev diagnostic message',
+    })
+    nmap('<leader>dn', function() vim.diagnostic.goto_next() end, {
+      desc = 'goto next diagnostic message',
+    })
   end,
 })
 

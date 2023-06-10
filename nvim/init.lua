@@ -60,7 +60,7 @@ vim.filetype.add {
     ['.*%.log'] = 'log',
     ['.*%.cue'] = 'cuesheet',
     ['.*%.note'] = 'note',
-    -- ['.*%.conf'] = 'confini',
+    ['.*%.conf'] = 'toml',
   },
 }
 

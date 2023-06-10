@@ -39,6 +39,6 @@ return {
     },
     display_time = 1500, -- time the cybu window is displayed
     exclude = { 'neo-tree', 'fugitive', 'qf' },
-    fallback = function() end,
+    fallback = function(direction) vim.cmd('b' .. direction) end,
   },
 }

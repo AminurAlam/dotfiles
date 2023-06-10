@@ -38,7 +38,7 @@ M.config = function()
   add('clang_check', 'diagnostics', { bin = 'clang-check' })
   add('shellcheck', 'code_actions', { bin = 'shellcheck' })
   add('gitsigns', 'code_actions')
-  add('ts_node_action', 'code_actions')
+  -- add('ts_node_action', 'code_actions')
   -- add('spell', 'completion')
 
   null_ls.setup {

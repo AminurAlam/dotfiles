@@ -25,6 +25,8 @@ M.config = function()
 
   setup_lsp('clangd')
 
+  setup_lsp('rust_analyzer', 'rust-analyzer')
+
   setup_lsp('lua_ls', 'lua-language-server', {
     Lua = {
       -- library = vim.api.nvim_get_runtime_file('', true),

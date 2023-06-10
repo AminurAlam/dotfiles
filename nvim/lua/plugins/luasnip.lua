@@ -42,20 +42,6 @@ M.config = function()
       t { '', 'end' },
     }),
   })
-
-  ls.add_snippets('gitcommit', {
-    ls.snippet('build', { t('build('), i(1, 'scope'), t('): '), i(2, 'message') }),
-    ls.snippet('chore', { t('chore('), i(1, 'scope'), t('): '), i(2, 'message') }),
-    ls.snippet('ci', { t('ci('), i(1, 'scope'), t('): '), i(2, 'message') }),
-    ls.snippet('docs', { t('docs('), i(1, 'scope'), t('): '), i(2, 'message') }),
-    ls.snippet('feat', { t('feat('), i(1, 'scope'), t('): '), i(2, 'message') }),
-    ls.snippet('fix', { t('fix('), i(1, 'scope'), t('): '), i(2, 'message') }),
-    ls.snippet('perf', { t('perf('), i(1, 'scope'), t('): '), i(2, 'message') }),
-    ls.snippet('refactor', { t('refactor('), i(1, 'scope'), t('): '), i(2, 'message') }),
-    ls.snippet('revert', { t('revert('), i(1, 'scope'), t('): '), i(2, 'message') }),
-    ls.snippet('style', { t('style('), i(1, 'scope'), t('): '), i(2, 'message') }),
-    ls.snippet('test', { t('test('), i(1, 'scope'), t('): '), i(2, 'message') }),
-  })
 end
 
 return M
