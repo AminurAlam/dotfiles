@@ -1,10 +1,11 @@
-set dotfiles $HOME/repos/dotfiles
+set arch (uname -m | sed 's/^arm.*/arm/')
+set dotfiles $HOME/repos/dotfiles # NOTE: make sure this is a full path
 set main /sdcard/main/termux
 set packages dust libgit fd git neovim openssh ripgrep starship lua-language-server termux-api zoxide
 set font_url "https://raw.githubusercontent.com/ryanoasis/nerd-fonts/master/patched-fonts/SourceCodePro/Regular/SauceCodeProNerdFont-Regular.ttf"
 set dotfiles_url "https://github.com/AminurAlam/dotfiles.git"
 
-mkdir -p $HOME/backup/ $HOME/.shortcuts/ $HOME/.local/{share,bin,cache}/
+mkdir -p $HOME/{backup,repos,.shortcuts}/ $HOME/.local/{share,bin,cache}/
 
 printf "INSTALLING NEW PACKAGES...\n"
 pacman -Syu --noconfirm --needed $packages || begin
@@ -12,7 +13,6 @@ pacman -Syu --noconfirm --needed $packages || begin
     $(set_color $fish_color_command)pacman $(set_color $fish_color_option)-Syu --needed $(set_color $fish_color_param)$packages $(set_color normal)\n"
     exit
 end
-printf "done\n"
 
 if not command -sq python
     printf "INSTALLING PYTHON... "
@@ -43,7 +43,8 @@ end
 printf "done\n"
 
 printf "LINKING CONFIG FILES... "
-ln -fs "$dotfiles/starship.toml" ~/.config/starship.toml
+ln -fs "$dotfiles/other/curlrc" ~/.config/curlrc
+ln -fs "$dotfiles/other/starship.toml" ~/.config/starship.toml
 ln -fs "$dotfiles/termux/colors.properties" ~/.termux/colors.properties
 ln -fs "$dotfiles/termux/termux.properties" ~/.termux/termux.properties
 printf "done\n"
@@ -52,13 +53,13 @@ printf "done\n"
 printf "ADDING BINARIES & WIDGET... " # TODO: support different architecture
 if [ -d "$main/bin/" ]
     command cp -fr $main/bin/universal/* ~/.local/bin/
-    set -l arch (uname -m | sed 's/^arm.*/arm/')
     [ -d "$main/bin/$arch/" ] && command cp -fr "$main/bin/$arch/"* ~/.local/bin/
+    chmod +x ~/.local/bin/*
 end
 if [ -d "$main/widget/" ]
     command cp -fr $main/widget/* ~/.shortcuts/
+    chmod +x ~/.shortcuts/*
 end
-chmod +x ~/.local/bin/* ~/.shortcuts/*
 printf "done\n"
 
 if [ -e "$main/bin.sha256" ]
