@@ -38,7 +38,9 @@ printf "done\n"
 printf "LINKING CONFIG DIRECTORIES... "
 for config in aria2 fish git mutt newsboat npm nvim python
     [ -e "$dotfiles/$config" ] || continue
-    command mv -f ~/.config/$config ~/backup/ &>/dev/null # NOTE: dont rm rf this, it can be a symlink
+    # unlink/move old directories in ~/.config to be replaced
+    [ -L "$HOME/.config/$config" ] && command unlink "$HOME/.config/$config"
+    [ -d "$HOME/.config/$config" ] && command mv -f ~/.config/$config ~/backup/
     ln -fs "$dotfiles/$config" ~/.config/
 end
 printf "done\n"
