@@ -1,6 +1,6 @@
 set dotfiles $HOME/repos/dotfiles
 set main /sdcard/main/termux
-set packages dust exa fd git neovim openssh ripgrep starship lua-language-server termux-api zoxide
+set packages dust libgit fd git neovim openssh ripgrep starship lua-language-server termux-api zoxide
 set font_url "https://raw.githubusercontent.com/ryanoasis/nerd-fonts/master/patched-fonts/SourceCodePro/Regular/SauceCodeProNerdFont-Regular.ttf"
 set dotfiles_url "https://github.com/AminurAlam/dotfiles.git"
 

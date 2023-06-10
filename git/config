@@ -1,7 +1,12 @@
-# vim: set ft=gitconfig :
+# vim: set ft=gitconfig commentstring=#\ %s :
 
-; [core]
-;     pager = nvim +'set ft=diff | setlocal buftype=nofile | setlocal bufhidden=hide | setlocal noswapfile'
+# pretty =   %C(yellow)%h%C(reset) - %<(50,trunc)%-s %C(green)%cr
+
+[core]
+    # pager = nvim +'setlocal ft=diff buftype=nofile bufhidden=hide noswapfile'
+
+[color]
+    # pager = false
 
 [init]
     defaultBranch = dev
@@ -9,3 +14,6 @@
 [user]
     name = AminurAlam
     email = 64137875+AminurAlam@users.noreply.github.com
+
+[pretty]
+    nice = "  %C(yellow)%h%C(reset) - %<(50,trunc)%-s %C(green)%cr"
