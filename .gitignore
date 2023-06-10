@@ -1,14 +1,14 @@
-fish_variables
 fish/fish_variables
 
 nvim/lazy-lock.json
-nvim/parser/
+nvim/parser
 nvim/parser/*
-nvim/spell/
+nvim/spell
 nvim/spell/*
 
 rclone/
 rclone/rclone.conf
+
 termux/font.ttf
 termux/shell
 mutt/passwords.gpg

@@ -22,9 +22,9 @@ abbr .... "cd ../../.."
 # git
 abbr gup "git add . && git commit && git push origin"
 abbr gcp "git clone --depth 1"
+abbr gl "git log --pretty=nice"
 abbr gd "git diff"
-abbr ga "git status -s"
-abbr gs "git status -s"
+abbr gs "git status -bs"
 abbr gc "git checkout"
 abbr gp "git pull origin"
 
@@ -44,7 +44,7 @@ alias mbz "python3 ~/repos/musicbrainzpy/cover_art.py"
 
 # ls -> exa
 alias l  "exa -lFas ext --icons --no-user --group-directories-first --no-permissions --no-time"
-alias lt "exa -lFTs ext --icons --no-user --group-directories-first --no-permissions --no-time"
+alias lt "exa -lFTs ext --icons --no-user --group-directories-first --no-permissions --no-time --git"
 alias ll "exa -lFas ext --icons --no-user --group-directories-first --git"
 
 # du, df -> dust, duf

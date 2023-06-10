@@ -1,6 +1,6 @@
 function clean
     set -f hist_dirs (fd -Hd1 '^\..*_history$' ~)
-    set -f big_dirs \
+    set -f all_dirs \
         /sdcard/Android/data/*youtube/ \
         /sdcard/Android/data/org.schabi.newpipe/ \
         /sdcard/Android/data/org.*messenger/ \
@@ -9,12 +9,12 @@ function clean
         /sdcard/Aurora/ \
         /sdcard/Telegram/
 
+    for dir in $all_dirs
+        [ -d "$dir" ] && set -fa dirs $dir
+    end
+
     pacman -Scc --noconfirm
     echo
-
-    for dir in $big_dirs
-        [ -d $dir ] && set -fa dirs $dir
-    end
 
     if count $dirs &>/dev/null
         command du -hs $dirs

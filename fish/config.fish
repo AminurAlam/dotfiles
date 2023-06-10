@@ -32,15 +32,15 @@ set -gx XDG_CACHE_HOME $HOME/.local/cache
 set -gx XDG_DATA_HOME $HOME/.local/share
 set -gx XDG_STATE_HOME $HOME/.local/state
 # dirs
-set --path sd $XDG_DIR
-set --path doc $XDG_DOCUMENTS_DIR
-set --path dl $XDG_DOWNLOAD_DIR
-set --path mov $XDG_VIDEOS_DIR
-set --path mu $XDG_MUSIC_DIR
-set --path pic $XDG_PICTURES_DIR
-set --path m $XDG_DIR/main
-set --path temp $XDG_CACHE_HOME/temp
-set --path rp $XDG_PROJECTS_DIR
+set sd $XDG_DIR
+set doc $XDG_DOCUMENTS_DIR
+set dl $XDG_DOWNLOAD_DIR
+set mov $XDG_VIDEOS_DIR
+set mu $XDG_MUSIC_DIR
+set pic $XDG_PICTURES_DIR
+set m $XDG_DIR/main
+set temp $XDG_CACHE_HOME/temp
+set rp $XDG_PROJECTS_DIR
 # other
 set -gx LS_COLORS "*.py=38;5;45:*.rs=38;5;208:*.fish=38;5;47:*.sh=38;5;47:*.bash=38;5;47:*.png=36:*.flac=36:*.log=38;5;252:*.lrc=38;5;252:*.cue=38;5;39:*.apk=38;5;47:*.css=38;5;135:*.csv=38;5;42:*.go=38;5;45:*.gradle=38;5;24:*.html=38;5;202:*.json=38;5;3:*.jl=38;5;213:*.js=33:*.kt=35:*.lua=38;5;27:*.php=38;5;63:*.pdf=38;5;124:*.md=38;5;111:*.tex=38;5;71"
 set -gx VISUAL $EDITOR
@@ -71,7 +71,7 @@ set -gx CARGO_INSTALL_ROOT $CARGO_HOME
 set -gx CARGO_LOG info
 
 ### PATH ###
-fish_add_path $HOME/bin $HOME/.local/bin $CARGO_HOME/bin
+set -gxp --path PATH "$HOME/.local/bin"
 
 ### SOURCE ###
 command -sq starship && starship init fish | source || source $XDG_CONFIG_HOME/fish/functions/load_prompt.fish
@@ -81,6 +81,7 @@ command -sq zoxide   && zoxide init fish   | source || alias z cd # TODO: pre po
 fish_vi_key_bindings
 bind -M insert \e\[1\;5A 'commandline -f history-token-search-backward'
 bind -M insert \e\[1\;5B 'commandline -f history-token-search-forward'
+bind -M insert \\cw 'commandline -f backward-kill-bigword'
 
 ### ALIASES ###
 abbr zsd "z $XDG_DIR/"
@@ -100,7 +101,6 @@ abbr zc   "z $XDG_CONFIG_HOME/"
   abbr zcf  "z $XDG_CONFIG_HOME/fish/"
   abbr zcn  "z $XDG_CONFIG_HOME/nvim/"
 abbr zp "z $PREFIX/"
-abbr gl "git log --format=format:'%C(green)(%ar)%C(reset) %s %C(yellow)%d%C(reset)'"
 abbr zz "z -"
 
 ### FUNCTIONS ###
