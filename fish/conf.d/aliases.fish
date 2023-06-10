@@ -48,7 +48,7 @@ alias lt "exa -lFTs ext --icons --no-user --group-directories-first --no-permiss
 alias ll "exa -lFas ext --icons --no-user --group-directories-first --git"
 
 # du, df -> dust, duf
-abbr du "dust -n 25"
+abbr du "dust -Dn 25"
 abbr dud "dust -d 1"
 alias df "duf -only local -output mountpoint,size,avail,usage -width 150 /storage/*"
 
