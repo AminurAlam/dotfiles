@@ -6,7 +6,7 @@ local M = {
 M.config = function()
   local utils = require('core.utils')
   local dev_icon = require('nvim-web-devicons')
-  local scratch = '<cmd>enew <bar>setlocal buftype=nofile<bar>setlocal bufhidden=hide <bar>'
+  local scratch = '<cmd>enew <bar> setlocal buftype=nofile bufhidden=hide <bar>'
   local rep = ' | AlphaRedraw | Telescope find_files hidden=true<cr>'
 
   local banner = {
@@ -80,7 +80,7 @@ M.config = function()
       button('g', '  Find word', '<cmd>Telescope live_grep<cr>'),
       button('h', '  Find help', '<cmd>Telescope help_tags<cr>'),
       button('i', '󱇨  New file', scratch .. 'startinsert<cr>'),
-      button('p', '󰆒  Paste in NF', scratch .. 'norm p <bar>startinsert<cr>'),
+      button('p', '󰆒  Paste in NF', scratch .. ' norm pi<cr>'),
       button('u', '󰚰  Update plugins', '<cmd>Lazy update<cr>'),
       button('q', '󰗼  Quit', '<cmd>qa<cr>'),
       { type = 'padding', val = 1 },

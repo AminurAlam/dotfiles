@@ -1,4 +1,7 @@
-local M = { 'neovim/nvim-lspconfig' }
+local M = {
+  'neovim/nvim-lspconfig',
+  dependencies = { 'folke/neodev.nvim' },
+}
 
 M.config = function()
   local lspconfig = require('lspconfig')

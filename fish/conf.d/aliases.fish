@@ -20,13 +20,13 @@ abbr ... "cd ../.."
 abbr .... "cd ../../.."
 
 # git
+abbr gac "git add . && git commit"
+abbr gpo "git push origin"
 abbr gup "git add . && git commit && git push origin"
 abbr gcp "git clone --depth 1"
-abbr gl "git log --pretty=nice"
-abbr gd "git diff"
+abbr gl "git status -bs && git log --pretty=nice"
+abbr gd "git diff | $EDITOR +'set bt=nofile bh=hide'"
 abbr gs "git status -bs"
-abbr gc "git checkout"
-abbr gp "git pull origin"
 
 # rclone
 abbr rcp "rclone copy -P"

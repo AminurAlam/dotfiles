@@ -7,8 +7,6 @@ local M = {
     'hrsh7th/cmp-path',
     'hrsh7th/cmp-buffer',
     'hrsh7th/cmp-cmdline',
-    'uga-rosa/cmp-dictionary',
-    'f3fora/cmp-spell',
     'L3MON4D3/LuaSnip', -- helps create snippets
     'saadparwaiz1/cmp_luasnip', -- adds snippets to cmp
     'rafamadriz/friendly-snippets', -- provides multiple snippets
@@ -136,14 +134,6 @@ M.config = function()
   require('luasnip.loaders.from_lua').lazy_load()
   require('luasnip.loaders.from_vscode').lazy_load()
   require('luasnip.loaders.from_snipmate').lazy_load()
-  require('cmp_dictionary').switcher {
-    filetype = { -- lua = { '/path/to/lua.dict' },
-    },
-    filepath = { -- ['.*xmake.lua'] = { '/path/to/xmake.dict', '/path/to/lua.dict' },
-    },
-    spelllang = { -- en = '/path/to/english.dict',
-    },
-  }
 end
 
 return M
