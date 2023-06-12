@@ -9,8 +9,8 @@ abbr vi "nvim"
 abbr cls "clear"
 abbr cal "cal -my"
 abbr qmv "qmv -f do"
-abbr wget 'wget --hsts-file=$XDG_CACHE_HOME/wget-hsts'
-abbr ps "ps -faxo pid,command"
+abbr wget "wget --hsts-file=\$XDG_CACHE_HOME/wget-hsts"
+abbr ps "pstree -lhTUC age (pidof com.termux)" # "ps -faxo pid,command"
 abbr bin-integrity "sha256sum --check /sdcard/main/termux/bin-checksums"
 abbr n "nvim --cmd 'cd /sdcard/main/notes/'"
 
@@ -25,7 +25,7 @@ abbr gpo "git push origin"
 abbr gup "git add . && git commit && git push origin"
 abbr gcp "git clone --depth 1"
 abbr gl "git status -bs && git log --pretty=nice"
-abbr gd "git diff | $EDITOR +'set bt=nofile bh=hide'"
+abbr gd "git diff | \$EDITOR +'set bt=nofile bh=hide'"
 abbr gs "git status -bs"
 
 # rclone
@@ -64,7 +64,7 @@ if command -sq apt
     abbr pf "apt search"
     abbr pa "apt show"
     function pu
-        echo "deb https://packages-cf.termux.dev/apt/termux-main stable main" > $PREFIX/etc/apt/sources.list
+        echo "deb https://packages-cf.termux.dev/apt/termux-main stable main" >$PREFIX/etc/apt/sources.list
         apt update && apt upgrade
     end
 else if command -sq pacman

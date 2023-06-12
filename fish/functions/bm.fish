@@ -34,7 +34,7 @@ function bm
             grep -i --no-filename "$argv[2]" $BMPATH
 
         case a add
-            [ -n "$argv[2]" ] && echo "$argv[2]" >> "$BMPATH" || echo "nothing to add"
+            [ -n "$argv[2]" ] && echo "$argv[2]" >>"$BMPATH" || echo "nothing to add"
 
         case e ed edit
             set -q EDITOR && $EDITOR $BMPATH || echo "no EDITOR found"

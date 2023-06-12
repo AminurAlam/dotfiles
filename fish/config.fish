@@ -61,6 +61,8 @@ set -gx XAUTHORITY $XDG_RUNTIME_DIR/Xauthority
 set -gx HISTFILE $XDG_STATE_HOME/bash/history
 set -gx GNUPGHOME $XDG_DATA_HOME/gnupg
 set -gx NVIM_APPNAME nvim
+set -gx VIM "$PREFIX/share/nvim"
+set -gx VIMRUNTIME "$PREFIX/share/nvim/runtime"
 # lang config
 set -gx PYTHONSTARTUP $XDG_CONFIG_HOME/python/startup.py
 set -gx NODE_REPL_HISTORY $XDG_STATE_HOME/node_repl_history
@@ -69,8 +71,10 @@ set -gx RUSTUP_HOME $XDG_DATA_HOME/rustup
 set -gx CARGO_HOME $XDG_DATA_HOME/cargo
 set -gx CARGO_INSTALL_ROOT $CARGO_HOME
 set -gx CARGO_LOG info
+set -gx UV_USE_IO_URING 0 # libuv/libuv#4010
 
 ### PATH ###
+set -gxp --path PATH "$CARGO_HOME/bin"
 set -gxp --path PATH "$HOME/.local/bin"
 
 ### SOURCE ###
