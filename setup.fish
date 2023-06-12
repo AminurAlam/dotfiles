@@ -1,7 +1,7 @@
 set arch (uname -m | sed 's/^arm.*/arm/')
 set dotfiles $HOME/repos/dotfiles # NOTE: make sure this is a full path
 set main /sdcard/main/termux
-set packages dust libgit2 fd git neovim openssh ripgrep starship lua-language-server termux-api zoxide
+set packages dust libgit2 fd git neovim openssh renameutils ripgrep starship lua-language-server termux-api zoxide
 set font_url "https://raw.githubusercontent.com/ryanoasis/nerd-fonts/master/patched-fonts/SourceCodePro/Regular/SauceCodeProNerdFont-Regular.ttf"
 set dotfiles_url "https://github.com/AminurAlam/dotfiles.git"
 
@@ -53,13 +53,13 @@ printf "LINKING CONFIG FILES... "
 printf "done\n"
 
 printf "ADDING BINARIES... "
-if [ -d "$main/bin/universal/" ]
+if [ -d "$main/bin/universal/" -a -d "$main/bin/$arch/" ]
     command cp -fr $main/bin/universal/* ~/.local/bin/
-    [ -d "$main/bin/$arch/" ] && command cp -fr "$main/bin/$arch/"* ~/.local/bin/
+    command cp -fr "$main/bin/$arch/"* ~/.local/bin/
     chmod +x ~/.local/bin/*
     printf "done\n"
 else
-    printf "\$main/bin/universal/ doesnt exist\n"
+    printf "\$main/bin/universal/ or \$main/bin/$arch/ doesnt exist\n"
 end
 
 printf "ADDING WIDGETS... "
@@ -71,11 +71,11 @@ else
     printf "\$main/widgets/ doesnt exist\n"
 end
 
-if [ -e "$main/bin.sha256" ]
-    sha256sum --check $main/bin.sha256 2>/dev/null | awk -F / '{print "  "$9}'
-else
-    printf "bin.sha256 is missing\n"
-end
+# if [ -e "$main/bin.sha256" ]
+#     sha256sum --check $main/bin.sha256 2>/dev/null | awk -F / '{print "  "$9}'
+# else
+#     printf "bin.sha256 is missing\n"
+# end
 
 printf "CLEANUP... "
     truncate -s 0 "$PREFIX"/etc/motd*
@@ -86,6 +86,9 @@ echo "done\n"
 
 [ -e "$HOME/.termux_authinfo" ] || passwd
 [ "$(read -P 'downlad font? [y/N] ')" = y ] && curl -so ~/.termux/font.ttf "$font_url" &>/dev/null
-:
+
+: # make sure the script returns 0
+
 # TODO: proot-distro and gui
 # TODO: zoxide db merge
+# TODO: better integrity check
