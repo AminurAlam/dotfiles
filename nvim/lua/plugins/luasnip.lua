@@ -1,6 +1,6 @@
 local M = {
   'L3MON4D3/LuaSnip',
-  event = 'InsertEnter'
+  event = 'InsertEnter',
 }
 
 M.config = function()

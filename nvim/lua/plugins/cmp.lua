@@ -111,7 +111,7 @@ M.config = function()
 
   cmp.setup.cmdline({ '/', '?' }, {
     mapping = cmp.mapping.preset.cmdline(),
-    sources = cmp.config.sources { { name = 'buffer' } },
+    sources = cmp.config.sources({}, { { name = 'buffer' } }),
     formatting = {
       format = function(_, vim_item)
         vim_item.kind = ''

@@ -43,12 +43,12 @@ set.statuscolumn = vim.g.stc -- '%=%{ v:virtnum ? " " : v:lnum }%{ v:virtnum ? "
 set.signcolumn = 'yes:1'
 
 -- folding
-set.foldlevel = 3
-set.foldminlines = 3
-set.foldnestmax = vim.o.foldlevel + 1
 set.foldenable = true
+set.foldlevel = 3
+set.foldnestmax = vim.o.foldlevel + 1
+set.foldminlines = 3
 set.foldmethod = 'expr'
-set.foldexpr = 'nvim_treesitter#foldexpr()'
+set.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
 set.foldtext = 'getline(v:foldstart)." ... ".trim(getline(v:foldend))." [".(v:foldend-v:foldstart)." lines]"'
 
 -- terminal, cursor & gui
@@ -94,7 +94,8 @@ set.listchars = {
 set.fillchars = {
   eob = ' ',
   fold = ' ',
-  foldopen = '',
-  foldclose = '',
+  foldopen = '',
+  foldclose = '',
   lastline = '.',
+  msgsep = '─',
 }

@@ -20,9 +20,7 @@ M.config = function()
     -- avoid indexing .with() when theres no config
     table.insert(
       sources,
-      config and
-      null_ls.builtins[group][name].with(config) or
-      null_ls.builtins[group][name]
+      config and null_ls.builtins[group][name].with(config) or null_ls.builtins[group][name]
     )
   end
 
@@ -33,9 +31,9 @@ M.config = function()
   add('ruff', 'diagnostics', { bin = 'ruff' })
   add('fish', 'diagnostics', { bin = 'fish' })
   add('fish_indent', 'formatting', { bin = 'fish_indent' })
-  add('shellcheck', 'diagnostics', { bin = 'shellcheck' })
-  add('clang_check', 'diagnostics', { bin = 'clang-check' })
   add('shellcheck', 'code_actions', { bin = 'shellcheck' })
+  add('clang_check', 'diagnostics', { bin = 'clang-check' })
+  add('shellcheck', 'diagnostics', { bin = 'shellcheck' })
   add('gitsigns', 'code_actions')
   -- add('ts_node_action', 'code_actions')
   -- add('spell', 'completion')

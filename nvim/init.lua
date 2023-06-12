@@ -5,7 +5,7 @@ local autocmd = vim.api.nvim_create_autocmd
 
 g.mapleader = ' '
 g.maplocalleader = ' '
-g.stc = '%=%{ v:virtnum ? "…" : v:lnum }%s'
+g.stc = '%=%{ v:virtnum ? "…" : v:relnum }%C%s'
 g.tex_flavor = 'latex'
 g.editorconfig = false
 g.do_filetype_lua = 1
@@ -14,6 +14,7 @@ g.netrw_hide = 0
 g.netrw_liststyle = 3
 g.ft_man_folding_enable = 1
 g.loaded_python3_provider = 0
+g.severity_icons = { ' ', ' ', ' ', ' ', '󰌵' }
 
 -- [[ core ]]
 require('core.lazy')
@@ -32,10 +33,8 @@ autocmd('User', {
 vim.diagnostic.config {
   underline = { severity = vim.diagnostic.severity.ERROR },
   virtual_text = {
-    format = function(diagnostic)
-      if diagnostic.severity == vim.diagnostic.severity.HINT then return '󰌶 ' end
-      return diagnostic.message
-    end,
+    prefix = function(details) return g.severity_icons[details.severity] end,
+    -- format = function(diagnostic) return diagnostic.message end,
   },
   signs = true,
   float = { border = 'rounded', header = '', prefix = '', suffix = '' },
@@ -72,3 +71,6 @@ hl('Whitespace', { bg = '#364a82' })
 hl('CursorLineNr', { fg = '#c0caf5' })
 hl('LineNr', { fg = '#3b4261' })
 hl('Folded', { bg = '#3b4261', fg = 'NONE' })
+hl('MsgSeparator', { bg = 'NONE', fg = 'NONE' })
+hl('@function.call.fish', { link = 'Special' })
+hl('@variable.fish', { link = 'Constant' })

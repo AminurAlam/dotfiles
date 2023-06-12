@@ -1,6 +1,5 @@
 return {
   'lewis6991/gitsigns.nvim',
-  -- cond = require('core.utils').git,
   opts = {
     signs = {
       add = {

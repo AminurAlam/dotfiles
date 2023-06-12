@@ -54,7 +54,7 @@ M.config = function()
       },
       {
         function() return ' ' end,
-        cond = require('core.utils').git,
+        cond = function() return #vim.fn.finddir('.git', vim.fn.expand('%:p:h') .. ';') > 0 end,
         padding = 0,
       },
     },

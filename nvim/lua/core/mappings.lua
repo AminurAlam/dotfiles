@@ -3,44 +3,44 @@ local vmap = require('core.utils').map('v') -- mappings for visual mode
 local umap = require('core.utils').map { '', 'i' } -- mappings for normal, visual & insert mode
 
 -- telescope
-nmap('<leader>ff', '<cmd>Telescope find_files hidden=true<cr>', { desc = 'find files' })
-nmap('<leader>fg', '<cmd>Telescope live_grep disable_coordinates=true<cr>', { desc = 'find text' })
-nmap('<leader>fh', '<cmd>Telescope help_tags<cr>', { desc = 'find help' })
-nmap('<leader>fs', '<cmd>Telescope spell_suggest<cr>', { desc = 'find spelling' })
+nmap('<leader>ff', '<cmd>Telescope find_files hidden=true<cr>', 'find files')
+nmap('<leader>fg', '<cmd>Telescope live_grep disable_coordinates=true<cr>', 'find text')
+nmap('<leader>fh', '<cmd>Telescope help_tags<cr>', 'find help')
+nmap('<leader>fs', '<cmd>Telescope spell_suggest<cr>', 'find spelling')
 
 -- lazy
-nmap('<leader>pu', '<cmd>Lazy update<cr>', { desc = 'update plugins' })
-nmap('<leader>pi', '<cmd>Lazy install<cr>', { desc = 'install plugins' })
-nmap('<leader>pr', '<cmd>Lazy clean<cr>', { desc = 'remove plugins' })
-nmap('<leader>pa', '<cmd>Lazy<cr>', { desc = 'plugins info' })
+nmap('<leader>pu', '<cmd>Lazy update<cr>', 'update plugins')
+nmap('<leader>pi', '<cmd>Lazy install<cr>', 'install plugins')
+nmap('<leader>pr', '<cmd>Lazy clean<cr>', 'remove plugins')
+nmap('<leader>pa', '<cmd>Lazy<cr>', 'plugins info')
 
 -- cybu
-umap('<c-left>', '<cmd>CybuPrev<cr>', { desc = 'previous buffer' })
-umap('<c-right>', '<cmd>CybuNext<cr>', { desc = 'next buffer' })
+umap('<c-left>', '<cmd>CybuPrev<cr>', 'previous buffer')
+umap('<c-right>', '<cmd>CybuNext<cr>', 'next buffer')
 
 -- git
-nmap('<leader>gd', '<cmd>Gitsigns diffthis<cr>', { desc = 'view diff in split' })
-nmap('<leader>gh', '<cmd>Gitsigns preview_hunk<cr>', { desc = 'preview hunk' })
-nmap('<leader>gr', '<cmd>Gitsigns reset_hunk<cr>', { desc = 'undo hunk' })
-nmap('<leader>gn', '<cmd>Gitsigns next_hunk<cr>', { desc = 'goto next hunk' })
-nmap('<leader>gp', '<cmd>Gitsigns prev_hunk<cr>', { desc = 'goto previous hunk' })
+nmap('<leader>gd', '<cmd>Gitsigns diffthis<cr>', 'view diff in split')
+nmap('<leader>gh', '<cmd>Gitsigns preview_hunk<cr>', 'preview hunk')
+nmap('<leader>gr', '<cmd>Gitsigns reset_hunk<cr>', 'undo hunk')
+nmap('<leader>gn', '<cmd>Gitsigns next_hunk<cr>', 'goto next hunk')
+nmap('<leader>gp', '<cmd>Gitsigns prev_hunk<cr>', 'goto previous hunk')
 
 -- lsp
-nmap('<leader>ni', '<cmd>NullLsInfo<cr>', { desc = 'null-ls status' })
-nmap('<leader>li', '<cmd>LspInfo<cr>', { desc = 'LSP status' })
+nmap('<leader>ni', '<cmd>NullLsInfo<cr>', 'null-ls status')
+nmap('<leader>li', '<cmd>LspInfo<cr>', 'LSP status')
+nmap('<leader>lf', function() vim.lsp.buf.format() end, 'format code using LSP')
+nmap('<leader>lr', function() vim.lsp.buf.rename() end, 'rename symbol under cursor')
 
-nmap('<leader>lf', function() vim.lsp.buf.format() end, { desc = 'format code using LSP' })
-nmap('<leader>lr', function() vim.lsp.buf.rename() end, { desc = 'rename symbol under cursor' })
-nmap('<leader>ld', function() vim.diagnostic.open_float() end, { desc = 'view line diagnostics' })
-nmap('<leader>da', function() vim.diagnostic.open_float { scope = 'buffer' } end, {
-  desc = 'view all diagnostics in a buffer',
-})
-nmap('<leader>dp', function() vim.diagnostic.goto_prev() end, {
-  desc = 'goto prev diagnostic message',
-})
-nmap('<leader>dn', function() vim.diagnostic.goto_next() end, {
-  desc = 'goto next diagnostic message',
-})
+-- diagnostics
+nmap('<leader>dp', function() vim.diagnostic.goto_prev() end, 'goto prev diagnostic message')
+nmap('<leader>dn', function() vim.diagnostic.goto_next() end, 'goto next diagnostic message')
+nmap('<leader>ld', function() vim.diagnostic.open_float() end, 'view line diagnostics')
+nmap('<leader>da', function()
+  vim.diagnostic.opn_float {
+    prefix = function(details) return vim.g.severity_icons[details.severity] end,
+    scope = 'buffer',
+  }
+end, 'view all diagnostics in a buffer')
 
 -- other plugins
 nmap('<leader>al', '<cmd>Alpha<cr>')
@@ -50,37 +50,32 @@ nmap('<leader>tt', function() require('lazy.util').float_term() end)
 nmap('<leader>j', '<cmd>TSJToggle<cr>') -- norm v%J
 
 -- deleting & registers
-nmap('_', '"_', { desc = 'use void register' })
+nmap('_', '"_', 'use void register')
 nmap('x', '"_x')
 nmap('X', '"_x')
 nmap('<del>', '"_x')
-nmap('<bs>', 'i<bs><esc>l', { desc = 'backspace in normal mode' })
-nmap('<cr>', 'o<esc>', { desc = 'enter in normal mode' })
+nmap('<bs>', 'i<bs><esc>l', 'backspace in normal mode')
+nmap('<cr>', 'o<esc>', 'enter in normal mode')
 
 -- other
-nmap('<leader>w', '<cmd>silent w <bar> redraw <cr>', { desc = 'write' })
-umap('<c-w>', '<cmd>silent w <bar> redraw <cr>', { desc = 'write' })
-umap('<c-q>', '<cmd>q<cr>', { desc = 'quit' })
-nmap('<leader>q', '<cmd>bdelete<cr>', { desc = 'quit buffer' })
-nmap('Q', '<cmd>bdelete<cr>', { desc = 'quit buffer' })
-umap('<c-c>', '<cmd>norm m`viw~``<cr>', { desc = 'toggle word case' })
-umap('<c-z>', '<cmd>norm 1z=<cr>', { desc = 'spell correction' })
-nmap('r', '<cmd>silent redo <bar> redraw <cr>', { desc = 'shortcut for redo' })
-nmap('cn', '*``cgn', { desc = 'search and replace' }) -- https://kevinli.co/posts/2017-01-19-multiple-cursors-in-500-bytes-of-vimscript/
-nmap('dn', '*``diw', { desc = 'search and delete' })
-nmap('dw', 'diw', { desc = 'delete word' })
-vmap('.', ':norm .<cr>', { desc = 'dot repeat on all selected lines' })
+nmap('<leader>w', '<cmd>silent w <bar> redraw <cr>', 'write')
+umap('<c-w>', '<cmd>silent w <bar> redraw <cr>', 'write')
+umap('<c-q>', '<cmd>q<cr>', 'quit')
+nmap('<leader>q', '<cmd>bdelete<cr>', 'quit buffer')
+nmap('Q', '<cmd>bdelete<cr>', 'quit buffer')
+umap('<c-c>', '<cmd>norm m`viw~``<cr>', 'toggle word case')
+umap('<c-z>', '<cmd>norm 1z=<cr>', 'spell correction')
+nmap('cn', '*``cgn', 'search and replace') -- https://kevinli.co/posts/2017-01-19-multiple-cursors-in-500-bytes-of-vimscript/
+nmap('dn', '*``diw', 'search and delete')
+nmap('dw', 'diw', 'delete word')
+vmap('.', ':norm .<cr>', 'dot repeat on all selected lines')
 umap('<esc>', '<cmd>nohlsearch<cr><esc>')
-nmap('<leader>d ', [[m`<cmd>keeppatterns %s/\s\+$//e<cr>``]], { desc = 'delete trailing whitespace' })
-nmap('<leader>d#', [[m`<cmd>keeppatterns s/\s*#.*$//e<cr>``]], { desc = 'delete # comment' })
-nmap('<leader>d-', [[m`<cmd>keeppatterns s/\s*--.*$//e<cr>``]], { desc = 'delete -- comment' })
-nmap('<leader>fd', '<cmd>filetype detect<cr>', { desc = 'recheck the filetype' })
-nmap('gj', [[@='j^"_d0kgJ'<cr>]], { desc = 'join without leaving space' })
-nmap(
-  '<leader>ol',
-  [[@='^"1yiwo<c-v><esc>"1pA.<space><c-v><esc>0<c-a>$'<cr>]],
-  { desc = 'create an ordered list' }
-) -- https://jdhao.github.io/2019/04/29/nvim_map_with_a_count/
+nmap('<leader>d ', [[m`<cmd>keeppatterns %s/\s\+$//e<cr>``]], 'delete trailing whitespace')
+nmap('<leader>d#', [[m`<cmd>keeppatterns s/\s*#.*$//e<cr>``]], 'delete # comment')
+nmap('<leader>d-', [[m`<cmd>keeppatterns s/\s*--.*$//e<cr>``]], 'delete -- comment')
+nmap('<leader>fd', '<cmd>filetype detect<cr>', 'recheck the filetype')
+nmap('gj', [[@='j^"_d0kgJ'<cr>]], 'join without leaving space')
+nmap('<leader>ol', [[@='^"1yiwo<c-v><esc>"1pA.<space><c-v><esc>0<c-a>$'<cr>]], 'create an ordered list') -- https://jdhao.github.io/2019/04/29/nvim_map_with_a_count/
 
 -- indent
 nmap('>', '>>')
@@ -101,10 +96,10 @@ umap('<c-up>', '<c-home>')
 umap('<c-down>', '<c-end>')
 
 -- toggles
-nmap('<leader>ss', '<cmd>setlocal spell!<cr>', { desc = 'toggle spell' })
-nmap('<leader>sw', '<cmd>setlocal wrap!<cr>', { desc = 'toggle wrap' })
+nmap('<leader>ss', '<cmd>setlocal spell!<cr>', 'toggle spell')
+nmap('<leader>sw', '<cmd>setlocal wrap!<cr>', 'toggle wrap')
 nmap(
   '<leader>sn',
   function() vim.opt_local.stc = vim.o.stc ~= ' ' and ' ' or vim.g.stc end,
-  { desc = 'toggle statuscolumn' }
+  'toggle statuscolumn'
 )

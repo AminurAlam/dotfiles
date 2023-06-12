@@ -28,6 +28,11 @@ M.config = function()
     )
   end
 
+  local rsplit = function(str, sep)
+    local parts = vim.fn.split(str, sep) ---@type table
+    return parts[#parts] ---@type string
+  end
+
   local button = function(sc, text, keybind, icon_hl)
     return {
       type = 'button',
@@ -55,7 +60,7 @@ M.config = function()
       if vim.fn.filereadable(filename) == 0 then goto continue end
       local len = #of_buttons + 1
       if len == 6 then break end
-      local icon, hl = dev_icon.get_icon(utils.rsplit(filename, '/'), utils.rsplit(filename, '\\.'))
+      local icon, hl = dev_icon.get_icon(rsplit(filename, '/'), rsplit(filename, '\\.'))
       filename = vim.fn.fnamemodify(filename, ':~')
       -- stylua: ignore
       table.insert(of_buttons, button(

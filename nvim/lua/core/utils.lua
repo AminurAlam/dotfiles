@@ -1,7 +1,23 @@
 local M = {}
 
+-- HOW THIS MAPPING SHUFF WORKS
+-- to use mapping first call utils.map() where the param is a vim mode
+-- itll return a function which you can use to remap keybindings
+-- lhs and rhs are self explanatory
+-- when opts is a string itll be turned into adescription
+-- when opts is a table itll be treated like opts for vim.keymap.set()
+-- simple example:
+--   local nmap = require('utils').map { 'n' }
+--   nmap('D', 'd$')
+
+---@param mode string|table
+---@return function
 M.map = function(mode)
+  ---@param lhs string
+  ---@param rhs string|function
+  ---@param opts string|table
   return function(lhs, rhs, opts)
+    if type(opts) == 'string' then opts = { desc = opts } end
     vim.keymap.set(
       mode,
       lhs,
@@ -14,25 +30,20 @@ M.map = function(mode)
   end
 end
 
-M.rsplit = function(str, sep)
-  local str_parts = vim.fn.split(str, sep) ---@type table
-  return str_parts[#str_parts] ---@type string
-end
-
+---@param path string
+---@return string, number
 M.fish_path = function(path)
   local mod_path = vim.fn.fnamemodify(path, ':~')
   return string.gsub(mod_path, '/(%.?.)[^/]*', '/%1', vim.fn.count(mod_path, '/') - 1)
 end
 
-M.rsplit_alt = function(str, sep)
-  local match = str:match('^.+(' .. sep .. '.+)$')
-  local ext = ''
-  if match ~= nil then ext = match:sub(2) end
-  print(ext)
-  return ext
-end
-
-M.git = function() return #vim.fn.finddir('.git', vim.fn.expand('%:p:h') .. ';') > 0 end
+-- M.rsplit_alt = function(str, sep)
+--   local match = str:match('^.+(' .. sep .. '.+)$')
+--   local ext = ''
+--   if match ~= nil then ext = match:sub(2) end
+--   print(ext)
+--   return ext
+-- end
 
 -- M.icons = {
 --   kind = {
