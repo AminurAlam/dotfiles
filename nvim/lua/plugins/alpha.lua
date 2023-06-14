@@ -74,6 +74,9 @@ M.config = function()
     return of_buttons
   end
 
+  vim.api.nvim_set_hl(0, 'AlphaIconImg', { fg = '#a074c4' })
+  vim.api.nvim_set_hl(0, 'AlphaIconTemp', { fg = '#fff3d7' })
+
   require('alpha').setup {
     layout = {
       { type = 'padding', val = 3 },
@@ -93,7 +96,8 @@ M.config = function()
       { type = 'padding', val = 1 },
       button('6', '  ~/r/dotfiles/', '<cmd>cd ~/repos/dotfiles/' .. rep, 'Comment'),
       button('7', '  /s/m/notes/', '<cmd>cd /sdcard/main/notes/' .. rep, 'Title'),
-      button('8', '  ~/r/musicbrainzpy/', '<cmd>cd ~/repos/musicbrainzpy/ ' .. rep, 'Identifier'),
+      button('8', '  ~/r/musicbrainzpy/', '<cmd>cd ~/repos/musicbrainzpy/ ' .. rep, 'AlphaIconImg'),
+      button('9', '󰖝  ~/.l/temp/', '<cmd>cd ~/.local/cache/temp/ ' .. rep, 'AlphaIconTemp'),
     },
   }
 end

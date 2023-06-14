@@ -5,7 +5,7 @@ local autocmd = vim.api.nvim_create_autocmd
 
 g.mapleader = ' '
 g.maplocalleader = ' '
-g.stc = '%=%{ v:virtnum ? "…" : v:relnum }%C%s'
+g.stc = '%=%{ v:virtnum ? "…" : v:lnum }%s'
 g.tex_flavor = 'latex'
 g.editorconfig = false
 g.do_filetype_lua = 1
@@ -39,17 +39,15 @@ vim.diagnostic.config {
   signs = true,
   float = { border = 'rounded', header = '', prefix = '', suffix = '' },
   update_in_insert = true,
-  severity_sort = true,
+  severity_sort = false,
 }
 
-for _, name in pairs {
+vim.fn.map({
   'DiagnosticSignError',
   'DiagnosticSignWarn',
   'DiagnosticSignInfo',
   'DiagnosticSignHint',
-} do
-  vim.fn.sign_define(name, { numhl = name })
-end
+}, function(name) vim.fn.sign_define(vim.v.val, { numhl = vim.v.val }) end)
 
 vim.filetype.add {
   extention = {

@@ -50,6 +50,7 @@ set.foldminlines = 3
 set.foldmethod = 'expr'
 set.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
 set.foldtext = 'getline(v:foldstart)." ... ".trim(getline(v:foldend))." [".(v:foldend-v:foldstart)." lines]"'
+set.foldcolumn = 'auto'
 
 -- terminal, cursor & gui
 set.virtualedit = { 'onemore', 'block' }

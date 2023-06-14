@@ -20,6 +20,9 @@ M.config = function()
         '.git/',
         '__pycache__',
         'stylua.toml',
+        'Cargo.lock',
+        'target',
+        'build',
       },
       path_display = { shorten = { len = 1, exclude = { 1, -1 } } },
       mappings = {
