@@ -1,4 +1,3 @@
-vim.opt.syntax = 'note'
 vim.opt.statuscolumn = ' '
 vim.opt.conceallevel = 3
 vim.opt.concealcursor = 'n'

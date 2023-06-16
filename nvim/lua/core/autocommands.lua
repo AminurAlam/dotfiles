@@ -22,6 +22,7 @@ autocmd({ 'FileType', 'BufNewFile' }, {
   desc = 'reading mode for some filetypes',
   pattern = {
     'alpha',
+    'article',
     'diff',
     'gitcommit',
     'help',

@@ -36,3 +36,4 @@ git pull origin || exit # NOTE: always run this script in a subshell
 
 [ "$(read -P 'run `make distclean`? [y/N] ')" = "y" ] && make distclean
 make CMAKE_EXTRA_FLAGS="$EXTRA_ARGS"
+and command cp -i build/bin/nvim ~/.local/bin/nvim

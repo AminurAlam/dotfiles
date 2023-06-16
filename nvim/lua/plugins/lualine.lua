@@ -90,9 +90,9 @@ M.config = function()
     },
     sections = sections,
     extensions = {
-      { filetypes = { 'lazy', 'alpha', 'lspinfo', 'TelescopePrompt' }, sections = {} },
+      { filetypes = { 'alpha', 'lazy', 'lspinfo', 'TelescopePrompt' }, sections = {} },
       {
-        filetypes = { 'man', 'help' },
+        filetypes = { 'man', 'help', 'article' },
         sections = {
           lualine_a = { { 'filename', symbols = { readonly = '' } } },
           lualine_x = { { 'searchcount' } },
