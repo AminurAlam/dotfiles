@@ -10,9 +10,8 @@ abbr cls "clear"
 abbr cal "cal -my"
 abbr qmv "qmv -f do"
 abbr wget "wget --hsts-file=\$XDG_CACHE_HOME/wget-hsts"
-abbr ps "pstree -lhTUC age (pidof com.termux)" # "ps -faxo pid,command"
+abbr pst "pstree -lhTUC age (pidof com.termux)" # "ps -faxo pid,command"
 abbr bin-integrity "sha256sum --check /sdcard/main/termux/bin-checksums"
-abbr n "nvim --cmd 'cd /sdcard/main/notes/'"
 
 # parent dir
 abbr .. "cd .."
@@ -24,7 +23,7 @@ abbr gac "git add . && git commit"
 abbr gpo "git push origin"
 abbr gup "git add . && git commit && git push origin"
 abbr gcp "git clone --depth 1"
-abbr gl "git status -bs && git log --pretty=nice"
+abbr gl "git status -bs && git log --pretty=nice -n 10"
 abbr gd "git diff | \$EDITOR +'set bt=nofile bh=hide'"
 abbr gs "git status -bs"
 
@@ -43,9 +42,9 @@ abbr py "python3 -q"
 alias mbz "python3 ~/repos/musicbrainzpy/cover_art.py"
 
 # ls -> exa
-alias l  "exa -lFas ext --icons --no-user --group-directories-first --no-permissions --no-time"
-alias lt "exa -lFTs ext --icons --no-user --group-directories-first --no-permissions --no-time --git"
-alias ll "exa -lFas ext --icons --no-user --group-directories-first --git"
+alias l  "exa -lFas ext -I '.git*' --icons --no-user --group-directories-first --no-permissions --no-time"
+alias lt "exa -lFTs ext -I '.git*' --icons --no-user --group-directories-first --no-permissions --no-time --git"
+alias ll "exa -lFas ext -I '.git*' --icons --no-user --group-directories-first --git"
 
 # du, df -> dust, duf
 abbr du "dust -Dn 25"

@@ -1,19 +1,23 @@
 function pong
+    set -l concurrent 4
     set -f addresses  google.com youtube.com twitter.com wikipedia.org yahoo.com amazon.com live.com reddit.com discord.com twitch.tv $argv
 
     for address in $addresses
 
-        while [ (count (jobs)) -gt 3 ]
+        while [ "$(jobs -c | rg -c --include-zero '^ping$')" -ge "$concurrent" ]
             sleep 0.2
         end
 
-        command ping -q -c 10 -i 0.2 -- "$address" |
-        head -n 4 | tail -n 2 | awk '
-        /^--/ { print "--- " $2 " ---" }
-        /10/ { print $4"/"$1" in "$10 }' &
+        command ping -qc 10 -i 0.2 -- "$address" | awk '
+        /^--- / {
+            print "--- " $2 " ---"
+        }
+        /^10 packets/ {
+            print $4"/"$1" in "$10
+        }' &
     end
 
-    while [ (count (jobs)) -gt 0 ]
+    while [ "$(jobs -c | rg -c --include-zero '^ping$')" -gt 0 ]
        sleep 0.1
     end
 end

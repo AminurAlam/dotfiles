@@ -35,5 +35,5 @@ function clean
         pip cache purge &&
     echo
 
-    echo (count (command exa -al ~)) files in HOME
+    echo (count (ls -1N ~)) files in HOME
 end

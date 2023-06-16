@@ -1,5 +1,4 @@
-# https://github.com/laughedelic/fish_logo
-function fish_logo
+function fish_logo # https://github.com/laughedelic/fish_logo
     set -l m (set_color brcyan)
     set -l i (set_color brgreen)
     set -l o (set_color brcyan)

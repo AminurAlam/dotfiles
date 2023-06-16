@@ -1,5 +1,4 @@
 function pd
-
     command -sq proot-distro || pacman -S proot-distro || return
     [ -z "$argv[1]" ] && proot-distro list 2>&1 | rg '^\s+' && return
 
