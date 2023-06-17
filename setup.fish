@@ -82,6 +82,13 @@ end
 #     pacman-key --populate &>/dev/null
 # printf "done\n"
 
+function setup-vnc
+    :
+end
+
+function setup-x11
+    :
+end
 
 printf "INSTALLING NEW PACKAGES...\n"
 pacman -Syu --noconfirm --needed $packages || begin
@@ -122,7 +129,7 @@ end
 printf "done\n"
 
 printf "LINKING CONFIG FILES... "
-    ln -fs "$dotfiles/other/curlrc" ~/.config/curlrc
+    ln -fs "$dotfiles/other/curlrc" ~/.config/.curlrc
     ln -fs "$dotfiles/other/starship.toml" ~/.config/starship.toml
     ln -fs "$dotfiles/termux/colors.properties" ~/.termux/colors.properties
     ln -fs "$dotfiles/termux/termux.properties" ~/.termux/termux.properties
