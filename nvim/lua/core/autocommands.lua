@@ -70,7 +70,7 @@ autocmd('TermOpen', {
   end,
 })
 
-autocmd('BufReadPost', {
+autocmd({ 'BufReadPost', 'BufWinEnter' }, {
   desc = 'restore cursor position',
   callback = function()
     local mark = vim.api.nvim_buf_get_mark(0, '"')

@@ -32,7 +32,7 @@ set.sidescrolloff = 8
 set.showmode = false
 set.ruler = true
 set.showcmd = true
-set.showcmdloc = 'statusline' -- https://github.com/neovim/neovim/issues/20087
+set.showcmdloc = 'statusline'
 set.laststatus = 3
 set.cmdheight = 0
 set.numberwidth = 1
@@ -53,7 +53,6 @@ set.foldtext = 'getline(v:foldstart)." ... ".trim(getline(v:foldend))." [".(v:fo
 set.foldcolumn = 'auto'
 
 -- terminal, cursor & gui
-set.virtualedit = { 'onemore', 'block' }
 set.belloff = 'showmatch'
 set.winblend = 10
 set.pumblend = 10
