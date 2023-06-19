@@ -1,4 +1,4 @@
 function tldr
     set -f arg (echo $argv | string escape --style=url)
-    curl -s "cht.sh/$arg"
+    curl -qs "cht.sh/$arg"
 end

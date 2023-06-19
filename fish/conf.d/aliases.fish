@@ -39,7 +39,7 @@ abbr rconf "rclone config"
 
 # python
 abbr py "python3 -q"
-alias mbz "python3 ~/repos/musicbrainzpy/cover_art.py"
+alias mbz "python3 \$XDG_PROJECTS_DIR/musicbrainzpy/cover_art.py"
 
 # ls -> exa
 alias l  "exa -lFas ext -I '.git*' --icons --no-user --group-directories-first --no-permissions --no-time"

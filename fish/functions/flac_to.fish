@@ -1,6 +1,6 @@
 function flac_to -a ext
     set -l count 0
-    set -l total (count *.flac) || exit
+    set -l total (count *.flac) || return
     [ -n "$ext" ] || set -l ext ogg
 
     for i in *.flac

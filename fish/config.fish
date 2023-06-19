@@ -1,9 +1,15 @@
+### PATH ###
+set -gxp --path PATH "$CARGO_HOME/bin"
+set -gxp --path PATH "$HOME/.local/bin"
+
 ### EXPORTS ###
 
 # setup
 switch (uname -o)
-    case Android; set -gx XDG_DIR "$EXTERNAL_STORAGE"
-    case '*';     set -gx XDG_DIR "$HOME"
+    case Android
+        set -gx XDG_DIR "$EXTERNAL_STORAGE"
+    case '*'
+        set -gx XDG_DIR "$HOME"
 end
 
 if command -sq nvim
@@ -46,7 +52,7 @@ set -gx LS_COLORS "*.py=38;5;45:*.rs=38;5;208:*.fish=38;5;47:*.sh=38;5;47:*.bash
 set -gx VISUAL $EDITOR
 set -gx SUDO_EDITOR $EDITOR
 set -gx MANPAGER "$EDITOR +Man!"
-set -gx MANPATH $PREFIX/share/man
+set -gx MANPATH $PREFIX/share/fish/man $PREFIX/share/man
 set -gx TERMINFO "$PREFIX/share/terminfo"
 set -gx BROWSER termux-open
 set -gx LAUNCHER sk --prompt '  ' --inline-info --no-multi --margin 0,3,1,3 --color "\
@@ -61,6 +67,7 @@ set -gx ICEAUTHORITY $XDG_CACHE_HOME/ICEauthority
 set -gx XAUTHORITY $XDG_RUNTIME_DIR/Xauthority
 set -gx HISTFILE $XDG_STATE_HOME/bash/history
 set -gx GNUPGHOME $XDG_DATA_HOME/gnupg
+set -gx RIPGREP_CONFIG_PATH $XDG_PROJECTS_DIR/dotfiles/other/ripgreprc
 set -gx NVIM_APPNAME nvim
 set -gx VIM "$PREFIX/share/nvim"
 set -gx VIMRUNTIME "$PREFIX/share/nvim/runtime"
@@ -74,37 +81,31 @@ set -gx CARGO_INSTALL_ROOT $CARGO_HOME
 set -gx CARGO_LOG info
 set -gx UV_USE_IO_URING 0 # libuv/libuv#4010
 
-### PATH ###
-set -gxp --path PATH "$CARGO_HOME/bin"
-set -gxp --path PATH "$HOME/.local/bin"
-
 ### SOURCE ###
 command -sq starship && starship init fish | source || source $XDG_CONFIG_HOME/fish/functions/load_prompt.fish
-command -sq zoxide   && zoxide init fish   | source || alias z cd # TODO: pre populate/backup zoxidu db
+command -sq zoxide && zoxide init fish | source || alias z cd # TODO: pre populate/backup zoxidu db
 
 ### BINDINGS ###
 fish_vi_key_bindings
 bind -M insert \e\[1\;5A 'commandline -f history-token-search-backward'
 bind -M insert \e\[1\;5B 'commandline -f history-token-search-forward'
-bind -M insert \\cw 'commandline -f backward-kill-bigword'
+bind -M insert \cw 'commandline -f backward-kill-bigword'
 
 ### ALIASES ###
 abbr zsd "z $XDG_DIR/"
-  abbr zdoc "z $XDG_DOCUMENTS_DIR/"
-  abbr zdl  "z $XDG_DOWNLOAD_DIR/"
-  abbr zmov "z $XDG_VIDEOS_DIR/"
-  abbr zmu  "z $XDG_MUSIC_DIR/"
-  abbr zpic "z $XDG_PICTURES_DIR/"
-abbr zt   "z $XDG_DIR/Tachiyomi*/local"
-abbr zm   "z $XDG_DIR/main/"
+abbr zdoc "z $XDG_DOCUMENTS_DIR/"
+abbr zdl "z $XDG_DOWNLOAD_DIR/"
+abbr zmov "z $XDG_VIDEOS_DIR/"
+abbr zmu "z $XDG_MUSIC_DIR/"
+abbr zpic "z $XDG_PICTURES_DIR/"
+abbr zt "z $XDG_DIR/Tachiyomi*/local"
+abbr zm "z $XDG_DIR/main/"
 abbr zl "z ~/.local/"
-abbr zr   'z (command ls -1N $XDG_PROJECTS_DIR | $LAUNCHER)'
-abbr zrp  "z $XDG_PROJECTS_DIR/ && git clone --depth 1"
-  abbr zmbz "z $XDG_PROJECTS_DIR/musicbrainzpy/"
-  abbr zd   "z $XDG_PROJECTS_DIR/dotfiles/"
-abbr zc   "z $XDG_CONFIG_HOME/"
-  abbr zcf  "z $XDG_CONFIG_HOME/fish/"
-  abbr zcn  "z $XDG_CONFIG_HOME/nvim/"
+abbr zmbz "z $XDG_PROJECTS_DIR/musicbrainzpy/"
+abbr zd "z $XDG_PROJECTS_DIR/dotfiles/"
+abbr zc "z $XDG_CONFIG_HOME/"
+abbr zcf "z $XDG_CONFIG_HOME/fish/"
+abbr zcn "z $XDG_CONFIG_HOME/nvim/"
 abbr zp "z $PREFIX/"
 abbr zz "z -"
 
@@ -114,11 +115,12 @@ function fish_title
 end
 
 # make zoxide completions actually useful
-function __zoxide_z_complete
+function __better_z_complete
     set -l token (commandline -t)
-    complete --do-complete "'' "(commandline --cut-at-cursor --current-token) | string match --regex '.*/$'
     [ -n "$token" ] && zoxide query --exclude "$(pwd -L)" -l -- "$token" | string replace "$HOME" '~'
 end
+
+complete --command __zoxide_z -fka '(__better_z_complete)/'
 
 function quit
     if [ (count (ps -C fish)) = 2 ]
@@ -148,4 +150,15 @@ bind q quit
 #     printf "%s%s %s%s " \
 #         (set_color cyan) $time \
 #         (set_color normal) "❯"
+# end
+
+# function result [389ms]
+#     set -l flac (fd 'flac$' | count)
+#     set -l mp3 (fd 'mp3$'  | count)
+#     set -l ogg (fd 'ogg$'  | count)
+#     set -l total (math $flac + $mp3 + $ogg)
+#     printf " %s%% %s - %d\n" \
+#         (math -s 2 $flac / $total x 100) FLAC $flac \
+#         (math -s 2 $mp3  / $total x 100) MP3 $mp3 \
+#         (math -s 2 $ogg  / $total x 100) OGG $ogg
 # end
