@@ -24,13 +24,13 @@ function download-bootstrap
     # fi
     #
     # printf "downloading bootstrap to: bootstrap-%s.zip\n" "$arch"
-    # curl -#LO -- "${root_url}/latest/download/bootstrap-$arch.zip"
+    # curl -q#LO -- "${root_url}/latest/download/bootstrap-$arch.zip"
 end
 
 function check-hash
     # printf "present\n"
     # printf "checking hash of cached archive...\n"
-    # curl -sL -- "https://github.com/termux-pacman/termux-packages/releases/latest/download/CHECKSUMS-md5.txt" \
+    # curl -qsL -- "https://github.com/termux-pacman/termux-packages/releases/latest/download/CHECKSUMS-md5.txt" \
     # | awk -F '\t' " /$arch/ {print \$2 \"  \" \$1}" \
     # | md5sum --status --check \
     # || download-bootstrap "outdated"
@@ -152,7 +152,7 @@ printf "CLEANUP... "
 echo "done\n"
 
 [ -e "$HOME/.termux_authinfo" ] || passwd
-[ "$(read -P 'downlad font? [y/N] ')" = y ] && curl -so ~/.termux/font.ttf "$font_url" &>/dev/null
+[ "$(read -P 'downlad font? [y/N] ')" = y ] && curl -qso ~/.termux/font.ttf "$font_url" &>/dev/null
 
 # printf "ADDING WIDGETS... "
 # if [ -d "$main/widget/" ]

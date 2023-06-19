@@ -18,13 +18,13 @@ download-bootstrap() {
     fi
 
     printf "downloading bootstrap to: bootstrap-%s.zip\n" "$arch"
-    curl -#LO -- "${root_url}/latest/download/bootstrap-$arch.zip"
+    curl -q#LO -- "${root_url}/latest/download/bootstrap-$arch.zip"
 }
 
 check-hash() {
     printf "present\n"
     printf "checking hash of cached archive...\n"
-    curl -sL -- "https://github.com/termux-pacman/termux-packages/releases/latest/download/CHECKSUMS-md5.txt" \
+    curl -qsL -- "https://github.com/termux-pacman/termux-packages/releases/latest/download/CHECKSUMS-md5.txt" \
     | awk -F '\t' " /$arch/ {print \$2 \"  \" \$1}" \
     | md5sum --status --check \
     || download-bootstrap "outdated"
@@ -89,7 +89,7 @@ printf "CHANGING SHELL... "
 printf "done\n"
 
 printf "DOWNLAODING setup.fish...\n"
-    curl -#O "$fish_setup_url"
+    curl -q#O "$fish_setup_url"
 
 printf "BASE SETUP COMPLETE\n"
 printf "RUNNING FISH SETUP...\n"

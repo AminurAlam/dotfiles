@@ -1,4 +1,3 @@
-pacman -Syu
 pacman -S --noconfirm --needed clang cmake make openssl binutils perl libuv
 
 for repo in luvi luvit lit

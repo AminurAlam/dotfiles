@@ -1,0 +1,5 @@
+### use --no-config to ignore this file
+
+--smart-case
+
+--glob=!node_modules/*
