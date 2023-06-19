@@ -1,0 +1,38 @@
+# vim: set ft=config :
+
+### MACROS
+# macro SPACE refresh; open;
+# macro ^E up; sleep;
+# macro ^Y down; sleep;
+
+### KEY BINDINGS
+# ENTER BACKSPACE LEFT RIGHT UP DOWN PPAGE NPAGE HOME END ESC TAB F1 to F12
+# all (default if not specified) feedlist filebrowser help articlelist article
+# tagselection filterselection urlview podboat dirbrowser searchresultslist
+
+# unbind keys
+unbind-key j
+unbind-key k
+unbind-key J
+unbind-key K
+unbind-key s #ds disable saving
+
+# movement
+bind-key j down
+bind-key k up
+bind-key l open
+bind-key h quit
+bind-key g home
+bind-key G end
+
+bind-key RIGHT next article
+bind-key LEFT prev article
+bind-key RIGHT next-feed articlelist
+bind-key LEFT prev-feed articlelist
+
+bind-key u reload
+bind-key TAB reload
+bind-key SPACE toggle-article-read articlelist
+
+bind-key BACKSPACE quit
+bind-key ^q hard-quit

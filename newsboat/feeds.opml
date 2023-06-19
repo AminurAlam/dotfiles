@@ -4,16 +4,15 @@
     <title>Newsboat - Exported Feeds</title>
   </head>
   <body>
-    <outline type="rss" xmlUrl="https://nitter.nl/carlyraejepsen/rss" htmlUrl="" title=""/>
+    <outline type="rss" xmlUrl="https://nitter.net/carlyraejepsen/rss" htmlUrl="https://nitter.net/carlyraejepsen" title="Carly Rae Jepsen / @carlyraejepsen"/>
     <outline type="rss" xmlUrl="https://github.com/neovim/neovim/commits/master/runtime/doc/news.txt.atom" htmlUrl="https://github.com/neovim/neovim/commits/master/runtime/doc/news.txt" title="Recent Commits to neovim:master"/>
-    <outline type="rss" xmlUrl="https://nitter.nl/mdf_an/rss" htmlUrl="" title=""/>
-    <outline type="rss" xmlUrl="https://muspy.com/feed?id=mobwjpkr95u5p1b4f2w1bjt74qc8u3" htmlUrl="https://muspy.com/" title="[muspy] New Releases"/>
+    <outline type="rss" xmlUrl="https://nitter.net/mdf_an/rss" htmlUrl="https://nitter.net/mdf_an" title="mdf&#x3042;&#x3093; / @mdf_an"/>
     <outline type="rss" xmlUrl="https://waxy.org/feed/" htmlUrl="https://waxy.org/" title="Waxy.org"/>
     <outline type="rss" xmlUrl="https://this-week-in-neovim.org/rss" htmlUrl="https://this-week-in-neovim.org/" title="This Week In Neovim"/>
     <outline type="rss" xmlUrl="https://lobste.rs/rss" htmlUrl="https://lobste.rs/" title="Lobsters"/>
     <outline type="rss" xmlUrl="https://hnrss.org/newest.atom?points=100&amp;count=20&amp;description=0" htmlUrl="https://hnrss.org/newest.atom?points=100&amp;count=20&amp;description=0" title="Hacker News: Newest"/>
-    <outline type="rss" xmlUrl="https://reddit.com/r/OtoMusic/new.rss" htmlUrl="https://www.reddit.com/r/OtoMusic/new" title="newest submissions : OtoMusic"/>
-    <outline type="rss" xmlUrl="https://reddit.com/r/neovim.rss" htmlUrl="https://www.reddit.com/r/neovim" title="Neovim"/>
+    <outline type="rss" xmlUrl="https://reddit.com/r/OtoMusic/new.rss" htmlUrl="https://www.reddit.com/r/OtoMusic/new" title="r/OtoMusic"/>
+    <outline type="rss" xmlUrl="https://reddit.com/r/neovim.rss" htmlUrl="https://www.reddit.com/r/neovim" title="r/neovim"/>
     <outline type="rss" xmlUrl="https://torrentfreak.com/feed" htmlUrl="https://torrentfreak.com/" title="TorrentFreak"/>
     <outline type="rss" xmlUrl="https://rss.slashdot.org/Slashdot/slashdotMain" htmlUrl="https://slashdot.org/" title="Slashdot"/>
     <outline type="rss" xmlUrl="https://reclaimthenet.org/feed/" htmlUrl="https://reclaimthenet.org/" title="Reclaim The Net"/>
@@ -22,8 +21,9 @@
     <outline type="rss" xmlUrl="https://alt2-feed-proxy.azurewebsites.net/api/FeedTrigger?name=all-news" htmlUrl="https://alternativeto.net/news/all/" title="AlternativeTo News"/>
     <outline type="rss" xmlUrl="https://rb.vern.cc/?action=display&amp;bridge=BleepingComputer&amp;format=Atom" htmlUrl="https://www.bleepingcomputer.com/" title="BleepingComputer"/>
     <outline type="rss" xmlUrl="https://dev.to/feed" htmlUrl="https://dev.to/" title="DEV Community"/>
-    <outline type="rss" xmlUrl="https://rb.vern.cc/?action=display&amp;bridge=HaveIBeenPwned&amp;order=dateAdded&amp;item_limit=20&amp;format=Atom" htmlUrl="" title=""/>
+    <outline type="rss" xmlUrl="https://rb.vern.cc/?action=display&amp;bridge=HaveIBeenPwned&amp;order=dateAdded&amp;item_limit=20&amp;format=Atom" htmlUrl="https://haveibeenpwned.com/" title="Have I Been Pwned (HIBP) Bridge"/>
     <outline type="rss" xmlUrl="https://rb.vern.cc/?action=display&amp;bridge=MozillaSecurity&amp;format=Atom" htmlUrl="https://www.mozilla.org/en-US/security/advisories/" title="Mozilla Security Advisories"/>
+    <outline type="rss" xmlUrl="https://muspy.com/feed?id=mobwjpkr95u5p1b4f2w1bjt74qc8u3" htmlUrl="https://muspy.com/" title="[muspy] New Releases"/>
     <outline type="rss" xmlUrl="https://www.qobuz.com/gb-en/rss/best-sellers/pop-rock/download-streaming-albums" htmlUrl="https://www.qobuz.com/gb-en/shop/best-sellers/pop-rock/download-streaming-albums" title="Pop/Rock bestsellers on Qobuz"/>
     <outline type="rss" xmlUrl="https://www.qobuz.com/us-en/rss/best-sellers/pop-rock/download-streaming-albums" htmlUrl="https://www.qobuz.com/us-en/shop/best-sellers/pop-rock/download-streaming-albums" title="Pop/Rock bestsellers on Qobuz"/>
     <outline type="rss" xmlUrl="https://www.qobuz.com/gb-en/rss/best-sellers/metal/download-streaming-albums" htmlUrl="https://www.qobuz.com/gb-en/shop/best-sellers/metal/download-streaming-albums" title="Metal bestsellers on Qobuz"/>
@@ -31,7 +31,7 @@
     <outline type="rss" xmlUrl="https://feeds.npr.org/1039/rss.xml" htmlUrl="https://www.npr.org/templates/story/story.php?storyId=1039" title="Music : NPR"/>
     <outline type="rss" xmlUrl="https://www.allmusic.com/rss" htmlUrl="https://www.allmusic.com/blog/" title="AllMusic Blog"/>
     <outline type="rss" xmlUrl="https://pitchfork.com/feed/feed-news/rss" htmlUrl="https://pitchfork.com/feed-news" title="RSS: News"/>
-    <outline type="rss" xmlUrl="https://rb.vern.cc/?action=display&amp;bridge=BandcampDaily&amp;context=Franchises&amp;franchises-content=album-of-the-day&amp;format=Atom" htmlUrl="" title=""/>
+    <outline type="rss" xmlUrl="https://rb.vern.cc/?action=display&amp;bridge=BandcampDaily&amp;context=Franchises&amp;franchises-content=album-of-the-day&amp;format=Atom" htmlUrl="https://daily.bandcamp.com/album-of-the-day" title="Album of the Day - Bandcamp Daily"/>
     <outline type="rss" xmlUrl="https://news.itsfoss.com/rss" htmlUrl="https://news.itsfoss.com/" title="It's FOSS News"/>
     <outline type="rss" xmlUrl="http://www.archlinux.org/feeds/news/" htmlUrl="https://archlinux.org/news/" title="Arch Linux: Recent news updates"/>
     <outline type="rss" xmlUrl="https://www.linuxlinks.com/feed" htmlUrl="https://www.linuxlinks.com/" title="LinuxLinks"/>

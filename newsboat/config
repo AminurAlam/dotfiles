@@ -1,67 +1,31 @@
-# vim: set ft=config :
+# vim: set ft=conf :
+
+include "~/.config/newsboat/colorscheme"
+include "~/.config/newsboat/bindings"
+error-log "~/.local/cache/newsboat-errors.log"
+browser "termux-open %u &>/dev/null &"
+
+# title style
+show-title-bar "no"
 feedlist-title-format ""
-feedlist-format       " [%2U/%-2c]  %t %S"
 articlelist-title-format " [%2U/%-2t] %T"
-articlelist-format       "%D %f %t"
 itemview-title-format ""
+urlview-title-format ""
+
+# list style
+datetime-format "%m-%d"
+feedlist-format " [%4U] %t %S"
+articlelist-format "%?n? •?%?T? %12T? %t" # unread ? dot : null ; group ? groupname : none ; title
+
+# filters
+ignore-article "*" "title =~ \" AI \""
+ignore-article "*" "title =~ \" ChatGPT \""
+ignore-mode "display"
 
 reload-threads 10
-show-title-bar yes
-show-keymap-hint no
-wrap-scroll yes
-
-
-### key bindings
-
-# unbind keys
-unbind-key j
-unbind-key k
-unbind-key J
-unbind-key K
-
-# movement
-bind-key j down
-bind-key k up
-bind-key l open
-bind-key h quit
-bind-key g home
-bind-key G end
-
-bind-key RIGHT next article
-bind-key LEFT prev article
-bind-key RIGHT next-feed articlelist
-bind-key LEFT prev-feed articlelist
-
-bind-key u reload
-bind-key TAB reload
-bind-key n toggle-article-read articlelist
-
-bind-key BACKSPACE quit
-bind-key ^q hard-quit
-
-# pager "nvim"
-
-
-# color background          default default
-# color listnormal          default default
-color listfocus           default color24 bold
-# color listnormal_unread   default default
-color listfocus_unread    default color24 bold
-color title               default default
-# color info                default default
-# color hint-key            default default
-# color hint-keys-delimiter default default
-# color hint-separator      default default
-# color hint-description    default default
-# color article             default default
-# color end-of-text-marker  default default
-
-# highlight feedlist "———.*———" green default bold
-highlight article "^>.*" green
-highlight article " >.*" green
-highlight article ">>.*" red
-highlight article " /[a-z0-9]{1,9}/" red
-highlight article "[ ]/?[ru]/[-a-zA-Z0-9_]{1,25}" red
-
-highlight article "https?://[^ ]+" cyan default underline
-highlight article "^(Feed|Title|Author|Link|Date):" blue
+scrolloff 8
+goto-next-feed "no"
+prepopulate-query-feeds "yes"
+show-keymap-hint "no"
+show-read-feeds "no"
+wrap-scroll "yes"
