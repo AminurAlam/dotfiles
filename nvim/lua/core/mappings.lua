@@ -13,11 +13,13 @@ nmap('<leader>6', '<cmd>cd ~/repos/dotfiles/ | Telescope find_files<cr>')
 nmap('<leader>pu', '<cmd>Lazy update<cr>', 'update plugins')
 nmap('<leader>pa', '<cmd>Lazy<cr>', 'plugins info')
 
--- cybu
+-- movement
 umap('<c-left>', '<cmd>CybuPrev<cr>', 'previous buffer')
 umap('<c-right>', '<cmd>CybuNext<cr>', 'next buffer')
 nmap('[b', '<cmd>CybuPrev<cr>', 'previous buffer')
 nmap(']b', '<cmd>CybuNext<cr>', 'next buffer')
+nmap('[t', '<cmd>tabp<cr>', 'previous tab')
+nmap(']t', '<cmd>tabn<cr>', 'next tab')
 
 -- git
 nmap('H', '<cmd>Gitsigns preview_hunk<cr>', 'preview hunk')
@@ -65,7 +67,7 @@ nmap('<leader>w', '<cmd>silent w <bar> redraw <cr>', 'write')
 umap('<c-w>', '<cmd>silent w <bar> redraw <cr>', 'write')
 umap('<c-q>', '<cmd>q<cr>', 'quit')
 nmap('Q', '<cmd>bdelete<cr>', 'quit buffer')
-umap('C', '<cmd>norm m`viw~``<cr>', 'toggle word case')
+nmap('C', '<cmd>norm m`viw~``<cr>', 'toggle word case')
 umap('<c-z>', '<cmd>norm 1z=<cr>', 'spell correction')
 nmap('cn', '*``cgn', 'search and replace') -- https://kevinli.co/posts/2017-01-19-multiple-cursors-in-500-bytes-of-vimscript/
 nmap('dn', '*``diw', 'search and delete')

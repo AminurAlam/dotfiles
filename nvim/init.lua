@@ -1,13 +1,10 @@
 vim.loader.enable()
 
 local g = vim.g
-local autocmd = vim.api.nvim_create_autocmd
 
 g.mapleader = ' '
 g.maplocalleader = ' '
-
 g.stc = '%=%{ v:virtnum ? "…" : v:lnum }%s'
-g.severity_icons = { ' ', ' ', ' ', ' ', '󰌵' }
 
 g.loaded_python3_provider = 0
 g.loaded_node_provider = 0
@@ -24,22 +21,17 @@ g.ft_man_folding_enable = 1
 
 -- [[ core ]]
 require('core.lazy')
-require('core.options')
 require('core.autocommands')
+require('core.options')
+require('core.mappings')
 
-autocmd('CmdLineEnter', {
-  callback = function() require('core.commands') end,
-})
-
-autocmd('User', {
-  pattern = 'VeryLazy',
-  callback = function() require('core.mappings') end,
-})
+local severity_icons = { ' ', ' ', ' ', ' ', '󰌵' }
 
 vim.diagnostic.config {
   underline = { severity = vim.diagnostic.severity.ERROR },
   virtual_text = {
-    prefix = function(details) return g.severity_icons[details.severity] end,
+    -- TODO: fix this
+    -- prefix = function(details) return severity_icons[details.severity] end,
     -- format = function(diagnostic) return diagnostic.message end,
   },
   signs = true,
@@ -47,13 +39,6 @@ vim.diagnostic.config {
   update_in_insert = true,
   severity_sort = false,
 }
-
-vim.fn.map({
-  'DiagnosticSignError',
-  'DiagnosticSignWarn',
-  'DiagnosticSignInfo',
-  'DiagnosticSignHint',
-}, function(name) vim.fn.sign_define(vim.v.val, { numhl = vim.v.val }) end)
 
 vim.filetype.add {
   extention = {
@@ -67,9 +52,17 @@ vim.filetype.add {
   },
 }
 
+-- COLORSCHEME AND HIGHLIGHTS
 vim.cmd.colorscheme { 'tokyonight' }
 
 local hl = function(name, val) vim.api.nvim_set_hl(0, name, val) end
+
+vim.fn.map({
+  'DiagnosticSignError',
+  'DiagnosticSignWarn',
+  'DiagnosticSignInfo',
+  'DiagnosticSignHint',
+}, function() vim.fn.sign_define(vim.v.val, { numhl = vim.v.val }) end)
 
 hl('Whitespace', { bg = '#364a82' })
 hl('CursorLineNr', { fg = '#c0caf5' })

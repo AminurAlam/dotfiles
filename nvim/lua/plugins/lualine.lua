@@ -58,7 +58,7 @@ M.config = function()
         padding = 0,
       },
     },
-    lualine_c = { { 'diagnostics', update_in_insert = true } },
+    lualine_c = { { 'diff' }, { 'diagnostics', update_in_insert = false } },
     lualine_x = {
       { '%S' },
       { 'searchcount' },
@@ -71,11 +71,7 @@ M.config = function()
     lualine_z = {
       {
         'fileformat',
-        symbols = {
-          unix = '', -- e712
-          dos = '', -- e70f
-          mac = '', -- e711
-        },
+        symbols = { unix = '', dos = '', mac = '' },
       },
       { 'filetype', colored = false },
     },

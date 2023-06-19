@@ -62,7 +62,7 @@ M.config = function()
 
   cmp.setup {
     view = { entries = 'custom' },
-    experimental = { ghost_text = { hl_group = 'Comment' } },
+    experimental = { ghost_text = true },
     snippet = { expand = function(args) luasnip.lsp_expand(args.body) end },
     preselect = cmp.PreselectMode.None,
     window = {

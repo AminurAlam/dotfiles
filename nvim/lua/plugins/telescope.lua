@@ -16,13 +16,13 @@ M.config = function()
       winblend = 10,
       file_ignore_patterns = {
         '.pdf',
-        'node_modules',
+        'node_modules/',
         '.git/',
         '__pycache__',
         'stylua.toml',
         'Cargo.lock',
-        'target',
-        'build',
+        'target/',
+        'build/',
       },
       path_display = { shorten = { len = 1, exclude = { 1, -1 } } },
       mappings = {
