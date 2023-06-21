@@ -130,6 +130,7 @@ printf "done\n"
 
 printf "LINKING CONFIG FILES... "
     ln -fs "$dotfiles/other/curlrc" ~/.config/.curlrc
+    ln -fs "$dotfiles/other/stylua.toml" ~/.config/stylua.toml
     ln -fs "$dotfiles/other/starship.toml" ~/.config/starship.toml
     ln -fs "$dotfiles/termux/colors.properties" ~/.termux/colors.properties
     ln -fs "$dotfiles/termux/termux.properties" ~/.termux/termux.properties
