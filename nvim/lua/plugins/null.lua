@@ -18,10 +18,7 @@ M.config = function()
     if bin and vim.fn.executable(bin) == 0 then return end
 
     -- avoid indexing .with() when theres no config
-    table.insert(
-      sources,
-      config and null_ls.builtins[group][name].with(config) or null_ls.builtins[group][name]
-    )
+    table.insert(sources, config and null_ls.builtins[group][name].with(config) or null_ls.builtins[group][name])
   end
 
   add('stylua', 'formatting', {

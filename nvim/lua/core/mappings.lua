@@ -1,7 +1,7 @@
-local nmap = require('core.utils').map('n') -- mappings for normal mode
-local vmap = require('core.utils').map('x') -- mappings for visual mode
-local umap = require('core.utils').map { '', 'i' } -- mappings for normal, visual & insert mode
 local abbr = require('core.utils').map('ca') -- abbleviations
+local nmap = require('core.utils').map('n') -- mappings for normal mode
+local umap = require('core.utils').map { '', 'i' } -- mappings for normal, visual & insert mode
+local vmap = require('core.utils').map('x') -- mappings for visual mode
 
 -- telescope
 nmap('<leader>ff', '<cmd>Telescope find_files hidden=true<cr>', 'find files')
@@ -43,11 +43,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
 nmap('[d', vim.diagnostic.goto_prev, 'goto prev diagnostic message')
 nmap(']d', vim.diagnostic.goto_next, 'goto next diagnostic message')
 nmap('<leader>d', vim.diagnostic.open_float, 'view line diagnostics')
-nmap(
-  '<leader>D',
-  function() vim.diagnostic.open_float { scope = 'buffer' } end,
-  'view all diagnostics in a buffer'
-)
+nmap('<leader>D', function() vim.diagnostic.open_float { scope = 'buffer' } end, 'view all diagnostics in a buffer')
 
 -- other plugins
 nmap('<leader>co', '<cmd>ColorizerToggle<cr>')
