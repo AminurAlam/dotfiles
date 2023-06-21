@@ -18,6 +18,6 @@ function pong
     end
 
     while [ "$(jobs -c | rg -c --include-zero '^ping$')" -gt 0 ]
-       sleep 0.1
+        sleep 0.1
     end
 end

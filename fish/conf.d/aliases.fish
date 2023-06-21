@@ -5,8 +5,8 @@ abbr rm "rm -i"
 abbr rf "rm -frI"
 abbr rd "rmdir -pv"
 abbr md "mkdir -pv"
-abbr vi "nvim"
-abbr cls "clear"
+abbr vi nvim
+abbr cls clear
 abbr cal "cal -my"
 abbr qmv "qmv -f do"
 abbr wget "wget --hsts-file=\$XDG_CACHE_HOME/wget-hsts"
@@ -42,8 +42,8 @@ abbr py "python3 -q"
 alias mbz "python3 \$XDG_PROJECTS_DIR/musicbrainzpy/cover_art.py"
 
 # ls -> exa
-alias l  "exa -lFas ext -I '.git*' --icons --no-user --group-directories-first --no-permissions --no-time"
-alias lt "exa -lFTs ext -I '.git*' --icons --no-user --group-directories-first --no-permissions --no-time --git"
+alias l "exa -lFas ext -I '.git*' --icons --no-user --group-directories-first --no-permissions --no-time"
+alias lt "exa -lFaTs ext -I '.git*' --icons --no-user --group-directories-first --no-permissions --no-time --git"
 alias ll "exa -lFas ext -I '.git*' --icons --no-user --group-directories-first --git"
 
 # du, df -> dust, duf
@@ -52,9 +52,9 @@ abbr dud "dust -d 1"
 alias df "duf -only local -output mountpoint,size,avail,usage -width 150 /storage/*"
 
 # tar
-abbr tar-compress    "tar cf"
+abbr tar-compress "tar cf"
 abbr tar-compress-gz "tar czf"
-abbr tar-extract    "tar xf"
+abbr tar-extract "tar xf"
 abbr tar-extract-gz "tar xzf"
 
 if command -sq apt

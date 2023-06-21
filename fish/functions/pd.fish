@@ -12,7 +12,7 @@ function pd
         case $distros
             proot-distro login $distro || begin
                 read install -fP "cant login to '$distro', try installing it? [y/N] "
-                [ "$install" = "y" ] && proot-distro install $distro
+                [ "$install" = y ] && proot-distro install $distro
             end
         case "*"
             printf "%s is not a supported distro\n" "$distro"

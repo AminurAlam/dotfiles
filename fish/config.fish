@@ -1,6 +1,4 @@
-### PATH ###
-set -gxp --path PATH "$CARGO_HOME/bin"
-set -gxp --path PATH "$HOME/.local/bin"
+set -gxp --path PATH "$HOME/.local/bin" # this comes first: nvim, exa, sk...
 
 ### EXPORTS ###
 
@@ -68,9 +66,6 @@ set -gx XAUTHORITY $XDG_RUNTIME_DIR/Xauthority
 set -gx HISTFILE $XDG_STATE_HOME/bash/history
 set -gx GNUPGHOME $XDG_DATA_HOME/gnupg
 set -gx RIPGREP_CONFIG_PATH $XDG_PROJECTS_DIR/dotfiles/other/ripgreprc
-set -gx NVIM_APPNAME nvim
-set -gx VIM "$PREFIX/share/nvim"
-set -gx VIMRUNTIME "$PREFIX/share/nvim/runtime"
 # lang config
 set -gx PYTHONSTARTUP $XDG_CONFIG_HOME/python/startup.py
 set -gx NODE_REPL_HISTORY $XDG_STATE_HOME/node_repl_history
@@ -80,6 +75,8 @@ set -gx CARGO_HOME $XDG_DATA_HOME/cargo
 set -gx CARGO_INSTALL_ROOT $CARGO_HOME
 set -gx CARGO_LOG info
 set -gx UV_USE_IO_URING 0 # libuv/libuv#4010
+
+set -gxp --path PATH "$CARGO_HOME/bin" # after declaring CARGO_HOME
 
 ### SOURCE ###
 command -sq starship && starship init fish | source || source $XDG_CONFIG_HOME/fish/functions/load_prompt.fish
@@ -114,26 +111,26 @@ function fish_title
     printf "%s: %s" (prompt_pwd) (status current-command | string replace fish ❯)
 end
 
-# make zoxide completions actually useful
-function __better_z_complete
-    set -l token (commandline -t)
-    [ -n "$token" ] && zoxide query --exclude "$(pwd -L)" -l -- "$token" | string replace "$HOME" '~'
-end
+set -l m (set_color brcyan)
+set -l i (set_color brgreen)
+set -l o (set_color brcyan)
+set -l pad (string repeat -Nn (math -s 0 "($COLUMNS/2) - 20") " ")
 
-complete --command __zoxide_z -fka '(__better_z_complete)/'
-
-function quit
-    if [ (count (ps -C fish)) = 2 ]
-        pkill com.termux
-    else
-        exit
-    end
-end
-
-set fish_greeting "$(fish_logo)"
-bind -M insert \cq quit
-bind -M insert \cd quit
-bind q quit
+set fish_greeting $pad'                 '$o'___'\n \
+    $pad'  ___======____='$m'-'$i'-'$m'-='$o')'\n \
+    $pad'/T            \_'$i'--='$m'=='$o')'\n \
+    $pad'| \ '$m'('$i'0'$m')   '$o'\~    \_'$i'-='$m'='$o')'\n \
+    $pad' \      / )J'$m'~~    '$o'\\'$i'-='$o')'\n \
+    $pad'  \\\\___/  )JJ'$m'~'$i'~~   '$o'\)'\n \
+    $pad'   \_____/JJJ'$m'~~'$i'~~    '$o'\\'\n \
+    $pad'   '$m'/ '$o'\  '$i', \\'$o'J'$m'~~~'$i'~~     '$m'\\'\n \
+    $pad'  (-'$i'\)'$o'\='$m'|'$i'\\\\\\'$m'~~'$i'~~       '$m'L_'$i'_'\n \
+    $pad'  '$m'('$o'\\'$m'\\)  ('$i'\\'$m'\\\)'$o'_           '$i'\=='$m'__'\n \
+    $pad'   '$o'\V    '$m'\\\\'$o'\) =='$m'=_____   '$i'\\\\\\\\'$m'\\\\'\n \
+    $pad'          '$o'\V)     \_) '$m'\\\\'$i'\\\\JJ\\'$m'J\)'\n \
+    $pad'                      '$o'/'$m'J'$i'\\'$m'J'$o'T\\'$m'JJJ'$o'J)'\n \
+    $pad'                      (J'$m'JJ'$o'| \UUU)'\n \
+    $pad'                       (UU)'
 
 # command -sq starship && bind -M insert \r transient_execute
 # function starship_transient_prompt_func
@@ -152,7 +149,7 @@ bind q quit
 #         (set_color normal) "❯"
 # end
 
-# function result [389ms]
+# function result
 #     set -l flac (fd 'flac$' | count)
 #     set -l mp3 (fd 'mp3$'  | count)
 #     set -l ogg (fd 'ogg$'  | count)
