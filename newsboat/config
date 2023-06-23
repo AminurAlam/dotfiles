@@ -1,14 +1,15 @@
 # vim: set ft=conf :
+# https://newsboat.org/releases/2.31/docs/newsboat.html
 
 include "~/.config/newsboat/colorscheme"
 include "~/.config/newsboat/bindings"
 error-log "~/.local/cache/newsboat-errors.log"
-browser "termux-open %u &>/dev/null &"
+browser "fish -c 'open %u'"
 
 # title style
-show-title-bar "no"
-feedlist-title-format ""
-articlelist-title-format " [%2U/%-2t] %T"
+show-title-bar "yes"
+feedlist-title-format "        Articles: %U  Feeds: %u  %T"
+articlelist-title-format "    %4u/%-4t    %T"
 itemview-title-format ""
 urlview-title-format ""
 
@@ -18,8 +19,9 @@ feedlist-format " [%4U] %t %S"
 articlelist-format "%?n? •?%?T? %12T? %t" # unread ? dot : null ; group ? groupname : none ; title
 
 # filters
-ignore-article "*" "title =~ \" AI \""
-ignore-article "*" "title =~ \" ChatGPT \""
+ignore-article "*" "title =~ \" (Open)?AI\""
+ignore-article "*" "title =~ \" (Chat)?GPT \""
+ignore-article "*" "title =~ \" LLM \""
 ignore-mode "display"
 
 reload-threads 10

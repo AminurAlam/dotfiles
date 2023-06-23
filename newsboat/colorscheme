@@ -27,4 +27,4 @@ highlight article "^(Feed|Title|Author|Link|Date):" blue default bold
 highlight article "https?://[^ ]+" cyan default underline
 
 highlight article "\\[[0-9]+\\]" color2 default bold
-highlight article "\\[image\\ [0-9]+\\]" color2 default bold
+highlight article "\\[image [0-9]+:? .*\\(link #[0-9]+\\)\\]" color2 default bold
