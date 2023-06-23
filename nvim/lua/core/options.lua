@@ -54,8 +54,8 @@ set.foldcolumn = 'auto'
 
 -- terminal, cursor & gui
 set.belloff = 'showmatch'
-set.winblend = 10
-set.pumblend = 10
+set.winblend = 0
+set.pumblend = 0
 set.pumheight = 15
 set.termguicolors = true
 set.guicursor = 'n-sm:hor25,v-o-i-r-c-ci-cr:ver25'

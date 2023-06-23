@@ -8,12 +8,19 @@ local M = {
 M.config = function()
   require('telescope').setup {
     defaults = {
+      layout_strategy = 'flex',
+      layout_config = {
+        height = 0.90,
+        width = 0.80,
+        -- mirror = true,
+        -- prompt_position = 'top',
+      },
       prompt_prefix = '  ',
       selection_caret = '» ',
       entry_prefix = ' ',
       prompt_title = false,
       results_title = false,
-      winblend = 10,
+      winblend = 0,
       file_ignore_patterns = {
         '.pdf',
         'node_modules/',
@@ -33,6 +40,8 @@ M.config = function()
           ['<C-Up>'] = 'cycle_history_prev',
           ['<S-Tab>'] = 'move_selection_next',
           ['<Tab>'] = 'move_selection_previous',
+          ['<ScrollWheelUp>'] = 'move_selection_previous',
+          ['<ScrollWheelDown>'] = 'move_selection_next',
         },
         n = {
           ['<C-q>'] = 'close',

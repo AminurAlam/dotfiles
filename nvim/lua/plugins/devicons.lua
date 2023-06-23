@@ -14,6 +14,10 @@ return {
         cterm_color = '67',
         name = 'note',
       },
+      cue = {
+        icon = '',
+        name = 'cue',
+      },
     }
   end,
 }

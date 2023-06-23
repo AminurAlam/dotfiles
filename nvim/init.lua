@@ -20,12 +20,10 @@ g.netrw_liststyle = 3
 g.ft_man_folding_enable = 1
 
 -- [[ core ]]
-require('core.lazy')
-require('core.autocommands')
-require('core.options')
-require('core.mappings')
-
-local severity_icons = { ' ', ' ', ' ', ' ', '󰌵' }
+require 'core.lazy'
+require 'core.autocommands'
+require 'core.options'
+require 'core.mappings'
 
 vim.diagnostic.config {
   underline = { severity = vim.diagnostic.severity.ERROR },
@@ -41,9 +39,6 @@ vim.diagnostic.config {
 }
 
 vim.filetype.add {
-  extention = {
-    -- ['conf'] = 'confini',
-  },
   pattern = {
     ['.*%.log'] = 'log',
     ['.*%.cue'] = 'cuesheet',

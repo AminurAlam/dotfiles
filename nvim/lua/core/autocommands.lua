@@ -5,9 +5,8 @@ autocmd('FileType', {
   desc = 'exit by pressing q or <esc>',
   pattern = { 'qf', 'help', 'lazy', 'lspinfo', 'DressingSelect', 'Trouble' },
   callback = function()
-    local nmap = require('core.utils').map('n')
-    nmap('q', '<cmd>close<cr>', { buffer = true })
-    nmap('<esc>', function()
+    vim.keymap.set('n', 'q', '<cmd>close<cr>', { buffer = true })
+    vim.keymap.set('n', '<esc>', function()
       if vim.v.hlsearch == 1 then
         vim.cmd('nohlsearch')
       else

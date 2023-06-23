@@ -1,10 +1,12 @@
 local M = {
   'neovim/nvim-lspconfig',
-  dependencies = { 'folke/neodev.nvim' },
+  ft = { 'c', 'cpp', 'rust', 'python', 'lua' },
 }
 
 M.config = function()
-  local lspconfig = require('lspconfig')
+  local lspconfig = require 'lspconfig'
+
+  require('lspconfig.ui.windows').default_options.border = 'rounded'
 
   local setup_lsp = function(name, bin, config)
     local bin = bin or name
@@ -14,21 +16,28 @@ M.config = function()
     }
   end
 
-  require('lspconfig.ui.windows').default_options.border = 'rounded'
-
-  require('neodev').setup {
-    library = {
-      enabled = true,
-      runtime = true,
-      types = true,
-      plugins = true,
-    },
-    setup_jsonls = false,
-  }
-
   setup_lsp('clangd')
 
   setup_lsp('rust_analyzer', 'rust-analyzer')
+
+  setup_lsp('pyright', 'pyright-langserver', {
+    python = {
+      analysis = {
+        autoSearchPaths = true,
+        diagnosticMode = 'document',
+        useLibraryCodeForTypes = true,
+      },
+    },
+  })
+
+  setup_lsp('pylsp', 'pylsp', {
+    pylsp = {
+      plugins = {
+        pycodestyle = { ignore = { 'E128', 'E701' }, maxLineLength = 100 },
+        flake8 = { enabled = true, maxLineLength = 100, ignore = { 'E128', 'E701' } },
+      },
+    },
+  })
 
   setup_lsp('lua_ls', 'lua-language-server', {
     Lua = {
@@ -53,25 +62,6 @@ M.config = function()
       telemetry = { enable = false },
       window = { progressBar = false },
       workspace = { checkThirdParty = false },
-    },
-  })
-
-  setup_lsp('pyright', 'pyright-langserver', {
-    python = {
-      analysis = {
-        autoSearchPaths = true,
-        diagnosticMode = 'document',
-        useLibraryCodeForTypes = true,
-      },
-    },
-  })
-
-  setup_lsp('pylsp', 'pylsp', {
-    pylsp = {
-      plugins = {
-        pycodestyle = { ignore = { 'E128', 'E701' }, maxLineLength = 100 },
-        flake8 = { enabled = true, maxLineLength = 100, ignore = { 'E128', 'E701' } },
-      },
     },
   })
 end

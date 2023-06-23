@@ -5,7 +5,7 @@ local M = {
 }
 
 M.config = function()
-  local null_ls = require('null-ls')
+  local null_ls = require 'null-ls'
   local sources = {}
 
   ---@param name string
@@ -23,7 +23,7 @@ M.config = function()
 
   add('stylua', 'formatting', {
     bin = 'stylua',
-    config = { extra_args = { '-f', vim.fn.stdpath('config') .. '/stylua.toml' } },
+    config = { extra_args = { '-f', os.getenv('XDG_CONFIG_HOME') .. '/stylua.toml' } },
   })
   add('ruff', 'diagnostics', { bin = 'ruff' })
   add('fish', 'diagnostics', { bin = 'fish' })

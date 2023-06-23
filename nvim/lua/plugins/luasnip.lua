@@ -4,7 +4,7 @@ local M = {
 }
 
 M.config = function()
-  local ls = require('luasnip')
+  local ls = require 'luasnip'
   local t, i = ls.text_node, ls.insert_node
 
   -- stylua: ignore

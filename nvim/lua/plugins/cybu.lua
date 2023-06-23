@@ -6,10 +6,10 @@ return {
     position = {
       relative_to = 'win', -- win, editor, cursor
       anchor = 'bottomright',
-      vertical_offset = 1,
-      horizontal_offset = 1,
-      max_win_height = 10,
-      max_win_width = 0.99,
+      vertical_offset = 0,
+      horizontal_offset = 0,
+      max_win_height = 12,
+      max_win_width = 0.70,
     },
     style = {
       path = 'relative',
@@ -18,27 +18,19 @@ return {
       separator = ' ',
       prefix = '…',
       padding = 1,
-      hide_buffer_id = true,
-      devicons = {
-        enabled = true,
-        colored = true,
-        truncate = true,
-      },
+      hide_buffer_id = false,
+      devicons = { enabled = true, colored = true, truncate = false },
     },
     behavior = { -- set behavior for different modes
       mode = {
-        default = {
-          switch = 'immediate', -- immediate, on_close
-          view = 'rolling', -- paging, rolling
-        },
-        last_used = {
-          switch = 'on_close', -- immediate, on_close
-          view = 'paging', -- paging, rolling
-        },
+        default = { switch = 'immediate', view = 'paging' },
+        last_used = { switch = 'immediate', view = 'paging' },
+        auto = { view = 'paging' },
       },
     },
+    show_on_autocmd = 'BufEnter',
     display_time = 1500, -- time the cybu window is displayed
-    exclude = { 'neo-tree', 'fugitive', 'qf' },
+    exclude = {},
     fallback = function(direction) vim.cmd('b' .. direction) end,
   },
 }

@@ -4,6 +4,7 @@ return {
   { 'windwp/nvim-autopairs', event = { 'InsertEnter' }, config = true },
   {
     'tzachar/highlight-undo.nvim',
+    keys = { 'u', 'r' },
     opts = {
       hlgroup = 'IncSearch',
       duration = 300,

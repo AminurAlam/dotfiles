@@ -1,17 +1,33 @@
-local abbr = require('core.utils').map('ca') -- abbleviations
-local nmap = require('core.utils').map('n') -- mappings for normal mode
-local umap = require('core.utils').map { '', 'i' } -- mappings for normal, visual & insert mode
-local vmap = require('core.utils').map('x') -- mappings for visual mode
+---@param mode string|table
+---@return function
+local map = function(mode)
+  ---@param lhs string
+  ---@param rhs string|function
+  ---@param desc string|nil
+  return function(lhs, rhs, desc)
+    vim.keymap.set(mode, lhs, rhs, {
+      noremap = true,
+      silent = true,
+      desc = desc,
+    })
+  end
+end
+
+local nmap = map 'n'
+local vmap = map 'x'
+local umap = map { '', 'i' }
+local abbr = map 'ca'
 
 -- telescope
-nmap('<leader>ff', '<cmd>Telescope find_files hidden=true<cr>', 'find files')
+nmap('<leader>ff', '<cmd>Telescope find_files<cr>', 'find files')
 nmap('<leader>fg', '<cmd>Telescope live_grep disable_coordinates=true<cr>', 'find text')
 nmap('<leader>fh', '<cmd>Telescope help_tags<cr>', 'find help')
 nmap('<leader>6', '<cmd>cd ~/repos/dotfiles/ | Telescope find_files<cr>')
 
 -- lazy
-nmap('<leader>pu', '<cmd>Lazy update<cr>', 'update plugins')
-nmap('<leader>pa', '<cmd>Lazy<cr>', 'plugins info')
+nmap('<leader>pu', require('lazy').update, 'update plugins')
+nmap('<leader>pp', require('lazy').profile, 'open profiler')
+nmap('<leader>pa', require('lazy').home, 'plugins info')
 
 -- movement
 umap('<c-left>', '<cmd>CybuPrev<cr>', 'previous buffer')
@@ -27,18 +43,6 @@ nmap('U', '<cmd>Gitsigns reset_hunk<cr>', 'undo hunk')
 nmap('[h', '<cmd>Gitsigns prev_hunk<cr>', 'goto previous hunk')
 nmap(']h', '<cmd>Gitsigns next_hunk<cr>', 'goto next hunk')
 
--- lsp
-
-vim.api.nvim_create_autocmd('LspAttach', {
-  callback = function(args)
-    nmap('<leader>ni', '<cmd>NullLsInfo<cr>', { buffer = args.buf, desc = 'null-ls status' })
-    nmap('<leader>li', '<cmd>LspInfo<cr>', { buffer = args.buf, desc = 'LSP status' })
-    nmap('<leader>lf', vim.lsp.buf.format, { buffer = args.buf, desc = 'format code using LSP' })
-    nmap('<leader>lr', vim.lsp.buf.rename, { buffer = args.buf, desc = 'rename symbol under cursor' })
-    nmap('<leader>gd', vim.lsp.buf.definition, { buffer = args.buf, desc = 'goto definition' })
-    nmap('<leader>ca', vim.lsp.buf.code_action, { buffer = args.buf, desc = 'goto definition' })
-  end,
-})
 -- diagnostics
 nmap('[d', vim.diagnostic.goto_prev, 'goto prev diagnostic message')
 nmap(']d', vim.diagnostic.goto_next, 'goto next diagnostic message')
@@ -56,7 +60,7 @@ nmap('_', '"_', 'use void register')
 nmap('x', '"_x')
 nmap('X', '"_x')
 nmap('<del>', '"_x')
-nmap('<bs>', 'i<bs><esc>l', 'backspace in normal mode')
+-- nmap('<bs>', 'i<bs><esc>l', 'backspace in normal mode')
 
 -- other
 nmap('<leader>w', '<cmd>silent w <bar> redraw <cr>', 'write')
@@ -66,7 +70,6 @@ nmap('Q', '<cmd>bdelete<cr>', 'quit buffer')
 nmap('C', '<cmd>norm m`viw~``<cr>', 'toggle word case')
 umap('<c-z>', '<cmd>norm 1z=<cr>', 'spell correction')
 nmap('cn', '*``cgn', 'search and replace') -- https://kevinli.co/posts/2017-01-19-multiple-cursors-in-500-bytes-of-vimscript/
-nmap('dn', '*``diw', 'search and delete')
 vmap('.', ':norm .<cr>', 'dot repeat on all selected lines')
 umap('<esc>', '<cmd>nohlsearch<cr><esc>')
 nmap('d<space>', [[m`<cmd>keeppatterns %s/\s\+$//e<cr>``]], 'delete trailing whitespace')
@@ -97,3 +100,23 @@ nmap('<leader>sn', function() vim.o.stc = vim.o.stc ~= ' ' and ' ' or vim.g.stc 
 
 abbr('qw', 'q!') -- dvorak
 abbr('qn', 'q!') -- qwert
+
+if vim.fn.has('termux') == 1 then
+  umap('<ScrollWheelUp>', '<c-y>')
+  umap('<ScrollWheelDown>', '<c-e>')
+  vim.keymap.set('i', '<ScrollWheelUp>', '<c-x><c-y>')
+  vim.keymap.set('i', '<ScrollWheelDown>', '<c-x><c-e>')
+end
+
+-- lsp
+vim.api.nvim_create_autocmd('LspAttach', {
+  callback = function(args)
+    local nmap = function(lhs, rhs, opts) vim.keymap.set('n', lhs, rhs, opts) end
+    nmap('<leader>ni', '<cmd>NullLsInfo<cr>', { buffer = args.buf, desc = 'null-ls status' })
+    nmap('<leader>li', '<cmd>LspInfo<cr>', { buffer = args.buf, desc = 'LSP status' })
+    nmap('<leader>lf', vim.lsp.buf.format, { buffer = args.buf, desc = 'format code using LSP' })
+    nmap('<leader>lr', vim.lsp.buf.rename, { buffer = args.buf, desc = 'rename symbol under cursor' })
+    nmap('<leader>gd', vim.lsp.buf.definition, { buffer = args.buf, desc = 'goto definition' })
+    nmap('<leader>ca', vim.lsp.buf.code_action, { buffer = args.buf, desc = 'goto definition' })
+  end,
+})

@@ -1,11 +1,13 @@
 local M = {
   'goolord/alpha-nvim',
+  event = 'VimEnter',
   dependencies = { 'nvim-tree/nvim-web-devicons' },
 }
 
 M.config = function()
-  local utils = require('core.utils')
-  local dev_icon = require('nvim-web-devicons')
+  local v = vim.version()
+  local version = string.format('v%d.%d.%d-%s', v.major, v.minor, v.patch, (v.prerelease and 'dev' or 'stable'))
+  local dev_icon = require 'nvim-web-devicons'
   local scratch = '<cmd>enew <bar> setlocal buftype=nofile bufhidden=hide <bar>'
   local rep = ' | AlphaRedraw | Telescope find_files hidden=true<cr>'
 
@@ -17,16 +19,6 @@ M.config = function()
     [[\ \_\ \_\ \____\ \____/\ \___/  \ \_\ \_\ \_\ \_\]],
     [[ \/_/\/_/\/____/\/___/  \/__/    \/_/\/_/\/_/\/_/]],
   }
-
-  local details = function()
-    local v = vim.version()
-    return string.format(
-      '%s | v%s-%s',
-      utils.fish_path(vim.fn.getcwd()),
-      v.major .. '.' .. v.minor .. '.' .. v.patch,
-      (v.prerelease and 'dev' or 'stable')
-    )
-  end
 
   local rsplit = function(str, sep)
     local parts = vim.fn.split(str, sep) ---@type table
@@ -61,11 +53,10 @@ M.config = function()
       local len = #of_buttons + 1
       if len == 6 then break end
       local icon, hl = dev_icon.get_icon(rsplit(filename, '/'), rsplit(filename, '\\.'))
-      filename = vim.fn.fnamemodify(filename, ':~')
       -- stylua: ignore
       table.insert(of_buttons, button(
         tostring(len),
-        (icon or '') .. '  ' .. utils.fish_path(filename),
+        (icon or '') .. '  ' .. rsplit(filename, '/'),
         '<cmd>e ' .. filename .. ' <cr>',
         hl
       ))
@@ -82,7 +73,7 @@ M.config = function()
       { type = 'padding', val = 3 },
       { type = 'text', val = banner, opts = { position = 'center', hl = 'Type' } },
       { type = 'padding', val = 1 },
-      { type = 'text', val = details, opts = { position = 'center' } },
+      { type = 'text', val = version, opts = { position = 'center' } },
       { type = 'padding', val = 1 },
       button('f', '  Find file', '<cmd>Telescope find_files hidden=true<cr>'),
       button('g', '  Find word', '<cmd>Telescope live_grep<cr>'),
@@ -94,10 +85,10 @@ M.config = function()
       { type = 'padding', val = 1 },
       { type = 'group', val = oldfiles },
       { type = 'padding', val = 1 },
-      button('6', '  ~/r/dotfiles/', '<cmd>cd ~/repos/dotfiles/' .. rep, 'Comment'),
-      button('7', '  /s/m/notes/', '<cmd>cd /sdcard/main/notes/' .. rep, 'Title'),
-      button('8', '󰫅  ~/r/musicbrainzpy/', '<cmd>cd ~/repos/musicbrainzpy/ ' .. rep, 'Number'),
-      button('9', '󰖝  ~/.l/temp/', '<cmd>cd ~/.local/cache/temp/ ' .. rep, 'AlphaIconTemp'),
+      button('6', '  dotfiles', '<cmd>cd ~/repos/dotfiles/' .. rep, 'Comment'),
+      button('7', '  notes', '<cmd>cd /sdcard/main/notes/' .. rep, 'Title'),
+      button('8', '󰫅  musicbrainz-rust', '<cmd>cd ~/repos/musicbrainzpy/ ' .. rep, 'Number'),
+      button('9', '󰖝  temp files', '<cmd>cd ~/.local/cache/temp/ ' .. rep, 'AlphaIconTemp'),
     },
   }
 end
