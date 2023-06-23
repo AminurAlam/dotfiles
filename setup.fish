@@ -153,7 +153,10 @@ printf "CLEANUP... "
 echo "done\n"
 
 [ -e "$HOME/.termux_authinfo" ] || passwd
-[ "$(read -P 'downlad font? [y/N] ')" = y ] && curl -qso ~/.termux/font.ttf "$font_url" &>/dev/null
+
+# https://www.reddit.com/r/termux/comments/14ecdz1/update_termuxnerdinstaller/joxv8x7/
+command rm -f ~/.termux/font.ttf
+curl -qso ~/.termux/font.ttf "$font_url" &>/dev/null
 
 # printf "ADDING WIDGETS... "
 # if [ -d "$main/widget/" ]
@@ -174,5 +177,6 @@ echo "done\n"
 # TODO: zoxide db merge
 # TODO: better integrity check
 # TODO: move completely te fish
+# TODO: use ~/repos/nvim-fork/runtime/ as VIMRUNTIME
 
 : # make sure the script returns 0
