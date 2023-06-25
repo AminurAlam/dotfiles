@@ -8,13 +8,6 @@
 set DEPENDENCIES binutils clang cmake gettext libtreesitter libuv make ninja openssl pkg-config
 set UV_USE_IO_URING 0
 set INSTALL_PATH "$PREFIX/share"
-
-set SYSINIT "set mouse=a
-map <ScrollWheelUp> <C-Y>
-imap <ScrollWheelUp> <C-X><C-Y>
-map <ScrollWheelDown> <C-E>
-imap <ScrollWheelDown> <C-X><C-E>"
-
 set EXTRA_ARGS " \
 -DCMAKE_BUILD_TYPE=Release \
 -DCMAKE_INSTALL_PREFIX=$INSTALL_PATH \
@@ -38,7 +31,8 @@ function build
         cd "$HOME/repos/nvim-fork/"
         git pull origin
     else
-        git clone --depth 1 "https://github.com/AminurAlam/neovim.git" "$HOME/repos/nvim-fork/"
+        git clone --depth 1 --branch master \
+            "https://github.com/AminurAlam/neovim.git" "$HOME/repos/nvim-fork/"
         cd "$HOME/repos/nvim-fork/"
     end
 
@@ -49,17 +43,12 @@ function build
 end
 
 function post_build
-    command rm -fr $INSTALL_PATH/nvim
-    command mkdir -pv $INSTALL_PATH/nvim/
-
-    command cp -r runtime/ $INSTALL_PATH/nvim/runtime/
-    echo "$SYSINIT" >$INSTALL_PATH/nvim/sysinit.vim
     command cp -i build/bin/nvim ~/.local/bin/nvim
+    nvim --clean --headless +'helptags runtime/doc/ | q!'
 end
 
 function check
     build/bin/nvim --version
-    # [ "$(read -P 'run `make test`? [y/N] ')" = y ] && make test
 end
 
 
