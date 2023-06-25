@@ -10,7 +10,7 @@ local M = {
     'L3MON4D3/LuaSnip', -- helps create snippets
     'saadparwaiz1/cmp_luasnip', -- adds snippets to cmp
     'rafamadriz/friendly-snippets', -- provides multiple snippets
-    { 'mtoohey31/cmp-fish', ft = 'fish' },
+    'mtoohey31/cmp-fish',
   },
 }
 
@@ -62,7 +62,7 @@ M.config = function()
 
   cmp.setup {
     view = { entries = 'custom' },
-    experimental = { ghost_text = true },
+    experimental = { ghost_text = false },
     snippet = { expand = function(args) luasnip.lsp_expand(args.body) end },
     preselect = cmp.PreselectMode.None,
     window = {

@@ -1,5 +1,7 @@
 return {
   'nvim-treesitter/nvim-treesitter',
+  lazy = true,
+  ft = { 'bash', 'diff', 'fish', 'help', 'lua', 'rust', 'vim' },
   build = ':TSUpdate',
   config = function()
     local parsers = {
@@ -9,9 +11,6 @@ return {
       'fish',
       'lua',
       'luadoc',
-      'markdown',
-      'markdown_inline',
-      'python',
       'rust',
       'vim',
       'vimdoc',
@@ -19,7 +18,7 @@ return {
 
     require('nvim-treesitter.configs').setup {
       -- parser_install_dir = vim.fn.stdpath('data'),
-      ensure_installed = vim.fn.executable('clang') and parsers or {},
+      ensure_installed = vim.fn.executable('clang') == 1 and parsers or {},
       sync_install = true,
       highlight = { enable = true },
       incremental_selection = { enable = true },

@@ -1,6 +1,5 @@
 local M = {
   'goolord/alpha-nvim',
-  event = 'VimEnter',
   dependencies = { 'nvim-tree/nvim-web-devicons' },
 }
 
@@ -30,7 +29,7 @@ M.config = function()
       type = 'button',
       val = text,
       on_press = function()
-        local key = vim.api.nvim_replace_termcodes(keybind or sc .. '<Ignore>', true, false, true)
+        local key = vim.keycode(keybind or sc)
         vim.api.nvim_feedkeys(key, 't', false)
       end,
       opts = {

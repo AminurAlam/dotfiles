@@ -1,10 +1,12 @@
 local M = {
   'neovim/nvim-lspconfig',
-  ft = { 'c', 'cpp', 'rust', 'python', 'lua' },
+  lazy = true,
+  ft = { 'bash', 'c', 'cpp', 'fish', 'lua', 'python', 'rust' },
 }
 
 M.config = function()
   local lspconfig = require 'lspconfig'
+  local nmap = function(lhs, rhs, desc) vim.keymap.set('n', lhs, rhs, { noremap = true, silent = true, desc = desc }) end
 
   require('lspconfig.ui.windows').default_options.border = 'rounded'
 
@@ -18,7 +20,13 @@ M.config = function()
 
   setup_lsp('clangd')
 
-  setup_lsp('rust_analyzer', 'rust-analyzer')
+  setup_lsp('rust_analyzer', 'rust-analyzer', {
+    ['rust_analyzer'] = {
+      cargo = { buildScripts = { enable = false } },
+      completion = { autoimport = { enable = false } },
+      diagnostics = { warningsAsHints = {}, warningsAsInfo = {} },
+    },
+  })
 
   setup_lsp('pyright', 'pyright-langserver', {
     python = {
@@ -64,6 +72,16 @@ M.config = function()
       workspace = { checkThirdParty = false },
     },
   })
+
+  nmap('<leader>li', '<cmd>LspInfo<cr>', 'LSP status')
+  nmap('<leader>lf', vim.lsp.buf.format, 'format code using LSP')
+  nmap('<leader>lr', vim.lsp.buf.rename, 'rename symbol under cursor')
+  nmap('<leader>gd', vim.lsp.buf.definition, 'goto definition')
+  nmap('<leader>ca', vim.lsp.buf.code_action, 'goto definition')
+  nmap('[d', vim.diagnostic.goto_prev, 'goto prev diagnostic message')
+  nmap(']d', vim.diagnostic.goto_next, 'goto next diagnostic message')
+  nmap('<leader>d', vim.diagnostic.open_float, 'view line diagnostics')
+  nmap('<leader>D', function() vim.diagnostic.open_float { scope = 'buffer' } end, 'view all diagnostics in a buffer')
 end
 
 return M

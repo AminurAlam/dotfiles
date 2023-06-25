@@ -1,6 +1,5 @@
 return {
   'folke/tokyonight.nvim',
-  priority = 100,
   opts = {
     style = 'storm', -- The theme comes in three styles, `storm`, a darker variant `night` and `day`
     transparent = false, -- Enable this to disable setting the background color

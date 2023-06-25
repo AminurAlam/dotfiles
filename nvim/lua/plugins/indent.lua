@@ -1,5 +1,6 @@
 return {
   'lukas-reineke/indent-blankline.nvim',
+  enabled = false,
   opts = {
     show_first_indent_level = true,
     filetype_exclude = {

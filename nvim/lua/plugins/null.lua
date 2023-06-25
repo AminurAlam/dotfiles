@@ -31,7 +31,6 @@ M.config = function()
   add('shellcheck', 'code_actions', { bin = 'shellcheck' })
   add('clang_check', 'diagnostics', { bin = 'clang-check' })
   add('shellcheck', 'diagnostics', { bin = 'shellcheck' })
-  add('gitsigns', 'code_actions')
   -- add('ts_node_action', 'code_actions')
   -- add('spell', 'completion')
 

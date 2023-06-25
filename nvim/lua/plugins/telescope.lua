@@ -6,6 +6,9 @@ local M = {
 }
 
 M.config = function()
+  local nmap = function(lhs, rhs)
+    vim.keymap.set('n', lhs, rhs, { noremap = true, silent = true })
+  end
   require('telescope').setup {
     defaults = {
       layout_strategy = 'flex',
@@ -51,6 +54,10 @@ M.config = function()
       },
     },
   }
+
+  nmap('<leader>ff', require('telescope.builtin').find_files)
+  nmap('<leader>fg', require('telescope.builtin').live_grep)
+  nmap('<leader>fh', require('telescope.builtin').help_tags)
 end
 
 return M

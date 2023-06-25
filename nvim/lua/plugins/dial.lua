@@ -1,6 +1,6 @@
 local M = {
   'monaqa/dial.nvim',
-  keys = { '+', '-' },
+  keys = { { '+', '<cmd>DialIncrement<cr>' }, { '-', '<cmd>DialIncrement<cr>' } },
   dependencies = { 'nvim-lua/plenary.nvim' },
 }
 
