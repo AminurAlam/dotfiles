@@ -10,8 +10,8 @@ function open
         $EDITOR "$argv"
     else if [ -f "$argv" ]
         termux-share "$argv" &
-    else if echo "$argv" | rg '^https?://.*\.(jpg|png|gif|jpeg)' &>/dev/null
-        curl -o - "$argv" | timg -w 5 -
+    # else if echo "$argv" | rg '^https?://.*\.(jpg|png|gif|jpeg)' &>/dev/null
+    #     curl -o - "$argv" | timg -w 5 -
     else if type -qf xdg-open
         xdg-open "$argv" &
     else

@@ -1,6 +1,6 @@
 complete -c bm -fka '(rg --replace "" \'^https?://(www\.)?\' /sdcard/main/notes/bookmarks.note)'
 function bm
-    set BMPATH /sdcard/main/notes/bookmarks.note
+    set BMPATH /sdcard/main/notes/bookmarks
 
     function __process_link
         set -l LINK (string split ' ' "$argv[1]")[1]
