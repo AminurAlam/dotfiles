@@ -11,17 +11,11 @@
 # tagselection filterselection urlview podboat dirbrowser searchresultslist
 
 # unbind keys
-unbind-key j
-unbind-key k
-unbind-key J
-unbind-key K
 unbind-key s #ds disable saving
 
 # movement
-bind-key j down
-bind-key k up
-bind-key l open
-bind-key h quit
+bind-key ^ quit
+bind-key $ open
 bind-key g home
 bind-key G end
 
@@ -31,8 +25,9 @@ bind-key RIGHT next-feed articlelist
 bind-key LEFT prev-feed articlelist
 
 bind-key u reload
-bind-key TAB reload
-bind-key SPACE toggle-article-read articlelist
+bind-key TAB reload feedlist
+bind-key TAB reload articlelist
+bind-key ` toggle-article-read articlelist
 
 bind-key BACKSPACE quit
 bind-key ^q hard-quit

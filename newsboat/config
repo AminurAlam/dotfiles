@@ -1,10 +1,10 @@
-# vim: set ft=conf :
+# vim: set ft=config :
 # https://newsboat.org/releases/2.31/docs/newsboat.html
 
 include "~/.config/newsboat/colorscheme"
 include "~/.config/newsboat/bindings"
 error-log "~/.local/cache/newsboat-errors.log"
-browser "fish -c 'open %u'"
+browser "termux-open %u &"
 
 # title style
 show-title-bar "yes"
