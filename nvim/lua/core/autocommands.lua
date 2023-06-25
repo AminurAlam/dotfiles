@@ -8,9 +8,9 @@ autocmd('FileType', {
     vim.keymap.set('n', 'q', '<cmd>close<cr>', { buffer = true })
     vim.keymap.set('n', '<esc>', function()
       if vim.v.hlsearch == 1 then
-        vim.cmd('nohlsearch')
+        vim.cmd 'nohlsearch'
       else
-        vim.cmd('close')
+        vim.cmd 'close'
       end
     end, { buffer = true })
     set.buflisted = false
@@ -37,6 +37,7 @@ autocmd({ 'FileType', 'BufNewFile' }, {
     set.wrap = true
     set.linebreak = true
     set.statuscolumn = ' '
+    set.statusline = '%#stl_hl_a# %t %#stl_hl_cx#%#Normal# %=%{ g:stl.hlsearch() } %{ g:stl.progress() } '
   end,
 })
 
@@ -65,7 +66,7 @@ autocmd('TermOpen', {
     set.statuscolumn = ''
     set.number = false
     set.relativenumber = false
-    vim.cmd('startinsert')
+    vim.cmd 'startinsert'
   end,
 })
 
@@ -73,9 +74,7 @@ autocmd({ 'BufReadPost', 'BufWinEnter' }, {
   desc = 'restore cursor position',
   callback = function()
     local mark = vim.api.nvim_buf_get_mark(0, '"')
-    if mark[1] > 0 and mark[1] <= vim.api.nvim_buf_line_count(0) then
-      pcall(vim.api.nvim_win_set_cursor, 0, mark)
-    end
+    if mark[1] > 0 and mark[1] <= vim.api.nvim_buf_line_count(0) then pcall(vim.api.nvim_win_set_cursor, 0, mark) end
   end,
 })
 

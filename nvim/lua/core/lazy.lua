@@ -74,14 +74,7 @@ require('lazy').setup('plugins', {
     rtp = {
       reset = true, -- reset the runtime path to $VIMRUNTIME and your config directory
       paths = {}, -- add any custom paths here that you want to includes in the rtp
-      disabled_plugins = {
-        'gzip',
-        'tarPlugin',
-        'tohtml',
-        'tutor',
-        'zipPlugin',
-        'matchparen',
-      },
+      disabled_plugins = {},
     },
   },
   readme = {

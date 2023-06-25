@@ -18,12 +18,6 @@ local vmap = map 'x'
 local umap = map { '', 'i' }
 local abbr = map 'ca'
 
--- telescope
-nmap('<leader>ff', '<cmd>Telescope find_files<cr>', 'find files')
-nmap('<leader>fg', '<cmd>Telescope live_grep disable_coordinates=true<cr>', 'find text')
-nmap('<leader>fh', '<cmd>Telescope help_tags<cr>', 'find help')
-nmap('<leader>6', '<cmd>cd ~/repos/dotfiles/ | Telescope find_files<cr>')
-
 -- lazy
 nmap('<leader>pu', require('lazy').update, 'update plugins')
 nmap('<leader>pp', require('lazy').profile, 'open profiler')
@@ -38,19 +32,12 @@ nmap('[t', '<cmd>tabp<cr>', 'previous tab')
 nmap(']t', '<cmd>tabn<cr>', 'next tab')
 
 -- git
-nmap('H', '<cmd>Gitsigns preview_hunk<cr>', 'preview hunk')
-nmap('U', '<cmd>Gitsigns reset_hunk<cr>', 'undo hunk')
-nmap('[h', '<cmd>Gitsigns prev_hunk<cr>', 'goto previous hunk')
-nmap(']h', '<cmd>Gitsigns next_hunk<cr>', 'goto next hunk')
-
--- diagnostics
-nmap('[d', vim.diagnostic.goto_prev, 'goto prev diagnostic message')
-nmap(']d', vim.diagnostic.goto_next, 'goto next diagnostic message')
-nmap('<leader>d', vim.diagnostic.open_float, 'view line diagnostics')
-nmap('<leader>D', function() vim.diagnostic.open_float { scope = 'buffer' } end, 'view all diagnostics in a buffer')
+nmap('H', require('gitsigns').preview_hunk, 'preview hunk')
+nmap('U', require('gitsigns').reset_hunk, 'undo hunk')
+nmap('[h', require('gitsigns').prev_hunk, 'goto previous hunk')
+nmap(']h', require('gitsigns').next_hunk, 'goto next hunk')
 
 -- other plugins
-nmap('<leader>co', '<cmd>ColorizerToggle<cr>')
 nmap('<leader>ib', '<cmd>IndentBlanklineRefresh<cr>')
 nmap('<leader>tt', require('lazy.util').float_term)
 nmap('<leader>j', '<cmd>TSJToggle<cr>') -- norm v%J
@@ -60,21 +47,20 @@ nmap('_', '"_', 'use void register')
 nmap('x', '"_x')
 nmap('X', '"_x')
 nmap('<del>', '"_x')
+nmap('cn', '*``"_cgn', 'search and replace') -- https://kevinli.co/posts/2017-01-19-multiple-cursors-in-500-bytes-of-vimscript/
+nmap('d<space>', [[m`<cmd>keeppatterns %s/\s\+$//e<cr>``]], 'delete trailing whitespace')
 -- nmap('<bs>', 'i<bs><esc>l', 'backspace in normal mode')
 
 -- other
 nmap('<leader>w', '<cmd>silent w <bar> redraw <cr>', 'write')
 umap('<c-w>', '<cmd>silent w <bar> redraw <cr>', 'write')
-umap('<c-q>', '<cmd>q<cr>', 'quit')
+umap('<c-q>', '<cmd>qa<cr>', 'quit')
 nmap('Q', '<cmd>bdelete<cr>', 'quit buffer')
 nmap('C', '<cmd>norm m`viw~``<cr>', 'toggle word case')
 umap('<c-z>', '<cmd>norm 1z=<cr>', 'spell correction')
-nmap('cn', '*``cgn', 'search and replace') -- https://kevinli.co/posts/2017-01-19-multiple-cursors-in-500-bytes-of-vimscript/
 vmap('.', ':norm .<cr>', 'dot repeat on all selected lines')
 umap('<esc>', '<cmd>nohlsearch<cr><esc>')
-nmap('d<space>', [[m`<cmd>keeppatterns %s/\s\+$//e<cr>``]], 'delete trailing whitespace')
 nmap('gj', [[@='j^"_d0kgJ'<cr>]], 'join without leaving space')
-nmap('<leader>ol', [[@='^"1yiwo<c-v><esc>"1pA.<space><c-v><esc>0<c-a>$'<cr>]], 'create an ordered list') -- https://jdhao.github.io/2019/04/29/nvim_map_with_a_count/
 
 -- indent
 nmap('=', '==')
@@ -107,16 +93,3 @@ if vim.fn.has('termux') == 1 then
   vim.keymap.set('i', '<ScrollWheelUp>', '<c-x><c-y>')
   vim.keymap.set('i', '<ScrollWheelDown>', '<c-x><c-e>')
 end
-
--- lsp
-vim.api.nvim_create_autocmd('LspAttach', {
-  callback = function(args)
-    local nmap = function(lhs, rhs, opts) vim.keymap.set('n', lhs, rhs, opts) end
-    nmap('<leader>ni', '<cmd>NullLsInfo<cr>', { buffer = args.buf, desc = 'null-ls status' })
-    nmap('<leader>li', '<cmd>LspInfo<cr>', { buffer = args.buf, desc = 'LSP status' })
-    nmap('<leader>lf', vim.lsp.buf.format, { buffer = args.buf, desc = 'format code using LSP' })
-    nmap('<leader>lr', vim.lsp.buf.rename, { buffer = args.buf, desc = 'rename symbol under cursor' })
-    nmap('<leader>gd', vim.lsp.buf.definition, { buffer = args.buf, desc = 'goto definition' })
-    nmap('<leader>ca', vim.lsp.buf.code_action, { buffer = args.buf, desc = 'goto definition' })
-  end,
-})

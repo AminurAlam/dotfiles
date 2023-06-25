@@ -27,6 +27,7 @@ set.scroll = 20
 set.scrolloff = 6
 set.sidescroll = 4
 set.sidescrolloff = 8
+-- if vim.version().minor >= 9 then set.smoothscroll = true end
 
 -- cmdline, statusline & statuscolumn
 set.showmode = false
@@ -36,10 +37,10 @@ set.showcmdloc = 'statusline'
 set.laststatus = 3
 set.cmdheight = 0
 set.numberwidth = 1
-set.shortmess = 'acoOsSWIF'
-set.number = false
-set.relativenumber = false
-set.statuscolumn = vim.g.stc -- '%=%{ v:virtnum ? " " : v:lnum }%{ v:virtnum ? "…" : ( v:relnum ? "│" : "❯" ) }%s%C'
+set.shortmess = 'acCoOsSWIF'
+set.number = true
+set.relativenumber = true
+-- set.statuscolumn = vim.g.stc -- '%=%{ v:virtnum ? " " : v:lnum }%{ v:virtnum ? "…" : ( v:relnum ? "│" : "❯" ) }%s%C'
 set.signcolumn = 'yes:1'
 
 -- folding
@@ -50,7 +51,7 @@ set.foldminlines = 3
 set.foldmethod = 'expr'
 set.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
 set.foldtext = 'getline(v:foldstart)." ... ".trim(getline(v:foldend))." [".(v:foldend-v:foldstart)." lines]"'
-set.foldcolumn = 'auto'
+set.foldcolumn = '0'
 
 -- terminal, cursor & gui
 set.belloff = 'showmatch'
@@ -64,7 +65,7 @@ set.cursorline = true
 set.cursorlineopt = 'number'
 set.mouse = 'a'
 set.background = 'dark'
-set.helpheight = 30
+set.helpheight = 25
 set.wrap = false
 set.linebreak = true
 set.breakindent = true
@@ -84,18 +85,21 @@ set.confirm = true
 set.clipboard:append('unnamedplus')
 set.list = true
 set.listchars = {
-  tab = '  ',
-  trail = ' ',
+  -- tab = ' ',
+  -- space = ' ',
+  leadmultispace = '│   ',
+  -- trail = ' ',
   extends = '…',
   precedes = '…',
   conceal = '●',
   nbsp = '␣',
 }
 set.fillchars = {
-  eob = ' ',
+  stl = ' ',
   fold = ' ',
   foldopen = '',
   foldclose = '',
-  lastline = '.',
   msgsep = '─',
+  eob = ' ',
+  lastline = '.',
 }
