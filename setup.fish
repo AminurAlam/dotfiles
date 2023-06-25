@@ -1,12 +1,15 @@
 set arch (uname -m | sed 's/^arm.*/arm/')
-set dotfiles $HOME/repos/dotfiles # NOTE: make sure this is a full path
-set main /sdcard/main/termux
 set packages dust libgit2 fd git neovim openssh renameutils ripgrep starship lua-language-server termux-api zoxide
-set font_url "https://raw.githubusercontent.com/ryanoasis/nerd-fonts/master/patched-fonts/SourceCodePro/Regular/SauceCodeProNerdFont-Regular.ttf"
-set dotfiles_url "https://github.com/AminurAlam/dotfiles.git"
-set fish_setup_url "https://raw.githubusercontent.com/AminurAlam/dotfiles/main/setup.fish"
-set root_url "https://github.com/termux-pacman/termux-packages/releases"
+# urls
+set url_font "https://raw.githubusercontent.com/ryanoasis/nerd-fonts/master/patched-fonts/SourceCodePro/Regular/SauceCodeProNerdFont-Regular.ttf"
+set url_dotfiles "https://github.com/AminurAlam/dotfiles.git"
+set url_neovim "https://github.com/AminurAlam/neovim.git"
+set url_fish_setup "https://raw.githubusercontent.com/AminurAlam/dotfiles/main/setup.fish"
+set url_bootstrap "https://github.com/termux-pacman/termux-packages/releases"
+# paths
 set main "/sdcard/main/termux/"
+set path_dots $HOME/repos/dotfiles # NOTE: make sure this is a full path
+set path_nvim $HOME/repos/nvim-fork
 
 command mkdir -p $HOME/{backup,repos,.shortcuts}/ $HOME/.local/{share,bin,cache}/
 
@@ -24,7 +27,7 @@ function download-bootstrap
     # fi
     #
     # printf "downloading bootstrap to: bootstrap-%s.zip\n" "$arch"
-    # curl -q#LO -- "${root_url}/latest/download/bootstrap-$arch.zip"
+    # curl -q#LO -- "${url_bootstrap}/latest/download/bootstrap-$arch.zip"
 end
 
 function check-hash
@@ -82,7 +85,7 @@ end
 #     pacman-key --populate &>/dev/null
 # printf "done\n"
 
-function setup-vnc
+function setup-proot
     :
 end
 
@@ -113,27 +116,28 @@ if command -vq python && command -vq pip
 end
 
 printf "DOWNLOADING DOTFILES... "
-    [ -d "$dotfiles" ] && command rm -fr "$dotfiles"
-    cd # NOTE: if you are in $dotfiles cloning wont work
-    git clone -q --depth 1 "$dotfiles_url" "$dotfiles"
+    [ -d "$path_dots" ] && command rm -fr "$path_dots"
+    cd # NOTE: if you are in $path_dots cloning wont work
+    git clone -q --depth 1 "$url_dotfiles" "$path_dots"
+    git clone -q --depth 1 "$url_neovim" "$path_nvim"
 printf "done\n"
 
 printf "LINKING CONFIG DIRECTORIES... "
 for config in aria2 fish git mutt newsboat npm nvim python
-    [ -e "$dotfiles/$config" ] || continue
+    [ -e "$path_dots/$config" ] || continue
     # unlink/move old directories in ~/.config to be replaced
     [ -L "$HOME/.config/$config" ] && command unlink "$HOME/.config/$config"
     [ -d "$HOME/.config/$config" ] && command mv -f ~/.config/$config ~/backup/
-    ln -fs "$dotfiles/$config" ~/.config/
+    ln -fs "$path_dots/$config" ~/.config/
 end
 printf "done\n"
 
 printf "LINKING CONFIG FILES... "
-    ln -fs "$dotfiles/other/curlrc" ~/.config/.curlrc
-    ln -fs "$dotfiles/other/stylua.toml" ~/.config/stylua.toml
-    ln -fs "$dotfiles/other/starship.toml" ~/.config/starship.toml
-    ln -fs "$dotfiles/termux/colors.properties" ~/.termux/colors.properties
-    ln -fs "$dotfiles/termux/termux.properties" ~/.termux/termux.properties
+    ln -fs "$path_dots/other/curlrc" ~/.config/.curlrc
+    ln -fs "$path_dots/other/stylua.toml" ~/.config/stylua.toml
+    ln -fs "$path_dots/other/starship.toml" ~/.config/starship.toml
+    ln -fs "$path_dots/termux/colors.properties" ~/.termux/colors.properties
+    ln -fs "$path_dots/termux/termux.properties" ~/.termux/termux.properties
 printf "done\n"
 
 printf "ADDING BINARIES... "
@@ -146,17 +150,23 @@ else
     printf "\$main/bin/universal/ or \$main/bin/$arch/ doesnt exist\n"
 end
 
+printf "CHANGING FONT... "
+    command rm -f ~/.termux/font.ttf
+    curl -qso ~/.termux/font.ttf "$url_font" &>/dev/null
+printf "done\n"
+
+printf "ADDING ZOXIDE DB... "
+    [ -e "$main/db.zo" ] && command cp -f $main/db.zo $HOME/.local/share/zoxide/db.zo
+printf "done\n"
+
+printf "ADDING PASSWORD..."
+[ -e "$HOME/.termux_authinfo" ] && echo "done\n" || passwd
+
 printf "CLEANUP... "
     truncate -s 0 "$PREFIX"/etc/motd*
     [ -d ~/storage/ ] && command rm -fr ~/storage/
     command rmdir --ignore-fail-on-non-empty ~/backup/
 echo "done\n"
-
-[ -e "$HOME/.termux_authinfo" ] || passwd
-
-# https://www.reddit.com/r/termux/comments/14ecdz1/update_termuxnerdinstaller/joxv8x7/
-command rm -f ~/.termux/font.ttf
-curl -qso ~/.termux/font.ttf "$font_url" &>/dev/null
 
 # printf "ADDING WIDGETS... "
 # if [ -d "$main/widget/" ]
@@ -174,9 +184,6 @@ curl -qso ~/.termux/font.ttf "$font_url" &>/dev/null
 # end
 
 # TODO: proot-distro and gui
-# TODO: zoxide db merge
-# TODO: better integrity check
-# TODO: move completely te fish
-# TODO: use ~/repos/nvim-fork/runtime/ as VIMRUNTIME
+# TODO: move completely to fish
 
 : # make sure the script returns 0
