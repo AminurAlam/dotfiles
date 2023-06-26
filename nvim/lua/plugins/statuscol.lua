@@ -1,0 +1,16 @@
+local M = { 'luukvbaal/statuscol.nvim' }
+
+M.config = function()
+  local builtin = require('statuscol.builtin')
+  require('statuscol').setup({
+    relculright = true,
+    segments = {
+      { text = { builtin.lnumfunc }, click = 'v:lua.ScFa' },
+      { text = { builtin.foldfunc }, click = 'v:lua.ScFa' },
+      { sign = { name = { '.*' }, maxwidth = 2, colwidth = 1, auto = true, wrap = true } },
+      { text = { ' ' } },
+    },
+  })
+end
+
+return M

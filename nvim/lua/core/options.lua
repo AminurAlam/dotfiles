@@ -40,7 +40,7 @@ set.numberwidth = 1
 set.shortmess = 'acCoOsSWIF'
 set.number = true
 set.relativenumber = true
--- set.statuscolumn = vim.g.stc -- '%=%{ v:virtnum ? " " : v:lnum }%{ v:virtnum ? "…" : ( v:relnum ? "│" : "❯" ) }%s%C'
+-- set.statuscolumn = vim.g.stc -- '%=%{ v:virtnum ? "…" : ( v:relnum ? "│" : "❯" ) }%-00.1s'
 set.signcolumn = 'yes:1'
 
 -- folding
@@ -50,8 +50,8 @@ set.foldnestmax = vim.o.foldlevel + 1
 set.foldminlines = 3
 set.foldmethod = 'expr'
 set.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
-set.foldtext = 'getline(v:foldstart)." ... ".trim(getline(v:foldend))." [".(v:foldend-v:foldstart)." lines]"'
-set.foldcolumn = '0'
+set.foldtext = 'getline(v:foldstart) .. " ... " .. trim(getline(v:foldend)) .. " [" .. (v:foldend-v:foldstart+1) .. " lines]"'
+set.foldcolumn = '1'
 
 -- terminal, cursor & gui
 set.belloff = 'showmatch'
@@ -72,7 +72,6 @@ set.breakindent = true
 
 -- others
 set.formatoptions:remove { 'c', 'r', 'o' }
-set.showmatch = true -- briefly jump to the matching bracket
 set.matchtime = 1
 set.grepprg = 'rg --vimgrep '
 set.timeout = false -- remove for which-key
@@ -85,10 +84,9 @@ set.confirm = true
 set.clipboard:append('unnamedplus')
 set.list = true
 set.listchars = {
-  -- tab = ' ',
-  -- space = ' ',
+  tab = '  ',
   leadmultispace = '│   ',
-  -- trail = ' ',
+  trail = '󱁐',
   extends = '…',
   precedes = '…',
   conceal = '●',

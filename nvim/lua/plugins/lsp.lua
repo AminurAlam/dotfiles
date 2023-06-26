@@ -1,8 +1,4 @@
-local M = {
-  'neovim/nvim-lspconfig',
-  lazy = true,
-  ft = { 'bash', 'c', 'cpp', 'fish', 'lua', 'python', 'rust' },
-}
+local M = { 'neovim/nvim-lspconfig' }
 
 M.config = function()
   local lspconfig = require 'lspconfig'

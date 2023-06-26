@@ -97,4 +97,4 @@ vim.api.nvim_create_autocmd({ 'VimEnter', 'ModeChanged' }, {
   end,
 })
 
-vim.opt.stl = '%#stl_hl_a# %{ g:stl.mode } %#stl_hl_b# %t %{ &modified ? "󰆓 " : "" }%{ !empty(finddir(".git", expand("%:p:h") .. ";")) ? "" : "" } %#stl_hl_bc#%#Normal# %{ get(b:, "gitsigns_status", "") } %=%S %{ g:stl.hlsearch() } %{ reg_recording() != "" ? "@" .. reg_recording() : "" } %#stl_hl_cx#%#stl_hl_a# %{ g:stl.progress() } %{ &filetype } '
+vim.opt.stl = '%#stl_hl_a# %{ g:stl.mode } %#stl_hl_b# %t %{ &modified ? "󰆓 " : "" }%{ !empty(finddir(".git", expand("%:p:h") .. ";")) ? "" : "" } %#stl_hl_bc#%#Normal# %{ get(b:, "gitsigns_status", "") } %=%S %{ g:stl.hlsearch() } %{ reg_recording() != "" ? "@" .. reg_recording() : "" } %#stl_hl_cx#%#stl_hl_a# %{ g:stl.progress() } %Y '

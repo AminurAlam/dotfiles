@@ -59,17 +59,6 @@ autocmd('BufNewFile', {
   end,
 })
 
-autocmd('TermOpen', {
-  callback = function()
-    set.colorcolumn = ''
-    set.signcolumn = 'no'
-    set.statuscolumn = ''
-    set.number = false
-    set.relativenumber = false
-    vim.cmd 'startinsert'
-  end,
-})
-
 autocmd({ 'BufReadPost', 'BufWinEnter' }, {
   desc = 'restore cursor position',
   callback = function()
@@ -84,6 +73,18 @@ autocmd('BufWritePre', {
     local path = vim.fs.dirname(details.match)
     if vim.fn.isdirectory(path) == 0 then vim.fn.mkdir(path, 'p') end
   end,
+})
+
+autocmd('BufWinLeave', {
+  desc = 'save folds on exit',
+  pattern = '?*',
+  command = 'silent! mkview 1',
+})
+
+autocmd('BufWinEnter', {
+  desc = 'auto load folds',
+  pattern = '?*',
+  command = 'silent! loadview 1',
 })
 
 autocmd('TextYankPost', {
