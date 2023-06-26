@@ -1,5 +1,9 @@
-vim.opt.statuscolumn = ' '
-vim.opt.conceallevel = 3
-vim.opt.concealcursor = 'n'
+vim.opt_local.conceallevel = 2
+vim.opt_local.concealcursor = 'n'
+vim.opt_local.listchars = {
+  tab = '  ',
+  leadmultispace = '  ',
+  trail = ' ',
+}
 
-vim.api.nvim_set_hl(0, 'Whitespace', { bg = '' })
+vim.api.nvim_set_hl(0, 'Whitespace', {})
