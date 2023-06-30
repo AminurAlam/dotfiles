@@ -1,16 +1,10 @@
-function gcp
-    set -l url "$argv[1]"
-    set -l path "$argv[2]"
-    [ -n "$depth" ] &&
-        set -l depth "--depth" "$depth" ||
-        set -l depth "--depth" "1"
-    # [ -n "$branch" ] &&
-    #     set -l branch "--branch" "$branch" ||
-    #     set -l branch ""
+function gcp -a url path branch
+    [ -n "$branch" ] && set -l __branch "--branch" "$branch"
 
     cd "$XDG_PROJECTS_DIR"
-    git clone $depth -- "$url" "$path"
+    git clone --depth 1 $__branch -- $url $path
     # TODO: cd into most recent dir
-    cd "$XDG_PROJECTS_DIR/$path"
+    # cd "$XDG_PROJECTS_DIR/$path"
+    cd (ls -N1 --sort time | head -n1)
 
 end

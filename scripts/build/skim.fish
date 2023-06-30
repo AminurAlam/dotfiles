@@ -1,7 +1,7 @@
-set REPO_NAME -- skim-fork
-set REPO_PATH -- "$XDG_PROJECTS_DIR/$REPO_NAME"
-set REPO_URL -- "https://github.com/AminurAlam/skim.git"
-set DEPENDENCIES -- binutils rust
+set REPO_NAME skim-fork
+set REPO_PATH "$XDG_PROJECTS_DIR/$REPO_NAME"
+set REPO_URL "https://github.com/AminurAlam/skim.git"
+set DEPENDENCIES binutils rust
 
 function pre_build
     if command -vq pacman

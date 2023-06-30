@@ -31,10 +31,6 @@ function bm
     switch "$argv[1]"
         case a add
             [ -n "$argv[2]" ] && echo "$argv[2]" >>"$BMPATH" || echo "nothing to add"
-        # case c check
-        #     cat $BMPATH | grep '^http' | sort | uniq -c | sort
-        case d delete
-            echo TODO
         case e ed edit
             set -q EDITOR && $EDITOR $BMPATH || echo "no EDITOR found"
         case '*'

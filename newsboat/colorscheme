@@ -12,7 +12,7 @@
 highlight article "^>.*" green
 highlight article " /?[ru]/[-a-zA-Z0-9_]{3,16}" red
 
-highlight article "^(Feed|Title|Author|Link|Date):" blue default bold
+highlight article "^(Feed|Title|Author|Link|Date|Links):" blue default bold
 highlight article "https?://[^ ]+" cyan default underline
 
 highlight article "\\[[0-9]+\\]" green

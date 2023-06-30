@@ -5,13 +5,13 @@ set url_font "https://raw.githubusercontent.com/ryanoasis/nerd-fonts/master/patc
 set url_dotfiles "https://github.com/AminurAlam/dotfiles.git"
 set url_neovim "https://github.com/AminurAlam/neovim.git"
 set url_fish_setup "https://raw.githubusercontent.com/AminurAlam/dotfiles/main/setup.fish"
-set url_bootstrap "https://github.com/termux-pacman/termux-packages/releases"
+set url_bootstrap "https://github.com/termux-pacman/termux-pacages/releases"
 # paths
 set main "/sdcard/main/termux/"
-set path_dots $HOME/repos/dotfiles # NOTE: make sure this is a full path
-set path_nvim $HOME/repos/nvim-fork
+set path_dots "$HOME/repos/dotfiles" # NOTE: mae sure this is a full path
+set path_nvim "$HOME/repos/nvim-fork"
 
-command mkdir -p $HOME/{backup,repos,.shortcuts}/ $HOME/.local/{share,bin,cache}/
+command mkdir -p $HOME/{backup,repos}/ $HOME/.local/{share,bin,cache}/
 
 function download-bootstrap
     # printf "%s\n" "$1"
@@ -165,7 +165,7 @@ printf "ADDING PASSWORD..."
 printf "CLEANUP... "
     truncate -s 0 "$PREFIX"/etc/motd*
     [ -d ~/storage/ ] && command rm -fr ~/storage/
-    command rmdir --ignore-fail-on-non-empty ~/backup/
+    command rmdir --ignore-fail-on-non-empty --parents ~/backup/**/
 echo "done\n"
 
 # printf "ADDING WIDGETS... "
@@ -183,7 +183,8 @@ echo "done\n"
 #     printf "bin.sha256 is missing\n"
 # end
 
-# TODO: proot-distro and gui
+# TODO: proot-distro and gui installation
 # TODO: move completely to fish
+# TODO: copy newsboat db
 
 : # make sure the script returns 0

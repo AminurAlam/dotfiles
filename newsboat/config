@@ -4,7 +4,6 @@
 include "~/.config/newsboat/colorscheme"
 include "~/.config/newsboat/bindings"
 error-log "~/.local/cache/newsboat-errors.log"
-browser "termux-open %u &"
 
 # title style
 show-title-bar "yes"
@@ -31,3 +30,6 @@ prepopulate-query-feeds "yes"
 show-keymap-hint "no"
 show-read-feeds "no"
 wrap-scroll "yes"
+
+browser "termux-open %u &"
+# pager "nvim +'set ft=article'"

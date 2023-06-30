@@ -81,7 +81,7 @@ set -gxp --path PATH "$CARGO_HOME/bin" # after declaring CARGO_HOME
 
 ### SOURCE ###
 command -sq starship && starship init fish | source || source $XDG_CONFIG_HOME/fish/functions/load_prompt.fish
-command -sq zoxide && zoxide init fish | source || alias z cd # TODO: pre populate/backup zoxidu db
+command -sq zoxide && zoxide init fish | source || alias z cd
 
 ### BINDINGS ###
 fish_vi_key_bindings
@@ -99,7 +99,7 @@ abbr zpic "z $XDG_PICTURES_DIR/"
 abbr zt "z $XDG_DIR/Tachiyomi*/local"
 abbr zm "z $XDG_DIR/main/"
 abbr zl "z ~/.local/"
-abbr zmbz "z $XDG_PROJECTS_DIR/musicbrainzpy/"
+abbr zmbz "z $XDG_PROJECTS_DIR/mbz-rust/"
 abbr zd "z $XDG_PROJECTS_DIR/dotfiles/"
 abbr zc "z $XDG_CONFIG_HOME/"
 abbr zcf "z $XDG_CONFIG_HOME/fish/"

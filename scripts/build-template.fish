@@ -1,7 +1,7 @@
-set REPO_NAME -- ""
-set REPO_PATH -- "$XDG_PROJECTS_DIR/$REPO_NAME"
-set REPO_URL -- ""
-set DEPENDENCIES -- binutils
+set REPO_NAME ""
+set REPO_PATH "$XDG_PROJECTS_DIR/$REPO_NAME"
+set REPO_URL ""
+set DEPENDENCIES binutils
 
 function pre_build
     if command -vq pacman

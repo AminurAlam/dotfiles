@@ -1,8 +1,8 @@
 
-set REPO_NAME -- "melonDS"
-set REPO_PATH -- "$XDG_PROJECTS_DIR/$REPO_NAME"
-set REPO_URL -- ""
-set DEPENDENCIES -- binutils cmake extra-cmake-modules git libpcap sdl2 qt5-base qt5-qtbase-cross-tools qt5-multimedia libslirp libarchive zstd
+set REPO_NAME "melonDS"
+set REPO_PATH "$XDG_PROJECTS_DIR/$REPO_NAME"
+set REPO_URL ""
+set DEPENDENCIES binutils cmake extra-cmake-modules git libpcap sdl2 qt5-base qt5-qtbase-cross-tools qt5-multimedia libslirp libarchive zstd
 
 function pre_build
     if command -vq pacman

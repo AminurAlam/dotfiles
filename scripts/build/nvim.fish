@@ -1,7 +1,7 @@
-set REPO_NAME -- nvim-fork
-set REPO_PATH -- "$XDG_PROJECTS_DIR/$REPO_NAME"
-set REPO_URL -- "https://github.com/AminurAlam/neovim.git"
-set DEPENDENCIES -- binutils clang cmake gettext libtreesitter libuv make ninja openssl pkg-config
+set REPO_NAME nvim-fork
+set REPO_PATH "$XDG_PROJECTS_DIR/$REPO_NAME"
+set REPO_URL "https://github.com/AminurAlam/neovim.git"
+set DEPENDENCIES binutils clang cmake gettext libtreesitter libuv make ninja openssl pkg-config
 
 function pre_build
     if command -vq pacman

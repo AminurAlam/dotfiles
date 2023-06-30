@@ -1,7 +1,7 @@
-set REPO_NAME -- luvi luvit lit
-# set REPO_PATH -- "$XDG_PROJECTS_DIR/$REPO_NAME"
-# set REPO_URL -- ""
-set DEPENDENCIES -- clang cmake make openssl binutils perl libuv
+set REPO_NAME luvi luvit lit
+# set REPO_PATH "$XDG_PROJECTS_DIR/$REPO_NAME"
+# set REPO_URL ""
+set DEPENDENCIES clang cmake make openssl binutils perl libuv
 
 function pre_build
     if command -vq pacman

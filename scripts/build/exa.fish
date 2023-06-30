@@ -1,7 +1,7 @@
-set REPO_NAME -- exa-fork
-set REPO_PATH -- "$XDG_PROJECTS_DIR/$REPO_NAME"
-set REPO_URL -- "https://github.com/AminurAlam/exa.git"
-set DEPENDENCIES -- binutils libgit2 rust
+set REPO_NAME exa-fork
+set REPO_PATH "$XDG_PROJECTS_DIR/$REPO_NAME"
+set REPO_URL "https://github.com/AminurAlam/exa.git"
+set DEPENDENCIES binutils libgit2 rust
 
 function pre_build
     if command -vq pacman
