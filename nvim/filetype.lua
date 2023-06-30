@@ -4,5 +4,6 @@ vim.filetype.add {
     ['.*%.cue'] = 'cuesheet',
     ['.*%.note'] = 'note',
     ['.*%.conf'] = 'toml',
+    ['newsboat%-article%..*'] = 'article',
   },
 }

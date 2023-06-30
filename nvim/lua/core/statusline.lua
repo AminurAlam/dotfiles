@@ -67,7 +67,7 @@ local mode_names = {
 }
 
 vim.g.stl = {
-  mode = 'NORMAL',
+  mode = function() return mode_names[vim.api.nvim_get_mode().mode] or 'NORMAL' end,
   hlsearch = function()
     local sc = vim.fn.searchcount()
     if vim.v.hlsearch == 0 then return '' end
@@ -93,8 +93,7 @@ vim.api.nvim_create_autocmd({ 'VimEnter', 'ModeChanged' }, {
     vim.api.nvim_set_hl(0, 'stl_hl_a', { bg = mode_color, fg = '#30354A', bold = true })
     vim.api.nvim_set_hl(0, 'stl_hl_b', { fg = mode_color, bg = '#30354A' })
     vim.api.nvim_set_hl(0, 'stl_hl_cx', { fg = mode_color })
-    vim.g.stl.mode = mode_names[mode] or 'NORMAL'
   end,
 })
 
-vim.opt.stl = '%#stl_hl_a# %{ g:stl.mode } %#stl_hl_b# %t %{ &modified ? "󰆓 " : "" }%{ !empty(finddir(".git", expand("%:p:h") .. ";")) ? "" : "" } %#stl_hl_bc#%#Normal# %{ get(b:, "gitsigns_status", "") } %=%S %{ g:stl.hlsearch() } %{ reg_recording() != "" ? "@" .. reg_recording() : "" } %#stl_hl_cx#%#stl_hl_a# %{ g:stl.progress() } %Y '
+vim.opt.stl = '%#stl_hl_a# %{ g:stl.mode() } %#stl_hl_b# %t %{ &modified ? "󰆓 " : "" }%{ !empty(finddir(".git", expand("%:p:h") .. ";")) ? "" : "" } %#stl_hl_bc#%#Normal# %{ get(b:, "gitsigns_status", "") } %=%S %{ g:stl.hlsearch() } %{ reg_recording() != "" ? "@" .. reg_recording() : "" } %#stl_hl_cx#%#stl_hl_a# %{ g:stl.progress() } %Y '

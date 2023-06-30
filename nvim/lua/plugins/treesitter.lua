@@ -1,7 +1,7 @@
 return {
   'nvim-treesitter/nvim-treesitter',
-  lazy = true,
-  ft = { 'bash', 'diff', 'fish', 'help', 'lua', 'rust', 'vim' },
+  -- lazy = true,
+  -- ft = { 'bash', 'diff', 'fish', 'help', 'lua', 'rust', 'vim' },
   build = ':TSUpdate',
   config = function()
     local parsers = {

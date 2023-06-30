@@ -41,7 +41,7 @@ set.shortmess = 'acCoOsSWIF'
 set.number = true
 set.relativenumber = true
 -- set.statuscolumn = vim.g.stc -- '%=%{ v:virtnum ? "…" : ( v:relnum ? "│" : "❯" ) }%-00.1s'
-set.signcolumn = 'yes:1'
+set.signcolumn = 'number'
 
 -- folding
 set.foldenable = true
@@ -51,7 +51,7 @@ set.foldminlines = 3
 set.foldmethod = 'expr'
 set.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
 set.foldtext = 'getline(v:foldstart) .. " ... " .. trim(getline(v:foldend)) .. " [" .. (v:foldend-v:foldstart+1) .. " lines]"'
-set.foldcolumn = '1'
+set.foldcolumn = 'auto'
 
 -- terminal, cursor & gui
 set.belloff = 'showmatch'
@@ -85,7 +85,7 @@ set.clipboard:append('unnamedplus')
 set.list = true
 set.listchars = {
   tab = '  ',
-  leadmultispace = '│   ',
+  -- leadmultispace = '   │',
   trail = '󱁐',
   extends = '…',
   precedes = '…',
