@@ -17,6 +17,10 @@ unbind-key s #ds disable saving
 bind-key ^ quit
 bind-key $ open
 bind-key $ next article
+
+bind-key ^U halfpageup
+bind-key ^D halfpagedown
+
 bind-key g home
 bind-key G end
 

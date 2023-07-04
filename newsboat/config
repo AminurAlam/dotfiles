@@ -1,5 +1,6 @@
 # vim: set ft=config :
 # https://newsboat.org/releases/2.31/docs/newsboat.html
+# /data/data/com.termux/files/usr/share/doc/newsboat/examples/config
 
 include "~/.config/newsboat/colorscheme"
 include "~/.config/newsboat/bindings"
@@ -14,22 +15,26 @@ urlview-title-format ""
 
 # list style
 datetime-format "%m-%d"
-feedlist-format " [%4U] %t %S"
+feedlist-format " %?l?[%4U]&      ? %t %S"
 articlelist-format "%?n? •?%?T? %12T? %t" # unread ? dot : null ; group ? groupname : none ; title
 
 # filters
 ignore-article "*" "title =~ \" (Open)?AI\""
-ignore-article "*" "title =~ \" (Chat)?GPT \""
+ignore-article "*" "title =~ \" (Chat)?GPT-?(3|4|5)? \""
 ignore-article "*" "title =~ \" LLM \""
+ignore-article "https://superuser.com/feeds/week" "title =~ \"windows\""
+ignore-article "https://muspy.com/feed?id=mobwjpkr95u5p1b4f2w1bjt74qc8u3" "title =~ \"remix\""
 ignore-mode "display"
 
 reload-threads 10
 scrolloff 8
-goto-next-feed "no"
-prepopulate-query-feeds "yes"
-show-keymap-hint "no"
-show-read-feeds "no"
-wrap-scroll "yes"
+goto-next-feed no
+prepopulate-query-feeds yes
+show-keymap-hint no
+wrap-scroll no
+show-read-feeds no
+always-display-description no
 
+# always-download "https://lobste.rs/rss"
 browser "termux-open %u &"
 # pager "nvim +'set ft=article'"
