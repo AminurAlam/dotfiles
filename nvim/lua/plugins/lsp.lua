@@ -49,8 +49,8 @@ M.config = function()
       typeFormat = { config = { auto_complete_end = true } },
       completion = { callSnippet = 'Replace', displayContext = 5 },
       diagnostics = {
-        globals = { 'vim' },
-        disable = { 'lowercase-global' },
+        globals = { 'vim', 'drastic', 'ratt' },
+        -- disable = { 'lowercase-global' },
         libraryFiles = 'Disable',
       },
       format = {

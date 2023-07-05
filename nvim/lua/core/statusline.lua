@@ -86,7 +86,7 @@ vim.g.stl = {
 }
 
 vim.api.nvim_set_hl(0, 'stl_hl_bc', { fg = '#30354A' })
-vim.api.nvim_create_autocmd({ 'VimEnter', 'ModeChanged' }, {
+vim.api.nvim_create_autocmd({ 'VimEnter', 'ModeChanged', 'BufEnter' }, {
   callback = function()
     local mode = vim.api.nvim_get_mode().mode
     local mode_color = mode_colors[mode]

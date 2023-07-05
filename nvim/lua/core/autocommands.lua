@@ -59,6 +59,16 @@ autocmd('BufNewFile', {
   end,
 })
 
+autocmd('VimEnter', {
+  desc = 'open directory in telescope',
+  callback = function(details)
+    if vim.fn.isdirectory(details.file) == 1 then
+      vim.cmd.cd(details.file)
+      vim.cmd('Telescope find_files')
+    end
+  end,
+})
+
 autocmd({ 'BufReadPost', 'BufWinEnter' }, {
   desc = 'restore cursor position',
   callback = function()
@@ -81,7 +91,7 @@ autocmd('BufWinLeave', {
   command = 'silent! mkview 1',
 })
 
-autocmd('BufWinEnter', {
+autocmd('BufEnter', {
   desc = 'auto load folds',
   pattern = '?*',
   command = 'silent! loadview 1',
@@ -89,10 +99,6 @@ autocmd('BufWinEnter', {
 
 autocmd('TextYankPost', {
   callback = function() vim.highlight.on_yank { higroup = 'IncSearch', timeout = 300 } end,
-})
-
-autocmd('VimLeave', {
-  callback = function() vim.opt.guicursor = 'a:hor25' end,
 })
 
 autocmd('BufEnter', {
@@ -131,28 +137,9 @@ autocmd('BufEnter', {
 --         end
 --     end
 -- })
--- autocmd('VimEnter', {
---   desc = 'open directory in telescope',
---   callback = function(details)
---     if vim.fn.isdirectory(details.file) == 1 then
---       vim.cmd.cd(details.file)
---       vim.cmd('Telescope find_files')
---     end
---   end,
+-- autocmd('VimLeave', {
+--   callback = function() vim.opt.guicursor = 'a:hor25' end,
 -- })
--- autocmd('BufWinLeave', {
---   desc = 'remember folds',
---   pattern = '?*',
---   command = 'silent! mkview 1',
--- })
--- autocmd('BufWinEnter', {
---   desc = 'auto load folds',
---   pattern = '?*',
---   command = 'silent! loadview 1',
--- })
--- vim.cmd(
---     "autocmd BufEnter * ++nested if winnr('$') == 1 && bufname() == 'NvimTree_' . tabpagenr() | quit | endif"
--- )
 -- vim.api.nvim_create_autocmd({ 'VimResized' }, {
 --     callback = function() vim.cmd('tabdo wincmd =') end,
 -- })
@@ -162,3 +149,4 @@ autocmd('BufEnter', {
 -- vim.api.nvim_create_autocmd({ 'VimEnter' }, {
 --     callback = function() vim.cmd('hi link illuminatedWord LspReferenceText') end,
 -- })
+-- vim.cmd("autocmd BufEnter * ++nested if winnr('$') == 1 && bufname() == 'NvimTree_' . tabpagenr() | quit | endif")

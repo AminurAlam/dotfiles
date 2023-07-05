@@ -1,7 +1,7 @@
 local M = {
   'jose-elias-alvarez/null-ls.nvim',
   dependencies = { 'nvim-lua/plenary.nvim' },
-  -- ft = { 'lua', 'fish', 'c', 'cpp', 'sh' },
+  ft = { 'lua', 'fish', 'c', 'cpp', 'sh' },
 }
 
 M.config = function()
@@ -9,28 +9,23 @@ M.config = function()
   local sources = {}
 
   ---@param name string
-  ---@param group string
-  ---@param info nil|table
-  local add = function(name, group, info)
-    local bin = info and info.bin
-    local config = info and info.config
-
+  ---@param bin string
+  ---@param group 'diagnostics'|'formatting'|'code_actions'|'hover'|'completion'
+  ---@param config table?
+  local add = function(name, bin, group, config)
     if bin and vim.fn.executable(bin) == 0 then return end
 
     -- avoid indexing .with() when theres no config
     table.insert(sources, config and null_ls.builtins[group][name].with(config) or null_ls.builtins[group][name])
   end
 
-  add('stylua', 'formatting', {
-    bin = 'stylua',
-    config = { extra_args = { '-f', os.getenv('XDG_CONFIG_HOME') .. '/stylua.toml' } },
-  })
-  add('ruff', 'diagnostics', { bin = 'ruff' })
-  add('fish', 'diagnostics', { bin = 'fish' })
-  add('fish_indent', 'formatting', { bin = 'fish_indent' })
-  add('shellcheck', 'code_actions', { bin = 'shellcheck' })
-  add('clang_check', 'diagnostics', { bin = 'clang-check' })
-  add('shellcheck', 'diagnostics', { bin = 'shellcheck' })
+  add('stylua', 'stylua', 'formatting', { extra_args = { '-f', os.getenv('XDG_CONFIG_HOME') .. '/stylua.toml' } })
+  add('ruff', 'ruff', 'diagnostics')
+  add('fish', 'fish', 'diagnostics')
+  add('fish_indent', 'fish_indent', 'formatting')
+  add('shellcheck', 'shellcheck', 'code_actions')
+  add('clang_check', 'clang-check', 'diagnostics')
+  add('shellcheck', 'shellcheck', 'diagnostics')
   -- add('ts_node_action', 'code_actions')
   -- add('spell', 'completion')
 

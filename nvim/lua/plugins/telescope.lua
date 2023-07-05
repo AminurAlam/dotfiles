@@ -6,9 +6,7 @@ local M = {
 }
 
 M.config = function()
-  local nmap = function(lhs, rhs)
-    vim.keymap.set('n', lhs, rhs, { noremap = true, silent = true })
-  end
+  local nmap = function(lhs, rhs) vim.keymap.set('n', lhs, rhs, { noremap = true, silent = true }) end
   require('telescope').setup {
     defaults = {
       layout_strategy = 'flex',

@@ -1,4 +1,4 @@
----@param mode string|table
+---@param mode table
 ---@return function
 local map = function(mode)
   ---@param lhs string
@@ -13,10 +13,10 @@ local map = function(mode)
   end
 end
 
-local nmap = map 'n'
-local vmap = map 'x'
+local nmap = map { 'n' }
+local vmap = map { 'x' }
 local umap = map { '', 'i' }
-local abbr = map 'ca'
+local abbr = map { 'ca' }
 
 -- lazy
 nmap('<leader>pu', require('lazy').update, 'update plugins')
@@ -38,7 +38,6 @@ nmap('[h', require('gitsigns').prev_hunk, 'goto previous hunk')
 nmap(']h', require('gitsigns').next_hunk, 'goto next hunk')
 
 -- other plugins
-nmap('<leader>ib', '<cmd>IndentBlanklineRefresh<cr>')
 nmap('<leader>tt', require('lazy.util').float_term)
 nmap('<leader>j', '<cmd>TSJToggle<cr>') -- norm v%J
 
@@ -49,18 +48,13 @@ nmap('X', '"_x')
 nmap('<del>', '"_x')
 nmap('cn', '*``"_cgn', 'search and replace') -- https://kevinli.co/posts/2017-01-19-multiple-cursors-in-500-bytes-of-vimscript/
 nmap('d<space>', [[m`<cmd>keeppatterns %s/\s\+$//e<cr>``]], 'delete trailing whitespace')
--- nmap('<bs>', 'i<bs><esc>l', 'backspace in normal mode')
+nmap('<bs>', 'i<bs><esc>l', 'backspace in normal mode')
 
--- other
+-- write & quit
 nmap('<leader>w', '<cmd>silent w <bar> redraw <cr>', 'write')
 umap('<c-w>', '<cmd>silent w <bar> redraw <cr>', 'write')
 umap('<c-q>', '<cmd>qa<cr>', 'quit')
 nmap('Q', '<cmd>bdelete<cr>', 'quit buffer')
-nmap('C', '<cmd>norm m`viw~``<cr>', 'toggle word case')
-umap('<c-z>', '<cmd>norm 1z=<cr>', 'spell correction')
-vmap('.', ':norm .<cr>', 'dot repeat on all selected lines')
-umap('<esc>', '<cmd>nohlsearch<cr><esc>')
-nmap('gj', [[@='j^"_d0kgJ'<cr>]], 'join without leaving space')
 
 -- indent
 nmap('=', '==')
@@ -68,6 +62,12 @@ nmap('>', '>>')
 nmap('<', '<<')
 vmap('>', '>gv')
 vmap('<', '<gv')
+
+-- other
+umap('<c-c>', '<cmd>norm m`viw~``<cr>', 'toggle word case')
+vmap('.', ':norm .<cr>', 'dot repeat on all selected lines')
+umap('<esc>', '<cmd>nohlsearch<cr><esc>')
+nmap('gj', [[@='j^"_d0kgJ'<cr>]], 'join without leaving space')
 
 -- keep cursor position if you exit visual selection
 nmap('v', 'm`v')

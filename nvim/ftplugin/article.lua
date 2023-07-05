@@ -7,7 +7,8 @@ end
 
 vim.opt.listchars = { trail = ' ' }
 vim.opt.stc = '  '
-vim.opt.buftype = 'hidden'
+vim.opt.buftype = 'nofile'
+vim.opt.bufhidden = 'hide'
 
 nmap('^', '<cmd>qall!<cr>')
 nmap('<bs>', '<cmd>qall!<cr>')
