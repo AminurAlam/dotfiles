@@ -83,12 +83,6 @@ set -gxp --path PATH "$CARGO_HOME/bin" # after declaring CARGO_HOME
 command -sq starship && starship init fish | source || source $XDG_CONFIG_HOME/fish/functions/load_prompt.fish
 command -sq zoxide && zoxide init fish | source || alias z cd
 
-### BINDINGS ###
-fish_vi_key_bindings
-bind -M insert \e\[1\;5A 'commandline -f history-token-search-backward'
-bind -M insert \e\[1\;5B 'commandline -f history-token-search-forward'
-bind -M insert \cw 'commandline -f backward-kill-bigword'
-
 ### ALIASES ###
 abbr zsd "z $XDG_DIR/"
 abbr zdoc "z $XDG_DOCUMENTS_DIR/"

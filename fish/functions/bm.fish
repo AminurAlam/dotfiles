@@ -1,6 +1,7 @@
 complete -c bm -fka '(rg --replace "" \'^https?://(www\.)?\' /sdcard/main/notes/bookmarks.note)'
+
 function bm
-    set BMPATH /sdcard/main/notes/bookmarks
+    set BMPATH /sdcard/main/notes/bookmarks /sdcard/main/notes/private-bookmarks
 
     function __process_link
         set -l LINK (string split ' ' "$argv[1]")[1]
@@ -34,6 +35,6 @@ function bm
         case e ed edit
             set -q EDITOR && $EDITOR $BMPATH || echo "no EDITOR found"
         case '*'
-            __process_link (rg --replace '' '^https?://(www\.)?' $BMPATH | $LAUNCHER --query "$argv[1]")
+            __process_link (rg --no-filename --replace '' '^https?://(www\.)?' $BMPATH | $LAUNCHER --query "$argv[1]")
     end
 end
