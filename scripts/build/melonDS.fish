@@ -15,7 +15,7 @@ function pre_build
 
     if [ -d "$REPO_PATH" ]
         cd "$REPO_PATH"
-        [ "$(read -P 'run `git-pull`? [y/N] ')" = y ] && git pull origin
+        [ "$(read -P 'run `git-pull`? [y/N] ')" = y ] && git pull --deepen 0 origin
     else
         git clone --depth 1 "$REPO_URL" "$REPO_PATH"
         cd "$REPO_PATH"
