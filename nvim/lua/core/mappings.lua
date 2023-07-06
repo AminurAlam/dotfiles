@@ -31,6 +31,17 @@ nmap(']b', '<cmd>CybuNext<cr>', 'next buffer')
 nmap('[t', '<cmd>tabp<cr>', 'previous tab')
 nmap(']t', '<cmd>tabn<cr>', 'next tab')
 
+-- lsp
+nmap('<leader>li', '<cmd>LspInfo<cr>', 'LSP status')
+nmap('<leader>lf', vim.lsp.buf.format, 'format code using LSP')
+nmap('<leader>lr', vim.lsp.buf.rename, 'rename symbol under cursor')
+nmap('<leader>gd', vim.lsp.buf.definition, 'goto definition')
+nmap('<leader>ca', vim.lsp.buf.code_action, 'goto definition')
+nmap('[d', vim.diagnostic.goto_prev, 'goto prev diagnostic message')
+nmap(']d', vim.diagnostic.goto_next, 'goto next diagnostic message')
+nmap('<leader>d', vim.diagnostic.open_float, 'view line diagnostics')
+nmap('<leader>D', function() vim.diagnostic.open_float { scope = 'buffer' } end, 'view all diagnostics in a buffer')
+
 -- git
 nmap('H', require('gitsigns').preview_hunk, 'preview hunk')
 nmap('U', require('gitsigns').reset_hunk, 'undo hunk')

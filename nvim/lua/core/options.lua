@@ -50,7 +50,8 @@ set.foldnestmax = vim.o.foldlevel + 1
 set.foldminlines = 3
 set.foldmethod = 'indent'
 set.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
-set.foldtext = 'getline(v:foldstart) .. " ... " .. trim(getline(v:foldend)) .. " [" .. (v:foldend-v:foldstart+1) .. " lines]"'
+set.foldtext =
+  'getline(v:foldstart) .. " ... " .. trim(getline(v:foldend)) .. " [" .. (v:foldend-v:foldstart+1) .. " lines]"'
 set.foldcolumn = 'auto'
 
 -- terminal, cursor & gui

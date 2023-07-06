@@ -1,4 +1,4 @@
--- vim.loader.enable()
+vim.loader.enable()
 
 do
   local g = vim.g
@@ -60,4 +60,4 @@ hl('Folded', { bg = '#3b4261' })
 hl('MsgSeparator', { link = 'WinSeparator' })
 hl('@function.call.fish', { link = 'Special' })
 hl('@variable.fish', { link = 'Constant' })
-hl('@function.diff', { link = 'TabLineSel'  })
+hl('@function.diff', { link = 'TabLineSel' })
