@@ -31,12 +31,15 @@ function build
 end
 
 function post_build
+    printf "======================= BUILD COMPLETE =======================\n"
     set UV_USE_IO_URING 0
     set VIMRUNTIME runtime/
 
-    build/bin/nvim --version || return 1
+    build/bin/nvim -V1 --version || return 1
     build/bin/nvim --clean --headless +'helptags runtime/doc/ | q!'
-    command cp -i build/bin/nvim ~/.local/bin/
+    lsof ~/.local/bin/nvim &>/dev/null &&
+        printf "nvim is currently running\n" ||
+        command cp -i build/bin/nvim ~/.local/bin/
 end
 
 
