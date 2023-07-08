@@ -1,12 +1,20 @@
 # vim: set ft=urls cole=3 cocu=n :
-"query:----- SOCIALS -----:tags # \"socials\" and unread = \"yes\""
-https://nitter.net/carlyraejepsen/rss socials
+
+"query:----- SOCIAL POSTS -----:tags # \"socials\" and unread = \"yes\""
+https://xkcd.com/atom.xml socials
 https://github.com/neovim/neovim/commits/master/runtime/doc/news.txt.atom socials
+https://nitter.net/carlyraejepsen/rss socials
 https://nitter.net/mdf_an/rss socials
+
+"query:----- MUSIC -----:tags # \"music\" and unread = \"yes\""
+https://muspy.com/feed?id=mobwjpkr95u5p1b4f2w1bjt74qc8u3 music
+https://feeds.npr.org/1039/rss.xml music
+https://www.allmusic.com/rss music
+https://pitchfork.com/feed/feed-news/rss "~Pitchfork" music
 
 "query:----- FORUMS & AGGREGATORS -----:tags # \"aggregators\" and unread = \"yes\""
 https://waxy.org/feed/ aggregators
-https://this-week-in-neovim.org/rss aggregators
+# https://this-week-in-neovim.org/rss aggregators
 https://lobste.rs/rss aggregators
 https://hnrss.org/newest.atom?points=100&count=20&description=0 "~Hacker News" aggregators
 https://reddit.com/r/OtoMusic/new.rss "~r/OtoMusic" aggregators
@@ -14,29 +22,23 @@ https://reddit.com/r/neovim.rss "~r/neovim" aggregators
 https://superuser.com/feeds/week aggregators
 https://vi.stackexchange.com/feeds/week aggregators
 
-"query:----- NEWS TECH -----:tags # \"news_tech\" and unread = \"yes\""
+"query:----- TECH NEWS -----:tags # \"news_tech\" and unread = \"yes\""
 https://torrentfreak.com/feed news_tech
 https://rss.slashdot.org/Slashdot/slashdotMain news_tech
 https://reclaimthenet.org/feed/ news_tech
 https://www.bitdefender.com/blog/api/rss/hotforsecurity/ news_tech
 https://alt2-feed-proxy.azurewebsites.net/api/FeedTrigger?name=all-news news_tech
 https://rb.vern.cc/?action=display&bridge=BleepingComputer&format=Atom news_tech
-https://dev.to/feed news_tech
 https://rb.vern.cc/?action=display&bridge=HaveIBeenPwned&order=dateAdded&item_limit=20&format=Atom news_tech
 https://rb.vern.cc/?action=display&bridge=MozillaSecurity&format=Atom news_tech
+https://newsboat.org/news.atom news_tech
 
-"query:----- NEWS MUSIC -----:tags # \"news_music\" and unread = \"yes\""
-https://muspy.com/feed?id=mobwjpkr95u5p1b4f2w1bjt74qc8u3 news_music
-https://feeds.npr.org/1039/rss.xml news_music
-https://www.allmusic.com/rss news_music
-https://pitchfork.com/feed/feed-news/rss "~Pitchfork" news_music
-
-"query:----- NEWS FOSS -----:tags # \"news_foss\" and unread = \"yes\""
+"query:----- FOSS NEWS -----:tags # \"news_foss\" and unread = \"yes\""
 https://news.itsfoss.com/rss news_foss
 http://www.archlinux.org/feeds/news/ news_foss
 https://www.linuxlinks.com/feed news_foss
 
-"query:----- BLOGS CORPO -----:tags # \"blogs_corpo\" and unread = \"yes\""
+"query:----- CORPO BLOGS -----:tags # \"blogs_corpo\" and unread = \"yes\""
 https://blog.mozilla.org/en/feed blogs_corpo
 https://blog.nightly.mozilla.org/feed blogs_corpo
 https://blog.metabrainz.org/feed/ blogs_corpo
@@ -48,50 +50,54 @@ https://foundation.mozilla.org/en/blog/rss/ blogs_corpo
 https://mullvad.net/en/blog/feed/atom/ blogs_corpo
 https://medium.com/feed/phonepe/tagged/security blogs_corpo
 
-"query:----- BLOGS ACTIVE -----:tags # \"blogs_active\" and unread = \"yes\""
-https://xkcd.com/atom.xml blogs_active
-https://jacobwsmith.xyz/feed.xml blogs_active
-https://rachelbythebay.com/w/atom.xml blogs_active
-https://jvns.ca/atom.xml blogs_active
-https://www.harihareswara.net/rss/ blogs_active
-https://feeds.feedburner.com/avc blogs_active
-https://www.schneier.com/feed/atom blogs_active
-https://kevquirk.com/feed.xml blogs_active
-https://barryfrost.com/feed blogs_active
-https://hasbrouck.org/blog/index.xml blogs_active
-https://www.roboleary.net/feed.xml blogs_active
-https://brainbaking.com/index.xml blogs_active
-https://chriswiegman.com/feed blogs_active
-https://daverupert.com/atom.xml blogs_active
-https://zerokspot.com/index.xml blogs_active
-https://soatok.blog/feed blogs_active
-https://alexwlchan.net/atom.xml blogs_active
-
-"query:----- BLOGS INACTIVE -----:tags # \"blogs_inactive\" and unread = \"yes\""
-https://cedwards.xyz/index.xml blogs_inactive
-https://thevaluable.dev/index.xml blogs_inactive
-https://monstro1.com/rss.xml blogs_inactive
-http://www.aaronsw.com/2002/feeds/pgessays.rss blogs_inactive
-https://chelseatroy.com/feed blogs_inactive
-https://vicki.substack.com/feed blogs_inactive
-https://phaazon.net/blog/feed blogs_inactive
-https://adlrocha.substack.com/feed blogs_inactive
-https://alistairshepherd.uk/feed.xml blogs_inactive
-https://ar.al/index.xml blogs_inactive
-https://austinhenley.com/blog/feed.rss blogs_inactive
-https://benjamincongdon.me/blog/feed.xml blogs_inactive
-http://www.jonandnic.com/feed blogs_inactive
-https://arjunyadav.xyz/rss.xml blogs_inactive
-https://www.dannyvankooten.com/atom.xml blogs_inactive
-https://drewdevault.com/blog/index.xml blogs_inactive
-https://drainerdomain.xyz/posts/index.xml blogs_inactive
-https://drainerdomain.xyz/guides/index.xml blogs_inactive
-https://cheapskatesguide.org/cheapskates-guide-rss-feed.xml blogs_inactive
-https://denshi.org/rss.xml blogs_inactive
-https://7c0h.com/blog/rss.xml blogs_inactive
-https://vkc.sh/feed/ blogs_inactive
-https://lukesmith.xyz/index.xml blogs_inactive
-https://transitiontech.ca/feed.xml blogs_inactive
-https://vas.neocities.org/rss.xml blogs_inactive
-https://ciechanow.ski/atom.xml blogs_inactive
-https://ploum.net/atom_en.xml blogs_inactive
+"query:----- PERSONAL BLOGS -----:tags # \"personal_blog\" and unread = \"yes\""
+https://jacobwsmith.xyz/feed.xml personal_blog
+https://rachelbythebay.com/w/atom.xml personal_blog
+https://jvns.ca/atom.xml personal_blog
+https://www.harihareswara.net/rss/ personal_blog
+https://www.schneier.com/feed/atom personal_blog
+https://kevquirk.com/feed.xml personal_blog
+https://barryfrost.com/feed personal_blog
+https://hasbrouck.org/blog/index.xml personal_blog
+https://www.roboleary.net/feed.xml personal_blog
+https://brainbaking.com/index.xml personal_blog
+https://chriswiegman.com/feed personal_blog
+https://daverupert.com/atom.xml personal_blog
+https://feeds.feedburner.com/avc personal_blog
+https://zerokspot.com/index.xml personal_blog
+https://soatok.blog/feed personal_blog
+https://alexwlchan.net/atom.xml personal_blog
+https://cedwards.xyz/index.xml personal_blog
+https://thevaluable.dev/index.xml personal_blog
+https://monstro1.com/rss.xml personal_blog
+http://www.aaronsw.com/2002/feeds/pgessays.rss personal_blog
+https://chelseatroy.com/feed personal_blog
+https://vicki.substack.com/feed personal_blog
+https://phaazon.net/blog/feed personal_blog
+https://adlrocha.substack.com/feed personal_blog
+https://alistairshepherd.uk/feed.xml personal_blog
+https://ar.al/index.xml personal_blog
+https://austinhenley.com/blog/feed.rss personal_blog
+https://benjamincongdon.me/blog/feed.xml personal_blog
+http://www.jonandnic.com/feed personal_blog
+https://arjunyadav.xyz/rss.xml personal_blog
+https://www.dannyvankooten.com/atom.xml personal_blog
+https://drewdevault.com/blog/index.xml personal_blog
+https://drainerdomain.xyz/posts/index.xml personal_blog
+https://drainerdomain.xyz/guides/index.xml personal_blog
+https://cheapskatesguide.org/cheapskates-guide-rss-feed.xml personal_blog
+https://denshi.org/rss.xml personal_blog
+https://7c0h.com/blog/rss.xml personal_blog
+https://vkc.sh/feed/ personal_blog
+https://lukesmith.xyz/index.xml personal_blog
+https://transitiontech.ca/feed.xml personal_blog
+https://vas.neocities.org/rss.xml personal_blog
+https://ciechanow.ski/atom.xml personal_blog
+https://ploum.net/atom_en.xml personal_blog
+https://seirdy.one/posts/atom.xml personal_blog
+https://1hiking.github.io/index.xml personal_blog
+https://nobodyspecial.neocities.org/rss2.xml personal_blog
+https://palone.blog/feed/atom/ personal_blog
+https://utcc.utoronto.ca/~cks/space/blog/?atom personal_blog
+https://christine.website/blog.rss personal_blog
+https://leafo.net/feed.xml personal_blog

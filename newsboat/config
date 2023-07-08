@@ -14,9 +14,9 @@ itemview-title-format ""
 urlview-title-format ""
 
 # list style
-datetime-format "%m-%d"
+datetime-format "%b %d"
 feedlist-format " %?l?[%4U]&      ? %t %S"
-articlelist-format "%?n? •?%?T? %12T? %t" # unread ? dot : null ; group ? groupname : none ; title
+articlelist-format " %D│%?T?%12T│?%t" # date ; group? && groupname ; title
 
 # filters
 ignore-article "*" "title =~ \" (Open)?AI\""
@@ -36,5 +36,6 @@ show-read-feeds no
 always-display-description no
 
 # always-download "https://lobste.rs/rss"
-browser "termux-open %u &"
 # pager "nvim +'set ft=article'"
+# user-agent "Mozilla/5.0 (compatible)"
+browser "$BROWSER %u &"

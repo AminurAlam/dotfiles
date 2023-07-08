@@ -21,8 +21,8 @@ highlight article "\\[(link|image|video|iframe) .*\(link .*\)\\]" green
 
 
 color background          default default
-color listnormal          default default
-color listfocus           default color0
+color listnormal          color247 default
+color listfocus           color247 color0
 color listnormal_unread   default default
 color listfocus_unread    default color0
 color title               default default
