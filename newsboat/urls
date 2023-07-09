@@ -28,9 +28,9 @@ https://rss.slashdot.org/Slashdot/slashdotMain news_tech
 https://reclaimthenet.org/feed/ news_tech
 https://www.bitdefender.com/blog/api/rss/hotforsecurity/ news_tech
 https://alt2-feed-proxy.azurewebsites.net/api/FeedTrigger?name=all-news news_tech
-https://rb.vern.cc/?action=display&bridge=BleepingComputer&format=Atom news_tech
-https://rb.vern.cc/?action=display&bridge=HaveIBeenPwned&order=dateAdded&item_limit=20&format=Atom news_tech
-https://rb.vern.cc/?action=display&bridge=MozillaSecurity&format=Atom news_tech
+https://rss-bridge.lewd.tech/?action=display&bridge=BleepingComputer&format=Atom news_tech
+https://rss-bridge.lewd.tech/?action=display&bridge=HaveIBeenPwned&order=dateAdded&item_limit=20&format=Atom news_tech
+https://rss-bridge.lewd.tech/?action=display&bridge=MozillaSecurity&format=Atom news_tech
 https://newsboat.org/news.atom news_tech
 
 "query:----- FOSS NEWS -----:tags # \"news_foss\" and unread = \"yes\""
@@ -42,12 +42,11 @@ https://www.linuxlinks.com/feed news_foss
 https://blog.mozilla.org/en/feed blogs_corpo
 https://blog.nightly.mozilla.org/feed blogs_corpo
 https://blog.metabrainz.org/feed/ blogs_corpo
-https://bitwarden.com/blog/feed.xml blogs_corpo
 https://blog.archive.org/feed/ blogs_corpo
 https://www.eff.org/rss/updates.xml "~eff.org" blogs_corpo
 https://www.lumendatabase.org/blog_feed.rss blogs_corpo
-https://foundation.mozilla.org/en/blog/rss/ blogs_corpo
 https://mullvad.net/en/blog/feed/atom/ blogs_corpo
+https://element.io/blog/rss/ blogs_corpo
 https://medium.com/feed/phonepe/tagged/security blogs_corpo
 
 "query:----- PERSONAL BLOGS -----:tags # \"personal_blog\" and unread = \"yes\""

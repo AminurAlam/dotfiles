@@ -1,6 +1,6 @@
 # vim: set ft=gitconfig commentstring=#\ %s :
-
 # pretty =   %C(yellow)%h%C(reset) - %<(50,trunc)%-s %C(green)%cr
+# https://github.com/mathiasbynens/dotfiles/blob/main/.gitconfig
 
 [core]
     # pager = nvim +'setlocal ft=diff buftype=nofile bufhidden=hide noswapfile'

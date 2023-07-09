@@ -1,4 +1,4 @@
-# vim: set ft=config :
+# vim: set ft=conf :
 
 ### COLORING
 # hint-key hint-keys-delimiter hint-separator hint-description article end-of-text-marker
@@ -16,7 +16,7 @@ highlight article "^(Feed|Title|Author|Link|Date|Links):" color14 default bold
 
 highlight article "\\((link|image|video|iframe)\\)" color8 default
 highlight article "https?://[^ ]+" color4 default
-highlight article "\[[0-9]+\]" color6 default bold
+highlight article "\\[[0-9]+\\]" color6 default bold
 highlight article "\\[(link|image|video|iframe) .*\(link .*\)\\]" green
 
 

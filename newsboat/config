@@ -1,4 +1,4 @@
-# vim: set ft=config :
+# vim: set ft=conf :
 # https://newsboat.org/releases/2.31/docs/newsboat.html
 # /data/data/com.termux/files/usr/share/doc/newsboat/examples/config
 
@@ -24,6 +24,7 @@ ignore-article "*" "title =~ \" (Chat)?GPT-?(3|4|5)? \""
 ignore-article "*" "title =~ \" LLM \""
 ignore-article "https://superuser.com/feeds/week" "title =~ \"windows\""
 ignore-article "https://muspy.com/feed?id=mobwjpkr95u5p1b4f2w1bjt74qc8u3" "title =~ \"remix\""
+ignore-article "https://muspy.com/feed?id=mobwjpkr95u5p1b4f2w1bjt74qc8u3" "title =~ \"taylor swift\""
 ignore-mode "display"
 
 reload-threads 10
@@ -38,4 +39,4 @@ always-display-description no
 # always-download "https://lobste.rs/rss"
 # pager "nvim +'set ft=article'"
 # user-agent "Mozilla/5.0 (compatible)"
-browser "$BROWSER %u &"
+browser "termux-open %u &"

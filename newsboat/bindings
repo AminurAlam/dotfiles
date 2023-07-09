@@ -1,4 +1,4 @@
-# vim: set ft=config :
+# vim: set ft=conf :
 
 ### MACROS
 # macro SPACE refresh; open;
