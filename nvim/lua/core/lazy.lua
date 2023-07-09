@@ -11,15 +11,7 @@ else
 end
 
 if not vim.loop.fs_stat(lazypath) then
-  vim.fn.system {
-    'git',
-    'clone',
-    '--filter=blob:none',
-    '--depth=1',
-    url,
-    '--branch=' .. branch,
-    lazypath,
-  }
+  vim.fn.system { 'git', 'clone', '--filter=blob:none', '--depth=1', url, '--branch=' .. branch, lazypath }
 end
 
 vim.opt.rtp:prepend(lazypath)

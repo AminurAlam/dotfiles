@@ -41,7 +41,7 @@ set.shortmess = 'acCoOsSWIF'
 set.number = true
 set.relativenumber = true
 -- set.statuscolumn = vim.g.stc -- '%=%{ v:virtnum ? "…" : ( v:relnum ? "│" : "❯" ) }%-00.1s'
-set.signcolumn = 'number'
+set.signcolumn = 'auto'
 
 -- folding
 set.foldenable = false
@@ -88,7 +88,7 @@ set.list = true
 set.listchars = {
   tab = '  ',
   leadmultispace = '│   ',
-  trail = '󱁐',
+  trail = ' ',
   extends = '…',
   precedes = '…',
   conceal = '●',

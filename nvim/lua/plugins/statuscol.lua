@@ -1,4 +1,7 @@
-local M = { 'luukvbaal/statuscol.nvim' }
+local M = {
+  'luukvbaal/statuscol.nvim',
+  enabled = false
+}
 
 M.config = function()
   local builtin = require('statuscol.builtin')

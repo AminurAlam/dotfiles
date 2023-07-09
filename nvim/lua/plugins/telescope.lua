@@ -10,11 +10,15 @@ M.config = function()
   require('telescope').setup {
     defaults = {
       layout_strategy = 'flex',
+      selection_strategy = 'follow',
       layout_config = {
-        height = 0.90,
-        width = 0.80,
-        -- mirror = true,
-        -- prompt_position = 'top',
+        vertical = {
+          height = 0.90,
+          width = 0.80,
+          prompt_position = 'bottom',
+          preview_cutoff = 38,
+          preview_height = 10,
+        },
       },
       prompt_prefix = '  ',
       selection_caret = '» ',
@@ -30,7 +34,7 @@ M.config = function()
         'stylua.toml',
         'Cargo.lock',
         'target/',
-        'build/',
+        -- 'build/',
       },
       path_display = { shorten = { len = 1, exclude = { 1, -1 } } },
       mappings = {

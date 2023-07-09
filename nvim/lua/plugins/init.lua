@@ -8,7 +8,7 @@ return {
     opts = {
       hlgroup = 'IncSearch',
       duration = 300,
-      keymaps = { { 'n', 'u', 'undo', { } }, { 'n', 'r', 'redo', { } } },
+      keymaps = { { 'n', 'u', 'undo', {} }, { 'n', 'r', 'redo', {} } },
     },
   },
 }
