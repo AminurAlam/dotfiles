@@ -27,13 +27,15 @@ local function register_cap()
   return capabilities
 end
 
-vim.lsp.start({
-  cmd = { 'rust-analyzer' },
-  filetypes = { 'rust' },
-  -- root_dir = function(fname)
-  --   local name = vim.fs.dirname(vim.fn.findfile('Cargo.toml', '.;'))
-  --   print(name)
-  --   return name
-  -- end,
-  capabilities = register_cap(),
-})
+if vim.fn.executable('rust-analyzer') == 1 then
+  vim.lsp.start({
+    cmd = { 'rust-analyzer' },
+    filetypes = { 'rust' },
+    -- root_dir = function(fname)
+    --   local name = vim.fs.dirname(vim.fn.findfile('Cargo.toml', '.;'))
+    --   print(name)
+    --   return name
+    -- end,
+    capabilities = register_cap(),
+  })
+end

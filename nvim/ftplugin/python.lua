@@ -1,4 +1,4 @@
-if vim.fn.executable('pyright-langserver') then
+if vim.fn.executable('pyright-langserver') == 1 then
   vim.lsp.start({
     cmd = { 'pyright-langserver', '--stdio' },
     filetypes = { 'python' },
@@ -16,7 +16,7 @@ if vim.fn.executable('pyright-langserver') then
   })
 end
 
-if vim.fn.executable('pylsp') then
+if vim.fn.executable('pylsp') == 1 then
   vim.lsp.start({
     cmd = { 'pylsp' },
     filetypes = { 'python' },
