@@ -8,7 +8,7 @@ abbr md "mkdir -pv"
 abbr vi nvim
 abbr cls clear
 abbr cal "cal -my"
-abbr qmv "qmv -f do"
+abbr qmv "qmv -AXf do"
 abbr wget "wget --hsts-file=\$XDG_CACHE_HOME/wget-hsts"
 abbr pst "pstree -lhTUC age (pidof com.termux)" # "ps -faxo pid,command"
 abbr bin-integrity "sha256sum --check /sdcard/main/termux/bin-checksums"
@@ -18,7 +18,8 @@ abbr .. "cd .."
 abbr ... "cd ../.."
 abbr .... "cd ../../.."
 
-# git
+# git 
+# TODO: declare in gitcommit instead
 abbr gac "git add . && git commit"
 abbr gpo "git push origin"
 abbr gup "git add . && git commit && git push origin"
@@ -27,7 +28,7 @@ abbr gd "git diff | \$EDITOR +'set bt=nofile bh=hide'"
 abbr gs "git status -bs"
 
 # rclone
-abbr rcp "rclone copy -P"
+abbr rcp "rclone copy -P --transfers 6 --"
 abbr rmv "rclone move -P"
 abbr rls "rclone lsf"
 abbr rlt "rclone tree --level"

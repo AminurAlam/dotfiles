@@ -10,11 +10,27 @@ function flac_to -a ext
         printf "\n [%d/%d] %s.flac -> %s.%s\n" \
             "$count" "$total" "$filename" "$filename" "$ext"
 
-        if command -sq ffmpeg
-            ffmpeg -y -hide_banner -stats -loglevel error -i "$filename.flac" \
-                -b:a 320k -r:a 44100 "$filename.$ext" || break
-        else if command -sq sox
-            sox -S -V1 "$filename.flac" -r 44100 "$filename.$ext" || break
+        # if command -sq ffmpeg
+        #    ffmpeg -y -hide_banner -stats -loglevel error -i "$filename.flac" \
+        #         -b:a 320k -r:a 44100 -q:a 9 "$filename.$ext" || break
+        # else if command -sq sox
+        #     sox -S -V1 "$filename.flac" -r 44100 "$filename.$ext" || break
+        # end
+
+        # https://en.wikipedia.org/wiki/Vorbis
+        # https://trac.ffmpeg.org/wiki/TheoraVorbisEncodingGuide
+        # https://trac.ffmpeg.org/wiki/Encode/HighQualityAudio
+        # https://hydrogenaud.io/index.php/board,57.0.html
+        # https://wiki.hydrogenaud.io/index.php?title=Recommended_Ogg_Vorbis#Recommended_Encoder_Settings
+        # q9 -> 320kbps
+        # TODO: parallel conversion
+
+        command -vq oggenc && command -vq metaflac || pacman -S vorbis-tools flac
+
+        set -e metadata
+        for meta in (metaflac --show-all-tags "$filename.flac")
+            set -a -- metadata --comment "$meta"
         end
+        oggenc -rq9 "$filename.flac" $metadata
     end
 end

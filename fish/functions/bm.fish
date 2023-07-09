@@ -31,7 +31,7 @@ function bm
 
     switch "$argv[1]"
         case a add
-            [ -n "$argv[2]" ] && echo "$argv[2]" >>"$BMPATH" || echo "nothing to add"
+            [ -n "$argv[2]" ] && echo "$argv[2]" >>"$BMPATH[1]" || echo "nothing to add"
         case e ed edit
             set -q EDITOR && $EDITOR $BMPATH || echo "no EDITOR found"
         case '*'

@@ -1,13 +1,11 @@
 function clean
+    # TODO: test if working
     set -f hist_dirs (fd -Hd1 '^\..*_history$' ~)
     set -f all_dirs \
-        /sdcard/Android/data/*youtube/ \
-        /sdcard/Android/data/org.schabi.newpipe/ \
-        /sdcard/Android/data/org.*messenger/ \
-        /sdcard/Android/data/com.spotify.* \
+        /sdcard/Android/data/{*youtube/,org.schabi.newpipe/,org.*messenger/,com.spotify.*/} \
+        /sdcard/{Aurora/,Telegram/} \
         /sdcard/DCIM/.thumbnails/ \
-        /sdcard/Aurora/ \
-        /sdcard/Telegram/
+        ~/.local/share/cargo/registry/
 
     for dir in $all_dirs
         [ -d "$dir" ] && set -fa dirs $dir
@@ -36,4 +34,5 @@ function clean
     echo
 
     echo (count (ls -1NA ~)) files in HOME
+    echo (count (pacman -Qe)) packages installed
 end
