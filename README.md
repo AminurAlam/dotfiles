@@ -1,7 +1,11 @@
-# dotfiles
-
-```bash
-yes | termux-setup-storage
-curl -#O "https://raw.githubusercontent.com/AminurAlam/dotfiles/main/setup.sh"
-bash setup.sh
-```
+## what you can find here
+ - [aria2](https://aria2.github.io) - download manager
+ - [fish](https://fishshell.com/) - shell
+ - [git](https://git-scm.com/) - vcs
+ - [newsboat](https://newsboat.org/) - rss reader
+ - [npm](https://npmjs.com/) - ???
+ - [nvim](https://neovim.io/) - text editor
+ - [python](https://python.org/) - ???
+ - [ripgrep](https://github.com/BurntSushi/ripgrep) - grep alternative
+ - [starship](https://starship.rs/) - shell prompt
+ - [termux](https://termux.dev/) - terminal emulator
