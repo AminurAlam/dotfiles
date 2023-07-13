@@ -1,7 +1,7 @@
 function yt
     yt-dlp -F "$argv" || return
 
-    set -l format (read -fP \n' > select format: ') || return
+    set -l format (read -fP \n' > select format: ')
     echo
 
     command -vq aria2c &&

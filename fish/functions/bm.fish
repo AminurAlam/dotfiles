@@ -1,4 +1,4 @@
-complete -c bm -fka '(rg --replace "" \'^https?://(www\.)?\' /sdcard/main/notes/bookmarks.note)'
+complete -c bm -fka '(rg --replace "" \'^https?://(www\.)?\' /sdcard/main/notes/bookmarks)'
 
 function bm
     set BMPATH /sdcard/main/notes/bookmarks /sdcard/main/notes/private-bookmarks

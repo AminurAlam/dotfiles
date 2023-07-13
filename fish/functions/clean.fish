@@ -11,7 +11,7 @@ function clean
         [ -d "$dir" ] && set -fa dirs $dir
     end
 
-    pacman -Scc --noconfirm
+    yes | pacman -Scc
     echo
 
     if count $dirs &>/dev/null
