@@ -1,0 +1,27 @@
+# vim: ft=conf
+
+### Download Options:
+--downloader "aria2c"
+--concurrent-fragments 1
+
+### Filesystem Options:
+-o "$XDG_VIDEOS_DIR/yt/%(title)s.%(ext)s"
+-o "thumbnail:$XDG_VIDEOS_DIR/thumb/%(title)s.%(ext)s"
+--no-overwrites
+--continue
+
+### Thumbnail Options:
+# --write-thumbnail
+
+### Verbosity and Simulation Options:
+--progress
+--no-warnings
+
+### Video Format Options:
+--audio-multistreams
+
+### Subtitle Options:
+--write-subs
+
+### Post-Processing Options:
+# --convert-subs lrc

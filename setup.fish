@@ -123,7 +123,7 @@ printf "DOWNLOADING DOTFILES... "
 printf "done\n"
 
 printf "LINKING CONFIG DIRECTORIES... "
-for config in aria2 fish git mutt newsboat npm nvim python
+for config in aria2 fish git newsboat npm nvim python yt-dlp
     [ -e "$path_dots/$config" ] || continue
     # unlink/move old directories in ~/.config to be replaced
     [ -L "$HOME/.config/$config" ] && command unlink "$HOME/.config/$config"
