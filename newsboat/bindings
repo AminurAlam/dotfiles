@@ -16,7 +16,7 @@ unbind-key s #ds disable saving
 # movement
 bind-key ^ quit
 bind-key $ open
-bind-key $ next article
+bind-key $ open-in-browser article
 
 bind-key ^U halfpageup
 bind-key ^D halfpagedown
