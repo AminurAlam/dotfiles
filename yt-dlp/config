@@ -1,16 +1,20 @@
 # vim: ft=conf
 
 ### Download Options:
---downloader "aria2c"
---concurrent-fragments 1
+# should be handled by yt.fish
+# --downloader "aria2c"
+--concurrent-fragments 4
 
 ### Filesystem Options:
--o "$XDG_VIDEOS_DIR/yt/%(title)s.%(ext)s"
--o "thumbnail:$XDG_VIDEOS_DIR/thumb/%(title)s.%(ext)s"
+-P "$XDG_VIDEOS_DIR/yt/"
+-P "subtitle:$XDG_VIDEOS_DIR/yt/subs/"
+-P "thumbnail:$XDG_VIDEOS_DIR/yt/thumb/"
+-o "%(channel&{} - |)s%(title)s.%(ext)s"
 --no-overwrites
 --continue
 
 ### Thumbnail Options:
+# handled by yt.fish with --embed-thumbnail
 # --write-thumbnail
 
 ### Verbosity and Simulation Options:
@@ -24,4 +28,5 @@
 --write-subs
 
 ### Post-Processing Options:
+# TODO: handle by yt.fish
 # --convert-subs lrc
