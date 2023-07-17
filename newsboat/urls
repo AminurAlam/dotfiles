@@ -7,6 +7,7 @@ https://xkcd.com/atom.xml socials
 https://github.com/neovim/neovim/commits/master/runtime/doc/news.txt.atom socials
 https://nitter.kavin.rocks/carlyraejepsen/rss socials
 https://nitter.kavin.rocks/mdf_an/rss socials
+https://nitter.kavin.rocks/kamatamarom/rss socials
 
 "query:----- MUSIC -----:tags # \"music\" and unread = \"yes\""
 https://muspy.com/feed?id=mobwjpkr95u5p1b4f2w1bjt74qc8u3 music
@@ -30,7 +31,7 @@ https://rss.slashdot.org/Slashdot/slashdotMain news_tech
 https://reclaimthenet.org/feed/ news_tech
 https://www.bitdefender.com/blog/api/rss/hotforsecurity/ news_tech
 https://alt2-feed-proxy.azurewebsites.net/api/FeedTrigger?name=all-news news_tech
-https://rss-bridge.bb8.fun/?action=display&bridge=BleepingComputer&format=Atom news_tech
+https://rb.vern.cc/?action=display&bridge=BleepingComputer&format=Atom news_tech
 https://rss-bridge.bb8.fun/?action=display&bridge=HaveIBeenPwned&order=dateAdded&item_limit=20&format=Atom news_tech
 https://rss-bridge.bb8.fun/?action=display&bridge=MozillaSecurity&format=Atom news_tech
 https://newsboat.org/news.atom news_tech
@@ -102,3 +103,4 @@ https://palone.blog/feed/atom/ personal_blog
 https://utcc.utoronto.ca/~cks/space/blog/?atom personal_blog
 https://christine.website/blog.rss personal_blog
 https://leafo.net/feed.xml personal_blog
+http://pb.co.za/posts.atom

@@ -36,3 +36,5 @@ bind-key ` toggle-article-read articlelist
 
 bind-key BACKSPACE quit
 bind-key ^Q hard-quit
+
+macro y set browser "fish -c \"yt %u\"" ; open-in-browser ; set browser termux-open
