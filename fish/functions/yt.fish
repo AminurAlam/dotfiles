@@ -1,10 +1,13 @@
-function yt
-    yt-dlp -F "$argv" || return
+function yt -a link format
 
-    set -l format (read -fP \n' > select format: ')
-    echo
+    if [ -z "$format" ]
+        yt-dlp -F "$link" || return
+        set -f format (read -fP \n' > select format: ')
+        echo
+    end
 
-    command -vq aria2c &&
-        yt-dlp --downloader "dash,m3u8:aria2c" -f "$format" "$argv" ||
-        yt-dlp -f "$format" "$argv"
+    command -vq ffmpeg && set -a ffmpeg --embed-metadata --embed-subs --embed-thumbnail --sponsorblock-mark "all"
+    command -vq aria2c && set -a aria2c --downloader "dash,m3u8:aria2c" 
+
+    yt-dlp  -f "$format" $aria2c $ffmpeg -- "$link"
 end

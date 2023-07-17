@@ -3,24 +3,26 @@ function flac_to -a ext
     set -l total (count *.flac) || return
     [ -n "$ext" ] || set -l ext ogg
 
-    for i in *.flac
-        set -l filename (string replace ".flac" "" "$i")
-        set -l count (math $count + 1)
+    if command -vq oggenc
+        # set -e metadata
+        # for meta in (metaflac --show-all-tags "$filename.flac")
+        #     set -a -- metadata --comment "$meta"
+        # end
+        oggenc -q9 *.flac
+    else
+        for i in *.flac
+            set -l filename (string replace ".flac" "" "$i")
+            set -l count (math $count + 1)
 
-        printf "\n [%d/%d] %s.flac -> %s.%s\n" \
-            "$count" "$total" "$filename" "$filename" "$ext"
+            printf "\n [%d/%d] %s.flac -> %s.%s\n" \
+                "$count" "$total" "$filename" "$filename" "$ext"
 
-        if command -vq oggenc
-            # set -e metadata
-            # for meta in (metaflac --show-all-tags "$filename.flac")
-            #     set -a -- metadata --comment "$meta"
-            # end
-            oggenc -q9 "$filename.flac"
-        else if command -sq ffmpeg
-           ffmpeg -y -hide_banner -stats -loglevel error -i "$filename.flac" \
-                -b:a 320k -r:a 44100 -q:a 9 "$filename.$ext" || break
-        else if command -sq sox
-            sox -S -V1 "$filename.flac" -r 44100 "$filename.$ext" || break
+            if command -sq ffmpeg
+                ffmpeg -y -hide_banner -stats -loglevel error -i "$filename.flac" \
+                    -b:a 320k -r:a 44100 -q:a 9 "$filename.$ext" || break
+            else if command -sq sox
+                sox -S -V1 "$filename.flac" -r 44100 "$filename.$ext" || break
+            end
         end
 
         # https://en.wikipedia.org/wiki/Vorbis
