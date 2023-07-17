@@ -9,9 +9,7 @@ abbr vi nvim
 abbr cls clear
 abbr cal "cal -my"
 abbr qmv "qmv -AXf do"
-abbr wget "wget --hsts-file=\$XDG_CACHE_HOME/wget-hsts"
-abbr pst "pstree -lhTUC age (pidof com.termux)" # "ps -faxo pid,command"
-abbr bin-integrity "sha256sum --check /sdcard/main/termux/bin-checksums"
+abbr pst "ps -faxo 'pid,comm'"
 
 # parent dir
 abbr .. "cd .."
@@ -34,7 +32,6 @@ abbr rls "rclone lsf"
 abbr rlt "rclone tree --level"
 abbr rdu "rclone size"
 abbr rcat "rclone cat"
-abbr rstat "rclone about"
 abbr rconf "rclone config"
 
 # python
@@ -77,6 +74,4 @@ else if command -sq dnf
     abbr pr "dnf remove"
     abbr pf "dnf search"
     abbr pa "dnf show"
-else
-    echo "UNKNOWN PACKAGE MANAGER"
 end
