@@ -3,6 +3,8 @@ set REPO_PATH "$XDG_PROJECTS_DIR/$REPO_NAME"
 set REPO_URL "https://github.com/AminurAlam/exa.git"
 set DEPENDENCIES binutils libgit2 rust
 
+# TODO: fix timezone
+
 function pre_build
     if command -vq pacman
         pacman -S --noconfirm --needed -- $DEPENDENCIES

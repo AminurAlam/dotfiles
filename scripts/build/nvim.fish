@@ -1,7 +1,7 @@
 set REPO_NAME nvim-fork
 set REPO_PATH "$XDG_PROJECTS_DIR/$REPO_NAME"
 set REPO_URL "https://github.com/AminurAlam/neovim.git"
-set DEPENDENCIES binutils clang cmake libtreesitter libuv make ninja openssl pkg-config
+set DEPENDENCIES binutils clang cmake gettext libtreesitter libuv make ninja openssl pkg-config
 
 function pre_build
     if command -vq pacman
@@ -31,8 +31,8 @@ function build
 end
 
 function post_build
-    printf "======================= BUILD COMPLETE =======================\n"
-    set UV_USE_IO_URING 0
+    printf "========================== BUILD COMPLETE ==========================\n"
+    # set UV_USE_IO_URING 0
     set VIMRUNTIME runtime/
 
     build/bin/nvim -V1 --version || return 1
@@ -40,6 +40,7 @@ function post_build
     lsof ~/.local/bin/nvim &>/dev/null &&
         printf "nvim is currently running\n" ||
         command cp -i build/bin/nvim ~/.local/bin/
+    printf "====================================================================\n"
 end
 
 
