@@ -38,36 +38,30 @@ local mode_colors = {
 }
 
 local mode_names = {
+  ['n'] = 'NORMAL',
+  ['o'] = 'O-PENDING',
   ['v'] = 'VISUAL',
-  ['vs'] = 'VISUAL',
   ['V'] = 'V-LINE',
-  ['Vs'] = 'V-LINE',
   ['\22'] = 'V-BLOCK',
-  ['\22s'] = 'V-BLOCK',
   ['s'] = 'SELECT',
   ['S'] = 'S-LINE',
   ['\19'] = 'S-BLOCK',
   ['i'] = 'INSERT',
-  ['ic'] = 'INSERT',
-  ['ix'] = 'INSERT',
-  ['R'] = 'REPLACE',
-  ['Rc'] = 'REPLACE',
-  ['Rx'] = 'REPLACE',
-  ['Rv'] = 'V-REPLACE',
-  ['Rvc'] = 'V-REPLACE',
-  ['Rvx'] = 'V-REPLACE',
-  ['c'] = 'COMMAND',
-  ['cv'] = 'EX',
-  ['ce'] = 'EX',
   ['r'] = 'REPLACE',
+  ['R'] = 'REPLACE',
+  ['c'] = 'COMMAND',
   ['rm'] = 'MORE',
   ['r?'] = 'CONFIRM',
   ['!'] = 'SHELL',
   ['t'] = 'TERMINAL',
 }
 
+local buflogo = { '', '󰼐 ', '󰼑 ', '󰼒 ', '󰼓 ', '󰼔 ', '󰼕 ', '󰼖 ', '󰼗 ' }
+
 vim.g.stl = {
-  mode = function() return mode_names[vim.api.nvim_get_mode().mode] or 'NORMAL' end,
+  mode = function() return mode_names[vim.api.nvim_get_mode().mode] or '???' end,
+  bufcount = function() return buflogo[#vim.fn.getbufinfo { buflisted = 1 }] or '󰼘 ' end,
+  whitespace = function() return vim.fn.search([[\s\+$]], 'nwc') > 0 and '󱁐 ' or '' end,
   hlsearch = function()
     local sc = vim.fn.searchcount()
     if vim.v.hlsearch == 0 then return '' end
@@ -86,15 +80,27 @@ vim.g.stl = {
 }
 
 vim.api.nvim_set_hl(0, 'stl_hl_bc', { fg = '#30354A' })
-vim.api.nvim_create_autocmd({ 'VimEnter', 'ModeChanged', 'BufEnter' }, {
+vim.api.nvim_set_hl(0, 'stl_hl_cb', { fg = '#30354A' })
+vim.api.nvim_create_autocmd({ 'VimEnter', 'ModeChanged', 'BufWinEnter' }, {
   callback = function()
-    local mode = vim.api.nvim_get_mode().mode
-    local mode_color = mode_colors[mode]
+    local mode_color = mode_colors[vim.api.nvim_get_mode().mode]
     vim.api.nvim_set_hl(0, 'stl_hl_a', { bg = mode_color, fg = '#30354A', bold = true })
     vim.api.nvim_set_hl(0, 'stl_hl_b', { fg = mode_color, bg = '#30354A' })
-    vim.api.nvim_set_hl(0, 'stl_hl_cx', { fg = mode_color })
+    vim.api.nvim_set_hl(0, 'stl_hl_ba', { fg = mode_color, bg = '#30354A' })
   end,
 })
 
-vim.opt.stl =
-  '%#stl_hl_a# %{ g:stl.mode() } %#stl_hl_b# %t %{ &modified ? "󰆓 " : "" }%{ !empty(finddir(".git", expand("%:p:h") .. ";")) ? "" : "" } %#stl_hl_bc#%#Normal# %{ get(b:, "gitsigns_status", "") } %=%S %{ g:stl.hlsearch() } %{ reg_recording() != "" ? "@" .. reg_recording() : "" } %#stl_hl_cx#%#stl_hl_a# %{ g:stl.progress() } %Y '
+vim.opt.stl = '%#stl_hl_a# %{ g:stl.mode() } %#stl_hl_b#'
+  .. ' %{ g:stl.bufcount() }%t ' -- a to b
+  .. '%{ &modified ? "󰆓 " : "" }'
+  .. '%{ !empty(finddir(".git", expand("%:p:h") .. ";")) ? " " : "" }'
+  .. '%{ &cb == "unnamedplus" ? "󰆒 " : "" }'
+  .. '%{ g:stl.whitespace() }'
+  .. '%#stl_hl_bc#%#Normal# ' -- b to c
+  -- .. '%{ get(b:, "gitsigns_status", "") } '
+  .. '%=%S ' -- middle seperator
+  .. '%{ g:stl.hlsearch() } '
+  .. '%{ reg_recording() != "" ? "@" .. reg_recording() : "" } '
+  .. '%#stl_hl_cb#%#stl_hl_b# ' -- c to b
+  .. '%{ g:stl.progress() } '
+  .. '%#stl_hl_ba#%#stl_hl_a#%{ &fileformat == "dos" ? "  " : "" } %Y ' -- b to a
