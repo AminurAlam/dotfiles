@@ -39,5 +39,6 @@ return {
       col = 1,
     },
     yadm = { enable = false },
+    trouble = false,
   },
 }

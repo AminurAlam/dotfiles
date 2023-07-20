@@ -1,7 +1,7 @@
 return {
   'folke/trouble.nvim',
-  enabled = false,
-  cmd = { 'TroubleToggle' },
+  enabled = true,
+  keys = { { '<leader>tr', '<cmd>TroubleToggle<cr>' } },
   opts = {
     position = 'top', -- position of the list can be: bottom, top, left, right
     height = 8, -- height of the trouble list when position is top or bottom

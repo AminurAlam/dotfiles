@@ -11,4 +11,14 @@ return {
       keymaps = { { 'n', 'u', 'undo', {} }, { 'n', 'r', 'redo', {} } },
     },
   },
+  {
+    'Wansmer/treesj',
+    keys = { { '<leader>j', '<cmd>TSJToggle<cr>' } },
+    dependencies = { 'nvim-treesitter/nvim-treesitter' },
+    opts = {
+      use_default_keymaps = false,
+      check_syntax_error = false,
+      notify = false,
+    },
+  },
 }

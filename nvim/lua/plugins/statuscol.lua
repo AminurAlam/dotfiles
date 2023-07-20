@@ -1,6 +1,6 @@
 local M = {
   'luukvbaal/statuscol.nvim',
-  enabled = false
+  enabled = false,
 }
 
 M.config = function()

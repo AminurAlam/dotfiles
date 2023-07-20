@@ -9,6 +9,8 @@ return {
       'comment',
       'diff',
       'fish',
+      'gitcommit',
+      'gitignore',
       'lua',
       'luadoc',
       'rust',

@@ -15,8 +15,8 @@ local M = {
 }
 
 M.config = function()
-  local cmp = require('cmp')
-  local luasnip = require('luasnip')
+  local cmp = require 'cmp'
+  local luasnip = require 'luasnip'
   local kind_icons = {
     Text = '',
     Method = '󰆧',
@@ -49,7 +49,6 @@ M.config = function()
     nvim_lua = '[LUA]',
     path = '[PATH]',
     buffer = '[BUF]',
-    dictionary = '[DICT]',
     dap = '[DAP]',
     vsnip = '[VSN]',
     luasnip = '[LSN]',
@@ -77,9 +76,9 @@ M.config = function()
       end,
     },
     mapping = cmp.mapping.preset.insert {
-      ['<C-e>'] = cmp.mapping.abort(),
+      ['<c-e>'] = cmp.mapping.abort(),
       ['<cr>'] = cmp.mapping.confirm { select = true },
-      ['<Tab>'] = cmp.mapping(function(fallback)
+      ['<tab>'] = cmp.mapping(function(fallback)
         if cmp.visible() then
           cmp.select_next_item()
         elseif luasnip.expand_or_jumpable() then
@@ -98,20 +97,20 @@ M.config = function()
         end
       end, { 'i', 's' }),
     },
-    sources = cmp.config.sources({
+    sources = cmp.config.sources {
       { name = 'path' },
       { name = 'luasnip' },
       { name = 'fish' },
       { name = 'nvim_lsp' },
       { name = 'nvim_lua' },
-      { name = 'dictionary' },
       { name = 'spell' },
-    }, { { name = 'buffer' } }),
+      { name = 'buffer' },
+    },
   }
 
   cmp.setup.cmdline({ '/', '?' }, {
     mapping = cmp.mapping.preset.cmdline(),
-    sources = cmp.config.sources({}, { { name = 'buffer' } }),
+    sources = cmp.config.sources { { name = 'buffer' } },
     formatting = {
       format = function(_, vim_item)
         vim_item.kind = ''
@@ -122,7 +121,7 @@ M.config = function()
 
   cmp.setup.cmdline(':', {
     mapping = cmp.mapping.preset.cmdline(),
-    sources = cmp.config.sources({ { name = 'path' } }, { { name = 'cmdline' } }),
+    sources = cmp.config.sources { { name = 'path' }, { name = 'cmdline' } },
     formatting = {
       format = function(_, vim_item)
         vim_item.kind = ''

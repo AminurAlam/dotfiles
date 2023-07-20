@@ -2,7 +2,7 @@ local M = { 'goolord/alpha-nvim' }
 
 M.config = function()
   local v = vim.version()
-  local scratch = '<cmd>enew <bar> setlocal buftype=nofile bufhidden=hide <bar>'
+  local scratch = '<cmd>enew <bar> setl bt=nofile bh=hide <bar>'
 
   local button = function(sc, text, keybind, icon_hl)
     return {
@@ -57,22 +57,21 @@ M.config = function()
         },
         opts = { position = 'center', hl = 'Type' },
       },
-      { type = 'padding', val = 2 },
+      { type = 'padding', val = 3 },
       button('f', '  Find file', '<cmd>Telescope find_files<cr>'),
       button('g', '  Find word', '<cmd>Telescope live_grep<cr>'),
       button('h', '  Find help', '<cmd>Telescope help_tags<cr>'),
       button('i', '󱇨  New file', scratch .. 'startinsert<cr>'),
-      button('p', '󰆒  Paste in NF', scratch .. ' norm pi<cr>'),
+      button('p', '󰆒  Paste in NF', scratch .. ' norm "*pi<cr>'),
       button('u', '󰚰  Update plugins', '<cmd>Lazy update<cr>', ''),
       button('q', '󰗼  Quit', '<cmd>qa<cr>', 'Error'),
-      { type = 'padding', val = 1 },
+      { type = 'padding', val = 2 },
       button('d', '  dotfiles', '<cmd>cd ~/repos/dotfiles/ | Telescope find_files<cr>', 'Comment'),
       button('n', '  notes', '<cmd>cd /sdcard/main/notes/ | Telescope find_files<cr>', 'Title'),
-      button('m', '󰫅  musicbrainz-rust', '<cmd>cd ~/repos/mbz-rust/ | Telescope find_files<cr>', 'Number'),
-      button('t', '󰖝  temp files', '<cmd>cd ~/.local/cache/temp/ | Telescope find_files<cr>', 'AlphaIconTemp'),
-      { type = 'padding', val = 1 },
+      { type = 'padding', val = 2 },
       { type = 'group', val = oldfiles },
     },
+    opts = { setup = function() vim.opt_local.stl = '%#Normal#' end },
   }
 end
 

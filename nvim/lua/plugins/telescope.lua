@@ -10,7 +10,6 @@ M.config = function()
   require('telescope').setup {
     defaults = {
       layout_strategy = 'flex',
-      selection_strategy = 'follow',
       layout_config = {
         vertical = {
           height = 0.90,
@@ -60,6 +59,7 @@ M.config = function()
   nmap('<leader>ff', require('telescope.builtin').find_files)
   nmap('<leader>fg', require('telescope.builtin').live_grep)
   nmap('<leader>fh', require('telescope.builtin').help_tags)
+  nmap('<leader>fr', require('telescope.builtin').oldfiles)
 end
 
 return M
