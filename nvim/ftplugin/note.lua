@@ -5,5 +5,3 @@ vim.opt_local.listchars = {
   leadmultispace = '  ',
   trail = ' ',
 }
-
-vim.api.nvim_set_hl(0, 'Whitespace', {})

@@ -1,14 +1,7 @@
-local nmap = function(lhs, rhs)
-  vim.keymap.set('n', lhs, rhs, {
-    noremap = true,
-    silent = true,
-  })
-end
+vim.opt_local.listchars = { trail = ' ' }
+vim.opt_local.stc = '  '
+vim.opt_local.buftype = 'nofile'
+vim.opt_local.bufhidden = 'hide'
 
-vim.opt.listchars = { trail = ' ' }
-vim.opt.stc = '  '
-vim.opt.buftype = 'nofile'
-vim.opt.bufhidden = 'hide'
-
-nmap('^', '<cmd>qall!<cr>')
-nmap('<bs>', '<cmd>qall!<cr>')
+vim.keymap.set('n', '^', '<cmd>qall!<cr>', { buffer = true })
+vim.keymap.set('n', '<bs>', '<cmd>qall!<cr>', { buffer = true })

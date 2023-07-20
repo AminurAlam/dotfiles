@@ -1,7 +1,9 @@
-vim.opt.tabstop = 2
-vim.opt.shiftwidth = 2
-vim.opt.softtabstop = 2
-vim.opt.listchars = {
+vim.opt_local.tabstop = 2
+vim.opt_local.shiftwidth = 2
+vim.opt_local.softtabstop = 2
+-- vim.opt_local.fo0dmethod = 'expr'
+vim.opt_local.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+vim.opt_local.listchars = {
   leadmultispace = '│ ',
   -- precedes = '│'
 }

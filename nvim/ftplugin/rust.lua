@@ -21,12 +21,6 @@
 --   end
 -- end
 
-local function register_cap()
-  local capabilities = vim.lsp.protocol.make_client_capabilities()
-  capabilities.experimental = { serverStatusNotification = true }
-  return capabilities
-end
-
 if vim.fn.executable('rust-analyzer') == 1 then
   vim.lsp.start({
     cmd = { 'rust-analyzer' },
@@ -36,6 +30,10 @@ if vim.fn.executable('rust-analyzer') == 1 then
     --   print(name)
     --   return name
     -- end,
-    capabilities = register_cap(),
+    -- capabilities = function()
+    --   local capabilities = vim.lsp.protocol.make_client_capabilities()
+    --   capabilities.experimental = { serverStatusNotification = true }
+    --   return capabilities
+    -- end,
   })
 end
