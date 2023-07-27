@@ -11,8 +11,8 @@
 highlight article "^>.*" green
 highlight article " /?[ru]/[-a-zA-Z0-9_]{3,18}" red
 
-highlight article "^(Feed|Title|Author|Link|Date|Links): .+" color4 default bold
-highlight article "^(Feed|Title|Author|Link|Date|Links):" color14 default bold
+highlight article "^(Feed|Title|Author|Link|Date|Links|Podcast Download URL): .+" color4 default bold
+highlight article "^(Feed|Title|Author|Link|Date|Links|Podcast Download URL):" color14 default bold
 
 highlight article "https?://[^ ]+" color4 default
 highlight article "\\[[0-9]+\\]" color6 default bold

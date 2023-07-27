@@ -18,11 +18,12 @@ bind-key ^ quit
 bind-key $ open
 bind-key $ open-in-browser article
 
-bind-key ^U halfpageup
-bind-key ^D halfpagedown
-
+bind-key n next-unread
+bind-key N prev-unread
 bind-key g home
 bind-key G end
+bind-key ^U halfpageup
+bind-key ^D halfpagedown
 
 bind-key RIGHT next article
 bind-key LEFT prev article
@@ -30,9 +31,10 @@ bind-key RIGHT next-feed articlelist
 bind-key LEFT prev-feed articlelist
 
 bind-key u reload
+bind-key a toggle-article-read
+bind-key ` toggle-article-read articlelist
 bind-key TAB reload feedlist
 bind-key TAB reload articlelist
-bind-key ` toggle-article-read articlelist
 
 bind-key BACKSPACE quit
 bind-key ^Q hard-quit

@@ -35,6 +35,7 @@ show-keymap-hint no
 wrap-scroll no
 show-read-feeds no
 always-display-description no
+download-full-page yes
 
 # always-download "https://lobste.rs/rss"
 # pager "nvim +'set ft=article'"

@@ -1,27 +1,32 @@
-# vim: set ft=urls cole=3 cocu=n :
+# vim: set ft=urls :
 # nitter: https://github.com/zedeus/nitter/wiki/Instances
 # https://rss-bridge.github.io/rss-bridge/General/Public_Hosts.html
 
 "query:----- SOCIAL POSTS -----:tags # \"socials\" and unread = \"yes\""
 https://xkcd.com/atom.xml socials
+https://what-if.xkcd.com/feed.atom socials
 https://github.com/neovim/neovim/commits/master/runtime/doc/news.txt.atom socials
 https://nitter.kavin.rocks/carlyraejepsen/rss socials
 https://nitter.kavin.rocks/mdf_an/rss socials
+https://myanimelist.net/rss.php?type=rm&u=Shellshock123 socials
 https://nitter.kavin.rocks/kamatamarom/rss socials
 
 "query:----- MUSIC -----:tags # \"music\" and unread = \"yes\""
+https://hasitleaked.com/feed music
+https://hasitleaked.com/leakedfeed music
 https://muspy.com/feed?id=mobwjpkr95u5p1b4f2w1bjt74qc8u3 music
 https://feeds.npr.org/1039/rss.xml music
 https://www.allmusic.com/rss music
 https://pitchfork.com/feed/feed-news/rss "~Pitchfork" music
 
 "query:----- FORUMS & AGGREGATORS -----:tags # \"aggregators\" and unread = \"yes\""
-https://waxy.org/feed/ aggregators
-# https://this-week-in-neovim.org/rss aggregators
 https://lobste.rs/rss aggregators
 https://hnrss.org/newest.atom?points=100&count=20&description=0 "~Hacker News" aggregators
-https://reddit.com/r/OtoMusic/new.rss "~r/OtoMusic" aggregators
+https://reddit.com/r/programming/hot.rss "~r/programming" aggregators
 https://reddit.com/r/neovim.rss "~r/neovim" aggregators
+https://reddit.com/r/OtoMusic/new.rss "~r/OtoMusic" aggregators
+https://waxy.org/feed/ aggregators
+https://dotfyle.com/this-week-in-neovim/rss.xml aggregators
 https://superuser.com/feeds/week aggregators
 https://vi.stackexchange.com/feeds/week aggregators
 
@@ -33,13 +38,18 @@ https://www.bitdefender.com/blog/api/rss/hotforsecurity/ news_tech
 https://alt2-feed-proxy.azurewebsites.net/api/FeedTrigger?name=all-news news_tech
 https://rb.vern.cc/?action=display&bridge=BleepingComputer&format=Atom news_tech
 https://rss-bridge.bb8.fun/?action=display&bridge=HaveIBeenPwned&order=dateAdded&item_limit=20&format=Atom news_tech
-https://rss-bridge.bb8.fun/?action=display&bridge=MozillaSecurity&format=Atom news_tech
-https://newsboat.org/news.atom news_tech
 
 "query:----- FOSS NEWS -----:tags # \"news_foss\" and unread = \"yes\""
-https://news.itsfoss.com/rss news_foss
+https://dolphin-emu.org/blog/feeds/ "~Dolphin Emulator" news_foss
+https://citra-emu.org/index.xml "~Citra Emulator" news_foss
+https://newsboat.org/news.atom news_foss
+https://blog.thunderbird.net/feed/ news_foss
+https://itsfoss.com/rss/ news_foss
+https://news.itsfoss.com/rss/ news_foss
 http://www.archlinux.org/feeds/news/ news_foss
-https://www.linuxlinks.com/feed news_foss
+https://www.linuxlinks.com/feed/ news_foss
+https://rss-bridge.bb8.fun/?action=display&bridge=MozillaSecurity&format=Atom news_foss
+https://blog.opensource.org/feed/ news_foss
 
 "query:----- CORPO BLOGS -----:tags # \"blogs_corpo\" and unread = \"yes\""
 https://blog.mozilla.org/en/feed blogs_corpo
@@ -53,13 +63,11 @@ https://element.io/blog/rss/ blogs_corpo
 https://medium.com/feed/phonepe/tagged/security blogs_corpo
 
 "query:----- PERSONAL BLOGS -----:tags # \"personal_blog\" and unread = \"yes\""
-https://jacobwsmith.xyz/feed.xml personal_blog
 https://rachelbythebay.com/w/atom.xml personal_blog
+https://www.schneier.com/feed/atom personal_blog
 https://jvns.ca/atom.xml personal_blog
 https://www.harihareswara.net/rss/ personal_blog
-https://www.schneier.com/feed/atom personal_blog
 https://kevquirk.com/feed.xml personal_blog
-https://barryfrost.com/feed personal_blog
 https://hasbrouck.org/blog/index.xml personal_blog
 https://www.roboleary.net/feed.xml personal_blog
 https://brainbaking.com/index.xml personal_blog
@@ -72,6 +80,10 @@ https://alexwlchan.net/atom.xml personal_blog
 https://cedwards.xyz/index.xml personal_blog
 https://thevaluable.dev/index.xml personal_blog
 https://monstro1.com/rss.xml personal_blog
+https://denshi.org/rss.xml personal_blog
+https://arjunyadav.xyz/rss.xml personal_blog
+https://jacobwsmith.xyz/feed.xml personal_blog
+https://lukesmith.xyz/index.xml personal_blog
 http://www.aaronsw.com/2002/feeds/pgessays.rss personal_blog
 https://chelseatroy.com/feed personal_blog
 https://vicki.substack.com/feed personal_blog
@@ -82,16 +94,13 @@ https://ar.al/index.xml personal_blog
 https://austinhenley.com/blog/feed.rss personal_blog
 https://benjamincongdon.me/blog/feed.xml personal_blog
 http://www.jonandnic.com/feed personal_blog
-https://arjunyadav.xyz/rss.xml personal_blog
 https://www.dannyvankooten.com/atom.xml personal_blog
 https://drewdevault.com/blog/index.xml personal_blog
 https://drainerdomain.xyz/posts/index.xml personal_blog
 https://drainerdomain.xyz/guides/index.xml personal_blog
 https://cheapskatesguide.org/cheapskates-guide-rss-feed.xml personal_blog
-https://denshi.org/rss.xml personal_blog
 https://7c0h.com/blog/rss.xml personal_blog
 https://vkc.sh/feed/ personal_blog
-https://lukesmith.xyz/index.xml personal_blog
 https://transitiontech.ca/feed.xml personal_blog
 https://vas.neocities.org/rss.xml personal_blog
 https://ciechanow.ski/atom.xml personal_blog
@@ -103,4 +112,31 @@ https://palone.blog/feed/atom/ personal_blog
 https://utcc.utoronto.ca/~cks/space/blog/?atom personal_blog
 https://christine.website/blog.rss personal_blog
 https://leafo.net/feed.xml personal_blog
-http://pb.co.za/posts.atom
+http://pb.co.za/posts.atom personal_blog
+https://blog.gabrielsimmer.com/index.xml personal_blog
+https://nanotipsforvim.prose.sh/rss personal_blog
+https://rubenerd.com/feed/ personal_blog
+https://lckdscl.xyz/feed.xml personal_blog
+
+### pending
+# ~/feeds.xml
+# https://feeds.feedburner.com/MappingIgnorance curated "~Mapping Ignorance"
+# http://feeds.feedburner.com/MeltingAsphalt curated "~Melting Asphalt"
+# https://nesslabs.com/feed curated "~NessLabs"
+# https://levels.io/rss/ curated "~Pieter Levels"
+# https://flowingdata.com/feed curated "~Flowing Data"
+# https://newsletter.decisionschool.org/feed curated "~Decision School"
+# https://www.preposterousuniverse.com/blog/feed/ curated "~Sean Carroll"
+# https://waitbutwhy.com/feed curated "~Wait But Why"
+# https://wellnesswisdom.substack.com/feed curated "~Wellness Wisdom"
+# https://www.ghacks.net/feed/ curated "~Ghacks"
+# Science science
+# https://api.quantamagazine.org/feed/ science "~Quanta Magazine"
+# https://feeds.npr.org/1007/rss.xml science "~NPR Science"
+# https://www.symmetrymagazine.org/feed science "~Symmetry Magazine"
+# Headline headline
+# https://www.theguardian.com/international/rss headline "~The Guardian"
+# Linux linux
+# https://www.phoronix.com/rss.php linux "~Phoronix"
+# https://www.archlinux.org/feeds/news "~Arch Linux News" linux
+# https://www.kernel.org/feeds/kdist.xml linux "~Linux Kernel"
