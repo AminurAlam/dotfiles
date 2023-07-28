@@ -39,6 +39,7 @@ require('lazy').setup('plugins', {
   },
   ui = {
     size = { width = 0.9, height = 0.8 },
+    pills = false,
     wrap = false,
     border = 'rounded',
     icons = {

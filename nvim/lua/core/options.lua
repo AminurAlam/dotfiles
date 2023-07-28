@@ -15,7 +15,7 @@ set.hlsearch = true
 set.ignorecase = true
 set.smartcase = true
 set.incsearch = true
-set.iskeyword:append('-')
+set.iskeyword:append '-'
 
 -- spell
 set.spellcapcheck = ''
@@ -41,26 +41,28 @@ set.shortmess = 'acCoOsSWIF'
 set.number = true
 set.relativenumber = true
 -- set.statuscolumn = vim.g.stc -- '%=%{ v:virtnum ? "…" : ( v:relnum ? "│" : "❯" ) }%-00.1s'
-set.signcolumn = 'auto'
+set.signcolumn = 'number'
 
 -- folding
 set.foldenable = false
 set.foldlevel = 3
 set.foldnestmax = vim.o.foldlevel + 1
 set.foldminlines = 3
-set.foldmethod = 'indent'
+set.foldmethod = 'manual'
 set.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
 set.foldtext =
   'getline(v:foldstart) .. " ... " .. trim(getline(v:foldend)) .. " [" .. (v:foldend-v:foldstart+1) .. " lines]"'
 set.foldcolumn = 'auto'
+set.foldopen:append {}
+set.viewoptions = 'cursor,folds'
 
 -- terminal, cursor & gui
--- set.belloff = 'showmatch'
+set.belloff = 'showmatch'
 set.winblend = 0
 set.pumblend = 0
 set.pumheight = 15
 set.termguicolors = true
-set.guicursor = 'n-sm:hor25,v-o-i-r-c-ci-cr:ver25'
+set.guicursor = 'n-sm-r:hor25,v-o-i-c-ci-cr:ver25'
 set.startofline = true
 set.cursorline = true
 set.cursorlineopt = 'number,screenline'
@@ -83,7 +85,7 @@ set.backup = false
 set.writebackup = false
 set.undofile = true
 set.confirm = true
-set.clipboard:append('unnamedplus')
+set.clipboard = '' -- see <leader>sr in mappings.lua
 set.list = true
 set.listchars = {
   tab = '  ',
@@ -102,4 +104,5 @@ set.fillchars = {
   msgsep = '─',
   eob = ' ',
   lastline = '.',
+  diff = '╱',
 }

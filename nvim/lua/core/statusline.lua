@@ -56,11 +56,12 @@ local mode_names = {
   ['t'] = 'TERMINAL',
 }
 
-local buflogo = { '', '󰼐 ', '󰼑 ', '󰼒 ', '󰼓 ', '󰼔 ', '󰼕 ', '󰼖 ', '󰼗 ' }
+-- local buflogo = { '', '󰼐 ', '󰼑 ', '󰼒 ', '󰼓 ', '󰼔 ', '󰼕 ', '󰼖 ', '󰼗 ' }
+local buflogo = { [0] = '', '', '二 ', '三 ', '四 ', '五 ', '六 ', '七 ', '八 ', '九' }
 
 vim.g.stl = {
   mode = function() return mode_names[vim.api.nvim_get_mode().mode] or '???' end,
-  bufcount = function() return buflogo[#vim.fn.getbufinfo { buflisted = 1 }] or '󰼘 ' end,
+  bufcount = function() return buflogo[#vim.fn.getbufinfo { buflisted = 1 }] or '十 ' end, -- 󰼘
   whitespace = function() return vim.fn.search([[\s\+$]], 'nwc') > 0 and '󱁐 ' or '' end,
   hlsearch = function()
     local sc = vim.fn.searchcount()
@@ -82,6 +83,7 @@ vim.g.stl = {
 vim.api.nvim_set_hl(0, 'stl_hl_bc', { fg = '#30354A' })
 vim.api.nvim_set_hl(0, 'stl_hl_cb', { fg = '#30354A' })
 vim.api.nvim_create_autocmd({ 'VimEnter', 'ModeChanged', 'BufWinEnter' }, {
+  pattern = '{*}{telescopeprompt}\\@<!', -- https://overflow.smnz.de/exchange/vi/questions/42696/negate-pattern-in-autocmd
   callback = function()
     local mode_color = mode_colors[vim.api.nvim_get_mode().mode]
     vim.api.nvim_set_hl(0, 'stl_hl_a', { bg = mode_color, fg = '#30354A', bold = true })
@@ -93,7 +95,7 @@ vim.api.nvim_create_autocmd({ 'VimEnter', 'ModeChanged', 'BufWinEnter' }, {
 vim.opt.stl = '%#stl_hl_a# %{ g:stl.mode() } %#stl_hl_b#'
   .. ' %{ g:stl.bufcount() }%t ' -- a to b
   .. '%{ &modified ? "󰆓 " : "" }'
-  .. '%{ !empty(finddir(".git", expand("%:p:h") .. ";")) ? " " : "" }'
+  -- .. '%{ !empty(finddir(".git", expand("%:p:h") .. ";")) ? " " : "" }'
   .. '%{ &cb == "unnamedplus" ? "󰆒 " : "" }'
   .. '%{ g:stl.whitespace() }'
   .. '%#stl_hl_bc#%#Normal# ' -- b to c
