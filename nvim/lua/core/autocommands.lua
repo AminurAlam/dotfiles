@@ -5,7 +5,7 @@ autocmd('FileType', {
   desc = 'exit by pressing q or <esc>',
   pattern = { 'qf', 'help', 'lazy', 'lspinfo', 'DressingSelect', 'Trouble' },
   callback = function()
-    vim.keymap.set('n', 'q', '<cmd>close<cr>', { buffer = true })
+    vim.keymap.set('n', 'q', '<cmd>close<cr>', { buffer = true, silent = true })
     vim.keymap.set('n', '<esc>', function()
       if vim.v.hlsearch == 1 then
         vim.cmd 'nohlsearch'
@@ -37,7 +37,8 @@ autocmd({ 'FileType', 'BufNewFile' }, {
     set.wrap = true
     set.linebreak = true
     set.statuscolumn = ' '
-    set.statusline = '%#stl_hl_a# %t %#stl_hl_cx#%#Normal# %=%{ g:stl.hlsearch() } %{ g:stl.progress() } '
+    set.statusline =
+      '%#stl_hl_b# %t %{ &modified ? "󰆓 " : "" }%#stl_hl_bc#%#Normal# %=%{ g:stl.hlsearch() } %{ g:stl.progress() } '
   end,
 })
 
@@ -69,13 +70,13 @@ autocmd('VimEnter', {
   end,
 })
 
-autocmd({ 'BufReadPost', 'BufWinEnter' }, {
-  desc = 'restore cursor position',
-  callback = function()
-    local mark = vim.api.nvim_buf_get_mark(0, '"')
-    if mark[1] > 0 and mark[1] <= vim.api.nvim_buf_line_count(0) then pcall(vim.api.nvim_win_set_cursor, 0, mark) end
-  end,
-})
+-- autocmd('BufReadPost', {
+--   desc = 'restore cursor position',
+--   callback = function()
+--     local mark = vim.api.nvim_buf_get_mark(0, '"')
+--     if mark[1] > 0 and mark[1] <= vim.api.nvim_buf_line_count(0) then pcall(vim.api.nvim_win_set_cursor, 0, mark) end
+--   end,
+-- })
 
 autocmd('BufWritePre', {
   desc = 'automatically create missing directories when saving files',
@@ -86,13 +87,13 @@ autocmd('BufWritePre', {
 })
 
 autocmd('BufWinLeave', {
-  desc = 'save folds on exit',
+  desc = 'save folds & cursor on exit',
   pattern = '?*',
   command = 'silent! mkview 1',
 })
 
-autocmd('BufEnter', {
-  desc = 'auto load folds',
+autocmd('BufWinEnter', {
+  desc = 'auto load folds & cursor',
   pattern = '?*',
   command = 'silent! loadview 1',
 })
@@ -123,7 +124,7 @@ autocmd('BufEnter', {
 --       ['\19'] = '#c678dd',
 --     }
 --     vim.api.nvim_set_hl(0, 'CursorLineNr', {
---       foreground = modes[vim.api.nvim_get_mode().mode] or '#98c379',
+--       fg = modes[vim.api.nvim_get_mode().mode] or '#98c379',
 --     })
 --   end,
 -- })
@@ -140,13 +141,7 @@ autocmd('BufEnter', {
 -- autocmd('VimLeave', {
 --   callback = function() vim.opt.guicursor = 'a:hor25' end,
 -- })
--- vim.api.nvim_create_autocmd({ 'VimResized' }, {
---     callback = function() vim.cmd('tabdo wincmd =') end,
--- })
--- vim.api.nvim_create_autocmd({ 'CmdWinEnter' }, {
---     callback = function() vim.cmd('quit') end,
--- })
--- vim.api.nvim_create_autocmd({ 'VimEnter' }, {
---     callback = function() vim.cmd('hi link illuminatedWord LspReferenceText') end,
--- })
+-- vim.api.nvim_create_autocmd('VimResized', { command = 'tabdo wincmd =' })
+-- vim.api.nvim_create_autocmd('CmdWinEnter', { command = 'quit' })
+-- vim.api.nvim_create_autocmd('VimEnter', { command = 'hi link illuminatedWord LspReferenceText' })
 -- vim.cmd("autocmd BufEnter * ++nested if winnr('$') == 1 && bufname() == 'NvimTree_' . tabpagenr() | quit | endif")
