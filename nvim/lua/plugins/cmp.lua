@@ -109,6 +109,7 @@ M.config = function()
   }
 
   cmp.setup.cmdline({ '/', '?' }, {
+    view = { entries = { name = 'custom', selection_order = 'near_cursor' } },
     mapping = cmp.mapping.preset.cmdline(),
     sources = cmp.config.sources { { name = 'buffer' } },
     formatting = {
@@ -120,6 +121,7 @@ M.config = function()
   })
 
   cmp.setup.cmdline(':', {
+    view = { entries = { name = 'custom', selection_order = 'near_cursor' } },
     mapping = cmp.mapping.preset.cmdline(),
     sources = cmp.config.sources { { name = 'path' }, { name = 'cmdline' } },
     formatting = {
