@@ -1,15 +1,7 @@
 # vim: set ft=gitconfig commentstring=#\ %s :
-# pretty =   %C(yellow)%h%C(reset) - %<(50,trunc)%-s %C(green)%cr
-# https://github.com/mathiasbynens/dotfiles/blob/main/.gitconfig
 
 [core]
     # pager = nvim +'setlocal ft=diff buftype=nofile bufhidden=hide noswapfile'
-
-[color]
-    # pager = false
-
-[init]
-    defaultBranch = dev
 
 [user]
     name = AminurAlam
@@ -17,3 +9,31 @@
 
 [pretty]
     nice = "  %C(yellow)%h%C(reset) - %<(50,trunc)%-s %C(green)%cr"
+
+[help]
+    autocorrect = immediate
+
+[alias]
+    l = log --pretty=nice -n 15
+    s = status -bs
+    d = !"git diff -- $1 | $EDITOR +'set bt=nofile bh=hide' # "
+
+    tags = tag -l
+    branches = branch --all
+    remotes = remote --verbose
+
+[apply]
+    whitespace = fix
+
+[color]
+    # pager = false
+
+[color "branch"]
+    current = yellow reverse
+    local = yellow
+    remote = green
+
+[color "status"]
+    added = green
+    changed = red
+    untracked = default
