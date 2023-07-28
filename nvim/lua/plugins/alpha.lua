@@ -30,7 +30,12 @@ M.config = function()
       if len == 6 then break end
       table.insert(
         of_buttons,
-        button(tostring(len), vim.fn.fnamemodify(filename, ':~'), '<cmd>e ' .. filename .. ' <cr>', 'Directory')
+        button(
+          tostring(len),
+          vim.fn.pathshorten(vim.fn.fnamemodify(filename, ':~')),
+          '<cmd>e ' .. filename .. ' <cr>',
+          'Directory'
+        )
       )
       ::continue::
     end

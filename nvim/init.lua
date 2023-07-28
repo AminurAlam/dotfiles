@@ -5,28 +5,11 @@ do
 
   g.mapleader = ' '
   g.maplocalleader = ' '
-  -- g.stc = '%=%{ v:virtnum ? "…" : v:lnum }%-01.01s'
-  g.stc = '%=%l%s'
 
   g.qf_disable_statusline = 1
   g.tex_flavor = 'latex'
   g.do_filetype_lua = 1
   g.ft_man_folding_enable = 1
-  -- g.loaded_python3_provider = 0
-  -- g.loaded_node_provider = 0
-  -- g.loaded_perl_provider = 0
-  -- g.loaded_ruby_provider = 0
-  -- g.loaded_gzip = 1
-  -- g.loaded_remote_plugins = 1
-  -- g.loaded_shada_plugin = 1
-  -- g.loaded_tarPlugin = 1
-  -- g.loaded_2html_plugin = 1
-  -- g.loaded_tutor_mode_plugin = 1
-  -- g.loaded_zipPlugin = 1
-  -- g.editorconfig = false
-  -- g.netrw_banner = 0
-  -- g.netrw_hide = 0
-  -- g.netrw_liststyle = 3
 end
 
 -- [[ core ]]
@@ -62,3 +45,4 @@ hl('MsgSeparator', { link = 'WinSeparator' })
 hl('@function.call.fish', { link = 'Special' })
 hl('@variable.fish', { link = 'Constant' })
 hl('@function.diff', { link = 'TabLineSel' })
+hl('@attribute.diff', { fg = '#7dcfff', bg = '#3b4261' })

@@ -23,7 +23,15 @@ return {
       ensure_installed = vim.fn.executable('clang') == 1 and parsers or {},
       sync_install = true,
       highlight = { enable = true },
-      incremental_selection = { enable = true },
+      incremental_selection = {
+        enable = true,
+        keymaps = {
+          init_selection = 'gnn',
+          node_incremental = 'grn',
+          scope_incremental = 'grc',
+          node_decremental = 'grm',
+        },
+      },
       textobjects = { enable = true },
       indent = { enable = false },
     }
