@@ -14,3 +14,6 @@ bind -M insert \cw 'commandline -f backward-kill-bigword'
 
 # helpful for toggling between processes
 bind -M insert \cz 'fg'
+
+# press esc twice to cancel
+bind \e cancel-commandline repaint-mode
