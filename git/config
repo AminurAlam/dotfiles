@@ -3,6 +3,9 @@
 [core]
     # pager = nvim +'setlocal ft=diff buftype=nofile bufhidden=hide noswapfile'
 
+[init]
+    defaultBranch = main
+
 [user]
     name = AminurAlam
     email = 64137875+AminurAlam@users.noreply.github.com
@@ -25,6 +28,9 @@
 [apply]
     whitespace = fix
 
+[pager]
+    log = false
+
 [color]
     # pager = false
 
@@ -37,3 +43,12 @@
     added = green
     changed = red
     untracked = default
+
+[merge]
+    tool = nvimdiff
+
+[mergetool "vimdiff"]
+    layout = @LOCAL,REMOTE
+
+[mergetool "nvimdiff"]
+    layout = @LOCAL,REMOTE
