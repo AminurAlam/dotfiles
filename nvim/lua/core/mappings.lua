@@ -73,7 +73,7 @@ vmap('>', '>gv')
 vmap('<', '<gv')
 
 -- other
--- nmap('q:', '') -- messes up q in reader mode
+-- nmap('q:', '<nop>') -- messes up q in reader mode
 umap('<c-c>', '<cmd>norm m`viw~``<cr>', 'toggle word case')
 vmap('.', ':norm .<cr>', 'dot repeat on all selected lines')
 nmap(';', '@:', 'dot repeat the last command')

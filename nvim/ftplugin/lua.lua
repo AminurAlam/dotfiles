@@ -12,21 +12,10 @@ if vim.fn.executable('lua-language-server') == 1 then
   vim.lsp.start({
     cmd = { 'lua-language-server' },
     filetypes = { 'lua' },
-    -- root_dir = function(fname)
-    --   local root = util.root_pattern(unpack(root_files))(fname)
-    --   if root and root ~= vim.env.HOME then
-    --     return root
-    --   end
-    --   root = util.root_pattern 'lua/'(fname)
-    --   if root then
-    --     return root .. '/lua/'
-    --   end
-    --   return util.find_git_ancestor(fname)
-    -- end,
+    root_dir = vim.fs.dirname(vim.fs.find({ 'lua', 'init.lua' }, { upwards = true })[1]),
     single_file_support = true,
     log_level = vim.lsp.protocol.MessageType.Warning,
     settings = {
-
       Lua = {
         -- library = vim.api.nvim_get_runtime_file('', true),
         typeFormat = { config = { auto_complete_end = true } },
