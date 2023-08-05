@@ -1,8 +1,8 @@
 function clean
-    # TODO: test if working
     set -f hist_dirs (fd -Hd1 '^\..*_history$' ~)
     set -f all_dirs \
-        /sdcard/Android/data/{*youtube/,org.schabi.newpipe/,org.*messenger/,com.spotify.*/} \
+        /sdcard/Android/data/{*youtube/,org.schabi.newpipe/,org.*messenger/} \
+        /sdcard/Android/data/{com.spotify.*/,com.aspiro.tidal/} \
         /sdcard/{Aurora/,Telegram/} \
         /sdcard/DCIM/.thumbnails/ \
         ~/.local/share/cargo/registry/

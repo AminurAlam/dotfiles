@@ -1,4 +1,5 @@
 function battery
+    set -l capacity (command cat /sys/class/power_supply/battery/capacity)
     set -l old_tty (stty --save)
     stty -echo -icanon min 0
 
@@ -16,4 +17,6 @@ function battery
         set key (cat -v)
     end
     stty "$old_tty"
+    set_color normal
+    printf "%d -> %d" "$capacity" "$(command cat /sys/class/power_supply/battery/capacity)"
 end

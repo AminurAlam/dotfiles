@@ -76,8 +76,8 @@ set -gx RUSTUP_HOME $XDG_DATA_HOME/rustup
 set -gx CARGO_HOME $XDG_DATA_HOME/cargo
 set -gx CARGO_INSTALL_ROOT $CARGO_HOME
 set -gx CARGO_LOG info
+set -gx VIMRUNTIME $PREFIX/share/nvim/runtime/
 # set -gx UV_USE_IO_URING 0 # libuv/libuv#4010
-set -gx VIMRUNTIME $XDG_PROJECTS_DIR/nvim-fork/runtime/
 
 set -gxp --path PATH "$CARGO_HOME/bin" # after declaring CARGO_HOME
 

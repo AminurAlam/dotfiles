@@ -16,14 +16,13 @@ abbr .. "cd .."
 abbr ... "cd ../.."
 abbr .... "cd ../../.."
 
-# git 
-# TODO: declare in gitcommit instead
+# git
 abbr gac "git add . && git commit"
-abbr gpo "git push origin"
-abbr gup "git add . && git commit && git push origin"
-abbr gl "git status -bs && git log --pretty=nice -n 10"
-abbr gd "git diff | \$EDITOR +'set bt=nofile bh=hide'"
-abbr gs "git status -bs"
+abbr pull "git pull origin"
+abbr push "git push origin"
+abbr gl "git s; git l"
+abbr gd "git d"
+abbr gs "git s"
 
 # rclone
 abbr rcp "rclone copy -P --transfers 6 --"
@@ -46,7 +45,7 @@ alias ll "exa -lFas ext -I '.git*' --icons --no-user --group-directories-first -
 # du, df -> dust, duf
 abbr du "dust -Dn 25"
 abbr dud "dust -d 1"
-alias df "duf -only local -output mountpoint,size,avail,usage -width 150 /storage/*"
+# alias df "duf -only local -output mountpoint,size,avail,usage -width 150 /storage/*"
 
 # tar
 abbr tar-compress "tar cf"
