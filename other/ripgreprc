@@ -1,5 +1,8 @@
 ### use --no-config to ignore this file
 
 --smart-case
+--no-line-number
+--trim
 
---glob=!node_modules/*
+--glob=!node_modules
+--glob=!.git

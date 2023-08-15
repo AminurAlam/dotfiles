@@ -17,7 +17,7 @@ function pre_build
         cd "$REPO_PATH"
         [ "$(read -P 'run `git-pull`? [y/N] ')" = y ] && git pull --deepen 0 --depth 1 origin
     else
-        git clone --depth 1 "$REPO_URL" "$REPO_PATH"
+        git clone --depth 1 --branch custom "$REPO_URL" "$REPO_PATH"
         cd "$REPO_PATH"
     end
 end
@@ -37,7 +37,7 @@ function post_build
     set VIMRUNTIME runtime/
 
     build/bin/nvim -V1 --version || return 1
-    build/bin/nvim --clean --headless +'helptags runtime/doc/ | q!'
+    build/bin/nvim --clean --headless +"helptags $PREFIX/share/nvim/runtime/doc/ | q!"
     lsof ~/.local/bin/nvim &>/dev/null &&
         printf "nvim is currently running\n" ||
         command cp -i build/bin/nvim ~/.local/bin/

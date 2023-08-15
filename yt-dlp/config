@@ -26,7 +26,3 @@
 
 ### Subtitle Options:
 --write-subs
-
-### Post-Processing Options:
-# TODO: handle by yt.fish
-# --convert-subs lrc

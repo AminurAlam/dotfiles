@@ -57,11 +57,11 @@ disabled = false
 
 [git_status]
 format = '$ahead_behind$staged$conflicted$stashed'
-ahead =      '\[[ $count](bright-cyan)\]'
-behind =     '\[[ $count](green)\]'
-staged =     '\[[ $count](green)\]'
+ahead = '\[[ $count](bright-cyan)\]'
+behind = '\[[ $count](green)\]'
+staged = '\[[ $count](green)\]'
 conflicted = '\[[󰞇 $count](red)\]'
-stashed =    '\[[ $count](bright-yellow)\]'
+stashed = '\[[ $count](bright-yellow)\]'
 
 [git_metrics]
 format = '(\[[+$added]($added_style)\])(\[[-$deleted]($deleted_style)\])'
