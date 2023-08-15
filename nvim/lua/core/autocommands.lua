@@ -54,7 +54,8 @@ autocmd('BufNewFile', {
     vim.ui.select(possibles, {}, function(choice)
       if not choice then return end
       local bufnr = vim.api.nvim_win_get_buf(0)
-      vim.cmd('edit ' .. vim.fn.fnameescape(choice) .. ' | filetype detect')
+      vim.cmd.edit(vim.fn.fnameescape(choice))
+      vim.cmd 'filetype detect'
       vim.api.nvim_buf_delete(bufnr, {})
     end)
   end,
@@ -65,7 +66,7 @@ autocmd('VimEnter', {
   callback = function(details)
     if vim.fn.isdirectory(details.file) == 1 then
       vim.cmd.cd(details.file)
-      vim.cmd('Telescope find_files')
+      vim.cmd 'Telescope find_files'
     end
   end,
 })

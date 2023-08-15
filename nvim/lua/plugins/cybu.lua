@@ -31,6 +31,6 @@ return {
     show_on_autocmd = 'BufEnter',
     display_time = 1500, -- time the cybu window is displayed
     exclude = {},
-    fallback = function(direction) vim.cmd('b' .. direction) end,
+    fallback = function(direction) vim.cmd.b(direction) end,
   },
 }
