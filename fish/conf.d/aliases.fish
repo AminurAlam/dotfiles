@@ -10,6 +10,7 @@ abbr cls clear
 abbr cal "cal -my"
 abbr qmv "qmv -AXf do"
 abbr pst "ps -faxo 'pid,comm'"
+abbr y "yes |"
 
 # parent dir
 abbr .. "cd .."

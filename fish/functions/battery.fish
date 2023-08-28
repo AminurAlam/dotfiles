@@ -18,5 +18,5 @@ function battery
     end
     stty "$old_tty"
     set_color normal
-    printf "%d -> %d" "$capacity" "$(command cat /sys/class/power_supply/battery/capacity)"
+    printf "%d -> %d\n" "$capacity" "$(command cat /sys/class/power_supply/battery/capacity)"
 end
