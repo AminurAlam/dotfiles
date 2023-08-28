@@ -112,9 +112,11 @@ nmap('<leader>si', function()
   vim.opt_local.lcs = { leadmultispace = lcs }
 end, 'toggle indentlines')
 
-abbr('qw', 'q!') -- dvorak
-abbr('qn', 'q!') -- qwert
--- abbr('S', [[s/\v]])
+if vim.fn.has('nvim-0.10.0') == 1 then
+  abbr('qw', 'q!') -- dvorak
+  abbr('qn', 'q!') -- qwert
+  -- abbr('S', [[s/\v]])
+end
 
 if vim.fn.has('termux') == 1 then
   umap('<ScrollWheelUp>', '<c-y>')

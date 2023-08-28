@@ -22,8 +22,9 @@ M.config = function()
       prompt_prefix = '  ',
       selection_caret = '» ',
       entry_prefix = ' ',
-      prompt_title = false,
+      dynamic_preview_title = false,
       results_title = false,
+      prompt_title = false,
       winblend = 0,
       file_ignore_patterns = {
         '.pdf',

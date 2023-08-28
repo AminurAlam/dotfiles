@@ -10,7 +10,7 @@ local M = {
     'L3MON4D3/LuaSnip', -- helps create snippets
     'saadparwaiz1/cmp_luasnip', -- adds snippets to cmp
     'rafamadriz/friendly-snippets', -- provides multiple snippets
-    'mtoohey31/cmp-fish',
+    { 'mtoohey31/cmp-fish', ft = 'fish' },
   },
 }
 
@@ -65,8 +65,24 @@ M.config = function()
     snippet = { expand = function(args) luasnip.lsp_expand(args.body) end },
     preselect = cmp.PreselectMode.None,
     window = {
-      completion = cmp.config.window.bordered(),
-      documentation = cmp.config.window.bordered(),
+      completion = {
+        border = 'rounded',
+        winhighlight = 'Normal:Normal,FloatBorder:Normal,CursorLine:Visual,Search:None',
+        zindex = 3,
+        scrolloff = 2,
+        col_offset = 0,
+        side_padding = 1,
+        scrollbar = true,
+      },
+      documentation = {
+        border = 'rounded',
+        winhighlight = 'Normal:Normal,FloatBorder:Normal,CursorLine:Visual,Search:None',
+        zindex = 1001,
+        scrolloff = 2,
+        col_offset = 0,
+        side_padding = 1,
+        scrollbar = true,
+      },
     },
     formatting = {
       format = function(entry, vim_item)
