@@ -117,10 +117,3 @@ if vim.fn.has('nvim-0.10.0') == 1 then
   abbr('qn', 'q!') -- qwert
   -- abbr('S', [[s/\v]])
 end
-
-if vim.fn.has('termux') == 1 then
-  umap('<ScrollWheelUp>', '<c-y>')
-  umap('<ScrollWheelDown>', '<c-e>')
-  vim.keymap.set('i', '<ScrollWheelUp>', '<c-x><c-y>')
-  vim.keymap.set('i', '<ScrollWheelDown>', '<c-x><c-e>')
-end

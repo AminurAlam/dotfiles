@@ -74,6 +74,7 @@ set.helpheight = 25
 set.wrap = false
 set.linebreak = true
 set.breakindent = true
+if vim.fn.has('termux') == 1 then set.mousescroll = 'ver:1,hor:6' end
 
 -- others
 set.concealcursor = 'n'
