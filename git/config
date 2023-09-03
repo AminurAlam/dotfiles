@@ -1,5 +1,3 @@
-# vim: set ft=gitconfig commentstring=#\ %s :
-
 [core]
     # pager = nvim +'setlocal ft=diff buftype=nofile bufhidden=hide noswapfile'
 
@@ -52,3 +50,5 @@
 
 [mergetool "nvimdiff"]
     layout = @LOCAL,REMOTE
+
+# vim: set ft=gitconfig commentstring=#\ %s :

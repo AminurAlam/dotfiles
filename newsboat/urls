@@ -8,12 +8,14 @@ https://what-if.xkcd.com/feed.atom socials
 https://github.com/neovim/neovim/commits/master/runtime/doc/news.txt.atom "~nvim - news.txt" socials
 https://nitter.kavin.rocks/carlyraejepsen/rss socials
 https://nitter.kavin.rocks/kamatamarom/rss socials
+http://mangacritic.mangabookshelf.com/feed/ socials
+https://www.thatmangahunter.com/blog-feed.xml socials
+https://myanimelist.net/rss.php?type=rm&u=goobatron socials
 https://myanimelist.net/rss.php?type=rm&u=Shellshock123 socials
 
 "query:----- MUSIC -----:tags # \"music\" and unread = \"yes\""
-https://hasitleaked.com/feed "~Has it leaked? news" music
-https://hasitleaked.com/leakedfeed "~Has it leaked? albums" music
 https://muspy.com/feed?id=mobwjpkr95u5p1b4f2w1bjt74qc8u3 "~muspy New Releases" music
+https://hasitleaked.com/leakedfeed "~Has it leaked? albums" music
 https://sputnikmusic.com/blog/feed/ "~Sputnik Music Blog" music
 https://feeds.npr.org/1039/rss.xml "~NPR Music" music
 https://www.allmusic.com/rss music
@@ -23,7 +25,6 @@ https://pitchfork.com/feed/feed-news/rss "~Pitchfork News" music
 https://waxy.org/feed/ "~waxy.org by Andy Baio" aggregators
 https://lobste.rs/rss aggregators
 https://hnrss.org/newest.atom?points=100&count=20&description=0 "~Hacker News" aggregators
-https://beehaw.org/feeds/local.xml?sort=Active aggregators
 https://reddit.com/r/programming/hot.rss "~r/programming" aggregators
 https://reddit.com/r/neovim/hot.rss "~r/neovim" aggregators
 https://reddit.com/r/OtoMusic/new.rss "~r/OtoMusic" aggregators
@@ -65,6 +66,8 @@ https://www.lumendatabase.org/blog_feed.rss blogs_corpo
 https://mullvad.net/en/blog/feed/atom/ blogs_corpo
 https://element.io/blog/rss/ blogs_corpo
 https://security.googleblog.com/feeds/posts/default?alt=rss blogs_corpo
+https://crinacle.com/feed blogs_corpo
+https://www.darkhorse.com/RSS/ blogs_corpo
 https://medium.com/feed/phonepe/tagged/security blogs_corpo
 
 "query:----- PERSONAL BLOGS 1 -----:tags # \"personal_blog_1\" and unread = \"yes\""

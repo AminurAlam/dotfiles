@@ -21,8 +21,8 @@ function clean
         end
 
         set -f latest (fd -tdirectory -d1 '^\d+$' /sdcard/Android/data/dev.beefers.vendetta.manager/cache/ | sort | tail -n 1)
-        [ -d "$latest/signed/" ] && set -fa dirs "$latest/signed/" 
-        [ -d "$latest/patched/" ] && set -fa dirs "$latest/patched/" 
+        [ -d "$latest/signed/" ] && set -fa dirs "$latest"signed/
+        [ -d "$latest/patched/" ] && set -fa dirs "$latest"patched/
 
         # set eee (fd -tdirectory -d1 '^\d+$' /sdcard/Android/data/dev.beefers.vendetta.manager/cache/ | sort | head -n -1)
         # set -fa dirs $ee[1..-2]

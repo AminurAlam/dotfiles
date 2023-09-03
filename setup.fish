@@ -65,12 +65,10 @@ function bootstrap-pacman
     # cd ~/../usr-n/ || exit
     #
     # printf "extracting bootstrap...\n"
-    # unzip -q -d ~/../usr-n/ "$main/bootstrap-${arch}.zip"
+    # unzip -qd ~/../usr-n/ "$main/bootstrap-$arch.zip"
     #
     # printf "creating symlinks...\n"
-    # awk -F "←" '{system("ln -s '"'"'"$1"'"'"' '"'"'"$2"'"'"'")}' < ~/../usr-n/SYMLINKS.txt
-    #
-    # cd
+    # awk -F "←" '{system("ln -s '"'"'"$1"'"'"' '"'"'"$2"'"'"'")}' ~/../usr-n/SYMLINKS.txt
     #
     # printf "\nRUN THIS COMMAND IN FAILSAFE MODE
     # cd .. && rm -fr usr/ && mv usr-n/ usr/\n"
@@ -186,5 +184,6 @@ echo "done\n"
 # TODO: proot-distro and gui installation
 # TODO: move completely to fish
 # TODO: copy newsboat db
+# TODO: ~/repos/ -> ~/projects/
 
 : # make sure the script returns 0
