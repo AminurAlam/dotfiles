@@ -14,6 +14,8 @@ function clean
         [ -d "$dir" ] && set -fa dirs $dir
     end
 
+    set -fa dirs (fd -tdirectory '_tmp$' /sdcard/TachiyomiSY/)
+
     # get dirs from vendetta manager cache
     if [ -d "/sdcard/Android/data/dev.beefers.vendetta.manager/cache/" ]
         for dir in (fd -tdirectory -d1 '^\d+$' /sdcard/Android/data/dev.beefers.vendetta.manager/cache/ | sort | head -n -1)

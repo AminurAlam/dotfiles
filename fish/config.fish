@@ -1,6 +1,6 @@
 # TODO: conf.d/ -> somewhere/else/ and source manually
 
-set -gxp --path PATH "$HOME/.local/bin" # this comes first: nvim, exa, sk...
+set -gxp --path PATH "$HOME/.local/bin" # this comes first: nvim, eza, sk...
 
 ### EXPORTS ###
 

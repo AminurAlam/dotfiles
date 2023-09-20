@@ -30,13 +30,13 @@ function fish_right_prompt
     [ $exit_code -ne 0 ] && set prompt_status "[$exit_code]"
 
     if [ $CMD_DURATION -gt 3600000 ]
-        set -f time "[$(math -s 0 $CMD_DURATION/3600_000)h$(math -s 0 \($CMD_DURATION%3600_000\)/60_000)m]"
+        set -f time "["(math -s 0 $CMD_DURATION/3600000)"h"(math -s 0 \($CMD_DURATION%3600_000\)/60_000)"m]"
     else if [ $CMD_DURATION -gt 60000 ]
-        set -f time "[$(math -s 0 $CMD_DURATION/60_000)m$(math -s 0 \($CMD_DURATION%60_000\)/1_000)s]"
+        set -f time "["(math -s 0 $CMD_DURATION/60000)"m"(math -s 0 \($CMD_DURATION%60_000\)/1_000)"s]"
     else if [ $CMD_DURATION -gt 800 ]
-        set -f time "[$(math -s 1 $CMD_DURATION/1_000)s]"
+        set -f time "["(math -s 1 $CMD_DURATION/1000)"s]"
     else if [ $CMD_DURATION -gt 10 ]
-        set -f time "[$(echo $CMD_DURATION)ms]"
+        set -f time "["(echo $CMD_DURATION)"ms]"
     end
 
     printf "%s%s" \

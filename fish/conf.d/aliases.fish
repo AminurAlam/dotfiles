@@ -38,10 +38,10 @@ abbr rconf "rclone config"
 abbr py "python3 -q"
 alias mbz "python3 \$XDG_PROJECTS_DIR/musicbrainzpy/cover_art.py"
 
-# ls -> exa
-alias l "exa -lFas ext -I '.git*' --icons --no-user --group-directories-first --no-permissions --no-time"
-alias lt "exa -lFaTs ext -I '.git*' --icons --no-user --group-directories-first --no-permissions --no-time --git"
-alias ll "exa -lFas ext -I '.git*' --icons --no-user --group-directories-first --git"
+# ls -> eza
+alias l "eza -lFas ext -I '.git*' --icons --no-user --group-directories-first --no-permissions --no-time"
+alias lt "eza -lFaTs ext -I '.git*' --icons --no-user --group-directories-first --no-permissions --no-time --git"
+alias ll "eza -lFas ext -I '.git*' --icons --no-user --group-directories-first --git"
 
 # du, df -> dust, duf
 abbr du "dust -Dn 25"
@@ -55,14 +55,20 @@ abbr tar-extract "tar xf"
 abbr tar-extract-gz "tar xzf"
 
 if command -sq apt
-    abbr pi "apt install"
-    abbr pr "apt remove"
+    if [ "$(uname -o)" = Android ]
+        abbr pi "apt install"
+        abbr pr "apt remove"
+        function pu
+            echo "deb https://packages-cf.termux.dev/apt/termux-main stable main" >$PREFIX/etc/apt/sources.list
+            apt update && apt upgrade
+        end
+    else
+        abbr pi "sudo apt install"
+        abbr pr "sudo apt remove"
+        abbr pu "sudo apt update && sudo apt upgrade"
+    end
     abbr pf "apt search"
     abbr pa "apt show"
-    function pu
-        echo "deb https://packages-cf.termux.dev/apt/termux-main stable main" >$PREFIX/etc/apt/sources.list
-        apt update && apt upgrade
-    end
 else if command -sq pacman
     abbr pi "pacman -S"
     abbr pr "pacman -Rs"
