@@ -53,7 +53,7 @@ set.foldminlines = 3
 set.foldmethod = 'manual'
 set.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
 set.foldtext =
-  'getline(v:foldstart) .. " ... " .. trim(getline(v:foldend)) .. " [" .. (v:foldend-v:foldstart+1) .. " lines]"'
+  [[substitute(getline(v:foldstart), "\\s\\(--\\|#\\).*", "", "" ) .. " ... " .. trim(getline(v:foldend)) .. " [" .. (v:foldend-v:foldstart+1) .. " lines]"]]
 set.foldcolumn = 'auto'
 set.foldopen:append {}
 set.viewoptions = 'cursor,folds'

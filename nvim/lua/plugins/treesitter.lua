@@ -22,7 +22,10 @@ return {
       -- parser_install_dir = vim.fn.stdpath('data'),
       ensure_installed = vim.fn.executable('clang') == 1 and parsers or {},
       sync_install = true,
-      highlight = { enable = true },
+      highlight = {
+        enable = true,
+        additional_vim_regex_highlighting = false,
+      },
       incremental_selection = {
         enable = true,
         keymaps = {
@@ -33,7 +36,7 @@ return {
         },
       },
       textobjects = { enable = true },
-      indent = { enable = false },
+      indent = { enable = true },
     }
   end,
 }

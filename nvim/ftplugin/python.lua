@@ -1,3 +1,5 @@
+vim.opt.cinkeys:remove { ':' }
+
 if vim.fn.executable('pyright-langserver') == 1 then
   vim.lsp.start({
     cmd = { 'pyright-langserver', '--stdio' },
