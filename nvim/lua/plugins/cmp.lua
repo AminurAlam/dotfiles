@@ -94,6 +94,8 @@ M.config = function()
     mapping = cmp.mapping.preset.insert {
       ['<c-e>'] = cmp.mapping.abort(),
       ['<cr>'] = cmp.mapping.confirm { select = true },
+      ['<c-u>'] = cmp.mapping.scroll_docs(-4),
+      ['<c-d>'] = cmp.mapping.scroll_docs(4),
       ['<tab>'] = cmp.mapping(function(fallback)
         if cmp.visible() then
           cmp.select_next_item()

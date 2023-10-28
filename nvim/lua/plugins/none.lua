@@ -1,5 +1,5 @@
 local M = {
-  'jose-elias-alvarez/null-ls.nvim',
+  'nvimtools/none-ls.nvim',
   dependencies = { 'nvim-lua/plenary.nvim' },
   ft = { 'lua', 'fish', 'c', 'cpp', 'sh' },
 }
@@ -23,8 +23,8 @@ M.config = function()
   add('ruff', 'ruff', 'diagnostics')
   add('fish', 'fish', 'diagnostics')
   add('fish_indent', 'fish_indent', 'formatting')
-  add('shellcheck', 'shellcheck', 'code_actions')
   add('clang_check', 'clang-check', 'diagnostics')
+  add('shellcheck', 'shellcheck', 'code_actions')
   add('shellcheck', 'shellcheck', 'diagnostics')
   -- add('ts_node_action', 'code_actions')
   -- add('spell', 'completion')
