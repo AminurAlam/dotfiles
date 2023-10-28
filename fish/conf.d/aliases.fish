@@ -11,6 +11,7 @@ abbr cal "cal -my"
 abbr qmv "qmv -AXf do"
 abbr pst "ps -faxo 'pid,comm'"
 abbr y "yes |"
+abbr ffmpeg "ffmpeg -y -hide_banner -stats -loglevel error -i"
 
 # parent dir
 abbr .. "cd .."
@@ -26,7 +27,7 @@ abbr gd "git d"
 abbr gs "git s"
 
 # rclone
-abbr rcp "rclone copy -P --transfers 6 --"
+abbr rcp "rclone copy -P --transfers 8 --"
 abbr rmv "rclone move -P"
 abbr rls "rclone lsf"
 abbr rlt "rclone tree --level"
@@ -39,9 +40,9 @@ abbr py "python3 -q"
 alias mbz "python3 \$XDG_PROJECTS_DIR/musicbrainzpy/cover_art.py"
 
 # ls -> eza
-alias l "eza -lFas ext -I '.git*' --icons --no-user --group-directories-first --no-permissions --no-time"
-alias lt "eza -lFaTs ext -I '.git*' --icons --no-user --group-directories-first --no-permissions --no-time --git"
-alias ll "eza -lFas ext -I '.git*' --icons --no-user --group-directories-first --git"
+alias l "eza -lFas ext -I '.git*' --icons --no-user --group-directories-first --no-quotes --no-permissions --no-time --color-scale"
+alias lt "eza -lFaTs ext -I '.git*' --icons --no-user --group-directories-first --no-quotes --no-permissions --no-time --git"
+alias ll "eza -lFas ext -I '.git*' --icons --no-user --group-directories-first --no-quotes --color-scale --git"
 
 # du, df -> dust, duf
 abbr du "dust -Dn 25"

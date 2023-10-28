@@ -8,10 +8,13 @@ function clean
         /sdcard/Android/data/com.xodo.pdf.reader/ \
         /sdcard/{Aurora/,Telegram/,MIUI/} \
         /sdcard/DCIM/.thumbnails/ \
+        /sdcard/Download/Nearby Share/ \
         ~/.local/share/cargo/registry/
 
     for dir in $all_dirs
-        [ -d "$dir" ] && set -fa dirs $dir
+        if [ -d "$dir" ]
+            [ -r "$dir" ] && set -fa dirs $dir || set -fa perm_dir $dir
+        end
     end
 
     set -fa dirs (fd -tdirectory '_tmp$' /sdcard/TachiyomiSY/)
@@ -36,8 +39,13 @@ function clean
 
     if count $dirs &>/dev/null
         command du -hs $dirs
-        printf "delete these directories? [y/N] "
-        command rm -frI -- $dirs &>/dev/null
+        [ "$(read -P 'delete these directories? [y/N] ')" = y ] && command rm -fr -- $dirs &>/dev/null
+        echo
+    end
+
+    if count $perm_dir >/dev/null && command -vq rish
+        rish -c "du -hs $perm_dir"
+        [ "$(read -P 'delete these directories? [y/N] ')" = y ] && rish -c "rm -fr -- $perm_dir" &>/dev/null
         echo
     end
 
