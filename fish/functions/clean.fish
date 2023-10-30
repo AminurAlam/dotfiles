@@ -39,13 +39,13 @@ function clean
 
     if count $dirs &>/dev/null
         command du -hs $dirs
-        [ "$(read -P 'delete these directories? [y/N] ')" = y ] && command rm -fr -- $dirs &>/dev/null
+        [ (read -P 'delete these directories? [y/N] ') = y ] && command rm -fr -- $dirs &>/dev/null
         echo
     end
 
     if count $perm_dir >/dev/null && command -vq rish
         rish -c "du -hs $perm_dir"
-        [ "$(read -P 'delete these directories? [y/N] ')" = y ] && rish -c "rm -fr -- $perm_dir" &>/dev/null
+        [ (read -P 'delete these directories? [y/N] ') = y ] && rish -c "rm -fr -- $perm_dir" &>/dev/null
         echo
     end
 

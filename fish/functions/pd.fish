@@ -10,7 +10,7 @@ function pd
 
     switch $distro
         case $distros
-            proot-distro login $distro || begin
+            proot-distro login $distro $argv[2..] || begin
                 read install -fP "cant login to '$distro', try installing it? [y/N] "
                 [ "$install" = y ] && proot-distro install $distro
             end

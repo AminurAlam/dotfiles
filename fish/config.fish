@@ -77,7 +77,6 @@ set -gx CARGO_HOME $XDG_DATA_HOME/cargo
 set -gx CARGO_INSTALL_ROOT $CARGO_HOME
 set -gx CARGO_LOG info
 set -gx VIMRUNTIME $PREFIX/share/nvim/runtime/
-# set -gx UV_USE_IO_URING 0 # libuv/libuv#4010
 
 set -gxp --path PATH "$CARGO_HOME/bin" # after declaring CARGO_HOME
 
@@ -86,21 +85,25 @@ command -sq starship && starship init fish | source || source $XDG_CONFIG_HOME/f
 command -sq zoxide && zoxide init fish | source || alias z cd
 
 ### ALIASES ###
-abbr --set-cursor zsd "z $XDG_DIR/%"
-abbr --set-cursor zdoc "z $XDG_DOCUMENTS_DIR/%"
-abbr --set-cursor zdl "z $XDG_DOWNLOAD_DIR/%"
-abbr --set-cursor zmov "z $XDG_VIDEOS_DIR/%"
-abbr --set-cursor zmu "z $XDG_MUSIC_DIR/%"
-abbr --set-cursor zpic "z $XDG_PICTURES_DIR/%"
-abbr --set-cursor zt "z $XDG_DIR/Tachiyomi*/local/%"
-abbr --set-cursor zm "z $XDG_DIR/main/%"
-abbr --set-cursor zl "z ~/.local/%"
-abbr --set-cursor zmbz "z $XDG_PROJECTS_DIR/mbz-rust/%"
-abbr --set-cursor zd "z $XDG_PROJECTS_DIR/dotfiles/%"
-abbr --set-cursor zc "z $XDG_CONFIG_HOME/%"
-abbr --set-cursor zcf "z $XDG_CONFIG_HOME/fish/%"
-abbr --set-cursor zcn "z $XDG_CONFIG_HOME/nvim/%"
-abbr --set-cursor zp "z $PREFIX/%"
+if fish -v | grep "fish, version 3.6" &>/dev/null
+    set cursor "--set-cursor"
+    set end "%"
+end
+abbr $cursor zsd "z $XDG_DIR/$end"
+abbr $cursor zdoc "z $XDG_DOCUMENTS_DIR/$end"
+abbr $cursor zdl "z $XDG_DOWNLOAD_DIR/$end"
+abbr $cursor zmov "z $XDG_VIDEOS_DIR/$end"
+abbr $cursor zmu "z $XDG_MUSIC_DIR/$end"
+abbr $cursor zpic "z $XDG_PICTURES_DIR/$end"
+abbr $cursor zt "z $XDG_DIR/Tachiyomi*/local/$end"
+abbr $cursor zm "z $XDG_DIR/main/$end"
+abbr $cursor zl "z ~/.local/$end"
+abbr $cursor zmbz "z $XDG_PROJECTS_DIR/mbz-rust/$end"
+abbr $cursor zd "z $XDG_PROJECTS_DIR/dotfiles/$end"
+abbr $cursor zc "z $XDG_CONFIG_HOME/$end"
+abbr $cursor zcf "z $XDG_CONFIG_HOME/fish/$end"
+abbr $cursor zcn "z $XDG_CONFIG_HOME/nvim/$end"
+abbr $cursor zp "z $PREFIX/$end"
 abbr zz "z -"
 
 ### FUNCTIONS ###

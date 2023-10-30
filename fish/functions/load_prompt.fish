@@ -6,7 +6,6 @@
 # [ -n "$SSH_CLIENT" ] && set -l prompt_name "$USER@ssh"
 # (set_color yellow) $prompt_name \
 
-
 builtin functions -e fish_mode_prompt
 
 function prompt_pwd

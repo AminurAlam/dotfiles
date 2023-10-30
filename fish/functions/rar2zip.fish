@@ -14,7 +14,7 @@ function rar2zip -a input output
     [ -z "$output" ] && set -l output "$filename.zip"
 
     if [ -e "$output" ]
-        [ "$(read -P 'overwrite $output? [y/N] ')" = y ] || return 1
+        [ (read -P 'overwrite $output? [y/N] ') = y ] || return 1
     end
 
 

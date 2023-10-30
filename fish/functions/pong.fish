@@ -4,7 +4,7 @@ function pong
 
     for address in $addresses
 
-        while [ "$(jobs -c | rg -c --include-zero '^ping$')" -ge "$concurrent" ]
+        while [ (jobs -c | rg -c --include-zero '^ping$') -ge "$concurrent" ]
             sleep 0.2
         end
 
@@ -17,7 +17,7 @@ function pong
         }' &
     end
 
-    while [ "$(jobs -c | rg -c --include-zero '^ping$')" -gt 0 ]
+    while [ (jobs -c | rg -c --include-zero '^ping$') -gt 0 ]
         sleep 0.1
     end
 end

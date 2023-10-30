@@ -20,6 +20,7 @@ abbr .... "cd ../../.."
 
 # git
 abbr gac "git add . && git commit"
+abbr gc "git commit"
 abbr pull "git pull origin"
 abbr push "git push origin"
 abbr gl "git s; git l"
@@ -56,7 +57,7 @@ abbr tar-extract "tar xf"
 abbr tar-extract-gz "tar xzf"
 
 if command -sq apt
-    if [ "$(uname -o)" = Android ]
+    if [ (uname -o) = Android ]
         abbr pi "apt install"
         abbr pr "apt remove"
         function pu
