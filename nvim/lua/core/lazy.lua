@@ -1,6 +1,6 @@
 local url, lazypath, branch
 
-if vim.fn.has('termux') then
+if vim.fn.has('termux') == 1 then
   url = 'https://github.com/AminurAlam/lazy.nvim.git'
   lazypath = '/data/data/com.termux/files/home/repos/lazy-fork'
   branch = 'main'

@@ -64,7 +64,6 @@ set.winblend = 0
 set.pumblend = 0
 set.pumheight = 15
 set.termguicolors = true
-set.guicursor = 'n-sm-r:hor25,v-o-i-c-ci-cr:ver25'
 set.startofline = true
 set.cursorline = true
 set.cursorlineopt = 'number,screenline'
@@ -74,7 +73,11 @@ set.helpheight = 25
 set.wrap = false
 set.linebreak = true
 set.breakindent = true
-if vim.fn.has('termux') == 1 then set.mousescroll = 'ver:1,hor:6' end
+set.guicursor = 'n-sm-r:block,v-o-i-c-ci-cr:ver100'
+if vim.fn.has('termux') == 1 then
+  set.guicursor = 'n-sm-r:hor100,v-o-i-c-ci-cr:ver100'
+  set.mousescroll = 'ver:1,hor:6'
+end
 
 -- others
 set.concealcursor = 'n'

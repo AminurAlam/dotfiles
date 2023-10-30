@@ -64,8 +64,8 @@ vim.g.stl = {
   mode = function() return mode_names[vim.api.nvim_get_mode().mode] or '???' end,
   bufcount = function() return buflogo[#vim.fn.getbufinfo { buflisted = 1 }] or '十 ' end, -- 󰼘
   hlsearch = function()
-    local sc = vim.fn.searchcount()
     if vim.v.hlsearch == 0 then return '' end
+    local sc = vim.fn.searchcount()
     return string.format('[%s/%s]', sc.current, sc.total)
   end,
   progress = function()
