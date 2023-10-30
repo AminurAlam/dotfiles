@@ -4,66 +4,30 @@ fish_setup_url="https://raw.githubusercontent.com/AminurAlam/dotfiles/main/setup
 root_url="https://github.com/termux-pacman/termux-packages/releases"
 main="/sdcard/main/termux/"
 
-download-bootstrap() {
-    printf "%s\n" "$1"
-
-    if [[ "$1" = "outdated" ]]; then
-        printf "\ndownload new bootstrap? [y/N] "
-        read -r choice
-
-        case "$choice" in
-            y|Y|yes|Yes|YES) true;;
-            *) return;;
-        esac
-    fi
-
-    printf "downloading bootstrap to: bootstrap-%s.zip\n" "$arch"
-    curl -q#LO -- "${root_url}/latest/download/bootstrap-$arch.zip"
-}
-
-check-hash() {
-    printf "present\n"
-    printf "checking hash of cached archive...\n"
-    curl -qsL -- "https://github.com/termux-pacman/termux-packages/releases/latest/download/CHECKSUMS-md5.txt" \
-    | awk -F '\t' " /$arch/ {print \$2 \"  \" \$1}" \
-    | md5sum --status --check \
-    || download-bootstrap "outdated"
-}
-
 bootstrap-pacman() {
     printf "BOOTSTRAPPING PACMAN...\n"
     printf "determining arch... "
-    case "$(uname -m)" in
-        aarch64) arch=aarch64 ;;
-        arm*)    arch=arm     ;;
-        i686)    arch=i686    ;; # not tested
-        x86_64)  arch=x86_64  ;; # not tested
-        *)
-        printf "%s is not a recognised arch\n" "$(uname -m)"
-        exit ;;
-    esac
+    arch="$(uname -m | sed 's/^arm.*/arm/')"
     printf "%s\n" "$arch"
 
-    bootstrap_path="/sdcard/main/termux/bootstrap-$arch.zip"
-    cd "$main" || exit
+    bootstrap_path="$main/bootstrap-${arch}.zip"
 
     printf "looking for bootstrap... "
-    if [ -e "bootstrap-${arch}.zip" ]; then
-        check-hash
-    else
-        download-bootstrap
-    fi
+    # shellcheck disable=2015
+    [ -e "$bootstrap_path" ] && printf "exists\n" || {
+        printf "downloading bootstrap\n"
+        curl --create-dirs -q#Lo "$bootstrap_path" -- "${root_url}/latest/download/bootstrap-${arch}.zip"
+    }
 
     mkdir -p ~/../usr-n/
     cd ~/../usr-n/ || exit
 
-    printf "extracting bootstrap...\n"
-    unzip -q -d ~/../usr-n/ "$main/bootstrap-${arch}.zip"
+    printf "extracting bootstrap... "
+        unzip -qd ~/../usr-n/ "$bootstrap_path"
+    printf "done\n"
 
     printf "creating symlinks...\n"
     awk -F "←" '{system("ln -s '"'"'"$1"'"'"' '"'"'"$2"'"'"'")}' < ~/../usr-n/SYMLINKS.txt
-
-    cd
 
     printf "\nRUN THIS COMMAND IN FAILSAFE MODE
     cd .. && rm -fr usr/ && mv usr-n/ usr/\n"
@@ -72,7 +36,7 @@ bootstrap-pacman() {
 }
 
 yes | termux-setup-storage &>/dev/null
-command -v pacman >/dev/null || bootstrap-pacman
+command -v pacman &>/dev/null || bootstrap-pacman
 
 printf "\nGENERATING PACMAN KEYS... "
     pacman-key --init &>/dev/null
@@ -81,7 +45,8 @@ printf "done\n"
 
 printf "INSTALLING FISH...\n"
     pacman -Syuq --noconfirm --needed -- fish || {
-        printf 'failed\n'; exit
+        printf 'failed\n'
+        exit
     }
 
 printf "CHANGING SHELL... "

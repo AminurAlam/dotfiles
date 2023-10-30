@@ -1,11 +1,11 @@
 set arch (uname -m | sed 's/^arm.*/arm/')
-set packages dust libgit2 fd git neovim openssh renameutils ripgrep starship lua-language-server termux-api zoxide
+set packages dust eza libgit2 fd git openssh renameutils ripgrep starship lua-language-server termux-api zoxide
 # urls
 set url_font "https://raw.githubusercontent.com/ryanoasis/nerd-fonts/master/patched-fonts/SourceCodePro/Regular/SauceCodeProNerdFont-Regular.ttf"
 set url_dotfiles "https://github.com/AminurAlam/dotfiles.git"
 set url_neovim "https://github.com/AminurAlam/neovim.git"
 set url_fish_setup "https://raw.githubusercontent.com/AminurAlam/dotfiles/main/setup.fish"
-set url_bootstrap "https://github.com/termux-pacman/termux-pacages/releases"
+set url_bootstrap "https://github.com/termux-pacman/termux-packages/releases"
 # paths
 set main "/sdcard/main/termux/"
 set path_dots "$HOME/repos/dotfiles" # NOTE: mae sure this is a full path
@@ -13,82 +13,12 @@ set path_nvim "$HOME/repos/nvim-fork"
 
 command mkdir -p $HOME/{backup,repos}/ $HOME/.local/{share,bin,cache}/
 
-function download-bootstrap
-    # printf "%s\n" "$1"
-    #
-    # if [[ "$1" = "outdated" ]]; then
-    #     printf "\ndownload new bootstrap? [y/N] "
-    #     read -r choice
-    #
-    #     case "$choice" in
-    #         y|Y|yes|Yes|YES) true;;
-    #         *) return;;
-    #     esac
-    # fi
-    #
-    # printf "downloading bootstrap to: bootstrap-%s.zip\n" "$arch"
-    # curl -q#LO -- "${url_bootstrap}/latest/download/bootstrap-$arch.zip"
-end
-
-function check-hash
-    # printf "present\n"
-    # printf "checking hash of cached archive...\n"
-    # curl -qsL -- "https://github.com/termux-pacman/termux-packages/releases/latest/download/CHECKSUMS-md5.txt" \
-    # | awk -F '\t' " /$arch/ {print \$2 \"  \" \$1}" \
-    # | md5sum --status --check \
-    # || download-bootstrap "outdated"
-end
-
-function bootstrap-pacman
-    # printf "BOOTSTRAPPING PACMAN...\n"
-    # printf "determining arch... "
-    # switch (uname -m)
-    #     case aarch64; set arch aarch64
-    #     case "arm*";  set arch arm
-    #     case "*"
-    #         printf "%s is not a recognised arch\n" "$(uname -m)"
-    #         exit
-    # end
-    # printf "%s\n" "$arch"
-    #
-    # set bootstrap_path "$main/bootstrap-$arch.zip"
-    # cd "$main" || exit
-    #
-    # printf "looking for bootstrap... "
-    # if [ -e "bootstrap-$arch.zip" ]
-    #     check-hash
-    # else
-    #     download-bootstrap
-    # end
-    #
-    # mkdir -p ~/../usr-n/
-    # cd ~/../usr-n/ || exit
-    #
-    # printf "extracting bootstrap...\n"
-    # unzip -qd ~/../usr-n/ "$main/bootstrap-$arch.zip"
-    #
-    # printf "creating symlinks...\n"
-    # awk -F "←" '{system("ln -s '"'"'"$1"'"'"' '"'"'"$2"'"'"'")}' ~/../usr-n/SYMLINKS.txt
-    #
-    # printf "\nRUN THIS COMMAND IN FAILSAFE MODE
-    # cd .. && rm -fr usr/ && mv usr-n/ usr/\n"
-    #
-    # exit
-end
-
-# yes | termux-setup-storage &>/dev/null
-# command -vq pacman || bootstrap-pacman
-# printf "\nGENERATING PACMAN KEYS... "
-#     pacman-key --init &>/dev/null
-#     pacman-key --populate &>/dev/null
-# printf "done\n"
-
 function setup-proot
-    :
+    pacman -S --noconfirm --needed proot-distro
 end
 
 function setup-x11
-    :
+    pacman -S --noconfirm --needed termux-x11-nightly
 end
 
 printf "INSTALLING NEW PACKAGES...\n"
