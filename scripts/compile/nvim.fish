@@ -12,6 +12,16 @@ function pre_build
         exit
     end
 
+    # fixes phantom process killing
+    command -vq rish && rish -c "settings put global settings_enable_monitor_phantom_procs false"
+
+    # checking connection
+    ping -qc 5 -i 0.2 -- raw.githubusercontent.com || begin
+        printf "connection to `raw.githubusercontent.com` failed\n"
+        printf "try using a VPN\n"
+        exit
+    end
+
     # TODO: fix downloading full repo
     if [ -d "$REPO_PATH" ]
         cd "$REPO_PATH"
