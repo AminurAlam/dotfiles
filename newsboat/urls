@@ -6,8 +6,8 @@
 https://xkcd.com/atom.xml socials
 https://what-if.xkcd.com/feed.atom socials
 https://github.com/neovim/neovim/commits/master/runtime/doc/news.txt.atom "~nvim - news.txt" socials
-https://nitter.kavin.rocks/carlyraejepsen/rss socials
-https://nitter.kavin.rocks/kamatamarom/rss socials
+https://nitter.net/carlyraejepsen/rss socials
+https://nitter.net/kamatamarom/rss socials
 http://mangacritic.mangabookshelf.com/feed/ socials
 https://www.thatmangahunter.com/blog-feed.xml socials
 https://myanimelist.net/rss.php?type=rm&u=goobatron socials
@@ -39,7 +39,7 @@ https://rss.slashdot.org/Slashdot/slashdotMain news_tech
 https://reclaimthenet.org/feed/ news_tech
 https://www.bitdefender.com/blog/api/rss/hotforsecurity/ news_tech
 https://alt2-feed-proxy.azurewebsites.net/api/FeedTrigger?name=all-news news_tech
-https://rb.vern.cc/?action=display&bridge=BleepingComputer&format=Atom news_tech
+https://rssbridge.bus-hit.me/?action=display&bridge=BleepingComputerBridge&format=Atom news_tech
 https://rss-bridge.bb8.fun/?action=display&bridge=HaveIBeenPwned&order=dateAdded&item_limit=20&format=Atom "~Have I Been Pwned" news_tech
 
 "query:----- FOSS NEWS -----:tags # \"news_foss\" and unread = \"yes\""
@@ -123,7 +123,7 @@ https://utcc.utoronto.ca/~cks/space/blog/?atom personal_blog
 https://christine.website/blog.rss personal_blog
 https://leafo.net/feed.xml personal_blog
 http://pb.co.za/posts.atom personal_blog
-https://blog.gabrielsimmer.com/index.xml personal_blog
+https://gabrielsimmer.com/rss personal_blog
 https://nanotipsforvim.prose.sh/rss personal_blog
 https://www.supergoodcode.com/feed.xml personal_blog
 https://pluralistic.net/feed/ personal_blog
