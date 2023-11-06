@@ -2,7 +2,7 @@ function yt -a link format
 
     if [ -z "$format" ]
         yt-dlp -F "$link" || return
-        set -f format (read -fP \n' > select format: ')
+        set -f format "$(read -fP \n' > select format: ')"
         [ -z "$format" ] && return
         echo
     end
