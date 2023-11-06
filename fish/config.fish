@@ -85,25 +85,22 @@ command -sq starship && starship init fish | source || source $XDG_CONFIG_HOME/f
 command -sq zoxide && zoxide init fish | source || alias z cd
 
 ### ALIASES ###
-if fish -v | grep "fish, version 3.6" &>/dev/null
-    set cursor "--set-cursor"
-    set end "%"
-end
-abbr $cursor zsd "z $XDG_DIR/$end"
-abbr $cursor zdoc "z $XDG_DOCUMENTS_DIR/$end"
-abbr $cursor zdl "z $XDG_DOWNLOAD_DIR/$end"
-abbr $cursor zmov "z $XDG_VIDEOS_DIR/$end"
-abbr $cursor zmu "z $XDG_MUSIC_DIR/$end"
-abbr $cursor zpic "z $XDG_PICTURES_DIR/$end"
-abbr $cursor zt "z $XDG_DIR/Tachiyomi*/local/$end"
-abbr $cursor zm "z $XDG_DIR/main/$end"
-abbr $cursor zl "z ~/.local/$end"
-abbr $cursor zmbz "z $XDG_PROJECTS_DIR/mbz-rust/$end"
-abbr $cursor zd "z $XDG_PROJECTS_DIR/dotfiles/$end"
-abbr $cursor zc "z $XDG_CONFIG_HOME/$end"
-abbr $cursor zcf "z $XDG_CONFIG_HOME/fish/$end"
-abbr $cursor zcn "z $XDG_CONFIG_HOME/nvim/$end"
-abbr $cursor zp "z $PREFIX/$end"
+[ (fish -v | tr -dc [:digit:] ) -ge 360 ] && set -l cursor "--set-cursor" "%"
+abbr $cursor[1] zsd "z $XDG_DIR/$cursor[2]"
+abbr $cursor[1] zdoc "z $XDG_DOCUMENTS_DIR/$cursor[2]"
+abbr $cursor[1] zdl "z $XDG_DOWNLOAD_DIR/$cursor[2]"
+abbr $cursor[1] zmov "z $XDG_VIDEOS_DIR/$cursor[2]"
+abbr $cursor[1] zmu "z $XDG_MUSIC_DIR/$cursor[2]"
+abbr $cursor[1] zpic "z $XDG_PICTURES_DIR/$cursor[2]"
+abbr $cursor[1] zt "z $XDG_DIR/Tachiyomi*/local/$cursor[2]"
+abbr $cursor[1] zm "z $XDG_DIR/main/$cursor[2]"
+abbr $cursor[1] zl "z ~/.local/$cursor[2]"
+abbr $cursor[1] zmbz "z $XDG_PROJECTS_DIR/mbz-rust/$cursor[2]"
+abbr $cursor[1] zd "z $XDG_PROJECTS_DIR/dotfiles/$cursor[2]"
+abbr $cursor[1] zc "z $XDG_CONFIG_HOME/$cursor[2]"
+abbr $cursor[1] zcf "z $XDG_CONFIG_HOME/fish/$cursor[2]"
+abbr $cursor[1] zcn "z $XDG_CONFIG_HOME/nvim/$cursor[2]"
+abbr $cursor[1] zp "z $PREFIX/$cursor[2]"
 abbr zz "z -"
 
 ### FUNCTIONS ###
