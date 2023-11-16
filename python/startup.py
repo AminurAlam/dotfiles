@@ -7,6 +7,6 @@ import sys
 import math
 import readline
 
-readline.set_auto_history(False)
+readline.set_auto_history(True)
 sys.ps1 = "❯ "
 sys.ps2 = "… "
