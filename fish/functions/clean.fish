@@ -1,13 +1,14 @@
 function clean
     set -f hist_dirs (fd -tfile -Hd1 '^\..*_history$' ~)
     set -f all_dirs \
-        /sdcard/Android/data/{*youtube/,org.schabi.newpipe/,org.*messenger/} \
+        /sdcard/Android/data/{*youtube*/,org.schabi.newpipe/,org.*messenger/} \
         /sdcard/Android/data/{com.spotify.*/,com.aspiro.tidal/} \
         /sdcard/Android/data/{xiaomi,miui}*/ \
         /sdcard/Android/data/ru.*/files/LuckyPatcher/Modified/ \
         /sdcard/Android/data/com.xodo.pdf.reader/ \
         /sdcard/{Aurora/,Telegram/,MIUI/} \
         /sdcard/DCIM/.thumbnails/ \
+        /sdcard/Download/apk/Downloads \
         /sdcard/Download/Nearby Share/ \
         ~/.local/share/cargo/registry/
 

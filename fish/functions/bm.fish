@@ -38,3 +38,5 @@ function bm
             __process_link (rg --no-filename --replace '' '^https?://(www\.)?' $BMPATH | $LAUNCHER --query "$argv[1]")
     end
 end
+
+# TODO: skip fuzzy finder
