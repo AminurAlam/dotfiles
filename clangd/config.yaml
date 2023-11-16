@@ -1,0 +1,8 @@
+CompileFlags:                     # Tweak the parse settings
+  Add: [-Wall]             # treat all files as C++, enable more warnings
+
+
+Diagnostics:
+  UnusedIncludes: None
+  ClangTidy:
+    Add: []
