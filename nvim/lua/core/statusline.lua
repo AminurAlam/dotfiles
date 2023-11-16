@@ -125,7 +125,7 @@ vim.opt.stl = '%#stl_hl_a# %{ g:stl.mode() } %#stl_hl_b#'
   .. '%{% g:stl.gitsigns() %}'
   .. '%#Normal#%=%S ' -- middle seperator
   .. '%{ g:stl.hlsearch() } '
-  .. '%{ reg_recording() != "" ? "@" .. reg_recording() : "" } '
+  .. '%{ reg_recording() != "" ? " " .. reg_recording() : "" } '
   .. '%#stl_hl_cb#%#stl_hl_b# ' -- c to b
   .. '%{ g:stl.progress() } '
   .. '%#stl_hl_ba#%#stl_hl_a#' -- b to a

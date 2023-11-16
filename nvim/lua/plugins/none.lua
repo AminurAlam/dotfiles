@@ -23,7 +23,7 @@ M.config = function()
   add('ruff', 'ruff', 'diagnostics')
   add('fish', 'fish', 'diagnostics')
   add('fish_indent', 'fish_indent', 'formatting')
-  add('clang_check', 'clang-check', 'diagnostics')
+  -- add('clang_check', 'clang-check', 'diagnostics') -- auto added with clangd
   add('shellcheck', 'shellcheck', 'code_actions')
   add('shellcheck', 'shellcheck', 'diagnostics')
   -- add('ts_node_action', 'code_actions')

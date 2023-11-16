@@ -43,7 +43,7 @@ set.shortmess = 'acCoOsSWIF'
 set.number = true
 set.relativenumber = true
 -- set.statuscolumn = vim.g.stc -- '%=%{ v:virtnum ? "…" : ( v:relnum ? "│" : "❯" ) }%-00.1s'
-set.signcolumn = 'number'
+set.signcolumn = 'auto'
 
 -- folding
 set.foldenable = false
@@ -91,7 +91,7 @@ set.backup = false
 set.writebackup = false
 set.undofile = true
 set.confirm = true
-set.clipboard = '' -- see <leader>sr in mappings.lua
+set.clipboard:append { 'unnamed', 'unnamedplus' }
 set.list = true
 set.listchars = {
   tab = '  ',
