@@ -1,0 +1,89 @@
+#!/usr/bin/env python3
+
+import os
+import re
+import sys
+import json
+import requests
+
+main = "/sdcard/TachiyomiSY/local/"
+research_art = lambda staff: re.search('art', staff['role'], flags=re.IGNORECASE)
+research_story = lambda staff: re.search('story', staff['role'], flags=re.IGNORECASE)
+map = {
+    "RELEASING": "1",
+    "FINISHED": "2",
+    "NOT_YET_RELEASED": "3",
+    "CANCELLED": "5",
+    "HIATUS": "6",
+}
+query = """
+query ($search: String) { Page(page: 1, perPage: 5) { media(search: $search, type: MANGA, format_not: NOVEL) {
+    title { english romaji native }
+    status
+    description
+    genres
+    staff(perPage: 25) { edges { role node { name { full } } }
+} } } }
+"""
+
+def fetch(title: str, path: str) -> None:
+    response = requests.post(
+        "https://graphql.anilist.co",
+        json={"query": query, "variables": {"search": title}}
+    )
+
+    results: list[dict] = json.loads(response.content.decode())['data']['Page']['media']
+
+    if len(results) == 0:
+        print(f"no results found for `{title}`")
+        return
+
+    for n, item in enumerate(results, start=1):
+        print(
+            f"[{n}]",
+            item['title']['english'] or item['title']['romaji'] or item['title']['native'],
+            f"[{item['status']}]\n    by",
+            ', '.join([
+                staff['node']['name']['full']
+                for staff in item['staff']['edges']
+                if re.match("Story|Art", staff['role'])
+            ])
+        )
+
+    choice: str = input("\n>choose manga: ")
+    if type(choice) != str or not choice: choice = "1"
+    if choice == "0": return
+
+    item: dict = results[int(choice) - 1]
+    staffs: dict = item['staff']['edges']
+    both = list(filter(lambda staff:
+        research_art(staff) and research_story(staff), staffs))
+    both_str: str = ', '.join(x['node']['name']['full'] for x in both)
+    author: str = both_str if both else ', '.join(x['node']['name']['full'] for x in filter(research_story, staffs))
+    artist: str = both_str if both else ', '.join(x['node']['name']['full'] for x in filter(research_art, staffs))
+
+    details = {
+        "title": item['title']['english'] or item['title']['romaji'] or item['title']['native'],
+        "author": author,
+        "artist": artist,
+        "description": re.sub(r'[\n]+', '\n', re.sub(r'\(Source.*\)|</?[^>]+>', '', item['description'])),
+        "genre": item['genres'],
+        "status": map.get(item['status'], '0'),
+    }
+
+    # print(json.dumps(details, indent=4))
+    with open(path, "w") as file: json.dump(obj=details, fp=file, indent=4)
+
+
+if len(sys.argv) > 1:
+    fetch(' '.join(sys.argv[1:]), './details.json')
+elif dirs := os.listdir(main):
+    for dir in dirs:
+        if os.path.isdir(dir) and not (os.path.exists(dir + "/details.json") or os.path.exists(dir + "/ComicInfo.xml")):
+            title: str = re.sub(r'\s+\(.+\)$', '', dir)
+            path: str = os.path.join(main, dir, "details.json")
+            print(f"{dir}" + (f"\n{title}" if title != dir else ""))
+            fetch(title, path)
+            print("="*50)
+    print("done.")
+else: print(f"`{main}` doesnt exist")
