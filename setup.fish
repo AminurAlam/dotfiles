@@ -11,7 +11,7 @@ set main "/sdcard/main/termux/"
 set path_dots "$HOME/repos/dotfiles" # NOTE: mae sure this is a full path
 set path_nvim "$HOME/repos/nvim-fork"
 
-command mkdir -p $HOME/{backup,repos}/ $HOME/.local/{share,bin,cache}/
+command mkdir -p $HOME/{backup,repos}/ $HOME/.local/{share,bin,cache}/ $HOME/.local/share/zoxide/
 
 printf "INSTALLING NEW PACKAGES...\n"
 pacman -Syu --noconfirm --needed $packages || begin
@@ -45,6 +45,7 @@ printf "done\n"
 printf "LINKING CONFIG FILES... "
     ln -fs "$path_dots/other/pacman.conf" $PREFIX/etc/pacman.conf
     ln -fs "$path_dots/other/curlrc" ~/.config/.curlrc
+    ln -fs "$path_dots/other/clang-format" ~/.clang-format
     ln -fs "$path_dots/other/stylua.toml" ~/.config/stylua.toml
     ln -fs "$path_dots/other/starship.toml" ~/.config/starship.toml
     ln -fs "$path_dots/termux/colors.properties" ~/.termux/colors.properties
@@ -71,13 +72,15 @@ printf "ADDING ZOXIDE DB... "
 printf "done\n"
 
 printf "ADDING PASSWORD..."
-[ -e "$HOME/.termux_authinfo" ] && echo "done\n" || passwd
+[ -e "$HOME/.termux_authinfo" ] && printf "done\n" || passwd
 
 printf "CLEANUP... "
     truncate -s 0 "$PREFIX"/etc/motd*
-    [ -d ~/storage/ ] && command rm -fr ~/storage/
-    command rmdir --ignore-fail-on-non-empty --parents ~/backup/**/
-echo "done\n"
+    [ -d ~/storage/ ] && for path in ~/storage/*
+        [ -L "$path" ] && unlink "$path"
+    end
+    command rmdir --ignore-fail-on-non-empty --parents ~/backup/**/ ~/storage/
+printf "done\n"
 
 # if [ -e "$main/bin.sha256" ]
 #     sha256sum --check $main/bin.sha256 2>/dev/null | awk -F / '{print "  "$9}'
@@ -88,5 +91,6 @@ echo "done\n"
 # TODO: move completely to fish
 # TODO: copy newsboat db
 # TODO: ~/repos/ -> ~/projects/
+# TODO: put scripts in bin
 
 : # make sure the script returns 0

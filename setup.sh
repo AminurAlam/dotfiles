@@ -28,8 +28,9 @@ termux_setup() {
             unzip -qd ~/../usr-n/ "$bootstrap_path"
         printf "done\n"
 
-        printf "creating symlinks...\n"
+        printf "creating symlinks... "
         awk -F "←" '{system("ln -s '"'"'"$1"'"'"' '"'"'"$2"'"'"'")}' < ~/../usr-n/SYMLINKS.txt
+        printf "done\n"
 
         printf "\nRUN THIS COMMAND IN FAILSAFE MODE
         cd .. && rm -fr usr/ && mv usr-n/ usr/\n"
