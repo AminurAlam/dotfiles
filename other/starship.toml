@@ -1,7 +1,6 @@
 "$schema" = 'https://starship.rs/config-schema.json'
 format = """
-$username$localip$directory$git_branch\
-$lua$python$rust \
+$username$directory$git_branch \
 $fill \
 $status$git_status$git_metrics$cmd_duration$jobs$shlvl 
  $character"""
@@ -10,15 +9,12 @@ scan_timeout = 50
 command_timeout = 200
 add_newline = true
 
+
 # LEFT PROMPT
+
 [username]
 format = ' [ $user](bright-yellow)'
 show_always = false
-
-[localip]
-format = ' [󰁥 $localipv4](yellow)'
-ssh_only = true
-disabled = false
 
 [directory]
 format = ' [ $before_root_path$repo_root$path](bold green)[$read_only](red)'
@@ -38,7 +34,9 @@ use_logical_path = true
 [git_branch]
 format = ' [ $branch](bold purple)'
 
+
 # RIGHT PROMPT
+
 [status]
 format = '\[[$symbol$status](red)\]'
 pipestatus_segment_format = '[$status](red)'
@@ -86,20 +84,8 @@ format = '\[[$symbol$shlvl](green)\]'
 symbol = ''
 disabled = false
 
+
 # SPECIAL
-[lua]
-format = ' [ lua](27)'
-lua_binary = 'luajit'
-detect_files = []
-detect_extensions = []
-
-[python]
-format = ' [ python](#ffbc03)'
-
-[rust]
-format = ' [ rust](#dea584)'
-version_format = '$major.$minor'
-detect_extensions = []
 
 [fill]
 symbol = '─'
