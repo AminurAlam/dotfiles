@@ -1,5 +1,5 @@
 set arch (uname -m | sed 's/^arm.*/arm/')
-set packages dust eza libgit2 fd git openssh renameutils ripgrep starship lua-language-server termux-api zoxide
+set packages clang dust eza libgit2 fd git openssh python python-pip renameutils ripgrep starship lua-language-server termux-api zoxide
 # urls
 set url_font "https://raw.githubusercontent.com/ryanoasis/nerd-fonts/master/patched-fonts/SourceCodePro/Regular/SauceCodeProNerdFont-Regular.ttf"
 set url_dotfiles "https://github.com/AminurAlam/dotfiles.git"
@@ -13,14 +13,6 @@ set path_nvim "$HOME/repos/nvim-fork"
 
 command mkdir -p $HOME/{backup,repos}/ $HOME/.local/{share,bin,cache}/
 
-function setup-proot
-    pacman -S --noconfirm --needed proot-distro
-end
-
-function setup-x11
-    pacman -S --noconfirm --needed termux-x11-nightly
-end
-
 printf "INSTALLING NEW PACKAGES...\n"
 pacman -Syu --noconfirm --needed $packages || begin
     printf "failed, try installing manually:
@@ -28,18 +20,8 @@ pacman -Syu --noconfirm --needed $packages || begin
     exit
 end
 
-if not command -vq python
-    printf "INSTALLING PYTHON... "
-    pacman -S --needed python >/dev/null
-end
-
-if command -vq python && not command -vq pip
-    printf "INSTALLING PIP & CLANG "
-    pacman -S --needed python-pip >/dev/null
-end
-
 if command -vq python && command -vq pip
-    printf "INSTALLING REQUESTS & DEFLACUE "
+    printf "INSTALLING PYTHON PACKAGES\n"
     pip install requests deflacue
 end
 
@@ -51,7 +33,7 @@ printf "DOWNLOADING DOTFILES... "
 printf "done\n"
 
 printf "LINKING CONFIG DIRECTORIES... "
-for config in aria2 fish git htop newsboat npm nvim python yt-dlp
+for config in aria2 clangd fish git htop newsboat npm nvim python yt-dlp
     [ -e "$path_dots/$config" ] || continue
     # unlink/move old directories in ~/.config to be replaced
     [ -L "$HOME/.config/$config" ] && command unlink "$HOME/.config/$config"
@@ -61,6 +43,7 @@ end
 printf "done\n"
 
 printf "LINKING CONFIG FILES... "
+    ln -fs "$path_dots/other/pacman.conf" $PREFIX/etc/pacman.conf
     ln -fs "$path_dots/other/curlrc" ~/.config/.curlrc
     ln -fs "$path_dots/other/stylua.toml" ~/.config/stylua.toml
     ln -fs "$path_dots/other/starship.toml" ~/.config/starship.toml
@@ -96,22 +79,12 @@ printf "CLEANUP... "
     command rmdir --ignore-fail-on-non-empty --parents ~/backup/**/
 echo "done\n"
 
-# printf "ADDING WIDGETS... "
-# if [ -d "$main/widget/" ]
-#     command cp -fr $main/widget/* ~/.shortcuts/
-#     chmod +x ~/.shortcuts/*
-#     printf "done\n"
-# else
-#     printf "\$main/widgets/ doesnt exist\n"
-# end
-
 # if [ -e "$main/bin.sha256" ]
 #     sha256sum --check $main/bin.sha256 2>/dev/null | awk -F / '{print "  "$9}'
 # else
 #     printf "bin.sha256 is missing\n"
 # end
 
-# TODO: proot-distro and gui installation
 # TODO: move completely to fish
 # TODO: copy newsboat db
 # TODO: ~/repos/ -> ~/projects/
