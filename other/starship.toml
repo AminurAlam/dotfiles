@@ -68,7 +68,7 @@ ignore_submodules = true
 
 [cmd_duration]
 format = '\[[$duration](cyan)\]'
-min_time = 20
+min_time = 5
 show_milliseconds = false
 show_notifications = false
 min_time_to_notify = 45000

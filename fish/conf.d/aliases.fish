@@ -41,14 +41,17 @@ abbr py "python3 -q"
 alias mbz "python3 \$XDG_PROJECTS_DIR/musicbrainzpy/cover_art.py"
 
 # ls -> eza
-alias l "eza -lFas ext -I '.git*' --icons --no-user --group-directories-first --no-quotes --no-permissions --no-time --color-scale all --color-scale-mode fixed"
-alias lt "eza -lFaTs ext -I '.git*' --icons --no-user --group-directories-first --no-quotes --no-permissions --no-time --git"
-alias ll "eza -lFas ext -I '.git*' --icons --no-user --group-directories-first --no-quotes --color-scale all --color-scale-mode fixed --git"
+set -l common "--icons --no-user --group-directories-first --no-quotes --color-scale all --color-scale-mode fixed"
+set -l heavy "--git --total-size"
+set -l thin "--no-permissions --no-time"
+alias l "eza -lFas ext -I '.git*' $common $thin"
+alias ll "eza -lFas ext -I '.git*' $common $heavy"
+alias lt "eza -lFaTs ext -I '.git*' $common $heavy $thin"
 
 # du, df -> dust, duf
 abbr du "dust -Dn 25"
 abbr dud "dust -d 1"
-# alias df "duf -only local -output mountpoint,size,avail,usage -width 150 /storage/*"
+abbr df "df -ht fuse"
 
 # tar
 abbr tar-compress "tar cf"
