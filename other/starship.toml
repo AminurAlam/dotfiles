@@ -1,6 +1,6 @@
 "$schema" = 'https://starship.rs/config-schema.json'
 format = """
-$username$directory$git_branch \
+$username$directory$git_branch$python \
 $fill \
 $status$git_status$git_metrics$cmd_duration$jobs$shlvl 
  $character"""
@@ -8,6 +8,9 @@ continuation_prompt = '[∙](bright-black) '
 scan_timeout = 50
 command_timeout = 200
 add_newline = true
+
+[profiles]
+basic = """$directory$git_branch $character"""
 
 
 # LEFT PROMPT
@@ -33,6 +36,11 @@ use_logical_path = true
 
 [git_branch]
 format = ' [ $branch](bold purple)'
+
+[python]
+format = ' [ $virtualenv](yellow)'
+detect_files = []
+detect_extensions = []
 
 
 # RIGHT PROMPT
