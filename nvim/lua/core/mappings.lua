@@ -3,7 +3,7 @@
 local map = function(mode)
   ---@param lhs string
   ---@param rhs string|function
-  ---@param desc string|nil
+  ---@param desc string?
   return function(lhs, rhs, desc)
     vim.keymap.set(mode, lhs, rhs, {
       noremap = true,
@@ -28,16 +28,15 @@ nmap('<leader>tt', require('lazy.util').float_term, 'floating terminal')
 umap('<c-left>', '<cmd>CybuPrev<cr>', 'previous buffer')
 umap('<c-right>', '<cmd>CybuNext<cr>', 'next buffer')
 nmap('[b', '<cmd>CybuPrev<cr>', 'previous buffer')
-nmap(']b', '<cmd>CybuNext<cr>', 'next buffer') -- TODO: repeat with ]]
-nmap('[t', '<cmd>tabp<cr>', 'previous tab')
-nmap(']t', '<cmd>tabn<cr>', 'next tab')
+nmap(']b', '<cmd>CybuNext<cr>', 'next buffer')
 
 -- lsp & diagnostics
-nmap('<leader>li', '<cmd>LspInfo<cr>', 'LSP status')
+nmap('<leader>li', '<cmd>LspInfo<cr>', 'LSP status') -- TODO: replace with custom float
 nmap('<leader>lf', vim.lsp.buf.format, 'format code using LSP')
+nmap('<leader>lh', vim.lsp.buf.hover, 'show doc of symbol under cursor')
 nmap('<leader>lr', vim.lsp.buf.rename, 'rename symbol under cursor')
 nmap('<leader>gd', vim.lsp.buf.definition, 'goto definition')
--- nmap('<leader>ca', vim.lsp.buf.code_action, 'goto definition')
+-- nmap('<leader>ca', vim.lsp.buf.code_action, 'goto definition') -- using ca plugin rn
 nmap('<leader>d', vim.diagnostic.open_float, 'view line diagnostics')
 nmap('[d', vim.diagnostic.goto_prev, 'goto prev diagnostic message')
 nmap(']d', vim.diagnostic.goto_next, 'goto next diagnostic message')
@@ -114,6 +113,7 @@ end, 'toggle indentlines')
 
 if vim.fn.has('nvim-0.10.0') == 1 then
   abbr('qw', 'q!') -- dvorak
+  abbr('vq', 'wq') -- dvorak
   abbr('qn', 'q!') -- qwert
   -- abbr('S', [[s/\v]])
 end

@@ -4,7 +4,14 @@ if vim.fn.executable('pyright-langserver') == 1 then
   vim.lsp.start({
     cmd = { 'pyright-langserver', '--stdio' },
     filetypes = { 'python' },
-    -- root_dir = util.root_pattern(unpack(root_files)),
+    root_dir = vim.fs.dirname(vim.fs.find({
+      'pyproject.toml',
+      'setup.py',
+      'setup.cfg',
+      'requirements.txt',
+      'Pipfile',
+      '.git',
+    }, { upwards = true })[1]),
     single_file_support = true,
     settings = {
       python = {
