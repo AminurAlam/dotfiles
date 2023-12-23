@@ -11,6 +11,7 @@ abbr cal "cal -my"
 abbr qmv "qmv -AXf do"
 abbr pst "ps -faxo 'pid,comm'"
 abbr y "yes |"
+abbr ffprobe "ffprobe -hide_banner -pretty"
 abbr ffmpeg "ffmpeg -y -hide_banner -stats -loglevel error -i"
 
 # parent dir
