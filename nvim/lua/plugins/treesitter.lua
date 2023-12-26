@@ -6,6 +6,7 @@ return {
   config = function()
     local parsers = {
       'bash',
+      'c',
       'comment',
       'diff',
       'fish',
@@ -13,6 +14,7 @@ return {
       'gitignore',
       'lua',
       'luadoc',
+      'python',
       'rust',
       'vim',
       'vimdoc',

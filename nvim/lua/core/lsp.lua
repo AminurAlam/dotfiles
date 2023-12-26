@@ -43,6 +43,8 @@ create({ 'dart', 'language-server', '--protocol=lsp' }, { 'dart' }, { 'pubspec.y
   },
 })
 
+create({ 'luau-lsp', 'lsp' }, { 'luau' }, {})
+
 -- TODO: make :LspInfo copy
 -- local lsp_info = function()
 --   vim.float

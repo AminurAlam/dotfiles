@@ -83,8 +83,8 @@ set.concealcursor = 'n'
 set.formatoptions:remove { 'c', 'r', 'o' }
 set.matchtime = 1
 set.grepprg = 'rg --vimgrep '
--- set.timeout = false -- remove for which-key
-set.timeoutlen = 0 -- use 0 for which-key
+set.timeout = false -- remove for which-key
+set.timeoutlen = 1000 -- use 0 for which-key
 set.swapfile = false
 set.backup = false
 set.writebackup = false

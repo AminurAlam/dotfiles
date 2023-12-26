@@ -35,7 +35,7 @@ require('lazy').setup('plugins', {
   },
   install = {
     missing = true,
-    colorscheme = { 'habamax' },
+    colorscheme = { 'default' },
   },
   ui = {
     size = { width = 0.9, height = 0.8 },
