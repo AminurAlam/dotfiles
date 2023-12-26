@@ -55,7 +55,7 @@ set -gx MANPAGER "$EDITOR +Man!"
 set -gx MANPATH $PREFIX/share/fish/man $PREFIX/share/man
 set -gx TERMINFO "$PREFIX/share/terminfo"
 set -gx BROWSER termux-open
-set -gx LAUNCHER sk --prompt '  ' --inline-info --no-multi --margin 0,3,1,3 --color \
+set -gx LAUNCHER sk --prompt '  ' --select-1 --inline-info --no-multi --margin 0,3,1,3 --color \
 "dark,fg:,bg:,matched:#ff9e64,matched_bg:,current:,current_bg:#2e3c64,current_match:,current_match_bg:,query:,query_bg:,info:,border:#c0caf5,prompt:,pointer:,marker:,spinner:,header:"
 set -gx WWW_HOME "https://search.rowie.at"
 set -gx DISPLAY ":1"

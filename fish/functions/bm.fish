@@ -25,7 +25,7 @@ function bm
     end
 
     [ -z "$LAUNCHER" ]
-    and if command -vq sk;   set LAUNCHER sk
+    and if command -vq sk;   set LAUNCHER sk --prompt '  ' --select-1 --inline-info --no-multi --margin 0,3,1,3
     else if command -vq fzf; set LAUNCHER fzf
     end
 
@@ -35,8 +35,6 @@ function bm
         case e ed edit
             set -q EDITOR && $EDITOR $BMPATH || echo "no EDITOR found"
         case '*'
-            __process_link (rg --no-filename --replace '' '^https?://(www\.)?' $BMPATH | $LAUNCHER --query "$argv[1]")
+            __process_link (rg --no-filename --replace '' '^https?://(www\.)?' $BMPATH | rg "$argv[1]" | $LAUNCHER --query "$argv[1]")
     end
 end
-
-# TODO: skip fuzzy finder
