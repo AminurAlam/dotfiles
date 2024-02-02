@@ -29,7 +29,7 @@ require('lazy').setup('plugins', {
     filter = true,
   },
   dev = {
-    path = '~/repos',
+    path = os.getenv('XDG_PROJECTS_DIR') or '~/repos',
     patterns = {},
     fallback = false,
   },

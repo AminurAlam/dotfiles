@@ -1,5 +1,4 @@
 return {
-  { 'kylechui/nvim-surround', keys = { 'cs', 'ds', 'ys' }, config = true },
   { 'numToStr/Comment.nvim', keys = { 'gc', { 'gc', mode = 'v' } }, config = true },
   { 'windwp/nvim-autopairs', event = { 'InsertEnter' }, config = true },
   { 'weilbith/nvim-code-action-menu', keys = { { '<leader>ca', '<cmd>CodeActionMenu<cr>' } } },

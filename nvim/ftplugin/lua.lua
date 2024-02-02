@@ -21,17 +21,11 @@ if vim.fn.executable('lua-language-server') == 1 then
         typeFormat = { config = { auto_complete_end = true } },
         completion = { callSnippet = 'Replace', displayContext = 5 },
         diagnostics = {
-          globals = { 'vim', 'drastic', 'ratt' },
-          -- disable = { 'lowercase-global' },
+          globals = { 'vim', 'drastic' },
           libraryFiles = 'Disable',
+          -- disable = { 'lowercase-global' },
         },
-        format = {
-          enable = false, -- using stylua instead
-          defaultConfig = {
-            indent_style = 'space',
-            indent_size = '2',
-          },
-        },
+        format = { enable = false }, -- using stylua instead
         hint = { enable = true },
         runtime = { version = 'LuaJIT' },
         semantic = { enable = false },

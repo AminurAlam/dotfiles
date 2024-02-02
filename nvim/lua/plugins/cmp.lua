@@ -9,7 +9,7 @@ local M = {
     'hrsh7th/cmp-cmdline',
     'L3MON4D3/LuaSnip', -- helps create snippets
     'saadparwaiz1/cmp_luasnip', -- adds snippets to cmp
-    'rafamadriz/friendly-snippets', -- provides multiple snippets
+    { 'AminurAlam/friendly-snippets' }, -- provides multiple snippets
     { 'mtoohey31/cmp-fish', ft = 'fish' },
   },
 }

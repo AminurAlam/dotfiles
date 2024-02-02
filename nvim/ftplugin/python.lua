@@ -1,17 +1,20 @@
+local pylug = { enabled = true, maxLineLength = 100, ignore = { 'E128', 'E701' } }
+local root = {
+  'pyproject.toml',
+  'setup.py',
+  'setup.cfg',
+  'requirements.txt',
+  'Pipfile',
+  '.git',
+}
+
 vim.opt.cinkeys:remove { ':' }
 
 if vim.fn.executable('pyright-langserver') == 1 then
   vim.lsp.start({
     cmd = { 'pyright-langserver', '--stdio' },
     filetypes = { 'python' },
-    root_dir = vim.fs.dirname(vim.fs.find({
-      'pyproject.toml',
-      'setup.py',
-      'setup.cfg',
-      'requirements.txt',
-      'Pipfile',
-      '.git',
-    }, { upwards = true })[1]),
+    root_dir = vim.fs.dirname(vim.fs.find(root, { upwards = true })[1]),
     single_file_support = true,
     settings = {
       python = {
@@ -29,22 +32,8 @@ if vim.fn.executable('pylsp') == 1 then
   vim.lsp.start({
     cmd = { 'pylsp' },
     filetypes = { 'python' },
-    root_dir = vim.fs.dirname(vim.fs.find({
-      'pyproject.toml',
-      'setup.py',
-      'setup.cfg',
-      'requirements.txt',
-      'Pipfile',
-      '.git',
-    }, { upwards = true })[1]),
+    root_dir = vim.fs.dirname(vim.fs.find(root, { upwards = true })[1]),
     single_file_support = true,
-    settings = {
-      pylsp = {
-        plugins = {
-          pycodestyle = { ignore = { 'E128', 'E701' }, maxLineLength = 100 },
-          flake8 = { enabled = true, maxLineLength = 100, ignore = { 'E128', 'E701' } },
-        },
-      },
-    },
+    settings = { pylsp = { plugins = { pycodestyle = pylug, flake8 = pylug } } },
   })
 end

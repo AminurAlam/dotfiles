@@ -37,13 +37,8 @@ create({ 'rust-analyzer' }, { 'rust' }, { 'Cargo.toml', 'rust-project.json' }, {
 create({ 'gopls' }, { 'go' }, { 'go.work', 'go.mod', '.git' })
 
 create({ 'dart', 'language-server', '--protocol=lsp' }, { 'dart' }, { 'pubspec.yaml' }, {
-  dart = {
-    completeFunctionCalls = true,
-    showTodos = true,
-  },
+  dart = { completeFunctionCalls = true, showTodos = true },
 })
-
-create({ 'luau-lsp', 'lsp' }, { 'luau' }, {})
 
 -- TODO: make :LspInfo copy
 -- local lsp_info = function()

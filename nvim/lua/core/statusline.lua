@@ -74,7 +74,7 @@ vim.g.stl = {
     if cur == 1 then
       return 'Top'
     elseif cur == total then
-      return 'Bot'
+      return 'End'
     end
     return string.format('%2d%%', math.floor(cur / total * 100))
   end,
@@ -116,9 +116,9 @@ vim.opt.stl = '%#stl_hl_a# %{ g:stl.mode() } %#stl_hl_b#'
   .. ' %{ g:stl.bufcount() }%t ' -- a to b
   .. '%{ &modified ? "󰆓 " : "" }'
   -- .. '%{ !empty(finddir(".git", expand("%:p:h") .. ";")) ? " " : "" }'
-  .. '%{ &cb == "unnamedplus" ? "󰆒 " : "" }'
-  -- .. '%{ &spell ? " " : "" }'
-  .. '%{ search("\\s\\+$", "nwc") > 0 ? "󱁐 " : "" }'
+  -- .. '%{ &cb == "unnamedplus" ? "󰆒 " : "" }'
+  .. '%{ &spell ? "󰓆 " : "" }'
+  .. '%{ search("\\\\s\\\\+$", "nwc") > 0 ? "󱁐 " : "" }'
   .. '%#stl_hl_bc#%#Normal# ' -- b to c
   -- .. '%{ get(b:, "gitsigns_status", "") }'
   .. '%{% g:stl.diagnostics() %}'
