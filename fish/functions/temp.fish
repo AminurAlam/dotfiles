@@ -3,7 +3,7 @@ function temp
 
     mkdir -p a/b/c/d dir/{x,y,z}
     touch 1 2 3 dir/0
-    lt
+    lt -L2
 
     [ "$argv" = "" ] || $EDITOR "temp.$argv"
 end

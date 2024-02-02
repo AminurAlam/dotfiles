@@ -7,8 +7,7 @@ function flac_to -a ext
         set -l filename (string replace ".flac" "" "$i")
         set -l count (math $count + 1)
 
-        printf "\n [%d/%d] %s.flac -> %s.%s\n" \
-            "$count" "$total" "$filename" "$filename" "$ext"
+        printf "\n [%d/%d] %s.flac\n" "$count" "$total" "$filename"
 
         if command -sq opusenc
             opusenc --quiet --music --comp 10 "$filename.flac" "$filename.opus"

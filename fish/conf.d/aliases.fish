@@ -1,3 +1,5 @@
+[ (fish -v | tr -dc [:digit:] ) -ge 360 ] && set -l cursor "--set-cursor" "%"
+
 # common
 abbr cp "cp -ivr"
 abbr mv "mv -iv"
@@ -7,12 +9,13 @@ abbr rd "rmdir -pv"
 abbr md "mkdir -pv"
 abbr vi nvim
 abbr cls clear
+abbr yq "yq -oj"
 abbr cal "cal -my"
 abbr qmv "qmv -AXf do"
 abbr pst "ps -faxo 'pid,comm'"
 abbr y "yes |"
 abbr ffprobe "ffprobe -hide_banner -pretty"
-abbr ffmpeg "ffmpeg -y -hide_banner -stats -loglevel error -i"
+abbr $cursor[1] ff "ffmpeg -y -hide_banner -stats -loglevel error -i $cursor[2] -strict -2 -vcodec copy -acodec copy -scodec copy -map 0:v -map 0:a -map 0:s"
 
 # parent dir
 abbr .. "cd .."
