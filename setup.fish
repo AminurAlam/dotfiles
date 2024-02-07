@@ -33,9 +33,9 @@ printf "DOWNLOADING DOTFILES... "
 printf "done\n"
 
 printf "LINKING CONFIG DIRECTORIES... "
-for config in aria2 clangd fish git htop newsboat npm nvim python yt-dlp
+for config in aria2 clangd fish flacon git htop newsboat npm nvim python streamrip yt-dlp
     [ -e "$path_dots/$config" ] || continue
-    # unlink/move old directories in ~/.config to be replaced
+    # unlink/relocate old directories in ~/.config
     [ -L "$HOME/.config/$config" ] && command unlink "$HOME/.config/$config"
     [ -d "$HOME/.config/$config" ] && command mv -f ~/.config/$config ~/backup/
     ln -fs "$path_dots/$config" ~/.config/
@@ -43,11 +43,12 @@ end
 printf "done\n"
 
 printf "LINKING CONFIG FILES... "
-    ln -fs "$path_dots/other/pacman.conf" $PREFIX/etc/pacman.conf
-    ln -fs "$path_dots/other/curlrc" ~/.config/.curlrc
     ln -fs "$path_dots/other/clang-format" ~/.clang-format
-    ln -fs "$path_dots/other/stylua.toml" ~/.config/stylua.toml
+    ln -fs "$path_dots/other/curlrc" ~/.config/.curlrc
+    ln -fs "$path_dots/other/pacman.conf" $PREFIX/etc/pacman.conf
     ln -fs "$path_dots/other/starship.toml" ~/.config/starship.toml
+    ln -fs "$path_dots/other/stylua.toml" ~/.config/stylua.toml
+    ln -fs "$path_dots/other/tidal-dl.json" ~/.config/.tidal-dl.json
     ln -fs "$path_dots/termux/colors.properties" ~/.termux/colors.properties
     ln -fs "$path_dots/termux/termux.properties" ~/.termux/termux.properties
 printf "done\n"
@@ -80,6 +81,7 @@ printf "CLEANUP... "
         [ -L "$path" ] && unlink "$path"
     end
     command rmdir --ignore-fail-on-non-empty --parents ~/backup/**/ ~/storage/
+    command rm ~/bootstrap-*.zip
 printf "done\n"
 
 # if [ -e "$main/bin.sha256" ]
