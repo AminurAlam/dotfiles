@@ -12,27 +12,22 @@ function pre_build
         exit
     end
 
-    for repo in $REPO_NAME
-        git clone --recursive --depth 1 "https://github.com/luvit/$repo" "$XDG_PROJECTS_DIR/$repo-src"
-    end
+    [ -d "$HOME/.local/bin" ] && cd "$HOME/.local/bin"
 end
 
 function build
-    cd "$XDG_PROJECTS_DIR/luvi-src"
-
-    make regular
-    make test
-    make luvi
-
-    mv build/luvi ../
-    cd ../
-
-    ./luvi lit-src -- make lit-src
+    curl -LO "https://gist.githubusercontent.com/komothecat/7f25b518e3ce22f7abe4d1bb11001628/raw/f92e2672901a0d6aa62d14e5a1577a9a1dc02e06/install-luvit-for-termux.sh"
+    bash install-luvit-for-termux.sh
 end
 
 function post_build
-    luvi --version || return 1
-    command mv -i luvi ~/.local/bin/
+    echo
+    lit --version
+    echo
+    luvi --version
+    echo
+    luvit --version
+    rm install-luvit-for-termux.sh
 end
 
 
