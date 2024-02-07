@@ -31,7 +31,8 @@ bind-key RIGHT next-feed articlelist
 bind-key LEFT prev-feed articlelist
 
 bind-key u reload
-bind-key a toggle-article-read
+# bind-key a toggle-article-read
+bind-key a mark-all-above-as-read
 bind-key ` toggle-article-read articlelist
 bind-key TAB reload feedlist
 bind-key TAB reload articlelist
