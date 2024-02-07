@@ -1,11 +1,19 @@
 ## what you can find here
- - [aria2](https://aria2.github.io) - download manager
+ - [aria2](https://aria2.github.io/) - download manager
+ - [clangd](https://clang.llvm.org/) - c compiler
+ - [clang-format](https://clang.llvm.org/docs/ClangFormat.html) - c formatter
+ - [curl](https://curl.se/) -  request url
  - [fish](https://fishshell.com/) - shell
  - [git](https://git-scm.com/) - vcs
+ - [htop](https://htop.dev/) - process viewer
  - [newsboat](https://newsboat.org/) - rss reader
- - [npm](https://npmjs.com/) - ???
+ - [npm](https://npmjs.com/) - javascript runtime
  - [nvim](https://neovim.io/) - text editor
- - [python](https://python.org/) - ???
+ - [pacman](https://archlinux.org/pacman/) - package manager
+ - [python](https://python.org/) - python interpreter
  - [ripgrep](https://github.com/BurntSushi/ripgrep) - grep alternative
  - [starship](https://starship.rs/) - shell prompt
+ - [streamrip](https://github.com/nathom/streamrip)
+ - [stylua](https://github.com/JohnnyMorganz/StyLua) - lua formatter
  - [termux](https://termux.dev/) - terminal emulator
+ - [yt-dlp](https://github.com/yt-dlp/yt-dlp) - video downloader

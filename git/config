@@ -23,6 +23,9 @@
     branches = branch --all
     remotes = remote --verbose
 
+[advice]
+    addIgnoredFile = false
+
 [apply]
     whitespace = fix
 

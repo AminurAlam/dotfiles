@@ -9,6 +9,8 @@ nvim/spell/*
 rclone/
 rclone/rclone.conf
 
+streamrip/*downloads.db
+
 termux/font.ttf
 termux/shell
 mutt/passwords.gpg
