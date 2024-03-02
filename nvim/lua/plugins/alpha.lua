@@ -69,7 +69,7 @@ M.config = function()
       button('i', '󱇨  New file', scratch .. 'startinsert<cr>'),
       button('p', '󰆒  Paste in NF', scratch .. ' norm "*pi<cr>'),
       button('u', '󰚰  Update plugins', '<cmd>Lazy update<cr>', ''),
-      button('q', '󰗼  Quit', '<cmd>qa<cr>', 'Error'),
+      button('q', '󰗼  Quit', '<cmd>qa<cr>', ''),
       { type = 'padding', val = 2 },
       button('d', '  dotfiles', '<cmd>cd ~/repos/dotfiles/ | Telescope find_files<cr>', 'Comment'),
       button('n', '  notes', '<cmd>cd /sdcard/main/notes/ | Telescope find_files<cr>', 'Title'),

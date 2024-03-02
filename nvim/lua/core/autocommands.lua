@@ -61,16 +61,6 @@ autocmd('BufNewFile', {
   end,
 })
 
-autocmd('VimEnter', {
-  desc = 'open directory in telescope',
-  callback = function(details)
-    if vim.fn.isdirectory(details.file) == 1 then
-      vim.cmd.cd(details.file)
-      vim.cmd 'Telescope find_files'
-    end
-  end,
-})
-
 -- autocmd('BufReadPost', {
 --   desc = 'restore cursor position',
 --   callback = function()
@@ -107,6 +97,16 @@ autocmd('BufEnter', {
   callback = function() set.formatoptions:remove { 'c', 'r', 'o' } end,
 })
 
+-- https://github.com/stevearc/oil.nvim
+-- autocmd('VimEnter', {
+--   desc = 'open directory in telescope',
+--   callback = function(details)
+--     if vim.fn.isdirectory(details.file) == 1 then
+--       vim.cmd.cd(details.file)
+--       vim.cmd 'Telescope find_files'
+--     end
+--   end,
+-- })
 -- https://github.com/mawkler/modicator.nvim
 -- vim.api.nvim_create_autocmd('ModeChanged', {
 --   desc = 'change cursor line number based on mode',
