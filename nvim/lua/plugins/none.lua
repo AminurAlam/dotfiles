@@ -1,6 +1,9 @@
 local M = {
   'nvimtools/none-ls.nvim',
-  dependencies = { 'nvim-lua/plenary.nvim' },
+  dependencies = {
+    'nvim-lua/plenary.nvim',
+    'gbprod/none-ls-shellcheck.nvim',
+  },
   ft = { 'lua', 'fish', 'c', 'cpp', 'sh' },
 }
 
@@ -21,14 +24,17 @@ M.config = function()
   add('stylua', 'formatting', {
     extra_args = { '-f', os.getenv('XDG_CONFIG_HOME') .. '/stylua.toml' },
   })
-  add('ruff', 'diagnostics')
   add('fish', 'diagnostics')
   add('fish_indent', 'formatting')
-  add('shellcheck', 'code_actions')
-  add('shellcheck', 'diagnostics')
+  -- add('ruff', 'diagnostics')
+  -- add('shellcheck', 'code_actions')
+  -- add('shellcheck', 'diagnostics')
   -- add('ts_node_action', 'code_actions')
   -- add('spell', 'completion')
   -- add('clang_check', 'clang-check', 'diagnostics') -- comes with clangd
+
+  null_ls.register(require('none-ls-shellcheck.diagnostics'))
+  null_ls.register(require('none-ls-shellcheck.code_actions'))
 
   null_ls.setup {
     border = 'rounded',

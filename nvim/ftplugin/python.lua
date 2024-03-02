@@ -8,7 +8,17 @@ local root = {
   '.git',
 }
 
-vim.opt.cinkeys:remove { ':' }
+vim.opt_local.cinkeys:remove { ':' }
+
+if vim.fn.executable('ruff-lsp') == 1 then
+  vim.lsp.start({
+    cmd = { 'ruff-lsp' },
+    filetypes = { 'python' },
+    root_dir = vim.fs.dirname(vim.fs.find(root, { upwards = true })[1]),
+    single_file_support = true,
+    settings = {},
+  })
+end
 
 if vim.fn.executable('pyright-langserver') == 1 then
   vim.lsp.start({
