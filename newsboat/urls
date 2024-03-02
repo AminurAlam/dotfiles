@@ -8,13 +8,9 @@ https://what-if.xkcd.com/feed.atom socials
 https://github.com/neovim/neovim/commits/master/runtime/doc/news.txt.atom "~nvim - news.txt" socials
 http://mangacritic.mangabookshelf.com/feed/ socials
 https://www.thatmangahunter.com/blog-feed.xml socials
-https://myanimelist.net/rss.php?type=rm&u=goobatron socials
-https://myanimelist.net/rss.php?type=rm&u=Shellshock123 socials
 
 "query:----- MUSIC -----:tags # \"music\" and unread = \"yes\""
-http://www.profstoned.com/feeds/posts/default music
 https://muspy.com/feed?id=mobwjpkr95u5p1b4f2w1bjt74qc8u3 "~muspy New Releases" music
-https://hasitleaked.com/leakedfeed "~Has it leaked? albums" music
 https://sputnikmusic.com/blog/feed/ "~Sputnik Music Blog" music
 https://feeds.npr.org/1039/rss.xml "~NPR Music" music
 https://www.allmusic.com/rss music
@@ -49,13 +45,12 @@ https://www.phoronix.com/rss.php  news_foss
 https://dolphin-emu.org/blog/feeds/ "~Dolphin Emulator" news_foss
 https://citra-emu.org/index.xml "~Citra Emulator" news_foss
 https://yuzu-emu.org/index.xml news_foss
+https://strato-emu.github.io/index.xml
 https://newsboat.org/news.atom news_foss
 https://blog.thunderbird.net/feed/ "~Thunderbird" news_foss
 http://www.archlinux.org/feeds/news/ "~Archlinux" news_foss
 https://rss-bridge.bb8.fun/?action=display&bridge=MozillaSecurity&format=Atom news_foss
-https://itsfoss.com/rss/ news_foss
 https://news.itsfoss.com/rss/ news_foss
-https://www.linuxlinks.com/feed/ news_foss
 https://blog.opensource.org/feed/ news_foss
 
 "query:----- CORPO BLOGS -----:tags # \"blogs_corpo\" and unread = \"yes\""
