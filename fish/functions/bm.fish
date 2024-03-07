@@ -34,6 +34,8 @@ function bm
             [ -n "$argv[2]" ] && echo "$argv[2]" >>"$BMPATH[1]" || echo "nothing to add"
         case e ed edit
             set -q EDITOR && $EDITOR $BMPATH || echo "no EDITOR found"
+        case h host
+            : # TODO: implement
         case '*'
             __process_link (rg --no-filename --replace '' '^https?://(www\.)?' $BMPATH | rg "$argv[1]" | $LAUNCHER --query "$argv[1]")
     end

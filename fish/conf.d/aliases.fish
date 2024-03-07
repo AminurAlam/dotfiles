@@ -11,7 +11,7 @@ abbr vi nvim
 abbr cls clear
 abbr yq "yq -oj"
 abbr cal "cal -my"
-abbr qmv "qmv -AXf do"
+abbr qmv "qmv -AXf do" # TODO: replace with oil.nvim
 abbr pst "ps -faxo 'pid,comm'"
 abbr y "yes |"
 abbr ffprobe "ffprobe -hide_banner -pretty"

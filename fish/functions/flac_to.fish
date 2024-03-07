@@ -7,10 +7,10 @@ function flac_to -a ext
         set -l filename (string replace ".flac" "" "$i")
         set -l count (math $count + 1)
 
-        printf "\n [%d/%d] %s.flac\n" "$count" "$total" "$filename"
+        printf " [%d/%d] %s.flac\n" "$count" "$total" "$filename"
 
         if command -sq opusenc
-            opusenc --quiet --music --comp 10 "$filename.flac" "$filename.opus"
+            opusenc --quiet --music --comp 10 --bitrate 256 "$filename.flac" "$filename.opus"
         else if command -sq ffmpeg
             ffmpeg -y -hide_banner -stats -loglevel error -i "$filename.flac" \
                 -b:a 320k -r:a 44100 -q:a 9 "$filename.$ext" || break
