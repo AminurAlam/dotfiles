@@ -2,3 +2,4 @@ foreground-scripts=true
 prefix=/data/data/com.termux/files/home/.local/share/npm
 cache=/data/data/com.termux/files/home/.local/cache/npm
 init-module=/data/data/com.termux/files/home/.config/npm/config/npm-init.js
+fund=false
