@@ -8,7 +8,7 @@ vim.opt_local.listchars = {
   -- precedes = '│'
 }
 
-if vim.fn.executable('lua-language-server') == 1 then
+--[[ if vim.fn.executable('lua-language-server') == 1 then
   vim.lsp.start({
     cmd = { 'lua-language-server' },
     filetypes = { 'lua' },
@@ -35,4 +35,4 @@ if vim.fn.executable('lua-language-server') == 1 then
       },
     },
   })
-end
+end ]]

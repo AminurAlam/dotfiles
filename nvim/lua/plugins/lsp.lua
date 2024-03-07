@@ -3,7 +3,7 @@ local M = {
   enabled = false,
 }
 
-M.config = function()
+--[[ M.config = function()
   local lspconfig = require 'lspconfig'
   local nmap = function(lhs, rhs, desc) vim.keymap.set('n', lhs, rhs, { noremap = true, silent = true, desc = desc }) end
 
@@ -81,6 +81,6 @@ M.config = function()
   nmap(']d', vim.diagnostic.goto_next, 'goto next diagnostic message')
   nmap('<leader>d', vim.diagnostic.open_float, 'view line diagnostics')
   nmap('<leader>D', function() vim.diagnostic.open_float { scope = 'buffer' } end, 'view all diagnostics in a buffer')
-end
+end ]]
 
 return M

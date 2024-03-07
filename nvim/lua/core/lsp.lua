@@ -6,9 +6,11 @@ local function create(cmd, filetypes, root_dir, settings)
   vim.api.nvim_create_autocmd('Filetype', {
     pattern = filetypes,
     once = true,
-    callback = function()
+    callback = function(buf)
+      -- vim.print(buf)
       if vim.fn.executable(cmd[1]) == 1 then
         vim.lsp.start {
+          name = cmd[1],
           cmd = cmd,
           filetypes = filetypes,
           single_file_support = true,
@@ -20,6 +22,44 @@ local function create(cmd, filetypes, root_dir, settings)
   })
 end
 
+local pylug = { enabled = true, maxLineLength = 100, ignore = { 'E128', 'E701' } }
+local py_root = {
+  'pyproject.toml',
+  'setup.py',
+  'setup.cfg',
+  'requirements.txt',
+  'Pipfile',
+  '.git',
+}
+
+create({ 'gopls' }, { 'go' }, { 'go.work', 'go.mod', '.git' })
+
+create({ 'bash-language-server', 'start' }, { 'sh', 'bash' }, {}, {})
+
+create({ 'ruff-lsp' }, { 'python' }, py_root, {})
+
+create({ 'pylsp' }, { 'python' }, py_root, {
+  pylsp = { plugins = { pycodestyle = pylug, flake8 = pylug } },
+})
+
+create({ 'dart', 'language-server', '--protocol=lsp' }, { 'dart' }, { 'pubspec.yaml' }, {
+  dart = { completeFunctionCalls = true, showTodos = true },
+})
+
+create({ 'rust-analyzer' }, { 'rust' }, { 'Cargo.toml', 'rust-project.json' }, {
+  ['rust-analyzer'] = { linkedProjects = nil },
+})
+
+create({ 'pyright-langserver', '--stdio' }, { 'python' }, py_root, {
+  python = {
+    analysis = {
+      diagnosticMode = 'document', -- 'workspace',
+      autoSearchPaths = true,
+      useLibraryCodeForTypes = true,
+    },
+  },
+})
+
 create({ 'clangd' }, { 'c', 'cpp', 'objc', 'objcpp', 'cuda', 'proto' }, {
   '.git',
   '.clangd',
@@ -30,64 +70,26 @@ create({ 'clangd' }, { 'c', 'cpp', 'objc', 'objcpp', 'cuda', 'proto' }, {
   'configure.ac',
 })
 
-create({ 'rust-analyzer' }, { 'rust' }, { 'Cargo.toml', 'rust-project.json' }, {
-  ['rust-analyzer'] = { linkedProjects = nil },
-})
+create({ 'lua-language-server' }, { 'lua' }, { 'init.lua', 'lua' }, {
+  Lua = {
+    -- library = vim.api.nvim_get_runtime_file('', true),
+    typeFormat = { config = { auto_complete_end = true } },
+    completion = { callSnippet = 'Replace', displayContext = 5 },
+    diagnostics = {
+      globals = { 'vim', 'drastic' },
+      libraryFiles = 'Disable',
+      -- disable = { 'lowercase-global' },
+    },
+    format = { enable = false }, -- using stylua instead
+    hint = { enable = true },
+    runtime = { version = 'LuaJIT' },
+    semantic = { enable = false },
+    telemetry = { enable = false },
+    window = { progressBar = false },
+    workspace = { checkThirdParty = false },
+  },
+}) --]]
 
-create({ 'gopls' }, { 'go' }, { 'go.work', 'go.mod', '.git' })
-
-create({ 'dart', 'language-server', '--protocol=lsp' }, { 'dart' }, { 'pubspec.yaml' }, {
-  dart = { completeFunctionCalls = true, showTodos = true },
-})
-
-create({ 'bash-language-server', 'start' }, { 'sh', 'bash' }, {}, {})
-
--- TODO: make :LspInfo copy
-
-local api, lsp = vim.api, vim.lsp
-
-if vim.fn.has 'nvim-0.8' ~= 1 then
-  local version_info = vim.version()
-  local warning_str = string.format(
-    '[lspconfig] requires neovim 0.8 or later. Detected neovim version: 0.%s.%s',
-    version_info.minor,
-    version_info.patch
-  )
-  vim.notify_once(warning_str)
-  return
-end
-
--- local completion_sort = function(items)
---   table.sort(items)
---   return items
--- end
---
--- local lsp_complete_configured_servers = function(arg)
---   return completion_sort(vim.tbl_filter(function(s)
---     return s:sub(1, #arg) == arg
---   end, require('lspconfig.util').available_servers()))
--- end
---
--- local lsp_get_active_client_ids = function(arg)
---   local clients = vim.tbl_map(function(client)
---     return ('%d (%s)'):format(client.id, client.name)
---   end, require('lspconfig.util').get_managed_clients())
---
---   return completion_sort(vim.tbl_filter(function(s)
---     return s:sub(1, #arg) == arg
---   end, clients))
--- end
---
--- local get_clients_from_cmd_args = function(arg)
---   local result = {}
---   for id in (arg or ''):gmatch '(%d+)' do
---     result[#result + 1] = lsp.get_client_by_id(tonumber(id))
---   end
---   if #result == 0 then
---     return require('lspconfig.util').get_managed_clients()
---   end
---   return result
--- end
 
 for group, hi in pairs {
   LspInfoBorder = { link = 'Label', default = true },
@@ -96,15 +98,44 @@ for group, hi in pairs {
   LspInfoTitle = { link = 'Title', default = true },
   LspInfoFiletype = { link = 'Type', default = true },
 } do
-  api.nvim_set_hl(0, group, hi)
+  vim.api.nvim_set_hl(0, group, hi)
 end
 
--- Called from plugin/lspconfig.vim because it requires knowing that the last
--- script in scriptnames to be executed is lspconfig.
-api.nvim_create_user_command('LspInfo', function() require 'core.lspinfo_ui'() end, {
+-- TODO: put this in a float
+vim.api.nvim_create_user_command('LspInfo2', function()
+  ---@param workspace_folders table?
+  ---@return string
+  local get_workspace_folders = function(workspace_folders)
+    local dirs = {}
+    if workspace_folders then
+      for _, y in pairs(workspace_folders) do
+        table.insert(dirs, y.name)
+      end
+      return vim.fn.join(dirs)
+    end
+    return 'single file mode'
+  end
+
+  for _, x in pairs(vim.lsp.get_clients()) do
+    local buf = string.format(
+      [[
+  CLIENT: %s (id: %d)
+    ft: %s
+    ws: %s
+  ]],
+      x.name,
+      x.id,
+      vim.fn.join(x.config.filetypes, ', '),
+      get_workspace_folders(x.workspace_folders)
+    )
+    print(buf)
+    -- vim.print(x)
+    -- vim.print(x.config.cmd)
+  end
+end, {
   desc = 'Displays attached, active, and configured language servers',
 })
 
-api.nvim_create_user_command('LspLog', function() vim.cmd(string.format('tabnew %s', lsp.get_log_path())) end, {
+vim.api.nvim_create_user_command('LspLog', function() vim.cmd(string.format('tabnew %s', vim.lsp.get_log_path())) end, {
   desc = 'Opens the Nvim LSP client log.',
 })

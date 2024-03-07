@@ -1,3 +1,6 @@
+vim.opt_local.cinkeys:remove { ':' }
+
+--[[
 local pylug = { enabled = true, maxLineLength = 100, ignore = { 'E128', 'E701' } }
 local root = {
   'pyproject.toml',
@@ -7,8 +10,6 @@ local root = {
   'Pipfile',
   '.git',
 }
-
-vim.opt_local.cinkeys:remove { ':' }
 
 if vim.fn.executable('ruff-lsp') == 1 then
   vim.lsp.start({
@@ -46,4 +47,4 @@ if vim.fn.executable('pylsp') == 1 then
     single_file_support = true,
     settings = { pylsp = { plugins = { pycodestyle = pylug, flake8 = pylug } } },
   })
-end
+end --]]
