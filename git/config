@@ -17,7 +17,7 @@
 [alias]
     l = log --pretty=nice -n 15
     s = status -bs
-    d = !"git diff -- $* | $EDITOR +'set bt=nofile bh=hide' # "
+    d = !"git diff -- $* | $EDITOR +'set bt=nofile bh=hide' +'nmap q <cmd>quit!<cr>' # "
 
     tags = tag -l
     branches = branch --all
