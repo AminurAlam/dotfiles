@@ -55,8 +55,8 @@ set -gx MANPAGER "$EDITOR +Man!"
 set -gx MANPATH $PREFIX/share/fish/man $PREFIX/share/man
 set -gx TERMINFO "$PREFIX/share/terminfo"
 set -gx BROWSER termux-open
-set -gx LAUNCHER sk --prompt '  ' --select-1 --inline-info --no-multi --margin 0,3,1,3 --color \
-"dark,fg:,bg:,matched:#ff9e64,matched_bg:,current:,current_bg:#2e3c64,current_match:,current_match_bg:,query:,query_bg:,info:,border:#c0caf5,prompt:,pointer:,marker:,spinner:,header:"
+set -gx LAUNCHER fzf --prompt '  ' --select-1 --inline-info --no-multi --margin 0,3,1,3 --color \
+"dark,fg:,bg:,query:,info:,border:#c0caf5,prompt:,pointer:,marker:,spinner:,header:" # TODO: configure
 set -gx WWW_HOME "https://search.rowie.at"
 set -gx DISPLAY ":1"
 # command config
@@ -70,6 +70,7 @@ set -gx GNUPGHOME $XDG_DATA_HOME/gnupg
 set -gx RIPGREP_CONFIG_PATH $XDG_PROJECTS_DIR/dotfiles/other/ripgreprc
 # lang config
 set -gx JAVA_HOME $PREFIX/opt/openjdk
+set -gx ANDROID_HOME $HOME/Android/sdk
 set -gx PYTHONSTARTUP $XDG_CONFIG_HOME/python/startup.py
 set -gx NODE_REPL_HISTORY $XDG_STATE_HOME/node_repl_history
 set -gx NPM_CONFIG_USERCONFIG $XDG_CONFIG_HOME/npm/npmrc
@@ -80,6 +81,7 @@ set -gx CARGO_LOG info
 set -gx VIMRUNTIME $PREFIX/share/nvim/runtime/
 
 set -gxp --path PATH "$CARGO_HOME/bin" # after declaring CARGO_HOME
+set -gxp --path PATH "$HOME/.local/share/npm/bin"
 
 ### SOURCE ###
 command -sq starship && starship init fish | source || source $XDG_CONFIG_HOME/fish/functions/load_prompt.fish

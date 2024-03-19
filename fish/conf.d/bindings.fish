@@ -13,7 +13,8 @@ bind -M insert \e\[1\;5B 'commandline -f history-token-search-forward'
 bind -M insert \cw 'commandline -f backward-kill-bigword'
 
 # helpful for toggling between processes
-bind -M insert \cz 'fg'
+bind -M insert \cz fg
+bind t fg
 
 # press esc twice to cancel
 bind \e cancel-commandline repaint-mode

@@ -24,10 +24,7 @@ function bm
         disown $last_pid &>/dev/null
     end
 
-    [ -z "$LAUNCHER" ]
-    and if command -vq sk;   set LAUNCHER sk --prompt '  ' --select-1 --inline-info --no-multi --margin 0,3,1,3
-    else if command -vq fzf; set LAUNCHER fzf
-    end
+    [ -n "$LAUNCHER" ] || set LAUNCHER fzf
 
     switch "$argv[1]"
         case a add
