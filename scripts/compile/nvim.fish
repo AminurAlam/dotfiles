@@ -15,21 +15,11 @@ function pre_build
     # fixes phantom process killing
     command -vq rish && rish -c "settings put global settings_enable_monitor_phantom_procs false"
 
-    # checking connection
-    ping -qc 5 -i 0.2 -- raw.githubusercontent.com || begin
-        printf "connection to `raw.githubusercontent.com` failed\n"
-        printf "try using a VPN\n"
-        exit
-    end
-
-    # TODO: fix downloading full repo
-    if [ -d "$REPO_PATH" ]
-        cd "$REPO_PATH"
-        [ "$(read -P 'run `git-pull`? [y/N] ')" = y ] && git pull --deepen 0 --depth 1 origin
-    else
-        git clone --depth 1 --branch custom "$REPO_URL" "$REPO_PATH"
-        cd "$REPO_PATH"
-    end
+    [ -d "$REPO_PATH" ] || git clone --branch custom "$REPO_URL" "$REPO_PATH"
+    cd "$REPO_PATH"
+    git remote show upstream &>/dev/null || git remote add upstream "https://github.com/neovim/neovim.git"
+    git fetch upstream
+    [ "$(read -P 'run `git-merge`? [y/N] ')" = y ] && git merge upstream/master
 end
 
 function build
