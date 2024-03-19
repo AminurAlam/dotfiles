@@ -1,6 +1,8 @@
 CompileFlags:                     # Tweak the parse settings
   Add: [-Wall]             # treat all files as C++, enable more warnings
 
+Index:
+  StandardLibrary: No
 
 Diagnostics:
   UnusedIncludes: None
