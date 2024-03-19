@@ -8,11 +8,11 @@ https://what-if.xkcd.com/feed.atom socials
 https://github.com/neovim/neovim/commits/master/runtime/doc/news.txt.atom "~nvim - news.txt" socials
 http://mangacritic.mangabookshelf.com/feed/ socials
 https://www.thatmangahunter.com/blog-feed.xml socials
+https://fmhy.net/feed.rss socials
 
 "query:----- MUSIC -----:tags # \"music\" and unread = \"yes\""
 https://muspy.com/feed?id=mobwjpkr95u5p1b4f2w1bjt74qc8u3 "~muspy New Releases" music
 https://sputnikmusic.com/blog/feed/ "~Sputnik Music Blog" music
-https://feeds.npr.org/1039/rss.xml "~NPR Music" music
 https://www.allmusic.com/rss music
 https://pitchfork.com/feed/feed-news/rss "~Pitchfork News" music
 
@@ -20,7 +20,6 @@ https://pitchfork.com/feed/feed-news/rss "~Pitchfork News" music
 https://waxy.org/feed/ "~waxy.org by Andy Baio" aggregators
 https://lobste.rs/rss aggregators
 https://hnrss.org/newest.atom?points=100&count=20&description=0 "~Hacker News" aggregators
-https://reddit.com/r/programming/hot.rss "~r/programming" aggregators
 https://reddit.com/r/neovim/hot.rss "~r/neovim" aggregators
 https://reddit.com/r/OtoMusic/new.rss "~r/OtoMusic" aggregators
 https://dotfyle.com/this-week-in-neovim/rss.xml "~This Week in Neovim" aggregators
@@ -48,9 +47,7 @@ https://yuzu-emu.org/index.xml news_foss
 https://strato-emu.github.io/index.xml
 https://newsboat.org/news.atom news_foss
 https://blog.thunderbird.net/feed/ "~Thunderbird" news_foss
-http://www.archlinux.org/feeds/news/ "~Archlinux" news_foss
 https://rss-bridge.bb8.fun/?action=display&bridge=MozillaSecurity&format=Atom news_foss
-https://news.itsfoss.com/rss/ news_foss
 https://blog.opensource.org/feed/ news_foss
 
 "query:----- CORPO BLOGS -----:tags # \"blogs_corpo\" and unread = \"yes\""
@@ -60,7 +57,6 @@ https://blog.nightly.mozilla.org/feed blogs_corpo
 https://blog.metabrainz.org/feed/ blogs_corpo
 https://blog.archive.org/feed/ blogs_corpo
 https://www.eff.org/rss/updates.xml "~eff.org" blogs_corpo
-https://www.lumendatabase.org/blog_feed.rss blogs_corpo
 https://mullvad.net/en/blog/feed/atom/ blogs_corpo
 https://element.io/blog/rss/ blogs_corpo
 https://security.googleblog.com/feeds/posts/default?alt=rss blogs_corpo
