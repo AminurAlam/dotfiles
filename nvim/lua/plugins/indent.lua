@@ -1,20 +1,16 @@
 return {
   'lukas-reineke/indent-blankline.nvim',
-  enabled = false,
-  opts = {
-    show_first_indent_level = true,
-    filetype_exclude = {
-      'markdown',
-      'note',
-      'text',
-      'lspinfo',
-      'packer',
-      'checkhealth',
-      'help',
-      'man',
-      'log',
-      'diff',
-      '',
-    },
-  },
+  enabled = true,
+  config = function()
+    local hooks = require 'ibl.hooks'
+    hooks.register(hooks.type.WHITESPACE, hooks.builtin.hide_first_space_indent_level)
+    require('ibl').setup {
+      whitespace = { remove_blankline_trail = true },
+      scope = { enabled = false },
+      -- show_first_indent_level = true,
+      exclude = {
+        filetypes = { 'checkhealth', 'diff', 'help', 'lspinfo', 'man', '' },
+      },
+    }
+  end,
 }

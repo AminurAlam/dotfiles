@@ -51,8 +51,8 @@ set.foldlevel = 3
 set.foldnestmax = vim.o.foldlevel + 1
 set.foldmethod = 'manual'
 set.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
-set.foldtext =
-  [[substitute(getline(v:foldstart), "\\s\\(--\\|#\\).*", "", "" ) .. " ... " .. trim(getline(v:foldend)) .. " [" .. (v:foldend-v:foldstart+1) .. " lines]"]]
+set.foldtext = ''
+ -- [[substitute(getline(v:foldstart), "\\s\\(--\\|#\\).*", "", "" ) .. "..." .. trim(getline(v:foldend)) .. " [" .. (v:foldend-v:foldstart+1) .. " lines]"]]
 set.foldcolumn = 'auto'
 set.foldopen:append {}
 set.viewoptions = 'cursor,folds'
@@ -85,7 +85,7 @@ set.matchtime = 1
 set.grepprg = 'rg --vimgrep '
 set.timeout = false -- remove for which-key
 set.timeoutlen = 1000 -- use 0 for which-key
-set.swapfile = false
+set.swapfile = true
 set.backup = false
 set.writebackup = false
 set.undofile = true
@@ -94,7 +94,7 @@ set.clipboard:append { 'unnamed', 'unnamedplus' }
 set.list = true
 set.listchars = {
   tab = '  ',
-  leadmultispace = '│   ',
+  -- leadmultispace = '│   ',
   trail = ' ',
   extends = '…',
   precedes = '…',

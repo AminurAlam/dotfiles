@@ -1,4 +1,5 @@
 return {
+  -- TODO: try catppuchin
   'folke/tokyonight.nvim',
   opts = {
     style = 'storm', -- The theme comes in three styles, `storm`, a darker variant `night` and `day`

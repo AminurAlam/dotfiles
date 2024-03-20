@@ -1,5 +1,6 @@
 return {
   'kosayoda/nvim-lightbulb',
+  enabled = false,
   config = {
     priority = 10,
     hide_in_unfocused_buffer = false,

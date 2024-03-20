@@ -9,8 +9,12 @@ local M = {
     'hrsh7th/cmp-cmdline',
     'L3MON4D3/LuaSnip', -- helps create snippets
     'saadparwaiz1/cmp_luasnip', -- adds snippets to cmp
-    { 'AminurAlam/friendly-snippets' }, -- provides multiple snippets
-    { 'mtoohey31/cmp-fish', ft = 'fish' },
+    { 'AminurAlam/friendly-snippets', dev = true }, -- provides multiple snippets
+    {
+      'mtoohey31/cmp-fish',
+      enabled = vim.fn.executable('fish') == 1,
+      ft = 'fish',
+    },
   },
 }
 
@@ -45,18 +49,18 @@ M.config = function()
     TypeParameter = '󰅲',
   }
   local buffer_text = {
-    nvim_lsp = '[LSP]',
-    nvim_lua = '[LUA]',
-    path = '[PATH]',
-    buffer = '[BUF]',
-    dap = '[DAP]',
-    vsnip = '[VSN]',
-    luasnip = '[LSN]',
-    ultisnips = '[USN]',
-    snippy = '[SNP]',
-    snipmate = '[SNM]',
-    nvim_lsp_document_symbol = '[DOC]',
-    fish = '[FISH]',
+    nvim_lsp = 'LSP',
+    nvim_lua = 'LUA',
+    path = 'PATH',
+    buffer = 'BUF',
+    dap = 'DAP',
+    vsnip = 'VSN',
+    luasnip = 'LSN',
+    ultisnips = 'USN',
+    snippy = 'SNP',
+    snipmate = 'SNM',
+    nvim_lsp_document_symbol = 'DOC',
+    fish = 'FISH',
   }
 
   cmp.setup {
@@ -86,6 +90,7 @@ M.config = function()
     },
     formatting = {
       format = function(entry, vim_item)
+        vim_item.abbr = string.sub(vim_item.abbr, 1, 18)
         vim_item.kind = kind_icons[vim_item.kind]
         vim_item.menu = (buffer_text)[entry.source.name]
         return vim_item
@@ -106,10 +111,10 @@ M.config = function()
         end
       end, { 'i', 's' }),
       ['<S-Tab>'] = cmp.mapping(function(fallback)
-        if cmp.visible() then
-          cmp.select_prev_item()
-        elseif luasnip.jumpable(-1) then
+        if luasnip.jumpable(-1) then
           luasnip.jump(-1)
+        elseif cmp.visible() then
+          cmp.select_prev_item()
         else
           fallback()
         end
