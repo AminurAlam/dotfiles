@@ -4,11 +4,14 @@ set REPO_URL ""
 set DEPENDENCIES binutils
 
 function pre_build
-    if command -vq pacman
+    if command -vq apt
+        [ (uname -o) = Android ] && apt instal -- $DEPENDENCIES || sudo apt install -- $DEPENDENCIES
+    else if command -vq pacman
         pacman -S --noconfirm --needed -- $DEPENDENCIES
-    else if command -vq apt
-        pkg install -- $DEPENDENCIES
+    else if command -vq dnf
+        dnf install -- $DEPENDENCIES
     else
+        printf "cannot determine package manager\n"
         exit
     end
 

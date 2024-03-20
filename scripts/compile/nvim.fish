@@ -4,16 +4,16 @@ set REPO_URL "https://github.com/AminurAlam/neovim.git"
 set DEPENDENCIES binutils clang cmake gettext libtreesitter libuv make ninja openssl pkg-config
 
 function pre_build
-    if command -vq pacman
+    if command -vq apt
+        [ (uname -o) = Android ] && apt instal -- $DEPENDENCIES || sudo apt install -- $DEPENDENCIES
+    else if command -vq pacman
         pacman -S --noconfirm --needed -- $DEPENDENCIES
-    else if command -vq apt
-        pkg install -- $DEPENDENCIES
+    else if command -vq dnf
+        dnf install -- $DEPENDENCIES
     else
+        printf "cannot determine package manager\n"
         exit
     end
-
-    # fixes phantom process killing
-    command -vq rish && rish -c "settings put global settings_enable_monitor_phantom_procs false"
 
     [ -d "$REPO_PATH" ] || git clone --branch custom "$REPO_URL" "$REPO_PATH"
     cd "$REPO_PATH"

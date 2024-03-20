@@ -12,19 +12,19 @@ set url_bootstrap "https://github.com/termux-pacman/termux-packages/releases"
 # paths
 # set main "/sdcard/main/termux/"
 set path_dots "$HOME/repos/dotfiles" # NOTE: mae sure this is a full path
-set path_nvim "$HOME/repos/nvim-fork"
+set path_nvim "$HOME/repos/neovim"
 
 command mkdir -p $HOME/{backup,repos}/ $HOME/.local/{share,bin,cache}/
 
-sudo apt install $packages
-
 sudo apt-add-repository ppa:fish-shell/release-3
 sudo apt update
-sudo apt install fish
+sudo apt install $packages
 
-command -v nvim &>/dev/null || begin
-    git clone --depth 1 "$url_neovim" "$path_nvim"
+command -vq starship || curl -sS https://starship.rs/install.sh | sh
+
+command -vq nvim || begin
+    git clone --depth 1 "https://github.com/AminurAlam/neovim.git" "$path_nvim"
     cd "$path_nvim"
     make
-    make install
+    sudo make install
 end
