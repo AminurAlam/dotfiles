@@ -1,4 +1,5 @@
 [core]
+    editor = nvim +'setlocal spell noundofile noswapfile'
     # pager = nvim +'setlocal ft=diff buftype=nofile bufhidden=hide noswapfile'
 
 [init]
@@ -44,6 +45,9 @@
     added = green
     changed = red
     untracked = default
+
+[commit]
+    template = ~/.config/git/commit-template
 
 [merge]
     tool = nvimdiff
