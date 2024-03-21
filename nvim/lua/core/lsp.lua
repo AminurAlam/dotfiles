@@ -5,11 +5,9 @@
 local function create(cmd, filetypes, root_dir, settings)
   vim.api.nvim_create_autocmd('Filetype', {
     pattern = filetypes,
-    -- once = true,
     callback = function(buf)
-      -- vim.print(buf)
       if vim.fn.executable(cmd[1]) == 1 then
-        vim.lsp.start {
+        client = vim.lsp.start {
           name = cmd[1],
           cmd = cmd,
           filetypes = filetypes,
@@ -17,38 +15,36 @@ local function create(cmd, filetypes, root_dir, settings)
           root_dir = vim.fs.dirname(vim.fs.find(root_dir, { upwards = true })[1]),
           settings = settings or {},
         }
+        vim.lsp.buf_attach_client(buf.id, client)
       end
     end,
   })
 end
 
+-- stylua: ignore
+do
 create({ 'gopls' },
   { 'go' },
   { 'go.work', 'go.mod', '.git' }
 )
-
 create({ 'java-language-server' },
   { 'java' },
   { 'build.gradle', 'pom.xml', '.git' }
 )
-
 create({ 'bash-language-server', 'start' },
   { 'sh', 'zsh', 'bash' },
   { '.sh', '.zsh', '.bash' }
 )
-
 create({ 'dart', 'language-server', '--protocol=lsp' },
   { 'dart' },
   { 'pubspec.yaml' },
   { dart = { completeFunctionCalls = true, showTodos = true } }
 )
-
 create({ 'rust-analyzer' },
   { 'rust' },
   { 'Cargo.toml', 'rust-project.json' },
   { ['rust-analyzer'] = { linkedProjects = nil } }
 )
-
 create({ 'ruff-lsp' },
   { 'python' },
   {
@@ -60,7 +56,6 @@ create({ 'ruff-lsp' },
     '.git',
   }
 )
-
 create({ 'clangd' },
   { 'c', 'cpp', 'objc', 'objcpp', 'cuda', 'proto' },
   {
@@ -73,7 +68,6 @@ create({ 'clangd' },
     'configure.ac',
   }
 )
-
 create({ 'pyright-langserver', '--stdio' },
   { 'python' },
   {
@@ -94,7 +88,6 @@ create({ 'pyright-langserver', '--stdio' },
     }
   }
 )
-
 create({ 'lua-language-server' },
   { 'lua' },
   { 'init.lua', 'lua' }, {
@@ -113,40 +106,41 @@ create({ 'lua-language-server' },
       semantic = { enable = false },
       telemetry = { enable = false },
       window = { progressBar = false },
-      workspace = { checkThirdParty = false },
+      workspace = {
+        checkThirdParty = false,
+        library = { vim.env.VIMRUNTIME },
+      },
     }
   }
 )
-
-
+end
 
 ---@return string
 local info = function()
-
-  local text = ''
+  local clients = vim.lsp.get_clients()
+  local text = #clients .. ' clients attached\n'
   local template = [[ CLIENT: %s (id: %d)
      ft: %s
      ws: %s
 ]]
 
-  for _, client in pairs(vim.lsp.get_clients()) do
-    text = text .. string.format(
-      template,
-      client.name,
-      client.id,
-      table.concat(client.config.filetypes, ', '),
-      vim.fn.fnamemodify(client.workspace_folders[1].name, ':~')
-    )
-    -- vim.print(client)
-    -- vim.print(client.config.cmd)
+  local get_ws = function(dirs) return dirs and vim.fn.fnamemodify(dirs[1].name, ':~') or 'single file mode' end
+
+  for _, client in pairs(clients) do
+    text = text
+      .. string.format(
+        template,
+        client.name,
+        client.id,
+        table.concat(client.config.filetypes, ', '),
+        get_ws(client.workspace_folders) -- client.config.root_dir
+      )
   end
   return text
 end
 
 -- TODO: put this in a floating window
-vim.api.nvim_create_user_command('LspInfo', function ()
-  print(info())
-end, {
+vim.api.nvim_create_user_command('LspInfo', function() print(info()) end, {
   desc = 'Display attached language servers',
 })
 
@@ -156,5 +150,5 @@ vim.api.nvim_create_user_command('LspLog', function() vim.cmd(string.format('tab
 
 return {
   create = create,
-  info = info
+  info = info,
 }

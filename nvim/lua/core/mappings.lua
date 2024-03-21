@@ -75,24 +75,6 @@ vmap('<', '<gv')
 nmap('[f', 'zc')
 nmap(']f', 'zf%')
 
--- other
-umap('<c-c>', '<cmd>norm m`viw~``<cr>', 'toggle word case')
-vmap('.', ':norm .<cr>', 'dot repeat on all selected lines')
-nmap(';', '@:', 'dot repeat the last command')
-umap('<esc>', '<cmd>nohlsearch<cr><esc>')
-nmap('gj', [[@='j^"_d0kgJ'<cr>]], 'join without leaving space')
-
--- visual
-nmap('v', 'm`v')
-nmap('V', 'm`V')
-nmap('<c-v>', 'm`<c-v>')
-vmap('<esc>', '<esc>:keepjumps norm ``<cr>') -- after umap '<esc>'
--- vmap('V', 'j', 'repeat V to select more lines')
-vmap('v', function()
-  local next = { ['v'] = 'V', ['V'] = '\22', ['\22'] = '<esc>' }
-  feed(next[vim.api.nvim_get_mode().mode])
-end, 'repeat v to change visual mode')
-
 -- scrolling
 umap('<c-u>', string.rep('<cmd>norm k<cr><cmd>sl 1m<cr>', vim.o.scroll))
 umap('<c-d>', string.rep('<cmd>norm j<cr><cmd>sl 1m<cr>', vim.o.scroll))
@@ -106,6 +88,34 @@ nmap('<leader>si', function()
   vim.opt_local.lcs = { leadmultispace = lcs }
 end, 'toggle indentlines')
 
+-- other
+umap('<c-c>', '<cmd>norm m`viw~``<cr>', 'toggle word case')
+vmap('.', ':norm .<cr>', 'dot repeat on all selected lines')
+nmap(';', '@:', 'dot repeat the last command')
+umap('<esc>', '<cmd>nohlsearch<cr><esc>')
+nmap('gj', [[@='j^"_d0kgJ'<cr>]], 'join without leaving space')
+
+-- visual
+nmap('v', 'm`v')
+nmap('V', 'm`V')
+nmap('<c-v>', 'm`<c-v>')
+vmap('<esc>', '<esc>:keepjumps norm ``<cr>') -- after umap '<esc>'
+vmap('v', function()
+  local next = { ['v'] = 'V', ['V'] = '\22', ['\22'] = '<esc>' }
+  feed(next[vim.api.nvim_get_mode().mode])
+end, 'repeat v to change visual mode')
+
+nmap('z=', function()
+  vim.ui.select(
+    vim.fn.spellsuggest(vim.fn.expand('<cword>')),
+    {},
+    vim.schedule_wrap(function(word)
+      if word then feed('"_ciw' .. word .. '<esc>') end
+    end)
+  )
+end, 'open spellsuggests in select menu')
+
+-- abbreviations
 if vim.fn.has('nvim-0.10.0') == 1 then
   abbr('qw', 'q!') -- dvorak
   abbr('vq', 'wq') -- dvorak

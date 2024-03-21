@@ -12,7 +12,6 @@ local M = {
     { 'AminurAlam/friendly-snippets', dev = true }, -- provides multiple snippets
     {
       'mtoohey31/cmp-fish',
-      enabled = vim.fn.executable('fish') == 1,
       ft = 'fish',
     },
   },
@@ -90,9 +89,9 @@ M.config = function()
     },
     formatting = {
       format = function(entry, vim_item)
-        vim_item.abbr = string.sub(vim_item.abbr, 1, 18)
+        vim_item.abbr = string.sub(vim_item.abbr, 1, 20)
         vim_item.kind = kind_icons[vim_item.kind]
-        vim_item.menu = (buffer_text)[entry.source.name]
+        vim_item.menu = buffer_text[entry.source.name]
         return vim_item
       end,
     },
@@ -111,10 +110,10 @@ M.config = function()
         end
       end, { 'i', 's' }),
       ['<S-Tab>'] = cmp.mapping(function(fallback)
-        if luasnip.jumpable(-1) then
-          luasnip.jump(-1)
-        elseif cmp.visible() then
+        if cmp.visible() then
           cmp.select_prev_item()
+        elseif luasnip.jumpable(-1) then
+          luasnip.jump(-1)
         else
           fallback()
         end
@@ -146,7 +145,11 @@ M.config = function()
   cmp.setup.cmdline(':', {
     view = { entries = { name = 'custom', selection_order = 'near_cursor' } },
     mapping = cmp.mapping.preset.cmdline(),
-    sources = cmp.config.sources { { name = 'path' }, { name = 'cmdline' } },
+    sources = cmp.config.sources {
+      { name = 'path' },
+      { name = 'cmdline' },
+      -- { name = 'fish' } -- TODO: completion from shell
+    },
     formatting = {
       format = function(_, vim_item)
         vim_item.kind = ''
