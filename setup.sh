@@ -11,9 +11,8 @@ bootstrap-pacman() {
 
     bootstrap_path="$HOME/bootstrap-${arch}.zip"
 
-    printf "downloading bootstrap... "
+    printf "downloading bootstrap...\n"
     [ -e "$bootstrap_path" ] || curl --create-dirs -q#Lo "$bootstrap_path" -- "${root_url}/latest/download/bootstrap-${arch}.zip"
-    printf "done\n"
 
     mkdir -p ~/../usr-n/
     cd ~/../usr-n/ || exit
@@ -35,7 +34,7 @@ bootstrap-pacman() {
 yes | termux-setup-storage &>/dev/null
 command -v pacman &>/dev/null || bootstrap-pacman
 
-printf "\nGENERATING PACMAN KEYS... "
+printf "GENERATING PACMAN KEYS... "
 pacman-key --init &>/dev/null
 pacman-key --populate &>/dev/null
 printf "done\n"

@@ -1,17 +1,18 @@
 set arch (uname -m | sed 's/^arm.*/arm/')
+[ -n "$XDG_PROJECTS_DIR" ] || set XDG_PROJECTS_DIR "$HOME/repos"
 set packages clang dust eza libgit2 fd git openssh python python-pip renameutils ripgrep starship lua-language-server termux-api zoxide
 # urls
-set url_font "https://raw.githubusercontent.com/ryanoasis/nerd-fonts/master/patched-fonts/SourceCodePro/Regular/SauceCodeProNerdFont-Regular.ttf"
+set url_font "https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/SourceCodePro/SauceCodeProNerdFont-Medium.ttf"
 set url_dotfiles "https://github.com/AminurAlam/dotfiles.git"
 set url_neovim "https://github.com/AminurAlam/neovim.git"
 set url_fish_setup "https://raw.githubusercontent.com/AminurAlam/dotfiles/main/setup.fish"
 set url_bootstrap "https://github.com/termux-pacman/termux-packages/releases"
 # paths
 set main "/sdcard/main/termux/"
-set path_dots "$HOME/repos/dotfiles" # NOTE: mae sure this is a full path
-set path_nvim "$HOME/repos/nvim-fork"
+set path_dots "$XDG_PROJECTS_DIR/dotfiles" # NOTE: make sure this is a full path
+set path_nvim "$XDG_PROJECTS_DIR/nvim-fork"
 
-command mkdir -p $HOME/{backup,repos}/ $HOME/.local/{share,bin,cache}/ $HOME/.local/share/zoxide/
+command mkdir -p $XDG_PROJECTS_DIR $HOME/{backup,repos}/ $HOME/.local/{share,bin,cache}/ $HOME/.local/share/zoxide/
 
 printf "INSTALLING NEW PACKAGES...\n"
 pacman -Syu --noconfirm --needed $packages || begin
@@ -22,7 +23,9 @@ end
 
 if command -vq python && command -vq pip
     printf "INSTALLING PYTHON PACKAGES\n"
-    pip install requests deflacue
+    git clone -q --depth 1 "https://github.com/AminurAlam/deflacue" "$XDG_PROJECTS_DIR/deflacue"
+    git clone -q --depth 1 "https://github.com/AminurAlam/musicbrainzpy" "$XDG_PROJECTS_DIR/musicbrainzpy"
+    pip install "$XDG_PROJECTS_DIR/deflacue" "$XDG_PROJECTS_DIR/musicbrainzpy" requests
 end
 
 printf "DOWNLOADING DOTFILES... "
@@ -53,27 +56,15 @@ printf "LINKING CONFIG FILES... "
     ln -fs "$path_dots/termux/termux.properties" ~/.termux/termux.properties
 printf "done\n"
 
-printf "ADDING BINARIES... "
-if [ -d "$main/bin/universal/" -a -d "$main/bin/$arch/" ]
-    command cp -fr $main/bin/universal/* ~/.local/bin/
-    command cp -fr "$main/bin/$arch/"* ~/.local/bin/
-    chmod +x ~/.local/bin/*
-    printf "done\n"
-else
-    printf "\$main/bin/universal/ or \$main/bin/$arch/ doesnt exist\n"
-end
-
 printf "CHANGING FONT... "
     command rm -f ~/.termux/font.ttf
     curl -qso ~/.termux/font.ttf "$url_font" &>/dev/null
 printf "done\n"
 
-printf "ADDING ZOXIDE DB... "
-    [ -e "$main/db.zo" ] && command cp -f $main/db.zo $HOME/.local/share/zoxide/db.zo
-printf "done\n"
-
-printf "ADDING PASSWORD..."
-[ -e "$HOME/.termux_authinfo" ] && printf "done\n" || passwd
+[ -e "$HOME/.termux_authinfo" ] || begin
+    printf "ADDING PASSWORD...\n"
+    passwd
+end
 
 printf "CLEANUP... "
     truncate -s 0 "$PREFIX"/etc/motd*
@@ -84,15 +75,23 @@ printf "CLEANUP... "
     command rm ~/bootstrap-*.zip
 printf "done\n"
 
-# if [ -e "$main/bin.sha256" ]
-#     sha256sum --check $main/bin.sha256 2>/dev/null | awk -F / '{print "  "$9}'
-# else
-#     printf "bin.sha256 is missing\n"
-# end
+# printf "ADDING ZOXIDE DB... "
+#     [ -e "$main/db.zo" ] && command cp -f $main/db.zo $HOME/.local/share/zoxide/db.zo
+# printf "done\n"
 
-# TODO: move completely to fish
 # TODO: copy newsboat db
-# TODO: ~/repos/ -> ~/projects/
-# TODO: put scripts in bin
+# printf "ADDING NEWSBOAT DB... "
+#     [ -e "$main/db.zo" ] && command cp -f $main/db.zo $HOME/.local/share/zoxide/db.zo
+# printf "done\n"
 
-: # make sure the script returns 0
+# TODO: put scripts in bin
+# amogus
+# lit
+# luvi
+# luvit
+# rish
+# rish_shizuku.dex
+# tachi
+# java-language-server
+
+: # making sure the script returns 0

@@ -1,6 +1,6 @@
-## what you can find here
+## configs found here
  - [aria2](https://aria2.github.io/) - download manager
- - [clangd](https://clang.llvm.org/) - c compiler
+ - [clangd](https://clang.llvm.org/) - c++ lsp server
  - [clang-format](https://clang.llvm.org/docs/ClangFormat.html) - c formatter
  - [curl](https://curl.se/) -  request url
  - [fish](https://fishshell.com/) - shell
@@ -17,3 +17,13 @@
  - [stylua](https://github.com/JohnnyMorganz/StyLua) - lua formatter
  - [termux](https://termux.dev/) - terminal emulator
  - [yt-dlp](https://github.com/yt-dlp/yt-dlp) - video downloader
+ - [zellij](https://zellij.dev/) - terminal workspace
+
+## scripts
+ - compile/ - easily install dependencies and compile binaries
+ - patches/ - fix small annoyances
+ - rish - adb
+ - build-template.fish - template for compile/
+ - setup_lsp.fish - quick lsp setup
+ - setup_ubuntu.fish - get started with ubuntu
+ - setup_windows.ps - get started with ubuntu
