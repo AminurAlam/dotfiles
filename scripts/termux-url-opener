@@ -1,0 +1,28 @@
+#!/data/data/com.termux/files/usr/bin/fish
+
+function re -a pattern
+    echo "$url" | grep -Eq "$pattern"
+end
+
+set url (echo $argv | grep -Eo 'https?://\S+')
+termux-clipboard-set "$argv"
+echo -- $url
+
+echo ==========================================================================
+
+if re 'youtube.com|youtu.be'
+    yt "$url" best
+else if re 'git(hub|lab|ea)\.com|codeberg'
+    gcp "$url"
+else if re 'qobuz|tidal|deezer'
+    rip url "$url"
+else if re '.*\.apk'
+    aria2c -o temp.apk
+    termux-open temp.apk
+else if re '.*\.(jpg|png)'
+    aria2c --dir /sdcard/Pictures "$url"
+else if re '.*\.(mp4|mkv|webm)'
+    aria2c --dir /sdcard/Movies "$url"
+else
+    termux-open "$url"
+end
