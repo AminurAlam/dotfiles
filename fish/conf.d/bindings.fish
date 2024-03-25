@@ -9,8 +9,8 @@ bind q exit
 bind -M insert \e\[1\;5A 'commandline -f history-token-search-backward'
 bind -M insert \e\[1\;5B 'commandline -f history-token-search-forward'
 
-# delete entire token instead of parts of path
-bind -M insert \cw 'commandline -f backward-kill-bigword'
+# delete from whitespace to cursor
+bind -M insert \cv 'commandline -f backward-kill-bigword'
 
 # helpful for toggling between processes
 bind -M insert \cz fg

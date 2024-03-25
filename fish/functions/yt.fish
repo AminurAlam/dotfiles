@@ -1,9 +1,14 @@
 function yt -a link format
 
+    if [ -z "$link" ]
+        printf "no link given!\n"
+        return 1
+    end
+
     if [ -z "$format" ]
         yt-dlp -F "$link" || return
         set -f format "$(read -fP \n' > select format: ')"
-        [ -z "$format" ] && return
+        [ -z "$format" ] && return 2
         echo
     end
 
