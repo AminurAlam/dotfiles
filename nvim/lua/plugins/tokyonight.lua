@@ -1,6 +1,6 @@
 return {
   -- TODO: try catppuchin
-  'folke/tokyonight.nvim',
+  'https://github.com/folke/tokyonight.nvim',
   opts = {
     style = 'storm', -- The theme comes in three styles, `storm`, a darker variant `night` and `day`
     transparent = false, -- Enable this to disable setting the background color

@@ -1,5 +1,5 @@
 return {
-  'ghillb/cybu.nvim',
+  'https://github.com/ghillb/cybu.nvim',
   cmd = { 'CybuNext', 'CybuPrev' },
   dependencies = { 'nvim-tree/nvim-web-devicons', 'nvim-lua/plenary.nvim' },
   opts = {

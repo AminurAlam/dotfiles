@@ -1,4 +1,4 @@
-local M = { 'goolord/alpha-nvim' }
+local M = { 'https://github.com/goolord/alpha-nvim' }
 
 M.config = function()
   local v = vim.version()
@@ -22,6 +22,7 @@ M.config = function()
     }
   end
 
+  -- TODO: ignore COMMIT_EDITMSG
   local oldfiles = function()
     local of_buttons = {}
     for _, filename in pairs(vim.v.oldfiles) do

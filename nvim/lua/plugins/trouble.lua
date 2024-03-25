@@ -1,5 +1,5 @@
 return {
-  'folke/trouble.nvim',
+  'https://github.com/folke/trouble.nvim',
   enabled = true,
   keys = { { '<leader>tr', '<cmd>TroubleToggle<cr>' } },
   opts = {

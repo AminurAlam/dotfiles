@@ -1,5 +1,5 @@
 return {
-  'nvim-treesitter/nvim-treesitter',
+  'https://github.com/nvim-treesitter/nvim-treesitter',
   -- lazy = true,
   -- ft = { 'bash', 'diff', 'fish', 'help', 'lua', 'rust', 'vim' },
   build = ':TSUpdate',

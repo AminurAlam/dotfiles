@@ -1,5 +1,5 @@
 return {
-  'kylechui/nvim-surround',
+  'https://github.com/kylechui/nvim-surround',
   keys = { 'cs', 'ds', 'ys' },
   config = {
     move_cursor = false,

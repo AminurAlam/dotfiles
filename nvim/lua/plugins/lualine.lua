@@ -1,5 +1,5 @@
 local M = {
-  'nvim-lualine/lualine.nvim',
+  'https://github.com/nvim-lualine/lualine.nvim',
   enabled = false,
   dependencies = {
     'nvim-tree/nvim-web-devicons',

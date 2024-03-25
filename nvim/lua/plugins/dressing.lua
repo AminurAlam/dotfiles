@@ -1,5 +1,5 @@
 return {
-  'stevearc/dressing.nvim',
+  'https://github.com/stevearc/dressing.nvim',
   opts = {
     input = {
       enabled = true, -- Set to false to disable the vim.ui.input implementation
@@ -43,13 +43,17 @@ return {
       get_config = nil, -- see :help dressing_get_config
     },
     select = {
-      enabled = false, -- Set to false to disable the vim.ui.select implementation
+      enabled = true, -- Set to false to disable the vim.ui.select implementation
       backend = { 'telescope', 'fzf_lua', 'fzf', 'builtin', 'nui' }, -- Priority list of preferred vim.select implementations
       trim_prompt = true, -- Trim trailing `:` from prompt
       -- Options for telescope selector
       -- These are passed into the telescope picker directly. Can be used like:
       -- telescope = require('telescope.themes').get_ivy({...})
-      telescope = nil,
+      telescope = {
+        layout_config = {
+          vertical = { height = 0.60, width = 0.60 },
+        },
+      },
       fzf = { -- Options for fzf selector
         window = { width = 0.5, height = 0.4 },
       },

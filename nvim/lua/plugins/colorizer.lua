@@ -1,5 +1,5 @@
 return {
-  'NvChad/nvim-colorizer.lua',
+  'https://github.com/NvChad/nvim-colorizer.lua',
   cmd = 'ColorizerToggle',
   keys = { { '<leader>co', '<cmd>ColorizerToggle<cr>' } },
   opts = {

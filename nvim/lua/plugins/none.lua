@@ -1,5 +1,5 @@
 local M = {
-  'nvimtools/none-ls.nvim',
+  'https://github.com/nvimtools/none-ls.nvim',
   dependencies = {
     'nvim-lua/plenary.nvim',
     'gbprod/none-ls-shellcheck.nvim',
@@ -22,7 +22,7 @@ M.config = function()
   end
 
   add('stylua', 'formatting', {
-    extra_args = { '-f', os.getenv('XDG_CONFIG_HOME') .. '/stylua.toml' },
+    extra_args = { '-f', (os.getenv('XDG_CONFIG_HOME') or '~/.config') .. '/stylua.toml' },
   })
   add('fish', 'diagnostics')
   add('fish_indent', 'formatting')
@@ -32,6 +32,7 @@ M.config = function()
   -- add('ts_node_action', 'code_actions')
   -- add('spell', 'completion')
   -- add('clang_check', 'clang-check', 'diagnostics') -- comes with clangd
+  -- TODO: json
 
   null_ls.register(require('none-ls-shellcheck.diagnostics'))
   null_ls.register(require('none-ls-shellcheck.code_actions'))

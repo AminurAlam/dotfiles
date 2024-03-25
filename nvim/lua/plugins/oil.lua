@@ -1,5 +1,5 @@
 return {
-  'stevearc/oil.nvim',
+  'https://github.com/stevearc/oil.nvim',
   enabled = false,
   opts = {
     -- Oil will take over directory buffers (e.g. `vim .` or `:e src/`)

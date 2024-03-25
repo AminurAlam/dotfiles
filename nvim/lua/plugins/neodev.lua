@@ -1,5 +1,5 @@
 return {
-  'folke/neodev.nvim',
+  'https://github.com/folke/neodev.nvim',
   enabled = false,
   ft = 'lua',
   opts = {

@@ -1,5 +1,5 @@
 local M = {
-  'hrsh7th/nvim-cmp',
+  'https://github.com/hrsh7th/nvim-cmp',
   event = { 'CmdlineEnter', 'InsertEnter' },
   dependencies = {
     'hrsh7th/cmp-nvim-lsp',

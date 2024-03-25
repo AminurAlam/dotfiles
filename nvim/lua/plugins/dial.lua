@@ -1,5 +1,5 @@
 local M = {
-  'monaqa/dial.nvim',
+  'https://github.com/monaqa/dial.nvim',
   keys = { { '+', '<plug>(dial-increment)' }, { '-', '<plug>(dial-decrement)' } },
   dependencies = { 'nvim-lua/plenary.nvim' },
 }

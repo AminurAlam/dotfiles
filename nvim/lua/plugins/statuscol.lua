@@ -1,5 +1,5 @@
 local M = {
-  'luukvbaal/statuscol.nvim',
+  'https://github.com/luukvbaal/statuscol.nvim',
   enabled = false,
 }
 

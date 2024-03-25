@@ -1,22 +1,21 @@
 local M = {
-  'nvim-telescope/telescope.nvim',
+  'https://github.com/nvim-telescope/telescope.nvim',
   keys = { '<leader>f' }, -- mapping
   cmd = 'Telescope', -- alpha
   dependencies = { 'nvim-lua/plenary.nvim' },
 }
 
 M.config = function()
-  local nmap = function(lhs, rhs) vim.keymap.set('n', lhs, rhs, { noremap = true, silent = true }) end
   require('telescope').setup {
     defaults = {
       layout_strategy = 'flex',
       layout_config = {
         vertical = {
-          height = 0.90,
-          width = 0.80,
+          height = 0.85,
+          width = 0.85,
           prompt_position = 'bottom',
           preview_cutoff = 38,
-          preview_height = 10,
+          preview_height = 16,
         },
       },
       prompt_prefix = '  ',
@@ -57,10 +56,16 @@ M.config = function()
     },
   }
 
-  nmap('<leader>ff', require('telescope.builtin').find_files)
-  nmap('<leader>fg', require('telescope.builtin').live_grep)
-  nmap('<leader>fh', require('telescope.builtin').help_tags)
-  nmap('<leader>fr', require('telescope.builtin').oldfiles)
+  local find_map = function(key, method)
+    vim.keymap.set('n', '<leader>' .. key, require('telescope.builtin')[method], {
+      noremap = true,
+      silent = true,
+    })
+  end
+  find_map('ff', 'find_files')
+  find_map('fg', 'live_grep')
+  find_map('fh', 'help_tags')
+  find_map('fr', 'oldfiles')
 end
 
 return M

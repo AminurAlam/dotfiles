@@ -1,5 +1,5 @@
 return {
-  'kosayoda/nvim-lightbulb',
+  'https://github.com/kosayoda/nvim-lightbulb',
   enabled = false,
   config = {
     priority = 10,

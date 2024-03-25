@@ -1,5 +1,5 @@
 return {
-  'lukas-reineke/indent-blankline.nvim',
+  'https://github.com/lukas-reineke/indent-blankline.nvim',
   enabled = true,
   config = function()
     local hooks = require 'ibl.hooks'

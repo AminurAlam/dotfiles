@@ -1,5 +1,5 @@
 return {
-  'folke/which-key.nvim',
+  'https://github.com/folke/which-key.nvim',
   enabled = false,
   opts = {
     plugins = {
@@ -10,11 +10,11 @@ return {
         suggestions = 20, -- how many suggestions should be shown in the list?
       },
       presets = {
-        operators = false, -- adds help for operators like d, y, ...
+        operators = true, -- adds help for operators like d, y, ...
         motions = false, -- adds help for motions
-        text_objects = false, -- help for text objects triggered after entering an operator
-        windows = false, -- default bindings on <c-w>
-        nav = false, -- misc bindings to work with windows
+        text_objects = true, -- help for text objects triggered after entering an operator
+        windows = true, -- default bindings on <c-w>
+        nav = true, -- misc bindings to work with windows
         z = true, -- bindings for folds, spelling and others prefixed with z
         g = true, -- bindings for prefixed with g
       },
@@ -26,7 +26,7 @@ return {
       -- override the label used to display some keys. It doesn't effect WK in any other way.
       -- For example:
       ['<space>'] = 'SPC',
-      ['<cr>'] = 'RET',
+      ['<cr>'] = 'CR',
       ['<tab>'] = 'TAB',
       ['<ScrollWheelUp>'] = 'ScrollUp',
       ['<ScrollWheelDown>'] = 'ScrollDn',
@@ -49,9 +49,9 @@ return {
       winblend = 0, -- value between 0-100 0 for fully opaque and 100 for fully transparent
     },
     layout = {
-      height = { min = 3, max = 12 }, -- min and max height of the columns
-      width = { min = 10, max = 25 }, -- min and max width of the columns
-      spacing = 2, -- spacing between columns
+      height = { min = 1, max = 14 }, -- min and max height of the columns
+      width = { min = 3, max = 25 }, -- min and max width of the columns
+      spacing = 1, -- spacing between columns
       align = 'left', -- align columns left, center or right
     },
     ignore_missing = false, -- enable this to hide mappings for which you didn't specify a label
