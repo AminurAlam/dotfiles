@@ -10,6 +10,7 @@
  - [npm](https://npmjs.com/) - javascript runtime
  - [nvim](https://neovim.io/) - text editor
  - [pacman](https://archlinux.org/pacman/) - package manager
+ - [procs](https://github.com/dalance/procs) - replacement for ps
  - [python](https://python.org/) - python interpreter
  - [ripgrep](https://github.com/BurntSushi/ripgrep) - grep alternative
  - [starship](https://starship.rs/) - shell prompt
