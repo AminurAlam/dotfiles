@@ -79,9 +79,17 @@ set -gx CARGO_HOME $XDG_DATA_HOME/cargo
 set -gx CARGO_INSTALL_ROOT $CARGO_HOME
 set -gx CARGO_LOG info
 set -gx VIMRUNTIME $PREFIX/share/nvim/runtime/
+# tex config
+set -gx TEXMFROOT $PREFIX/share/texlive/2024
+set -gx TEXMFLOCAL $PREFIX/share/texlive/texmf-local
+set -gx OSFONTDIR $PREFIX/share/fonts/TTF
+set -gx TRFONTS $PREFIX/share/groff/{current/font,site-font}/devps
+# fish config
+set -U fish_features qmark-noglob
 
 set -gxp --path PATH "$CARGO_HOME/bin" # after declaring CARGO_HOME
 set -gxp --path PATH "$HOME/.local/share/npm/bin"
+set -gxp --path PATH "$PREFIX/bin/texlive"
 
 ### SOURCE ###
 command -sq starship && starship init fish | source || source $XDG_CONFIG_HOME/fish/functions/load_prompt.fish

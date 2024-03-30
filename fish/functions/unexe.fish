@@ -4,7 +4,7 @@ function unexe
     # pwd
 
     for file in *
-        if [ -f "$file" ] && [ (command du "$file" | cut -f1) -lt 2048 ]
+        if [ -f "$file" ] && [ (command du "$file" | cut -f1) -lt 20000 ] # 4096  ]
             echo "$file"
             mv "$file" "$temp/exe/"
         end

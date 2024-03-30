@@ -75,7 +75,7 @@ else if command -vq pacman
     abbr pr "$sudo pacman -Rs"
     abbr pu "$sudo pacman -Syu"
     abbr pf "pacman -Ss"
-    abbr pa "pacman -Si"
+    abbr pa "pacman -Qi"
 else if command -vq dnf
     abbr pi "$sudo dnf install"
     abbr pr "$sudo dnf remove"
