@@ -1,8 +1,13 @@
-# vim: ft=conf
+# vim:ft=conf
+
+### General Options:
+--default-search "ytsearch"
+--mark-watched
+--live-from-start
+--color 'stderr:always'
 
 ### Download Options:
-# should be handled by yt.fish
-# --downloader "aria2c"
+--downloader "dash,m3u8:aria2c"
 --concurrent-fragments 4
 
 ### Filesystem Options:
@@ -13,10 +18,6 @@
 --no-overwrites
 --continue
 
-### Thumbnail Options:
-# handled by yt.fish with --embed-thumbnail
-# --write-thumbnail
-
 ### Verbosity and Simulation Options:
 --progress
 --no-warnings
@@ -26,3 +27,14 @@
 
 ### Subtitle Options:
 --write-subs
+--write-auto-subs
+
+### Post-Processing Options:
+--embed-metadata
+--embed-thumbnail
+--remux-video 'mp4'
+
+### SponsorBlock Options:
+--sponsorblock-mark 'poi_highlight,chapter'
+--sponsorblock-remove 'sponsor,selfpromo,interaction'
+--sponsorblock-chapter-title '* %(category_names)l'

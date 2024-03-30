@@ -17,8 +17,10 @@ else if re 'git(hub|lab|ea)\.com|codeberg'
 else if re 'qobuz|tidal|deezer'
     rip url "$url"
 else if re '.*\.apk'
-    aria2c -o temp.apk
+    aria2c -o temp.apk "$url"
     termux-open temp.apk
+    echo "waiting for installation..."
+    sleep 30 && rm temp.apk &
 else if re '.*\.(jpg|png)'
     aria2c --dir /sdcard/Pictures "$url"
 else if re '.*\.(mp4|mkv|webm)'

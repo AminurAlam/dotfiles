@@ -1,19 +1,26 @@
-function yt -a link format
+function yt -a url fmt
 
-    if [ -z "$link" ]
-        printf "no link given!\n"
+    if [ -z "$url" ]
+        printf "no url given!\n"
         return 1
     end
 
-    if [ -z "$format" ]
-        yt-dlp -F "$link" || return
-        set -f format "$(read -fP \n' > select format: ')"
-        [ -z "$format" ] && return 2
+    # pick and choose if no fmt given
+    if [ -z "$fmt" ]
+        yt-dlp -F "$url" || return
+        set -f fmt (read -fP \n' > select format: ')
+        [ -z "$fmt" ] && return 2
         echo
     end
 
-    command -vq ffmpeg && set -a ffmpeg --embed-metadata --embed-thumbnail --sponsorblock-mark "all"
-    command -vq aria2c && set -a aria2c --downloader "dash,m3u8:aria2c"
+    # pick best audio for yt
+    if echo $url | grep -Eq 'youtu.be|youtube.com'
+        if [ $fmt != 18 -a $fmt != 22 ]
+            set fmt $fmt+bestaudio
+        end
+    end
 
-    yt-dlp  -f "$format"  --write-subs --write-auto-subs $aria2c $ffmpeg -- "$link"
+    echo $fmt
+
+    yt-dlp -f "$fmt" -- "$url"
 end
