@@ -15,12 +15,14 @@
 [help]
     autocorrect = immediate
 
+[rerere]
+    enabled = true
+
 [alias]
     l = log --pretty=nice -n 15
     s = status -bs
     d = !"git diff -- $* | $EDITOR +'set bt=nofile bh=hide' +'nmap q <cmd>quit!<cr>' # "
 
-    tags = tag -l
     branches = branch --all
     remotes = remote --verbose
 
@@ -47,7 +49,7 @@
     untracked = default
 
 [commit]
-    template = ~/.config/git/commit-template
+    # template = ~/.config/git/commit-template
 
 [merge]
     tool = nvimdiff
