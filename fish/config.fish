@@ -1,5 +1,3 @@
-# TODO: conf.d/ -> somewhere/else/ and source manually
-
 set -gxp --path PATH "$HOME/.local/bin" # this comes first: nvim, eza, sk...
 
 ### EXPORTS ###
@@ -79,11 +77,6 @@ set -gx CARGO_HOME $XDG_DATA_HOME/cargo
 set -gx CARGO_INSTALL_ROOT $CARGO_HOME
 set -gx CARGO_LOG info
 set -gx VIMRUNTIME $PREFIX/share/nvim/runtime/
-# tex config
-set -gx TEXMFROOT $PREFIX/share/texlive/2024
-set -gx TEXMFLOCAL $PREFIX/share/texlive/texmf-local
-set -gx OSFONTDIR $PREFIX/share/fonts/TTF
-set -gx TRFONTS $PREFIX/share/groff/{current/font,site-font}/devps
 # fish config
 set -U fish_features qmark-noglob
 
@@ -96,19 +89,10 @@ command -sq starship && starship init fish | source || source $XDG_CONFIG_HOME/f
 command -sq zoxide && zoxide init fish | source || alias z cd
 
 ### ALIASES ###
+# TODO: more like TODONT
 [ (fish -v | tr -dc [:digit:] ) -ge 360 ] && set -l cursor "--set-cursor" "%"
-abbr $cursor[1] zsd "z $XDG_DIR/$cursor[2]"
-abbr $cursor[1] zdoc "z $XDG_DOCUMENTS_DIR/$cursor[2]"
 abbr $cursor[1] zdl "z $XDG_DOWNLOAD_DIR/$cursor[2]"
-abbr $cursor[1] zmov "z $XDG_VIDEOS_DIR/$cursor[2]"
-abbr $cursor[1] zmu "z $XDG_MUSIC_DIR/$cursor[2]"
-abbr $cursor[1] zpic "z $XDG_PICTURES_DIR/$cursor[2]"
-abbr $cursor[1] zt "z $XDG_DIR/Tachiyomi*/local/$cursor[2]"
-abbr $cursor[1] zm "z $XDG_DIR/main/$cursor[2]"
-abbr $cursor[1] zl "z ~/.local/$cursor[2]"
-abbr $cursor[1] zmbz "z $XDG_PROJECTS_DIR/musicbrainzpy/$cursor[2]"
 abbr $cursor[1] zd "z $XDG_PROJECTS_DIR/dotfiles/$cursor[2]"
-abbr $cursor[1] zc "z $XDG_CONFIG_HOME/$cursor[2]"
 abbr $cursor[1] zcf "z $XDG_CONFIG_HOME/fish/$cursor[2]"
 abbr $cursor[1] zcn "z $XDG_CONFIG_HOME/nvim/$cursor[2]"
 abbr $cursor[1] zp "z $PREFIX/$cursor[2]"

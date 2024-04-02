@@ -39,11 +39,11 @@ function clean
         command rm -i $hist_dirs &&
     echo
 
-    command -sq rip &&
+    command -vq rip &&
         yes | rip --decompose &>/dev/null &&
     echo
 
-    command -sq pip &&
+    command -vq pip &&
         pip cache purge &&
     echo
 

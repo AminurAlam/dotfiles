@@ -12,7 +12,7 @@ abbr vi nvim
 abbr cls clear
 abbr yq "yq -oj"
 abbr cal "cal -my"
-abbr qmv "qmv -AXf do" # TODO: replace with oil.nvim
+abbr qmv "qmv -AXf do"
 abbr pst "ps -faxo 'pid,comm'"
 abbr y "yes |"
 abbr ffprobe "ffprobe -hide_banner -pretty"
@@ -64,22 +64,22 @@ abbr tar-extract "tar xf"
 abbr tar-extract-gz "tar xzf"
 
 if command -vq apt
-    abbr pi "$sudo apt install"
-    abbr pr "$sudo apt remove"
-    abbr pu "$sudo apt update && $sudo apt upgrade"
-    abbr pf "apt search"
-    abbr pa "apt show"
+    abbr pi $sudo apt install
+    abbr pr $sudo apt remove
+    abbr pu $sudo apt update "&&" $sudo apt upgrade
+    abbr pf apt search
+    abbr pa apt show
     [ (uname -o) = Android ] && echo "deb https://packages-cf.termux.dev/apt/termux-main stable main" >$PREFIX/etc/apt/sources.list
 else if command -vq pacman
-    abbr pi "$sudo pacman -S"
-    abbr pr "$sudo pacman -Rs"
-    abbr pu "$sudo pacman -Syu"
-    abbr pf "pacman -Ss"
-    abbr pa "pacman -Qi"
+    abbr pi $sudo pacman -S
+    abbr pr $sudo pacman -Rs
+    abbr pu $sudo pacman -Syu
+    abbr pf pacman -Ss
+    abbr pa pacman -Si
 else if command -vq dnf
-    abbr pi "$sudo dnf install"
-    abbr pr "$sudo dnf remove"
-    abbr pu "$sudo dnf upgrade"
-    abbr pf "dnf search"
-    abbr pa "dnf show"
+    abbr pi $sudo dnf install
+    abbr pr $sudo dnf remove
+    abbr pu $sudo dnf upgrade
+    abbr pf dnf search
+    abbr pa dnf show
 end

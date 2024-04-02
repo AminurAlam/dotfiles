@@ -1,7 +1,7 @@
 complete -c bm -fka '(rg --replace "" \'^https?://(www\.)?\' /sdcard/main/notes/bookmarks)'
 
 function bm
-    set BMPATH /sdcard/main/notes/bookmarks /sdcard/main/notes/private-bookmarks
+    set BMPATH /sdcard/main/notes/bookmarks # /sdcard/main/notes/private-bookmarks
 
     function __process_link
         set -l LINK (string split ' ' "$argv[1]")[1]
@@ -32,7 +32,12 @@ function bm
         case e ed edit
             set -q EDITOR && $EDITOR $BMPATH || echo "no EDITOR found"
         case h host
-            : # TODO: implement
+            # TODO: implement custom site
+            command -vq shiori && begin
+                shiori server &
+                disown &>/dev/null
+                open http://127.0.0.1:8080
+            end
         case '*'
             __process_link (rg --no-filename --replace '' '^https?://(www\.)?' $BMPATH | rg "$argv[1]" | $LAUNCHER --query "$argv[1]")
     end

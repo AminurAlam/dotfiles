@@ -7,7 +7,7 @@ function yt -a url fmt
 
     # pick and choose if no fmt given
     if [ -z "$fmt" ]
-        yt-dlp -F "$url" || return
+        yt-dlp --quiet --verbose --no-sponsorblock -F "$url" 2>/dev/null || return
         set -f fmt (read -fP \n' > select format: ')
         [ -z "$fmt" ] && return 2
         echo
