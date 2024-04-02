@@ -5,15 +5,15 @@ folder = "/sdcard/Music/"
 # Put Qobuz albums in a 'Qobuz' folder, Tidal albums in 'Tidal' etc.
 source_subdirectories = false
 
-# Download (and convert) tracks all at once, instead of sequentially.
-# If you are converting the tracks, or have fast internet, this will
+# Download (and convert) tracks all at once, instead of sequentially. 
+# If you are converting the tracks, or have fast internet, this will 
 # substantially improve processing speed.
 concurrency = true
 # The maximum number of tracks to download at once
 # If you have very fast internet, you will benefit from a higher value,
 # A value that is too high for your bandwidth may cause slowdowns
 # Set to -1 for no limit
-max_connections = 4
+max_connections = 6
 # Max number of API requests per source to handle per minute
 # Set to -1 for no limit
 requests_per_minute = 60
@@ -99,7 +99,7 @@ failed_downloads_path = "/data/data/com.termux/files/home/.config/streamrip/fail
 enabled = false
 # FLAC, ALAC, OPUS, MP3, VORBIS, or AAC
 codec = "ALAC"
-# In Hz. Tracks are downsampled if their sampling rate is greater than this.
+# In Hz. Tracks are downsampled if their sampling rate is greater than this. 
 # Value of 48000 is recommended to maximize quality and minimize space
 sampling_rate = 48000
 # Only 16 and 24 are available. It is only applied when the bit depth is higher
@@ -128,7 +128,7 @@ non_remaster = false
 # Write the image to the audio file
 embed = true
 # The size of the artwork to embed. Options: thumbnail, small, large, original.
-# "original" images can be up to 30MB, and may fail embedding.
+# "original" images can be up to 30MB, and may fail embedding. 
 # Using "large" is recommended.
 embed_size = "large"
 # If this is set to a value > 0, max(width, height) of the embedded art will be set to this value in pixels
@@ -142,10 +142,10 @@ saved_max_width = -1
 
 
 [metadata]
-# Sets the value of the 'ALBUM' field in the metadata to the playlist's name.
+# Sets the value of the 'ALBUM' field in the metadata to the playlist's name. 
 # This is useful if your music library software organizes tracks based on album name.
 set_playlist_to_album = false
-# If part of a playlist, sets the `tracknumber` field in the metadata to the track's
+# If part of a playlist, sets the `tracknumber` field in the metadata to the track's 
 # position in the playlist instead of its position in its album
 renumber_playlist_tracks = false
 # The following metadata tags won't be applied
@@ -173,7 +173,7 @@ truncate_to = 120
 [lastfm]
 # The source on which to search for the tracks.
 source = "qobuz"
-# If no results were found with the primary source, the item is searched for
+# If no results were found with the primary source, the item is searched for 
 # on this one.
 fallback_source = ""
 
@@ -187,4 +187,6 @@ max_search_results = 20
 
 [misc]
 # Metadata to identify this config file. Do not change.
-version = "2.0"
+version = "2.0.3"
+# Print a message if a new version of streamrip is available 
+check_for_updates = false
