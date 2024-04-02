@@ -9,8 +9,9 @@
     name = AminurAlam
     email = 64137875+AminurAlam@users.noreply.github.com
 
-[pretty]
-    nice = "  %C(yellow)%h%C(reset) - %<(50,trunc)%-s %C(green)%cr"
+[credential]
+    username = AminurAlam
+    helper = "cache --timeout 604800"
 
 [help]
     autocorrect = immediate
@@ -18,10 +19,15 @@
 [rerere]
     enabled = true
 
+[pretty]
+    nice = " %C(yellow)%h%C(reset) %<(50,trunc)%-s %C(green)%cr"
+    gh = " %<(64,trunc)%-s %C(yellow)%h%C(reset)%n\
+        %C(blue)@%an%C(reset) commited %C(green)%cr%C(reset) %(describe:match=HEAD)"
+
 [alias]
     l = log --pretty=nice -n 15
     s = status -bs
-    d = !"git diff -- $* | $EDITOR +'set bt=nofile bh=hide' +'nmap q <cmd>quit!<cr>' # "
+    d = !"git diff -D -- $* | $EDITOR +'set bt=nofile bh=hide' +'nmap q <cmd>quit!<cr>' # "
 
     branches = branch --all
     remotes = remote --verbose
@@ -48,8 +54,11 @@
     changed = red
     untracked = default
 
-[commit]
-    # template = ~/.config/git/commit-template
+[diff]
+    context = 2
+    noprefix = true
+    relative = true
+    algorithm = minimal
 
 [merge]
     tool = nvimdiff
