@@ -1,9 +1,12 @@
 "$schema" = 'https://starship.rs/config-schema.json'
+# format = """
+# $username$directory$git_branch$git_commit$git_state$python \
+# $fill \
+# $status$git_status$git_metrics$cmd_duration$jobs$shlvl 
+#  $character"""
 format = """
-$username$directory$git_branch$python \
-$fill \
-$status$git_status$git_metrics$cmd_duration$jobs$shlvl 
- $character"""
+$username$directory$git_branch$git_commit$git_state$python \
+$status$git_status$git_metrics$cmd_duration$jobs$shlvl$character"""
 continuation_prompt = '[∙](bright-black) '
 scan_timeout = 50
 command_timeout = 200
@@ -35,7 +38,20 @@ use_logical_path = true
 # "/data/data/com.termux/files/usr" = "prefix"
 
 [git_branch]
-format = ' [ $branch](bold purple)'
+format = ' [ ($remote_name/)$branch](bold purple)'
+# only_attached = true
+
+[git_commit]
+format = '( [ $hash](yellow))( [ $tag](bright-yellow))'
+only_detached = true
+
+[git_state]
+format = ' [$state](bright-red)' # (\[[$progress_current](red)/[$progress_total](red)\])'
+rebase = ' rebase'
+merge = ' merge'
+revert = ' revert'
+cherry_pick = ' cherry pick'
+bisect = '󱦒 bisect'
 
 [python]
 format = ' [ $virtualenv](yellow)'
@@ -46,28 +62,28 @@ detect_extensions = []
 # RIGHT PROMPT
 
 [status]
-format = '\[[$symbol$status](red)\]'
-pipestatus_segment_format = '[$status](red)'
+format = '\[[✘$status](red)\]'
 pipestatus_format = '\[$pipestatus\]'
-success_symbol = ''
-symbol = '✘'
+pipestatus_segment_format = '[$status](red)'
 pipestatus_separator = '|'
-not_executable_symbol = '󰅚'
-not_found_symbol = ''
-sigint_symbol = '󰟾'
-signal_symbol = '󱐋'
+
 map_symbol = false
-recognize_signal_code = true
+recognize_signal_code = false
 pipestatus = true
 disabled = false
 
 [git_status]
-format = '$ahead_behind$staged$conflicted$stashed'
+format = """$ahead_behind$staged\
+$conflicted$untracked$stashed$staged"""
+
 ahead = '\[[ $count](bright-cyan)\]'
 behind = '\[[ $count](green)\]'
-staged = '\[[ $count](green)\]'
+diverged = '\[[󰃻](red)\]'
+
 conflicted = '\[[󰞇 $count](red)\]'
+untracked = '\[[$count](bright-white)\]'
 stashed = '\[[ $count](bright-yellow)\]'
+staged = '\[[ $count](green)\]'
 
 [git_metrics]
 format = '(\[[+$added]($added_style)\])(\[[-$deleted]($deleted_style)\])'
@@ -76,7 +92,7 @@ ignore_submodules = true
 
 [cmd_duration]
 format = '\[[$duration](cyan)\]'
-min_time = 5
+min_time = 50
 show_milliseconds = false
 show_notifications = false
 min_time_to_notify = 45000
