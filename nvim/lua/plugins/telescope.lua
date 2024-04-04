@@ -44,8 +44,6 @@ M.config = function()
           ['<C-Up>'] = 'cycle_history_prev',
           ['<S-Tab>'] = 'move_selection_next',
           ['<Tab>'] = 'move_selection_previous',
-          ['<ScrollWheelUp>'] = 'move_selection_previous',
-          ['<ScrollWheelDown>'] = 'move_selection_next',
         },
         n = {
           ['<C-q>'] = 'close',

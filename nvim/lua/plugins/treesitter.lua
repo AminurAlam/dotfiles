@@ -12,10 +12,13 @@ return {
       'fish',
       'gitcommit',
       'gitignore',
+      'java',
+      'kotlin',
       'lua',
       'luadoc',
       'python',
       'rust',
+      'toml',
       'vim',
       'vimdoc',
     }

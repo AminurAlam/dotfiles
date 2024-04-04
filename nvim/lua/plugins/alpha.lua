@@ -22,11 +22,12 @@ M.config = function()
     }
   end
 
-  -- TODO: ignore COMMIT_EDITMSG
   local oldfiles = function()
     local of_buttons = {}
     for _, filename in pairs(vim.v.oldfiles) do
       if vim.fn.filereadable(filename) == 0 then goto continue end
+      if vim.fs.basename(filename) == 'COMMIT_EDITMSG' then goto continue end
+
       local len = #of_buttons + 1
       if len == 6 then break end
       table.insert(
@@ -77,7 +78,7 @@ M.config = function()
       { type = 'padding', val = 2 },
       { type = 'group', val = oldfiles },
     },
-    opts = { setup = function() vim.opt_local.stl = '%#Normal#' end },
+    opts = { setup = function() end },
   }
 end
 

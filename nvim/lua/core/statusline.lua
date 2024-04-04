@@ -36,9 +36,9 @@ local mode_colors = {
   ['!'] = '#56b6c2',
   ['t'] = '#56b6c2',
 }
-
 local mode_names = {
   ['n'] = 'NORMAL',
+  ['nt'] = 'N-TERM',
   ['no'] = 'O-PENDING',
   ['o'] = 'O-PENDING',
   ['v'] = 'VISUAL',
@@ -56,78 +56,82 @@ local mode_names = {
   ['!'] = 'SHELL',
   ['t'] = 'TERMINAL',
 }
-
--- local buflogo = { '', '󰼐 ', '󰼑 ', '󰼒 ', '󰼓 ', '󰼔 ', '󰼕 ', '󰼖 ', '󰼗 ' }
 local buflogo = { [0] = '', '', '二 ', '三 ', '四 ', '五 ', '六 ', '七 ', '八 ', '九' }
+local git_hl = { ['+'] = 'Add#', ['~'] = 'Change#', ['-'] = 'Delete#' }
+local hl = vim.api.nvim_set_hl
+local secondary = '#30354A'
 
 vim.g.stl = {
   mode = function() return mode_names[vim.api.nvim_get_mode().mode] or '???' end,
-  bufcount = function() return buflogo[#vim.fn.getbufinfo { buflisted = 1 }] or '十 ' end, -- 󰼘
-  hlsearch = function()
-    if vim.v.hlsearch == 0 then return '' end
-    local sc = vim.fn.searchcount()
-    return string.format('[%s/%s]', sc.current, sc.total)
-  end,
-  progress = function()
-    local cur = vim.fn.line('.')
-    local total = vim.fn.line('$')
-    if cur == 1 then
+  bufcount = function() return buflogo[#vim.fn.getbufinfo { buflisted = 1 }] or '十 ' end,
+  hlsearch = function(sc) return string.format('[%d/%d]', sc.current, sc.total) end,
+  progress = function(current, total)
+    if current == 1 then
       return 'Top'
-    elseif cur == total then
+    elseif current == total then
       return 'End'
     end
-    return string.format('%2d%%', math.floor(cur / total * 100))
+
+    return string.format('%2d%%', math.floor(current / total * 100))
   end,
   diagnostics = function()
-    local errors = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.ERROR })
-    local warns = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.WARN })
-    local hints = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.HINT })
-    return (errors > 0 and '%#DiagnosticError# ' or '')
-        .. (warns > 0 and '%#DiagnosticWarning# ' or '')
-        .. (hints > 0 and '%#DiagnosticHint#󰌶 ' or '')
+    local count = function(severity) return #vim.diagnostic.count(0, { severity = vim.diagnostic.severity[severity] }) end
+
+    return (count 'ERROR' > 0 and '%#DiagnosticError# ' or '')
+      .. (count 'WARN' > 0 and '%#DiagnosticWarning# ' or '')
+      .. (count 'HINT' > 0 and '%#DiagnosticHint#󰌶 ' or '')
   end,
   gitsigns = function()
-    local status = vim.b.gitsigns_status_dict
-    if not status then return '' end
-
-    local added = status.added
-    local changed = status.changed
-    local removed = status.removed
-    return (added and added > 0 and '%#GitSignsAdd# +' .. added or '')
-        .. (changed and changed > 0 and '%#GitSignsChange# ~' .. changed or '')
-        .. (removed and removed > 0 and '%#GitSignsDelete# -' .. removed or '')
+    return string.gsub(
+      vim.b.gitsigns_status or '',
+      '([+~-])(%d+)',
+      function(stat, count) return '%#GitSigns' .. git_hl[stat] .. stat .. count end
+    )
+    -- local stat = vim.b.gitsigns_status_dict
+    -- if not stat then return '' end
+    --
+    -- return (stat.added and stat.added > 0 and '%#GitSignsAdd# +' .. stat.added or '')
+    --   .. (stat.changed and stat.changed > 0 and '%#GitSignsChange# ~' .. stat.changed or '')
+    --   .. (stat.removed and stat.removed > 0 and '%#GitSignsDelete# -' .. stat.removed or '')
   end,
 }
 
-vim.api.nvim_set_hl(0, 'stl_hl_bc', { fg = '#30354A' })
-vim.api.nvim_set_hl(0, 'stl_hl_cb', { fg = '#30354A' })
-vim.api.nvim_create_autocmd({ 'VimEnter', 'ModeChanged' }, {
-  pattern = '{*}{telescopeprompt}\\@<!', -- https://overflow.smnz.de/exchange/vi/questions/42696/negate-pattern-in-autocmd
-  callback = function()
-    local mode_color = mode_colors[vim.api.nvim_get_mode().mode]
-    vim.api.nvim_set_hl(0, 'stl_hl_a', { bg = mode_color, fg = '#30354A', bold = true })
-    vim.api.nvim_set_hl(0, 'stl_hl_b', { fg = mode_color, bg = '#30354A' })
-    vim.api.nvim_set_hl(0, 'stl_hl_ba', { fg = mode_color, bg = '#30354A' })
-    -- vim.cmd 'redrawstatus' -- slows down :Telescope help_tags
+vim.api.nvim_create_autocmd({ 'ModeChanged' }, {
+  pattern = '*',
+  callback = function(_)
+    local mode_color = mode_colors[vim.v.event.new_mode] -- mode_colors[vim.api.nvim_get_mode().mode]
+    hl(0, 'stl_hl_a', { bg = mode_color, fg = secondary, bold = true })
+    hl(0, 'stl_hl_b', { fg = mode_color, bg = secondary })
   end,
 })
 
-vim.opt.stl = '%#stl_hl_a# %{ g:stl.mode() } %#stl_hl_b#'
-  .. ' %{ g:stl.bufcount() }%t ' -- a to b
+vim.api.nvim_create_autocmd({ 'FileType' }, {
+  desc = 'turn off statusline',
+  pattern = { 'TelescopePrompt', 'alpha' },
+  command = 'setlocal statusline=%#Normal#',
+})
+
+hl(0, 'stl_hl_a', { bg = mode_colors.n, fg = secondary, bold = true })
+hl(0, 'stl_hl_b', { fg = mode_colors.n, bg = secondary })
+hl(0, 'stl_hl_to', { fg = secondary })
+
+vim.opt.stl = '%#stl_hl_a# %{ g:stl.mode() } %#stl_hl_b#' -- a to b
+  .. ' %{ g:stl.bufcount() }%t '
   .. '%{ &modified ? "󰆓 " : "" }'
-  -- .. '%{ !empty(finddir(".git", expand("%:p:h") .. ";")) ? " " : "" }'
+  .. '%{ !empty(finddir(".git", expand("%:p:h") .. ";")) ? " " : "" }'
   -- .. '%{ &cb == "unnamedplus" ? "󰆒 " : "" }'
   .. '%{ &spell ? "󰓆 " : "" }'
-  .. '%{ search("\\\\s\\\\+$", "nwc") > 0 ? "󱁐 " : "" }'
-  .. '%#stl_hl_bc#%#Normal# ' -- b to c
-  -- .. '%{ get(b:, "gitsigns_status", "") }'
+  .. '%{ &readonly ? "󰌾 " : "" }'
+  .. [[%{ search("\\s\\+$", "nwc") > 0 ? "󱁐 " : "" }]]
+  .. '%#stl_hl_to#%#Normal# ' -- b to c
   .. '%{% g:stl.diagnostics() %}'
+  -- .. '%{ get(b:, "gitsigns_status", "") }'
   .. '%{% g:stl.gitsigns() %}'
   .. '%#Normal#%=%S ' -- middle seperator
-  .. '%{ g:stl.hlsearch() } '
+  .. '%{ v:hlsearch ? g:stl.hlsearch(searchcount()) : "" } '
   .. '%{ reg_recording() != "" ? " " .. reg_recording() : "" } '
-  .. '%#stl_hl_cb#%#stl_hl_b# ' -- c to b
-  .. '%{ g:stl.progress() } '
-  .. '%#stl_hl_ba#%#stl_hl_a#' -- b to a
+  .. '%#stl_hl_to#%#stl_hl_b# ' -- c to b
+  .. '%{ g:stl.progress(line("."), line("$")) } '
+  .. '%#stl_hl_a#' -- b to a
   .. '%{ &fenc == "utf-8" ? "" : " " .. &fenc }'
   .. '%{ &fileformat == "dos" ? "  " : "" } %Y '

@@ -13,6 +13,8 @@ local M = {
     {
       'mtoohey31/cmp-fish',
       ft = 'fish',
+      dev = true,
+      -- init = function() require('cmp').register_source('fish', require('cmp_fish').new()) end,
     },
   },
 }
@@ -122,7 +124,7 @@ M.config = function()
     sources = cmp.config.sources {
       { name = 'path' },
       { name = 'luasnip' },
-      { name = 'fish' },
+      { name = 'fish' }, -- TODO: fix overload
       { name = 'nvim_lsp' },
       { name = 'nvim_lua' },
       { name = 'spell' },
@@ -144,11 +146,22 @@ M.config = function()
 
   cmp.setup.cmdline(':', {
     view = { entries = { name = 'custom', selection_order = 'near_cursor' } },
-    mapping = cmp.mapping.preset.cmdline(),
+    mapping = cmp.mapping.preset.cmdline {
+      ['<tab>'] = {
+        c = function(_)
+          if not cmp.visible() then cmp.complete() end
+
+          if #cmp.get_entries() == 1 then
+            cmp.confirm({ select = true })
+          else
+            cmp.select_next_item()
+          end
+        end,
+      },
+    },
     sources = cmp.config.sources {
-      { name = 'path' },
-      { name = 'cmdline' },
-      -- { name = 'fish' } -- TODO: completion from shell
+      { name = 'path', options = { trailing_slash = false } },
+      { name = 'cmdline', option = { ignore_cmds = {} } },
     },
     formatting = {
       format = function(_, vim_item)

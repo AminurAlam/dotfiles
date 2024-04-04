@@ -13,7 +13,9 @@ local map = function(mode)
   end
 end
 
-local feed = function(key) vim.fn.feedkeys(vim.keycode(key)) end
+local fn = vim.fn
+local macro = function(reg, expr) vim.cmd.let(string.format([[@%s = '%s']], reg, expr)) end
+local feed = function(key) fn.feedkeys(vim.keycode(key)) end
 local nmap = map { 'n' }
 local vmap = map { 'x' }
 local umap = map { '', 'i' }
@@ -23,7 +25,7 @@ local abbr = map { 'ca' }
 nmap('<leader>pu', require('lazy').update, 'update plugins')
 nmap('<leader>pp', require('lazy').profile, 'open profiler')
 nmap('<leader>pa', require('lazy').home, 'plugins info')
--- nmap('<leader>tt', require('lazy.util').float_term, 'floating terminal')
+nmap('<leader>tt', require('lazy.util').float_term, 'floating terminal')
 
 -- movement
 umap('<c-left>', '<cmd>CybuPrev<cr>', 'previous buffer')
@@ -50,6 +52,7 @@ nmap(']h', require('gitsigns').next_hunk, 'goto next hunk')
 
 -- deleting & registers
 nmap('_', '"_', 'use void register')
+nmap('s', '"_s')
 nmap('x', '"_x')
 nmap('X', '"_x')
 vmap('p', '"_dP')
@@ -60,11 +63,9 @@ nmap('<bs>', 'i<bs><esc>l', 'backspace in normal mode')
 nmap('<cr>', '"_ciw', 'delete word at cursor')
 
 -- write & quit
-nmap('<leader>tt', function() feed('<c-z>') end, 'switch to terminal')
 nmap('<leader>w', '<cmd>silent w <bar> redraw <cr>', 'write')
-umap('<c-w>', '<cmd>silent w <bar> redraw <cr>', 'write')
-umap('<c-q>', '<cmd>qa<cr>', 'quit')
-nmap('Q', '<cmd>bdelete<cr>', 'quit buffer')
+nmap('<leader>W', '<cmd>silent w <bar> redraw <cr>', 'write')
+nmap('Q', function() vim.cmd(#fn.getbufinfo({ buflisted = 1 }) == 1 and 'q' or 'bd') end, 'quit buffer')
 
 -- indent
 nmap('=', '==')
@@ -75,6 +76,11 @@ vmap('<', '<gv')
 nmap('[f', 'zc')
 nmap(']f', 'zf%')
 
+-- macros
+-- vim.cmd.let([[@m='mmA;`m']]);
+macro('m', [[mmA;`m]])
+macro('x', [[$T["_sx]])
+
 -- scrolling
 umap('<c-u>', string.rep('<cmd>norm k<cr><cmd>sl 1m<cr>', vim.o.scroll))
 umap('<c-d>', string.rep('<cmd>norm j<cr><cmd>sl 1m<cr>', vim.o.scroll))
@@ -82,7 +88,19 @@ umap('<c-d>', string.rep('<cmd>norm j<cr><cmd>sl 1m<cr>', vim.o.scroll))
 -- toggles
 nmap('<leader>ss', '<cmd>setlocal spell!<cr>', 'toggle spell')
 nmap('<leader>sw', '<cmd>setlocal wrap!<cr>', 'toggle wrap')
-nmap('<leader>sn', function() vim.o.stc = vim.o.stc ~= '' and '' or ' ' end, 'toggle statuscolumn')
+nmap('<leader>sn', function()
+  if vim.o.number then
+    vim.o.number = false
+    vim.o.relativenumber = false
+    vim.o.signcolumn = 'no'
+    vim.o.foldcolumn = '0'
+  else
+    vim.o.number = true
+    vim.o.relativenumber = true
+    vim.o.signcolumn = 'auto'
+    vim.o.foldcolumn = 'auto'
+  end
+end, 'toggle statuscolumn')
 nmap('<leader>si', function()
   local lcs = (vim.opt_local.lcs:get().leadmultispace ~= ' ') and ' ' or '│   '
   vim.opt_local.lcs = { leadmultispace = lcs }
@@ -107,7 +125,7 @@ end, 'repeat v to change visual mode')
 
 nmap('z=', function()
   vim.ui.select(
-    vim.fn.spellsuggest(vim.fn.expand('<cword>')),
+    fn.spellsuggest(vim.fn.expand('<cword>')),
     {},
     vim.schedule_wrap(function(word)
       if word then feed('"_ciw' .. word .. '<esc>') end
@@ -116,7 +134,7 @@ nmap('z=', function()
 end, 'open spellsuggests in select menu')
 
 -- abbreviations
-if vim.fn.has('nvim-0.10.0') == 1 then
+if fn.has('nvim-0.10.0') == 1 then
   abbr('qw', 'q!') -- dvorak
   abbr('vq', 'wq') -- dvorak
   abbr('qn', 'q!') -- qwert

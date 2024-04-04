@@ -15,7 +15,7 @@ local function create(cmd, filetypes, root_dir, settings)
           root_dir = vim.fs.dirname(vim.fs.find(root_dir, { upwards = true })[1]),
           settings = settings or {},
         }
-        vim.lsp.buf_attach_client(buf.id, client)
+        if client then vim.lsp.buf_attach_client(buf.id, client) end
       end
     end,
   })
@@ -31,10 +31,10 @@ create({ 'java-language-server' },
   { 'java' },
   { 'build.gradle', 'pom.xml', '.git' }
 )
-create({ 'bash-language-server', 'start' },
-  { 'sh', 'zsh', 'bash' },
-  { '.sh', '.zsh', '.bash' }
-)
+-- create({ 'bash-language-server', 'start' },
+--   { 'sh', 'zsh', 'bash' },
+--   { '.sh', '.zsh', '.bash' }
+-- )
 create({ 'dart', 'language-server', '--protocol=lsp' },
   { 'dart' },
   { 'pubspec.yaml' },

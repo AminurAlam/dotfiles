@@ -1,5 +1,5 @@
-local autocmd = vim.api.nvim_create_autocmd
 local set = vim.opt_local
+local autocmd = vim.api.nvim_create_autocmd
 
 autocmd('FileType', {
   desc = 'exit by pressing q or <esc>',
@@ -36,9 +36,36 @@ autocmd({ 'FileType', 'BufNewFile' }, {
   callback = function()
     set.wrap = true
     set.linebreak = true
-    set.statuscolumn = ' '
+    -- set.statuscolumn = ' '
+    set.number = false
+    set.relativenumber = false
+    set.signcolumn = 'no'
+    set.foldcolumn = '0'
     set.statusline =
-      '%#stl_hl_b# %t %{ &modified ? "󰆓 " : "" }%#stl_hl_bc#%#Normal# %=%{ g:stl.hlsearch() } %{ g:stl.progress() } '
+      '%#stl_hl_b# %t %{ &modified ? "󰆓 " : "" }%#stl_hl_to#%#Normal# %=%{ v:hlsearch ? g:stl.hlsearch(searchcount()) : "" } %{ g:stl.progress(line("."), line("$")) } '
+  end,
+})
+
+autocmd('SwapExists', {
+  desc = 'handle swapfile',
+  callback = function()
+    vim.ui.select({
+      'quit vim (default)',
+      'delete swapfile and edit anyway',
+      'open file in read-only mode',
+    }, {
+      prompt = 'a swapfile already exists!',
+    }, function(choice)
+      -- vim.v.swapchoice = choice and string.sub(choice, 1, 1) or 'q'
+      if choice == 'delete swapfile and edit anyway' then
+        vim.opt_local.readonly = false
+      elseif choice == 'open file in read-only mode' then
+        vim.opt_local.readonly = true
+        vim.opt_local.modifiable = false
+      else
+        vim.cmd(#vim.fn.getbufinfo({ buflisted = 1 }) == 1 and 'q' or 'bd')
+      end
+    end)
   end,
 })
 
@@ -53,21 +80,25 @@ autocmd('BufNewFile', {
 
     vim.ui.select(possibles, {}, function(choice)
       if not choice then return end
-      local bufnr = vim.api.nvim_win_get_buf(0)
       vim.cmd.edit(vim.fn.fnameescape(choice))
       vim.cmd 'filetype detect'
-      vim.api.nvim_buf_delete(bufnr, {})
+      vim.api.nvim_buf_delete(details.buf, {})
     end)
   end,
 })
 
--- autocmd('BufReadPost', {
---   desc = 'restore cursor position',
---   callback = function()
---     local mark = vim.api.nvim_buf_get_mark(0, '"')
---     if mark[1] > 0 and mark[1] <= vim.api.nvim_buf_line_count(0) then pcall(vim.api.nvim_win_set_cursor, 0, mark) end
---   end,
--- })
+-- https://github.com/stevearc/oil.nvim
+autocmd('VimEnter', {
+  desc = 'open directory in telescope',
+  callback = function(details)
+    if vim.fn.isdirectory(details.file) == 1 then
+      vim.opt_local.buftype = 'nofile'
+      vim.opt_local.bufhidden = 'delete'
+      vim.cmd.cd(details.file)
+      vim.cmd 'Telescope find_files'
+    end
+  end,
+})
 
 autocmd('BufWritePre', {
   desc = 'automatically create missing directories when saving files',
@@ -90,23 +121,12 @@ autocmd('BufWinEnter', {
 })
 
 autocmd('TextYankPost', {
-  callback = function() vim.highlight.on_yank { higroup = 'IncSearch', timeout = 300 } end,
+  callback = function() vim.highlight.on_yank { higroup = 'IncSearch', timeout = 250 } end,
 })
 
-autocmd('BufEnter', {
-  callback = function() set.formatoptions:remove { 'c', 'r', 'o' } end,
-})
+autocmd('BufEnter', { command = 'set formatoptions-=cro' })
+autocmd('VimResized', { command = 'tabdo wincmd =' })
 
--- https://github.com/stevearc/oil.nvim
--- autocmd('VimEnter', {
---   desc = 'open directory in telescope',
---   callback = function(details)
---     if vim.fn.isdirectory(details.file) == 1 then
---       vim.cmd.cd(details.file)
---       vim.cmd 'Telescope find_files'
---     end
---   end,
--- })
 -- https://github.com/mawkler/modicator.nvim
 -- vim.api.nvim_create_autocmd('ModeChanged', {
 --   desc = 'change cursor line number based on mode',
@@ -130,19 +150,18 @@ autocmd('BufEnter', {
 --   end,
 -- })
 -- https://github.com/ibhagwan/smartyank.nvim
--- autocmd({ "TextYankPost" }, {
---     desc = 'stop certain stuff from going to clipboard',
---     callback = function()
---         local ok, yank_data = pcall(vim.fn.getreg, "0")
---         if ok and #yank_data > 1 then
---             pcall(vim.fn.setreg, "+", yank_data)
---         end
---     end
+-- autocmd({ 'TextYankPost' }, {
+--   desc = 'stop certain stuff from going to clipboard',
+--   callback = function()
+--     local ok, yank_data = pcall(vim.fn.getreg, '0')
+--     if ok and #yank_data > 1 then pcall(vim.fn.setreg, '+', yank_data) end
+--   end,
 -- })
--- autocmd('VimLeave', {
---   callback = function() vim.opt.guicursor = 'a:hor25' end,
+-- autocmd('BufReadPost', {
+--   desc = 'restore cursor position',
+--   callback = function()
+--     local mark = vim.api.nvim_buf_get_mark(0, '"')
+--     if mark[1] > 0 and mark[1] <= vim.api.nvim_buf_line_count(0) then pcall(vim.api.nvim_win_set_cursor, 0, mark) end
+--   end,
 -- })
--- vim.api.nvim_create_autocmd('VimResized', { command = 'tabdo wincmd =' })
--- vim.api.nvim_create_autocmd('CmdWinEnter', { command = 'quit' })
--- vim.api.nvim_create_autocmd('VimEnter', { command = 'hi link illuminatedWord LspReferenceText' })
--- vim.cmd("autocmd BufEnter * ++nested if winnr('$') == 1 && bufname() == 'NvimTree_' . tabpagenr() | quit | endif")
+-- autocmd('VimLeave', { command = 'set guicursor=a:hor25' })

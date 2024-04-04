@@ -50,8 +50,7 @@ set.foldlevel = 3
 set.foldnestmax = vim.o.foldlevel + 1
 set.foldmethod = 'manual'
 set.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
-set.foldtext = ''
- -- [[substitute(getline(v:foldstart), "\\s\\(--\\|#\\).*", "", "" ) .. "..." .. trim(getline(v:foldend)) .. " [" .. (v:foldend-v:foldstart+1) .. " lines]"]]
+set.foldtext = '' -- [[substitute(getline(v:foldstart), "\\s\\(--\\|#\\).*", "", "" ) .. "..." .. trim(getline(v:foldend)) .. " [" .. (v:foldend-v:foldstart+1) .. " lines]"]]
 set.foldcolumn = 'auto'
 set.foldopen:append {}
 set.viewoptions = 'cursor,folds'
