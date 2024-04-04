@@ -7,6 +7,7 @@ function rar2zip -a input output
         return 1
     end
 
+    # TODO: test code for $medium
     mkdir -p "$medium/" && printf "created $medium/"
 
     set -l filename (string split -rm1 "." "$input")[1]

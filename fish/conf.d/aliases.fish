@@ -55,7 +55,7 @@ alias lt "eza $common -T --git --total-size --no-permissions --no-time"
 # du, df -> dust, duf
 abbr du "dust -Dn 25"
 abbr dud "dust -d 1"
-abbr df "df -ht fuse"
+abbr df 'df -h | awk \'/fuse/{printf(" %s (%3s) %5s/%-5s %4s free\n",($6~/emulated/)?"Int":"Ext",$5,$3,$2,$4)}\''
 
 # tar
 abbr tar-compress "tar cf"

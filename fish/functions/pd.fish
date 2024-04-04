@@ -1,19 +1,25 @@
-function pd
+function pd -a distro
     command -sq proot-distro || pacman -S proot-distro || return
-    [ -z "$argv[1]" ] && proot-distro list 2>&1 | rg '^\s+' && return
 
-    set -l distros alpine archlinux debian fedora manjaro-aarch64 opensuse pardus ubuntu void
-    set -l distro $argv[1]
-    set -l distro (string replace manjaro-aarch64 manjaro $distro)
-    set -l distro (string replace archlinux       arch    $distro)
-    set -l distro (string replace opensuse        suse    $distro)
+    [ -z "$distro" ] && begin
+        set -f awkscript
+        proot-distro list 2>&1 | awk '{
+            if ($0 ~ /  .*Alias:/) printf("%s ", $2);
+            if ($0 ~ /  .*Installed:/) printf(" %s\n", $2);
+        }'
+    end && return
+
+    # NOTE: keep this list updated
+    set -l distros alpine archlinux artix debian debian-oldstable deepin fedora manjaro openkylin opensuse pardus ubuntu ubuntu-lts ubuntu-oldlts void
+
+    set distro (string replace arch archlinux $distro)
+    set distro (string replace suse opensuse  $distro)
 
     switch $distro
         case $distros
-            proot-distro login $distro $argv[2..] || begin
-                read install -fP "cant login to '$distro', try installing it? [y/N] "
-                [ "$install" = y ] && proot-distro install $distro
-            end
+            proot-distro login --isolated "$distro"
+        case "i*"
+            proot-distro install "$distro"
         case "*"
             printf "%s is not a supported distro\n" "$distro"
             return

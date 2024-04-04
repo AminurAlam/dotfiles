@@ -8,22 +8,6 @@
 
 builtin functions -e fish_mode_prompt
 
-function prompt_pwd
-    set -l path "$PWD"
-
-    # replacing $HOME -> ~
-    set -l path (string replace -r '^'"$HOME"'($|/)' '~$1' $path)
-    set -l path (string replace -r '^'"$PREFIX"'($|/)' '…$1' $path)
-
-    # splitting to preserve last directory
-    set -l all (string split -m 1 -r / $path)
-    set -l path $all[1]
-    set -l last $all[2..]
-
-    # shortening and then rejoining
-    echo -n (string join / (string replace -ar '(\.?[^/]{1})[^/]*' '$1' $path) $last )
-end
-
 function fish_right_prompt
     set -l exit_code $status
     [ $exit_code -ne 0 ] && set prompt_status "[$exit_code]"

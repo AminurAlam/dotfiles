@@ -22,5 +22,6 @@ function yt -a url fmt
 
     echo $fmt
 
+    # TODO: remove extra log
     yt-dlp -f "$fmt" -- "$url"
 end

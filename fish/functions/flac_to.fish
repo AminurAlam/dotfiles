@@ -6,7 +6,7 @@ function flac_to -a a
     for i in *.flac
         set -l filename (string replace ".flac" "" "$i")
         set -l count (math $count + 1)
-        while [ (count (jobs)) -ge 5 ]; sleep 0.2; end
+        while [ (count (jobs)) -ge 5 ]; sleep 0.1; end
         printf " [%d/%d] %s.flac\n" "$count" "$total" "$filename"
 
         if [ $ext = opus ] && command -vq opusenc
