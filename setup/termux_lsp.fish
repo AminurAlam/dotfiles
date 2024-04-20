@@ -1,4 +1,4 @@
-[ -n "$XDG_PROJECTS_DIR" ] || set XDG_PROJECTS_DIR "$HOME/repos"
+[ -z "$XDG_PROJECTS_DIR" ] && set XDG_PROJECTS_DIR "$HOME/repos"
 set patches "$XDG_PROJECTS_DIR/dotfiles/scripts/patches"
 
 # npm i -g bash-language-server

@@ -4,26 +4,27 @@ set REPO_URL "https://github.com/AminurAlam/neovim.git"
 set DEPENDENCIES binutils clang cmake gettext libtreesitter libuv make ninja openssl pkg-config
 
 function pre_build
+    command -vq sudo && set sudo sudo
     if command -vq apt
-        [ (uname -o) = Android ] && apt instal -- $DEPENDENCIES || sudo apt install -- $DEPENDENCIES
+        set pm apt install
     else if command -vq pacman
-        pacman -S --noconfirm --needed -- $DEPENDENCIES
+        set pm pacman -S --noconfirm --needed
     else if command -vq dnf
-        dnf install -- $DEPENDENCIES
+        set pm dnf install
     else
         printf "cannot determine package manager\n"
         exit
     end
 
+    $sudo $pm -- $DEPENDENCIES
+
     [ -d "$REPO_PATH" ] || git clone --branch custom "$REPO_URL" "$REPO_PATH"
     cd "$REPO_PATH"
     git remote show upstream &>/dev/null || git remote add upstream "https://github.com/neovim/neovim.git"
-    git fetch upstream
-    [ "$(read -P 'run `git-merge`? [y/N] ')" = y ] && git merge upstream/master
 end
 
 function build
-    set UV_USE_IO_URING 0
+    # set UV_USE_IO_URING 0
 
     [ "$(read -P 'run `make distclean`? [y/N] ')" = y ] && make distclean
 
@@ -45,7 +46,7 @@ function post_build
 end
 
 
-pre_build
+[ "$argv[1]" = quick ] || pre_build
 
 build
 

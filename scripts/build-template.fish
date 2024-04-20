@@ -4,16 +4,20 @@ set REPO_URL ""
 set DEPENDENCIES binutils
 
 function pre_build
+    command -vq sudo && set sudo sudo
+
     if command -vq apt
-        [ (uname -o) = Android ] && apt instal -- $DEPENDENCIES || sudo apt install -- $DEPENDENCIES
+        set pm apt install
     else if command -vq pacman
-        pacman -S --noconfirm --needed -- $DEPENDENCIES
+        set pm pacman -S --noconfirm --needed
     else if command -vq dnf
-        dnf install -- $DEPENDENCIES
+        set pm dnf install
     else
-        printf "cannot determine package manager\n"
+        printf "what arcane package manager are you using\n"
         exit
     end
+
+    $sudo $pm -- $DEPENDENCIES
 
     if [ -d "$REPO_PATH" ]
         cd "$REPO_PATH"
