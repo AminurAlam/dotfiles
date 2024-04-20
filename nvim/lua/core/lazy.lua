@@ -10,7 +10,7 @@ else
   branch = 'stable'
 end
 
-if not vim.loop.fs_stat(lazypath) then
+if not vim.uv.fs_stat(lazypath) then
   vim.fn.system { 'git', 'clone', '--filter=blob:none', '--depth=1', url, '--branch=' .. branch, lazypath }
 end
 
@@ -25,7 +25,7 @@ require('lazy').setup('plugins', {
   git = {
     log = { '--since=3 days ago' },
     timeout = 120,
-    url_format = 'https://github.com/%s.git',
+    url_format = 'https://github.com/%s',
     filter = true,
   },
   dev = {
@@ -33,40 +33,45 @@ require('lazy').setup('plugins', {
     patterns = {},
     fallback = false,
   },
-  install = {
-    missing = true,
-    colorscheme = { 'default' },
-  },
+  install = { missing = true },
   ui = {
     size = { width = 0.9, height = 0.8 },
-    pills = false,
     wrap = false,
     border = 'rounded',
+    backdrop = 100,
+    title = nil,
+    title_pos = 'center',
+    pills = false,
     icons = {
       cmd = ' ',
       config = ' ',
       event = ' ',
       ft = '',
-      import = '',
       init = '',
+      import = '',
       keys = ' ',
       lazy = '󰒲 ',
       loaded = '●',
       not_loaded = '○',
       plugin = ' ',
       runtime = ' ',
+      require = '󰢱 ',
       source = ' ',
       start = '',
       task = ' ',
       list = { '-', '-', '-', '‒' },
     },
-    custom_keys = {},
     browser = nil,
     throttle = 20,
+    custom_keys = {
+    },
   },
   diff = { cmd = 'git' },
   checker = { enabled = false },
-  change_detection = { enabled = false },
+  change_detection = {
+    enabled = false,
+    notify = false,
+  },
   performance = {
     cache = {
       enabled = true,
@@ -82,9 +87,15 @@ require('lazy').setup('plugins', {
     },
   },
   readme = {
+    enabled = true,
     root = vim.fn.stdpath('state') .. '/lazy/readme',
     files = { 'README.md', 'lua/**/README.md' },
     skip_if_doc_exists = true,
   },
   state = vim.fn.stdpath('state') .. '/lazy/state.json', -- state info for checker and other things
+  build = { warn_on_override = true },
+  profiling = {
+    loader = false,
+    require = false,
+  },
 })

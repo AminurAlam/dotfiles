@@ -34,7 +34,6 @@ nmap('[b', '<cmd>CybuPrev<cr>', 'previous buffer')
 nmap(']b', '<cmd>CybuNext<cr>', 'next buffer')
 
 -- lsp & diagnostics
-nmap('<leader>li', '<cmd>LspInfo<cr>', 'LSP status')
 nmap('<leader>lf', vim.lsp.buf.format, 'format code using LSP')
 nmap('<leader>lh', vim.lsp.buf.hover, 'show doc of symbol under cursor')
 nmap('<leader>lr', vim.lsp.buf.rename, 'rename symbol under cursor')

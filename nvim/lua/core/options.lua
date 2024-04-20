@@ -30,6 +30,7 @@ set.sidescrolloff = 8
 set.smoothscroll = true
 
 -- cmdline, statusline & statuscolumn
+set.shellcmdflag = '--no-config -c'
 set.showmode = false
 set.ruler = false
 set.rulerformat = '%p%%'

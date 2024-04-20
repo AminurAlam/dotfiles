@@ -1,7 +1,7 @@
 return {
   'https://github.com/kosayoda/nvim-lightbulb',
   enabled = false,
-  config = {
+  opts = {
     priority = 10,
     hide_in_unfocused_buffer = false,
     link_highlights = true,

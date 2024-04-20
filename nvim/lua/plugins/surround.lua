@@ -1,7 +1,7 @@
 return {
   'https://github.com/kylechui/nvim-surround',
   keys = { 'cs', 'ds', 'ys' },
-  config = {
+  opts = {
     move_cursor = false,
     surrounds = {
       ['('] = { add = { '(', ')' } },

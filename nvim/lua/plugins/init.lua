@@ -1,6 +1,7 @@
 return {
   { 'numToStr/Comment.nvim', keys = { 'gc', { 'gc', mode = 'v' }, { 'gb', mode = 'v' } }, config = true },
   { 'windwp/nvim-autopairs', event = { 'InsertEnter' }, config = true },
+  { 'echasnovski/mini.files', version = false },
   {
     'tzachar/highlight-undo.nvim',
     keys = { 'u', 'r' },

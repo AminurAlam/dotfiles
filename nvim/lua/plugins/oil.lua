@@ -1,5 +1,6 @@
 return {
   'https://github.com/stevearc/oil.nvim',
+  dependencies = { 'nvim-tree/nvim-web-devicons' },
   enabled = false,
   opts = {
     -- Oil will take over directory buffers (e.g. `vim .` or `:e src/`)
@@ -139,5 +140,4 @@ return {
     -- Configuration for the floating SSH window
     ssh = { border = 'rounded' },
   },
-  dependencies = { 'nvim-tree/nvim-web-devicons' },
 }

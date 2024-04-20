@@ -125,7 +125,10 @@ autocmd('TextYankPost', {
 })
 
 autocmd('BufEnter', { command = 'set formatoptions-=cro' })
-autocmd('VimResized', { command = 'tabdo wincmd =' })
+-- autocmd('VimResized', { command = 'tabdo wincmd =' })
+-- https://www.reddit.com/r/neovim/comments/1c1ip46/how_to_remove_spacing_below_the_statusline_in/kz6iu5i/
+autocmd('CmdlineEnter', { command = 'set cmdheight=1' })
+autocmd('CmdlineLeave', { command = 'set cmdheight=0' })
 
 -- https://github.com/mawkler/modicator.nvim
 -- vim.api.nvim_create_autocmd('ModeChanged', {
