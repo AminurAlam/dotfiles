@@ -27,7 +27,7 @@ ignore-article "*" "title =~ \"(^| )(LLMs?|large language models?|machine learni
 ignore-article "https://www.ghacks.net/feed/" "title =~ \"(^| )(windows)( |$)\""
 ignore-article "https://torrentfreak.com/feed" "title =~ \"IPTV\""
 ignore-article "https://superuser.com/feeds/week" "title =~ \"windows|powershell|batch\""
-ignore-article "https://muspy.com/feed?id=mobwjpkr95u5p1b4f2w1bjt74qc8u3" "title =~ \"remix|taylor swift\""
+ignore-article "https://muspy.com/feed?id=mobwjpkr95u5p1b4f2w1bjt74qc8u3" "title =~ \"remix|taylor swift|bruce springsteen\""
 ignore-article "https://rssbridge.bus-hit.me/?action=display&bridge=BleepingComputerBridge&format=Atom" "title =~ \"(^| )(windows)( |$)\""
 # ignore-article "" "title =~ \"(^| )()( |$)\""
 

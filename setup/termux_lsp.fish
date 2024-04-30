@@ -1,10 +1,10 @@
-[ -z "$XDG_PROJECTS_DIR" ] && set XDG_PROJECTS_DIR "$HOME/repos"
+set -q XDG_PROJECTS_DIR || set XDG_PROJECTS_DIR "$HOME/repos"
 set patches "$XDG_PROJECTS_DIR/dotfiles/scripts/patches"
 
 # npm i -g bash-language-server
 pacman -Syu --noconfirm --needed clang rust-analyzer lua-language-server
 
-function python
+function python_lsp
     cd "$XDG_PROJECTS_DIR"
     pacman -Syu --noconfirm --needed ruff python-pip
 
@@ -16,7 +16,7 @@ function python
     yes | rm -rf ruff-lsp
 end
 
-function java
+function java_lsp
     cd "$XDG_PROJECTS_DIR"
     pacman -Syu --noconfirm --needed openjdk-17 maven
 

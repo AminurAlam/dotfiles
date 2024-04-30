@@ -1,14 +1,12 @@
-# vim: set ft=urls commentstring=#\ %s :
+# vim:ft=urls:commentstring=#\ %s:
 # nitter: https://github.com/zedeus/nitter/wiki/Instances
 # https://rss-bridge.github.io/rss-bridge/General/Public_Hosts.html
+# yq -r -pxml '.opml.body.outline[].outline[] | [.+@xmlUrl, .+@title] | join(" ")' feed.opml
 
-"query:----- SOCIAL POSTS -----:tags # \"socials\" and unread = \"yes\""
-https://xkcd.com/atom.xml socials
-https://what-if.xkcd.com/feed.atom socials
-https://github.com/neovim/neovim/commits/master/runtime/doc/news.txt.atom "~nvim - news.txt" socials
-http://mangacritic.mangabookshelf.com/feed/ socials
-https://www.thatmangahunter.com/blog-feed.xml socials
-https://fmhy.net/feed.rss socials
+"query:----- MISC -----:tags # \"misc\" and unread = \"yes\""
+https://xkcd.com/atom.xml misc
+https://github.com/neovim/neovim/commits/master/runtime/doc/news.txt.atom "~nvim - news.txt" misc
+https://www.thatmangahunter.com/blog-feed.xml misc
 
 "query:----- MUSIC -----:tags # \"music\" and unread = \"yes\""
 https://muspy.com/feed?id=mobwjpkr95u5p1b4f2w1bjt74qc8u3 "~muspy New Releases" music
@@ -59,6 +57,7 @@ https://blog.archive.org/feed/ blogs_corpo
 https://www.eff.org/rss/updates.xml "~eff.org" blogs_corpo
 https://mullvad.net/en/blog/feed/atom/ blogs_corpo
 https://element.io/blog/rss/ blogs_corpo
+https://signal.org/blog/rss.xml blogs_corpo
 https://security.googleblog.com/feeds/posts/default?alt=rss blogs_corpo
 https://crinacle.com/feed blogs_corpo
 https://www.darkhorse.com/RSS/ blogs_corpo
@@ -79,8 +78,10 @@ https://arjunyadav.xyz/rss.xml personal_blog_1
 https://phaazon.net/blog/feed personal_blog_1
 https://cheapskatesguide.org/cheapskates-guide-rss-feed.xml personal_blog_1
 https://vkc.sh/feed/ personal_blog_1
+https://sizeof.cat/index.xml personal_blog_1
 
 "query:----- PERSONAL BLOGS 2 -----:tags # \"personal_blog\" and unread = \"yes\""
+https://dx13.co.uk/index.atom personal_blog
 https://tonsky.me/atom.xml personal_blog
 https://robertheaton.com/feed.xml personal_blog
 https://100r.co/links/rss.xml personal_blog

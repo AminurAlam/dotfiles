@@ -86,13 +86,13 @@ video_downloads_folder = "/sdcard/Movies/yt/"
 # Create a database that contains all the track IDs downloaded so far
 # Any time a track logged in the database is requested, it is skipped
 # This can be disabled temporarily with the --no-db flag
-downloads_enabled = false
+downloads_enabled = true
 # Path to the downloads database
-downloads_path = "/data/data/com.termux/files/home/.local/state/streamrip/downloads.db"
+downloads_path = "/data/data/com.termux/files/home/.local/share/streamrip/downloads.db"
 # If a download fails, the item ID is stored here. Then, `rip repair` can be
 # called to retry the downloads
 failed_downloads_enabled = true
-failed_downloads_path = "/data/data/com.termux/files/home/.config/streamrip/failed_downloads.db"
+failed_downloads_path = "/data/data/com.termux/files/home/.local/share/streamrip/failed_downloads.db"
 
 # Convert tracks to a codec after downloading them.
 [conversion]

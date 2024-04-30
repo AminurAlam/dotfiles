@@ -1,6 +1,6 @@
 # set packages clang dust eza libgit2 fd git openssh python python-pip renameutils ripgrep starship lua-language-server termux-api zoxide
 set packages git fish ninja-build gettext cmake unzip curl
-command -vq sudo sudo
+set sudo (command -v sudo || command -v doas)
 
 # urls
 set url_font "https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/SourceCodePro/SauceCodeProNerdFont-Medium.ttf"
@@ -13,9 +13,6 @@ set path_dots "$HOME/repos/dotfiles" # NOTE: mae sure this is a full path
 set path_nvim "$HOME/repos/neovim"
 
 command mkdir -p $main $HOME/repos $HOME/.local/{share,bin,cache}/
-
-# sudo apt-add-repository ppa:fish-shell/release-3
-# sudo apt update
 
 if apt show starship &>/dev/null
     set -a packages starship
