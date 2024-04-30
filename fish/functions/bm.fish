@@ -1,7 +1,7 @@
 function bm
     set BMPATH /sdcard/main/notes/bookmarks # /sdcard/main/notes/private-bookmarks
-    [ -n "$LAUNCHER" ] || set LAUNCHER fzf
-    [ -n "$BROWSER" ] || set BROWSER open
+    set -q LAUNCHER || set LAUNCHER fzf
+    set -q BROWSER || set BROWSER open
 
     switch "$argv[1]"
         case a add
@@ -27,7 +27,7 @@ function bm
                 set LINK (string replace '%s' (string escape --style=url "$query") $LINK)
             end
 
-            [ -z "$LINK" ] && return
+            set -q LINK || return
             $BROWSER "https://$LINK"
     end
 end

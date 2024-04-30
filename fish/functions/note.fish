@@ -1,8 +1,7 @@
 function note -a file
-
-    if [ -n "$file" -a -e "/sdcard/main/notes/$file.note" ]
+    if set -q file && [ -e "/sdcard/main/notes/$file.note" ]
         $EDITOR "$file.note"
-    else if [ -n "$file" -a (count (fd "$file"  "/sdcard/main/notes/")) -gt 0 ]
+    else if set -q file && [ (count (fd "$file"  "/sdcard/main/notes/")) -gt 0 ]
         $EDITOR (fd "$file"  "/sdcard/main/notes/")
     else
         cd "/sdcard/main/notes/"

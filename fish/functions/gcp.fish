@@ -1,6 +1,6 @@
 function gcp -a url path branch
-    [ -n "$branch" ] && set -l branch "--branch" "$branch"
-    [ -n $XDG_PROJECTS_DIR ] || set XDG_PROJECTS_DIR $HOME/repos
+    set -q branch && set -l branch "--branch" "$branch"
+    set -q XDG_PROJECTS_DIR || set XDG_PROJECTS_DIR $HOME/repos
     [ -e "$XDG_PROJECTS_DIR" ] || mkdir "$XDG_PROJECTS_DIR"
 
     cd "$XDG_PROJECTS_DIR"
@@ -8,7 +8,7 @@ function gcp -a url path branch
     git clone --depth 1 $branch -- $url $path
     and set success true
 
-    [ -n "$path" ]
+    set -q path
     and cd "$path" &>/dev/null && return
 
     [ "$success" = true ]

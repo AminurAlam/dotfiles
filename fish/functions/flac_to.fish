@@ -1,7 +1,7 @@
 function flac_to -a a
     set -l count 0
     set -l total (count *.flac) || return
-    [ -n "$a" ] || set ext opus
+    set -q a || set ext opus
 
     for i in *.flac
         set -l filename (string replace ".flac" "" "$i")

@@ -1,3 +1,5 @@
+status is-interactive || exit
+
 set -l m (set_color brcyan)
 set -l i (set_color brgreen)
 set -l o (set_color brcyan)

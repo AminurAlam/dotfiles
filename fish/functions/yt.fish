@@ -15,12 +15,10 @@ function yt -a url fmt
 
     # pick best audio for yt
     if echo $url | grep -Eq 'youtu.be|youtube.com'
-        if [ $fmt != 18 -a $fmt != 22 ]
+        if [ $fmt != 18 -a $fmt != 22 -a $fmt != best ]
             set fmt $fmt+bestaudio
         end
     end
-
-    echo $fmt
 
     # TODO: remove extra log
     yt-dlp -f "$fmt" -- "$url"

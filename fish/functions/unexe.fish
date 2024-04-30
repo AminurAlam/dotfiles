@@ -1,10 +1,17 @@
-function unexe
+function unexe -a file
     set stdout
     set mb 000000
     set total (count (ls -1NA ))
     set count 0
     [ -z "$temp" ] && set exe "$HOME/.local/cache/temp/exe" || set exe "$temp/exe"
     mkdir -pv "$exe"
+
+    if set -q file
+        mv -- "$file" "$exe/"
+        chmod -x -- "$exe/$file" &>/dev/null
+        mv -- "$exe/$file" ./
+        return 0
+    end
 
     for file in *
         set count (math $count + 1)

@@ -1,3 +1,5 @@
+status is-interactive || exit
+
 # TokyoNight Color Palette
 set -l foreground \#c0caf5
 set -l selection \#364a82

@@ -1,5 +1,5 @@
 function pd -a distro
-    command -sq proot-distro || pacman -S proot-distro || return
+    command -vq proot-distro || pacman -S proot-distro || return
 
     [ -z "$distro" ] && begin
         set -f awkscript
@@ -17,7 +17,7 @@ function pd -a distro
 
     switch $distro
         case $distros
-            proot-distro login --isolated "$distro"
+            proot-distro login --isolated --shared-tmp "$distro"
         case "i*"
             proot-distro install "$distro"
         case "*"

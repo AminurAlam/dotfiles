@@ -1,9 +1,9 @@
-# [ -n "$VIRTUAL_ENV" ] && set -l venv "(venv)"
+# set -q VIRTUAL_ENV && set -l venv "(venv)"
 # set -l cwd (prompt_pwd -D 2)
 # set -l prompt_cwd (string replace -r '^'"/d/d/c/f"'($|/)' '≈$1' $cwd)
-# [ -n "$SSH_CLIENT" ] && set -l prompt_name "$USER@ssh"
+# set -q SSH_CLIENT && set -l prompt_name "$USER@ssh"
 # jobs -q && set prompt_jobs "[$(count (jobs))J]"
-# [ -n "$SSH_CLIENT" ] && set -l prompt_name "$USER@ssh"
+# set -q SSH_CLIENT && set -l prompt_name "$USER@ssh"
 # (set_color yellow) $prompt_name \
 
 builtin functions -e fish_mode_prompt
