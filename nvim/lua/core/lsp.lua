@@ -21,44 +21,32 @@ local function create(cmd, filetypes, root_dir, settings)
   })
 end
 
--- stylua: ignore
 do
-create({ 'gopls' },
-  { 'go' },
-  { 'go.work', 'go.mod', '.git' }
-)
-create({ 'java-language-server' },
-  { 'java' },
-  { 'build.gradle', 'pom.xml', '.git' }
-)
--- create({ 'bash-language-server', 'start' },
---   { 'sh', 'zsh', 'bash' },
---   { '.sh', '.zsh', '.bash' }
--- )
-create({ 'dart', 'language-server', '--protocol=lsp' },
-  { 'dart' },
-  { 'pubspec.yaml' },
-  { dart = { completeFunctionCalls = true, showTodos = true } }
-)
-create({ 'rust-analyzer' },
-  { 'rust' },
-  { 'Cargo.toml', 'rust-project.json' },
-  { ['rust-analyzer'] = { linkedProjects = nil } }
-)
-create({ 'ruff-lsp' },
-  { 'python' },
-  {
+  create({ 'gopls' }, { 'go' }, { 'go.work', 'go.mod', '.git' })
+  create({ 'java-language-server' }, { 'java' }, { 'build.gradle', 'pom.xml', '.git' })
+  -- create({ 'bash-language-server', 'start' },
+  --   { 'sh', 'zsh', 'bash' },
+  --   { '.sh', '.zsh', '.bash' }
+  -- )
+  create({ 'dart', 'language-server', '--protocol=lsp' },
+    { 'dart' },
+    { 'pubspec.yaml' },
+    { dart = { completeFunctionCalls = true, showTodos = true } }
+  )
+  create({ 'rust-analyzer' },
+    { 'rust' },
+    { 'Cargo.toml', 'rust-project.json' },
+    { ['rust-analyzer'] = { linkedProjects = nil } }
+  )
+  create({ 'ruff-lsp' }, { 'python' }, {
     'pyproject.toml',
     'setup.py',
     'setup.cfg',
     'requirements.txt',
     'Pipfile',
     '.git',
-  }
-)
-create({ 'clangd' },
-  { 'c', 'cpp', 'objc', 'objcpp', 'cuda', 'proto' },
-  {
+  })
+  create({ 'clangd' }, { 'c', 'cpp', 'objc', 'objcpp', 'cuda', 'proto' }, {
     '.git',
     '.clangd',
     '.clang-tidy',
@@ -66,31 +54,24 @@ create({ 'clangd' },
     'compile_commands.json',
     'compile_flags.txt',
     'configure.ac',
-  }
-)
-create({ 'pyright-langserver', '--stdio' },
-  { 'python' },
-  {
+  })
+  create({ 'pyright-langserver', '--stdio' }, { 'python' }, {
     'pyproject.toml',
     'setup.py',
     'setup.cfg',
     'requirements.txt',
     'Pipfile',
     '.git',
-  },
-  {
+  }, {
     python = {
       analysis = {
         diagnosticMode = 'document',
         autoSearchPaths = true,
         useLibraryCodeForTypes = true,
-      }
-    }
-  }
-)
-create({ 'lua-language-server' },
-  { 'lua' },
-  { 'init.lua', 'lua' }, {
+      },
+    },
+  })
+  create({ 'lua-language-server' }, { 'lua' }, { 'init.lua', 'lua' }, {
     Lua = {
       -- library = vim.api.nvim_get_runtime_file('', true),
       typeFormat = { config = { auto_complete_end = true } },
@@ -110,9 +91,29 @@ create({ 'lua-language-server' },
         checkThirdParty = false,
         library = { vim.env.VIMRUNTIME },
       },
-    }
-  }
-)
+    },
+  })
+  create({ 'texlab' }, { 'tex', 'bib' }, {}, {
+    texlab = {
+      auxDirectory = '.',
+      bibtexFormatter = 'texlab',
+      build = {
+        args = { '-pdf', '-interaction=nonstopmode', '-synctex=1', '%f' },
+        executable = 'latexmk',
+        forwardSearchAfter = false,
+        onSave = false,
+      },
+      chktex = {
+        onEdit = false,
+        onOpenAndSave = false,
+      },
+      diagnosticsDelay = 300,
+      formatterLineLength = 80,
+      forwardSearch = { args = {} },
+      latexFormatter = 'latexindent',
+      latexindent = { modifyLineBreaks = false },
+    },
+  })
 end
 
 ---@return string

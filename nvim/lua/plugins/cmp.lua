@@ -1,5 +1,6 @@
 local M = {
   'https://github.com/hrsh7th/nvim-cmp',
+  enabled = true,
   event = { 'CmdlineEnter', 'InsertEnter' },
   dependencies = {
     'hrsh7th/cmp-nvim-lsp',
@@ -10,12 +11,7 @@ local M = {
     'L3MON4D3/LuaSnip', -- helps create snippets
     'saadparwaiz1/cmp_luasnip', -- adds snippets to cmp
     { 'AminurAlam/friendly-snippets', dev = true }, -- provides multiple snippets
-    {
-      'mtoohey31/cmp-fish',
-      ft = 'fish',
-      dev = true,
-      -- init = function() require('cmp').register_source('fish', require('cmp_fish').new()) end,
-    },
+    { 'mtoohey31/cmp-fish', dev = true },
   },
 }
 
@@ -127,7 +123,6 @@ M.config = function()
       { name = 'fish' }, -- TODO: fix overload
       { name = 'nvim_lsp' },
       { name = 'nvim_lua' },
-      { name = 'spell' },
       { name = 'buffer' },
     },
   }
