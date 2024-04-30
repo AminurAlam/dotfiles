@@ -19,18 +19,14 @@
 [rerere]
     enabled = true
 
-[pretty]
-    nice = " %C(yellow)%h%C(reset) %<(50,trunc)%-s %C(green)%cr"
-    gh = " %<(64,trunc)%-s %C(yellow)%h%C(reset)%n\
-        %C(blue)@%an%C(reset) commited %C(green)%cr%C(reset) %(describe:match=HEAD)"
-
 [alias]
-    l = log --pretty=nice -n 15
+    l = log --pretty=nice -n 10
     s = status -bs
     d = !"git diff -D -- $* | $EDITOR +'set bt=nofile bh=hide' +'nmap q <cmd>quit!<cr>' # "
 
-    branches = branch --all
-    remotes = remote --verbose
+    bls = branch --all
+    rls = remote --verbose
+    unadd = reset
 
 [advice]
     addIgnoredFile = false
@@ -41,8 +37,15 @@
 [pager]
     log = false
 
-[color]
-    # pager = false
+### looks
+
+[pretty]
+    nice = " %C(yellow)%h%C(reset) %<(54,trunc)%-s %C(green)%cd"
+    gh = " %<(64,trunc)%-s %C(yellow)%h%C(reset)%n\
+        %C(blue)@%an%C(reset) commited %C(green)%cr%C(reset) %(describe:match=HEAD)"
+
+[log]
+    date = short
 
 [color "branch"]
     current = yellow reverse
@@ -53,6 +56,8 @@
     added = green
     changed = red
     untracked = default
+
+### diff and merge
 
 [diff]
     context = 2
