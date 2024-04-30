@@ -4,19 +4,18 @@ set REPO_URL "https://github.com/AminurAlam/neovim.git"
 set DEPENDENCIES binutils clang cmake gettext libtreesitter libuv make ninja openssl pkg-config
 
 function pre_build
-    command -vq sudo && set sudo sudo
     if command -vq apt
-        set pm apt install
+        set -f pm apt install
     else if command -vq pacman
-        set pm pacman -S --noconfirm --needed
+        set -f pm pacman -S --noconfirm --needed
     else if command -vq dnf
-        set pm dnf install
+        set -f pm dnf install
     else
         printf "cannot determine package manager\n"
         exit
     end
 
-    $sudo $pm -- $DEPENDENCIES
+    $pm -- $DEPENDENCIES
 
     [ -d "$REPO_PATH" ] || git clone --branch custom "$REPO_URL" "$REPO_PATH"
     cd "$REPO_PATH"

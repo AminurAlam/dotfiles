@@ -4,20 +4,18 @@ set REPO_URL ""
 set DEPENDENCIES binutils
 
 function pre_build
-    command -vq sudo && set sudo sudo
-
     if command -vq apt
-        set pm apt install
+        set -f pm apt install
     else if command -vq pacman
-        set pm pacman -S --noconfirm --needed
+        set -f pm pacman -S --noconfirm --needed
     else if command -vq dnf
-        set pm dnf install
+        set -f pm dnf install
     else
-        printf "what arcane package manager are you using\n"
+        printf "cannot determine package manager\n"
         exit
     end
 
-    $sudo $pm -- $DEPENDENCIES
+    $pm -- $DEPENDENCIES
 
     if [ -d "$REPO_PATH" ]
         cd "$REPO_PATH"
