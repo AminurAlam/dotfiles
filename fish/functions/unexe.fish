@@ -1,15 +1,16 @@
-function unexe -a file
+function unexe -a input
     set stdout
     set mb 000000
     set total (count (ls -1NA ))
     set count 0
-    [ -z "$temp" ] && set exe "$HOME/.local/cache/temp/exe" || set exe "$temp/exe"
+    set -q temp && set exe "$temp/exe" || set exe "$HOME/.local/cache/temp/exe"
+
     mkdir -pv "$exe"
 
-    if set -q file
-        mv -- "$file" "$exe/"
-        chmod -x -- "$exe/$file" &>/dev/null
-        mv -- "$exe/$file" ./
+    if [ -n "$input" ]
+        mv -- "$input" "$exe/"
+        chmod -x -- "$exe/$input" &>/dev/null
+        mv -- "$exe/$input" ./
         return 0
     end
 
@@ -21,7 +22,7 @@ function unexe -a file
         if [ -f "$file" ]
         and stat -c '%A' -- "$file" | grep --quiet x
         and [ (stat -c '%s' -- "$file") -lt 20$mb ]
-            mv -- "$file" "$exe/"
+            mv -- "$file" "$exe/$file"
             chmod -x -- "$exe/$file" &>/dev/null
             mv -- "$exe/$file" ./
             set -a stdout (du -h "$file")

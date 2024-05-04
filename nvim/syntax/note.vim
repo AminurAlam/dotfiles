@@ -13,7 +13,7 @@ syn match Underlined /_\S[^_]*_/   contains=noteSurround
 
 syn region noteBt start=/^\`\{3\}/ end=/\`\{3\}$/
 syn match noteUrl /https\?:\/\/[^ \]\)\>]\+/
-syn match Title /[a-zA-Z0-9-_ ]\+\:\s/
+syn match Title /[a-zA-Z0-9-_ ]\+\:/
 syn match Number /^\d\+\.\s/
 syn match Number /\s\+\->\? /
 syn match String /^>.\+/
