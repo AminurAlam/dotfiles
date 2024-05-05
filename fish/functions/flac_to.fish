@@ -1,13 +1,13 @@
-function flac_to -a a
+function flac_to -a ext
     set -l count 0
     set -l total (count *.flac) || return
-    set -q a || set ext opus
+    [ -z "$ext" ] && set ext opus
 
     for i in *.flac
         set -l filename (string replace ".flac" "" "$i")
         set -l count (math $count + 1)
         while [ (count (jobs)) -ge 5 ]; sleep 0.1; end
-        printf " [%d/%d] %s.flac\n" "$count" "$total" "$filename"
+        printf " [%d/%d] %s\n" "$count" "$total" "$filename"
 
         if [ $ext = opus ] && command -vq opusenc
             opusenc --quiet --music --comp 10 --bitrate 256 "$filename.flac" "$filename.opus" &

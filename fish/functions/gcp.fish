@@ -1,5 +1,6 @@
 function gcp -a url path branch
-    set -q branch && set -l branch "--branch" "$branch"
+    [ -z "$url" ] && echo "ERROR: no url given" && return
+    [ -n "$branch" ] && set -f branch "--branch" "$branch"
     set -q XDG_PROJECTS_DIR || set XDG_PROJECTS_DIR $HOME/repos
     [ -e "$XDG_PROJECTS_DIR" ] || mkdir "$XDG_PROJECTS_DIR"
 

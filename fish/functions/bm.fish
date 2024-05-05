@@ -12,12 +12,16 @@ function bm
             # TODO: implement custom site
             shiori server &
             disown &>/dev/null
-            open http://127.0.0.1:8080
+            $BROWSER http://127.0.0.1:8080
+        case repo
+            $BROWSER (for repo in $XDG_PROJECTS_DIR/*
+                git -C "$repo" remote --verbose | awk '/push/ {print $2}'
+            end | $LAUNCHER)
         case '*'
             set -l LINK (
                 rg --no-filename --replace '' '^https?://(www\.)?' $BMPATH |
                 $LAUNCHER --query "$argv[1]" |
-                string split ' '
+		string split ' ' # remove tags from end
             )[1]
 
             if echo "$LINK" | rg -q '%s'
