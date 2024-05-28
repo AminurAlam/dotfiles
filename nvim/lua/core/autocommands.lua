@@ -125,6 +125,7 @@ autocmd('TextYankPost', {
 })
 
 autocmd('BufEnter', { command = 'set formatoptions-=cro' })
+autocmd('BufWritePost', { pattern = '*.tex', command = '!latexmk -quiet -pdf % && open %:r.pdf'})
 -- autocmd('VimResized', { command = 'tabdo wincmd =' })
 
 -- https://github.com/mawkler/modicator.nvim

@@ -33,21 +33,30 @@ require 'core.statusline'
 
 vim.diagnostic.config {
   underline = { severity = vim.diagnostic.severity.ERROR },
-  signs = true,
+  virtual_text = true,
+  signs = {
+    text = {
+      [vim.diagnostic.severity.ERROR] = '',
+      [vim.diagnostic.severity.WARN] = '',
+      [vim.diagnostic.severity.INFO] = '',
+      [vim.diagnostic.severity.HINT] = '',
+    },
+    numhl = {
+      [vim.diagnostic.severity.ERROR] = 'DiagnosticSignError',
+      [vim.diagnostic.severity.WARN] = 'DiagnosticSignWarn',
+      [vim.diagnostic.severity.INFO] = 'DiagnosticSignInfo',
+      [vim.diagnostic.severity.HINT] = 'DiagnosticSignHint',
+    },
+  },
   float = { border = 'rounded', header = '', prefix = '', suffix = '' },
   update_in_insert = true,
-  severity_sort = false,
+  severity_sort = true,
 }
 
 -- COLORSCHEME AND HIGHLIGHTS
 vim.cmd.colorscheme 'tokyonight'
 
 local hl = function(name, val) vim.api.nvim_set_hl(0, name, val) end
-
-vim.fn.sign_define('DiagnosticSignError', { numhl = 'DiagnosticSignError' })
-vim.fn.sign_define('DiagnosticSignWarn', { numhl = 'DiagnosticSignWarn' })
-vim.fn.sign_define('DiagnosticSignInfo', { numhl = 'DiagnosticSignInfo' })
-vim.fn.sign_define('DiagnosticSignHint', { numhl = 'DiagnosticSignHint' })
 
 -- hl('Whitespace', { bg = '#364a82' })
 hl('DiagnosticFloatingError', { bg = nil })

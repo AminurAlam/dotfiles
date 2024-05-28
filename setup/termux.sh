@@ -34,6 +34,7 @@ printf "done\n"
 
 command -v pacman &>/dev/null || bootstrap-pacman
 
+# TODO: probably redundant
 printf "GENERATING PACMAN KEYS... "
     pacman-key --init &>/dev/null
     pacman-key --populate &>/dev/null

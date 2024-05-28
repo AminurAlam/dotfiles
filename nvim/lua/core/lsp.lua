@@ -22,17 +22,20 @@ local function create(cmd, filetypes, root_dir, settings)
 end
 
 do
+  create({ 'taplo', 'lsp', 'stdio' }, { 'toml' }, { '*.toml', '.git' }, {})
   create({ 'gopls' }, { 'go' }, { 'go.work', 'go.mod', '.git' })
   create({ 'java-language-server' }, { 'java' }, { 'build.gradle', 'pom.xml', '.git' })
   -- create({ 'bash-language-server', 'start' },
   --   { 'sh', 'zsh', 'bash' },
   --   { '.sh', '.zsh', '.bash' }
   -- )
+  -- stylua: ignore
   create({ 'dart', 'language-server', '--protocol=lsp' },
     { 'dart' },
     { 'pubspec.yaml' },
     { dart = { completeFunctionCalls = true, showTodos = true } }
   )
+  -- stylua: ignore
   create({ 'rust-analyzer' },
     { 'rust' },
     { 'Cargo.toml', 'rust-project.json' },

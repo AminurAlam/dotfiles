@@ -27,9 +27,9 @@ download_booklets = true
 # Authenticate to Qobuz using auth token? Value can be true/false only
 use_auth_token = true
 # Enter your userid if the above use_auth_token is set to true, else enter your email
-email_or_userid = "2921482"
+email_or_userid = "2602012"
 # Enter your auth token if the above use_auth_token is set to true, else enter the md5 hash of your plaintext password
-password_or_token = "ijvwq-IieydNeZZ3kXqW4_4qcPE70L8Z7QS2fRgek-11iODuG7lC_xVBYSpOMISQiM8VdmfHoEm5jxTIc_akbw"
+password_or_token = "LFvxYzPwvq1svg8Ue07iXGK5XTeHvXccbY-RL6GpPUvf6ZtPfH1YnKgsAHDQrBy95c122DUH2JsdXP2idsRy7A"
 # Do not change
 app_id = "950096963"
 # Do not change
