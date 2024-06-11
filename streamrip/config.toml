@@ -118,7 +118,7 @@ repeats = true
 # Remove EPs and Singles
 non_albums = true
 # Remove albums whose artist is not the one requested
-features = false
+features = true
 # Skip non studio albums
 non_studio_albums = false
 # Only download remastered albums

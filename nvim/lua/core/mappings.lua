@@ -40,8 +40,8 @@ nmap('<leader>lr', vim.lsp.buf.rename, 'rename symbol under cursor')
 nmap('<leader>gd', vim.lsp.buf.definition, 'goto definition')
 nmap('<leader>ca', vim.lsp.buf.code_action, 'see code actions')
 nmap('<leader>d', vim.diagnostic.open_float, 'view line diagnostics')
-nmap('[d', vim.diagnostic.goto_prev, 'goto prev diagnostic message')
-nmap(']d', vim.diagnostic.goto_next, 'goto next diagnostic message')
+nmap('[d', function() vim.diagnostic.jump { count = -1 } end, 'goto prev diagnostic message')
+nmap(']d', function() vim.diagnostic.jump { count = 1 } end, 'goto next diagnostic message')
 
 -- git
 nmap('H', require('gitsigns').preview_hunk, 'preview hunk')
@@ -56,6 +56,7 @@ nmap('x', '"_x')
 nmap('X', '"_x')
 vmap('p', '"_dP')
 nmap('<del>', '"_x')
+nmap('y<esc>', function() end)
 nmap('cn', '*``"_cgn', 'search and replace') -- https://kevinli.co/posts/2017-01-19-multiple-cursors-in-500-bytes-of-vimscript/
 nmap('d<space>', [[m`<cmd>keeppatterns %s/\s\+$//e<cr>``]], 'delete trailing white pace')
 nmap('<bs>', 'i<bs><esc>l', 'backspace in normal mode')
@@ -107,10 +108,12 @@ end, 'toggle indentlines')
 
 -- other
 umap('<c-c>', '<cmd>norm m`viw~``<cr>', 'toggle word case')
+umap('<c-t>', '<cmd>!termux-reload-settings<cr>')
 vmap('.', ':norm .<cr>', 'dot repeat on all selected lines')
 nmap(';', '@:', 'dot repeat the last command')
 umap('<esc>', '<cmd>nohlsearch<cr><esc>')
 nmap('gj', [[@='j^"_d0kgJ'<cr>]], 'join without leaving space')
+nmap('go', 'jA', 'like `o` but on existing line')
 
 -- visual
 nmap('v', 'm`v')

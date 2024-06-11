@@ -24,8 +24,10 @@ end
 
 function build
     # set UV_USE_IO_URING 0
-
-    [ "$(read -P 'run `make distclean`? [y/N] ')" = y ] && make distclean
+    [ "$(read -P 'run `make distclean`? [y/N] ')" = y ] && begin
+        rm -frI $PREFIX/share/nvim/
+        make distclean
+    end
 
     make || exit
     make install CMAKE_INSTALL_PREFIX="$PREFIX/"
