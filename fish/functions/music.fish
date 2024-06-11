@@ -1,5 +1,5 @@
 function music
-    set files (fd -d1 '.*\.(mp3|ogg|opus|flac)' | sort -g)
+    set files (fd -d1 '.*\.(mp3|ogg|opus|flac|lrc)' | sort -g)
     set max (printf "%s\n" $files | wc -L)
     set filecount (count $files)
 
@@ -8,7 +8,7 @@ function music
         return
     else if [ "$filecount" = 1 ] && count *.cue
         # split single discs
-        set -f original (fd -d1 '.*\.(mp3|ogg|opus|flac)')
+        set -f original (fd -d1 '.*\.(mp3|ogg|opus|flac|lrc)')
         echo $original
         deflacue -d . .
         rm -i "$original"

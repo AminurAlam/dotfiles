@@ -1,6 +1,4 @@
 status is-interactive || exit
-
-[ (fish -v | tr -dc [:digit:] ) -ge 360 ] && set -l cursor "--set-cursor" "%"
 command -vq sudo && set sudo sudo
 
 # common
@@ -20,8 +18,9 @@ abbr diff "diff -Naur"
 abbr ta "tmux attach -t"
 abbr py "python3 -q"
 abbr pst "ps -faxo 'pid,comm' | sed -E \"s:\$PREFIX/[a-z]+/::\""
-abbr $cursor[1] ff "ffmpeg -y -hide_banner -stats -loglevel error -i $cursor[2] -strict -2 -vcodec copy -acodec copy -map 0:v -map 0:a"
-abbr $cursor[1] --position anywhere awk "awk -F ' ' '{print \$$cursor[2]}'"
+abbr --set-cursor ff "ffmpeg -y -hide_banner -stats -loglevel error -i % -strict -2 -vcodec copy -acodec copy -map 0:a"
+abbr --set-cursor --position anywhere awk "awk -F ' ' '{print \$%}'"
+abbr --set-cursor mbz "python ~/repos/musicbrainzpy/cover_art.py -o \$XDG_MUSIC_DIR/#meta/ '%'"
 
 # replicate =command from zsh
 function which_commander; command -v (string sub -s 2 $argv);  end
@@ -32,7 +31,7 @@ abbr ... "cd ../.."
 abbr .... "cd ../../.."
 
 # git
-abbr $cursor[1] gac "git add $cursor[2] && git commit"
+abbr --set-cursor gac "git add % && git commit"
 abbr ga "git add"
 abbr gc "git commit"
 abbr gl "git s; git l"
@@ -87,9 +86,9 @@ else if command -vq dnf
     abbr pa dnf show
 end
 
-abbr $cursor[1] zdl 'z $XDG_DOWNLOAD_DIR/'$cursor[2]
-abbr $cursor[1] zd 'z $XDG_PROJECTS_DIR/dotfiles/'$cursor[2]
-abbr $cursor[1] zcf 'z $XDG_CONFIG_HOME/fish/'$cursor[2]
-abbr $cursor[1] zcn 'z $XDG_CONFIG_HOME/nvim/'$cursor[2]
-abbr $cursor[1] zp 'z $PREFIX/'$cursor[2]
+abbr --set-cursor zdl 'z $XDG_DOWNLOAD_DIR/%'
+abbr --set-cursor zd 'z $XDG_PROJECTS_DIR/dotfiles/%'
+abbr --set-cursor zcf 'z $XDG_CONFIG_HOME/fish/%'
+abbr --set-cursor zcn 'z $XDG_CONFIG_HOME/nvim/%'
+abbr --set-cursor zp 'z $PREFIX/%'
 abbr zz "z -"
