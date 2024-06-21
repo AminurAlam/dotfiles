@@ -1,7 +1,7 @@
 return {
   'https://github.com/folke/trouble.nvim',
   enabled = true,
-  keys = { { '<leader>tr', '<cmd>Trouble<cr>' } },
+  keys = { { '<leader>tr', '<cmd>Trouble diagnostics<cr>' } },
   opts = {
     auto_close = true, -- auto close when there are no items
     auto_open = false, -- auto open when there are items

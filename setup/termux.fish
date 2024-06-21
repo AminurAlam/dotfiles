@@ -37,7 +37,7 @@ pacman -S --needed $extra_packages && begin
 end
 
 printf "LINKING CONFIG DIRECTORIES... "
-for config in aria2 clangd fish git htop newsboat npm nvim procs python streamrip tmux yt-dlp zellij
+for config in aria2 clangd fish git htop newsboat npm nvim procs python streamrip termux tmux yt-dlp zellij
     [ -e "$path_dots/$config" ] || continue
     # unlink/relocate old directories in ~/.config
     [ -d "$HOME/.config/$config" ] && command mv -f ~/.config/$config ~/backup/
@@ -52,8 +52,7 @@ printf "LINKING CONFIG FILES... "
     ln -fs "$path_dots/other/tidal-dl.json" ~/.config/.tidal-dl.json
     ln -fs "$path_dots/other/starship.toml" ~/.config/starship.toml
     ln -fs "$path_dots/other/stylua.toml" ~/.config/stylua.toml
-    ln -fs "$path_dots/termux/colors.properties" ~/.termux/colors.properties
-    ln -fs "$path_dots/termux/termux.properties" ~/.termux/termux.properties
+    ln -fs "$path_dots/termux/colors.properties" ~/.termux/colors.properties # https://github.com/termux/termux-app/blob/master/termux-shared/src/main/java/com/termux/shared/termux/TermuxConstants.java#L657
 printf "done\n"
 
 printf "CHANGING FONT... "

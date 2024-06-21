@@ -31,7 +31,7 @@ function bm
                 set LINK (string replace '%s' (string escape --style=url "$query") $LINK)
             end
 
-            set -q LINK || return
+            [ -z "$LINK" ] && return
             $BROWSER "https://$LINK"
     end
 end

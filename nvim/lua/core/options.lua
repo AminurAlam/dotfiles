@@ -17,7 +17,6 @@ set.ignorecase = true
 set.smartcase = true
 set.incsearch = true
 set.iskeyword:append '-'
-set.magic = false
 
 -- spell
 set.spellcapcheck = ''

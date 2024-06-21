@@ -6,118 +6,111 @@ local function create(cmd, filetypes, root_dir, settings)
   vim.api.nvim_create_autocmd('Filetype', {
     pattern = filetypes,
     callback = function(buf)
-      if vim.fn.executable(cmd[1]) == 1 then
-        client = vim.lsp.start {
-          name = cmd[1],
-          cmd = cmd,
-          filetypes = filetypes,
-          single_file_support = true,
-          root_dir = vim.fs.dirname(vim.fs.find(root_dir, { upwards = true })[1]),
-          settings = settings or {},
-        }
-        if client then vim.lsp.buf_attach_client(buf.id, client) end
-      end
+      client = vim.lsp.start({
+        name = cmd[1],
+        cmd = cmd,
+        filetypes = filetypes,
+        single_file_support = true,
+        root_dir = vim.fs.root(0, root_dir), -- https://github.com/neovim/neovim/commit/38b9c322c97b63f53caef7a651211fc9312d055e
+        settings = settings or {},
+      }, { silent = false }) -- https://github.com/neovim/neovim/commit/37d8e504593646c81542f8c66f0d608e0a59f036
+      if client then vim.lsp.buf_attach_client(buf.id, client) end
     end,
   })
 end
 
-do
-  create({ 'taplo', 'lsp', 'stdio' }, { 'toml' }, { '*.toml', '.git' }, {})
-  create({ 'gopls' }, { 'go' }, { 'go.work', 'go.mod', '.git' })
-  create({ 'java-language-server' }, { 'java' }, { 'build.gradle', 'pom.xml', '.git' })
-  -- create({ 'bash-language-server', 'start' },
-  --   { 'sh', 'zsh', 'bash' },
-  --   { '.sh', '.zsh', '.bash' }
-  -- )
-  -- stylua: ignore
-  create({ 'dart', 'language-server', '--protocol=lsp' },
-    { 'dart' },
-    { 'pubspec.yaml' },
-    { dart = { completeFunctionCalls = true, showTodos = true } }
-  )
-  -- stylua: ignore
-  create({ 'rust-analyzer' },
-    { 'rust' },
-    { 'Cargo.toml', 'rust-project.json' },
-    { ['rust-analyzer'] = { linkedProjects = nil } }
-  )
-  create({ 'ruff-lsp' }, { 'python' }, {
-    'pyproject.toml',
-    'setup.py',
-    'setup.cfg',
-    'requirements.txt',
-    'Pipfile',
-    '.git',
-  })
-  create({ 'clangd' }, { 'c', 'cpp', 'objc', 'objcpp', 'cuda', 'proto' }, {
-    '.git',
-    '.clangd',
-    '.clang-tidy',
-    '.clang-format',
-    'compile_commands.json',
-    'compile_flags.txt',
-    'configure.ac',
-  })
-  create({ 'pyright-langserver', '--stdio' }, { 'python' }, {
-    'pyproject.toml',
-    'setup.py',
-    'setup.cfg',
-    'requirements.txt',
-    'Pipfile',
-    '.git',
-  }, {
-    python = {
-      analysis = {
-        diagnosticMode = 'document',
-        autoSearchPaths = true,
-        useLibraryCodeForTypes = true,
-      },
+create({ 'taplo', 'lsp', 'stdio' }, { 'toml' }, { '*.toml', '.git' }, {})
+create({ 'gopls' }, { 'go' }, { 'go.work', 'go.mod', '.git' })
+create({ 'java-language-server' }, { 'java' }, { 'build.gradle', 'pom.xml', '.git' })
+create({ 'bash-language-server', 'start' }, { 'sh', 'zsh', 'bash' }, { '.sh', '.zsh', '.bash' })
+-- stylua: ignore
+create({ 'dart', 'language-server', '--protocol=lsp' },
+  { 'dart' },
+  { 'pubspec.yaml' },
+  { dart = { completeFunctionCalls = true, showTodos = true } }
+)
+-- stylua: ignore
+create({ 'rust-analyzer' },
+  { 'rust' },
+  { 'Cargo.toml', 'rust-project.json' },
+  { ['rust-analyzer'] = { linkedProjects = nil } }
+)
+create({ 'ruff-lsp' }, { 'python' }, {
+  'pyproject.toml',
+  'setup.py',
+  'setup.cfg',
+  'requirements.txt',
+  'Pipfile',
+  '.git',
+})
+create({ 'clangd' }, { 'c', 'cpp', 'objc', 'objcpp', 'cuda', 'proto' }, {
+  '.git',
+  '.clangd',
+  '.clang-tidy',
+  '.clang-format',
+  'compile_commands.json',
+  'compile_flags.txt',
+  'configure.ac',
+})
+create({ 'pyright-langserver', '--stdio' }, { 'python' }, {
+  'pyproject.toml',
+  'setup.py',
+  'setup.cfg',
+  'requirements.txt',
+  'Pipfile',
+  '.git',
+}, {
+  python = {
+    analysis = {
+      diagnosticMode = 'document',
+      autoSearchPaths = true,
+      useLibraryCodeForTypes = true,
     },
-  })
-  create({ 'lua-language-server' }, { 'lua' }, { 'init.lua', 'lua' }, {
-    Lua = {
-      -- library = vim.api.nvim_get_runtime_file('', true),
-      typeFormat = { config = { auto_complete_end = true } },
-      completion = { callSnippet = 'Replace', displayContext = 5 },
-      diagnostics = {
-        globals = { 'vim', 'drastic' },
-        libraryFiles = 'Disable',
-        disable = { 'lowercase-global' },
-      },
-      format = { enable = false },
-      hint = { enable = true },
-      runtime = { version = 'LuaJIT' },
-      semantic = { enable = false },
-      telemetry = { enable = false },
-      window = { progressBar = false },
-      workspace = {
-        checkThirdParty = false,
-        library = { vim.env.VIMRUNTIME },
-      },
+  },
+})
+create({ 'lua-language-server' }, { 'lua' }, { 'init.lua', 'lua' }, {
+  Lua = {
+    -- library = vim.api.nvim_get_runtime_file('', true),
+    typeFormat = { config = { auto_complete_end = true } },
+    completion = { callSnippet = 'Replace', displayContext = 5 },
+    diagnostics = {
+      globals = { 'vim', 'drastic' },
+      libraryFiles = 'Disable',
+      disable = { 'lowercase-global' },
     },
-  })
-  create({ 'texlab' }, { 'tex', 'bib' }, {}, {
-    texlab = {
-      auxDirectory = '.',
-      bibtexFormatter = 'texlab',
-      build = {
-        args = { '-pdf', '-interaction=nonstopmode', '-synctex=1', '%f' },
-        executable = 'latexmk',
-        forwardSearchAfter = false,
-        onSave = false,
-      },
-      chktex = {
-        onEdit = false,
-        onOpenAndSave = false,
-      },
-      diagnosticsDelay = 300,
-      formatterLineLength = 80,
-      forwardSearch = { args = {} },
-      latexFormatter = 'latexindent',
-      latexindent = { modifyLineBreaks = false },
+    format = { enable = false },
+    hint = { enable = true },
+    runtime = { version = 'LuaJIT' },
+    semantic = { enable = false },
+    telemetry = { enable = false },
+    window = { progressBar = false },
+    workspace = {
+      checkThirdParty = false,
+      library = { vim.env.VIMRUNTIME },
     },
-  })
-end
+  },
+})
+create({ 'texlab' }, { 'tex', 'bib' }, {}, {
+  texlab = {
+    auxDirectory = '.',
+    bibtexFormatter = 'texlab',
+    build = {
+      args = { '-pdf', '-interaction=nonstopmode', '-synctex=1', '%f' },
+      executable = 'latexmk',
+      forwardSearchAfter = false,
+      onSave = false,
+    },
+    chktex = {
+      onEdit = false,
+      onOpenAndSave = false,
+    },
+    diagnosticsDelay = 300,
+    formatterLineLength = 80,
+    forwardSearch = { args = {} },
+    latexFormatter = 'latexindent',
+    latexindent = { modifyLineBreaks = false },
+  },
+})
 
 ---@return string
 local info = function()
@@ -143,7 +136,6 @@ local info = function()
   return text
 end
 
--- TODO: put this in a floating window
 vim.api.nvim_create_user_command('LspInfo', function() print(info()) end, {
   desc = 'Display attached language servers',
 })

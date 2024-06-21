@@ -26,9 +26,7 @@ M.config = function()
   })
   add('fish', 'diagnostics')
   add('fish_indent', 'formatting')
-  -- add('ruff', 'diagnostics')
-  -- add('shellcheck', 'code_actions')
-  -- add('shellcheck', 'diagnostics')
+  -- add('ruff', 'diagnostics') -- using ruff lsp instead
   -- add('ts_node_action', 'code_actions')
   -- add('spell', 'completion')
   -- add('clang_check', 'clang-check', 'diagnostics') -- comes with clangd
