@@ -63,8 +63,7 @@ require('lazy').setup('plugins', {
     },
     browser = nil,
     throttle = 20,
-    custom_keys = {
-    },
+    custom_keys = {},
   },
   diff = { cmd = 'git' },
   checker = { enabled = false },

@@ -44,10 +44,10 @@ nmap('[d', function() vim.diagnostic.jump { count = -1 } end, 'goto prev diagnos
 nmap(']d', function() vim.diagnostic.jump { count = 1 } end, 'goto next diagnostic message')
 
 -- git
-nmap('H', require('gitsigns').preview_hunk, 'preview hunk')
+nmap('H', require('gitsigns').preview_hunk_inline, 'preview hunk')
 nmap('U', require('gitsigns').reset_hunk, 'undo hunk')
-nmap('[h', require('gitsigns').prev_hunk, 'goto previous hunk')
-nmap(']h', require('gitsigns').next_hunk, 'goto next hunk')
+nmap('[h', function() require('gitsigns').nav_hunk('prev') end, 'goto previous hunk')
+nmap(']h', function() require('gitsigns').nav_hunk('next') end, 'goto next hunk')
 
 -- deleting & registers
 nmap('_', '"_', 'use void register')
@@ -77,7 +77,6 @@ nmap('[f', 'zc')
 nmap(']f', 'zf%')
 
 -- macros
--- vim.cmd.let([[@m='mmA;`m']]);
 macro('m', [[mmA;`m]])
 macro('x', [[$T["_sx]])
 
@@ -108,7 +107,6 @@ end, 'toggle indentlines')
 
 -- other
 umap('<c-c>', '<cmd>norm m`viw~``<cr>', 'toggle word case')
-umap('<c-t>', '<cmd>!termux-reload-settings<cr>')
 vmap('.', ':norm .<cr>', 'dot repeat on all selected lines')
 nmap(';', '@:', 'dot repeat the last command')
 umap('<esc>', '<cmd>nohlsearch<cr><esc>')
@@ -119,7 +117,7 @@ nmap('go', 'jA', 'like `o` but on existing line')
 nmap('v', 'm`v')
 nmap('V', 'm`V')
 nmap('<c-v>', 'm`<c-v>')
-vmap('<esc>', '<esc>:keepjumps norm ``<cr>') -- after umap '<esc>'
+vmap('<esc>', '<esc><cmd>keepjumps norm ``<cr>') -- after umap '<esc>'
 vmap('v', function()
   local next = { ['v'] = 'V', ['V'] = '\22', ['\22'] = '<esc>' }
   feed(next[vim.api.nvim_get_mode().mode])

@@ -78,22 +78,22 @@ vim.g.stl = {
     local count = function(severity) return #vim.diagnostic.count(0, { severity = vim.diagnostic.severity[severity] }) end
 
     return (count 'ERROR' > 0 and '%#DiagnosticError# ' or '')
-      .. (count 'WARN' > 0 and '%#DiagnosticWarning# ' or '')
+      .. (count 'WARN' > 0 and '%#DiagnosticWarn# ' or '')
       .. (count 'HINT' > 0 and '%#DiagnosticHint#󰌶 ' or '')
   end,
-  gitsigns = function()
-    return string.gsub(
-      vim.b.gitsigns_status or '',
-      '([+~-])(%d+)',
-      function(stat, count) return '%#GitSigns' .. git_hl[stat] .. stat .. count end
-    )
+  --[[ gitsigns = function()
+    -- return string.gsub(
+    --   vim.b.gitsigns_status or '',
+    --   '([+~-])(%d+)',
+    --   function(stat, count) return '%#GitSigns' .. git_hl[stat] .. stat .. count end
+    -- )
     -- local stat = vim.b.gitsigns_status_dict
     -- if not stat then return '' end
     --
     -- return (stat.added and stat.added > 0 and '%#GitSignsAdd# +' .. stat.added or '')
     --   .. (stat.changed and stat.changed > 0 and '%#GitSignsChange# ~' .. stat.changed or '')
     --   .. (stat.removed and stat.removed > 0 and '%#GitSignsDelete# -' .. stat.removed or '')
-  end,
+  end, ]]
 }
 
 vim.api.nvim_create_autocmd({ 'ModeChanged' }, {
@@ -125,8 +125,8 @@ vim.opt.stl = '%#stl_hl_a# %{ g:stl.mode() } %#stl_hl_b#' -- a to b
   .. [[%{ search("\\s\\+$", "nwc") > 0 ? "󱁐 " : "" }]]
   .. '%#stl_hl_to#%#Normal# ' -- b to c
   .. '%{% g:stl.diagnostics() %}'
-  -- .. '%{ get(b:, "gitsigns_status", "") }'
-  .. '%{% g:stl.gitsigns() %}'
+  .. '%{% get(b:, "gitsigns_status", "") %}'
+  -- .. '%{% g:stl.gitsigns() %}'
   .. '%#Normal#%=%S ' -- middle seperator
   .. '%{ v:hlsearch ? g:stl.hlsearch(searchcount()) : "" } '
   .. '%{ reg_recording() != "" ? " " .. reg_recording() : "" } '

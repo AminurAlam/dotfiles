@@ -1,4 +1,4 @@
-local M = { 'https://github.com/goolord/alpha-nvim', enabled = true }
+local M = { 'https://github.com/goolord/alpha-nvim' }
 
 M.config = function()
   local v = vim.version()

@@ -7,7 +7,6 @@ return {
     require('ibl').setup {
       whitespace = { remove_blankline_trail = true },
       scope = { enabled = false },
-      -- show_first_indent_level = true,
       exclude = {
         filetypes = { 'checkhealth', 'diff', 'help', 'lspinfo', 'man', '' },
       },

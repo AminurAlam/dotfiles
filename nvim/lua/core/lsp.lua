@@ -6,7 +6,7 @@ local function create(cmd, filetypes, root_dir, settings)
   vim.api.nvim_create_autocmd('Filetype', {
     pattern = filetypes,
     callback = function(buf)
-      client = vim.lsp.start({
+      local client_id = vim.lsp.start({
         name = cmd[1],
         cmd = cmd,
         filetypes = filetypes,
@@ -14,7 +14,7 @@ local function create(cmd, filetypes, root_dir, settings)
         root_dir = vim.fs.root(0, root_dir), -- https://github.com/neovim/neovim/commit/38b9c322c97b63f53caef7a651211fc9312d055e
         settings = settings or {},
       }, { silent = false }) -- https://github.com/neovim/neovim/commit/37d8e504593646c81542f8c66f0d608e0a59f036
-      if client then vim.lsp.buf_attach_client(buf.id, client) end
+      if client_id then vim.lsp.buf_attach_client(buf.id, client_id) end
     end,
   })
 end
