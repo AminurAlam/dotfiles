@@ -1,5 +1,4 @@
-# vim:ft=urls:commentstring=#\ %s:
-# nitter: https://github.com/zedeus/nitter/wiki/Instances
+# vim:ft=urls:
 # https://rss-bridge.github.io/rss-bridge/General/Public_Hosts.html
 # yq -r -pxml '.opml.body.outline[].outline[] | [.+@xmlUrl, .+@title] | join(" ")' feed.opml
 
@@ -7,6 +6,7 @@
 https://xkcd.com/atom.xml misc
 https://github.com/neovim/neovim/commits/master/runtime/doc/news.txt.atom "~nvim - news.txt" misc
 https://www.thatmangahunter.com/blog-feed.xml misc
+https://www.tofugu.com/feed.xml misc
 
 "query:----- MUSIC -----:tags # \"music\" and unread = \"yes\""
 https://muspy.com/feed?id=mobwjpkr95u5p1b4f2w1bjt74qc8u3 "~muspy New Releases" music
@@ -75,7 +75,7 @@ https://denshi.org/rss.xml personal_blog_1
 https://lukesmith.xyz/index.xml personal_blog_1
 https://jacobwsmith.xyz/feed.xml personal_blog
 https://arjunyadav.xyz/rss.xml personal_blog_1
-https://phaazon.net/blog/feed personal_blog_1
+https://strongly-typed-thoughts.net/blog/feed "~phaazon's blog" personal_blog_1
 https://cheapskatesguide.org/cheapskates-guide-rss-feed.xml personal_blog_1
 https://vkc.sh/feed/ personal_blog_1
 https://sizeof.cat/index.xml personal_blog_1

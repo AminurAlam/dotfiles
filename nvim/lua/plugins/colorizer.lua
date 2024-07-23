@@ -2,6 +2,7 @@ return {
   'https://github.com/NvChad/nvim-colorizer.lua',
   cmd = 'ColorizerToggle',
   keys = { { '<leader>co', '<cmd>ColorizerToggle<cr>' } },
+  ft = { 'css', 'jproperties' },
   opts = {
     filetypes = { '*' },
     user_default_options = {

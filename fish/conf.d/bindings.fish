@@ -12,7 +12,3 @@ bind -M insert \cv 'commandline -f backward-kill-bigword' # delete from whitespa
 # search current token in history
 bind -M insert \e\[1\;5A 'commandline -f history-token-search-backward'
 bind -M insert \e\[1\;5B 'commandline -f history-token-search-forward'
-
-bind -M insert \ct 'termux-reload-settings'
-bind -M insert \c^ 'termux-reload-settings'
-# bind -M insert \$ 'termux-reload-settings'
