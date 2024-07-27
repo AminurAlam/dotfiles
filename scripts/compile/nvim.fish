@@ -1,7 +1,8 @@
 set REPO_NAME nvim-fork
 set REPO_PATH "$XDG_PROJECTS_DIR/$REPO_NAME"
 set REPO_URL "https://github.com/AminurAlam/neovim.git"
-set DEPENDENCIES binutils clang cmake gettext libtreesitter libuv make ninja openssl pkg-config
+set DEPENDENCIES binutils clang cmake gettext libtreesitter libuv make ninja openssl pkg-config \
+    tree-sitter-c tree-sitter-lua tree-sitter-markdown tree-sitter-query tree-sitter-vimdoc tree-sitter-vim
 
 function pre_build
     if command -vq apt
@@ -37,6 +38,8 @@ function post_build
     printf "========================== BUILD COMPLETE ==========================\n"
     # set UV_USE_IO_URING 0
     set VIMRUNTIME runtime/
+
+    ln -s "$PREFIX"/lib/tree_sitter "$PREFIX"/share/nvim/runtime/parser
 
     build/bin/nvim -V1 --version || return 1
     build/bin/nvim --clean --headless +"helptags $PREFIX/share/nvim/runtime/doc/ | q!"

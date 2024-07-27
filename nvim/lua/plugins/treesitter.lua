@@ -6,7 +6,6 @@ return {
   opts = {
     ensure_installed = vim.fn.executable('clang') == 1 and {
       'bash',
-      'c',
       'comment',
       'diff',
       'fish',
@@ -14,13 +13,9 @@ return {
       'gitignore',
       'java',
       'kotlin',
-      'lua',
-      'luadoc',
       'python',
       'rust',
       'toml',
-      'vim',
-      'vimdoc',
     } or {},
     sync_install = true,
     indent = { enable = true },
