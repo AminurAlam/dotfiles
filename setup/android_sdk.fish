@@ -13,7 +13,7 @@ else
     exit
 end
 
-$sudo $pm -- $DEPENDENCIES
+$pm -- $DEPENDENCIES
 
 sdkmanager
 yes | sdkmanager --licenses

@@ -1,10 +1,13 @@
 #!/usr/bin/env bash
+# shellcheck disable=2015
 
 sudo=$(command -v sudo)
-
-$sudo apt-add-repository ppa:fish-shell/release-3
-$sudo apt-get update
-$sudo apt-get install fish
+$sudo apt update && $sudo apt upgrade
+command -vq apt-add-repository && {
+    $sudo apt-add-repository ppa:fish-shell/release-3
+    $sudo apt-get update
+    $sudo apt-get install fish git
+} || $sudo apt install fish git
 
 # TODO: change shell
 

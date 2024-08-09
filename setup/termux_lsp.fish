@@ -9,7 +9,7 @@ function python_lsp
     pacman -Syu --noconfirm --needed ruff python-pip
 
     git clone -q --depth 1 "https://github.com/astral-sh/ruff-lsp"
-    patch ruff-lsp/pyproject.toml <"$patches/ruff-lsp-pyproject.toml.diff"
+    patch ruff-lsp/pyproject.toml <$patches/ruff-lsp-pyproject.toml.diff
 
     pip install ./ruff-lsp pyright python-lsp-server
 
@@ -21,7 +21,7 @@ function java_lsp
     pacman -Syu --noconfirm --needed openjdk-17 maven
 
     git clone -q --depth 1 "https://github.com/georgewfraser/java-language-server"
-    patch java-language-server/pom.xml <"$patches/java-language-server-pom.xml.diff"
+    patch java-language-server/pom.xml <$patches/java-language-server-pom.xml.diff
 
     ./java-language-server/scripts/link_linux.sh
     mvn package -DskipTests -Dmaven.javadoc.skip

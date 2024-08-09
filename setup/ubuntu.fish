@@ -1,5 +1,5 @@
 # set packages clang dust eza libgit2 fd git openssh python python-pip renameutils ripgrep starship lua-language-server termux-api zoxide
-set packages git fish ninja-build gettext cmake unzip curl
+set packages eza git fish ninja-build gettext cmake unzip curl
 set sudo (command -v sudo || command -v doas)
 
 # urls
