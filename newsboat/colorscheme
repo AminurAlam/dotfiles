@@ -21,10 +21,10 @@ highlight article "\\((link|image|video|iframe|embedded flash)\\)" color8 defaul
 
 
 color background          default default
-color listnormal          color247 default
-color listfocus           color247 color0
-color listnormal_unread   default default
-color listfocus_unread    default color0
+color listnormal          default default
+color listfocus           default color60
+color listnormal_unread   color2 default
+color listfocus_unread    color2 color60
 color title               default default
 color info                color4  color8
 color hint-key            default default

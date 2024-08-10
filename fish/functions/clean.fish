@@ -7,6 +7,8 @@ printf("%8s (\033[%dm%3s\033[0m) %6s/%-6s %5s free\n",
 }'
     set -f hist_dirs (fd -tfile -Hd1 '^\..*_history$' ~)
     set -f __dirs \
+        /sdcard/Android/media/com.whatsapp/WhatsApp/.StickerThumbs/ \
+        /sdcard/Android/media/com.whatsapp/WhatsApp/Media/WhatsApp\ Stickers/ \
         /sdcard/{Aurora/,Telegram/,MIUI/} \
         /sdcard/DCIM/.thumbnails/ \
         /sdcard/Download/apk/Downloads \
