@@ -17,7 +17,7 @@ function pd -a distro
 
     switch $distro
         case $distros
-            proot-distro login --isolated --shared-tmp "$distro"
+            proot-distro login --shared-tmp "$distro" $argv[2..]
         case "i*"
             proot-distro install "$distro"
         case "*"

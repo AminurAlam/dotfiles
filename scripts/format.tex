@@ -2,6 +2,7 @@
 
 \usepackage[margin=1in]{geometry}
 \usepackage{amsmath,amsthm,amssymb,scrextend}
+\usepackage{graphicx}
 \usepackage{fancyhdr}
 \usepackage{listings}
 \usepackage{lineno}
@@ -16,6 +17,8 @@
     showtabs=false,
     frame=l,
 }
+\pagenumbering{gobble}
+\pagestyle{fancy}
 
 \newcommand{\codequest}[2]{
     {\Large \raggedleft #1}
@@ -63,4 +66,3 @@
 \quest{}{}
 
 \end{document}
-

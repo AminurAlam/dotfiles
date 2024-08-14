@@ -77,8 +77,9 @@ nmap('[f', 'zc')
 nmap(']f', 'zf%')
 
 -- macros
-macro('m', [[mmA;`m]])
-macro('x', [[$T["_sx]])
+macro('m', [[mmA;`m]]) -- put ; at end of statements
+macro('x', [[$T["_sx]]) -- mark todo as complete
+macro('f', [[mmF"if`m]]) -- convert python string to format string
 
 -- scrolling
 umap('<c-u>', string.rep('<cmd>norm k<cr><cmd>sl 1m<cr>', vim.o.scroll))
