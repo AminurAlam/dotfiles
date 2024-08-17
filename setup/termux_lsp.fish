@@ -8,10 +8,7 @@ function python_lsp
     cd "$XDG_PROJECTS_DIR"
     pacman -Syu --noconfirm --needed ruff python-pip
 
-    git clone -q --depth 1 "https://github.com/astral-sh/ruff-lsp"
-    patch ruff-lsp/pyproject.toml <$patches/ruff-lsp-pyproject.toml.diff
-
-    pip install ./ruff-lsp pyright python-lsp-server
+    pip install pyright python-lsp-server
 
     yes | rm -rf ruff-lsp
 end
@@ -25,6 +22,5 @@ function java_lsp
 
     ./java-language-server/scripts/link_linux.sh
     mvn package -DskipTests -Dmaven.javadoc.skip
-
-    # yes | rm -rf java-language-server
+    and pacman -Rs maven
 end

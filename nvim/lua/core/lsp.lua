@@ -29,19 +29,18 @@ create({ 'dart', 'language-server', '--protocol=lsp' },
   { 'pubspec.yaml' },
   { dart = { completeFunctionCalls = true, showTodos = true } }
 )
--- stylua: ignore
-create({ 'rust-analyzer' },
-  { 'rust' },
-  { 'Cargo.toml', 'rust-project.json' },
-  { ['rust-analyzer'] = { linkedProjects = nil } }
-)
-create({ 'ruff-lsp' }, { 'python' }, {
+create({ 'rust-analyzer' }, { 'rust' }, {
+  'Cargo.toml',
+  'rust-project.json',
+}, { ['rust-analyzer'] = { linkedProjects = nil } })
+create({ 'ruff', 'server' }, { 'python' }, {
   'pyproject.toml',
   'setup.py',
   'setup.cfg',
   'requirements.txt',
-  'Pipfile',
   '.git',
+}, {
+  init_options = { settings = { configuration = '~/repos/dotfiles/other/ruff.toml' } },
 })
 create({ 'clangd' }, { 'c', 'cpp', 'objc', 'objcpp', 'cuda', 'proto' }, {
   '.git',
@@ -90,30 +89,66 @@ create({ 'lua-language-server' }, { 'lua' }, { 'init.lua', 'lua' }, {
     },
   },
 })
-create({ 'texlab' }, { 'tex', 'bib' }, {}, {
+create({ 'texlab' }, { 'tex', 'plaintex', 'bib' }, {
+  '.git',
+  '.latexmkrc',
+  '.texlabroot',
+  'texlabroot',
+  'Tectonic.toml',
+}, {
   texlab = {
-    auxDirectory = '.',
-    bibtexFormatter = 'texlab',
+    rootDirectory = nil,
     build = {
-      args = { '-pdf', '-interaction=nonstopmode', '-synctex=1', '%f' },
       executable = 'latexmk',
+      args = { '-pdf', '-interaction=nonstopmode', '-synctex=1', '%f' },
+      onSave = true,
       forwardSearchAfter = false,
-      onSave = false,
     },
-    chktex = {
-      onEdit = false,
-      onOpenAndSave = false,
-    },
+    auxDirectory = '.',
+    forwardSearch = { executable = nil, args = {} },
+    chktex = { onOpenAndSave = false, onEdit = false },
     diagnosticsDelay = 300,
-    formatterLineLength = 80,
-    forwardSearch = { args = {} },
     latexFormatter = 'latexindent',
-    latexindent = { modifyLineBreaks = false },
+    latexindent = { ['local'] = nil, modifyLineBreaks = false },
+    bibtexFormatter = 'texlab',
+    formatterLineLength = 80,
   },
 })
 
----@return string
-local info = function()
+
+-- vim.api.nvim_create_autocmd('LspAttach', {
+--   desc = 'LSP: Disable hover capability from Ruff',
+--   once = true,
+--   callback = function(args)
+--     local client = vim.lsp.get_client_by_id(args.data.client_id)
+--     if client == nil then return end
+--     if client.name == 'ruff' then client.server_capabilities.hoverProvider = false end
+--   end,
+-- })
+
+
+vim.api.nvim_create_user_command('TexBuild', function(info)
+  local status = {
+    [0] = 'Success',
+    [1] = 'Error',
+    [2] = 'Failure',
+    [3] = 'Cancelled',
+  }
+
+  vim.lsp.get_clients({ bufnr = 0, name = 'texlab' })[1].request('textDocument/build', {
+    textDocument = { uri = vim.uri_from_bufnr(0) },
+  }, function(e, r)
+    if e then print(status[r.status] .. ': ' .. tostring(e), vim.log.levels.INFO) end
+  end, 0)
+  if info.bang then vim.cmd('!open %:r.pdf') end
+end, { desc = 'Builds your tex file', bang = true })
+
+vim.api.nvim_create_user_command('TexClean', function()
+  vim.lsp.buf.execute_command { command = 'texlab.cleanArtifacts', arguments = { { uri = vim.uri_from_bufnr(0) } } }
+  vim.lsp.buf.execute_command { command = 'texlab.cleanAuxiliary', arguments = { { uri = vim.uri_from_bufnr(0) } } }
+end, { desc = 'cleans up temp files' })
+
+vim.api.nvim_create_user_command('LspInfo', function()
   local clients = vim.lsp.get_clients()
   local text = #clients .. ' clients attached\n'
   local template = [[ CLIENT: %s (id: %d)
@@ -133,18 +168,11 @@ local info = function()
         get_ws(client.workspace_folders) -- client.config.root_dir
       )
   end
-  return text
-end
-
-vim.api.nvim_create_user_command('LspInfo', function() print(info()) end, {
+  print(text)
+end, {
   desc = 'Display attached language servers',
 })
 
 vim.api.nvim_create_user_command('LspLog', function() vim.cmd(string.format('tabnew %s', vim.lsp.get_log_path())) end, {
   desc = 'Opens the Nvim LSP client log.',
 })
-
-return {
-  create = create,
-  info = info,
-}

@@ -22,7 +22,7 @@
 [alias]
     l = log --pretty=nice -n 10
     s = status -bs
-    d = !"git diff -D -- $* | $EDITOR +'set bt=nofile bh=hide' +'nmap q <cmd>quit!<cr>' # "
+    d = !"git diff -- $* | $EDITOR +'set bt=nofile bh=hide' +'nmap q <cmd>quit!<cr>' # "
 
     bls = branch --all
     rls = remote --verbose

@@ -1,9 +1,8 @@
-diff --git a/pom.xml b/pom.xml
+diff --git pom.xml pom.xml
 index a448b27..8de6df9 100644
---- a/pom.xml
-+++ b/pom.xml
-@@ -116,8 +116,8 @@
-                 <artifactId>maven-compiler-plugin</artifactId>
+--- pom.xml
++++ pom.xml
+@@ -117,6 +117,6 @@
                  <version>3.8.0</version>
                  <configuration>
 -                    <source>18</source>
@@ -12,4 +11,3 @@ index a448b27..8de6df9 100644
 +                    <target>17</target>
                      <compilerArgs>
                          <arg>--add-exports</arg>
-                         <arg>jdk.compiler/com.sun.tools.javac.api=ALL-UNNAMED</arg>
