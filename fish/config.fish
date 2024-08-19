@@ -32,8 +32,8 @@ set -gx MANPAGER "$EDITOR +Man!"
 set -gx MANPATH $PREFIX/share/fish/man $PREFIX/share/man
 set -gx TERMINFO "$PREFIX/share/terminfo"
 set -gx BROWSER termux-open
-set -gx LAUNCHER fzf --prompt '  ' --select-1 --inline-info --no-multi --margin 0,3,1,3 --color \
-"dark,fg:,bg:,query:,info:,border:#c0caf5,prompt:,pointer:,marker:,spinner:,header:" # TODO: configure
+set -gx FZF_DEFAULT_OPTS_FILE "$XDG_PROJECTS_DIR/dotfiles/other/fzfrc"
+set -gx LAUNCHER fzf
 set -gx DISPLAY ":1"
 # command config
 set -gx LESSHISTFILE -

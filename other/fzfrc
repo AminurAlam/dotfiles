@@ -1,0 +1,17 @@
+--ignore-case
+--tiebreak chunk,begin,index
+--no-multi
+--bind "tab:up,shift-tab:down,one:accept"
+--scroll-off 4
+
+--layout default
+--border rounded
+--margin 0,0,0,0
+--no-info
+--no-separator
+--no-scrollbar
+--prompt '  '
+
+--color "dark,query:,border:#c0caf5,bg+:#363a4f,bg:#24273a,spinner:#f4dbd6,hl:#ed8796,fg:#c0caf5,header:#ed8796,info:#c6a0f6,pointer:#f4dbd6,marker:#b7bdf8,fg+:#c0caf5,prompt:#c6a0f6,hl+:#ed8796,selected-bg:#2e3c64"
+--preview-window top
+--select-1
