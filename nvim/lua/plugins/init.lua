@@ -1,16 +1,33 @@
 return {
-  { 'numToStr/Comment.nvim', keys = { 'gc', { 'gc', mode = 'v' }, { 'gb', mode = 'v' } }, config = true },
-  { 'windwp/nvim-autopairs', enabled = false, event = { 'InsertEnter' }, config = true },
+  {
+    'windwp/nvim-autopairs',
+    enabled = false,
+    event = { 'InsertEnter' },
+    config = true,
+  },
   {
     'tzachar/highlight-undo.nvim',
     keys = { 'u', 'r' },
-    opts = { undo = { hlgroup = 'IncSearch' }, redo = { hlgroup = 'IncSearch', lhs = 'r' } },
+    opts = {
+      undo = { hlgroup = 'IncSearch' },
+      redo = { hlgroup = 'IncSearch', lhs = 'r' },
+    },
   },
   {
     'Wansmer/treesj',
-    enabled = false,
+    enabled = true,
     keys = { { '<leader>j', '<cmd>TSJToggle<cr>' } },
-    opts = { use_default_keymaps = false, check_syntax_error = false, notify = false },
+    opts = {
+      use_default_keymaps = false,
+      check_syntax_error = false,
+      notify = false,
+    },
+  },
+  {
+    'numToStr/Comment.nvim',
+    enabled = false,
+    keys = { 'gc', { 'gc', mode = 'v' }, { 'gb', mode = 'v' } },
+    config = true,
   },
   {
     'altermo/ultimate-autopair.nvim',

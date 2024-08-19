@@ -22,7 +22,6 @@ end
 create({ 'taplo', 'lsp', 'stdio' }, { 'toml' }, { '*.toml', '.git' }, {})
 create({ 'gopls' }, { 'go' }, { 'go.work', 'go.mod', '.git' })
 create({ 'java-language-server' }, { 'java' }, { 'build.gradle', 'pom.xml', '.git' })
-create({ 'bash-language-server', 'start' }, { 'sh', 'zsh', 'bash' }, { '.sh', '.zsh', '.bash' })
 -- stylua: ignore
 create({ 'dart', 'language-server', '--protocol=lsp' },
   { 'dart' },
@@ -115,7 +114,6 @@ create({ 'texlab' }, { 'tex', 'plaintex', 'bib' }, {
   },
 })
 
-
 -- vim.api.nvim_create_autocmd('LspAttach', {
 --   desc = 'LSP: Disable hover capability from Ruff',
 --   once = true,
@@ -125,7 +123,6 @@ create({ 'texlab' }, { 'tex', 'plaintex', 'bib' }, {
 --     if client.name == 'ruff' then client.server_capabilities.hoverProvider = false end
 --   end,
 -- })
-
 
 vim.api.nvim_create_user_command('TexBuild', function(info)
   local status = {

@@ -40,8 +40,8 @@ nmap('<leader>lr', vim.lsp.buf.rename, 'rename symbol under cursor')
 nmap('<leader>gd', vim.lsp.buf.definition, 'goto definition')
 nmap('<leader>ca', vim.lsp.buf.code_action, 'see code actions')
 nmap('<leader>d', vim.diagnostic.open_float, 'view line diagnostics')
-nmap('[d', function() vim.diagnostic.jump { count = -1 } end, 'goto prev diagnostic message')
-nmap(']d', function() vim.diagnostic.jump { count = 1 } end, 'goto next diagnostic message')
+-- nmap('[d', function() vim.diagnostic.jump { count = -1 } end, 'goto prev diagnostic message') -- echasnovski/mini.bracketed
+-- nmap(']d', function() vim.diagnostic.jump { count = 1 } end, 'goto next diagnostic message') -- echasnovski/mini.bracketed
 
 -- git
 nmap('H', require('gitsigns').preview_hunk_inline, 'preview hunk')
