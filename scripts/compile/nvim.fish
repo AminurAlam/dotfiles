@@ -1,8 +1,8 @@
 set REPO_NAME nvim-fork
 set REPO_PATH "$XDG_PROJECTS_DIR/$REPO_NAME"
 set REPO_URL "https://github.com/AminurAlam/neovim.git"
-set DEPENDENCIES binutils clang cmake gettext libtreesitter libuv make ninja openssl pkg-config \
-    tree-sitter-c tree-sitter-lua tree-sitter-markdown tree-sitter-query tree-sitter-vimdoc tree-sitter-vim
+set DEPENDENCIES binutils clang cmake gettext libuv make ninja openssl pkg-config \
+    tree-sitter-parsers libunibilium utf8proc
 
 function pre_build
     if command -vq apt
@@ -20,33 +20,29 @@ function pre_build
 
     [ -d "$REPO_PATH" ] || git clone --branch custom "$REPO_URL" "$REPO_PATH"
     cd "$REPO_PATH"
-    git remote show upstream &>/dev/null || git remote add upstream "https://github.com/neovim/neovim.git"
+    git remote show upstream -n &>/dev/null || git remote add upstream "https://github.com/neovim/neovim.git"
 end
 
 function build
-    # set UV_USE_IO_URING 0
-    [ "$(read -P 'run `make distclean`? [y/N] ')" = y ] && begin
-        rm -frI $PREFIX/share/nvim/
+    if [ -e build -o -e .deps ] && [ "$(read -P 'run `make distclean`? [y/N] ')" = y ]
+        [ -e "$PREFIX/share/nvim" ] && rm -fr "$PREFIX/share/nvim/"
         make distclean
     end
 
-    make || exit
+    # NOTE: this is for dynamic builds
+    cmake -S cmake.deps -B .deps -G Ninja -DUSE_BUNDLED=OFF -DUSE_BUNDLED_LPEG=ON
+    cmake --build .deps
+    cmake -B build -G Ninja
+    cmake --build build
+    # make || exit # NOTE: this is for static builds
     make install CMAKE_INSTALL_PREFIX="$PREFIX/"
 end
 
 function post_build
-    printf "========================== BUILD COMPLETE ==========================\n"
-    # set UV_USE_IO_URING 0
-    set VIMRUNTIME runtime/
-
+    [ -L "$PREFIX"/share/nvim/runtime/parser ] && unlink "$PREFIX"/share/nvim/runtime/parser
     ln -s "$PREFIX"/lib/tree_sitter "$PREFIX"/share/nvim/runtime/parser
 
     build/bin/nvim -V1 --version || return 1
-    build/bin/nvim --clean --headless +"helptags $PREFIX/share/nvim/runtime/doc/ | q!"
-    lsof ~/.local/bin/nvim &>/dev/null &&
-        printf "nvim is currently running\n" ||
-        command cp -i build/bin/nvim ~/.local/bin/
-    printf "====================================================================\n"
 end
 
 

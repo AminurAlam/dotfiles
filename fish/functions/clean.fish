@@ -11,9 +11,10 @@ printf("%8s (\033[%dm%3s\033[0m) %6s/%-6s %5s free\n",
         /sdcard/Android/media/com.whatsapp/WhatsApp/Media/WhatsApp\ Stickers/ \
         /sdcard/{Aurora/,Telegram/,MIUI/} \
         /sdcard/DCIM/.thumbnails/ \
-        /sdcard/Download/apk/Downloads \
+        /sdcard/Download/apk/Downloads/ \
         /sdcard/Download/Nearby Share/ \
         ~/.local/share/cargo/registry/ \
+        ~/downloads/ \
         (fd -tdirectory '_tmp$' /sdcard/TachiyomiSY/)
 
     for dir in $__dirs

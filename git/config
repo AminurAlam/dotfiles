@@ -60,9 +60,9 @@
 ### diff and merge
 
 [diff]
-    context = 2
-    noprefix = true
-    relative = true
+    # context = 2
+    # noprefix = true
+    # relative = true
     algorithm = minimal
 
 [merge]
