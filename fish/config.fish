@@ -1,8 +1,4 @@
-set -gxp --path PATH "$HOME/.local/bin" # this comes first: nvim, eza, sk...
-
 ### EXPORTS ###
-
-# setup
 set -l XDG_DIR (test -n "$EXTERNAL_STORAGE" && printf "$EXTERNAL_STORAGE" || printf "$HOME")
 set -gx EDITOR (command -v nvim || command -v vim || command -v vi)
 
@@ -32,18 +28,17 @@ set -gx MANPAGER "$EDITOR +Man!"
 set -gx MANPATH $PREFIX/share/fish/man $PREFIX/share/man
 set -gx TERMINFO "$PREFIX/share/terminfo"
 set -gx BROWSER termux-open
-set -gx FZF_DEFAULT_OPTS_FILE "$XDG_PROJECTS_DIR/dotfiles/other/fzfrc"
 set -gx LAUNCHER fzf
 set -gx DISPLAY ":1"
 # command config
-set -gx LESSHISTFILE -
 set -gx STARSHIP_CACHE $XDG_CACHE_HOME/starship
 set -gx ICEAUTHORITY $XDG_CACHE_HOME/ICEauthority
 set -gx XAUTHORITY $XDG_RUNTIME_DIR/Xauthority
 set -gx GNUPGHOME $XDG_DATA_HOME/gnupg
 set -gx RIPGREP_CONFIG_PATH $XDG_PROJECTS_DIR/dotfiles/other/ripgreprc
+set -gx FZF_DEFAULT_OPTS_FILE $XDG_PROJECTS_DIR/dotfiles/other/fzfrc
 # lang config
-set -gx JAVA_HOME $PREFIX/opt/openjdk
+set -gx JAVA_HOME $PREFIX/lib/jvm/java-17-openjdk
 set -gx PYTHONSTARTUP $XDG_CONFIG_HOME/python/startup.py
 set -gx NODE_REPL_HISTORY $XDG_STATE_HOME/node_repl_history
 set -gx NPM_CONFIG_USERCONFIG $XDG_CONFIG_HOME/npm/npmrc
@@ -55,10 +50,12 @@ set -gx VIMRUNTIME $PREFIX/share/nvim/runtime
 # fish config
 set -U fish_features qmark-noglob
 
+### PATH ###
+set -gxp --path PATH "$HOME/.local/bin" # sometimes before
 set -gxp --path PATH "$CARGO_HOME/bin" # after declaring CARGO_HOME
 set -gxp --path PATH "$HOME/.local/share/npm/bin"
-set -gxp --path PATH "$PREFIX/bin/texlive"
 set -gxp --path PATH "$PREFIX/lib/jvm/java-17-openjdk/bin"
+# set -gxp --path PATH "$PREFIX/bin/texlive" # replaced by $PREFIX/etc/fish/conf.d/texlive.fish
 
 ### SOURCE ###
 command -vq starship && starship init fish | source || source $XDG_CONFIG_HOME/fish/functions/load_prompt.fish
@@ -87,15 +84,4 @@ end
 #     end
 #
 #     printf "[$(set_color cyan)$time$(set_color reset)] $(set_color --bold)❯ "
-# end
-
-# function result
-#     set -l flac (fd 'flac$' | count)
-#     set -l mp3 (fd 'mp3$'  | count)
-#     set -l ogg (fd 'ogg$'  | count)
-#     set -l total (math $flac + $mp3 + $ogg)
-#     printf " %s%% %s - %d\n" \
-#         (math -s 2 $flac / $total x 100) FLAC $flac \
-#         (math -s 2 $mp3  / $total x 100) MP3 $mp3 \
-#         (math -s 2 $ogg  / $total x 100) OGG $ogg
 # end

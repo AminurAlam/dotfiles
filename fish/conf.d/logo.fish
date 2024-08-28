@@ -4,7 +4,7 @@ status is-interactive || exit
 set -l m (set_color brcyan)
 set -l i (set_color brgreen)
 set -l o (set_color brcyan)
-set -l pad (string repeat -Nn (math -s 0 "($COLUMNS/2) - 20") " ")
+set -l pad (string repeat -Nn (math -s0 $COLUMNS/2 - 20) ' ')
 
 set fish_greeting $pad'                 '$o'___'\n \
     $pad'  ___======____='$m'-'$i'-'$m'-='$o')'\n \
