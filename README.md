@@ -1,9 +1,11 @@
 ## configs found here
  - [aria2](https://aria2.github.io/) - download manager
+ - [anki](https://apps.ankiweb.net/) - flashcards
  - [clangd](https://clang.llvm.org/) - c++ lsp server
  - [clang-format](https://clang.llvm.org/docs/ClangFormat.html) - c formatter
  - [curl](https://curl.se/) -  request url
  - [fish](https://fishshell.com/) - shell
+ - [fzf](https://junegunn.github.io/fzf/) - fuzzy finder
  - [git](https://git-scm.com/) - vcs
  - [htop](https://htop.dev/) - process viewer
  - [newsboat](https://newsboat.org/) - rss reader
