@@ -1,0 +1,36 @@
+<div class="head">
+  {{furigana:Word Furigana}}
+  <div class="word_meaning">
+    {{Word Meaning}}
+  </div>
+  <div class='sentence'>
+    {{furigana:Sentence Furigana}}<br>
+    {{Sentence Meaning}}
+  </div>
+</div>
+
+{{#Frequency}}
+  <div class="freq">{{Frequency}}</div>
+{{/Frequency}}
+
+{{#Notes}}
+  <div class="note">({{Notes}})</div>
+{{/Notes}}
+
+<div class="pic">
+  {{#Source Url}}
+    <a href="{{Source Url}}">{{Picture}}</a>
+  {{/Source Url}}
+  {{^Source Url}}
+    {{Picture}}
+  {{/Source Url}}
+</div>
+
+<div class="utils">
+  <button class="jisho" onclick="window.location.href = 'https://jisho.org/search/{{Word}}'">
+    dic
+  </button>
+  {{#Word Audio}}
+    <br>{{Word Audio}}
+  {{/Word Audio}}
+</div>

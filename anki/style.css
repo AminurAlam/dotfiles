@@ -1,0 +1,52 @@
+.card {
+  font-family: "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "Noto Sans JP", Osaka, "メイリオ", Meiryo, "ＭＳ Ｐゴシック", "MS PGothic", "MS UI Gothic", sans-serif;
+  font-size: 44px;
+  text-align: center;
+}
+
+.card.night_mode {
+  color: #c0caf5;
+  background-color: #24283b;
+  margin: 10px 0px 0px 0px;
+}
+
+#content { margin: 5px; }
+b { color: #5586cd; }
+.top { margin: 0px 5px 0px 5px }
+.word_meaning { font-size:25px; padding-bottom:36px; }
+.sentence {font-size: 22px;}
+.note { font-size: 20px; }
+.pic { position: fixed; bottom: 0px; left: 0px; max-height: 100vw; }
+.utils { position: fixed; bottom: 0px; right: 0px; }
+.mobile img { max-height: 75vw; max-width: 85vw; }
+
+.freq {
+  font-size: 16px;
+  padding: 20px 0px 0px 10px;
+  ul {
+    padding: 0px;
+    margin: 0px;
+    & li { display: inline; margin-right: 1ex; }
+  }
+}
+
+.yomitan-glossary {
+  font-size: 18px;
+  text-align: left;
+  margin-bottom: -36px;
+  & ol { padding-left: 30px; padding-right: 5px; }
+}
+
+button {
+  font-size: 16px;
+  border: 0px;
+  border-radius: 10px;
+  cursor: pointer;
+  display: inline-block;
+  line-height: 20px;
+  padding: 6px 10px;
+}
+.jisho { background-color: #2ea44faa; }
+
+img:first-child:nth-last-child(2),
+img:first-child:nth-last-child(2) ~ img { width: 50%; }
