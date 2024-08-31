@@ -1,0 +1,5 @@
+--- orig	2024-08-31 16:55:32.321512629 +0530
++++ copy	2024-08-31 16:55:38.789512629 +0530
+@@ -1 +1 @@
+-#!/usr/bin/env node
++#!/data/data/com.termux/files/usr/bin/node

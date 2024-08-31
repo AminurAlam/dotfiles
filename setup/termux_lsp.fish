@@ -24,3 +24,13 @@ function java_lsp
     mvn package -DskipTests -Dmaven.javadoc.skip
     and pacman -Rs maven
 end
+
+function npm_lsp
+    for bin in $HOME/.local/share/npm/bin/*
+        while [ -L "$bin" ]
+            set bin (readlink -f "$bin")
+        end
+        [ -e "$bin" -a -x "$bin" ]
+        and patch --no-backup-if-mismatch "$bin" <~/repos/dotfiles/scripts/patches/npm-bin.diff
+    end
+end
