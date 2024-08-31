@@ -8,8 +8,8 @@ abbr rm "rm -i"
 abbr rf "rm -frI"
 abbr rd "rmdir -pv"
 abbr md "mkdir -pv"
-abbr vi "nvim"
-abbr cls "clear"
+abbr vi nvim
+abbr cls clear
 abbr tar "tar xzf"
 abbr yq "yq -oj --xml-attribute-prefix ''"
 abbr qmv "qmv -AXf do"
@@ -22,7 +22,9 @@ abbr --set-cursor --position anywhere awk "awk -F ' ' '{print \$%}'"
 abbr --set-cursor mbz "python ~/repos/musicbrainzpy/cover_art.py -o \$XDG_MUSIC_DIR/#meta/ '%'"
 
 # replicate =command from zsh
-function which_commander; command -v (string sub -s 2 $argv);  end
+function which_commander
+    command -v (string sub -s 2 $argv)
+end
 abbr --add equalcommand --regex '=\w+' --position anywhere --function which_commander
 
 # parent dir
@@ -47,7 +49,7 @@ abbr rconf "rclone config"
 
 # ls -> eza
 set -l common "-las ext -F auto -I '.git*' --icons --no-user --group-directories-first --no-quotes --color-scale all --color-scale-mode fixed"
-alias l  "eza $common --no-permissions --no-time"
+alias l "eza $common --no-permissions --no-time"
 alias ll "eza $common --git --total-size"
 alias lt "eza $common -T --git --total-size --no-permissions --no-time"
 

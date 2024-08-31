@@ -5,28 +5,28 @@ set -l foreground \#c0caf5
 set -l selection \#364a82
 set -l comment \#565f89
 # black
-set -l color0  \#1E1E22
-set -l color8  \#383841
+set -l color0 \#1E1E22
+set -l color8 \#383841
 # red
-set -l color1  \#ff5555
-set -l color9  \#ff6e67
+set -l color1 \#ff5555
+set -l color9 \#ff6e67
 # green
-set -l color2  \#5af79e
+set -l color2 \#5af79e
 set -l color10 \#5af79e
 # yellow
-set -l color3  \#f4f99d
+set -l color3 \#f4f99d
 set -l color11 \#ff9e64
 # blue
-set -l color4  \#9d7cd8
+set -l color4 \#9d7cd8
 set -l color12 \#caa9fa
 # magenta
-set -l color5  \#ff79c6
+set -l color5 \#ff79c6
 set -l color13 \#ff92d0
 # cyan
-set -l color6  \#7dcfff
+set -l color6 \#7dcfff
 set -l color14 \#9aedfe
 # white
-set -l color7  \#bfbfbf
+set -l color7 \#bfbfbf
 set -l color15 \#e6e6e6
 
 # Syntax Highlighting Colors

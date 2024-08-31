@@ -27,7 +27,7 @@ function music
 
     if [ "$(read -P 'rename? [y/N] ')" = y ]
         for n in (seq $filecount)
-            [  "$files[$n]" = "$new_fn[$n]" ] || mv "$files[$n]" "$new_fn[$n]"
+            [ "$files[$n]" = "$new_fn[$n]" ] || mv "$files[$n]" "$new_fn[$n]"
         end
     end
 end

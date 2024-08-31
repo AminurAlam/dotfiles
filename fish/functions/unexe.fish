@@ -20,8 +20,8 @@ function unexe -a input
         printf '#%.0s' (seq (math -s 0 (tput cols) x $count/$total))
 
         if [ -f "$file" ]
-        and stat -c '%A' -- "$file" | grep --quiet x
-        and [ (stat -c '%s' -- "$file") -lt 20$mb ]
+            and stat -c '%A' -- "$file" | grep --quiet x
+            and [ (stat -c '%s' -- "$file") -lt 20$mb ]
             mv -- "$file" "$exe/$file"
             chmod -x -- "$exe/$file" &>/dev/null
             mv -- "$exe/$file" ./

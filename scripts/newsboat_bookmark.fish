@@ -1,6 +1,6 @@
 #!/data/data/com.termux/files/usr/bin/fish
 
-[ -e "/sdcard/main/notes/bookmarks" ] && echo "$argv[1]" >>/sdcard/main/notes/bookmarks || echo "$argv[1]" >>~/bookmarks
+[ -e /sdcard/main/notes/bookmarks ] && echo "$argv[1]" >>/sdcard/main/notes/bookmarks || echo "$argv[1]" >>~/bookmarks
 
 # url="$1"
 # title="$2"
