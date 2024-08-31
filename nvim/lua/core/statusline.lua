@@ -57,14 +57,17 @@ local mode_names = {
   ['t'] = 'TERMINAL',
 }
 local buflogo = { [0] = '', '', '二 ', '三 ', '四 ', '五 ', '六 ', '七 ', '八 ', '九' }
-local git_hl = { ['+'] = 'Add#', ['~'] = 'Change#', ['-'] = 'Delete#' }
 local hl = vim.api.nvim_set_hl
 local secondary = '#30354A'
 
 vim.g.stl = {
   mode = function() return mode_names[vim.api.nvim_get_mode().mode] or '???' end,
   bufcount = function() return buflogo[#vim.fn.getbufinfo { buflisted = 1 }] or '十 ' end,
-  hlsearch = function(sc) return string.format('[%d/%d]', sc.current, sc.total) end,
+  hlsearch = function() -- https://github.com/nvim-lualine/lualine.nvim/pull/1088
+    local ok, sc = pcall(vim.fn.searchcount, { maxcount = 99, timeout = 20 })
+    if not ok then return '' end
+    return string.format('[%d/%d]', sc.current, sc.total)
+  end,
   progress = function(current, total)
     if current == 1 then
       return 'Top'
@@ -81,19 +84,6 @@ vim.g.stl = {
       .. (count 'WARN' > 0 and '%#DiagnosticWarn# ' or '')
       .. (count 'HINT' > 0 and '%#DiagnosticHint#󰌶 ' or '')
   end,
-  --[[ gitsigns = function()
-    -- return string.gsub(
-    --   vim.b.gitsigns_status or '',
-    --   '([+~-])(%d+)',
-    --   function(stat, count) return '%#GitSigns' .. git_hl[stat] .. stat .. count end
-    -- )
-    -- local stat = vim.b.gitsigns_status_dict
-    -- if not stat then return '' end
-    --
-    -- return (stat.added and stat.added > 0 and '%#GitSignsAdd# +' .. stat.added or '')
-    --   .. (stat.changed and stat.changed > 0 and '%#GitSignsChange# ~' .. stat.changed or '')
-    --   .. (stat.removed and stat.removed > 0 and '%#GitSignsDelete# -' .. stat.removed or '')
-  end, ]]
 }
 
 vim.api.nvim_create_autocmd({ 'ModeChanged' }, {
@@ -126,9 +116,8 @@ vim.opt.stl = '%#stl_hl_a# %{ g:stl.mode() } %#stl_hl_b#' -- a to b
   .. '%#stl_hl_to#%#Normal# ' -- b to c
   .. '%{% g:stl.diagnostics() %}'
   .. '%{% get(b:, "gitsigns_status", "") %}'
-  -- .. '%{% g:stl.gitsigns() %}'
   .. '%#Normal#%=%S ' -- middle seperator
-  .. '%{ v:hlsearch ? g:stl.hlsearch(searchcount()) : "" } '
+  .. '%{ v:hlsearch ? g:stl.hlsearch() : "" } '
   .. '%{ reg_recording() != "" ? " " .. reg_recording() : "" } '
   .. '%#stl_hl_to#%#stl_hl_b# ' -- c to b
   .. '%{ g:stl.progress(line("."), line("$")) } '

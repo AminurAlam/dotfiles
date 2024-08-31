@@ -18,6 +18,7 @@ return {
     enabled = true,
     keys = { { '<leader>j', '<cmd>TSJToggle<cr>' } },
     opts = {
+      max_join_length = 240,
       use_default_keymaps = false,
       check_syntax_error = false,
       notify = false,

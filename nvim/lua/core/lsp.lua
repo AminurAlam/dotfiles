@@ -11,9 +11,9 @@ local function create(cmd, filetypes, root_dir, settings)
         cmd = cmd,
         filetypes = filetypes,
         single_file_support = true,
-        root_dir = vim.fs.root(0, root_dir), -- https://github.com/neovim/neovim/commit/38b9c322c97b63f53caef7a651211fc9312d055e
+        root_dir = vim.fs.root(0, root_dir), -- https://github.com/neovim/neovim/pull/28477
         settings = settings or {},
-      }, { silent = false }) -- https://github.com/neovim/neovim/commit/37d8e504593646c81542f8c66f0d608e0a59f036
+      }, { silent = true }) -- https://github.com/neovim/neovim/pull/28478
       if client_id then vim.lsp.buf_attach_client(buf.id, client_id) end
     end,
   })
@@ -22,8 +22,8 @@ end
 create({ 'taplo', 'lsp', 'stdio' }, { 'toml' }, { '*.toml', '.git' }, {})
 create({ 'gopls' }, { 'go' }, { 'go.work', 'go.mod', '.git' })
 create({ 'java-language-server' }, { 'java' }, { 'build.gradle', 'pom.xml', '.git' })
--- stylua: ignore
-create({ 'dart', 'language-server', '--protocol=lsp' },
+create( -- dart
+  { 'dart', 'language-server', '--protocol=lsp' },
   { 'dart' },
   { 'pubspec.yaml' },
   { dart = { completeFunctionCalls = true, showTodos = true } }

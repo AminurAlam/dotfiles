@@ -12,9 +12,7 @@ M.config = function()
   null_ls.setup {
     border = 'rounded',
     sources = {
-      null_ls.builtins.diagnostics.gitlint,
       null_ls.builtins.formatting.prettier,
-      null_ls.builtins.diagnostics.checkmake,
       null_ls.builtins.formatting.stylua,
       null_ls.builtins.diagnostics.fish,
       null_ls.builtins.formatting.fish_indent,
