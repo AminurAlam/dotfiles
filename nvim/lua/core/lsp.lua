@@ -1,6 +1,6 @@
 ---@param cmd table[string]
 ---@param filetypes table[string]
----@param root_dir table[string]
+---@param root_dir string|string[]|fun(name: string, path: string): boolean
 ---@param settings table?
 local function create(cmd, filetypes, root_dir, settings)
   vim.api.nvim_create_autocmd('Filetype', {
@@ -22,6 +22,7 @@ end
 create({ 'taplo', 'lsp', 'stdio' }, { 'toml' }, { '*.toml', '.git' }, {})
 create({ 'gopls' }, { 'go' }, { 'go.work', 'go.mod', '.git' })
 create({ 'java-language-server' }, { 'java' }, { 'build.gradle', 'pom.xml', '.git' })
+create({ 'bash-language-server', 'start' }, { 'sh', 'zsh', 'bash' }, { '.sh', '.zsh' })
 create( -- dart
   { 'dart', 'language-server', '--protocol=lsp' },
   { 'dart' },
@@ -66,7 +67,7 @@ create({ 'pyright-langserver', '--stdio' }, { 'python' }, {
     },
   },
 })
-create({ 'lua-language-server' }, { 'lua' }, { 'init.lua', 'lua' }, {
+create({ 'lua-language-server' }, { 'lua' }, { 'lua' }, {
   Lua = {
     -- library = vim.api.nvim_get_runtime_file('', true),
     typeFormat = { config = { auto_complete_end = true } },
@@ -114,17 +115,10 @@ create({ 'texlab' }, { 'tex', 'plaintex', 'bib' }, {
   },
 })
 
--- vim.api.nvim_create_autocmd('LspAttach', {
---   desc = 'LSP: Disable hover capability from Ruff',
---   once = true,
---   callback = function(args)
---     local client = vim.lsp.get_client_by_id(args.data.client_id)
---     if client == nil then return end
---     if client.name == 'ruff' then client.server_capabilities.hoverProvider = false end
---   end,
--- })
+local usercmd = vim.api.nvim_create_user_command
+local autocmd = vim.api.nvim_create_autocmd
 
-vim.api.nvim_create_user_command('TexBuild', function(info)
+usercmd('TexBuild', function(info)
   local status = {
     [0] = 'Success',
     [1] = 'Error',
@@ -140,12 +134,12 @@ vim.api.nvim_create_user_command('TexBuild', function(info)
   if info.bang then vim.cmd('!open %:r.pdf') end
 end, { desc = 'Builds your tex file', bang = true })
 
-vim.api.nvim_create_user_command('TexClean', function()
+usercmd('TexClean', function()
   vim.lsp.buf.execute_command { command = 'texlab.cleanArtifacts', arguments = { { uri = vim.uri_from_bufnr(0) } } }
   vim.lsp.buf.execute_command { command = 'texlab.cleanAuxiliary', arguments = { { uri = vim.uri_from_bufnr(0) } } }
 end, { desc = 'cleans up temp files' })
 
-vim.api.nvim_create_user_command('LspInfo', function()
+usercmd('LspInfo', function()
   local clients = vim.lsp.get_clients()
   local text = #clients .. ' clients attached\n'
   local template = [[ CLIENT: %s (id: %d)
@@ -170,6 +164,24 @@ end, {
   desc = 'Display attached language servers',
 })
 
-vim.api.nvim_create_user_command('LspLog', function() vim.cmd(string.format('tabnew %s', vim.lsp.get_log_path())) end, {
+usercmd('LspLog', function() vim.cmd.tabnew(vim.lsp.get_log_path()) end, {
   desc = 'Opens the Nvim LSP client log.',
 })
+
+autocmd('LspAttach', {
+  callback = function(info)
+    local nmap = function(lhs, rhs) vim.keymap.set('n', lhs, rhs, { buffer = info.buf }) end
+
+    nmap('<leader>li', vim.lsp.buf.format)
+    nmap('<leader>lf', vim.lsp.buf.format)
+    nmap('<leader>ca', vim.lsp.buf.code_action)
+    nmap('cn', vim.lsp.buf.rename)
+    nmap('gd', vim.lsp.buf.definition)
+
+    -- local client = vim.lsp.get_client_by_id(info.data.client_id)
+    -- if client == nil then return end
+    -- if client.name == 'ruff' then client.server_capabilities.hoverProvider = false end
+    -- if client.supports_method('textDocument/definition') then end
+  end,
+})
+vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, { border = 'rounded' })

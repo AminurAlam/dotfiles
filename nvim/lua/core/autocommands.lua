@@ -124,6 +124,7 @@ autocmd('TextYankPost', {
   callback = function() vim.highlight.on_yank { higroup = 'IncSearch', timeout = 250 } end,
 })
 
+autocmd('FileType', { pattern = { 'help', 'qf' }, command = 'nmap <buffer> <cr> <cr>' })
 autocmd('BufEnter', { command = 'set formatoptions-=cro' })
 
 -- https://github.com/mawkler/modicator.nvim

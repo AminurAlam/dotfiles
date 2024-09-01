@@ -34,14 +34,11 @@ nmap('[b', '<cmd>CybuPrev<cr>', 'previous buffer')
 nmap(']b', '<cmd>CybuNext<cr>', 'next buffer')
 
 -- lsp & diagnostics
-nmap('<leader>lf', vim.lsp.buf.format, 'format code using LSP')
-nmap('<leader>lh', vim.lsp.buf.hover, 'show doc of symbol under cursor')
-nmap('<leader>lr', vim.lsp.buf.rename, 'rename symbol under cursor')
-nmap('<leader>gd', vim.lsp.buf.definition, 'goto definition')
-nmap('<leader>ca', vim.lsp.buf.code_action, 'see code actions')
+-- nmap('<leader>lf', vim.lsp.buf.format, 'format code using LSP')
+-- nmap('<leader>lr', vim.lsp.buf.rename, 'rename symbol under cursor')
+-- nmap('<leader>gd', vim.lsp.buf.definition, 'goto definition')
+-- nmap('<leader>ca', vim.lsp.buf.code_action, 'see code actions')
 nmap('<leader>d', vim.diagnostic.open_float, 'view line diagnostics')
--- nmap('[d', function() vim.diagnostic.jump { count = -1 } end, 'goto prev diagnostic message') -- echasnovski/mini.bracketed
--- nmap(']d', function() vim.diagnostic.jump { count = 1 } end, 'goto next diagnostic message') -- echasnovski/mini.bracketed
 
 -- git
 nmap('H', require('gitsigns').preview_hunk_inline, 'preview hunk')
@@ -65,9 +62,10 @@ nmap('<cr>', '"_ciw', 'delete word at cursor')
 -- write & quit
 nmap('<leader>w', '<cmd>silent w <bar> redraw <cr>', 'write')
 nmap('<leader>W', '<cmd>silent w <bar> redraw <cr>', 'write')
-nmap('Q', function() vim.cmd(#fn.getbufinfo({ buflisted = 1 }) == 1 and 'q' or 'bd') end, 'quit buffer')
+nmap('q', function() vim.cmd(#fn.getbufinfo { buflisted = 1 } == 1 and 'q' or 'bd') end, 'quit buffer')
+nmap('Q', 'q', 'record typed characters into register')
 
--- indent
+-- indent & fold
 nmap('=', '==')
 nmap('>', '>>')
 nmap('<', '<<')
@@ -75,15 +73,8 @@ vmap('>', '>gv')
 vmap('<', '<gv')
 nmap('[f', 'zc')
 nmap(']f', 'zf%')
-
--- macros
-macro('m', [[mmA;`m]]) -- put ; at end of statements
-macro('x', [[$T["_sx]]) -- mark todo as complete
-macro('f', [[mmF"if`m]]) -- convert python string to format string
-
--- scrolling
-umap('<c-u>', string.rep('<cmd>norm k<cr><cmd>sl 1m<cr>', vim.o.scroll))
-umap('<c-d>', string.rep('<cmd>norm j<cr><cmd>sl 1m<cr>', vim.o.scroll))
+nmap('zC', 'zM')
+nmap('zO', 'zR')
 
 -- toggles
 nmap('<leader>ss', '<cmd>setlocal spell!<cr>', 'toggle spell')
@@ -101,10 +92,6 @@ nmap('<leader>sn', function()
     vim.o.foldcolumn = 'auto'
   end
 end, 'toggle statuscolumn')
-nmap('<leader>si', function()
-  local lcs = (vim.opt_local.lcs:get().leadmultispace ~= ' ') and ' ' or '│   '
-  vim.opt_local.lcs = { leadmultispace = lcs }
-end, 'toggle indentlines')
 
 -- other
 umap('<c-c>', '<cmd>norm m`viw~``<cr>', 'toggle word case')
@@ -124,6 +111,7 @@ vmap('v', function()
   feed(next[vim.api.nvim_get_mode().mode])
 end, 'repeat v to change visual mode')
 
+-- overrides
 nmap('z=', function()
   vim.ui.select(
     fn.spellsuggest(vim.fn.expand('<cword>')),
@@ -134,10 +122,15 @@ nmap('z=', function()
   )
 end, 'open spellsuggests in select menu')
 
+-- macros
+macro('m', [[mmA;`m]]) -- put ; at end of statements
+macro('x', [[$T["_sx]]) -- mark todo as complete
+macro('f', [[mmF"if`m]]) -- convert python string to format string
+
 -- abbreviations
 if fn.has('nvim-0.10.0') == 1 then
-  abbr('qw', 'q!') -- dvorak
   abbr('vq', 'wq') -- dvorak
   abbr('qn', 'q!') -- qwert
+  -- abbr('qw', 'q!') -- dvorak
   -- abbr('S', [[s/\v]])
 end
