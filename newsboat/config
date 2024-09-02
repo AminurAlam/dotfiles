@@ -40,6 +40,7 @@ reset-unread-on-update \
     "https://brainbaking.com/index.xml" \
     "https://citra-emu.org/index.xml"
 
+download-timeout 10
 auto-reload no
 reload-time 360
 notify-always no

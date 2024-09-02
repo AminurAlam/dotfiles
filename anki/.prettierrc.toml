@@ -1,0 +1,14 @@
+"$schema" = "https://json.schemastore.org/prettierrc"
+
+bracketSpacing = true
+experimentalTernaries = true
+printWidth = 50
+tabWidth = 2
+useTabs = false
+singleQuote = false
+quoteProps = "as-needed"
+bracketSameLine = true
+htmlWhitespaceSensitivity = "ignore"
+endOfLine = "lf"
+embeddedLanguageFormatting = "auto"
+# singleAttributePerLine = false

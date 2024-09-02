@@ -1,5 +1,9 @@
+/* vim:set cc=37 et sw=2: */
 .card {
-  font-family: "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "Noto Sans JP", Osaka, "メイリオ", Meiryo, "ＭＳ Ｐゴシック", "MS PGothic", "MS UI Gothic", sans-serif;
+  font-family: "ヒラギノ角ゴ Pro W3",
+    "Hiragino Kaku Gothic Pro", "Noto Sans JP",
+    Osaka, "メイリオ", Meiryo, "ＭＳ Ｐゴシック",
+    "MS PGothic", "MS UI Gothic", sans-serif;
   font-size: 44px;
   text-align: center;
 }
@@ -12,13 +16,31 @@
 
 #content { margin: 5px; }
 b { color: #5586cd; }
-.top { margin: 0px 5px 0px 5px }
-.word_meaning { font-size:25px; padding-bottom:36px; }
-.sentence {font-size: 22px;}
+.word-back {
+  font-size: 25px;
+  padding-bottom: 36px;
+}
+.sentence-front {
+  font-size: 22px;
+  padding-top: 70px;
+}
+.sentence-back { font-size: 22px; }
 .note { font-size: 20px; }
-.pic { position: fixed; bottom: 0px; left: 0px; max-height: 100vw; }
-.utils { position: fixed; bottom: 0px; right: 0px; }
-.mobile img { max-height: 75vw; max-width: 85vw; }
+.pic {
+  position: fixed;
+  bottom: 0px;
+  left: 0px;
+  max-height: 100vw;
+}
+.utils {
+  position: fixed;
+  bottom: 0px;
+  right: 0px;
+}
+.mobile img {
+  max-height: 75vw;
+  max-width: 85vw;
+}
 
 .freq {
   font-size: 16px;
@@ -26,7 +48,10 @@ b { color: #5586cd; }
   ul {
     padding: 0px;
     margin: 0px;
-    & li { display: inline; margin-right: 1ex; }
+    & li {
+      display: inline;
+      margin-right: 1ex;
+    }
   }
 }
 
@@ -34,7 +59,10 @@ b { color: #5586cd; }
   font-size: 18px;
   text-align: left;
   margin-bottom: -36px;
-  & ol { padding-left: 30px; padding-right: 5px; }
+  & ol {
+    padding-left: 30px;
+    padding-right: 5px;
+  }
 }
 
 button {
@@ -49,4 +77,6 @@ button {
 .jisho { background-color: #2ea44faa; }
 
 img:first-child:nth-last-child(2),
-img:first-child:nth-last-child(2) ~ img { width: 50%; }
+img:first-child:nth-last-child(2) ~ img {
+  width: 50%;
+}

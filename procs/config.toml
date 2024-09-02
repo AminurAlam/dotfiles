@@ -102,4 +102,3 @@ path = "unix:///var/run/docker.sock"
 mode = "Disable"
 detect_width = false
 use_builtin = false
-

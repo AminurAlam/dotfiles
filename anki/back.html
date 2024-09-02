@@ -1,36 +1,37 @@
-<div class="head">
-  {{furigana:Word Furigana}}
-  <div class="word_meaning">
-    {{Word Meaning}}
-  </div>
-  <div class='sentence'>
-    {{furigana:Sentence Furigana}}<br>
-    {{Sentence Meaning}}
-  </div>
+<!-- vim:set ft=html cc=37 et sw=2: -->
+{{furigana:Word Furigana}}
+<div class="word-back">{{Word Meaning}}</div>
+<div class="sentence-back">
+  {{furigana:Sentence Furigana}}
+  <br />
+  {{Sentence Meaning}}
 </div>
 
 {{#Frequency}}
-  <div class="freq">{{Frequency}}</div>
-{{/Frequency}}
-
-{{#Notes}}
-  <div class="note">({{Notes}})</div>
+<div class="freq">{{Frequency}}</div>
+{{/Frequency}} {{#Notes}}
+<div class="note">({{Notes}})</div>
 {{/Notes}}
 
 <div class="pic">
   {{#Source Url}}
-    <a href="{{Source Url}}">{{Picture}}</a>
-  {{/Source Url}}
-  {{^Source Url}}
-    {{Picture}}
+  <a href="{{Source Url}}">{{Picture}}</a>
+  {{/Source Url}} {{^Source Url}} {{Picture}}
   {{/Source Url}}
 </div>
 
 <div class="utils">
-  <button class="jisho" onclick="window.location.href = 'https://jisho.org/search/{{Word}}'">
-    dic
-  </button>
+  <button class="jisho" id="jisho">dic</button>
   {{#Word Audio}}
-    <br>{{Word Audio}}
-  {{/Word Audio}}
+  <br />
+  {{Word Audio}} {{/Word Audio}}
 </div>
+
+<script>
+  document
+    .getElementById("jisho")
+    .addEventListener("click", () => {
+      window.location.href =
+        "https://jisho.org/search/{{Word}}";
+    });
+</script>
