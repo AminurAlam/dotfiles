@@ -15,6 +15,7 @@
  - [procs](https://github.com/dalance/procs) - replacement for ps
  - [python](https://python.org/) - python interpreter
  - [ripgrep](https://github.com/BurntSushi/ripgrep) - grep alternative
+ - [ruff](https://docs.astral.sh/ruff/) - python linter and formatter
  - [starship](https://starship.rs/) - shell prompt
  - [streamrip](https://github.com/nathom/streamrip)
  - [stylua](https://github.com/JohnnyMorganz/StyLua) - lua formatter

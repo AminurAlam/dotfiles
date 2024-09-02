@@ -82,7 +82,7 @@ end
 
 abbr --set-cursor zdl 'z $XDG_DOWNLOAD_DIR/%'
 abbr --set-cursor zd 'z $XDG_PROJECTS_DIR/dotfiles/%'
-abbr --set-cursor zcf 'z $XDG_CONFIG_HOME/fish/%'
-abbr --set-cursor zcn 'z $XDG_CONFIG_HOME/nvim/%'
+abbr --set-cursor zf 'z $XDG_PROJECTS_DIR/dotfiles/fish/%'
+abbr --set-cursor zn 'z $XDG_PROJECTS_DIR/dotfiles/nvim/%'
 abbr --set-cursor zp 'z $PREFIX/%'
 abbr zz "z -"

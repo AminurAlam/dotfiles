@@ -10,7 +10,7 @@ https://www.tofugu.com/feed.xml misc
 
 "query:----- MUSIC -----:tags # \"music\" and unread = \"yes\""
 https://muspy.com/feed?id=mobwjpkr95u5p1b4f2w1bjt74qc8u3 "~muspy New Releases" music
-https://sputnikmusic.com/blog/feed/ "~Sputnik Music Blog" music
+# https://sputnikmusic.com/blog/feed/ "~Sputnik Music Blog" music
 https://www.allmusic.com/rss music
 https://pitchfork.com/feed/feed-news/rss "~Pitchfork News" music
 
@@ -81,6 +81,8 @@ https://vkc.sh/feed/ personal_blog_1
 https://sizeof.cat/index.xml personal_blog_1
 
 "query:----- PERSONAL BLOGS 2 -----:tags # \"personal_blog\" and unread = \"yes\""
+https://vonheikemen.github.io/devlog/atom.xml
+https://www.amygoodchild.com/blog?format=rss
 https://dx13.co.uk/index.atom personal_blog
 https://tonsky.me/atom.xml personal_blog
 https://robertheaton.com/feed.xml personal_blog
