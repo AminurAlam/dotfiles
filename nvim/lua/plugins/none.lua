@@ -2,7 +2,7 @@ local M = {
   'https://github.com/nvimtools/none-ls.nvim',
   dependencies = {
     'nvim-lua/plenary.nvim',
-    { 'gbprod/none-ls-shellcheck.nvim', ft = 'sh' },
+    -- { 'gbprod/none-ls-shellcheck.nvim', ft = 'sh' },
   },
   -- ft = { 'lua', 'fish', 'make', 'sh' },
 }
@@ -16,8 +16,8 @@ M.config = function()
       null_ls.builtins.formatting.stylua,
       null_ls.builtins.diagnostics.fish,
       null_ls.builtins.formatting.fish_indent,
-      require('none-ls-shellcheck.diagnostics'),
-      require('none-ls-shellcheck.code_actions'),
+      -- require('none-ls-shellcheck.diagnostics'),
+      -- require('none-ls-shellcheck.code_actions'),
     },
   }
 end

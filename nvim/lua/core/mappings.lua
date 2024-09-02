@@ -100,6 +100,7 @@ nmap(';', '@:', 'dot repeat the last command')
 umap('<esc>', '<cmd>nohlsearch<cr><esc>')
 nmap('gj', [[@='j^"_d0kgJ'<cr>]], 'join without leaving space')
 nmap('go', 'jA', 'like `o` but on existing line')
+nmap('<leader>y', '<cmd>silent %y<cr>', 'yank entire buffer')
 
 -- visual
 nmap('v', 'm`v')

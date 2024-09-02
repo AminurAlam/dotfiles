@@ -1,21 +1,21 @@
 local set = vim.opt_local
 local autocmd = vim.api.nvim_create_autocmd
 
-autocmd('FileType', {
-  desc = 'exit by pressing q or <esc>',
-  pattern = { 'qf', 'help', 'lazy', 'lspinfo', 'DressingSelect', 'Trouble' },
-  callback = function()
-    vim.keymap.set('n', 'q', '<cmd>close<cr>', { buffer = true, silent = true })
-    vim.keymap.set('n', '<esc>', function()
-      if vim.v.hlsearch == 1 then
-        vim.cmd 'nohlsearch'
-      else
-        vim.cmd 'close'
-      end
-    end, { buffer = true })
-    set.buflisted = false
-  end,
-})
+-- autocmd('FileType', {
+--   desc = 'exit by pressing q or <esc>',
+--   pattern = { 'qf', 'help', 'lazy', 'DressingSelect', 'Trouble' },
+--   callback = function()
+--     vim.keymap.set('n', 'q', '<cmd>close<cr>', { buffer = true, silent = true })
+--     vim.keymap.set('n', '<esc>', function()
+--       if vim.v.hlsearch == 1 then
+--         vim.cmd 'nohlsearch'
+--       else
+--         vim.cmd 'close'
+--       end
+--     end, { buffer = true })
+--     set.buflisted = false
+--   end,
+-- })
 
 autocmd({ 'FileType', 'BufNewFile' }, {
   desc = 'reading mode for some filetypes',
@@ -34,9 +34,7 @@ autocmd({ 'FileType', 'BufNewFile' }, {
     'Trouble',
   },
   callback = function()
-    set.wrap = true
     set.linebreak = true
-    -- set.statuscolumn = ' '
     set.number = false
     set.relativenumber = false
     set.signcolumn = 'no'

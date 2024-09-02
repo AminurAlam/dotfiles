@@ -61,6 +61,7 @@ local hl = vim.api.nvim_set_hl
 local secondary = '#30354A'
 
 vim.g.stl = {
+  lsp_count = function() return #vim.lsp.get_clients() end,
   mode = function() return mode_names[vim.api.nvim_get_mode().mode] or '???' end,
   bufcount = function() return buflogo[#vim.fn.getbufinfo { buflisted = 1 }] or '十 ' end,
   hlsearch = function() -- https://github.com/nvim-lualine/lualine.nvim/pull/1088
@@ -118,6 +119,7 @@ vim.opt.stl = '%#stl_hl_a# %{ g:stl.mode() } %#stl_hl_b#' -- a to b
   .. '%{% get(b:, "gitsigns_status", "") %}'
   .. '%#Normal#%=%S ' -- middle seperator
   .. '%{ v:hlsearch ? g:stl.hlsearch() : "" } '
+  .. '%{ g:stl.lsp_count() }'
   .. '%{ reg_recording() != "" ? " " .. reg_recording() : "" } '
   .. '%#stl_hl_to#%#stl_hl_b# ' -- c to b
   .. '%{ g:stl.progress(line("."), line("$")) } '

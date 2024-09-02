@@ -6,6 +6,7 @@ local function create(cmd, filetypes, root_dir, settings)
   vim.api.nvim_create_autocmd('Filetype', {
     pattern = filetypes,
     callback = function(buf)
+      if vim.fn.filereadable(buf.file) == 0 then return end -- FIX: someone keeps spawning unlisted lua buffers??
       local client_id = vim.lsp.start({
         name = cmd[1],
         cmd = cmd,
@@ -19,7 +20,8 @@ local function create(cmd, filetypes, root_dir, settings)
   })
 end
 
-create({ 'taplo', 'lsp', 'stdio' }, { 'toml' }, { '*.toml', '.git' }, {})
+create({ 'taplo', 'lsp', 'stdio' }, { 'toml' }, { '*.toml', '.git' }, {
+})
 create({ 'gopls' }, { 'go' }, { 'go.work', 'go.mod', '.git' })
 create({ 'java-language-server' }, { 'java' }, { 'build.gradle', 'pom.xml', '.git' })
 create({ 'bash-language-server', 'start' }, { 'sh', 'zsh', 'bash' }, { '.sh', '.zsh' })
@@ -40,7 +42,7 @@ create({ 'ruff', 'server' }, { 'python' }, {
   'requirements.txt',
   '.git',
 }, {
-  init_options = { settings = { configuration = '~/repos/dotfiles/other/ruff.toml' } },
+  init_options = { settings = { configuration = '~/repos/dotfiles/other/ruff.toml' } }, -- TODO
 })
 create({ 'clangd' }, { 'c', 'cpp', 'objc', 'objcpp', 'cuda', 'proto' }, {
   '.git',
@@ -67,7 +69,7 @@ create({ 'pyright-langserver', '--stdio' }, { 'python' }, {
     },
   },
 })
-create({ 'lua-language-server' }, { 'lua' }, { 'lua' }, {
+create({ 'lua-language-server' }, { 'lua' }, { 'lua/' }, {
   Lua = {
     -- library = vim.api.nvim_get_runtime_file('', true),
     typeFormat = { config = { auto_complete_end = true } },
@@ -184,4 +186,6 @@ autocmd('LspAttach', {
     -- if client.supports_method('textDocument/definition') then end
   end,
 })
+
 vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, { border = 'rounded' })
+vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = 'rounded' })

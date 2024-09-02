@@ -39,7 +39,7 @@ set.showcmdloc = 'statusline'
 set.laststatus = 3
 set.cmdheight = 0
 set.numberwidth = 1
-set.shortmess = 'acCoOsSWIF'
+set.shortmess = 'acCoOsSWF'
 set.number = true
 set.relativenumber = true
 -- set.statuscolumn = vim.g.stc -- '%=%{ v:virtnum ? "…" : ( v:relnum ? "│" : "❯" ) }%-00.1s'
