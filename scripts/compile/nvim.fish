@@ -2,7 +2,7 @@ set REPO_NAME nvim-fork
 set REPO_PATH "$XDG_PROJECTS_DIR/$REPO_NAME"
 set REPO_URL "https://github.com/AminurAlam/neovim.git"
 set DEPENDENCIES binutils clang cmake gettext libuv make ninja openssl pkg-config \
-    tree-sitter-parsers libunibilium utf8proc
+    tree-sitter-parsers libunibilium
 
 function pre_build
     if command -vq apt
@@ -20,7 +20,7 @@ function pre_build
 
     [ -d "$REPO_PATH" ] || git clone --branch custom "$REPO_URL" "$REPO_PATH"
     cd "$REPO_PATH"
-    git remote show upstream -n &>/dev/null || git remote add upstream "https://github.com/neovim/neovim.git"
+    # git remote show upstream &>/dev/null || git remote add upstream "https://github.com/neovim/neovim.git"
 end
 
 function build
@@ -29,18 +29,17 @@ function build
         make distclean
     end
 
-    # NOTE: this is for dynamic builds
-    cmake -S cmake.deps -B .deps -G Ninja -DUSE_BUNDLED=OFF -DUSE_BUNDLED_LPEG=ON
-    cmake --build .deps
-    cmake -B build -G Ninja
-    cmake --build build
-    # make || exit # NOTE: this is for static builds
+    # cmake -S cmake.deps -B .deps -G Ninja -DUSE_BUNDLED=OFF -DUSE_BUNDLED_LPEG=OFF -DUSE_BUNDLED_UTF8PROCS=ON
+    # cmake --build .deps || exit
+    # cmake -B build -G Ninja || exit
+    # cmake --build build || exit
+
+    make BUNDLED_CMAKE_FLAG="-DUSE_BUNDLED=OFF -DUSE_BUNDLED_LPEG=ON -DUSE_BUNDLED_UTF8PROC=ON" || exit
     make install CMAKE_INSTALL_PREFIX="$PREFIX/"
 end
 
 function post_build
-    [ -L "$PREFIX"/share/nvim/runtime/parser ] && unlink "$PREFIX"/share/nvim/runtime/parser
-    ln -s "$PREFIX"/lib/tree_sitter "$PREFIX"/share/nvim/runtime/parser
+    [ -L "$PREFIX"/share/nvim/runtime/parser ] || ln -s "$PREFIX"/lib/tree_sitter "$PREFIX"/share/nvim/runtime/parser
 
     build/bin/nvim -V1 --version || return 1
 end

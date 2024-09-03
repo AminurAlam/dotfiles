@@ -13,7 +13,7 @@
 <div class="note">({{Notes}})</div>
 {{/Notes}}
 
-<div class="pic">
+<div class="pic" id="pic">
   {{#Source Url}}
   <a href="{{Source Url}}">{{Picture}}</a>
   {{/Source Url}} {{^Source Url}} {{Picture}}
@@ -34,4 +34,15 @@
       window.location.href =
         "https://jisho.org/search/{{Word}}";
     });
+  if ("{{Tags}}".match("nsfw")) {
+    var pic = document.getElementById("pic");
+    pic.style.filter = "blur(8px)";
+    pic.firstElementChild.removeAttribute("href");
+    pic.addEventListener("click", () => {
+      pic.style.filter = "none";
+    });
+  }
 </script>
+
+<!-- <script src="https://cdn.jsdelivr.net/npm/eruda"></script>
+<script>eruda.init();</script> -->

@@ -1,9 +1,10 @@
-winget install neovim neovide Git.git mozilla.firefox astral-sh.ruff
+winget install Neovim.Neovim Neovide.Neovide Git.Git Mozilla.Firefox astral-sh.ruff
+winget upgrade Neovim.Neovim
 
 cd ~
 git clone --depth 1 "https://github.com/AminurAlam/dotfiles"
 Copy-item -Force -Recurse -Verbose .\dotfiles\nvim\ -Destination .\AppData\Local\
 
-pip install pyright python-language-server
+python -m pip install pyright python-language-server
 
 nvim

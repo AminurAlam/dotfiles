@@ -61,7 +61,7 @@ local hl = vim.api.nvim_set_hl
 local secondary = '#30354A'
 
 vim.g.stl = {
-  lsp_count = function() return #vim.lsp.get_clients() end,
+  lsp_count = function() return #vim.lsp.get_clients() > 0 and 'LSP' or '' end,
   mode = function() return mode_names[vim.api.nvim_get_mode().mode] or '???' end,
   bufcount = function() return buflogo[#vim.fn.getbufinfo { buflisted = 1 }] or '十 ' end,
   hlsearch = function() -- https://github.com/nvim-lualine/lualine.nvim/pull/1088
