@@ -43,7 +43,7 @@ pacman -S --needed $extra_packages && begin
 end
 
 printf "LINKING CONFIG DIRECTORIES... "
-for config in aria2 clangd fish git htop newsboat npm nvim procs python ruff streamrip termux tmux yt-dlp zellij
+for config in aria2 clangd eza fish git htop newsboat npm nvim procs python ruff streamrip termux tmux yt-dlp zellij
     [ -e "$dots/$config" ] || continue
     # unlink/relocate old directories in ~/.config
     [ -d "$HOME/.config/$config" ] && command mv -f ~/.config/$config ~/backup/

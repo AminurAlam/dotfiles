@@ -1,4 +1,6 @@
 fish/fish_variables
+fish/completions/uv.fish
+fish/completions/ruff.fish
 
 nvim/lazy-lock.json
 nvim/parser

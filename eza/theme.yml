@@ -1,0 +1,19 @@
+# https://github.com/eza-community/eza/blob/main/man/eza_colors-explanation.5.md
+
+filekinds:
+  normal:
+    foreground: null
+  directory:
+    foreground: Blue
+  symlink:
+    foreground: Cyan
+  executable:
+    foreground: Green
+
+# : { icon: { glyph: , style: { foreground: null } } }
+filenames:
+  prettierrc.toml: { icon: { glyph: , style: { foreground } } }
+
+extensions:
+  toml: { icon: { glyph: , style: { foreground: null } } }
+  kdl: { icon: { glyph: , style: { foreground: null } } }
