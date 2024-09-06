@@ -1,0 +1,62 @@
+\documentclass[12pt]{article}
+
+% packages
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amsthm,amssymb,scrextend}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{fancyhdr}
+\usepackage{lineno}
+\usepackage{color}
+
+% options
+\lstset{
+    language=C,
+    numbers=left,
+    numberstyle=\tiny,
+    tabsize=4,
+    showstringspaces=false,
+    showtabs=false,
+    frame=l,
+}
+\pagenumbering{gobble}
+\pagestyle{fancy}
+
+\newcommand{\generatetitlepage}[7]{
+    \begin{titlepage}
+        \centering
+        \vspace*{4\baselineskip}
+        \rule{\textwidth}{1.6pt}\vspace*{-\baselineskip}\vspace*{2pt}
+        \rule{\textwidth}{0.4pt}\\[\baselineskip]
+        {\huge #1 \\ [0.3\baselineskip]}
+        \rule{\textwidth}{0.4pt}\vspace*{-\baselineskip}\vspace{3.2pt}
+        \rule{\textwidth}{1.6pt}\\[\baselineskip]
+        \scshape
+        \vfill
+        \raggedright
+        Submitted by: {\Large #2\par}
+        Roll No: {\Large #3\par}
+        Semester: {\Large #4\par}
+        Department: {\Large #5\par}
+        Course: {\Large #6\par}
+        \vfill
+        \raggedleft
+        #7 \the\year{}-\the\numexpr \the\year + 1 \relax
+    \end{titlepage}
+}
+\newcommand{\codequest}[2]{
+    {\Large \raggedleft #1}
+    \vspace*{2\baselineskip}
+    \texttt {\lstinputlisting{#2}}
+}
+\newcommand{\gloss}[3]{
+    \textbf{#1}: #2 \\
+    \indent\indent \verb|#3 \\
+}
+
+\begin{document}
+\generatetitlepage{subject}{name}{roll}{$sem^{sup}$}{dept}{course}{institution} \restoregeometry
+% \newgeometry{left=1in,right=0.4in,top=0.5in,bottom=0.5in}
+% \fbox{\includegraphics[totalheight=8cm]{attachments/rr.png}}
+% \vspace*{6\baselineskip} \\
+\end{document}
