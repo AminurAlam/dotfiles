@@ -8,9 +8,9 @@
 </div>
 
 {{#Frequency}}
-<div class="freq">{{Frequency}}</div>
+<div class="freq" id="freq">{{Frequency}}</div>
 {{/Frequency}} {{#Notes}}
-<div class="note">({{Notes}})</div>
+<!-- <div class="note">({{Notes}})</div> -->
 {{/Notes}}
 
 <div class="pic" id="pic">
@@ -21,7 +21,7 @@
 </div>
 
 <div class="utils">
-  <button class="jisho" id="jisho">dic</button>
+  <button class="jisho" id="jisho">漢字</button>
   {{#Word Audio}}
   <br />
   {{Word Audio}} {{/Word Audio}}
@@ -32,8 +32,13 @@
     .getElementById("jisho")
     .addEventListener("click", () => {
       window.location.href =
-        "https://jisho.org/search/{{Word}}";
+        "https://jisho.org/search/%23kanji%20{{Word}}";
     });
+  var freq = document.getElementById("freq");
+  freq.innerHTML = freq.innerHTML.replace(
+    /(\d\d+|[6-9])\d{3}([^\d]?)/g,
+    "$1k$2",
+  );
   if ("{{Tags}}".match("nsfw")) {
     var pic = document.getElementById("pic");
     pic.style.filter = "blur(8px)";
@@ -43,6 +48,5 @@
     });
   }
 </script>
-
 <!-- <script src="https://cdn.jsdelivr.net/npm/eruda"></script>
 <script>eruda.init();</script> -->

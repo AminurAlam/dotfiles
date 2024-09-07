@@ -59,6 +59,7 @@ b { color: #5586cd; }
   font-size: 18px;
   text-align: left;
   margin-bottom: -36px;
+  text-align: left;
   & ol {
     padding-left: 30px;
     padding-right: 5px;
