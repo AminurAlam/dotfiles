@@ -2,7 +2,7 @@
 Language:        Cpp
 # BasedOnStyle:  LLVM
 AccessModifierOffset: -2
-AlignAfterOpenBracket: Align
+AlignAfterOpenBracket: BlockIndent
 AlignArrayOfStructures: None
 AlignConsecutiveAssignments:
   Enabled:         false
@@ -232,5 +232,24 @@ WhitespaceSensitiveMacros:
   - NS_SWIFT_NAME
   - PP_STRINGIZE
   - STRINGIZE
+# ---
+# # We'll use defaults from the LLVM style, but with 4 columns indentation.
+# BasedOnStyle: LLVM
+# IndentWidth: 4
+# ---
+# Language: Cpp
+# # Force pointers to the type for C++.
+# DerivePointerAlignment: false
+# PointerAlignment: Left
+# ---
+# Language: JavaScript
+# DisableFormat: true # using prettier instead
+# ColumnLimit: 120 # Use 100 columns for JS.
+# ---
+# Language: Proto
+# DisableFormat: true # Don't format .proto files.
+---
+Language: Json
+DisableFormat: false
+IndentWidth: 2
 ...
-
