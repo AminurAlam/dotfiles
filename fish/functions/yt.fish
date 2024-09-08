@@ -1,5 +1,11 @@
 function yt -a url fmt
 
+    if :
+        # TODO: patch YT.py
+        # add a comment in YT.py to detect patch status
+        # patch --forward --quiet $PREFIX/lib/python3.11/site-packages/yt_dlp/YoutubeDL.py <$XDG_PROJECTS_DIR/dotfiles/scripts/patches/yt-dlp-YoutubeDL.py.diff >/dev/null
+    end
+
     if [ -z "$url" ]
         printf "no url given!\n"
         return 1

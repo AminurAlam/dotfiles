@@ -39,6 +39,7 @@ abbr gl "git s; git l"
 abbr gd "git d"
 abbr pull "git pull origin"
 abbr push "git push origin"
+abbr fr "git fetch upstream && git rebase upstream/(git symbolic-ref refs/remotes/origin/HEAD | sed s@^refs/remotes/origin/@@)"
 
 # rclone
 abbr rcp "rclone copy -P --transfers 8 --"
