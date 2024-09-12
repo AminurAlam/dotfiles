@@ -25,7 +25,7 @@ b { color: #5586cd; }
   padding-top: 70px;
 }
 .sentence-back { font-size: 22px; }
-.note { font-size: 20px; }
+.note, .conj { font-size: 20px; }
 .pic {
   position: fixed;
   bottom: 0px;
