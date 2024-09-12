@@ -1,4 +1,4 @@
-#!/data/data/com.termux/files/usr/bin/bash
+#!/data/data/com.termux/files/usr/bin/fish
 
 # packages
 set base_packages eza fd git ripgrep termux-api

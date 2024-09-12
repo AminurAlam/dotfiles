@@ -1,16 +1,10 @@
-set -q XDG_PROJECTS_DIR || set XDG_PROJECTS_DIR "$HOME/repos"
 set patches "$XDG_PROJECTS_DIR/dotfiles/scripts/patches"
 
-# npm i -g bash-language-server
-pacman -Syu --noconfirm --needed clang rust-analyzer lua-language-server
+pacman -Syu --noconfirm --needed ruff clang rust-analyzer lua-language-server
 
 function python_lsp
-    cd "$XDG_PROJECTS_DIR"
-    pacman -Syu --noconfirm --needed ruff python-pip
-
-    pip install pyright python-lsp-server
-
-    yes | rm -rf ruff-lsp
+    pacman -Syu --noconfirm --needed python nodejs python-pip
+    pip install pyright
 end
 
 function java_lsp
@@ -25,12 +19,21 @@ function java_lsp
     and pacman -Rs maven
 end
 
-function npm_lsp
+function npm_based_lsp
+    pacman -S --noconfirm --needed nodejs
+    npm i -g bash-language-server prettier
     for bin in $HOME/.local/share/npm/bin/*
         while [ -L "$bin" ]
             set bin (readlink -f "$bin")
         end
         [ -e "$bin" -a -x "$bin" ]
-        and patch --no-backup-if-mismatch "$bin" <~/repos/dotfiles/scripts/patches/npm-bin.diff
+        and patch --no-backup-if-mismatch "$bin" <$patches/npm-bin.diff
     end
 end
+
+if not [ -d "$patches" ]
+    echo "$patches is not a directory!"
+    echo "make sure variables are properly set"
+end
+
+echo "available functions: python_lsp, java_lsp, npm_based_lsp"
