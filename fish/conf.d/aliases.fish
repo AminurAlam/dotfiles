@@ -17,9 +17,10 @@ abbr y "yes |"
 abbr diff "diff -Naur"
 abbr py "python3 -q"
 abbr pst "ps -faxo 'pid,comm' | sed -E \"s:\$PREFIX/[a-z]+/::\""
+abbr --set-cursor fstack "ffmpeg -y -hide_banner -i % -filter_complex hstack out.png" # https://stackoverflow.com/questions/11552565/vertically-or-horizontally-stack-mosaic-several-videos-using-ffmpeg#33764934
 abbr --set-cursor ff "ffmpeg -y -hide_banner -stats -loglevel error -i % -strict -2 -vcodec copy -acodec copy -map 0:a"
-abbr --set-cursor --position anywhere awk "awk -F ' ' '{print \$%}'"
 abbr --set-cursor mbz "python ~/repos/musicbrainzpy/cover_art.py -o \$XDG_MUSIC_DIR/#meta/ '%'"
+abbr --set-cursor --position anywhere awk "awk -F ' ' '{print \$%}'"
 
 # replicate =command from zsh
 function which_commander

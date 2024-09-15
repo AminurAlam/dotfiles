@@ -4,6 +4,7 @@ fish_vi_key_bindings
 
 bind yy fish_clipboard_copy
 bind p fish_clipboard_paste
+bind -M insert \cB mux
 
 bind q exit # shortcuts to quit
 bind -M insert \cz 'jobs -q && fg' # helpful for toggling between processes
