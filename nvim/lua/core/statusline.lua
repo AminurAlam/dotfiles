@@ -61,9 +61,13 @@ local hl = vim.api.nvim_set_hl
 local secondary = '#30354A'
 
 vim.g.stl = {
-  lsp_count = function() return #vim.lsp.get_clients() > 0 and 'LSP' or '' end,
+  lsp_attached = function() return #vim.lsp.get_clients() > 0 and '  ' or '' end,
   mode = function() return mode_names[vim.api.nvim_get_mode().mode] or '???' end,
   bufcount = function() return buflogo[#vim.fn.getbufinfo { buflisted = 1 }] or '十 ' end,
+  undo_status = function()
+    local ud = vim.fn.undotree()
+    return ud.seq_cur ~= ud.seq_last and ' ←' .. ud.seq_last - ud.seq_cur or ''
+  end,
   hlsearch = function() -- https://github.com/nvim-lualine/lualine.nvim/pull/1088
     local ok, sc = pcall(vim.fn.searchcount, { maxcount = 99, timeout = 20 })
     if not ok then return '' end
@@ -106,20 +110,23 @@ hl(0, 'stl_hl_a', { bg = mode_colors.n, fg = secondary, bold = true })
 hl(0, 'stl_hl_b', { fg = mode_colors.n, bg = secondary })
 hl(0, 'stl_hl_to', { fg = secondary })
 
+-- TODO: implement more stuff from https://github.com/nvim-lualine/lualine.nvim/wiki/Component-snippets
 vim.opt.stl = '%#stl_hl_a# %{ g:stl.mode() } %#stl_hl_b#' -- a to b
   .. ' %{ g:stl.bufcount() }%t '
   .. '%{ &modified ? "󰆓 " : "" }'
   .. '%{ !empty(finddir(".git", expand("%:p:h") .. ";")) ? " " : "" }'
+  .. '%{ g:stl.lsp_attached() }'
   -- .. '%{ &cb == "unnamedplus" ? "󰆒 " : "" }'
   .. '%{ &spell ? "󰓆 " : "" }'
   .. '%{ &readonly ? "󰌾 " : "" }'
   .. [[%{ search("\\s\\+$", "nwc") > 0 ? "󱁐 " : "" }]]
+  .. [[%{ search("^\\t\\+", "nwc") > 0 ? " " : "" }]]
   .. '%#stl_hl_to#%#Normal# ' -- b to c
   .. '%{% g:stl.diagnostics() %}'
   .. '%{% get(b:, "gitsigns_status", "") %}'
+  .. '%{% g:stl.undo_status() %}'
   .. '%#Normal#%=%S ' -- middle seperator
   .. '%{ v:hlsearch ? g:stl.hlsearch() : "" } '
-  .. '%{ g:stl.lsp_count() }'
   .. '%{ reg_recording() != "" ? " " .. reg_recording() : "" } '
   .. '%#stl_hl_to#%#stl_hl_b# ' -- c to b
   .. '%{ g:stl.progress(line("."), line("$")) } '

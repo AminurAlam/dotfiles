@@ -11,7 +11,7 @@ local M = {
     'L3MON4D3/LuaSnip', -- helps create snippets
     'saadparwaiz1/cmp_luasnip', -- adds snippets to cmp
     { 'AminurAlam/friendly-snippets', dev = true }, -- provides multiple snippets
-    { 'mtoohey31/cmp-fish', dev = true },
+    { 'mtoohey31/cmp-fish', dev = true }, -- TODO: env vars
   },
 }
 

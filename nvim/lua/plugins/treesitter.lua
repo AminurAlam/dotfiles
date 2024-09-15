@@ -2,23 +2,21 @@ return {
   'https://github.com/nvim-treesitter/nvim-treesitter',
   main = 'nvim-treesitter.configs',
   build = ':TSUpdate',
-  dependencies = { 'https://github.com/nvim-treesitter/nvim-treesitter-textobjects' },
   opts = {
     ensure_installed = vim.fn.executable('clang') == 1 and {
       'bash',
+      'c',
       'comment',
       'diff',
       'fish',
-      'gitcommit',
       'python',
       'rust',
-      'toml',
     } or {},
     sync_install = true,
     indent = { enable = true },
     highlight = {
       enable = true,
-      additional_vim_regex_highlighting = false
+      additional_vim_regex_highlighting = false,
     },
     incremental_selection = {
       enable = true,

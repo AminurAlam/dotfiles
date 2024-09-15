@@ -1,22 +1,6 @@
 local set = vim.opt_local
 local autocmd = vim.api.nvim_create_autocmd
 
--- autocmd('FileType', {
---   desc = 'exit by pressing q or <esc>',
---   pattern = { 'qf', 'help', 'lazy', 'DressingSelect', 'Trouble' },
---   callback = function()
---     vim.keymap.set('n', 'q', '<cmd>close<cr>', { buffer = true, silent = true })
---     vim.keymap.set('n', '<esc>', function()
---       if vim.v.hlsearch == 1 then
---         vim.cmd 'nohlsearch'
---       else
---         vim.cmd 'close'
---       end
---     end, { buffer = true })
---     set.buflisted = false
---   end,
--- })
-
 autocmd({ 'FileType', 'BufNewFile' }, {
   desc = 'reading mode for some filetypes',
   pattern = {
@@ -85,6 +69,30 @@ autocmd('BufNewFile', {
   end,
 })
 
+autocmd('VimEnter', {
+  desc = 'intro screen',
+  once = true,
+  group = vim.api.nvim_create_augroup('IntroScreen', {}),
+  callback = function()
+    if vim.fn.argc() == 0 then
+      local nmap = function(lhs, rhs) vim.keymap.set('n', lhs, rhs, { buffer = true, silent = true }) end
+      set.bufhidden = 'hide'
+      set.buftype = 'nofile'
+      nmap('f', '<cmd>Telescope find_files<cr>')
+      nmap('g', '<cmd>Telescope live_grep<cr>') -- FIX: doesnt start right away
+      nmap('h', '<cmd>Telescope help_tags<cr>')
+      nmap('o', '<cmd>Telescope oldfiles<cr>')
+      nmap('u', '<cmd>Lazy update<cr>')
+      nmap('q', '<cmd>q!<cr>')
+      -- TODO
+      -- autocmd('CursorMoved', {
+      --   once = true,
+      --   command = 'nmapc <buffer>',
+      -- })
+    end
+  end,
+})
+
 -- https://github.com/stevearc/oil.nvim
 autocmd('VimEnter', {
   desc = 'open directory in telescope',
@@ -122,7 +130,7 @@ autocmd('TextYankPost', {
   callback = function() vim.highlight.on_yank { higroup = 'IncSearch', timeout = 250 } end,
 })
 
-autocmd('FileType', { pattern = { 'help', 'qf' }, command = 'nmap <buffer> <cr> <cr>' })
+autocmd('FileType', { pattern = { 'qf' }, command = 'nmap <buffer> <cr> <cr>' })
 autocmd('BufEnter', { command = 'set formatoptions-=cro' })
 
 -- https://github.com/mawkler/modicator.nvim

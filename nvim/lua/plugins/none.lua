@@ -4,7 +4,6 @@ local M = {
     'nvim-lua/plenary.nvim',
     -- { 'gbprod/none-ls-shellcheck.nvim', ft = 'sh' },
   },
-  -- ft = { 'lua', 'fish', 'make', 'sh' },
 }
 
 M.config = function()
@@ -16,6 +15,9 @@ M.config = function()
       null_ls.builtins.formatting.stylua,
       null_ls.builtins.diagnostics.fish,
       null_ls.builtins.formatting.fish_indent,
+      null_ls.builtins.formatting.clang_format.with { extra_filetypes = { 'json' } },
+      null_ls.builtins.diagnostics.sqlfluff.with { extra_args = { '--dialect', 'oracle' } },
+      null_ls.builtins.formatting.sqlfluff.with { extra_args = { '--dialect', 'oracle' } },
       -- require('none-ls-shellcheck.diagnostics'),
       -- require('none-ls-shellcheck.code_actions'),
     },

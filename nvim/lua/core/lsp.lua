@@ -20,8 +20,7 @@ local function create(cmd, filetypes, root_dir, settings)
   })
 end
 
-create({ 'taplo', 'lsp', 'stdio' }, { 'toml' }, { '*.toml', '.git' }, {
-})
+create({ 'taplo', 'lsp', 'stdio' }, { 'toml' }, { '*.toml', '.git' }, {})
 create({ 'gopls' }, { 'go' }, { 'go.work', 'go.mod', '.git' })
 create({ 'java-language-server' }, { 'java' }, { 'build.gradle', 'pom.xml', '.git' })
 create({ 'bash-language-server', 'start' }, { 'sh', 'zsh', 'bash' }, { '.sh', '.zsh' })
@@ -48,10 +47,10 @@ create({ 'clangd' }, { 'c', 'cpp', 'objc', 'objcpp', 'cuda', 'proto' }, {
   '.git',
   '.clangd',
   '.clang-tidy',
-  '.clang-format',
   'compile_commands.json',
   'compile_flags.txt',
   'configure.ac',
+  '.clang-format',
 })
 create({ 'pyright-langserver', '--stdio' }, { 'python' }, {
   'pyproject.toml',
