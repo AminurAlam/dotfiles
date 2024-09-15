@@ -5,44 +5,54 @@ import re
 import sys
 import json
 import requests
+import argparse
 
-main = "/sdcard/TachiyomiSY/local/"
+mihon_dir = "/sdcard/TachiyomiSY/local/"
 research_art = lambda staff: re.search('art', staff['role'], flags=re.IGNORECASE)
 research_story = lambda staff: re.search('story', staff['role'], flags=re.IGNORECASE)
-map = {
-    "RELEASING": "1",
-    "FINISHED": "2",
-    "NOT_YET_RELEASED": "3",
-    "CANCELLED": "5",
-    "HIATUS": "6",
+title_langs = ["english", "romaji", "native"]
+status = {
+    "RELEASING": ["1", "󰥔 "],
+    "FINISHED": ["2", " "],
+    "NOT_YET_RELEASED": ["3", " "],
+    "CANCELLED": ["5", "󰣈 "],
+    "HIATUS": ["6", " "],
 }
-query = """
-query ($search: String) { Page(page: 1, perPage: 5) { media(search: $search, type: MANGA, format_not: NOVEL) {
-    title { english romaji native }
-    status
-    description
-    genres
-    staff(perPage: 25) { edges { role node { name { full } } }
-} } } }
+graph_query = """
+query ($search: String) {
+    Page(page: 1, perPage: 5) {
+        media(search: $search, type: MANGA, format_not: NOVEL) {
+            title { english romaji native }
+            status
+            description
+            genres
+            staff(perPage: 25) {
+                edges { role node { name { full } } }
+            }
+        }
+    }
+}
 """
 
 def fetch(title: str, path: str) -> None:
     response = requests.post(
         "https://graphql.anilist.co",
-        json={"query": query, "variables": {"search": title}}
+        json={"query": graph_query, "variables": {"search": title}}
     )
 
     results: list[dict] = json.loads(response.content.decode())['data']['Page']['media']
 
-    if len(results) == 0:
+    if not results:
         print(f"no results found for `{title}`")
         return
 
     for n, item in enumerate(results, start=1):
         print(
-            f"[{n}]",
-            item['title']['english'] or item['title']['romaji'] or item['title']['native'],
-            f"[{item['status']}]\n    by",
+            f"\033[33m{n}\033[0m",
+            item['title']['english'] or item['title']['romaji'] or '',
+            '|',
+            item['title']['native'] or '',
+            f"{status[item['status']][1]}\n  by",
             ', '.join([
                 staff['node']['name']['full']
                 for staff in item['staff']['edges']
@@ -50,7 +60,7 @@ def fetch(title: str, path: str) -> None:
             ])
         )
 
-    choice: str = input("\n>choose manga: ")
+    choice: str = input("\n > choose manga: ")
     if type(choice) != str or not choice: choice = "1"
     if choice == "0": return
 
@@ -68,22 +78,23 @@ def fetch(title: str, path: str) -> None:
         "artist": artist,
         "description": re.sub(r'[\n]+', '\n', re.sub(r'\(Source.*\)|</?[^>]+>', '', item['description'])),
         "genre": item['genres'],
-        "status": map.get(item['status'], '0'),
+        "status": status.get(item['status'], '0')[0],
     }
 
-    # print(json.dumps(details, indent=4))
-    with open(path, "w") as file: json.dump(obj=details, fp=file, indent=4)
-
+    print(json.dumps(details, indent=4))
+    with open(path, "w") as file:
+        json.dump(obj=details, fp=file, indent=4)
 
 if len(sys.argv) > 1:
-    fetch(' '.join(sys.argv[1:]), './details.json')
-elif dirs := os.listdir(main):
+    fetch(sys.argv[1], './details.json')
+elif dirs := os.listdir(mihon_dir):
     for dir in dirs:
         if os.path.isdir(dir) and not (os.path.exists(dir + "/details.json") or os.path.exists(dir + "/ComicInfo.xml")):
             title: str = re.sub(r'\s+\(.+\)$', '', dir)
-            path: str = os.path.join(main, dir, "details.json")
+            path: str = os.path.join(mihon_dir, dir, "details.json")
             print(f"{dir}" + (f"\n{title}" if title != dir else ""))
             fetch(title, path)
             print("="*50)
     print("done.")
-else: print(f"`{main}` doesnt exist")
+else:
+    print(f"`{mihon_dir}` doesnt exist")
