@@ -1,6 +1,13 @@
 <!-- vim:set ft=html cc=37 et sw=2: -->
-{{furigana:Word Furigana}}
-<div class="word-back">{{Word Meaning}}</div>
+<div class="tags" id="tags">
+  {{Tags}}
+</div>
+<div class="word-back">
+  {{furigana:Word Furigana}}
+</div>
+<div class="word-meaning">
+  {{Word Meaning}}
+</div>
 <div class="sentence-back">
   {{furigana:Sentence Furigana}}
   <br />
@@ -8,47 +15,73 @@
 </div>
 
 {{#Frequency}}
-<div class="freq" id="freq">{{Frequency}}</div>
+<div class="freq" id="freq">
+  {{Frequency}}
+</div>
 {{/Frequency}} {{#Notes}}
 <span class="note">({{Notes}})</span>
 {{/Notes}} {{#Conjugation}}
-<span class="conj">({{Conjugation}})</span>
+<span class="conj">
+  ({{Conjugation}})
+</span>
 {{/Conjugation}}
 
 <div class="pic" id="pic">
   {{#Source Url}}
-  <a href="{{Source Url}}">{{Picture}}</a>
-  {{/Source Url}} {{^Source Url}} {{Picture}}
-  {{/Source Url}}
+  <a href="{{Source Url}}">
+    {{Picture}}
+  </a>
+  {{/Source Url}} {{^Source Url}}
+  {{Picture}} {{/Source Url}}
 </div>
 
 <div class="utils">
-  <button class="jisho" id="jisho">漢字</button>
-  {{#Word Audio}}
+  <button class="jisho" id="jisho">
+    漢字
+  </button>
+  {{#Audio}}
   <br />
-  {{Word Audio}} {{/Word Audio}}
+  {{Audio}} {{/Audio}}
 </div>
 
 <script>
   document
     .getElementById("jisho")
-    .addEventListener("click", () => {
-      window.location.href =
-        "https://jisho.org/search/%23kanji%20{{Word}}";
-    });
-  var freq = document.getElementById("freq");
-  freq.innerHTML = freq.innerHTML.replace(
-    /(\d\d+|[6-9])\d{3}([^\d]?)/g,
-    "$1k$2",
-  );
+    .addEventListener(
+      "click",
+      () => {
+        window.location.href =
+          "https://jisho.org/search/%23kanji%20{{Word}}";
+      },
+    );
+  var freq =
+    document.getElementById("freq");
+  freq.innerHTML =
+    freq.innerHTML.replace(
+      /(\d\d+|[6-9])\d{3}([^\d]?)/g,
+      "$1k$2",
+    );
+  var tags =
+    document.getElementById("tags");
+  tags.innerHTML =
+    tags.innerHTML.replace(
+      "yomitan",
+      "",
+    );
   if ("{{Tags}}".match("nsfw")) {
-    var pic = document.getElementById("pic");
+    var pic =
+      document.getElementById("pic");
     pic.style.filter = "blur(8px)";
-    pic.firstElementChild.removeAttribute("href");
-    pic.addEventListener("click", () => {
-      pic.style.filter = "none";
-    });
+    pic.firstElementChild.removeAttribute(
+      "href",
+    );
+    pic.addEventListener(
+      "click",
+      () => {
+        pic.style.filter = "none";
+      },
+    );
   }
 </script>
-<!-- <script src="https://cdn.jsdelivr.net/npm/eruda"></script>
-<script>eruda.init();</script> -->
+<!-- -> <script src="https://cdn.jsdelivr.net/npm/eruda"></script>
+<script>eruda.init();</script> <!-- -->

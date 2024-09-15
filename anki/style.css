@@ -16,7 +16,9 @@
 
 #content { margin: 5px; }
 b { color: #5586cd; }
-.word-back {
+.word-front { padding-top: 10px; }
+.word-back { padding-top: 0px; }
+.word-meaning {
   font-size: 25px;
   padding-bottom: 36px;
 }
@@ -25,6 +27,12 @@ b { color: #5586cd; }
   padding-top: 70px;
 }
 .sentence-back { font-size: 22px; }
+.tags {
+  font-size: 14px;
+  position: fixed;
+  top: 0px;
+  right: 0px;
+}
 .note, .conj { font-size: 20px; }
 .pic {
   position: fixed;
@@ -76,6 +84,7 @@ button {
   padding: 6px 10px;
 }
 .jisho { background-color: #2ea44faa; }
+.replay-button { padding-bottom: 10px; }
 
 img:first-child:nth-last-child(2),
 img:first-child:nth-last-child(2) ~ img {

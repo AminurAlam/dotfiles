@@ -2,7 +2,7 @@
 
 bracketSpacing = true
 experimentalTernaries = true
-printWidth = 50
+printWidth = 37
 tabWidth = 2
 useTabs = false
 singleQuote = false
