@@ -5,7 +5,9 @@ local M = {
 
 M.config = function()
   local lspconfig = require 'lspconfig'
-  local nmap = function(lhs, rhs, desc) vim.keymap.set('n', lhs, rhs, { noremap = true, silent = true, desc = desc }) end
+  local nmap = function(lhs, rhs, desc)
+    vim.keymap.set('n', lhs, rhs, { noremap = true, silent = true, desc = desc })
+  end
 
   require('lspconfig.ui.windows').default_options.border = 'rounded'
 
@@ -80,7 +82,11 @@ M.config = function()
   nmap('[d', function() vim.diagnostic.jump { count = -1 } end, 'goto prev diagnostic message')
   nmap(']d', function() vim.diagnostic.jump { count = 1 } end, 'goto next diagnostic message')
   nmap('<leader>d', vim.diagnostic.open_float, 'view line diagnostics')
-  nmap('<leader>D', function() vim.diagnostic.open_float { scope = 'buffer' } end, 'view all diagnostics in a buffer')
+  nmap(
+    '<leader>D',
+    function() vim.diagnostic.open_float { scope = 'buffer' } end,
+    'view all diagnostics in a buffer'
+  )
 end
 
 return M

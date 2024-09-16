@@ -83,7 +83,9 @@ vim.g.stl = {
     return string.format('%2d%%', math.floor(current / total * 100))
   end,
   diagnostics = function()
-    local count = function(severity) return #vim.diagnostic.count(0, { severity = vim.diagnostic.severity[severity] }) end
+    local count = function(severity)
+      return #vim.diagnostic.count(0, { severity = vim.diagnostic.severity[severity] })
+    end
 
     return (count 'ERROR' > 0 and '%#DiagnosticError# ' or '')
       .. (count 'WARN' > 0 and '%#DiagnosticWarn# ' or '')

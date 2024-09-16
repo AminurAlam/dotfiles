@@ -36,7 +36,13 @@ return {
     branch = 'v0.6',
     opts = {
       bs = { indent_ignore = true },
+      space = { check_box_ft = { 'markdown', 'note' } },
+      tabout = { enable = true, hopout = true, map = '<tab>' },
       extensions = { cmdtype = { skip = { '@', '-' }, p = 100 } },
+      -- internal_pairs = {
+      --   { '\\(', '\\)', ft = {} },
+      --   { '<', '>', ft = { 'markdown', 'html' }, space = true },
+      -- },
     },
   },
 }

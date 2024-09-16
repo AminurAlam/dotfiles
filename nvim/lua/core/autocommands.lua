@@ -23,8 +23,10 @@ autocmd({ 'FileType', 'BufNewFile' }, {
     set.relativenumber = false
     set.signcolumn = 'no'
     set.foldcolumn = '0'
-    set.statusline =
-      '%#stl_hl_b# %t %{ &modified ? "󰆓 " : "" }%#stl_hl_to#%#Normal# %=%{ v:hlsearch ? g:stl.hlsearch(searchcount()) : "" } %{ g:stl.progress(line("."), line("$")) } '
+    set.statusline = '%#stl_hl_b# %t %{ &modified ? "󰆓 " : "" }'
+      .. '%#stl_hl_to#%#Normal# %='
+      .. '%{ v:hlsearch ? g:stl.hlsearch(searchcount()) : "" } '
+      .. '%{ g:stl.progress(line("."), line("$")) } '
   end,
 })
 
@@ -35,15 +37,13 @@ autocmd('SwapExists', {
       'quit vim (default)',
       'delete swapfile and edit anyway',
       'open file in read-only mode',
-    }, {
-      prompt = 'a swapfile already exists!',
-    }, function(choice)
+    }, { prompt = 'a swapfile already exists!' }, function(choice)
       -- vim.v.swapchoice = choice and string.sub(choice, 1, 1) or 'q'
       if choice == 'delete swapfile and edit anyway' then
-        vim.opt_local.readonly = false
+        set.readonly = false
       elseif choice == 'open file in read-only mode' then
-        vim.opt_local.readonly = true
-        vim.opt_local.modifiable = false
+        set.readonly = true
+        set.modifiable = false
       else
         vim.cmd(#vim.fn.getbufinfo({ buflisted = 1 }) == 1 and 'q' or 'bd')
       end
@@ -53,11 +53,11 @@ autocmd('SwapExists', {
 
 -- https://github.com/mong8se/actually.nvim
 autocmd('BufNewFile', {
-  desc = 'when tab completion doesnt work',
+  desc = 'when tab completion doesnt finish',
   once = true,
   callback = function(details)
     if vim.fn.filereadable(details.file) == 1 then return end
-    local possibles = vim.split(vim.fn.glob(details.file .. '*'), '\n', { trimempty = true })
+    local possibles = vim.fn.split(vim.fn.glob(details.file .. '*'))
     if #possibles == 0 then return end
 
     vim.ui.select(possibles, {}, function(choice)
@@ -75,7 +75,9 @@ autocmd('VimEnter', {
   group = vim.api.nvim_create_augroup('IntroScreen', {}),
   callback = function()
     if vim.fn.argc() == 0 then
-      local nmap = function(lhs, rhs) vim.keymap.set('n', lhs, rhs, { buffer = true, silent = true }) end
+      local nmap = function(lhs, rhs)
+        vim.keymap.set('n', lhs, rhs, { buffer = true, silent = true })
+      end
       set.bufhidden = 'hide'
       set.buftype = 'nofile'
       nmap('f', '<cmd>Telescope find_files<cr>')
@@ -93,13 +95,12 @@ autocmd('VimEnter', {
   end,
 })
 
--- https://github.com/stevearc/oil.nvim
 autocmd('VimEnter', {
   desc = 'open directory in telescope',
   callback = function(details)
     if vim.fn.isdirectory(details.file) == 1 then
-      vim.opt_local.buftype = 'nofile'
-      vim.opt_local.bufhidden = 'delete'
+      set.buftype = 'nofile'
+      set.bufhidden = 'delete'
       vim.cmd.cd(details.file)
       vim.cmd 'Telescope find_files'
     end
@@ -167,7 +168,9 @@ autocmd('BufEnter', { command = 'set formatoptions-=cro' })
 --   desc = 'restore cursor position',
 --   callback = function()
 --     local mark = vim.api.nvim_buf_get_mark(0, '"')
---     if mark[1] > 0 and mark[1] <= vim.api.nvim_buf_line_count(0) then pcall(vim.api.nvim_win_set_cursor, 0, mark) end
+--     if mark[1] > 0 and mark[1] <= vim.api.nvim_buf_line_count(0) then
+--       pcall(vim.api.nvim_win_set_cursor, 0, mark)
+--     end
 --   end,
 -- })
 -- autocmd('VimLeave', { command = 'set guicursor=a:hor25' })

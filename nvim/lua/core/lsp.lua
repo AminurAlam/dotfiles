@@ -136,8 +136,14 @@ usercmd('TexBuild', function(info)
 end, { desc = 'Builds your tex file', bang = true })
 
 usercmd('TexClean', function()
-  vim.lsp.buf.execute_command { command = 'texlab.cleanArtifacts', arguments = { { uri = vim.uri_from_bufnr(0) } } }
-  vim.lsp.buf.execute_command { command = 'texlab.cleanAuxiliary', arguments = { { uri = vim.uri_from_bufnr(0) } } }
+  vim.lsp.buf.execute_command {
+    command = 'texlab.cleanArtifacts',
+    arguments = { { uri = vim.uri_from_bufnr(0) } },
+  }
+  vim.lsp.buf.execute_command {
+    command = 'texlab.cleanAuxiliary',
+    arguments = { { uri = vim.uri_from_bufnr(0) } },
+  }
 end, { desc = 'cleans up temp files' })
 
 usercmd('LspInfo', function()
@@ -148,7 +154,9 @@ usercmd('LspInfo', function()
      ws: %s
 ]]
 
-  local get_ws = function(dirs) return dirs and vim.fn.fnamemodify(dirs[1].name, ':~') or 'single file mode' end
+  local get_ws = function(dirs)
+    return dirs and vim.fn.fnamemodify(dirs[1].name, ':~') or 'single file mode'
+  end
 
   for _, client in pairs(clients) do
     text = text
@@ -186,5 +194,7 @@ autocmd('LspAttach', {
   end,
 })
 
-vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, { border = 'rounded' })
-vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = 'rounded' })
+vim.lsp.handlers['textDocument/hover'] =
+  vim.lsp.with(vim.lsp.handlers.hover, { border = 'rounded' })
+vim.lsp.handlers['textDocument/signatureHelp'] =
+  vim.lsp.with(vim.lsp.handlers.signature_help, { border = 'rounded' })

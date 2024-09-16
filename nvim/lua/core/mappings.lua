@@ -15,11 +15,9 @@ end
 
 local fn = vim.fn
 local macro = function(reg, expr) vim.cmd.let(string.format([[@%s = '%s']], reg, expr)) end
-local feed = function(key) fn.feedkeys(vim.keycode(key)) end
 local nmap = map { 'n' }
 local vmap = map { 'x' }
 local umap = map { '', 'i' }
-local abbr = map { 'ca' }
 
 -- lazy
 nmap('<leader>pu', require('lazy').update, 'update plugins')
@@ -62,7 +60,7 @@ nmap('<cr>', '"_ciw', 'delete word at cursor')
 -- write & quit
 nmap('<leader>w', '<cmd>silent w <bar> redraw <cr>', 'write')
 nmap('<leader>W', '<cmd>silent w <bar> redraw <cr>', 'write')
-nmap('q', function() vim.cmd(#fn.getbufinfo { buflisted = 1 } == 1 and 'q' or 'bd') end, 'quit buffer')
+nmap('q', "<cmd>if len(getbufinfo({'buflisted': 1})) == 1|q|else|bd|endif<cr>", 'quit buffer')
 nmap('Q', 'q', 'record typed characters into register')
 
 -- indent & fold
@@ -108,30 +106,28 @@ nmap('V', 'm`V')
 nmap('<c-v>', 'm`<c-v>')
 vmap('<esc>', '<esc><cmd>keepjumps norm ``<cr>') -- after umap '<esc>'
 vmap('v', function()
-  local next = { ['v'] = 'V', ['V'] = '\22', ['\22'] = '<esc>' }
-  feed(next[vim.api.nvim_get_mode().mode])
+  local next = { v = 'V', V = '\22', ['\22'] = '<esc>' }
+  fn.feedkeys(vim.keycode(next[vim.api.nvim_get_mode().mode]))
 end, 'repeat v to change visual mode')
 
 -- overrides
 nmap('z=', function()
   vim.ui.select(
-    fn.spellsuggest(vim.fn.expand('<cword>')),
+    fn.spellsuggest(fn.expand('<cword>')),
     {},
     vim.schedule_wrap(function(word)
-      if word then feed('"_ciw' .. word .. '<esc>') end
+      if word then fn.feedkeys(vim.keycode('"_ciw' .. word .. '<esc>')) end
     end)
   )
 end, 'open spellsuggests in select menu')
+
+-- abbreviations
+if fn.has('nvim-0.10.0') == 1 then
+  map { 'ca' }('vq', 'wq') -- dvorak
+  map { 'ca' }('qn', 'q!') -- qwert
+end
 
 -- macros
 macro('m', [[mmA;`m]]) -- put ; at end of statements
 macro('x', [[$T["_sx]]) -- mark todo as complete
 macro('f', [[mmF"if`m]]) -- convert python string to format string
-
--- abbreviations
-if fn.has('nvim-0.10.0') == 1 then
-  abbr('vq', 'wq') -- dvorak
-  abbr('qn', 'q!') -- qwert
-  -- abbr('qw', 'q!') -- dvorak
-  -- abbr('S', [[s/\v]])
-end

@@ -6,7 +6,8 @@ return {
     hide_in_unfocused_buffer = false,
     link_highlights = true,
     validate_config = 'auto',
-    action_kinds = { 'quickfix', 'refactor', 'source' }, -- https://microsoft.github.io/language-server-protocol/specifications/lsp/3.17/specification/#codeActionKind
+    -- https://microsoft.github.io/language-server-protocol/specifications/lsp/3.17/specification/#codeActionKind
+    action_kinds = { 'quickfix', 'refactor', 'source' },
     virtual_text = { enabled = true, text = '' },
     sign = { enabled = false },
     float = { enabled = false },

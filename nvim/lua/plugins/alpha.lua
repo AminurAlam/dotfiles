@@ -60,7 +60,14 @@ M.config = function()
           [[/\ \/\ \/\  __//\ \L\ \ \ \_/ |\ \ \/\ \/\ \/\ \ ]],
           [[\ \_\ \_\ \____\ \____/\ \___/  \ \_\ \_\ \_\ \_\]],
           [[ \/_/\/_/\/____/\/___/  \/__/    \/_/\/_/\/_/\/_/]],
-          string.format('%33s v%d.%d.%d-%s', ' ', v.major, v.minor, v.patch, (v.prerelease and 'dev' or 'stable')),
+          string.format(
+            '%33s v%d.%d.%d-%s',
+            ' ',
+            v.major,
+            v.minor,
+            v.patch,
+            (v.prerelease and 'dev' or 'stable')
+          ),
         },
         opts = { position = 'center', hl = 'Type' },
       },
@@ -73,7 +80,12 @@ M.config = function()
       button('u', '󰚰  Update plugins', '<cmd>Lazy update<cr>', ''),
       button('q', '󰗼  Quit', '<cmd>qa<cr>', ''),
       { type = 'padding', val = 2 },
-      button('d', '  dotfiles', '<cmd>cd ~/repos/dotfiles/ | Telescope find_files<cr>', 'Comment'),
+      button(
+        'd',
+        '  dotfiles',
+        '<cmd>cd ~/repos/dotfiles/ | Telescope find_files<cr>',
+        'Comment'
+      ),
       button('n', '  notes', '<cmd>cd /sdcard/main/notes/ | Telescope find_files<cr>', 'Title'),
       { type = 'padding', val = 2 },
       { type = 'group', val = oldfiles },
