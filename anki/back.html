@@ -1,6 +1,6 @@
 <!-- vim:set ft=html cc=37 et sw=2: -->
 <div class="tags" id="tags">
-  {{Tags}}
+  <!-- {{Tags}} -->
 </div>
 <div class="word-back">
   {{furigana:Word Furigana}}
@@ -9,7 +9,7 @@
   {{Word Meaning}}
 </div>
 <div class="sentence-back">
-  {{furigana:Sentence Furigana}}
+  {{furigana:Sentence}}
   <br />
   {{Sentence Meaning}}
 </div>
@@ -19,20 +19,11 @@
   {{Frequency}}
 </div>
 {{/Frequency}} {{#Notes}}
-<span class="note">({{Notes}})</span>
-{{/Notes}} {{#Conjugation}}
-<span class="conj">
-  ({{Conjugation}})
-</span>
-{{/Conjugation}}
+<!-- <span class="note">({{Notes}})</span> -->
+{{/Notes}}
 
 <div class="pic" id="pic">
-  {{#Source Url}}
-  <a href="{{Source Url}}">
-    {{Picture}}
-  </a>
-  {{/Source Url}} {{^Source Url}}
-  {{Picture}} {{/Source Url}}
+  {{Picture}}
 </div>
 
 <div class="utils">

@@ -1,9 +1,28 @@
 /* vim:set cc=37 et sw=2: */
+@font-face {
+  font-family: "kana";
+  src: url("_NotoSerifJP-Regular.ttf");
+  unicode-range: U+3040-309f;
+}
+
+@font-face {
+  font-family: "kanji";
+  src:
+    local("ヒラギノ角ゴ Pro W3"),
+    local("Hiragino Kaku Gothic Pro"),
+    local("Noto Sans JP"),
+    local("Osaka"),
+    local("メイリオ"),
+    local("Meiryo"),
+    local("ＭＳ Ｐゴシック"),
+    local("MS PGothic"),
+    local("MS UI Gothic"),
+    local("sans-serif");
+  unicode-range: U+4e00-9faf;
+}
+
 .card {
-  font-family: "ヒラギノ角ゴ Pro W3",
-    "Hiragino Kaku Gothic Pro", "Noto Sans JP",
-    Osaka, "メイリオ", Meiryo, "ＭＳ Ｐゴシック",
-    "MS PGothic", "MS UI Gothic", sans-serif;
+  font-family: kana, kanji;
   font-size: 44px;
   text-align: center;
 }
@@ -33,7 +52,7 @@ b { color: #5586cd; }
   top: 0px;
   right: 0px;
 }
-.note, .conj { font-size: 20px; }
+.note { font-size: 20px; }
 .pic {
   position: fixed;
   bottom: 0px;
