@@ -32,18 +32,18 @@
 
 ```sh
 yes | termux-setup-storage
-curl -q#Lo termux.sh -- https://github.com/AminurAlam/dotfiles/raw/main/setup/termux.sh
+curl -q#Lo termux.sh -- github.com/AminurAlam/dotfiles/raw/main/setup/termux.sh
 bash termux.sh
 ```
 
 - ubuntu
 
 ```sh
-curl https://github.com/AminurAlam/dotfiles/raw/main/setup/ubuntu.sh | bash
+curl -q#L github.com/AminurAlam/dotfiles/raw/main/setup/ubuntu.sh | bash
 ```
 
 - windows
 
-```powershell
+```ps1
 Invoke-Expression $((Invoke-WebRequest https://github.com/AminurAlam/dotfiles/raw/main/setup/windows.ps1).Content)
 ```
