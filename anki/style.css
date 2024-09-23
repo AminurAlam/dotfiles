@@ -2,22 +2,22 @@
 @font-face {
   font-family: "kana";
   src: url("_NotoSerifJP-Regular.ttf");
-  unicode-range: U+3040-309f;
+  unicode-range: U+3040-309f, U+30a0-30ff;
 }
 
 @font-face {
   font-family: "kanji";
   src:
-    local("ヒラギノ角ゴ Pro W3"),
-    local("Hiragino Kaku Gothic Pro"),
-    local("Noto Sans JP"),
-    local("Osaka"),
-    local("メイリオ"),
-    local("Meiryo"),
-    local("ＭＳ Ｐゴシック"),
-    local("MS PGothic"),
-    local("MS UI Gothic"),
-    local("sans-serif");
+    "ヒラギノ角ゴ Pro W3",
+    "Hiragino Kaku Gothic Pro",
+    "Noto Sans JP",
+    "Osaka",
+    "メイリオ",
+    "Meiryo",
+    "ＭＳ Ｐゴシック",
+    "MS PGothic",
+    "MS UI Gothic",
+    "sans-serif";
   unicode-range: U+4e00-9faf;
 }
 

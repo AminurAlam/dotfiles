@@ -23,6 +23,7 @@
 - [stylua](https://github.com/JohnnyMorganz/StyLua) - lua formatter
 - [termux](https://termux.dev/) - terminal emulator
 - [tmux](https://tmux.github.io/) - terminal multiplexer
+- [yazi](https://yazi-rs.github.io/) - terminal file manager
 - [yt-dlp](https://github.com/yt-dlp/yt-dlp) - video downloader
 - [zellij](https://zellij.dev/) - terminal workspace
 
