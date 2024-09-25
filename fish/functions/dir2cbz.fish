@@ -10,7 +10,7 @@ function dir2cbz
         set out "$(basename $dir).cbz"
         printf "$out "
         [ -e "$out" ] && printf "updating... "
-        zip -q "$out" "$dir/"*
+        zip -0q "$out" "$dir/"**
         and rm -fr "$dir"
         printf "done\n"
     end

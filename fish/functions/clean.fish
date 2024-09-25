@@ -7,7 +7,6 @@ function clean
         /sdcard/Download/apk/Downloads/ \
         /sdcard/Download/Nearby Share/ \
         ~/.local/share/cargo/registry/ \
-        ~/downloads/ \
         /sdcard/TachiyomiSY/downloads/*/*/*_tmp/
 
     for dir in $__dirs
