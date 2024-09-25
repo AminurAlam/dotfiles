@@ -1,19 +1,21 @@
-fish/fish_variables
-fish/completions/uv.fish
-fish/completions/ruff.fish
+# allow completions manully
+/fish/completions/*
+!/fish/completions/x11.fish
+!/fish/completions/z.fish
+/fish/fish_variables
 
-nvim/lazy-lock.json
-nvim/parser
-nvim/parser/*
-nvim/spell
-nvim/spell/*
+/nvim/lazy-lock.json
+/nvim/parser/
+/nvim/spell/
 
-rclone/
-rclone/rclone.conf
+/termux/font.ttf
+/termux/shell
 
-streamrip/*downloads.db
-
-termux/font.ttf
-termux/shell
-mutt/passwords.gpg
+# sensitive
+/mutt/passwords.gpg
 passwords.gpg
+/rclone/
+rclone.conf
+
+/yazi/plugins/
+/streamrip/*downloads.db

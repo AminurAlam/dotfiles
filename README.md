@@ -1,9 +1,9 @@
 ## configs found here
 
-- [aria2](https://aria2.github.io/) - download manager
 - [anki](https://apps.ankiweb.net/) - flashcards
-- [clangd](https://clang.llvm.org/) - c++ lsp server
+- [aria2](https://aria2.github.io/) - download manager
 - [clang-format](https://clang.llvm.org/docs/ClangFormat.html) - c formatter
+- [clangd](https://clang.llvm.org/) - c++ lsp server
 - [curl](https://curl.se/) - request url
 - [eza](https://github.com/eza-community/eza) - replacement for ls
 - [fish](https://fishshell.com/) - shell
@@ -14,13 +14,13 @@
 - [npm](https://npmjs.com/) - javascript runtime
 - [nvim](https://neovim.io/) - text editor
 - [pacman](https://archlinux.org/pacman/) - package manager
-- [procs](https://github.com/dalance/procs) - replacement for ps
 - [python](https://python.org/) - python interpreter
 - [ripgrep](https://github.com/BurntSushi/ripgrep) - grep alternative
 - [ruff](https://docs.astral.sh/ruff/) - python linter and formatter
 - [starship](https://starship.rs/) - shell prompt
 - [streamrip](https://github.com/nathom/streamrip)
 - [stylua](https://github.com/JohnnyMorganz/StyLua) - lua formatter
+- [taplo](https://taplo.tamasfe.dev/) - lsp for toml
 - [termux](https://termux.dev/) - terminal emulator
 - [tmux](https://tmux.github.io/) - terminal multiplexer
 - [yazi](https://yazi-rs.github.io/) - terminal file manager
@@ -40,7 +40,7 @@ bash termux.sh
 - ubuntu
 
 ```sh
-curl -q#L github.com/AminurAlam/dotfiles/raw/main/setup/ubuntu.sh | bash
+curl -q#L github.com/AminurAlam/dotfiles/raw/main/setup/ubuntu.sh | sudo bash
 ```
 
 - windows

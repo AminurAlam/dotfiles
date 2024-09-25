@@ -19,7 +19,7 @@ bootstrap-pacman() {
     printf "done\n"
 
     printf "creating symlinks... "
-    awk -F "←" '{system("ln -s '"'"'"$1"'"'"' '"'"'"$2"'"'"'")}' < ~/../usr-n/SYMLINKS.txt
+    awk -F "←" '{system("ln -s '"'"'"$1"'"'"' '"'"'"$2"'"'"'")}' <~/../usr-n/SYMLINKS.txt
     printf "done\n"
 
     printf "\nRUN THIS COMMAND IN FAILSAFE MODE
