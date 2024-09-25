@@ -1,5 +1,9 @@
 function dir2cbz
     count $argv &>/dev/null || set argv */
+    if not count $argv &>/dev/null
+        printf "no input dirs supplied and failed to find */\n"
+        return 1
+    end
 
     for dir in $argv
         if not [ -d "$dir" ]
@@ -7,11 +11,23 @@ function dir2cbz
             continue
         end
 
-        set out "$(basename $dir).cbz"
-        printf "$out "
-        [ -e "$out" ] && printf "updating... "
-        zip -0q "$out" "$dir/"**
-        and rm -fr "$dir"
+        set out (basename "$dir").cbz
+
+        if [ -e "$out" ]
+            [ "$(read -P "overwrite $out? [y/N] ")" = y ]
+            and rm "$out" # rm cant be relied on for prompting
+            or continue
+        end
+
+        printf "$out ... "
+        set ogdir "$PWD"
+        pushd "$dir/" || continue
+        zip -0rq "$ogdir/$out" . || return 2
+        popd
+        # and rm -fr "$dir"
         printf "done\n"
+    end
+
+    while popd &>/dev/null
     end
 end

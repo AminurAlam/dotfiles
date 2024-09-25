@@ -1,12 +1,18 @@
 function flac2opus
     count $argv &>/dev/null || set argv *.flac
-    set total (count $argv || return)
+    if not count $argv &>/dev/null
+        printf "no input files supplied and failed to find *.flac\n"
+        return 1
+    end
 
+    # TODO: sort by size
     if fd -iq '(cover|folder)\.(jpg|png)'
         set -f cover --picture (fd -i '(cover|folder)\.(jpg|png)' | $LAUNCHER) --discard-pictures
         echo "using `$cover[2]` as cover art"
     end
 
+
+    set total (count $argv)
     for n in (seq (count $argv))
         while [ (count (jobs | rg 'opusenc|ffmpeg|sox')) -ge 4 ]
             sleep 0.1

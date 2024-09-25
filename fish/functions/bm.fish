@@ -8,11 +8,6 @@ function bm
             echo "$argv[2]" >>"$BMPATH[1]"
         case e ed edit
             $EDITOR $BMPATH
-        case h host
-            # TODO: implement custom site
-            shiori server &
-            disown &>/dev/null
-            $BROWSER http://127.0.0.1:8080
         case repo
             $BROWSER (for repo in $XDG_PROJECTS_DIR/*
                 git -C "$repo" remote --verbose | awk '/push/ {print $2}'
@@ -21,7 +16,7 @@ function bm
             set -l LINK (
                 rg --no-filename --replace '' '^https?://(www\.)?' $BMPATH |
                 $LAUNCHER --query "$argv[1]" |
-		string split ' ' # remove tags from end
+                string split ' ' # remove tags from end
             )[1]
 
             if echo "$LINK" | rg -q '%s'
