@@ -20,7 +20,7 @@ local function create(cmd, filetypes, root_dir, settings)
   })
 end
 
-create({ 'taplo', 'lsp', 'stdio' }, { 'toml' }, { '*.toml', '.git' }, {})
+create({ 'taplo', 'lsp', '-c', vim.env.XDG_CONFIG_HOME .. '/taplo.toml', 'stdio' }, { 'toml' }, { '*.toml', '.git' }, {})
 create({ 'gopls' }, { 'go' }, { 'go.work', 'go.mod', '.git' })
 create({ 'java-language-server' }, { 'java' }, { 'build.gradle', 'pom.xml', '.git' })
 create({ 'bash-language-server', 'start' }, { 'sh', 'zsh', 'bash' }, { '.sh', '.zsh' })
@@ -127,6 +127,11 @@ usercmd('TexBuild', function(info)
     [3] = 'Cancelled',
   }
 
+  if vim.fn.executable('latexmk') == 0 then
+    print('latexmk is not executable!!')
+    return
+  end
+
   vim.lsp.get_clients({ bufnr = 0, name = 'texlab' })[1].request('textDocument/build', {
     textDocument = { uri = vim.uri_from_bufnr(0) },
   }, function(e, r)
@@ -184,7 +189,7 @@ autocmd('LspAttach', {
     nmap('<leader>li', vim.lsp.buf.format)
     nmap('<leader>lf', vim.lsp.buf.format)
     nmap('<leader>ca', vim.lsp.buf.code_action)
-    nmap('cn', vim.lsp.buf.rename)
+    nmap('<leader>lr', vim.lsp.buf.rename) -- TODO: only if rename is supported
     nmap('gd', vim.lsp.buf.definition)
 
     -- local client = vim.lsp.get_client_by_id(info.data.client_id)
