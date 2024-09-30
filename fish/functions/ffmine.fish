@@ -20,13 +20,13 @@ function ffmine
         -ss (string replace , . "$argv[2]") \
         -i "$argv[1]" \
         -copyts -vf "subtitles=$subs,fps=6" -vframes 10 \
-        "../screenshot %d.png"
+        "$XDG_VIDEOS_DIR/#meta/screenshot %d.png"
 
     echo "generating audio..."
     ffmpeg -y -hide_banner -loglevel error \
         -ss (date -ud "$argv[2] + 1 hour 1 second" '+%H:%M:%S.%03N') \
         -to (date -ud "$argv[3] + 1 hour 1 second" '+%H:%M:%S.%03N') \
         -i "$argv[1]" \
-        -vn -acodec libvorbis ../audio.ogg
-    and open ../audio.ogg
+        -vn -acodec libvorbis $XDG_VIDEOS_DIR/#meta/audio.ogg
+    and open $XDG_VIDEOS_DIR/#meta/audio.ogg
 end

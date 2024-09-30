@@ -1,34 +1,27 @@
-function unexe -a input
-    set stdout
-    set mb 000000
-    set total (count (ls -1NA ))
-    set count 0
-    set -q temp && set exe "$temp/exe" || set exe "$HOME/.local/cache/temp/exe"
+function unexe
+    set exe (mktemp -dt "unexe.XXXXX") || return 2
+    count $argv &>/dev/null || set argv (fd -H -tf -S '-20mi')
+    set total (count $argv)
 
-    mkdir -pv "$exe"
-
-    if [ -n "$input" ]
-        mv -- "$input" "$exe/"
-        chmod -x -- "$exe/$input" &>/dev/null
-        mv -- "$exe/$input" ./
-        return 0
+    if [ "$total" -lt 1 ]
+        printf "no input files supplied and failed to find files less than 20mb\n"
+        return 1
+    else if [ "$total" -gt 20 ]
+        [ "$(read -P "$total files will be processed, proceed? [y/N] ")" = y ]
+        or return 2
     end
 
-    for file in *
-        set count (math $count + 1)
-        printf "\033[A\n"
-        printf '#%.0s' (seq (math -s 0 (tput cols) x $count/$total))
+    for file in $argv
+        [ -L "$file" ] && continue
 
-        if [ -f "$file" ]
-            and stat -c '%A' -- "$file" | grep --quiet x
-            and [ (stat -c '%s' -- "$file") -lt 20$mb ]
-            mv -- "$file" "$exe/$file"
+        if stat -c '%A' -- "$file" | rg -q rwx
+            du -h -- "$file"
+            mkdir -p -- (dirname "$exe/$file")
+            mv -- "$file" "$exe/$file" &>/dev/null
             chmod -x -- "$exe/$file" &>/dev/null
-            mv -- "$exe/$file" ./
-            set -a stdout (du -h "$file")
+            # mv -- "$exe/$file" "$file"
+            mv -- "$exe/$file" "$file" &>/dev/null
+            [ -e "$file" ] || printf "$file was not restored properly\ncheck $exe\n"
         end
     end
-
-    printf "%s\n" $stdout
-    ls "$exe"
 end

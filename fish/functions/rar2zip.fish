@@ -36,13 +36,12 @@ function rar2zip
         end
 
         printf "[%02d/%02d] %s ... " "$count" "$total" "$input"
-        unrar x "$input" "$medium/" &>/dev/null || return 1
+        unrar x -idnq "$input" "$medium/" || return 1
 
         set ogdir "$PWD"
         pushd "$medium/" || return 3
         zip -rmq "$ogdir/$output" . || return 2
         popd
-        rmdir "$medium" &>/dev/null
         printf "done\n"
     end
 
