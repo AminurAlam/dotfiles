@@ -1,5 +1,8 @@
-vim.opt_local.conceallevel = 3
-vim.opt_local.concealcursor = 'n'
-vim.opt_local.foldmethod = 'manual'
-vim.opt_local.commentstring = '# %s'
-vim.opt_local.foldtext = 'getline(v:foldstart) .. " [" .. (v:foldend-v:foldstart) .. " links]"'
+local set = vim.opt
+
+set.conceallevel = 3
+set.concealcursor = 'n'
+set.foldmethod = 'expr'
+set.foldexpr = [[getline(v:lnum)=~'^$'?0:1]]
+set.commentstring = '# %s'
+set.foldtext = 'getline(v:foldstart) .. " [" .. (v:foldend-v:foldstart) .. " links]"'

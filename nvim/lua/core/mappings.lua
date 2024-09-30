@@ -77,6 +77,7 @@ nmap('zO', 'zR')
 -- toggles
 nmap('<leader>ss', '<cmd>setlocal spell!<cr>', 'toggle spell')
 nmap('<leader>sw', '<cmd>setlocal wrap!<cr>', 'toggle wrap')
+nmap('<leader>st', '<cmd>set ts=4 sw=4 sts=4 si sta et sr<cr>', 'use spaces over tab')
 nmap('<leader>sn', function()
   if vim.o.number then
     vim.o.number = false

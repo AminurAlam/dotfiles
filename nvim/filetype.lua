@@ -4,5 +4,6 @@ vim.filetype.add {
     ['.*%.cue'] = 'cuesheet',
     ['.*%.note'] = 'note',
     ['.*%.conf'] = 'conf',
+    ['mihon_update_errors.txt'] = 'markdown',
   },
 }

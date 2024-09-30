@@ -1,1 +1,1 @@
-vim.opt_local.cinkeys:remove { ':' }
+vim.opt.cinkeys:remove { ':' }
