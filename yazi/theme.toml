@@ -23,6 +23,7 @@ brcyan = { fg = "#9aedfe" }
 white = { fg = "#bfbfbf" }
 brwhite = { fg = "#e6e6e6" }
 
+
 [manager]
 cwd = { fg = "#8bd5ca" }
 

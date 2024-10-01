@@ -58,6 +58,7 @@ play = [
 
 [open]
 rules = [
+  { mime = "application/x-bittorrent", use = ["open"] },
   # Folder
   { name = "*/", use = ["edit", "open", "reveal"] },
   # Text
@@ -87,10 +88,18 @@ image_bound = [0, 0]
 suppress_preload = false
 
 [plugin]
-
-fetchers = [
-  # Mimetype
-  { id = "mime", name = "*", run = "mime", if = "!mime", prio = "high" },
+fetchers = [{ id = "mime", name = "*", run = "mime", if = "!mime", prio = "high" }]
+prepend_previewers = [
+  { name = "*/", run = "eza-preview" },
+  # exifaudio
+  { mime = "audio/*", run = "exifaudio" },
+  # Archive previewer
+  { mime = "application/*zip", run = "ouch" },
+  { mime = "application/x-tar", run = "ouch" },
+  { mime = "application/x-bzip2", run = "ouch" },
+  { mime = "application/x-7z-compressed", run = "ouch" },
+  { mime = "application/x-rar", run = "ouch" },
+  { mime = "application/x-xz", run = "ouch" },
 ]
 preloaders = [
   # Image
