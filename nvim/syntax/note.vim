@@ -2,42 +2,38 @@ if exists('b:current_syntax')
     finish
 endif
 
-syn match noteHead1 /^\#\{1\}\s.\+$/ contains=noteHeadDelim
-syn match noteHead2 /^\#\{2\}\s.\+$/ contains=noteHeadDelim
-syn match noteHead3 /^\#\{3\}\s.\+$/ contains=noteHeadDelim
-syn match noteHead4 /^\#\{4\}\s.\+$/ contains=noteHeadDelim
-syn match Bold /\*\S[^\*]*\*/ contains=noteSurround
-syn match Strike /\~\S[^\~]*\~/ contains=noteSurround
-syn match noteBt /\`\S[^\`]*\`/ contains=noteSurround
-syn match Underlined /_\S[^_]*_/   contains=noteSurround
+syn match noteHead1 /\v^#{1}\s.+$/ contains=noteHeadDelim
+syn match noteHead2 /\v^#{2}\s.+$/ contains=noteHeadDelim
+syn match noteHead3 /\v^#{3}\s.+$/ contains=noteHeadDelim
+syn match noteHead4 /\v^#{4}\s.+$/ contains=noteHeadDelim
 
-syn region noteBt start=/^\`\{3\}/ end=/\`\{3\}$/
-syn match noteUrl /https\?:\/\/[^ \]\)\>]\+/
-syn match Title /[a-zA-Z0-9-_ ]\+\:/
-syn match Number /^\d\+\.\s/
-syn match Number /\s\+\->\? /
-syn match String /^>.\+/
-syn match Comment /^\-\{3,\}$/
-syn match Comment /\.\{3,\}$/
-syn match Number /^\[.\+\]\s/ contains=noteMarker
+syn match Bold       /\v\*\S[^*]+\*/ contains=noteSurround
+syn match noteBt     /\v`\S[^`]+`/   contains=noteSurround
+syn match Underlined /\v_\S[^_]+_/   contains=noteSurround
+syn region noteBt start=/\v^`{3}/ end=/\v`{3}$/
+
+syn match Define  /\v[a-zA-Z0-9-_ ]+:( |$)/
+syn match Comment /\v^-{3,}$/  " seperator
+syn match Comment /\v\.{3,}$/  " etc
+syn match Number  /\v^\d+\.\s/ " ordered list
+syn match Number  /\v^- /      " unordered list
+syn match Removed /\v^\s+- /   " nested list
+syn match Number  /\v\s-\>\s/  " pointer
+syn match String  /\v^\>.+/    " quote
+syn match Label   /\v\[.+\]/   " label
 
 if has('conceal')
-    syn match noteHeadDelim /^#\+\s/ contained conceal
-    syn match noteSurround /[\*\~\`_]/ contained conceal
-    syn match noteMarker /[xX]/ contained conceal cchar=✓
+    syn match noteHeadDelim /\v^#+\s/ contained conceal
+    syn match noteSurround /\v[*~`_]/ contained conceal
 else
-    syn match noteHeadDelim /^#\+\s/ contained
-    syn match noteSurround /[\*\~\`_]/ contained
-    syn match noteMarker /[xX]/ contained
+    syn match noteHeadDelim /\v^#+\s/ contained
+    syn match noteSurround /\v[*~`_]/ contained
 endif
 
 hi noteHead1 guibg=#7aa2f7 guifg=#1d202f
 hi noteHead2 guibg=#A2BDF8 guifg=#1d202f
 hi noteHead3 guifg=#7aa2f7
 hi noteHead4 guifg=#A2BDF8
-hi Strike gui=strikethrough
 hi noteBt guibg=#1d202f
-hi noteUl gui=underline
-hi noteUrl guifg=#7aa2f7 gui=underline
 
 let b:current_syntax = 'note'

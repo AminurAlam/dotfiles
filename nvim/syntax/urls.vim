@@ -2,21 +2,20 @@ if exists('b:current_syntax')
     finish
 endif
 
-syn match Comment /^\#.\+$/
-syn match urlQuery /^"query:.*"$/ contains=Title
-syn match urlUrl /^https\?\:\/\/.*$/ contains=urlProtocol,urlDomain,urlParam,urlTag
+syn match Comment /\v^#+\s.+$/
 
-" syn match urlDomain /\(\w\+\.\)\+\w\+/ contained
-" syn match urlParam /?[a-z_]*=.*[^ ]/ contained
-syn match urlTag /\s.\+$/ contained
-syn match Title /-----.*-----/ contained
+syn match urlQuery /^"query:.*"$/ contains=Title
+    syn match Title /-----.*-----/ contained
+
+syn match urlUrl /\v^https?:\/\/.*$/ contains=urlProtocol,Label,Normal,String
+    syn match Label  /\v[^/]+\.\w{2,5}/ contained
+    syn match Normal /\v\/\S+/          contained
+    syn match String /\v\s.+$/          contained
 
 if has('conceal')
-    syn match urlProtocol /https\?\:\/\/\(www\.\)\?/ contained conceal
+    syn match urlProtocol /\vhttps?:\/\/(www\.)?/ contained conceal
 else
-    syn match urlProtocol /https\?\:\/\/\(www\.\)\?/ contained
+    syn match urlProtocol /\vhttps?:\/\/(www\.)?/ contained
 endif
 
-" hi link urlParam Comment
-hi link urlDomain Function
-hi link urlTag String
+let b:current_syntax = 'urls'

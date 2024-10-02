@@ -17,10 +17,11 @@ syn match nth /:nth\-of\-type(\d\+)/ contained
 
 
 hi def link comment Comment
-
 hi def link url Number
 hi def link join Identifier
 hi def link allowed String
 hi def link denied Error
 hi def link point Number
 hi def link nth Function
+
+let b:current_syntax = 'ubo'
