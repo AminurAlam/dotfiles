@@ -20,7 +20,12 @@ local function create(cmd, filetypes, root_dir, settings)
   })
 end
 
-create({ 'taplo', 'lsp', '-c', vim.env.XDG_CONFIG_HOME .. '/taplo.toml', 'stdio' }, { 'toml' }, { '*.toml', '.git' }, {})
+create( -- taplo
+  { 'taplo', 'lsp', '-c', vim.env.XDG_CONFIG_HOME .. '/taplo.toml', 'stdio' },
+  { 'toml' },
+  { '*.toml', '.git' },
+  {}
+)
 create({ 'gopls' }, { 'go' }, { 'go.work', 'go.mod', '.git' })
 create({ 'java-language-server' }, { 'java' }, { 'build.gradle', 'pom.xml', '.git' })
 create({ 'bash-language-server', 'start' }, { 'sh', 'zsh', 'bash' }, { '.sh', '.zsh' })

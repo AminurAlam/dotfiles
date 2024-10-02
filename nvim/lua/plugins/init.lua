@@ -1,21 +1,14 @@
 return {
   {
-    'windwp/nvim-autopairs',
-    enabled = false,
-    event = { 'InsertEnter' },
-    config = true,
-  },
-  {
     'tzachar/highlight-undo.nvim',
     keys = { 'u', 'r' },
     opts = {
-      undo = { hlgroup = 'IncSearch' },
-      redo = { hlgroup = 'IncSearch', lhs = 'r' },
+      hlgroup = 'IncSearch',
+      keymaps = { paste = { disabled = true }, redo = { lhs = 'r' } },
     },
   },
   {
     'Wansmer/treesj',
-    enabled = true,
     keys = { { '<leader>j', '<cmd>TSJToggle<cr>' } },
     opts = {
       max_join_length = 240,
@@ -29,20 +22,5 @@ return {
     enabled = false,
     keys = { 'gc', { 'gc', mode = 'v' }, { 'gb', mode = 'v' } },
     config = true,
-  },
-  {
-    'altermo/ultimate-autopair.nvim',
-    event = { 'InsertEnter', 'CmdlineEnter' },
-    branch = 'v0.6',
-    opts = {
-      bs = { indent_ignore = true },
-      space = { check_box_ft = { 'markdown', 'note' } },
-      tabout = { enable = true, hopout = true, map = '<tab>' },
-      extensions = { cmdtype = { skip = { '@', '-' }, p = 100 } },
-      -- internal_pairs = {
-      --   { '\\(', '\\)', ft = {} },
-      --   { '<', '>', ft = { 'markdown', 'html' }, space = true },
-      -- },
-    },
   },
 }

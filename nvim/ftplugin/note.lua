@@ -1,2 +1,13 @@
-vim.opt.conceallevel = 2
-vim.opt.concealcursor = 'n'
+local set = vim.opt
+
+set.tabstop = 2
+set.shiftwidth = 2
+set.softtabstop = 2
+set.autoindent = true
+set.smartindent = true
+set.smarttab = true
+set.expandtab = true
+set.shiftround = true
+set.conceallevel = 2
+set.concealcursor = 'n'
+set.spell = true
