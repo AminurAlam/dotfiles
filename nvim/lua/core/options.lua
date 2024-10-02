@@ -1,4 +1,15 @@
-local set = vim.opt
+local set = vim.o
+local termux = vim.fn.has('termux') == 1
+
+---@param opt_table table
+---@return string
+local dict2str = function(opt_table)
+  local optstr = ''
+  for k, v in pairs(opt_table) do
+    optstr = optstr .. string.format(',%s:%s', k, v)
+  end
+  return string.sub(optstr, 2)
+end
 
 do -- indent & spacing
   set.autoindent = true
@@ -9,21 +20,17 @@ do -- indent & spacing
   set.softtabstop = 4
   set.expandtab = true
   set.shiftround = true
-  set.cinkeys:remove { ':' }
 end
 
-do -- search
+do -- words, searching
   set.hlsearch = true
   set.ignorecase = true
   set.smartcase = true
   set.incsearch = true
-  set.iskeyword:append '-'
-end
-
-do -- spell
+  set.iskeyword = set.iskeyword .. ',-'
   set.spellcapcheck = ''
   set.spelloptions = 'camel'
-  set.spellsuggest = { 'best', '10' }
+  set.spellsuggest = 'best,10'
 end
 
 do -- scrolling
@@ -31,6 +38,7 @@ do -- scrolling
   set.sidescroll = 4
   set.sidescrolloff = 8
   set.smoothscroll = true
+  if termux then set.mousescroll = 'ver:1,hor:6' end
 end
 
 do -- cmdline, statusline & statuscolumn
@@ -46,7 +54,6 @@ do -- cmdline, statusline & statuscolumn
   set.shortmess = 'acCoOsSWF'
   set.number = true
   set.relativenumber = true
-  -- set.statuscolumn = vim.g.stc -- '%=%{ v:virtnum ? "…" : ( v:relnum ? "│" : "❯" ) }%-00.1s'
   set.signcolumn = 'auto'
 end
 
@@ -61,7 +68,6 @@ do -- folding
   -- .. [[ . " … " . trim(getline(v:foldend)) . ]]
   -- .. [[" [" . (v:foldend-v:foldstart+1) . " lines]"]]
   set.foldcolumn = 'auto'
-  set.foldopen:append {}
   set.viewoptions = 'cursor,folds'
 end
 
@@ -80,16 +86,14 @@ do -- terminal, cursor & gui
   set.wrap = false
   set.linebreak = true
   set.breakindent = true
-  set.guicursor = 'n-sm-r:block,v-o-i-c-ci-cr:ver100'
-  if vim.fn.has('termux') == 1 then
-    set.guicursor = 'n-sm-r:hor100,v-o-i-c-ci-cr:ver100'
-    set.mousescroll = 'ver:1,hor:6'
-  end
+  set.guicursor = dict2str {
+    ['n-sm-r'] = termux and 'hor100' or 'block',
+    ['v-o-i-c-ci-cr'] = 'ver100',
+  }
 end
 
 do -- others
   set.concealcursor = 'n'
-  set.formatoptions:remove { 'c', 'r', 'o' }
   set.matchtime = 1
   set.grepprg = 'rg --vimgrep '
   set.timeout = false -- remove for which-key
@@ -99,18 +103,18 @@ do -- others
   set.writebackup = false
   set.undofile = true
   set.confirm = true
-  set.clipboard:append { 'unnamed', 'unnamedplus' }
+  set.clipboard = 'unnamed,unnamedplus'
   set.list = true
-  set.listchars = {
-    tab = '> ',
+  set.listchars = dict2str {
     -- leadmultispace = '│   ',
+    tab = '> ',
     trail = ' ',
     extends = '…',
     precedes = '…',
     conceal = '●',
     nbsp = '␣',
   }
-  set.fillchars = {
+  set.fillchars = dict2str {
     stl = ' ',
     fold = ' ',
     foldopen = '',
