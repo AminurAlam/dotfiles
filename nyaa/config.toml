@@ -1,0 +1,44 @@
+theme = "Default"
+default_source = "Nyaa"
+download_client = "DefaultApp"
+date_format = "%Y-%m-%d"
+timeout = 30
+scroll_padding = 6
+cursor_padding = 4
+save_config_on_change = true
+hot_reload_config = true
+
+[clipboard]
+cmd = 'termux-clipboard-set "{content}"'
+osc52 = false
+
+[client.command]
+cmd = 'curl "{torrent}" > ~/{file}'
+shell_cmd = "sh -c"
+
+[client.default_app]
+use_magnet = true
+
+[client.download]
+save_dir = "/storage/emulated/0/main/torrents"
+filename = "{basename}.torrent"
+overwrite = true
+create_root_folder = true
+
+[source.nyaa]
+base_url = "https://nyaa.si/"
+default_sort = "Size"
+default_sort_dir = "Desc"
+default_filter = "NoFilter"
+default_category = "AllLiterature"
+default_search = ""
+rss = false
+
+[source.nyaa.columns]
+category = true
+title = true
+size = true
+date = true
+seeders = true
+leechers = false
+downloads = true

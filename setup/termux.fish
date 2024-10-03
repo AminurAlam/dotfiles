@@ -4,6 +4,7 @@
 set base_packages eza fd git ripgrep termux-api
 set extra_packages clang dust python python-pip python-ensurepip-wheels python-yt-dlp renameutils zoxide
 set python_packages "git+https://github.com/nathom/streamrip.git@dev" "git+https://github.com/AminurAlam/deflacue.git" "https://files.pythonhosted.org/packages/a1/fc/011727826f98417968f81a6f0c45722aceb2dcf9512f7cb691687733f304/dr14-t.meter-1.0.16.tar.gz"
+set dir_configs aria2 clangd eza fish git htop newsboat npm nvim nyaa procs python ruff streamrip termux tmux yazi yt-dlp zellij
 
 # urls
 set url_font "https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/SourceCodePro/SauceCodeProNerdFont-Medium.ttf"
@@ -43,9 +44,10 @@ pacman -S --needed $extra_packages && begin
 end
 
 printf "LINKING CONFIG DIRECTORIES... "
-for config in aria2 clangd eza fish git htop newsboat npm nvim procs python ruff streamrip termux tmux yt-dlp zellij
+for config in $dir_configs
     [ -e "$dots/$config" ] || continue
     # unlink/relocate old directories in ~/.config
+    [ -L "$HOME/.config/$config" ] && command unlink ~/.config/$config
     [ -d "$HOME/.config/$config" ] && command mv -f ~/.config/$config ~/backup/
     ln -fs "$dots/$config" ~/.config/
 end
@@ -58,6 +60,7 @@ printf "LINKING CONFIG FILES... "
     ln -fs "$dots/other/tidal-dl.json" ~/.config/.tidal-dl.json
     ln -fs "$dots/other/starship.toml" ~/.config/starship.toml
     ln -fs "$dots/other/stylua.toml" ~/.config/stylua.toml
+    ln -fs "$dots/other/taplo.toml" ~/.config/taplo.toml
     ln -fs "$dots/termux/colors.properties" ~/.termux/colors.properties # https://github.com/termux/termux-app/blob/master/termux-shared/src/main/java/com/termux/shared/termux/TermuxConstants.java#L657
 printf "done\n"
 
