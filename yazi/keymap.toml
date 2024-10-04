@@ -1,6 +1,3 @@
-# vim:set fdm=expr fdl=1:
-# A TOML linter such as https://taplo.tamasfe.dev/ can use this schema to validate your config.
-# If you encounter any issues, please make an issue at https://github.com/yazi-rs/schemas.
 "$schema" = "https://yazi-rs.github.io/schemas/keymap.json"
 
 # TODO: md5 hash
@@ -35,9 +32,9 @@ manager.keymap = [
   { on = "<C-a>", run = "select_all --state=true", desc = "Select all files" },
   { on = "<C-r>", run = "select_all --state=none", desc = "Inverse selection of all files" },
   # Operation
-  { on = "o", run = "create", desc = "Create a file/directory" },
   { on = "<Enter>", run = "open", desc = "Open selected files" },
-  { on = "<S-Enter>", run = "open --interactive", desc = "Open selected files interactively" },
+  { on = "o", run = "open --interactive", desc = "Open selected files interactively" },
+  { on = "O", run = "create", desc = "Create a file/directory" },
   { on = "p", run = "paste", desc = "Paste yanked files" },
   { on = "P", run = "paste --force", desc = "Paste yanked files (overwrite if the destination exists)" },
   { on = ["y", "y"], run = "yank", desc = "Yank selected files (copy)" },
@@ -51,7 +48,7 @@ manager.keymap = [
   { on = ["y", "f"], run = "copy filename", desc = "Copy the filename" },
   { on = ["y", "b"], run = "copy name_without_ext", desc = "Copy the filename without extension" },
   # Filter & Find
-  # { on = "f", run = "filter --smart", desc = "Filter files" },
+  { on = "F", run = "filter --smart", desc = "Filter files" },
   { on = "/", run = "find --smart" },
   { on = "n", run = "find_arrow" },
   { on = "N", run = "find_arrow --previous" },
@@ -75,8 +72,8 @@ manager.keymap = [
   { on = "2", run = "tab_switch 1", desc = "Switch to the second tab" },
   { on = "3", run = "tab_switch 2", desc = "Switch to the third tab" },
   { on = "4", run = "tab_switch 3", desc = "Switch to the fourth tab" },
-  { on = "[", run = "tab_switch -1 --relative", desc = "Switch to the previous tab" },
-  { on = "]", run = "tab_switch 1 --relative", desc = "Switch to the next tab" },
+  { on = "<C-Left>", run = "tab_switch -1 --relative", desc = "Switch to the previous tab" },
+  { on = "<C-Right>", run = "tab_switch 1 --relative", desc = "Switch to the next tab" },
   # Help
   { on = "~", run = "help", desc = "Open help" },
   { on = "?", run = "help", desc = "Open help" },
@@ -92,6 +89,7 @@ manager.keymap = [
   { on = ["c", "^"], run = "rename --empty=stem --cursor=start", desc = "rename stem" },
   { on = ["c", "$"], run = "rename --empty=ext --cursor=end", desc = "rename ext" },
   # other
+  { on = ":", run = "shell --block --interactive" },
   { on = ".", run = "hidden toggle" },
   { on = ["s", "w"], run = "plugin eza-preview", desc = "Toggle tree/list dir preview" },
   { on = ["f", "f"], run = "plugin fzf", desc = "fzf search" },

@@ -1,55 +1,39 @@
-# black
-color0 = { fg = "#1E1E22" }
-color8 = { fg = "#383841" }
-# red
-red = { fg = "#ff5555" }
-brred = { fg = "#ff6e67" }
-# green
-green = { fg = "#5af79e" }
-brgreen = { fg = "#5af79e" }
-# yellow
-yellow = { fg = "#f4f99d" }
-bryellow = { fg = "#ff9e64" }
-# blue
-blue = { fg = "#9d7cd8" }
-brblue = { fg = "#caa9fa" }
-# magenta
-magenta = { fg = "#ff79c6" }
-brmagenta = { fg = "#ff92d0" }
-# cyan
-cyan = { fg = "#7dcfff" }
-brcyan = { fg = "#9aedfe" }
-# white
-white = { fg = "#bfbfbf" }
-brwhite = { fg = "#e6e6e6" }
+color0 = "#1E1E22"
+color8 = "#383841"
+red = "#ff5555"
+brred = "#ff6e67"
+green = "#5af79e"
+brgreen = "#5af79e"
+yellow = "#f4f99d"
+bryellow = "#ff9e64"
+blue = "#9d7cd8"
+brblue = "#caa9fa"
+magenta = "#ff79c6"
+brmagenta = "#ff92d0"
+cyan = "#7dcfff"
+brcyan = "#9aedfe"
+white = "#bfbfbf"
+brwhite = "#e6e6e6"
 
 
 [manager]
 cwd = { fg = "#8bd5ca" }
-
-# Hovered
 hovered = { bg = "#2e3c64" }
 preview_hovered = {}
-
-# Find
-find_keyword = { fg = "#1d202f", bg = "#ff9e64", italic = false }
-find_position = { fg = "#f5bde6", bg = "reset", italic = true }
-
+find_keyword = { fg = "#1d202f", bg = "#ff9e64" }
+find_position = { fg = "#f5bde6" }
 # Marker
 marker_copied = { fg = "#a6da95", bg = "#a6da95" }
 marker_cut = { fg = "#ed8796", bg = "#ed8796" }
 marker_selected = { fg = "#8aadf4", bg = "#8aadf4" }
-
 # Tab
-tab_active = { fg = "#24273a", bg = "#cad3f5" }
-tab_inactive = { fg = "#cad3f5", bg = "#494d64" }
-tab_width = 1
-
+tab_active = { fg = "#24273a", bg = "#8bd5ca" }
+tab_inactive = { fg = "#cad3f5" }
+tab_width = 15
 # Count
 count_copied = { fg = "#24273a", bg = "#a6da95" }
 count_cut = { fg = "#24273a", bg = "#ed8796" }
 count_selected = { fg = "#24273a", bg = "#8aadf4" }
-
 # Border
 border_symbol = "│"
 border_style = {}
@@ -60,12 +44,12 @@ syntect_theme = "~/.config/yazi/Catppuccin-macchiato.tmTheme"
 [status]
 separator_open = ""
 separator_close = ""
-separator_style = { fg = "#494d64", bg = "#494d64" }
+separator_style = { fg = "#30354a", bg = "#30354a" }
 
 # Mode
-mode_normal = { fg = "#24273a", bg = "#a6da95", bold = true }
-mode_select = { fg = "#24273a", bg = "#c678dd", bold = true }
-mode_unset = { fg = "#24273a", bg = "#f0c6c6", bold = true }
+mode_normal = { fg = "#30354a", bg = "#a6da95", bold = true }
+mode_select = { fg = "#30354a", bg = "#c678dd", bold = true }
+mode_unset = { fg = "#30354a", bg = "#f0c6c6", bold = true }
 
 # Progress
 progress_label = { fg = "#ffffff", bold = true }
@@ -111,7 +95,6 @@ hovered = { bg = "#5b6078", bold = true }
 footer = { fg = "#494d64", bg = "#cad3f5" }
 
 [filetype]
-
 rules = [
   # Media
   { mime = "image/*", fg = "#8bd5ca" },
@@ -127,7 +110,6 @@ rules = [
 ]
 
 [icon]
-
 files = [
   { name = "gulpfile.js", text = "", fg_dark = "#ed8796", fg_light = "#ed8796" },
   { name = ".babelrc", text = "", fg_dark = "#eed49f", fg_light = "#eed49f" },
