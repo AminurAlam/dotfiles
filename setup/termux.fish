@@ -66,7 +66,7 @@ printf "done\n"
 
 printf "CHANGING FONT... "
     command rm -f ~/.termux/font.ttf
-    curl -qso ~/.termux/font.ttf "$url_font" &>/dev/null
+    curl -Lqs -o ~/.termux/font.ttf "$url_font" &>/dev/null
 printf "done\n"
 
 [ -e "$HOME/.termux_authinfo" ] || begin

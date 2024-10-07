@@ -8,7 +8,7 @@ bootstrap-pacman() {
     printf "BOOTSTRAPPING PACMAN...\n"
 
     printf "downloading bootstrap...\n"
-    [ -e "$boot_path" ] || curl --create-dirs -q#Lo "$boot_path" -- "$boot_url"
+    [ -e "$boot_path" ] || curl --create-dirs -#Lq -o "$boot_path" -- "$boot_url"
     printf "\033[2Adownloading bootstrap... done\n"
 
     mkdir -p ~/../usr-n/
@@ -34,12 +34,6 @@ printf "done\n"
 
 command -v pacman &>/dev/null || bootstrap-pacman
 
-# TODO: probably redundant
-printf "GENERATING PACMAN KEYS... "
-    pacman-key --init &>/dev/null
-    pacman-key --populate &>/dev/null
-printf "done\n"
-
 printf "INSTALLING FISH...\n"
     pacman -Syuq --noconfirm --needed -- fish || exit
 
@@ -47,12 +41,7 @@ printf "CHANGING SHELL... "
     chsh -s fish
 printf "done\n"
 
-printf "DOWNLAODING setup.fish...\n"
-    curl -q#o "$HOME/setup.fish" "$setup_url"
-printf "\033[2ADOWNLAODING setup.fish... done\n"
-
-printf "BASH SETUP COMPLETE\n"
 printf "RUNNING FISH SETUP...\n"
-
-fish=$(command -v fish)
-$fish "$HOME/setup.fish"
+    curl -#Lq -o "$HOME/termux.fish" "$setup_url"
+    fish=$(command -v fish)
+    $fish "$HOME/termux.fish"
