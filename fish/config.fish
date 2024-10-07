@@ -38,6 +38,7 @@ set -gx XAUTHORITY $XDG_RUNTIME_DIR/Xauthority
 set -gx GNUPGHOME $XDG_DATA_HOME/gnupg
 set -gx RIPGREP_CONFIG_PATH $XDG_PROJECTS_DIR/dotfiles/other/ripgreprc
 set -gx FZF_DEFAULT_OPTS_FILE $XDG_PROJECTS_DIR/dotfiles/other/fzfrc
+set -gx _ZO_FZF_OPTS
 # lang config
 set -gx JAVA_HOME $PREFIX/lib/jvm/java-17-openjdk
 set -gx PYTHONSTARTUP $XDG_CONFIG_HOME/python/startup.py

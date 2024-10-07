@@ -9,6 +9,8 @@ function ffmine
 
     if [ -e "$base.ass" ]
         set -f subs "$base.ass"
+    else if [ -e "$base.ja.ass" ]
+        set -f subs "$base.ja.ass"
     else if [ -e "$base.srt" ]
         set -f subs "$base.srt"
     else
@@ -24,8 +26,8 @@ function ffmine
 
     echo "generating audio..."
     ffmpeg -y -hide_banner -loglevel error \
-        -ss (date -ud "$argv[2] + 1 hour 1 second" '+%H:%M:%S.%03N') \
-        -to (date -ud "$argv[3] + 1 hour 1 second" '+%H:%M:%S.%03N') \
+        -ss (string replace , . "$argv[2]") \
+        -to (string replace , . "$argv[3]") \
         -i "$argv[1]" \
         -vn -acodec libvorbis $XDG_VIDEOS_DIR/#meta/audio.ogg
     and open $XDG_VIDEOS_DIR/#meta/audio.ogg
