@@ -42,7 +42,6 @@ do -- scrolling
 end
 
 do -- cmdline, statusline & statuscolumn
-  set.shellcmdflag = '--no-config -c'
   set.showmode = false
   set.ruler = false
   set.rulerformat = '%p%%'
@@ -103,7 +102,7 @@ do -- others
   set.writebackup = false
   set.undofile = true
   set.confirm = true
-  set.clipboard = 'unnamed,unnamedplus'
+  -- set.clipboard = 'unnamed,unnamedplus'
   set.list = true
   set.listchars = dict2str {
     -- leadmultispace = '│   ',

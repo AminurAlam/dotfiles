@@ -52,7 +52,7 @@ return {
     enabled = false,
     opts = {
       use_default_keymaps = true,
-      surround_chars = { '[', ']', '(', ')', "'", '"', '`' },
+      surround_chars = { '{', '[', ']', '(', ')', "'", '"', '`' },
       exit_visual_mode = true,
     },
   },

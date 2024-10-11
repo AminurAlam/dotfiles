@@ -1,128 +1,163 @@
----@param cmd table[string]
----@param filetypes table[string]
----@param root_dir string|string[]|fun(name: string, path: string): boolean
----@param settings table?
-local function create(cmd, filetypes, root_dir, settings)
+local usercmd = vim.api.nvim_create_user_command
+local autocmd = vim.api.nvim_create_autocmd
+local servers = {
+  { { 'gopls' }, { 'go' }, { 'go.work', 'go.mod', '.git' } },
+  { { 'java-language-server' }, { 'java' }, { 'build.gradle', 'pom.xml', '.git' } },
+  { { 'bash-language-server', 'start' }, { 'sh', 'zsh', 'bash' }, { '.sh', '.zsh' } },
+  { -- dart
+    { 'dart', 'language-server', '--protocol=lsp' },
+    { 'dart' },
+    { 'pubspec.yaml' },
+    { dart = { completeFunctionCalls = true, showTodos = true } },
+  },
+  { -- rust-project
+    { 'rust-analyzer' },
+    { 'rust' },
+    {
+      'Cargo.toml',
+      'rust-project.json',
+    },
+    { ['rust-analyzer'] = { linkedProjects = nil } },
+  },
+  { -- taplo
+    {
+      'taplo',
+      'lsp',
+      '-c',
+      (vim.env.XDG_CONFIG_HOME or vim.fn.expand '~/.config') .. '/taplo.toml',
+      'stdio',
+    },
+    { 'toml' },
+    { '*.toml', '.git' },
+    {},
+  },
+  { -- clangd
+    { 'clangd' },
+    { 'c', 'cpp', 'objc', 'objcpp', 'cuda', 'proto' },
+    {
+      '.git',
+      '.clangd',
+      '.clang-tidy',
+      'compile_commands.json',
+      'compile_flags.txt',
+      'configure.ac',
+      '.clang-format',
+    },
+  },
+  { -- pyright-langserver
+    { 'pyright-langserver', '--stdio' },
+    { 'python' },
+    {
+      'pyproject.toml',
+      'setup.py',
+      'setup.cfg',
+      'requirements.txt',
+      'Pipfile',
+      '.git',
+    },
+    {
+      python = {
+        analysis = {
+          diagnosticMode = 'document',
+          autoSearchPaths = true,
+          useLibraryCodeForTypes = true,
+        },
+      },
+    },
+  },
+  { -- ruff
+    { 'ruff', 'server' },
+    { 'python' },
+    {
+      'pyproject.toml',
+      'setup.py',
+      'setup.cfg',
+      'requirements.txt',
+      '.git',
+    },
+    {
+      init_options = {
+        settings = { configuration = vim.fn.expand '~/repos/dotfiles/other/ruff.toml' },
+      }, -- TODO
+    },
+  },
+  { -- lua-language-server
+    { 'lua-language-server' },
+    { 'lua' },
+    { 'lua/' },
+    {
+      Lua = {
+        -- library = vim.api.nvim_get_runtime_file('', true),
+        typeFormat = { config = { auto_complete_end = true } },
+        completion = { callSnippet = 'Replace', displayContext = 5 },
+        diagnostics = {
+          globals = { 'vim', 'drastic', 'ya', 'Command', 'cx' },
+          libraryFiles = 'Disable',
+          disable = { 'lowercase-global' },
+        },
+        format = { enable = false },
+        hint = { enable = true },
+        runtime = { version = 'LuaJIT' },
+        semantic = { enable = false },
+        telemetry = { enable = false },
+        window = { progressBar = false },
+        workspace = {
+          checkThirdParty = false,
+          library = { vim.env.VIMRUNTIME },
+        },
+      },
+    },
+  },
+  { -- texlab
+    { 'texlab' },
+    { 'tex', 'plaintex', 'bib' },
+    {
+      '.git',
+      '.latexmkrc',
+      '.texlabroot',
+      'texlabroot',
+      'Tectonic.toml',
+    },
+    {
+      texlab = {
+        rootDirectory = nil,
+        build = {
+          executable = 'latexmk',
+          args = { '-pdf', '-interaction=nonstopmode', '-synctex=1', '%f' },
+          onSave = true,
+          forwardSearchAfter = false,
+        },
+        auxDirectory = '.',
+        forwardSearch = { executable = nil, args = {} },
+        chktex = { onOpenAndSave = false, onEdit = false },
+        diagnosticsDelay = 300,
+        latexFormatter = 'latexindent',
+        latexindent = { ['local'] = nil, modifyLineBreaks = false },
+        bibtexFormatter = 'texlab',
+        formatterLineLength = 80,
+      },
+    },
+  },
+}
+
+for _, server in pairs(servers) do
+  local cmd = server[1]
   vim.api.nvim_create_autocmd('Filetype', {
-    pattern = filetypes,
+    pattern = server[2],
     callback = function(buf)
       if vim.fn.filereadable(buf.file) == 0 then return end -- FIX: someone keeps spawning unlisted lua buffers??
       local client_id = vim.lsp.start({
         name = cmd[1],
         cmd = cmd,
-        filetypes = filetypes,
+        filetypes = server[2],
         single_file_support = true,
-        root_dir = vim.fs.root(0, root_dir), -- https://github.com/neovim/neovim/pull/28477
-        settings = settings or {},
+        root_dir = vim.fs.root(0, server[3] or {}), -- https://github.com/neovim/neovim/pull/28477
+        settings = server[4] or {},
       }, { silent = true }) -- https://github.com/neovim/neovim/pull/28478
       if client_id then vim.lsp.buf_attach_client(buf.id, client_id) end
     end,
   })
 end
-
-create( -- taplo
-  { 'taplo', 'lsp', '-c', vim.env.XDG_CONFIG_HOME .. '/taplo.toml', 'stdio' },
-  { 'toml' },
-  { '*.toml', '.git' },
-  {}
-)
-create({ 'gopls' }, { 'go' }, { 'go.work', 'go.mod', '.git' })
-create({ 'java-language-server' }, { 'java' }, { 'build.gradle', 'pom.xml', '.git' })
-create({ 'bash-language-server', 'start' }, { 'sh', 'zsh', 'bash' }, { '.sh', '.zsh' })
-create( -- dart
-  { 'dart', 'language-server', '--protocol=lsp' },
-  { 'dart' },
-  { 'pubspec.yaml' },
-  { dart = { completeFunctionCalls = true, showTodos = true } }
-)
-create({ 'rust-analyzer' }, { 'rust' }, {
-  'Cargo.toml',
-  'rust-project.json',
-}, { ['rust-analyzer'] = { linkedProjects = nil } })
-create({ 'ruff', 'server' }, { 'python' }, {
-  'pyproject.toml',
-  'setup.py',
-  'setup.cfg',
-  'requirements.txt',
-  '.git',
-}, {
-  init_options = { settings = { configuration = '~/repos/dotfiles/other/ruff.toml' } }, -- TODO
-})
-create({ 'clangd' }, { 'c', 'cpp', 'objc', 'objcpp', 'cuda', 'proto' }, {
-  '.git',
-  '.clangd',
-  '.clang-tidy',
-  'compile_commands.json',
-  'compile_flags.txt',
-  'configure.ac',
-  '.clang-format',
-})
-create({ 'pyright-langserver', '--stdio' }, { 'python' }, {
-  'pyproject.toml',
-  'setup.py',
-  'setup.cfg',
-  'requirements.txt',
-  'Pipfile',
-  '.git',
-}, {
-  python = {
-    analysis = {
-      diagnosticMode = 'document',
-      autoSearchPaths = true,
-      useLibraryCodeForTypes = true,
-    },
-  },
-})
-create({ 'lua-language-server' }, { 'lua' }, { 'lua/' }, {
-  Lua = {
-    -- library = vim.api.nvim_get_runtime_file('', true),
-    typeFormat = { config = { auto_complete_end = true } },
-    completion = { callSnippet = 'Replace', displayContext = 5 },
-    diagnostics = {
-      globals = { 'vim', 'drastic' },
-      libraryFiles = 'Disable',
-      disable = { 'lowercase-global' },
-    },
-    format = { enable = false },
-    hint = { enable = true },
-    runtime = { version = 'LuaJIT' },
-    semantic = { enable = false },
-    telemetry = { enable = false },
-    window = { progressBar = false },
-    workspace = {
-      checkThirdParty = false,
-      library = { vim.env.VIMRUNTIME },
-    },
-  },
-})
-create({ 'texlab' }, { 'tex', 'plaintex', 'bib' }, {
-  '.git',
-  '.latexmkrc',
-  '.texlabroot',
-  'texlabroot',
-  'Tectonic.toml',
-}, {
-  texlab = {
-    rootDirectory = nil,
-    build = {
-      executable = 'latexmk',
-      args = { '-pdf', '-interaction=nonstopmode', '-synctex=1', '%f' },
-      onSave = true,
-      forwardSearchAfter = false,
-    },
-    auxDirectory = '.',
-    forwardSearch = { executable = nil, args = {} },
-    chktex = { onOpenAndSave = false, onEdit = false },
-    diagnosticsDelay = 300,
-    latexFormatter = 'latexindent',
-    latexindent = { ['local'] = nil, modifyLineBreaks = false },
-    bibtexFormatter = 'texlab',
-    formatterLineLength = 80,
-  },
-})
-
-local usercmd = vim.api.nvim_create_user_command
-local autocmd = vim.api.nvim_create_autocmd
 
 usercmd('TexBuild', function(info)
   local status = {

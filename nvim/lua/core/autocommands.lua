@@ -133,6 +133,8 @@ autocmd('TextYankPost', {
 
 autocmd('FileType', { pattern = { 'qf' }, command = 'nmap <buffer> <cr> <cr>' })
 autocmd('BufEnter', { command = 'set formatoptions-=cro' })
+autocmd('BufLeave', { command = 'set nocursorline' })
+autocmd('BufEnter', { command = 'set cursorline' })
 
 -- https://github.com/mawkler/modicator.nvim
 -- vim.api.nvim_create_autocmd('ModeChanged', {
@@ -164,13 +166,3 @@ autocmd('BufEnter', { command = 'set formatoptions-=cro' })
 --     if ok and #yank_data > 1 then pcall(vim.fn.setreg, '+', yank_data) end
 --   end,
 -- })
--- autocmd('BufReadPost', {
---   desc = 'restore cursor position',
---   callback = function()
---     local mark = vim.api.nvim_buf_get_mark(0, '"')
---     if mark[1] > 0 and mark[1] <= vim.api.nvim_buf_line_count(0) then
---       pcall(vim.api.nvim_win_set_cursor, 0, mark)
---     end
---   end,
--- })
--- autocmd('VimLeave', { command = 'set guicursor=a:hor25' })

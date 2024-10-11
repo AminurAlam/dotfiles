@@ -100,6 +100,8 @@ umap('<esc>', '<cmd>nohlsearch<cr><esc>')
 nmap('gj', [[@='j^"_d0kgJ'<cr>]], 'join without leaving space')
 nmap('go', 'jA', 'like `o` but on existing line')
 nmap('<leader>y', '<cmd>silent %y<cr>', 'yank entire buffer')
+nmap('<leader>y', function() fn.setreg('+', fn.getreg '0') end, 'put last yank in sys clipboard')
+nmap('<leader>p', '"+p', 'put last yank in sys clipboard')
 
 -- visual
 nmap('v', 'm`v')

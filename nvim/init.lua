@@ -26,7 +26,7 @@ g.ft_man_folding_enable = 1
 -- [[ core ]]
 require 'core.lazy'
 require 'core.autocommands'
-require 'core.lsp'
+-- require 'core.lsp'
 require 'core.options'
 require 'core.mappings'
 require 'core.statusline'
@@ -66,6 +66,8 @@ hl('DiagnosticFloatingHint', { bg = nil })
 hl('CursorLineNr', {})
 hl('LineNr', { fg = '#3b4261' })
 hl('Folded', { bg = '#3b4261' })
+hl('HighlightUndo', { link = 'IncSearch' })
+hl('HighlightRedo', { link = 'IncSearch' })
 hl('MsgSeparator', { link = 'TermCursorNC' })
 hl('WinSeparator', { link = 'TermCursorNC' })
 hl('@function.call.fish', { link = 'Special' })
