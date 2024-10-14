@@ -2,46 +2,18 @@
 
 # TODO: md5 hash
 
-manager.keymap = [
-  { on = "<Esc>", run = "escape" },
-  { on = "q", run = "quit" },
-  { on = "Q", run = "quit --no-cwd-file", desc = "Exit without writing cwd-file" },
-  { on = "<C-z>", run = "suspend", desc = "Suspend the process" },
+manager.prepend_keymap = [
   # Navigation
-  { on = "k", run = "arrow -1" },
-  { on = "j", run = "arrow 1" },
-  { on = "<Up>", run = "arrow -1" },
-  { on = "<Down>", run = "arrow 1" },
-  { on = "<C-u>", run = "arrow -50%" },
-  { on = "<C-d>", run = "arrow 50%" },
-  { on = ["g", "g"], run = "arrow -99999999", desc = "" },
-  { on = "G", run = "arrow 99999999" },
-  { on = "h", run = "leave" },
-  { on = "l", run = "enter" },
-  { on = "<Left>", run = "leave" },
-  { on = "<Right>", run = "enter" },
   { on = "^", run = "leave" },
   { on = "$", run = "enter" },
-  { on = "H", run = "back", desc = "Go back to the previous directory" },
-  { on = "L", run = "forward", desc = "Go forward to the next directory" },
   # Selection
-  { on = "<Space>", run = ["select --state=none", "arrow 1"], desc = "Toggle the current selection state" },
-  { on = "v", run = "visual_mode", desc = "Enter visual mode (selection mode)" },
-  { on = "V", run = "visual_mode --unset", desc = "Enter visual mode (unset mode)" },
   { on = "%", run = "select_all --state=true", desc = "Select all files" },
-  { on = "<C-a>", run = "select_all --state=true", desc = "Select all files" },
-  { on = "<C-r>", run = "select_all --state=none", desc = "Inverse selection of all files" },
   # Operation
-  { on = "<Enter>", run = "open", desc = "Open selected files" },
   { on = "o", run = "open --interactive", desc = "Open selected files interactively" },
   { on = "O", run = "create", desc = "Create a file/directory" },
-  { on = "p", run = "paste", desc = "Paste yanked files" },
-  { on = "P", run = "paste --force", desc = "Paste yanked files (overwrite if the destination exists)" },
   { on = ["y", "y"], run = "yank", desc = "Yank selected files (copy)" },
-  { on = "Y", run = "unyank", desc = "Cancel the yank status" },
-  { on = "x", run = "yank --cut", desc = "Yank selected files (cut)" },
-  { on = "X", run = "unyank", desc = "Cancel the yank status" },
   { on = "d", run = "remove --permanently", desc = "Permanently delete selected files" },
+  { on = "D", run = '''shell "fish -c 'rmdir -p **'; true" --block --confirm''', desc = "purge empty directories" },
   # Copy
   { on = ["y", "p"], run = "copy path", desc = "Copy the file path" },
   { on = ["y", "d"], run = "copy dirname", desc = "Copy the directory path" },
@@ -49,9 +21,6 @@ manager.keymap = [
   { on = ["y", "b"], run = "copy name_without_ext", desc = "Copy the filename without extension" },
   # Filter & Find
   { on = "F", run = "filter --smart", desc = "Filter files" },
-  { on = "/", run = "find --smart" },
-  { on = "n", run = "find_arrow" },
-  { on = "N", run = "find_arrow --previous" },
   # Sorting
   { on = [",", "a"], run = "sort natural --reverse=no", desc = "Sort naturally" },
   { on = [",", "e"], run = "sort extension --reverse=no", desc = "Sort by extension" },
@@ -67,17 +36,10 @@ manager.keymap = [
   { on = ["g", "m"], run = "cd $XDG_MUSIC_DIR" },
   { on = ["g", "p"], run = "cd $XDG_PICTURES_DIR" },
   # Tabs
-  { on = "t", run = "tab_create --current", desc = "Create a new tab with CWD" },
-  { on = "1", run = "tab_switch 0", desc = "Switch to the first tab" },
-  { on = "2", run = "tab_switch 1", desc = "Switch to the second tab" },
-  { on = "3", run = "tab_switch 2", desc = "Switch to the third tab" },
-  { on = "4", run = "tab_switch 3", desc = "Switch to the fourth tab" },
   { on = "<C-Left>", run = "tab_switch -1 --relative", desc = "Switch to the previous tab" },
   { on = "<C-Right>", run = "tab_switch 1 --relative", desc = "Switch to the next tab" },
   # Help
-  { on = "~", run = "help", desc = "Open help" },
   { on = "?", run = "help", desc = "Open help" },
-  { on = "<F1>", run = "help", desc = "Open help" },
   # rename
   { on = "I", run = "rename --cursor=start --hovered" },
   { on = "i", run = "rename --cursor=before_ext --hovered" },
@@ -89,7 +51,7 @@ manager.keymap = [
   { on = ["c", "^"], run = "rename --empty=stem --cursor=start", desc = "rename stem" },
   { on = ["c", "$"], run = "rename --empty=ext --cursor=end", desc = "rename ext" },
   # other
-  { on = ":", run = "shell --block --interactive" },
+  { on = ":", run = '''shell "fish -c " --block --interactive''' },
   { on = ".", run = "hidden toggle" },
   { on = ["s", "w"], run = "plugin eza-preview", desc = "Toggle tree/list dir preview" },
   { on = ["f", "f"], run = "plugin fzf", desc = "fzf search" },
@@ -97,7 +59,7 @@ manager.keymap = [
   { on = "z", run = "plugin zoxide", desc = "Jump to a directory using zoxide" },
 ]
 
-tasks.keymap = [
+tasks.prepend_keymap = [
   { on = "<Esc>", run = "close", desc = "Close task manager" },
   { on = "w", run = "close", desc = "Close task manager" },
   { on = "k", run = "arrow -1", desc = "Move cursor up" },
@@ -111,7 +73,7 @@ tasks.keymap = [
   { on = "<F1>", run = "help", desc = "Open help" },
 ]
 
-select.keymap = [
+select.prepend_keymap = [
   { on = "<Esc>", run = "close", desc = "Cancel selection" },
   { on = "<Enter>", run = "close --submit", desc = "Submit the selection" },
   { on = "k", run = "arrow -1", desc = "Move cursor up" },
@@ -123,7 +85,7 @@ select.keymap = [
   { on = "<F1>", run = "help", desc = "Open help" },
 ]
 
-input.keymap = [
+input.prepend_keymap = [
   { on = "<C-c>", run = "close", desc = "Cancel input" },
   { on = "<Enter>", run = "close --submit", desc = "Submit input" },
   { on = "<Esc>", run = "escape", desc = "Go back the normal mode, or cancel input" },
@@ -181,7 +143,7 @@ input.keymap = [
   { on = "<F1>", run = "help", desc = "Open help" },
 ]
 
-confirm.keymap = [
+confirm.prepend_keymap = [
   { on = "<Esc>", run = "close", desc = "Cancel the confirm" },
   { on = "<Enter>", run = "close --submit", desc = "Submit the confirm" },
   { on = "n", run = "close", desc = "Cancel the confirm" },
@@ -199,13 +161,10 @@ confirm.keymap = [
   { on = "G", run = "arrow 99999999", desc = "Move cursor to the bottom" },
 ]
 
-completion.keymap = [
+completion.prepend_keymap = [
   { on = "<C-c>", run = "close", desc = "Cancel completion" },
   { on = "<Tab>", run = "close --submit", desc = "Submit the completion" },
-  { on = "<Enter>", run = [
-    "close --submit",
-    "close_input --submit",
-  ], desc = "Submit the completion and input" },
+  { on = "<Enter>", run = ["close --submit", "close_input --submit"], desc = "Submit the completion and input" },
   { on = "<A-k>", run = "arrow -1", desc = "Move cursor up" },
   { on = "<A-j>", run = "arrow 1", desc = "Move cursor down" },
   { on = "<Up>", run = "arrow -1", desc = "Move cursor up" },
@@ -216,7 +175,7 @@ completion.keymap = [
   { on = "<F1>", run = "help", desc = "Open help" },
 ]
 
-help.keymap = [
+help.prepend_keymap = [
   { on = "<Esc>", run = "escape", desc = "Clear the filter, or hide the help" },
   { on = "q", run = "close", desc = "Exit the process" },
   { on = "k", run = "arrow -1", desc = "Move cursor up" },

@@ -37,16 +37,16 @@ Status = {
 Status.left = function(self)
   local style = self:style()
   return ui.Line {
-    ui.Span(' ' .. tostring(self._tab.mode):upper() .. ' '):style(style),
+    -- ui.Span(' ' .. tostring(self._tab.mode):upper() .. ' '):style(style),
     ui.Span(
-      THEME.status.separator_close
-        .. ' '
+      ' '
         .. ya.readable_path(tostring(cx.active.current.cwd)):gsub('(%.?)([^/])[^/]+/', '%1%2/')
+        .. '/'
+        .. ya.readable_path(cx.active.current.hovered.name)
         .. ' '
-    )
-      :style(style)
-      :reverse(),
-    ui.Span(THEME.status.separator_close):fg(style.fg),
+    ):style(style),
+    ui.Span(THEME.status.separator_close):style(style):reverse(),
+    -- ui.Span(THEME.status.separator_close):fg(style.fg),
     -- ui.Span('ddddddddddddddddddddddddddddddddddddddddddddddddddddddd'),
   }
 end
@@ -55,7 +55,7 @@ Status.perms = function(self)
   local h = self._tab.current.hovered
   if not h then return ui.Line {} end
   local spans = {}
-  local perm = h.cha:permissions()
+  local perm = h.cha:permissions():sub(1, 4)
   local perm_fg = {
     ['d'] = '#8aadf4',
     ['x'] = '#a6da95',
@@ -75,6 +75,7 @@ Status.perms = function(self)
       spans[#spans + 1] = ui.Span(c):fg(perm_fg[c] or '#8aadf4')
     end
   end
+  spans[#spans + 1] = ui.Span ' '
   return ui.Line(spans)
 end
 
@@ -92,9 +93,10 @@ Status.right = function(self)
     pos = string.format(' %2d%% ', percent)
   end
   local style = self:style()
-  return ui.Line {
-    ui.Span(' ' .. THEME.status.separator_open):fg(style.fg),
-    ui.Span(pos .. THEME.status.separator_open):style(style):reverse(),
-    ui.Span(string.format(' %2d/%-2d ', cursor + 1, length)):style(style),
-  }
+  return ui.Line {}
+  -- {
+  --   ui.Span(' ' .. THEME.status.separator_open):fg(style.fg),
+  --   ui.Span(pos .. THEME.status.separator_open):style(style):reverse(),
+  --   ui.Span(string.format(' %2d/%-2d ', cursor + 1, length)):style(style),
+  -- }
 end
