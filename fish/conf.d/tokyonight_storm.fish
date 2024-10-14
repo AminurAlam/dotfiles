@@ -1,4 +1,5 @@
-status is-interactive || exit
+exit
+# status is-interactive || exit
 
 # TokyoNight Color Palette
 set -l foreground \#c0caf5
@@ -71,6 +72,6 @@ set -g fish_pager_color_secondary_description $comment
 set -g fish_pager_color_secondary_prefix $color6
 
 set -g fish_pager_color_selected_background --background=$selection
-set -g fish_pager_color_selected_completion $color6
+set -g fish_pager_color_selected_completion $foreground
 set -g fish_pager_color_selected_description $foreground
-set -g fish_pager_color_selected_prefix
+set -g fish_pager_color_selected_prefix $color6

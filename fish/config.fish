@@ -1,3 +1,5 @@
+fish_config theme choose tokyo-night
+
 ### EXPORTS ###
 set -l XDG_DIR (test -n "$EXTERNAL_STORAGE" && printf "$EXTERNAL_STORAGE" || printf "$HOME")
 set -gx EDITOR (command -v nvim || command -v vim || command -v vi)
@@ -36,6 +38,7 @@ set -gx STARSHIP_CACHE $XDG_CACHE_HOME/starship
 set -gx ICEAUTHORITY $XDG_CACHE_HOME/ICEauthority
 set -gx XAUTHORITY $XDG_RUNTIME_DIR/Xauthority
 set -gx GNUPGHOME $XDG_DATA_HOME/gnupg
+set -gx TAPLO_CONFIG $XDG_PROJECTS_DIR/dotfiles/other/taplo.toml
 set -gx RIPGREP_CONFIG_PATH $XDG_PROJECTS_DIR/dotfiles/other/ripgreprc
 set -gx FZF_DEFAULT_OPTS_FILE $XDG_PROJECTS_DIR/dotfiles/other/fzfrc
 set -gx _ZO_FZF_OPTS

@@ -1,4 +1,3 @@
-status is-interactive || exit
 command -vq sudo && set sudo sudo
 
 # common

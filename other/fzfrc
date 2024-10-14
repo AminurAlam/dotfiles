@@ -1,3 +1,5 @@
+# vim:ft=conf
+
 --ignore-case
 --tiebreak chunk,begin,index
 --no-multi
@@ -12,6 +14,41 @@
 --no-scrollbar
 --prompt '  '
 
---color "dark,query:,border:#c0caf5,bg+:#363a4f,bg:#24273a,spinner:#f4dbd6,hl:#ed8796,fg:#c0caf5,header:#ed8796,info:#c6a0f6,pointer:#f4dbd6,marker:#b7bdf8,fg+:#c0caf5,prompt:#c6a0f6,hl+:#ed8796,selected-bg:#2e3c64"
 --preview-window top
 --select-1
+
+# catppuccin
+--color dark
+--color query:
+--color border:#c0caf5
+--color bg+:#363a4f
+--color bg:#24273a
+--color spinner:#f4dbd6
+--color hl:#ed8796
+--color fg:#c0caf5
+--color header:#ed8796
+--color info:#c6a0f6
+--color pointer:#f4dbd6
+--color marker:#b7bdf8
+--color fg+:#c0caf5
+--color prompt:#c6a0f6
+--color hl+:#ed8796
+--color selected-bg:#2e3c64
+
+# tokyonight
+--color bg+:#2e3c64
+--color bg:#1f2335
+--color border:#29a4bd
+--color fg:#c0caf5
+--color gutter:#1f2335
+--color header:#ff9e64
+--color hl+:#2ac3de
+--color hl:#2ac3de
+--color info:#545c7e
+--color marker:#ed8796
+--color pointer:#ed8796
+--color prompt:#2ac3de
+--color query:#c0caf5:regular
+--color scrollbar:#29a4bd
+--color separator:#ff9e64
+--color spinner:#ed8796
