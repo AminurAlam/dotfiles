@@ -2,22 +2,18 @@
 @font-face {
   font-family: "kana";
   src: url("_NotoSerifJP-Regular.ttf");
-  unicode-range: U+3040-309f, U+30a0-30ff;
+  unicode-range: U+3040-309f,
+    U+30a0-30ff;
 }
 
 @font-face {
   font-family: "kanji";
-  src:
-    "ヒラギノ角ゴ Pro W3",
+  src: "ヒラギノ角ゴ Pro W3",
     "Hiragino Kaku Gothic Pro",
-    "Noto Sans JP",
-    "Osaka",
-    "メイリオ",
-    "Meiryo",
-    "ＭＳ Ｐゴシック",
-    "MS PGothic",
-    "MS UI Gothic",
-    "sans-serif";
+    "Noto Sans JP", "Osaka",
+    "メイリオ", "Meiryo",
+    "ＭＳ Ｐゴシック", "MS PGothic",
+    "MS UI Gothic", "sans-serif";
   unicode-range: U+4e00-9faf;
 }
 
@@ -29,46 +25,43 @@
 
 .card.night_mode {
   color: #c0caf5;
-  background-color: #24283b;
+  background-color: #000000;
   margin: 10px 0px 0px 0px;
 }
 
-#content { margin: 5px; }
-b { color: #5586cd; }
-.word-front { padding-top: 10px; }
-.word-back { padding-top: 0px; }
-.word-meaning {
-  font-size: 25px;
-  padding-bottom: 36px;
+#content {
+  margin: 5px;
 }
-.sentence-front {
-  font-size: 22px;
+b {
+  color: #5586cd;
+}
+.word {
   padding-top: 70px;
 }
-.sentence-back { font-size: 22px; }
+.word-meaning {
+  font-size: 25px;
+  .yomitan-glossary {
+    font-size: 18px;
+    text-align: left;
+    margin-bottom: -36px;
+    & ol {
+      padding-left: 30px;
+    }
+  }
+}
+.sentence {
+  font-size: 25px;
+  padding-top: 36px;
+}
 .tags {
   font-size: 14px;
   position: fixed;
   top: 0px;
   right: 0px;
 }
-.note { font-size: 20px; }
-.pic {
-  position: fixed;
-  bottom: 0px;
-  left: 0px;
-  max-height: 100vw;
+.note {
+  font-size: 20px;
 }
-.utils {
-  position: fixed;
-  bottom: 0px;
-  right: 0px;
-}
-.mobile img {
-  max-height: 75vw;
-  max-width: 85vw;
-}
-
 .freq {
   font-size: 16px;
   padding: 20px 0px 0px 10px;
@@ -81,31 +74,44 @@ b { color: #5586cd; }
     }
   }
 }
-
-.yomitan-glossary {
-  font-size: 18px;
-  text-align: left;
-  margin-bottom: -36px;
-  text-align: left;
-  & ol {
-    padding-left: 30px;
-    padding-right: 5px;
+.pic {
+  position: fixed;
+  bottom: 0px;
+  left: 0px;
+  max-height: 100vw;
+  img {
+    max-height: 75vw;
+    max-width: 85vw;
+  }
+  img:first-child:nth-last-child(2),
+  img:first-child:nth-last-child(2)
+    ~ img {
+    max-width: 50%;
+  }
+  @media (orientation: landscape) {
+    img {
+      display: none;
+    }
+  }
+}
+.utils {
+  position: fixed;
+  bottom: 0px;
+  right: 0px;
+  button {
+    font-size: 16px;
+    border: 0px;
+    border-radius: 10px;
+    cursor: pointer;
+    display: inline-block;
+    line-height: 20px;
+    padding: 6px 10px;
   }
 }
 
-button {
-  font-size: 16px;
-  border: 0px;
-  border-radius: 10px;
-  cursor: pointer;
-  display: inline-block;
-  line-height: 20px;
-  padding: 6px 10px;
+.jisho {
+  background-color: #2ea44faa;
 }
-.jisho { background-color: #2ea44faa; }
-.replay-button { padding-bottom: 10px; }
-
-img:first-child:nth-last-child(2),
-img:first-child:nth-last-child(2) ~ img {
-  width: 50%;
+.replay-button {
+  padding-bottom: 10px;
 }

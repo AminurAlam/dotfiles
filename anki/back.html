@@ -2,13 +2,13 @@
 <div class="tags" id="tags">
   <!-- {{Tags}} -->
 </div>
-<div class="word-back">
+<div class="word">
   {{furigana:Word Furigana}}
 </div>
 <div class="word-meaning">
   {{Word Meaning}}
 </div>
-<div class="sentence-back">
+<div class="sentence">
   {{furigana:Sentence}}
   <br />
   {{Sentence Meaning}}
@@ -16,10 +16,12 @@
 
 {{#Frequency}}
 <div class="freq" id="freq">
-  {{Frequency}}
+  <!-- {{Frequency}} -->
 </div>
 {{/Frequency}} {{#Notes}}
-<!-- <span class="note">({{Notes}})</span> -->
+<span class="note">
+  <!-- ({{Notes}}) -->
+</span>
 {{/Notes}}
 
 <div class="pic" id="pic">
@@ -30,9 +32,7 @@
   <button class="jisho" id="jisho">
     漢字
   </button>
-  {{#Audio}}
-  <br />
-  {{Audio}} {{/Audio}}
+  {{#Audio}}<br/>{{Audio}}{{/Audio}}
 </div>
 
 <script>
