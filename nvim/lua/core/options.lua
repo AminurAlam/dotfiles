@@ -58,8 +58,9 @@ end
 
 do -- folding
   set.foldenable = true
-  set.foldlevel = 3
-  set.foldnestmax = vim.o.foldlevel + 1
+  set.foldclose = 'all'
+  set.foldlevel = 10
+  set.foldnestmax = set.foldlevel + 1
   set.foldmethod = 'manual'
   set.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
   set.foldtext = ''

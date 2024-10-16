@@ -229,7 +229,7 @@ autocmd('LspAttach', {
     nmap('<leader>li', vim.lsp.buf.format)
     nmap('<leader>lf', vim.lsp.buf.format)
     nmap('<leader>ca', vim.lsp.buf.code_action)
-    nmap('<leader>lr', vim.lsp.buf.rename) -- TODO: only if rename is supported
+    nmap('<leader>lr', vim.lsp.buf.rename)
     nmap('gd', vim.lsp.buf.definition)
 
     -- local client = vim.lsp.get_client_by_id(info.data.client_id)

@@ -70,32 +70,6 @@ autocmd('BufNewFile', {
 })
 
 autocmd('VimEnter', {
-  desc = 'intro screen',
-  once = true,
-  group = vim.api.nvim_create_augroup('IntroScreen', {}),
-  callback = function()
-    if vim.fn.argc() == 0 then
-      local nmap = function(lhs, rhs)
-        vim.keymap.set('n', lhs, rhs, { buffer = true, silent = true })
-      end
-      set.bufhidden = 'hide'
-      set.buftype = 'nofile'
-      nmap('f', '<cmd>Telescope find_files<cr>')
-      nmap('g', '<cmd>Telescope live_grep<cr>') -- FIX: doesnt start right away
-      nmap('h', '<cmd>Telescope help_tags<cr>')
-      nmap('o', '<cmd>Telescope oldfiles<cr>')
-      nmap('u', '<cmd>Lazy update<cr>')
-      nmap('q', '<cmd>q!<cr>')
-      -- TODO
-      -- autocmd('CursorMoved', {
-      --   once = true,
-      --   command = 'nmapc <buffer>',
-      -- })
-    end
-  end,
-})
-
-autocmd('VimEnter', {
   desc = 'open directory in telescope',
   callback = function(details)
     if vim.fn.isdirectory(details.file) == 1 then
@@ -136,6 +110,31 @@ autocmd('BufEnter', { command = 'set formatoptions-=cro' })
 autocmd('BufLeave', { command = 'set nocursorline' })
 autocmd('BufEnter', { command = 'set cursorline' })
 
+-- autocmd('VimEnter', {
+--   desc = 'intro screen',
+--   once = true,
+--   group = vim.api.nvim_create_augroup('IntroScreen', {}),
+--   callback = function()
+--     if vim.fn.argc() == 0 then
+--       local nmap = function(lhs, rhs)
+--         vim.keymap.set('n', lhs, rhs, { buffer = true, silent = true })
+--       end
+--       set.bufhidden = 'hide'
+--       set.buftype = 'nofile'
+--       nmap('f', '<cmd>Telescope find_files<cr>')
+--       nmap('g', '<cmd>Telescope live_grep<cr>') -- FIX: doesnt start right away
+--       nmap('h', '<cmd>Telescope help_tags<cr>')
+--       nmap('o', '<cmd>Telescope oldfiles<cr>')
+--       nmap('u', '<cmd>Lazy update<cr>')
+--       nmap('q', '<cmd>q!<cr>')
+--       -- TODO
+--       -- autocmd('CursorMoved', {
+--       --   once = true,
+--       --   command = 'nmapc <buffer>',
+--       -- })
+--     end
+--   end,
+-- })
 -- https://github.com/mawkler/modicator.nvim
 -- vim.api.nvim_create_autocmd('ModeChanged', {
 --   desc = 'change cursor line number based on mode',

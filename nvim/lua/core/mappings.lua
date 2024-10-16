@@ -18,11 +18,12 @@ local macro = function(reg, expr) vim.cmd.let(string.format([[@%s = '%s']], reg,
 local nmap = map { 'n' }
 local vmap = map { 'x' }
 local umap = map { '', 'i' }
+local lazy = require 'lazy'
 
 -- lazy
-nmap('<leader>pu', require('lazy').update, 'update plugins')
-nmap('<leader>pp', require('lazy').profile, 'open profiler')
-nmap('<leader>pa', require('lazy').home, 'plugins info')
+nmap('<leader>pu', lazy.update, 'update plugins')
+nmap('<leader>pp', lazy.profile, 'open profiler')
+nmap('<leader>pa', lazy.home, 'plugins info')
 nmap('<leader>tt', require('lazy.util').float_term, 'floating terminal')
 
 -- movement
@@ -69,10 +70,8 @@ nmap('>', '>>')
 nmap('<', '<<')
 vmap('>', '>gv')
 vmap('<', '<gv')
-nmap('[f', 'zc')
 nmap(']f', 'zf%')
-nmap('zC', 'zM')
-nmap('zO', 'zR')
+nmap('`', '``')
 
 -- toggles
 nmap('<leader>ss', '<cmd>setlocal spell!<cr>', 'toggle spell')
