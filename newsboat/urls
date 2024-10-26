@@ -10,17 +10,17 @@ https://www.tofugu.com/feed.xml misc
 
 "query:----- MUSIC -----:tags # \"music\" and unread = \"yes\""
 https://muspy.com/feed?id=mobwjpkr95u5p1b4f2w1bjt74qc8u3 "~muspy New Releases" music
-# https://sputnikmusic.com/blog/feed/ "~Sputnik Music Blog" music
 https://www.allmusic.com/rss music
 https://pitchfork.com/feed/feed-news/rss "~Pitchfork News" music
 
 "query:----- FORUMS & AGGREGATORS -----:tags # \"aggregators\" and unread = \"yes\""
 https://waxy.org/feed/ "~waxy.org by Andy Baio" aggregators
 https://lobste.rs/rss aggregators
-https://hnrss.org/newest.atom?points=100&count=20&description=0 "~Hacker News" aggregators
+https://hnrss.org/frontpage.atom?description=0 "~Hacker News" aggregators
 https://reddit.com/r/neovim/hot.rss "~r/neovim" aggregators
 https://reddit.com/r/OtoMusic/new.rss "~r/OtoMusic" aggregators
 https://dotfyle.com/this-week-in-neovim/rss.xml "~This Week in Neovim" aggregators
+https://dotfyle.com/neovim/plugins/rss.xml
 https://vi.stackexchange.com/feeds/week "~StackExchange - vi" aggregators
 https://superuser.com/feeds/week "~StackExchange - Super User" aggregators
 
@@ -30,9 +30,8 @@ https://www.ghacks.net/feed/ news_tech
 https://torrentfreak.com/feed news_tech
 https://rss.slashdot.org/Slashdot/slashdotMain news_tech
 https://reclaimthenet.org/feed/ news_tech
-https://www.bitdefender.com/blog/api/rss/hotforsecurity/ news_tech
+https://www.bitdefender.com/nuxt/api/en-us/rss/hotforsecurity/ news_tech
 https://emucross.com/rss/ news_tech
-https://alt2-feed-proxy.azurewebsites.net/api/FeedTrigger?name=all-news news_tech
 https://rssbridge.bus-hit.me/?action=display&bridge=BleepingComputerBridge&format=Atom news_tech
 https://rss-bridge.bb8.fun/?action=display&bridge=HaveIBeenPwned&order=dateAdded&item_limit=20&format=Atom "~Have I Been Pwned" news_tech
 
@@ -40,12 +39,9 @@ https://rss-bridge.bb8.fun/?action=display&bridge=HaveIBeenPwned&order=dateAdded
 https://f-droid.org/feed.xml news_foss
 https://www.phoronix.com/rss.php  news_foss
 https://dolphin-emu.org/blog/feeds/ "~Dolphin Emulator" news_foss
-https://citra-emu.org/index.xml "~Citra Emulator" news_foss
-https://yuzu-emu.org/index.xml news_foss
 https://strato-emu.github.io/index.xml
 https://newsboat.org/news.atom news_foss
 https://blog.thunderbird.net/feed/ "~Thunderbird" news_foss
-https://rss-bridge.bb8.fun/?action=display&bridge=MozillaSecurity&format=Atom news_foss
 https://blog.opensource.org/feed/ news_foss
 
 "query:----- CORPO BLOGS -----:tags # \"blogs_corpo\" and unread = \"yes\""
@@ -55,30 +51,32 @@ https://blog.nightly.mozilla.org/feed blogs_corpo
 https://blog.metabrainz.org/feed/ blogs_corpo
 https://blog.archive.org/feed/ blogs_corpo
 https://www.eff.org/rss/updates.xml "~eff.org" blogs_corpo
-https://mullvad.net/en/blog/feed/atom/ blogs_corpo
-https://element.io/blog/rss/ blogs_corpo
 https://signal.org/blog/rss.xml blogs_corpo
 https://security.googleblog.com/feeds/posts/default?alt=rss blogs_corpo
 https://crinacle.com/feed blogs_corpo
 https://www.darkhorse.com/RSS/ blogs_corpo
 https://medium.com/feed/phonepe/tagged/security blogs_corpo
+# TODO: geoblocked?
+# https://mullvad.net/en/blog/feed/atom/ blogs_corpo
+# https://element.io/blog/rss/ blogs_corpo
 
 "query:----- PERSONAL BLOGS 1 -----:tags # \"personal_blog_1\" and unread = \"yes\""
-https://rachelbythebay.com/w/atom.xml personal_blog_1
+http://rachelbythebay.com/w/atom.xml personal_blog_1
 https://www.schneier.com/feed/atom personal_blog_1
 https://drewdevault.com/blog/index.xml personal_blog_1
 https://thevaluable.dev/index.xml personal_blog_1
 https://brainbaking.com/index.xml personal_blog_1
 https://kevquirk.com/feed.xml personal_blog_1
 https://monstro1.com/rss.xml personal_blog_1
-https://denshi.org/rss.xml personal_blog_1
-https://lukesmith.xyz/index.xml personal_blog_1
-https://jacobwsmith.xyz/feed.xml personal_blog
 https://arjunyadav.xyz/rss.xml personal_blog_1
-https://strongly-typed-thoughts.net/blog/feed "~phaazon's blog" personal_blog_1
 https://cheapskatesguide.org/cheapskates-guide-rss-feed.xml personal_blog_1
 https://vkc.sh/feed/ personal_blog_1
 https://sizeof.cat/index.xml personal_blog_1
+# TODO: ??
+# https://denshi.org/index.xml personal_blog_1
+# https://lukesmith.xyz/index.xml personal_blog_1
+# https://jacobwsmith.xyz/feed.xml personal_blog
+# https://strongly-typed-thoughts.net/blog/feed "~phaazon's blog" personal_blog_1
 
 "query:----- PERSONAL BLOGS 2 -----:tags # \"personal_blog\" and unread = \"yes\""
 https://vonheikemen.github.io/devlog/atom.xml
@@ -86,14 +84,15 @@ https://www.amygoodchild.com/blog?format=rss
 https://dx13.co.uk/index.atom personal_blog
 https://tonsky.me/atom.xml personal_blog
 https://robertheaton.com/feed.xml personal_blog
+https://pluralistic.net/feed/ "~Pluralistic" personal_blog
 https://100r.co/links/rss.xml personal_blog
 https://jvns.ca/atom.xml personal_blog
 https://www.harihareswara.net/rss/ personal_blog
 https://hasbrouck.org/blog/index.xml personal_blog
 https://www.roboleary.net/feed.xml personal_blog
-https://chriswiegman.com/feed personal_blog
 https://daverupert.com/atom.xml personal_blog
-https://feeds.feedburner.com/avc personal_blog
+https://dotat.at/@/blog.atom
+https://feeds.feedburner.com/avc personal_blog personal_blog
 https://zerokspot.com/index.xml personal_blog
 https://soatok.blog/feed personal_blog
 https://alexwlchan.net/atom.xml personal_blog
@@ -125,11 +124,9 @@ http://pb.co.za/posts.atom personal_blog
 https://gabrielsimmer.com/rss personal_blog
 https://nanotipsforvim.prose.sh/rss personal_blog
 https://www.supergoodcode.com/feed.xml personal_blog
-https://pluralistic.net/feed/ personal_blog
 https://maia.crimew.gay/feed.xml personal_blog
 https://ntietz.com/atom.xml personal_blog
 https://rubenerd.com/feed/ personal_blog
-https://lckdscl.xyz/feed.xml personal_blog
 https://www.carrot.blog/feed.xml personal_blog
 https://cendyne.dev/feed.xml "~Cendyne's Posts" personal_blog
 https://emnudge.dev/blog.xml personal_blog
@@ -141,6 +138,9 @@ https://tailscale.dev/feed.xml personal_blog
 https://www.tbray.org/ongoing/ongoing.atom personal_blog
 https://twi.github.io/blog/atom.xml personal_blog
 https://vivekhaldar.com/index.xml personal_blog
+
+# TODO: broken
+# https://chriswiegman.com/feed personal_blog
 
 ### pending
 # Xenodium

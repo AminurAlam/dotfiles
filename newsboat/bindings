@@ -4,20 +4,30 @@
 # macro SPACE refresh; open;
 # macro ^E up; sleep;
 # macro ^Y down; sleep;
+# macro y set browser "fish -c \"yt %u\"" ; \
+#     open-in-browser ; \
+#     set browser termux-open
 
 ### KEY BINDINGS
-# ENTER BACKSPACE LEFT RIGHT UP DOWN PPAGE NPAGE HOME END ESC TAB F1 to F12
+# ENTER BACKSPACE LEFT RIGHT UP DOWN PPAGE NPAGE HOME END ESC TAB F1-12
 # all (default if not specified) feedlist filebrowser help articlelist article
 # tagselection filterselection urlview podboat dirbrowser searchresultslist
 
 # unbind keys
-unbind-key s #ds disable saving
+unbind-key s # disable saving
 
-# movement
+# open/close
 bind-key ^ quit
 bind-key $ open
 bind-key $ open-in-browser article
+bind-key RIGHT open
+bind-key LEFT quit
+bind-key RIGHT next article
+bind-key LEFT prev article
+bind-key BACKSPACE quit
+bind-key ^Q hard-quit
 
+# movement
 bind-key n next-unread
 bind-key N prev-unread
 bind-key g home
@@ -25,19 +35,6 @@ bind-key G end
 bind-key ^U halfpageup
 bind-key ^D halfpagedown
 
-bind-key RIGHT next article
-bind-key LEFT prev article
-bind-key RIGHT next-feed articlelist
-bind-key LEFT prev-feed articlelist
-
-bind-key u reload
-# bind-key a toggle-article-read
+# read/unread
 bind-key a mark-all-above-as-read
-bind-key ` toggle-article-read articlelist
-bind-key TAB reload feedlist
-bind-key TAB reload articlelist
-
-bind-key BACKSPACE quit
-bind-key ^Q hard-quit
-
-macro y set browser "fish -c \"yt %u\"" ; open-in-browser ; set browser termux-open
+bind-key ` toggle-article-read
