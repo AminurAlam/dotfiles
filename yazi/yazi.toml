@@ -2,7 +2,7 @@
 
 open.rules = [
   { mime = "application/x-bittorrent", use = "open" },
-  { name = "*/", use = ["gui_fm", "edit", "open", "reveal"] },
+  { name = "*/", use = ["gui_fm", "dir2cbz", "open", "edit", "reveal"] },
   { mime = "text/*", use = ["edit", "reveal"] },
   { mime = "application/{json,x-ndjson}", use = ["edit", "reveal"] },
   { mime = "*/javascript", use = ["edit", "reveal"] },
@@ -18,7 +18,10 @@ open.rules = [
 
 [opener]
 # FIX: escape filepath first
-gui_fm = [{ run = 'am start -n me.zhanghai.android.files/.filelist.FileListActivity -d "$(readlink -f "$1")"' }]
+dir2cbz = [{ run = '''fish -c 'dir2cbz $argv' "$@" ''', block = true, desc = "dir2cbz" }]
+gui_fm = [
+  { run = 'am start -n me.zhanghai.android.files/.filelist.FileListActivity -d "$(readlink -f -- "$1")"', desc = "android file manager" },
+]
 edit = [
   { run = '${EDITOR:-vi} "$@"', desc = "$EDITOR", block = true, for = "unix" },
   { run = 'code %*', orphan = true, desc = "code", for = "windows" },
