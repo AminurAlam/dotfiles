@@ -43,7 +43,8 @@ b {
   .yomitan-glossary {
     font-size: 18px;
     text-align: left;
-    margin-bottom: -36px;
+    margin-top: -20px;
+    margin-bottom: -20px;
     & ol {
       padding-left: 30px;
     }
@@ -53,29 +54,33 @@ b {
   font-size: 25px;
   padding-top: 36px;
 }
-.tags {
-  font-size: 14px;
-  position: fixed;
-  top: 0px;
-  right: 0px;
+
+summary {
+  text-align: right;
+  padding-right: 20px;
+  list-style-type: "+ ";
 }
-.note {
-  font-size: 20px;
-}
-.freq {
+details {
   font-size: 16px;
-  padding: 20px 0px 0px 10px;
-  ul {
-    padding: 0px;
-    margin: 0px;
-    & li {
-      display: inline;
-      margin-right: 1ex;
+}
+details[open] {
+  summary {
+    list-style-type: "- ";
+  }
+  .freq {
+    padding: 20px 0px 0px 10px;
+    ul {
+      padding: 0px;
+      margin: 0px;
+      & li {
+        display: inline;
+        margin-right: 1ex;
+      }
     }
   }
 }
 .pic {
-  position: fixed;
+  /* position: fixed; */
   bottom: 0px;
   left: 0px;
   max-height: 100vw;
@@ -94,6 +99,7 @@ b {
     }
   }
 }
+
 .utils {
   position: fixed;
   bottom: 0px;
