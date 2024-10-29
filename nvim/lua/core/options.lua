@@ -58,7 +58,7 @@ end
 
 do -- folding
   set.foldenable = true
-  set.foldclose = 'all'
+  set.foldclose = ''
   set.foldlevel = 10
   set.foldnestmax = set.foldlevel + 1
   set.foldmethod = 'manual'

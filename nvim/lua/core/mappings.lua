@@ -71,7 +71,6 @@ nmap('<', '<<')
 vmap('>', '>gv')
 vmap('<', '<gv')
 nmap(']f', 'zf%')
-nmap('`', '``')
 
 -- toggles
 nmap('<leader>ss', '<cmd>setlocal spell!<cr>', 'toggle spell')

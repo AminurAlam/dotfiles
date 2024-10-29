@@ -89,6 +89,15 @@ autocmd('BufWritePre', {
   end,
 })
 
+autocmd('TermOpen', {
+  desc = 'when opening a new terminal buffer',
+  callback = function()
+    set.number = false
+    set.relativenumber = false
+    vim.cmd.startinsert()
+  end,
+})
+
 autocmd('BufWinLeave', {
   desc = 'save folds & cursor on exit',
   pattern = '?*',

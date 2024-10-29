@@ -64,6 +64,10 @@ vim.g.stl = {
   lsp_attached = function() return #vim.lsp.get_clients() > 0 and '  ' or '' end,
   mode = function() return mode_names[vim.api.nvim_get_mode().mode] or '???' end,
   bufcount = function() return buflogo[#vim.fn.getbufinfo { buflisted = 1 }] or '十 ' end,
+  is_git = function()
+    if vim.b.is_git == nil then vim.b.is_git = vim.fs.root(0, '.git') and true or false end
+    return vim.b.is_git
+  end,
   undo_status = function()
     local ud = vim.fn.undotree()
     return ud.seq_cur ~= ud.seq_last and ' ←' .. ud.seq_last - ud.seq_cur or ''
@@ -96,7 +100,7 @@ vim.g.stl = {
 vim.api.nvim_create_autocmd({ 'ModeChanged' }, {
   pattern = '*',
   callback = function(_)
-    local mode_color = mode_colors[vim.v.event.new_mode] -- mode_colors[vim.api.nvim_get_mode().mode]
+    local mode_color = mode_colors[vim.v.event.new_mode]
     hl(0, 'stl_hl_a', { bg = mode_color, fg = secondary, bold = true })
     hl(0, 'stl_hl_b', { fg = mode_color, bg = secondary })
   end,
@@ -108,15 +112,12 @@ vim.api.nvim_create_autocmd({ 'FileType' }, {
   command = 'setlocal statusline=%#Normal#',
 })
 
-hl(0, 'stl_hl_a', { bg = mode_colors.n, fg = secondary, bold = true })
-hl(0, 'stl_hl_b', { fg = mode_colors.n, bg = secondary })
-hl(0, 'stl_hl_to', { fg = secondary })
-
 -- TODO: implement more stuff from https://github.com/nvim-lualine/lualine.nvim/wiki/Component-snippets
 vim.opt.stl = '%#stl_hl_a# %{ g:stl.mode() } %#stl_hl_b#' -- a to b
   .. ' %{ g:stl.bufcount() }%t '
   .. '%{ &modified ? "󰆓 " : "" }'
-  .. '%{ !empty(finddir(".git", expand("%:p:h") .. ";")) ? " " : "" }'
+  -- .. '%{ !empty(finddir(".git", expand("%:p:h") .. ";")) ? " " : "" }'
+  .. '%{ g:stl.is_git() ? " " : "" }'
   .. '%{ g:stl.lsp_attached() }'
   -- .. '%{ &cb == "unnamedplus" ? "󰆒 " : "" }'
   .. '%{ &spell ? "󰓆 " : "" }'
@@ -126,7 +127,7 @@ vim.opt.stl = '%#stl_hl_a# %{ g:stl.mode() } %#stl_hl_b#' -- a to b
   .. '%#stl_hl_to#%#Normal# ' -- b to c
   .. '%{% g:stl.diagnostics() %}'
   .. '%{% get(b:, "gitsigns_status", "") %}'
-  .. '%{% g:stl.undo_status() %}'
+  -- .. '%{% g:stl.undo_status() %}'
   .. '%#Normal#%=%S ' -- middle seperator
   .. '%{ v:hlsearch ? g:stl.hlsearch() : "" } '
   .. '%{ reg_recording() != "" ? " " .. reg_recording() : "" } '

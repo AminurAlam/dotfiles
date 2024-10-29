@@ -155,8 +155,8 @@ M.config = function()
       },
     },
     sources = cmp.config.sources {
-      { name = 'path', options = { trailing_slash = false } },
       { name = 'cmdline', option = { ignore_cmds = {} } },
+      { name = 'path', options = { trailing_slash = true } },
     },
     formatting = {
       format = function(_, vim_item)
