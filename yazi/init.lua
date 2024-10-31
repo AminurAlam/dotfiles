@@ -33,7 +33,6 @@ Status = {
     }
   end,
 }
-
 Status.left = function(self)
   local style = self:style()
   return ui.Line {
@@ -50,7 +49,6 @@ Status.left = function(self)
     -- ui.Span('ddddddddddddddddddddddddddddddddddddddddddddddddddddddd'),
   }
 end
-
 Status.perms = function(self)
   local h = self._tab.current.hovered
   if not h then return ui.Line {} end
@@ -78,7 +76,6 @@ Status.perms = function(self)
   spans[#spans + 1] = ui.Span ' '
   return ui.Line(spans)
 end
-
 Status.right = function(self)
   local percent = 0
   local cursor = self._tab.current.cursor
@@ -99,4 +96,17 @@ Status.right = function(self)
   --   ui.Span(pos .. THEME.status.separator_open):style(style):reverse(),
   --   ui.Span(string.format(' %2d/%-2d ', cursor + 1, length)):style(style),
   -- }
+end
+
+local old_layout = Tab.layout
+
+Status.render = function() return {} end
+Tab.layout = function(self, ...)
+  self._area = ui.Rect {
+    x = self._area.x,
+    y = self._area.y,
+    w = self._area.w,
+    h = self._area.h + 1,
+  }
+  return old_layout(self, ...)
 end
