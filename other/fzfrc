@@ -15,7 +15,7 @@
 --prompt '  '
 
 --preview-window top
---select-1
+# --select-1
 
 # catppuccin
 --color dark

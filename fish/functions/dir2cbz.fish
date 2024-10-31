@@ -11,7 +11,7 @@ function dir2cbz
             continue
         end
 
-        set out (basename "$dir").cbz
+        set out (basename (string replace '_1.cbz' '' "$dir" )).cbz
 
         if [ -e "$out" ]
             [ "$(read -P "overwrite $out? [y/N] ")" = y ]

@@ -28,7 +28,7 @@ function clean
         command rm -frI -- $files
     end
 
-    [ -d ~/downloads ] && fd -tf '^tempFileForShare_.*.png$' ~/downloads/ -x rm
+    [ -d ~/downloads ] && fd -tfile -epng . ~/downloads/ -x rm
 
 
     command -vq pacman && yes | pacman -Scc

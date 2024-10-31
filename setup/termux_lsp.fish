@@ -22,13 +22,7 @@ end
 function npm_based_lsp
     pacman -S --noconfirm --needed nodejs
     npm i -g bash-language-server prettier
-    for bin in $HOME/.local/share/npm/bin/*
-        while [ -L "$bin" ]
-            set bin (readlink -f "$bin")
-        end
-        [ -e "$bin" -a -x "$bin" ]
-        and patch --no-backup-if-mismatch "$bin" <$patches/npm-bin.diff
-    end
+    termux-fix-shebang $HOME/.local/share/npm/bin/*
 end
 
 if not [ -d "$patches" ]

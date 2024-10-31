@@ -23,7 +23,7 @@ set mu $XDG_MUSIC_DIR
 set m $XDG_DIR/main
 set temp $XDG_CACHE_HOME/temp
 # other
-# set -gx LS_COLORS "*.py=38;5;45:*.rs=38;5;208:*.fish=38;5;47:*.sh=38;5;47:*.bash=38;5;47:*.png=36:*.flac=36:*.log=38;5;252:*.lrc=38;5;252:*.cue=38;5;39:*.apk=38;5;47:*.css=38;5;135:*.csv=38;5;42:*.go=38;5;45:*.gradle=38;5;24:*.html=38;5;202:*.json=38;5;3:*.jl=38;5;213:*.js=33:*.kt=35:*.lua=38;5;27:*.php=38;5;63:*.pdf=38;5;124:*.md=38;5;111:*.tex=38;5;71"
+# TODO: nice colors
 set -gx EZA_COLORS (string join : (cat $HOME/repos/dotfiles/other/dircolors))
 set -gx VISUAL $EDITOR
 set -gx SUDO_EDITOR $EDITOR
@@ -59,6 +59,7 @@ set -U fish_features qmark-noglob
 set -gxp --path PATH "$HOME/.local/bin" # sometimes before
 set -gxp --path PATH "$CARGO_HOME/bin" # after declaring CARGO_HOME
 set -gxp --path PATH "$HOME/.local/share/npm/bin"
+set -gxp --path PATH "$HOME/.local/share/nvim/mason/bin"
 set -gxp --path PATH "$PREFIX/lib/jvm/java-17-openjdk/bin"
 # set -gxp --path PATH "$PREFIX/bin/texlive" # replaced by $PREFIX/etc/fish/conf.d/texlive.fish
 
