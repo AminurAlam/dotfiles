@@ -13,5 +13,5 @@ function gcp -a url path branch
     and cd "$path" &>/dev/null && return
 
     [ "$success" = true ]
-    and cd (ls -N1 --sort time | head -n1) && return
+    and cd (ls -AN1 --sort time | head -n1) && return
 end

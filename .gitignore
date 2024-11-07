@@ -1,5 +1,6 @@
 # allow completions manully
 /fish/completions/*
+!/fish/completions/tree-sitter.fish
 !/fish/completions/x11.fish
 !/fish/completions/z.fish
 /fish/fish_variables

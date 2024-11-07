@@ -1,33 +1,16 @@
+# vim:sw=4:ts=4:et:ft=gitconfig:commentstring=#\ %s :
+
 [core]
+    fsmonitor = true
     editor = nvim +'setlocal spell noundofile noswapfile'
     # pager = nvim +'setlocal ft=diff buftype=nofile bufhidden=hide noswapfile'
+    pager = delta # TODO: config delta
 
 [init]
     defaultBranch = main
 
-[user]
-    name = AminurAlam
-    email = 64137875+AminurAlam@users.noreply.github.com
-	signingkey = ~/.ssh/id_ed25519.pub
-
-[credential]
-    username = AminurAlam
-    helper = "cache --timeout 604800"
-
 [help]
     autocorrect = immediate
-
-[rerere]
-    enabled = true
-
-[alias]
-    l = log --pretty=nice -n 10
-    s = status -bs
-    d = !"git diff -- $* | $EDITOR +'set bt=nofile bh=hide' +'nmap q <cmd>quit!<cr>' # "
-
-    bls = branch --all
-    rls = remote --verbose
-    unadd = reset
 
 [advice]
     addIgnoredFile = false
@@ -38,12 +21,51 @@
 [pager]
     log = false
 
+[fetch]
+  writeCommitGraph = true
+
+[interactive]
+        diffFilter = delta --color-only
+
+[include]
+  # Delta config
+  path = ~/.config/git/delta.conf
+
+### creds
+
+[user]
+    name = AminurAlam
+    email = 64137875+AminurAlam@users.noreply.github.com
+    signingkey = ~/.ssh/id_ed25519.pub
+
+[credential]
+    username = AminurAlam
+    helper = "cache --timeout 604800"
+
+[gpg]
+    format = ssh
+
+[commit]
+  gpgsign = true
+
+
+### aliases
+
+[alias]
+    l = log --pretty=nice -n 10
+    s = status -bs
+    ; d = !git diff -- $* | delta
+
+    bls = branch --all
+    rls = remote --verbose
+    unadd = reset
+
+
 ### looks
 
 [pretty]
-    nice = " %C(yellow)%h%C(reset) %<(54,trunc)%-s %C(green)%cd"
-    gh = " %<(64,trunc)%-s %C(yellow)%h%C(reset)%n\
-        %C(blue)@%an%C(reset) commited %C(green)%cr%C(reset) %(describe:match=HEAD)"
+    nice = %C(yellow)%>(8)%h%C(reset) %<(54,trunc)%-s %C(green)%cd
+    gh = %<(68,trunc)%-s %C(yellow)%h%C(reset)%n      %C(blue)@%an%C(reset) commited %C(green)%cr%C(reset) %(describe:match=HEAD)
 
 [log]
     date = short
@@ -57,6 +79,7 @@
     added = green
     changed = red
     untracked = default
+
 
 ### diff and merge
 
@@ -75,6 +98,5 @@
 [mergetool "nvimdiff"]
     layout = REMOTE/@LOCAL
 
-# vim: set ft=gitconfig commentstring=#\ %s :
-[gpg]
-	format = ssh
+[rerere]
+    enabled = true
