@@ -57,7 +57,7 @@ manager.prepend_keymap = [
   { on = ["f", "f"], run = "plugin fzf", desc = "fzf search" },
   { on = ["f", "g"], run = "plugin rg", desc = "rg search" },
   { on = "z", run = "plugin zoxide", desc = "Jump to a directory using zoxide" },
-  { on = "T", run = "plugin --sync hide-preview" },
+  { on = ["s","t"], run = "plugin --sync hide-preview" },
 ]
 
 tasks.prepend_keymap = []

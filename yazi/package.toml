@@ -2,9 +2,8 @@
 deps = [
   { use = "Sonico98/exifaudio", rev = "855ff05" },
   { use = "sharklasers996/eza-preview", rev = "7ca4c25" },
-  { use = "ndtoan96/ouch", rev = "d13f7c0" },
-  { use = "yazi-rs/plugins:hide-preview", rev = "ad52adf" },
-  { use = "yazi-rs/plugins:no-status", rev = "ad52adf" },
+  { use = "yazi-rs/plugins:hide-preview", rev = "102a0cd" },
+  { use = "yazi-rs/plugins:no-status", rev = "102a0cd" },
 ]
 
 [flavor]
