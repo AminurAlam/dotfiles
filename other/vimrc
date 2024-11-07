@@ -1,0 +1,106 @@
+set autoindent
+set smartindent
+set tabstop=4
+set shiftwidth=4
+set smarttab
+set softtabstop=4
+set expandtab
+set shiftround
+
+set nohlsearch
+set ignorecase
+set smartcase
+set incsearch
+set iskeyword-=-
+
+set scrolloff=6
+set sidescroll=4
+set sidescrolloff=8
+set smoothscroll
+
+set showmode
+set ruler
+set rulerformat=%p%%
+set showcmd
+set laststatus=3
+set cmdheight=1
+set numberwidth=1
+set shortmess=acCoOsSWF
+set number
+set relativenumber
+set signcolumn=auto
+
+set foldenable
+set foldclose=
+set foldlevel=10
+set foldnestmax=11
+set foldmethod=manual
+set foldtext=
+set foldcolumn=1
+set viewoptions=cursor,folds
+
+set belloff=showmatch
+set pumheight=15
+set termguicolors
+set startofline
+set cursorline
+set cursorlineopt=number,screenline
+set mouse=a
+set background=dark
+set helpheight=25
+set nowrap
+set linebreak
+set breakindent
+set guicursor=n-sm-r:block,v-o-i-c-ci-cr:ver100
+
+set concealcursor=n
+set matchtime=1
+set notimeout
+set timeoutlen=1000
+set swapfile
+set nobackup
+set nowritebackup
+set confirm
+"set clipboard+=unnamed,unnamedplus
+set list
+set listchars="leadmultispace:│   ,tab:> ,trail: ,precedes:…,conceal:●,nbsp:␣"
+set fillchars="stl: ,fold: ,foldclose:,msgsep:─,eob: ,lastline:.,diff:╱"
+
+colorscheme habamax
+
+let g:mapleader=" "
+
+map <c-left> <cmd>bn<cr>
+map <c-right> <cmd>bn<cr>
+imap <c-left> <cmd>bn<cr>
+imap <c-right> <cmd>bn<cr>
+
+" deleting & registers
+"nmap _ "_
+"nmap s "_s
+"nmap x "_x
+"nmap X "_x
+"vmap p "_dP
+"nmap <del> "_x
+nmap cn *``"_cgn
+nmap <bs> i<bs><esc>l
+nmap <cr> "_ciw
+
+nmap <leader>w <cmd>silent w <bar> redraw <cr>
+nmap <leader>W <cmd>silent w <bar> redraw <cr>
+
+" indent & fold
+nmap = ==
+nmap > >>
+nmap < <<
+vmap > >gv
+vmap < <gv
+
+" toggles
+nmap <leader>ss <cmd>setlocal spell!<cr>
+nmap <leader>sw <cmd>setlocal wrap!<cr>
+
+" other
+vmap . :norm .<cr>
+nmap ; @:
+nmap go jA
