@@ -1,4 +1,4 @@
-<!-- vim:set ft=html cc=37 et sw=2: -->
+<!-- vim:set ft=html cc=37 sw=2: -->
 <div class="word">
   {{furigana:Word Furigana}}
 </div>
@@ -13,18 +13,13 @@
 
 <details>
   <summary></summary>
-  {{#Frequency}}
   <div class="freq" id="freq">
     {{Frequency}}
   </div>
-  {{/Frequency}} {{#Notes}}
   <span class="note">
-    ({{Notes}})
+    {{#Notes}}({{Notes}}){{/Notes}}
   </span>
-  {{/Notes}}
-  <span class="tags" id="tags">
-    {{Tags}}
-  </span>
+  <span class="tags">{{Tags}}</span>
 </details>
 
 <div class="pic" id="pic">
@@ -32,52 +27,57 @@
 </div>
 
 <div class="utils">
-  <button class="jisho" id="jisho">
+  <a
+    class="jisho"
+    href="https://jisho.org/search/%23kanji%20{{Word}}">
     漢字
-  </button>
-  {{#Audio}}
+  </a>
   <br />
-  {{Audio}}{{/Audio}}
+  {{#Audio}}{{Audio}}{{/Audio}}
 </div>
 
+<!-- TODO: custom buttons
+<button
+  style="width: 20%"
+  onclick="buttonAnswerEase1();">
+  Again
+</button>
+<button
+  style="width: 30%"
+  onclick="buttonAnswerEase2();">
+  Hard
+</button>
+<button
+  style="width: 30%"
+  onclick="buttonAnswerEase3();">
+  Good
+</button>
+<button
+  style="width: 20%"
+  onclick="buttonAnswerEase4();">
+  Easy
+</button>
+-->
+
 <script>
-  document
-    .getElementById("jisho")
-    .addEventListener(
-      "click",
-      () => {
-        window.location.href =
-          "https://jisho.org/search/%23kanji%20{{Word}}";
-      },
-    );
-  var freq =
-    document.getElementById("freq");
   freq.innerHTML =
     freq.innerHTML.replace(
       /(\d\d+|[6-9])\d{3}([^\d]?)/g,
       "$1k$2",
     );
-  var tags =
-    document.getElementById("tags");
-  tags.innerHTML =
-    tags.innerHTML.replace(
-      "yomitan",
-      "",
-    );
-  if ("{{Tags}}".match("nsfw")) {
-    var pic =
-      document.getElementById("pic");
+
+  if ("{{Tags}}".match("nsfw"))
     pic.style.filter = "blur(8px)";
-    pic.firstElementChild.removeAttribute(
-      "href",
-    );
-    pic.addEventListener(
-      "click",
-      () => {
-        pic.style.filter = "none";
-      },
-    );
-  }
+  pic.addEventListener(
+    "click",
+    () => {
+      pic.style.filter = "none";
+    },
+  );
+  /* var api = new AnkiDroidJS({
+    version: "0.0.3",
+    developer: "lol@lmao.fun",
+  }); */
 </script>
 <!-- -> <script src="https://cdn.jsdelivr.net/npm/eruda"></script>
 <script>eruda.init();</script> <!-- -->

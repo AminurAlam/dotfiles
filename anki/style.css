@@ -1,4 +1,4 @@
-/* vim:set cc=37 et sw=2: */
+/* vim:set cc=37 sw=2: */
 @font-face {
   font-family: "kana";
   src: url("_NotoSerifJP-Regular.ttf");
@@ -25,7 +25,7 @@
 
 .card.night_mode {
   color: #c0caf5;
-  background-color: #000000;
+  background-color: #24283b;
   margin: 10px 0px 0px 0px;
 }
 
@@ -68,7 +68,7 @@ details[open] {
     list-style-type: "- ";
   }
   .freq {
-    padding: 20px 0px 0px 10px;
+    padding: 0px 0px 0px 10px;
     ul {
       padding: 0px;
       margin: 0px;
@@ -104,20 +104,21 @@ details[open] {
   position: fixed;
   bottom: 0px;
   right: 0px;
-  button {
+
+  .jisho {
     font-size: 16px;
-    border: 0px;
+    color: #ffffff;
+    background-color: #2ea44fcc;
     border-radius: 10px;
-    cursor: pointer;
-    display: inline-block;
-    line-height: 20px;
+    margin-right: 5px;
     padding: 6px 10px;
   }
+  .replay-button {
+    padding-bottom: 10px;
+  }
 }
-
-.jisho {
-  background-color: #2ea44faa;
-}
-.replay-button {
-  padding-bottom: 10px;
+button {
+  height: 50px;
+  margin: 0px;
+  padding: 0px;
 }
