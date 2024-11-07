@@ -10,7 +10,7 @@ function pd -a distro
     end && return
 
     # NOTE: keep this list updated
-    set -l distros alpine archlinux artix debian debian-oldstable deepin fedora manjaro openkylin opensuse pardus ubuntu ubuntu-lts ubuntu-oldlts void
+    set -l distros alpine archlinux artix chimera debian debian-oldstable deepin fedora manjaro openkylin opensuse pardus ubuntu ubuntu-oldlts void
 
     set distro (string replace arch archlinux $distro)
     set distro (string replace suse opensuse  $distro)
