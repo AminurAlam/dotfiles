@@ -6,12 +6,9 @@
 https://xkcd.com/atom.xml misc
 https://github.com/neovim/neovim/commits/master/runtime/doc/news.txt.atom "~nvim - news.txt" misc
 https://www.thatmangahunter.com/blog-feed.xml misc
-https://www.tofugu.com/feed.xml misc
-
-"query:----- MUSIC -----:tags # \"music\" and unread = \"yes\""
-https://muspy.com/feed?id=mobwjpkr95u5p1b4f2w1bjt74qc8u3 "~muspy New Releases" music
-https://www.allmusic.com/rss music
-https://pitchfork.com/feed/feed-news/rss "~Pitchfork News" music
+https://muspy.com/feed?id=mobwjpkr95u5p1b4f2w1bjt74qc8u3 "~muspy New Releases" misc
+https://www.allmusic.com/rss misc
+https://pitchfork.com/feed/feed-news/rss "~Pitchfork News" misc
 
 "query:----- FORUMS & AGGREGATORS -----:tags # \"aggregators\" and unread = \"yes\""
 https://waxy.org/feed/ "~waxy.org by Andy Baio" aggregators
@@ -45,7 +42,6 @@ https://blog.thunderbird.net/feed/ "~Thunderbird" news_foss
 https://blog.opensource.org/feed/ news_foss
 
 "query:----- CORPO BLOGS -----:tags # \"blogs_corpo\" and unread = \"yes\""
-https://blog.mozilla.org/en/feed blogs_corpo
 https://blog.cloudflare.com/rss/ blogs_corpo
 https://blog.nightly.mozilla.org/feed blogs_corpo
 https://blog.metabrainz.org/feed/ blogs_corpo
