@@ -11,6 +11,7 @@ M.config = function()
     default = {
       augend.integer.alias.decimal, -- nonnegative decimal number (0, 1, 2, 3, ...)
       augend.constant.alias.bool, -- boolean value (true <-> false)
+      augend.constant.new { elements = { 'yes', 'no' }, word = true, cyclic = true },
       augend.constant.new { elements = { 'and', 'or' }, word = true, cyclic = true },
       augend.constant.new { elements = { 'True', 'False' }, word = true, cyclic = true },
       augend.constant.new { elements = { '&&', '||' }, word = false, cyclic = true },

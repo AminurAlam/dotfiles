@@ -145,7 +145,7 @@ for _, server in pairs(servers) do
   vim.api.nvim_create_autocmd('Filetype', {
     pattern = server[2],
     callback = function(buf)
-      if vim.fn.filereadable(buf.file) == 0 then return end -- FIX: someone keeps spawning unlisted lua buffers??
+      if vim.fn.filereadable(buf.file) == 0 then return end -- someone keeps spawning unlisted lua buffers??
       local client_id = vim.lsp.start({
         name = cmd[1],
         cmd = cmd,

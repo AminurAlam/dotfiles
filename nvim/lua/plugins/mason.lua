@@ -1,5 +1,6 @@
 return {
   'https://github.com/williamboman/mason.nvim',
+  cmd = { 'Mason', 'MasonInstall', 'MasonUpdate', 'MasonLog' },
   opts = {
     ui = {
       check_outdated_packages_on_open = true,

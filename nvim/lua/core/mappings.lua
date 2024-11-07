@@ -100,6 +100,7 @@ nmap('go', 'jA', 'like `o` but on existing line')
 nmap('<leader>y', '<cmd>silent %y<cr>', 'yank entire buffer')
 nmap('<leader>y', function() fn.setreg('+', fn.getreg '0') end, 'put last yank in sys clipboard')
 nmap('<leader>p', '"+p', 'put last yank in sys clipboard')
+nmap('<leader>a', 'moggVG<c-a>`o', 'increment all numbers')
 
 -- visual
 nmap('v', 'm`v')

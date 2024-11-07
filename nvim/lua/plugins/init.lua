@@ -1,5 +1,4 @@
 return {
-  { 'yorickpeterse/nvim-pqf', config = true },
   { '0xAdk/full_visual_line.nvim', event = 'ModeChanged *:V', config = true },
   {
     'tzachar/highlight-undo.nvim',

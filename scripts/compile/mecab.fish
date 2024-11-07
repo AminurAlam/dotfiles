@@ -2,6 +2,8 @@ set REPO_NAME mecab
 set REPO_PATH "$XDG_PROJECTS_DIR/$REPO_NAME"
 set REPO_URL "https://drive.google.com/uc?export=download&id=0B4y35FiV1wh7cENtOXlicTFaRUE"
 set DEPENDENCIES binutils make cmake
+# NOTE: manga_ocr deps
+# pacman -S python-numpy python-pillow python-torch
 
 function pre_build
     if command -vq apt

@@ -2,6 +2,7 @@
 
 [core]
     fsmonitor = true
+    untrackedCache = true
     editor = nvim +'setlocal spell noundofile noswapfile'
     # pager = nvim +'setlocal ft=diff buftype=nofile bufhidden=hide noswapfile'
     pager = delta # TODO: config delta
@@ -52,8 +53,8 @@
 ### aliases
 
 [alias]
-    l = log --pretty=nice -n 10
-    s = status -bs
+    ; l = log --pretty=nice -n 10
+    ; s = status -bs
     ; d = !git diff -- $* | delta
 
     bls = branch --all
@@ -74,6 +75,9 @@
     current = yellow reverse
     local = yellow
     remote = green
+
+[status]
+    relativePaths = true
 
 [color "status"]
     added = green

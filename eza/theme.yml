@@ -17,3 +17,4 @@ filenames:
 extensions:
   toml: { icon: { glyph: , style: { foreground: null } } }
   kdl: { icon: { glyph: , style: { foreground: null } } }
+  # cbz: { icon: { glyph: , style: { foreground: null } } }

@@ -112,7 +112,6 @@ vim.api.nvim_create_autocmd({ 'FileType' }, {
   command = 'setlocal statusline=%#Normal#',
 })
 
--- TODO: implement more stuff from https://github.com/nvim-lualine/lualine.nvim/wiki/Component-snippets
 vim.opt.stl = '%#stl_hl_a# %{ g:stl.mode() } %#stl_hl_b#' -- a to b
   .. ' %{ g:stl.bufcount() }%t '
   .. '%{ &modified ? "󰆓 " : "" }'
