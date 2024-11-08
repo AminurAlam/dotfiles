@@ -13,3 +13,8 @@ Tab.layout = function(self, ...)
   }
   return old_layout(self, ...)
 end
+
+-- require('custom-shell').setup {
+--   history_path = 'default',
+--   save_history = true,
+-- }

@@ -51,13 +51,14 @@ manager.prepend_keymap = [
   { on = ["c", "^"], run = "rename --empty=stem --cursor=start", desc = "rename stem" },
   { on = ["c", "$"], run = "rename --empty=ext --cursor=end", desc = "rename ext" },
   # other
-  { on = ":", run = '''shell "fish -c " --block --interactive''' },
+  # { on = ":", run = '''shell "fish -c " --block --interactive''' },
+  { on = ":", run = "plugin custom-shell --args=auto" },
   { on = ".", run = "hidden toggle" },
   { on = ["s", "w"], run = "plugin eza-preview", desc = "Toggle tree/list dir preview" },
   { on = ["f", "f"], run = "plugin fzf", desc = "fzf search" },
   { on = ["f", "g"], run = "plugin rg", desc = "rg search" },
   { on = "z", run = "plugin zoxide", desc = "Jump to a directory using zoxide" },
-  { on = ["s","t"], run = "plugin --sync hide-preview" },
+  { on = ["s", "t"], run = "plugin --sync hide-preview" },
 ]
 
 tasks.prepend_keymap = []

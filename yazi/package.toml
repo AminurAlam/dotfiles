@@ -4,7 +4,11 @@ deps = [
   { use = "sharklasers996/eza-preview", rev = "7ca4c25" },
   { use = "yazi-rs/plugins:hide-preview", rev = "102a0cd" },
   { use = "yazi-rs/plugins:no-status", rev = "102a0cd" },
+  { use = "AnirudhG07/custom-shell", rev = "d00d2f9" },
 ]
 
 [flavor]
-deps = []
+deps = [
+  { use = "yazi-rs/flavors:catppuccin-macchiato", rev = "d504f70" },
+  { use = "BennyOe/tokyo-night", rev = "024fb09" },
+]

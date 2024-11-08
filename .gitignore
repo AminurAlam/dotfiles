@@ -19,4 +19,5 @@ passwords.gpg
 rclone.conf
 
 /yazi/plugins/
+/yazi/flavors/
 /streamrip/*downloads.db
