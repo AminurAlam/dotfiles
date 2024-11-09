@@ -23,8 +23,6 @@ set mu $XDG_MUSIC_DIR
 set m $XDG_DIR/main
 set temp $XDG_CACHE_HOME/temp
 # other
-# TODO: nice colors
-set -gx EZA_COLORS (string join : (cat $HOME/repos/dotfiles/other/dircolors))
 set -gx VISUAL $EDITOR
 set -gx SUDO_EDITOR $EDITOR
 set -gx MANPAGER "$EDITOR +Man!"
@@ -66,6 +64,7 @@ set -gxp --path PATH "$PREFIX/lib/jvm/java-17-openjdk/bin"
 ### SOURCE ###
 command -vq starship && starship init fish | source || source $XDG_CONFIG_HOME/fish/functions/load_prompt.fish
 command -vq zoxide && zoxide init fish | source || alias z cd
+dircolors ~/repos/dotfiles/eza/dircolors -c | sed 's/^setenv /set -gx /' | source
 
 ### FUNCTIONS ###
 function fish_title
@@ -91,3 +90,9 @@ end
 #
 #     printf "[$(set_color cyan)$time$(set_color reset)] $(set_color --bold)❯ "
 # end
+
+function auto_pwd --on-variable PWD
+    if test -d .git && git rev-parse --git-dir &>/dev/null
+        git status -s
+    end
+end

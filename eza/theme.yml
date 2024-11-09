@@ -1,20 +1,143 @@
 # https://github.com/eza-community/eza/blob/main/man/eza_colors-explanation.5.md
+# :%!yq .
+
+# filekinds: Styles for different types of files (e.g., directories, symlinks).
+# perms: Styles for file permissions.
+# size: Styles for file sizes.
+# users: Styles for user and group names.
+# links: Styles for hard links and symlinks.
+# git: Styles for Git status indicators.
+# git_repo: Styles for Git repository information.
+# security_context: Styles for security contexts (e.g., SELinux).
+# file_type: Styles based on file types (e.g., images, videos).
+# punctuation, date, inode: Styles for miscellaneous elements.
+# header, octal, flags, blocks: Styles for miscellaneous elements.
+# filenames: Overrides for specific filenames.
+# extensions: Overrides for specific file extensions.
+
+# Colors:
+#     foreground: Sets the text color.
+#     background: Sets the background color.
+# Text Attributes:
+#     is_bold: Makes the text bold.
+#     is_dimmed: Dims the text color.
+#     is_italic: Italicizes the text.
+#     is_underline: Underlines the text.
+#     is_blink: Makes the text blink.
+#     is_reverse: Swaps foreground and background colors.
+#     is_hidden: Hides the text (useful for suppressing output).
+#     is_strikethrough: Adds a strikethrough to the text.
+
+---
+colourful: true
+punctuation: { foreground: "#292e42" }
+date: { foreground: "#e0af68" }
+inode: { foreground: "#737aa2" }
+blocks: { foreground: "#737aa2" }
+header: { foreground: "#a9b1d6" }
+octal: { foreground: "#ff9e64" }
+flags: { foreground: "#9d7cd8" }
+symlink_path: { foreground: "#89ddff" }
+control_char: { foreground: "#ff9e64" }
+broken_symlink: { foreground: "#ff007c" }
+broken_path_overlay: { foreground: "#ff007c" }
 
 filekinds:
-  normal:
-    foreground: null
-  directory:
-    foreground: Blue
-  symlink:
-    foreground: Cyan
-  executable:
-    foreground: Green
+  normal: { foreground: "#c0caf5" }
+  directory: { foreground: "#7aa2f7" }
+  symlink: { foreground: "#2ac3de" }
+  pipe: { foreground: "#414868" }
+  block_device: { foreground: "#e0af68" }
+  char_device: { foreground: "#e0af68" }
+  socket: { foreground: "#414868" }
+  special: { foreground: "#9d7cd8" }
+  executable: { foreground: "#5af79e" }
+  mount_point: { foreground: "#b4f9f8" }
 
-# : { icon: { glyph: , style: { foreground: null } } }
+perms:
+  user_read: { foreground: "#2ac3de" }
+  user_write: { foreground: "#bb9af7" }
+  user_execute_file: { foreground: "#9ece6a" }
+  user_execute_other: { foreground: "#9ece6a" }
+  group_read: { foreground: "#2ac3de" }
+  group_write: { foreground: "#ff9e64" }
+  group_execute: { foreground: "#9ece6a" }
+  other_read: { foreground: "#2ac3de" }
+  other_write: { foreground: "#ff007c" }
+  other_execute: { foreground: "#9ece6a" }
+  special_user_file: { foreground: "#ff007c" }
+  special_other: { foreground: "#db4b4b" }
+  attribute: { foreground: "#737aa2" }
+
+size:
+  major: { foreground: "#2ac3de" }
+  minor: { foreground: "#9d7cd8" }
+  number_byte: { foreground: "#a9b1d6" }
+  number_kilo: { foreground: "#89ddff" }
+  number_mega: { foreground: "#2ac3de" }
+  number_giga: { foreground: "#ff9e64" }
+  number_huge: { foreground: "#ff007c" }
+  unit_byte: { foreground: "#a9b1d6" }
+  unit_kilo: { foreground: "#89ddff" }
+  unit_mega: { foreground: "#2ac3de" }
+  unit_giga: { foreground: "#ff9e64" }
+  unit_huge: { foreground: "#ff007c" }
+
+users:
+  user_you: { foreground: "#3d59a1" }
+  user_root: { foreground: "#bb9af7" }
+  user_other: { foreground: "#2ac3de" }
+  group_yours: { foreground: "#89ddff" }
+  group_root: { foreground: "#bb9af7" }
+  group_other: { foreground: "#c0caf5" }
+
+links:
+  normal: { foreground: "#89ddff" }
+  multi_link_file: { foreground: "#2ac3de" }
+
+git:
+  new: { foreground: "#9ece6a" }
+  modified: { foreground: "#bb9af7" }
+  deleted: { foreground: "#db4b4b" }
+  renamed: { foreground: "#2ac3de" }
+  typechange: { foreground: "#2ac3de" }
+  ignored: { foreground: "#545c7e" }
+  conflicted: { foreground: "#ff9e64" }
+
+git_repo:
+  branch_main: { foreground: "#737aa2" }
+  branch_other: { foreground: "#b4f9f8" }
+  git_clean: { foreground: "#292e42" }
+  git_dirty: { foreground: "#bb9af7" }
+
+security_context:
+  colon: { foreground: "#545c7e" }
+  user: { foreground: "#737aa2" }
+  role: { foreground: "#2ac3de" }
+  typ: { foreground: "#3d59a1" }
+  range: { foreground: "#9d7cd8" }
+
+file_type:
+  image: { foreground: "#89ddff" }
+  video: { foreground: "#bb9af7" }
+  music: { foreground: "#73daca" }
+  lossless: { foreground: "#41a6b5" }
+  crypto: { foreground: "#db4b4b" }
+  document: { foreground: "#a9b1d6" }
+  compressed: { foreground: "#f7768e" }
+  temp: { foreground: "#737aa2" }
+  compiled: { foreground: "#737aa2" }
+  build: { foreground: "#1abc9c" }
+  source: { foreground: "#bb9af7" }
+
 filenames:
-  prettierrc.toml: { icon: { glyph: , style: { foreground } } }
+  prettierrc.toml: { icon: { glyph: "" } }
+  .prettierrc.toml: { icon: { glyph: "" } }
+  # : { icon: { glyph: , style: { foreground: null } } }
 
 extensions:
-  toml: { icon: { glyph: , style: { foreground: null } } }
-  kdl: { icon: { glyph: , style: { foreground: null } } }
-  # cbz: { icon: { glyph: , style: { foreground: null } } }
+  toml: { icon: { glyph:  } }
+  kdl: { icon: { glyph:  } }
+  cbz: { icon: { glyph:  } }
+  fish: { icon: { glyph: 󰈺 } }
+  ps1: { icon: { glyph:  } }
