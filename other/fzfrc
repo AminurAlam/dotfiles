@@ -18,6 +18,17 @@
 --preview-window top
 # --select-1
 
+# bindings
+--bind ctrl-u:half-page-up
+--bind ctrl-d:half-page-down
+--bind ctrl-x:jump
+--bind ctrl-f:preview-page-down
+--bind ctrl-b:preview-page-up
+--bind ctrl-a:beginning-of-line
+--bind ctrl-e:end-of-line
+--bind ctrl-j:down
+--bind ctrl-k:up
+
 # catppuccin
 --color dark
 --color query:
