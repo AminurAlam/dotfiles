@@ -1,4 +1,4 @@
-function pong
+function pong -d "mass ping multiple hosts to check connection"
     set -f addresses \
         amazon.com \
         discord.com \

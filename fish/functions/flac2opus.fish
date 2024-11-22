@@ -1,4 +1,4 @@
-function flac2opus
+function flac2opus -d "convert audio from flac to opus"
     count $argv &>/dev/null || set argv *.flac
     if not count $argv &>/dev/null
         printf "no input files supplied and failed to find *.flac\n"

@@ -1,4 +1,4 @@
-function clean
+function clean -d "cleanup to free storage"
     set -f __dirs \
         /sdcard/Android/media/com.whatsapp/WhatsApp/.StickerThumbs/ \
         /sdcard/Android/media/com.whatsapp/WhatsApp/Media/WhatsApp\ Stickers/ \

@@ -1,4 +1,4 @@
-function nerdsearch
+function nerdsearch -d "better nerdfix serch"
     set jqscript '
     .icons[] |
     if .obsolete == false then

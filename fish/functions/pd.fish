@@ -1,4 +1,4 @@
-function pd -a distro
+function pd -a distro -d "proot-distro wrapper"
     command -vq proot-distro || pacman -S proot-distro || return
 
     [ -z "$distro" ] && begin

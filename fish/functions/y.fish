@@ -1,4 +1,4 @@
-function y
+function y -d "yazi wrapper to change directories"
     set tmp (mktemp -t "yazi-cwd.XXXXXX")
     yazi $argv --cwd-file="$tmp"
     if set cwd (command cat -- "$tmp")

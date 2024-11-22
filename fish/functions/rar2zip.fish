@@ -1,4 +1,4 @@
-function rar2zip
+function rar2zip -d "convert archives from .rar to .zip"
 
     if not command -vq unrar || not command -vq zip
         pacman -S --needed unrar zip || return 3

@@ -1,4 +1,4 @@
-function ffmine
+function ffmine -d "generate screenshots and audio clips"
     [ -e "$argv[1]" ] || return 1
     [ -z "$argv[2]" ] && return 2
     [ -z "$argv[3]" ] && return 3

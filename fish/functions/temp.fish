@@ -1,4 +1,4 @@
-function temp
+function temp -d "write it and forget it"
     mkdir -p $XDG_CACHE_HOME/temp/ && cd $XDG_CACHE_HOME/temp/ || return
 
     mkdir -p dir/{1,2}

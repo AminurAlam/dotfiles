@@ -1,4 +1,4 @@
-function gcp -a url path branch
+function gcp -a url path branch -d "git clone wrapper"
     [ -z "$url" ] && echo "ERROR: no url given" && return
     [ -n "$branch" ] && set -f branch "--branch" "$branch"
     set -q XDG_PROJECTS_DIR || set XDG_PROJECTS_DIR $HOME/repos
@@ -9,9 +9,13 @@ function gcp -a url path branch
     git clone --depth 1 $branch -- $url $path
     and set success true
 
-    set -q path
-    and cd "$path" &>/dev/null && return
-
-    [ "$success" = true ]
-    and cd (ls -AN1 --sort time | head -n1) && return
+    if [ "$success" = true ]
+        if [ -n "$path" ]
+            cd "$path"
+        else
+            cd (ls -AN1 --sort time | head -n1)
+        end
+        # explore with yazi
+        type -q y && y
+    end
 end

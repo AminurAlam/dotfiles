@@ -1,4 +1,4 @@
-function dir2cbz
+function dir2cbz -d "convert directory to .cbz archive"
     count $argv &>/dev/null || set argv */
     if not count $argv &>/dev/null
         printf "no input dirs supplied and failed to find */\n"

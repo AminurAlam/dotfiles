@@ -1,4 +1,4 @@
-function unexe
+function unexe -d "mass chmod -x files"
     set exe (mktemp -dt "unexe.XXXXX") || return 2
     count $argv &>/dev/null || set argv (fd -H -tf -S '-20mi')
     set total (count $argv)
