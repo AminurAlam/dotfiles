@@ -16,8 +16,8 @@ highlight article "^(Feed|Title|Author|Link|Date|Links|Podcast Download URL):" c
 
 highlight article "https?://[^ ]+" color4 default
 highlight article "\\[[0-9]+\\]" color6 default bold
-highlight article "\\[(link|image|video|iframe|embedded flash) .*\(link .*\)\\]" green
-highlight article "\\((link|image|video|iframe|embedded flash)\\)" color8 default
+highlight article "\\[(link|image|video|audio|iframe|embedded flash) .*\(link .*\)\\]" green
+highlight article "\\((link|image|video|audio|iframe|embedded flash)\\)" color8 default
 
 
 color background          default default
