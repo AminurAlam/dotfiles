@@ -1,6 +1,6 @@
 "$schema" = 'https://starship.rs/config-schema.json'
 format = """
-$username$directory$git_branch$git_commit$git_state$python \
+$username$directory$git_branch$git_commit$git_state$python${env_var.TMUX} \
 $fill \
 $status$git_status$git_metrics$cmd_duration$jobs$shlvl 
  $character"""
@@ -21,7 +21,8 @@ show_always = false
 
 [directory]
 format = ' [ $before_root_path$repo_root$path](bold green)[$read_only](red)'
-read_only = ' 󰌾'
+read_only = ''
+# read_only = ' 󰌾'
 truncation_length = 1
 fish_style_pwd_dir_length = 1
 use_logical_path = true
@@ -54,6 +55,9 @@ bisect = '󱦒 bisect'
 format = ' [ $virtualenv](yellow)'
 detect_files = []
 detect_extensions = []
+
+[env_var.TMUX]
+format = " [ tmux](green)"
 
 
 # RIGHT PROMPT
