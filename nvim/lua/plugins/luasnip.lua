@@ -50,6 +50,7 @@ M.config = function()
       t { '', '    ' }, i(1),
       t { '', 'end' }, i(0)
     }),
+    -- NOTE: keep updated
     -- :read! string unescape (abbr) | sed -E 's/^abbr.* -- (\S+) (.*)$/    ls.snippet("\1", { t [[\2]] }),/;s/\%/]], i(1), t [[/;s/, t \[\[\]\] / /'
     ls.snippet("cp", { t [[cp -ivr]] }),
     ls.snippet("mv", { t [[mv -iv]] }),
@@ -74,8 +75,8 @@ M.config = function()
     ls.snippet("gac", { t [[git add ]], i(1), t [[ && git commit]] }),
     ls.snippet("ga", { t [[git add]] }),
     ls.snippet("gc", { t [[git commit]] }),
-    ls.snippet("gl", { t [[git s; git l]] }),
-    ls.snippet("gd", { t [[git d]] }),
+    ls.snippet("gl", { t [[git status -bs; git log --pretty=nice -n10]] }),
+    ls.snippet("gd", { t [[git diff ]], i(1), t [[ | delta]] }),
     ls.snippet("pull", { t [[git pull origin]] }),
     ls.snippet("push", { t [[git push origin]] }),
     ls.snippet("fr", { t [[git fetch upstream && git rebase upstream/(git symbolic-ref refs/remotes/origin/HEAD | sed s@^refs/remotes/origin/@@)]] }),

@@ -1,6 +1,6 @@
 return {
   { 'akinsho/git-conflict.nvim', config = true, enabled = false },
-  { 'sindrets/diffview.nvim', config = true }, -- TODO: learn features
+  { 'sindrets/diffview.nvim', cmd = 'DiffviewFileHistory', config = true }, -- TODO: learn features
   {
     'fredeeb/tardis.nvim',
     dependencies = 'nvim-lua/plenary.nvim',

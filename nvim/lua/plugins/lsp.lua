@@ -11,8 +11,9 @@ M.config = function()
     'clangd',
     'dartls',
     'gopls',
-    'java_language_server',
+    -- 'java_language_server',
     'taplo',
+    -- 'kotlin_language_server',
     rust_analyzer = { ['rust-analyzer'] = { linkedProjects = nil } },
     lua_ls = {
       Lua = {
@@ -77,18 +78,15 @@ M.config = function()
       lspconfig[key].setup { settings = value }
     end
   end
-
-  -- require('lspconfig.ui.windows').default_options.border = 'rounded'
-  vim.lsp.handlers['textDocument/hover'] =
-    vim.lsp.with(vim.lsp.handlers.hover, { border = 'rounded' })
-  vim.lsp.handlers['textDocument/signatureHelp'] =
-    vim.lsp.with(vim.lsp.handlers.signature_help, { border = 'rounded' })
+  lspconfig.java_language_server.setup { cmd = { 'java-language-server' } }
 
   nmap('<leader>lf', vim.lsp.buf.format)
   nmap('<leader>ca', vim.lsp.buf.code_action)
   nmap('<leader>lr', vim.lsp.buf.rename)
+  nmap('K', function() vim.lsp.buf.hover { border = 'rounded' } end)
   nmap('gd', vim.lsp.buf.definition)
-  nmap('<leader>li', '<cmd>LspInfo<cr>')
+  nmap('<leader>li', '<cmd>silent LspInfo<cr>')
+
   vim.api.nvim_create_user_command('Tex', function(info)
     local status = {
       [0] = 'Success',

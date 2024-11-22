@@ -1,5 +1,13 @@
 return {
   'folke/todo-comments.nvim',
+  event = { 'InsertEnter' },
+  cmd = {
+    'TodoFzfLua',
+    'TodoLocList',
+    'TodoQuickFix',
+    'TodoTelescope',
+    'TodoTrouble',
+  },
   dependencies = { 'nvim-lua/plenary.nvim' },
   opts = {
     signs = false,

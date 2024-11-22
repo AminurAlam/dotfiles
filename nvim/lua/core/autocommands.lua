@@ -57,9 +57,13 @@ autocmd('BufNewFile', {
   once = true,
   callback = function(details)
     if vim.fn.filereadable(details.file) == 1 then return end
-    local possibles = vim.fn.split(vim.fn.glob(details.file .. '*'))
+    local possibles = vim.tbl_filter(
+      function(file) return #file > 1 end,
+      vim.fn.glob(vim.fn.fnameescape(details.file) .. '*', false, true)
+    )
     if #possibles == 0 then return end
 
+    pcall(require, 'dressing')
     vim.ui.select(possibles, {}, function(choice)
       if not choice then return end
       vim.cmd.edit(vim.fn.fnameescape(choice))
@@ -115,6 +119,7 @@ autocmd('TextYankPost', {
 })
 
 autocmd('FileType', { pattern = { 'qf' }, command = 'nmap <buffer> <cr> <cr>' })
+autocmd('FileType', { pattern = { 'checkhealth' }, command = 'set bh=wipe nobl nonu nornu nowrap' })
 autocmd('BufEnter', { command = 'set formatoptions-=cro' })
 autocmd('BufLeave', { command = 'set nocursorline' })
 autocmd('BufEnter', { command = 'set cursorline' })
@@ -131,7 +136,7 @@ autocmd('BufEnter', { command = 'set cursorline' })
 --       set.bufhidden = 'hide'
 --       set.buftype = 'nofile'
 --       nmap('f', '<cmd>Telescope find_files<cr>')
---       nmap('g', '<cmd>Telescope live_grep<cr>') -- FIX: doesnt start right away
+--       nmap('g', '<cmd>Telescope live_grep<cr>')
 --       nmap('h', '<cmd>Telescope help_tags<cr>')
 --       nmap('o', '<cmd>Telescope oldfiles<cr>')
 --       nmap('u', '<cmd>Lazy update<cr>')
