@@ -22,8 +22,13 @@
   <span class="tags">{{Tags}}</span>
 </details>
 
+<!-- <div class="note">
+  {{#Notes}}({{Notes}}){{/Notes}}
+</div>
+-->
+
 <div class="pic" id="pic">
-  {{Picture}}
+  {{#Picture}}{{Picture}}{{/Picture}}
 </div>
 
 <div class="utils">
@@ -32,6 +37,7 @@
     href="https://jisho.org/search/%23kanji%20{{Word}}">
     漢字
   </a>
+  <br />
   <br />
   {{#Audio}}{{Audio}}{{/Audio}}
 </div>
