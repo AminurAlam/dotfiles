@@ -1,26 +1,32 @@
 fish_config theme choose tokyo-night
 
 ### EXPORTS ###
-set -l XDG_DIR (test -n "$EXTERNAL_STORAGE" && printf "$EXTERNAL_STORAGE" || printf "$HOME")
 set -gx EDITOR (command -v nvim || command -v vim || command -v vi)
 
 # xdg
-set -gx XDG_VIDEOS_DIR $XDG_DIR/(test -d "$XDG_DIR/Movies" && printf Movies || printf Videos)
-set -gx XDG_DOWNLOAD_DIR $XDG_DIR/(test -d "$XDG_DIR/Download" && printf Download || printf Downloads)
-set -gx XDG_DOCUMENTS_DIR $XDG_DIR/Documents
-set -gx XDG_MUSIC_DIR $XDG_DIR/Music
-set -gx XDG_PICTURES_DIR $XDG_DIR/Pictures
-set -gx XDG_VIDEOS_DIR $XDG_DIR/Movies
+set -gx XDG_VIDEOS_DIR $HOME/Videos
+set -gx XDG_DOWNLOAD_DIR $HOME/Downloads
+set -gx XDG_DOCUMENTS_DIR $HOME/Documents
+set -gx XDG_MUSIC_DIR $HOME/Music
+set -gx XDG_PICTURES_DIR $HOME/Pictures
+set -gx XDG_VIDEOS_DIR $HOME/Movies
 set -gx XDG_RUNTIME_DIR $TMPDIR
 set -gx XDG_PROJECTS_DIR $HOME/repos
 set -gx XDG_CONFIG_HOME $HOME/.config
 set -gx XDG_CACHE_HOME $HOME/.local/cache
 set -gx XDG_DATA_HOME $HOME/.local/share
 set -gx XDG_STATE_HOME $HOME/.local/state
-# dirs
+if [ (uname -o) = Android ] && [ -d /sdcard ]
+    set -gx XDG_VIDEOS_DIR /sdcard/Movies
+    set -gx XDG_DOWNLOAD_DIR /sdcard/Download
+    set -gx XDG_DOCUMENTS_DIR /sdcard/Documents
+    set -gx XDG_MUSIC_DIR /sdcard/Music
+    set -gx XDG_PICTURES_DIR /sdcard/Pictures
+    set -gx XDG_VIDEOS_DIR /sdcard/Movies
+end
+# frequently used dirs
 set dl $XDG_DOWNLOAD_DIR
 set mu $XDG_MUSIC_DIR
-set m $XDG_DIR/main
 set temp $XDG_CACHE_HOME/temp
 # other
 set -gx VISUAL $EDITOR
@@ -28,7 +34,7 @@ set -gx SUDO_EDITOR $EDITOR
 set -gx MANPAGER "$EDITOR +Man!"
 set -gx MANPATH $PREFIX/share/fish/man $PREFIX/share/man
 set -gx TERMINFO "$PREFIX/share/terminfo"
-set -gx BROWSER termux-open
+set -gx BROWSER (command -v firefox || command -v xdg-open)
 set -gx LAUNCHER fzf
 set -gx DISPLAY ":1"
 # command config
@@ -60,6 +66,8 @@ set -gxp --path PATH "$HOME/.local/share/npm/bin"
 set -gxp --path PATH "$HOME/.local/share/nvim/mason/bin"
 set -gxp --path PATH "$PREFIX/lib/jvm/java-17-openjdk/bin"
 # set -gxp --path PATH "$PREFIX/bin/texlive" # replaced by $PREFIX/etc/fish/conf.d/texlive.fish
+
+[ (uname -o) = Android ] && set -gxa LD_PRELOAD /data/data/com.termux/files/usr/lib/libluajit.so # https://github.com/termux/termux-packages/issues/22328
 
 ### SOURCE ###
 command -vq starship && starship init fish | source || source $XDG_CONFIG_HOME/fish/functions/load_prompt.fish
@@ -94,5 +102,14 @@ end
 function auto_pwd --on-variable PWD
     if test -d .git && git rev-parse --git-dir &>/dev/null
         git status -s
+    end
+end
+
+# TODO: tmux on startup
+if status is-interactive
+    if not tmux has-session -t conf 2>/dev/null
+        pushd ~/repos/dotfiles/
+        tmux new-session -ds conf
+        popd
     end
 end

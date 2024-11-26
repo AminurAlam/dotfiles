@@ -5,8 +5,9 @@ function clean -d "cleanup to free storage"
         /sdcard/{Aurora/,Telegram/,MIUI/} \
         /sdcard/DCIM/.thumbnails/ \
         /sdcard/Download/Nearby\ Share/ \
-        /sdcard/TachiyomiSY/downloads/*/*/*_tmp/
-    # ~/.local/share/cargo/registry/ \
+        /sdcard/TachiyomiSY/downloads/*/*/*_tmp/ \
+        ~/.local/share/cargo/registry/ \
+        ~/.gradle/caches/
 
     for dir in $__dirs
         [ -d "$dir" ] && set -fa dirs "$dir"
@@ -35,6 +36,7 @@ function clean -d "cleanup to free storage"
     command -vq pip && pip cache purge
     command -vq npm && npm cache clean --force
     command -vq newsboat && newsboat -X
+    command -vq ccache && ccache --clear
 
     echo
     echo (count (ls -1NA ~)) files in HOME

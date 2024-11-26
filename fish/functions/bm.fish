@@ -1,5 +1,5 @@
 function bm -d "bookmark manager"
-    set BMPATH /sdcard/main/notes/bookmarks # /sdcard/main/notes/private-bookmarks
+    set BMPATH $XDG_DOCUMENTS_DIR/bookmarks
     set -q LAUNCHER || set LAUNCHER fzf
     set -q BROWSER || set BROWSER open
 
