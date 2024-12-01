@@ -31,6 +31,7 @@ set temp $XDG_CACHE_HOME/temp
 # other
 set -gx VISUAL $EDITOR
 set -gx SUDO_EDITOR $EDITOR
+set -gx LESS --mouse
 set -gx MANPAGER "$EDITOR +Man!"
 set -gx MANPATH $PREFIX/share/fish/man $PREFIX/share/man
 set -gx TERMINFO "$PREFIX/share/terminfo"
