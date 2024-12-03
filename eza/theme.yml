@@ -141,3 +141,4 @@ extensions:
   cbz: { icon: { glyph:  } }
   fish: { icon: { glyph: 󰈺 } }
   ps1: { icon: { glyph:  } }
+  note: { icon: { glyph:  } }
