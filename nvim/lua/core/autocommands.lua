@@ -30,27 +30,6 @@ autocmd({ 'FileType', 'BufNewFile' }, {
   end,
 })
 
-autocmd('SwapExists', {
-  desc = 'handle swapfile',
-  callback = function()
-    vim.ui.select({
-      'quit vim (default)',
-      'delete swapfile and edit anyway',
-      'open file in read-only mode',
-    }, { prompt = 'a swapfile already exists!' }, function(choice)
-      -- vim.v.swapchoice = choice and string.sub(choice, 1, 1) or 'q'
-      if choice == 'delete swapfile and edit anyway' then
-        set.readonly = false
-      elseif choice == 'open file in read-only mode' then
-        set.readonly = true
-        set.modifiable = false
-      else
-        vim.cmd(#vim.fn.getbufinfo({ buflisted = 1 }) == 1 and 'q' or 'bd')
-      end
-    end)
-  end,
-})
-
 -- https://github.com/mong8se/actually.nvim
 autocmd('BufNewFile', {
   desc = 'when tab completion doesnt finish',
