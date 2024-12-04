@@ -1,16 +1,16 @@
-[[columns]]
-kind = "UsageCpu"
-style = "ByPercentage"
-numeric_search = false
-nonnumeric_search = false
-align = "Right"
+# [[columns]]
+# kind = "UsageCpu"
+# style = "ByPercentage"
+# numeric_search = false
+# nonnumeric_search = false
+# align = "Right"
 
-[[columns]]
-kind = "UsageMem"
-style = "ByPercentage"
-numeric_search = false
-nonnumeric_search = false
-align = "Right"
+# [[columns]]
+# kind = "UsageMem"
+# style = "ByPercentage"
+# numeric_search = false
+# nonnumeric_search = false
+# align = "Right"
 
 [[columns]]
 kind = "Pid"
@@ -77,7 +77,7 @@ show_thread = false
 show_thread_in_tree = false
 show_parent_in_tree = true
 show_children_in_tree = true
-show_header = true
+show_header = false
 show_footer = false
 cut_to_terminal = true
 cut_to_pager = false
