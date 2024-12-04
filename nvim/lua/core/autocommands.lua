@@ -64,6 +64,11 @@ autocmd('VimEnter', {
   end,
 })
 
+autocmd('FileType', {
+  pattern = 'oil',
+  command = 'nmap <buffer> <scrollwheelup> <up> | nmap <buffer> <scrollwheeldown> <down>',
+})
+
 autocmd('BufWritePre', {
   desc = 'automatically create missing directories when saving files',
   callback = function(details)
