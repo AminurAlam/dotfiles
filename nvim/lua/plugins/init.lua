@@ -1,7 +1,15 @@
 return {
-  { 'https://github.com/nacro90/numb.nvim', config = true },
   { '0xAdk/full_visual_line.nvim', event = 'ModeChanged *:V', config = true },
   {
+    'hat0uma/csvview.nvim',
+    ft = { 'csv', 'tsv' },
+    config = function()
+      require('csvview').setup { view = { display_mode = 'border' } }
+      require('csvview').enable()
+    end,
+  },
+  {
+    -- TODO: try https://github.com/aileot/emission.nvim
     'tzachar/highlight-undo.nvim',
     keys = { 'u', 'r' },
     opts = {

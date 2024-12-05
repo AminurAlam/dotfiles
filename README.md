@@ -1,4 +1,4 @@
-## configs found here
+# configs found here
 
 - [anki](https://apps.ankiweb.net/) - flashcards
 - [aria2](https://aria2.github.io/) - download manager
@@ -6,15 +6,19 @@
 - [clangd](https://clang.llvm.org/) - c++ lsp server
 - [curl](https://curl.se/) - request url
 - [eza](https://github.com/eza-community/eza) - replacement for ls
+  - [dircolors](https://www.gnu.org/software/coreutils/dircolors) - $LS_COLORS generator
 - [fish](https://fishshell.com/) :star2: - shell
 - [fzf](https://junegunn.github.io/fzf/) - fuzzy finder
 - [git](https://git-scm.com/) - vcs
+  - [delta](https://dandavison.github.io/delta/) - git diff pager
 - [htop](https://htop.dev/) - process viewer
 - [newsboat](https://newsboat.org/) :star2: - rss reader
 - [npm](https://npmjs.com/) - javascript runtime
 - [nvim](https://neovim.io/) :star2: - text editor
-- [nyaa](https://github.com/Beastwick18/nyaa/) - nyaa.si browser
+  - [vim](https://www.vim.org) - text editor
 - [pacman](https://archlinux.org/pacman/) - package manager
+- [prettier](https://prettier.io/) - code formatter
+- [procs](https://github.com/dalance/procs) - process list
 - [python](https://python.org/) - python interpreter
 - [ripgrep](https://github.com/BurntSushi/ripgrep) - grep alternative
 - [ruff](https://docs.astral.sh/ruff/) - python linter and formatter
@@ -28,7 +32,65 @@
 - [yt-dlp](https://github.com/yt-dlp/yt-dlp) - video downloader
 - [zellij](https://zellij.dev/) - terminal workspace
 
-## setup commands
+<details>
+<summary>nvim plugins</summary>
+<ul>
+    <li>alpha-nvim</li>
+    <li>blink.cmp</li>
+    <li>cmp-buffer</li>
+    <li>cmp-cmdline</li>
+    <li>cmp-fish</li>
+    <li>cmp-nvim-lsp</li>
+    <li>cmp-nvim-lua</li>
+    <li>cmp-path</li>
+    <li>cmp_luasnip</li>
+    <li>Comment.nvim</li>
+    <li>csvview.nvim</li>
+    <li>cybu.nvim</li>
+    <li>dial.nvim</li>
+    <li>diffview.nvim</li>
+    <li>dressing.nvim</li>
+    <li>friendly-snippets</li>
+    <li>full_visual_line.nvim</li>
+    <li>git-conflict.nvim</li>
+    <li>git-dev.nvim</li>
+    <li>gitsigns.nvim</li>
+    <li>highlight-undo.nvim</li>
+    <li>indent-blankline.nvim</li>
+    <li>lazy.nvim</li>
+    <li>lualine.nvim</li>
+    <li>LuaSnip</li>
+    <li>mason.nvim</li>
+    <li>mini.bracketed</li>
+    <li>mini.files</li>
+    <li>mini.splitjoin</li>
+    <li>neodev.nvim</li>
+    <li>none-ls.nvim</li>
+    <li>nvim-autopairs</li>
+    <li>nvim-cmp</li>
+    <li>nvim-colorizer.lua</li>
+    <li>nvim-lightbulb</li>
+    <li>nvim-lspconfig</li>
+    <li>nvim-surround</li>
+    <li>nvim-treesitter</li>
+    <li>nvim-web-devicons</li>
+    <li>oil.nvim</li>
+    <li>plenary.nvim</li>
+    <li>statuscol.nvim</li>
+    <li>tardis.nvim</li>
+    <li>telescope.nvim</li>
+    <li>todo-comments.nvim</li>
+    <li>tokyonight.nvim</li>
+    <li>treesj</li>
+    <li>trouble.nvim</li>
+    <li>ultimate-autopair.nvim</li>
+    <li>visual-surround.nvim</li>
+    <li>which-key.nvim</li>
+    <li>yazi.nvim</li>
+</ul>
+</details>
+
+# setup commands
 
 - termux
 

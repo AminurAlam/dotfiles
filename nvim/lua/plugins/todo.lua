@@ -1,5 +1,5 @@
 return {
-  'folke/todo-comments.nvim',
+  'https://github.com/folke/todo-comments.nvim',
   event = { 'InsertEnter' },
   cmd = {
     'TodoFzfLua',
