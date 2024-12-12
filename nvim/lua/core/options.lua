@@ -103,7 +103,7 @@ do -- others
   set.writebackup = false
   set.undofile = true
   set.confirm = true
-  -- set.clipboard = 'unnamed,unnamedplus'
+  set.clipboard = 'unnamed,unnamedplus'
   set.list = true
   set.listchars = dict2str {
     -- leadmultispace = '│   ',

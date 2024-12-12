@@ -64,6 +64,11 @@ autocmd('VimEnter', {
   end,
 })
 
+-- TODO: buffer list float on buffer change
+-- autocmd('FileType', {
+--   command = 'ls'
+-- })
+
 autocmd('FileType', {
   pattern = 'oil',
   command = 'nmap <buffer> <scrollwheelup> <up> | nmap <buffer> <scrollwheeldown> <down>',

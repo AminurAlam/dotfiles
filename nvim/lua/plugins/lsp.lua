@@ -26,32 +26,7 @@ M.init = function()
   })
 
   vim.api.nvim_create_user_command('Tex', function(info)
-    local status = {
-      [0] = 'Success',
-      [1] = 'Error',
-      [2] = 'Failure',
-      [3] = 'Cancelled',
-    }
-
-    if vim.fn.executable('latexmk') == 0 then
-      print('latexmk is not executable!!')
-      return
-    end
-
-    vim.lsp.buf.execute_command {
-      command = 'texlab.cleanArtifacts',
-      arguments = { { uri = vim.uri_from_bufnr(0) } },
-    }
-    vim.lsp.buf.execute_command {
-      command = 'texlab.cleanAuxiliary',
-      arguments = { { uri = vim.uri_from_bufnr(0) } },
-    }
-    vim.lsp.get_clients({ bufnr = 0, name = 'texlab' })[1].request('textDocument/build', {
-      textDocument = { uri = vim.uri_from_bufnr(0) },
-    }, function(e, r)
-      if e then print(status[r.status] .. ': ' .. tostring(e), vim.log.levels.INFO) end
-    end, 0)
-    if info.bang then vim.cmd('!open %:r.pdf') end
+    vim.cmd(':silent !latexmk -pdf -interaction=nonstopmode -synctex=1 % ; open %:r.pdf')
   end, { desc = 'Builds your tex file', bang = true })
 end
 
