@@ -14,6 +14,10 @@ Tab.layout = function(self, ...)
   return old_layout(self, ...)
 end
 
+-- Header:children_add(function()
+--   return ui.Span(ya.user_name() .. '@' .. ya.host_name() .. ':'):fg('blue')
+-- end, 500, Header.LEFT)
+
 -- require('custom-shell').setup {
 --   history_path = 'default',
 --   save_history = true,

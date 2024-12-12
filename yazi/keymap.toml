@@ -1,11 +1,27 @@
 "$schema" = "https://yazi-rs.github.io/schemas/keymap.json"
 
-# TODO: md5 hash
-
 manager.prepend_keymap = [
-  # Navigation
-  { on = "^", run = "leave" },
-  { on = "$", run = "enter" },
+  # plugin: https://github.com/AmeerArsala/smart-navigation.yazi
+  { on = "<C-k>", run = "arrow -1", desc = "Move cursor up 1 entry" },                                                 # i promise this will make sense
+  { on = "<C-j>", run = "arrow 1", desc = "Move cursor down 1 entry" },                                                # i promise this will make sense
+  { on = "<C-up>", run = "arrow -1", desc = "Move cursor up 1 entry" },                                                # i promise this will make sense
+  { on = "<C-down>", run = "arrow 1", desc = "Move cursor down 1 entry" },                                             # i promise this will make sense
+  { on = "<Up>", run = "plugin smart-navigation --sync --args='jump -1 -1'", desc = "Go up" },
+  { on = "k", run = "plugin smart-navigation --sync --args='jump -1 -1'", desc = "Go up" },
+  { on = "<Down>", run = "plugin smart-navigation --sync --args='jump 1 1'", desc = "Go down" },
+  { on = "j", run = "plugin smart-navigation --sync --args='jump 1 1'", desc = "Go down" },
+  { on = "<Left>", run = "plugin smart-navigation --sync --args='left'", desc = "Go left" },
+  { on = "h", run = "plugin smart-navigation --sync --args='left'", desc = "Go left" },
+  { on = "<Right>", run = "plugin smart-navigation --sync --args='right'", desc = "Go right" },
+  { on = "l", run = "plugin smart-navigation --sync --args='right'", desc = "Go right" },
+  { on = "<S-Up>", run = "plugin smart-navigation --sync --args='jump -5 -50'", desc = "Jump upward" },
+  { on = "<S-Down>", run = "plugin smart-navigation --sync --args='jump 5 50'", desc = "Jump downward" },
+  { on = "<PageUp>", run = "plugin smart-navigation --sync --args='jump -50% -100'", desc = "Jump up half a page" },
+  { on = "<PageDown>", run = "plugin smart-navigation --sync --args='jump 50% 100'", desc = "Jump down half a page" },
+  { on = "<Enter>", run = "plugin smart-navigation --sync --args='open'", desc = "Open selected files" },
+  { on = "^", run = "plugin smart-navigation --sync --args='left'" },
+  { on = "$", run = "plugin smart-navigation --sync --args='right'" },
+
   # Selection
   { on = "%", run = "select_all --state=true", desc = "Select all files" },
   # Operation
@@ -61,12 +77,6 @@ manager.prepend_keymap = [
   { on = ["s", "t"], run = "plugin --sync hide-preview" },
 ]
 
-tasks.prepend_keymap = []
-
-select.prepend_keymap = []
-
-input.prepend_keymap = []
-
 confirm.prepend_keymap = [
   { on = "<C-u>", run = "arrow -50%", desc = "Move cursor up half page" },
   { on = "<C-d>", run = "arrow 50%", desc = "Move cursor down half page" },
@@ -74,6 +84,8 @@ confirm.prepend_keymap = [
   { on = "G", run = "arrow 99999999", desc = "Move cursor to the bottom" },
 ]
 
-completion.prepend_keymap = []
-
 help.prepend_keymap = [{ on = "q", run = "close", desc = "Exit the process" }]
+tasks.prepend_keymap = []
+pick.prepend_keymap = []
+input.prepend_keymap = []
+completion.prepend_keymap = []

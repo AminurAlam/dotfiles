@@ -1,14 +1,16 @@
 [plugin]
 deps = [
-  { use = "Sonico98/exifaudio", rev = "855ff05" },
+  { use = "Sonico98/exifaudio", rev = "d794614" },
   { use = "sharklasers996/eza-preview", rev = "7ca4c25" },
-  { use = "yazi-rs/plugins:hide-preview", rev = "102a0cd" },
-  { use = "yazi-rs/plugins:no-status", rev = "102a0cd" },
-  { use = "AnirudhG07/custom-shell", rev = "d00d2f9" },
+  { use = "yazi-rs/plugins:hide-preview", rev = "62f0789" },
+  { use = "yazi-rs/plugins:no-status", rev = "62f0789" },
+  { use = "AnirudhG07/custom-shell", rev = "d7fb2b3" },
+  { use = "yazi-rs/plugins:max-preview", rev = "62f0789" },
+  { use = "AmeerArsala/smart-navigation", rev = "f87bae8" },
 ]
 
 [flavor]
 deps = [
-  { use = "yazi-rs/flavors:catppuccin-macchiato", rev = "d504f70" },
+  { use = "yazi-rs/flavors:catppuccin-macchiato", rev = "8458d25" },
   { use = "BennyOe/tokyo-night", rev = "024fb09" },
 ]
