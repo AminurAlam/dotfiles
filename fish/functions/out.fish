@@ -4,7 +4,7 @@ function out -d "compile and run c code in an instant"
     set ext (string split . $argv[1])[-1]
 
     if [ "$ext" = c ]
-        cc -lm -oout -- $argv[1]
+        cc -lm -oout -Wno-all -- $argv[1]
     else if [ "$ext" = rs ]
         rustc -oout -- $argv[1]
     end

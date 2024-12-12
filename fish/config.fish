@@ -56,6 +56,7 @@ set -gx RUSTUP_HOME $XDG_DATA_HOME/rustup
 set -gx CARGO_HOME $XDG_DATA_HOME/cargo
 set -gx CARGO_INSTALL_ROOT $CARGO_HOME
 set -gx CARGO_LOG info
+set -gx CARGO_INCREMENTAL false
 set -gx VIMRUNTIME $PREFIX/share/nvim/runtime
 # fish config
 set -U fish_features qmark-noglob
@@ -100,17 +101,17 @@ end
 #     printf "[$(set_color cyan)$time$(set_color reset)] $(set_color --bold)❯ "
 # end
 
-function auto_pwd --on-variable PWD
-    if test -d .git && git rev-parse --git-dir &>/dev/null
-        git status -s
-    end
-end
-
 # TODO: tmux on startup
 if status is-interactive
     if not tmux has-session -t conf 2>/dev/null
         pushd ~/repos/dotfiles/
         tmux new-session -ds conf
         popd
+    end
+end
+
+function auto_pwd --on-variable PWD
+    if test -d .git && git rev-parse --git-dir &>/dev/null
+        git status -s
     end
 end
