@@ -48,7 +48,7 @@ set -gx RIPGREP_CONFIG_PATH $XDG_PROJECTS_DIR/dotfiles/other/ripgreprc
 set -gx FZF_DEFAULT_OPTS_FILE $XDG_PROJECTS_DIR/dotfiles/other/fzfrc
 set -gx _ZO_FZF_OPTS
 # lang config
-set -gx JAVA_HOME $PREFIX/lib/jvm/java-17-openjdk
+set -gx JAVA_HOME $PREFIX/lib/jvm/java-21-openjdk
 set -gx PYTHONSTARTUP $XDG_CONFIG_HOME/python/startup.py
 set -gx NODE_REPL_HISTORY $XDG_STATE_HOME/node_repl_history
 set -gx NPM_CONFIG_USERCONFIG $XDG_CONFIG_HOME/npm/npmrc
@@ -66,7 +66,7 @@ set -gxp --path PATH "$HOME/.local/bin" # sometimes before
 set -gxp --path PATH "$CARGO_HOME/bin" # after declaring CARGO_HOME
 set -gxp --path PATH "$HOME/.local/share/npm/bin"
 set -gxp --path PATH "$HOME/.local/share/nvim/mason/bin"
-set -gxp --path PATH "$PREFIX/lib/jvm/java-17-openjdk/bin"
+set -gxp --path PATH "$PREFIX/lib/jvm/java-21-openjdk/bin"
 # set -gxp --path PATH "$PREFIX/bin/texlive" # replaced by $PREFIX/etc/fish/conf.d/texlive.fish
 
 [ (uname -o) = Android ] && set -gxa LD_PRELOAD /data/data/com.termux/files/usr/lib/libluajit.so # https://github.com/termux/termux-packages/issues/22328
