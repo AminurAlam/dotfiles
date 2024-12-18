@@ -2,28 +2,50 @@
 
 manager.prepend_keymap = [
   # plugin: https://github.com/AmeerArsala/smart-navigation.yazi
-  { on = "<C-k>", run = "arrow -1", desc = "Move cursor up 1 entry" },                                                 # i promise this will make sense
-  { on = "<C-j>", run = "arrow 1", desc = "Move cursor down 1 entry" },                                                # i promise this will make sense
-  { on = "<C-up>", run = "arrow -1", desc = "Move cursor up 1 entry" },                                                # i promise this will make sense
-  { on = "<C-down>", run = "arrow 1", desc = "Move cursor down 1 entry" },                                             # i promise this will make sense
-  { on = "<Up>", run = "plugin smart-navigation --sync --args='jump -1 -1'", desc = "Go up" },
-  { on = "k", run = "plugin smart-navigation --sync --args='jump -1 -1'", desc = "Go up" },
-  { on = "<Down>", run = "plugin smart-navigation --sync --args='jump 1 1'", desc = "Go down" },
-  { on = "j", run = "plugin smart-navigation --sync --args='jump 1 1'", desc = "Go down" },
-  { on = "<Left>", run = "plugin smart-navigation --sync --args='left'", desc = "Go left" },
-  { on = "h", run = "plugin smart-navigation --sync --args='left'", desc = "Go left" },
-  { on = "<Right>", run = "plugin smart-navigation --sync --args='right'", desc = "Go right" },
-  { on = "l", run = "plugin smart-navigation --sync --args='right'", desc = "Go right" },
-  { on = "<S-Up>", run = "plugin smart-navigation --sync --args='jump -5 -50'", desc = "Jump upward" },
-  { on = "<S-Down>", run = "plugin smart-navigation --sync --args='jump 5 50'", desc = "Jump downward" },
-  { on = "<PageUp>", run = "plugin smart-navigation --sync --args='jump -50% -100'", desc = "Jump up half a page" },
-  { on = "<PageDown>", run = "plugin smart-navigation --sync --args='jump 50% 100'", desc = "Jump down half a page" },
-  { on = "<Enter>", run = "plugin smart-navigation --sync --args='open'", desc = "Open selected files" },
-  { on = "^", run = "plugin smart-navigation --sync --args='left'" },
-  { on = "$", run = "plugin smart-navigation --sync --args='right'" },
+  # { on = "<C-k>", run = "arrow -1", desc = "Move cursor up 1 entry" },                                                 # i promise this will make sense
+  # { on = "<C-j>", run = "arrow 1", desc = "Move cursor down 1 entry" },                                                # i promise this will make sense
+  # { on = "<C-up>", run = "arrow -1", desc = "Move cursor up 1 entry" },                                                # i promise this will make sense
+  # { on = "<C-down>", run = "arrow 1", desc = "Move cursor down 1 entry" },                                             # i promise this will make sense
+  # { on = "<Up>", run = "plugin smart-navigation --args='jump -1 -1'", desc = "Go up" },
+  # { on = "k", run = "plugin smart-navigation --args='jump -1 -1'", desc = "Go up" },
+  # { on = "<Down>", run = "plugin smart-navigation --args='jump 1 1'", desc = "Go down" },
+  # { on = "j", run = "plugin smart-navigation --args='jump 1 1'", desc = "Go down" },
+  # { on = "<Left>", run = "plugin smart-navigation --args='left'", desc = "Go left" },
+  # { on = "h", run = "plugin smart-navigation --args='left'", desc = "Go left" },
+  # { on = "<Right>", run = "plugin smart-navigation --args='right'", desc = "Go right" },
+  # { on = "l", run = "plugin smart-navigation --args='right'", desc = "Go right" },
+  # { on = "<S-Up>", run = "plugin smart-navigation --args='jump -5 -50'", desc = "Jump upward" },
+  # { on = "<S-Down>", run = "plugin smart-navigation --args='jump 5 50'", desc = "Jump downward" },
+  # { on = "<PageUp>", run = "plugin smart-navigation --args='jump -50% -100'", desc = "Jump up half a page" },
+  # { on = "<PageDown>", run = "plugin smart-navigation --args='jump 50% 100'", desc = "Jump down half a page" },
+  # { on = "<Enter>", run = "plugin smart-navigation --args='open'", desc = "Open selected files" },
+  # { on = "^", run = "plugin smart-navigation --args='left'" },
+  # { on = "$", run = "plugin smart-navigation --args='right'" },
 
+  # https://github.com/dedukun/relative-motions.yazi
+  { on = ["1"], run = "plugin relative-motions --args=1" },
+  { on = ["2"], run = "plugin relative-motions --args=2" },
+  { on = ["3"], run = "plugin relative-motions --args=3" },
+  { on = ["4"], run = "plugin relative-motions --args=4" },
+  { on = ["5"], run = "plugin relative-motions --args=5" },
+  { on = ["6"], run = "plugin relative-motions --args=6" },
+  { on = ["7"], run = "plugin relative-motions --args=7" },
+  { on = ["8"], run = "plugin relative-motions --args=8" },
+  { on = ["9"], run = "plugin relative-motions --args=9" },
+
+  { on = ["s", "w"], run = "plugin eza-preview", desc = "Toggle tree/list dir preview" },
+  { on = ["+"], run = "plugin eza-preview --args='--inc-level'", desc = "Increment tree level" },
+  { on = ["-"], run = "plugin eza-preview --args='--dec-level'", desc = "Decrement tree level" },
+  { on = ":", run = "plugin custom-shell --args=auto" },
+  { on = ["f", "f"], run = "plugin fzf", desc = "fzf search" },
+  # { on = ["f", "g"], run = "plugin rg", desc = "rg search" },
+  { on = "z", run = "plugin zoxide", desc = "Jump to a directory using zoxide" },
+  { on = ["s", "t"], run = "plugin hide-preview" },
+
+  { on = "^", run = "leave" },
+  { on = "$", run = "enter" },
   # Selection
-  { on = "%", run = "select_all --state=true", desc = "Select all files" },
+  { on = "%", run = "toggle_all --state=true", desc = "Select all files" },
   # Operation
   { on = "o", run = "open --interactive", desc = "Open selected files interactively" },
   { on = "O", run = "create", desc = "Create a file/directory" },
@@ -62,19 +84,13 @@ manager.prepend_keymap = [
   { on = "a", run = "rename --cursor=end --hovered" },
   { on = "A", run = "rename --cursor=end --hovered" },
   { on = "r", run = "rename --cursor=before_ext" },
-  { on = "R", run = ["select_all", "rename", "escape"] },
+  { on = "R", run = ["toggle_all", "rename", "escape"] },
   { on = ["c", "c"], run = "rename --empty=all", desc = "rename empty" },
   { on = ["c", "^"], run = "rename --empty=stem --cursor=start", desc = "rename stem" },
   { on = ["c", "$"], run = "rename --empty=ext --cursor=end", desc = "rename ext" },
   # other
   # { on = ":", run = '''shell "fish -c " --block --interactive''' },
-  { on = ":", run = "plugin custom-shell --args=auto" },
   { on = ".", run = "hidden toggle" },
-  { on = ["s", "w"], run = "plugin eza-preview", desc = "Toggle tree/list dir preview" },
-  { on = ["f", "f"], run = "plugin fzf", desc = "fzf search" },
-  { on = ["f", "g"], run = "plugin rg", desc = "rg search" },
-  { on = "z", run = "plugin zoxide", desc = "Jump to a directory using zoxide" },
-  { on = ["s", "t"], run = "plugin --sync hide-preview" },
 ]
 
 confirm.prepend_keymap = [

@@ -3,7 +3,7 @@
 
 local old_layout = Tab.layout
 
-Status.render = function() return {} end
+Status.redraw = function() return {} end
 Tab.layout = function(self, ...)
   self._area = ui.Rect {
     x = self._area.x,
