@@ -1,0 +1,7 @@
+[general]
+import = ["~/.config/alacritty/tokyonight.toml", "~/.config/alacritty/keybindings.toml"]
+live_config_reload = true
+
+[window]
+dimensions = { columns = 100, lines = 100  }
+opacity = 0.5
