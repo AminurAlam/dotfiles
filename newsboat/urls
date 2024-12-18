@@ -26,6 +26,7 @@ https://dolphin-emu.org/blog/feeds/ "~Dolphin Emulator" news
 https://strato-emu.github.io/index.xml news
 https://melonds.kuribo64.net/rss.php news
 https://f-droid.org/feed.xml news
+https://android.izzysoft.de/rss/en/articles news
 https://www.404media.co/rss news
 https://www.eff.org/rss/updates.xml "~eff.org" news
 https://newsboat.org/news.atom news
@@ -62,19 +63,19 @@ https://thevaluable.dev/index.xml personal_blog_1
 https://emucross.com/rss/ personal_blog_1
 https://sizeof.cat/index.xml personal_blog_1
 https://strongly-typed-thoughts.net/blog/feed "~phaazon's blog" personal_blog_1
+https://kevquirk.com/feed.xml personal_blog_1
 
 https://cheapskatesguide.org/cheapskates-guide-rss-feed.xml personal_blog_1
 https://brainbaking.com/index.xml personal_blog_1
-https://kevquirk.com/feed.xml personal_blog_1
 https://monstro1.com/rss.xml personal_blog_1
 https://jacobwsmith.xyz/feed.xml personal_blog
 https://arjunyadav.xyz/rss.xml personal_blog_1
 https://denshi.org/index.xml personal_blog_1
 https://vkc.sh/feed/ personal_blog_1
-https://soatok.blog/feed personal_blog
+https://soatok.blog/feed personal_blog_1
+https://vonheikemen.github.io/devlog/atom.xml "~vonheikemen: nvim" personal_blog_1
 
 "query:----- PERSONAL BLOGS 2 -----:tags # \"personal_blog\" and unread = \"yes\""
-https://vonheikemen.github.io/devlog/atom.xml "~vonheikemen: nvim"
 https://www.amygoodchild.com/blog?format=rss personal_blog
 https://dx13.co.uk/index.atom personal_blog
 https://tonsky.me/atom.xml personal_blog
@@ -82,6 +83,7 @@ https://robertheaton.com/feed.xml personal_blog
 https://pluralistic.net/feed/ "~Pluralistic" personal_blog
 https://100r.co/links/rss.xml personal_blog
 https://jvns.ca/atom.xml personal_blog
+https://hazelweakly.me/atom.xml personal_blog
 https://www.harihareswara.net/rss/ personal_blog
 https://hasbrouck.org/blog/index.xml personal_blog
 https://www.roboleary.net/feed.xml personal_blog
@@ -121,7 +123,7 @@ https://www.supergoodcode.com/feed.xml personal_blog
 https://maia.crimew.gay/feed.xml personal_blog
 https://ntietz.com/atom.xml personal_blog
 https://rubenerd.com/feed/ personal_blog
-https://www.carrot.blog/feed.xml personal_blog
+https://www.lopcode.com/feed.xml personal_blog
 https://cendyne.dev/feed.xml "~Cendyne's Posts" personal_blog
 https://emnudge.dev/blog.xml personal_blog
 https://fasterthanli.me/index.xml personal_blog

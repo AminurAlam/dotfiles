@@ -11,7 +11,7 @@ echo -- $url
 echo ==========================================================================
 
 if re 'youtube.com|youtu.be'
-    yt "$url" best
+    yt "$url"
 else if re 'git(hub|lab|ea)\.com|codeberg'
     gcp "$url"
 else if re 'qobuz|tidal|deezer'

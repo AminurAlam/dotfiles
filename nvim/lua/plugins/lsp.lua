@@ -35,8 +35,8 @@ M.config = function()
   local servers = {
     'bashls',
     'clangd',
-    'dartls',
     'gopls',
+    'kotlin_language_server',
     'taplo',
     java_language_server = { cmd = { 'java-language-server' } },
     rust_analyzer = { settings = { ['rust-analyzer'] = { linkedProjects = nil } } },
@@ -47,7 +47,7 @@ M.config = function()
         },
       },
     },
-    pyright = {
+    basedpyright = {
       settings = {
         python = {
           analysis = {
