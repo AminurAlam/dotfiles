@@ -1,33 +1,21 @@
-set patches "$XDG_PROJECTS_DIR/dotfiles/scripts/patches"
+set prerequisites python python-pip openjdk-21 maven nodejs
+set pkg_lsp ruff clang rust-analyzer lua-language-server taplo texlab
+set npm_lsp basedpyright
+set mason_lsp ktlint prettier bash-language-server html-lsp kotlin-language-server java-language-server
 
-pacman -Syu --noconfirm --needed ruff clang rust-analyzer lua-language-server
+set -gx JAVA_HOME $PREFIX/lib/jvm/java-21-openjdk
+set -gxp --path PATH "$PREFIX/lib/jvm/java-21-openjdk/bin"
 
-function python_lsp
-    pacman -Syu --noconfirm --needed python nodejs python-pip
-    pip install pyright
+pacman -Syu --noconfirm --needed $pkg_lsp
+pacman -Syu --noconfirm --needed $prerequisites
+
+npm install -g $npm_lsp
+
+if command -vq nvim && [ -d ~/.local/share/nvim/lazy/mason.nvim/ ]
+    nvim "+MasonInstall $mason_lsp"
+else
+    printf "nvim/mason not found the following lsp couldnt be installed:\n"
+    printf "%s\n" $mason_lsp
 end
 
-function java_lsp
-    cd "$XDG_PROJECTS_DIR"
-    pacman -Syu --noconfirm --needed openjdk-17 maven
-
-    git clone -q --depth 1 "https://github.com/georgewfraser/java-language-server"
-    patch java-language-server/pom.xml <$patches/java-language-server-pom.xml.diff
-
-    ./java-language-server/scripts/link_linux.sh
-    mvn package -DskipTests -Dmaven.javadoc.skip
-    and pacman -Rs maven
-end
-
-function npm_based_lsp
-    pacman -S --noconfirm --needed nodejs
-    npm i -g bash-language-server prettier
-    termux-fix-shebang $HOME/.local/share/npm/bin/*
-end
-
-if not [ -d "$patches" ]
-    echo "$patches is not a directory!"
-    echo "make sure variables are properly set"
-end
-
-echo "available functions: python_lsp, java_lsp, npm_based_lsp"
+termux-fix-shebang ~/.local/share/nvim/mason/bin/* ~/.local/share/npm/bin/*
