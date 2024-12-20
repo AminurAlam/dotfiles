@@ -1,4 +1,4 @@
-# vim:ft=conf
+# vim:ft=fzfrc
 
 --ignore-case
 --tiebreak chunk,begin,index
