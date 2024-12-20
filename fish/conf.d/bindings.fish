@@ -7,6 +7,7 @@ bind p fish_clipboard_paste
 bind -M insert \cB mux
 
 bind q exit # shortcuts to quit
+bind r redo # replace -> redo
 bind -M insert \cz 'jobs -q && fg' # helpful for toggling between processes
 bind -M insert \cv 'commandline -f backward-kill-bigword' # delete from whitespace to cursor
 
