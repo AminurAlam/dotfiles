@@ -5,7 +5,7 @@
     untrackedCache = true
     editor = nvim +'setlocal spell noundofile noswapfile'
     # pager = nvim +'setlocal ft=diff buftype=nofile bufhidden=hide noswapfile'
-    pager = delta # TODO: config delta
+    pager = delta
 
 [init]
     defaultBranch = main
