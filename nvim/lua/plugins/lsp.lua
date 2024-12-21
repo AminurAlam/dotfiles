@@ -1,6 +1,6 @@
 local M = {
   'https://github.com/neovim/nvim-lspconfig',
-  enabled = true,
+  enabled = false,
 }
 
 M.init = function()
