@@ -1,4 +1,5 @@
 status is-interactive || exit
+
 [ "$USER" = student ] && exit
 
 set -l m (set_color brcyan)

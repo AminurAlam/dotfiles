@@ -1,5 +1,3 @@
-fish_config theme choose tokyo-night
-
 ### EXPORTS ###
 set -gx EDITOR (command -v nvim || command -v vim || command -v vi)
 
@@ -24,10 +22,12 @@ if [ (uname -o) = Android ] && [ -d /sdcard ]
     set -gx XDG_PICTURES_DIR /sdcard/Pictures
     set -gx XDG_VIDEOS_DIR /sdcard/Movies
 end
+
 # frequently used dirs
 set dl $XDG_DOWNLOAD_DIR
 set mu $XDG_MUSIC_DIR
 set temp $XDG_CACHE_HOME/temp
+
 # other
 set -gx VISUAL $EDITOR
 set -gx SUDO_EDITOR $EDITOR
@@ -38,6 +38,7 @@ set -gx TERMINFO "$PREFIX/share/terminfo"
 set -gx BROWSER (command -v firefox || command -v xdg-open)
 set -gx LAUNCHER fzf
 set -gx DISPLAY ":1"
+
 # command config
 set -gx STARSHIP_CACHE $XDG_CACHE_HOME/starship
 set -gx ICEAUTHORITY $XDG_CACHE_HOME/ICEauthority
@@ -47,6 +48,7 @@ set -gx TAPLO_CONFIG $XDG_PROJECTS_DIR/dotfiles/other/taplo.toml
 set -gx RIPGREP_CONFIG_PATH $XDG_PROJECTS_DIR/dotfiles/other/ripgreprc
 set -gx FZF_DEFAULT_OPTS_FILE $XDG_PROJECTS_DIR/dotfiles/other/fzfrc
 set -gx _ZO_FZF_OPTS
+
 # lang config
 set -gx JAVA_HOME $PREFIX/lib/jvm/java-21-openjdk
 set -gx PYTHONSTARTUP $XDG_CONFIG_HOME/python/startup.py
@@ -58,8 +60,9 @@ set -gx CARGO_INSTALL_ROOT $CARGO_HOME
 set -gx CARGO_LOG info
 set -gx CARGO_INCREMENTAL false
 set -gx VIMRUNTIME $PREFIX/share/nvim/runtime
+
 # fish config
-set -U fish_features qmark-noglob
+set -U fish_features qmark-noglob # TODO: remove in 4.0
 
 ### PATH ###
 set -gxp --path PATH "$HOME/.local/bin" # sometimes before
@@ -71,7 +74,12 @@ set -gxp --path PATH "$PREFIX/lib/jvm/java-21-openjdk/bin"
 
 [ (uname -o) = Android ] && set -gxa LD_PRELOAD /data/data/com.termux/files/usr/lib/libluajit.so # https://github.com/termux/termux-packages/issues/22328
 
+
+
+status is-interactive || exit
+
 ### SOURCE ###
+
 command -vq starship && starship init fish | source || source $XDG_CONFIG_HOME/fish/functions/load_prompt.fish
 command -vq zoxide && zoxide init fish | source || alias z cd
 dircolors ~/repos/dotfiles/eza/dircolors -c | sed 's/^setenv /set -gx /' | source
@@ -81,28 +89,11 @@ function fish_title
     printf "%s" (prompt_pwd)
 end
 
-# command -vq starship && bind -M insert \r transient_execute
-# function starship_transient_prompt_func
-#     set HOUR 3600000
-#     set MIN 60000
-#     set SEC 1000
-#     set MS $CMD_DURATION
-#
-#     if [ $MS -gt $HOUR ]
-#         set -f time (math -s 0 $MS/$HOUR)h(math -s 0 \($MS%$HOUR\)/$MIN)m
-#     else if [ $MS -gt $MIN ]
-#         set -f time (math -s 0 $MS/$MIN)m(math -s 0 \($MS%$MIN\)/$SEC)s
-#     else if [ $MS -gt 800 ]
-#         set -f time (math -s 1 $MS/$SEC)s
-#     else if [ $MS -gt 0 ]
-#         set -f time (math $MS)ms
-#     end
-#
-#     printf "[$(set_color cyan)$time$(set_color reset)] $(set_color --bold)❯ "
-# end
-
 function auto_pwd --on-variable PWD
     if test -d .git && git rev-parse --git-dir &>/dev/null
         git status -s
     end
 end
+
+### COLORSCHEME ###
+fish_config theme choose tokyo-night
