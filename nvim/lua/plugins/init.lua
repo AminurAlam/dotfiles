@@ -1,5 +1,11 @@
 return {
   { '0xAdk/full_visual_line.nvim', event = 'ModeChanged *:V', config = true },
+  -- TODO: replace telescope
+  {
+    'ibhagwan/fzf-lua',
+    enabled = false,
+    opts = { { 'fzf-native' }, winopts = { preview = { default = 'cat' } } },
+  },
   {
     'hat0uma/csvview.nvim',
     ft = { 'csv', 'tsv' },
@@ -9,7 +15,6 @@ return {
     end,
   },
   {
-    -- TODO: try https://github.com/aileot/emission.nvim
     'tzachar/highlight-undo.nvim',
     keys = { 'u', 'r' },
     opts = {

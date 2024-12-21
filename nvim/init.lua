@@ -26,7 +26,7 @@ g.ft_man_folding_enable = 1
 -- [[ core ]]
 require 'core.lazy'
 require 'core.autocommands'
--- require 'core.lsp'
+require 'core.lsp'
 require 'core.options'
 require 'core.mappings'
 require 'core.statusline'
