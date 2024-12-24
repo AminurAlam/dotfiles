@@ -1,4 +1,5 @@
-vim.lsp.config('clangd', {
+---@type vim.lsp.Config
+return {
   cmd = {
     'clangd',
     '--clang-tidy',
@@ -15,4 +16,4 @@ vim.lsp.config('clangd', {
     'compile_flags.txt',
     'configure.ac',
   },
-})
+}

@@ -1,5 +1,6 @@
-vim.lsp.config('dart_language_server', {
+---@type vim.lsp.Config
+return {
   cmd = { 'dart', 'language-server', '--protocol=lsp' },
   filetypes = { 'dart' },
   root_markers = { 'pubspec.yaml', '.git' },
-})
+}

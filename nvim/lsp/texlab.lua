@@ -1,4 +1,5 @@
-vim.lsp.config('texlab', {
+---@type vim.lsp.Config
+return {
   cmd = { 'texlab' },
   filetypes = { 'tex', 'plaintex', 'bib' },
   root_markers = {
@@ -27,4 +28,4 @@ vim.lsp.config('texlab', {
       formatterLineLength = 80,
     },
   },
-})
+}

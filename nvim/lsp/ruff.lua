@@ -1,4 +1,5 @@
-vim.lsp.config('ruff', {
+---@type vim.lsp.Config
+return {
   cmd = { 'ruff', 'server' },
   filetypes = { 'python' },
   root_markers = {
@@ -13,4 +14,4 @@ vim.lsp.config('ruff', {
       settings = { configuration = vim.fn.expand '~/repos/dotfiles/other/ruff.toml' },
     },
   },
-})
+}

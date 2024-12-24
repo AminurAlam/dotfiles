@@ -1,4 +1,5 @@
-vim.lsp.config('taplo', {
+---@type vim.lsp.Config
+return {
   cmd = {
     'taplo',
     'lsp',
@@ -7,4 +8,5 @@ vim.lsp.config('taplo', {
     'stdio',
   },
   filetypes = { 'toml' },
-})
+  root_markers = { '.' }, -- taplo excludes files if ws doesnt exist
+}
