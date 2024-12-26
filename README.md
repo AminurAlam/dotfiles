@@ -1,5 +1,6 @@
 # configs found here
 
+- [alacritty](https://alacritty.org/) - terminal emulator
 - [anki](https://apps.ankiweb.net/) - flashcards
 - [aria2](https://aria2.github.io/) - download manager
 - [clang-format](https://clang.llvm.org/docs/ClangFormat.html) - c formatter
@@ -9,9 +10,11 @@
   - [dircolors](https://www.gnu.org/software/coreutils/dircolors) - $LS_COLORS generator
 - [fish](https://fishshell.com/) :star2: - shell
 - [fzf](https://junegunn.github.io/fzf/) - fuzzy finder
+- [gdb](https://www.gnu.org/software/gdb/) - GNU Project debugge
 - [git](https://git-scm.com/) - vcs
   - [delta](https://dandavison.github.io/delta/) - git diff pager
 - [htop](https://htop.dev/) - process viewer
+- [lazygit](https://github.com/jesseduffield/lazygit) - ui for git
 - [newsboat](https://newsboat.org/) :star2: - rss reader
 - [npm](https://npmjs.com/) - javascript runtime
 - [nvim](https://neovim.io/) :star2: - text editor
@@ -27,16 +30,16 @@
 - [stylua](https://github.com/JohnnyMorganz/StyLua) - lua formatter
 - [taplo](https://taplo.tamasfe.dev/) - lsp for toml
 - [termux](https://termux.dev/) - terminal emulator
-- [tmux](https://tmux.github.io/) - terminal multiplexer
+- [tmux](https://tmux.github.io/) :star2: - terminal multiplexer
 - [yazi](https://yazi-rs.github.io/) :star2: - terminal file manager
 - [yt-dlp](https://github.com/yt-dlp/yt-dlp) - video downloader
 - [zellij](https://zellij.dev/) - terminal workspace
 
+<!-- l --no-filesize | awk -F ' ' '{print "  <li>" $0 "</li>"}' -->
 <details>
 <summary>nvim plugins</summary>
 <ul>
     <li>alpha-nvim</li>
-    <li>blink.cmp</li>
     <li>cmp-buffer</li>
     <li>cmp-cmdline</li>
     <li>cmp-fish</li>
@@ -44,7 +47,6 @@
     <li>cmp-nvim-lua</li>
     <li>cmp-path</li>
     <li>cmp_luasnip</li>
-    <li>Comment.nvim</li>
     <li>csvview.nvim</li>
     <li>cybu.nvim</li>
     <li>dial.nvim</li>
@@ -52,31 +54,21 @@
     <li>dressing.nvim</li>
     <li>friendly-snippets</li>
     <li>full_visual_line.nvim</li>
-    <li>git-conflict.nvim</li>
     <li>git-dev.nvim</li>
     <li>gitsigns.nvim</li>
     <li>highlight-undo.nvim</li>
     <li>indent-blankline.nvim</li>
     <li>lazy.nvim</li>
-    <li>lualine.nvim</li>
     <li>LuaSnip</li>
     <li>mason.nvim</li>
     <li>mini.bracketed</li>
-    <li>mini.files</li>
-    <li>mini.splitjoin</li>
-    <li>neodev.nvim</li>
     <li>none-ls.nvim</li>
-    <li>nvim-autopairs</li>
     <li>nvim-cmp</li>
     <li>nvim-colorizer.lua</li>
-    <li>nvim-lightbulb</li>
-    <li>nvim-lspconfig</li>
     <li>nvim-surround</li>
     <li>nvim-treesitter</li>
     <li>nvim-web-devicons</li>
-    <li>oil.nvim</li>
     <li>plenary.nvim</li>
-    <li>statuscol.nvim</li>
     <li>tardis.nvim</li>
     <li>telescope.nvim</li>
     <li>todo-comments.nvim</li>
@@ -84,9 +76,6 @@
     <li>treesj</li>
     <li>trouble.nvim</li>
     <li>ultimate-autopair.nvim</li>
-    <li>visual-surround.nvim</li>
-    <li>which-key.nvim</li>
-    <li>yazi.nvim</li>
 </ul>
 </details>
 
