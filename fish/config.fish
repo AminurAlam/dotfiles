@@ -37,7 +37,7 @@ set -gx MANPATH $PREFIX/share/fish/man $PREFIX/share/man
 set -gx TERMINFO "$PREFIX/share/terminfo"
 set -gx BROWSER (command -v firefox || command -v xdg-open)
 set -gx LAUNCHER fzf
-set -gx DISPLAY ":1"
+set -gx DISPLAY ":3"
 
 # command config
 set -gx STARSHIP_CACHE $XDG_CACHE_HOME/starship
@@ -47,7 +47,6 @@ set -gx GNUPGHOME $XDG_DATA_HOME/gnupg
 set -gx TAPLO_CONFIG $XDG_PROJECTS_DIR/dotfiles/other/taplo.toml
 set -gx RIPGREP_CONFIG_PATH $XDG_PROJECTS_DIR/dotfiles/other/ripgreprc
 set -gx FZF_DEFAULT_OPTS_FILE $XDG_PROJECTS_DIR/dotfiles/other/fzfrc
-set -gx _ZO_FZF_OPTS
 
 # lang config
 set -gx JAVA_HOME $PREFIX/lib/jvm/java-21-openjdk
@@ -72,7 +71,7 @@ set -gxp --path PATH "$HOME/.local/share/nvim/mason/bin"
 set -gxp --path PATH "$PREFIX/lib/jvm/java-21-openjdk/bin"
 # set -gxp --path PATH "$PREFIX/bin/texlive" # replaced by $PREFIX/etc/fish/conf.d/texlive.fish
 
-[ (uname -o) = Android ] && set -gxa LD_PRELOAD /data/data/com.termux/files/usr/lib/libluajit.so # https://github.com/termux/termux-packages/issues/22328
+# [ (uname -o) = Android ] && set -gxa LD_PRELOAD /data/data/com.termux/files/usr/lib/libluajit.so # https://github.com/termux/termux-packages/issues/22328
 
 
 

@@ -9,7 +9,6 @@ bootstrap-pacman() {
 
     printf "downloading bootstrap...\n"
     [ -e "$boot_path" ] || curl --create-dirs -#Lq -o "$boot_path" -- "$boot_url"
-    printf "\033[2Adownloading bootstrap... done\n"
 
     mkdir -p ~/../usr-n/
     cd ~/../usr-n/ || exit

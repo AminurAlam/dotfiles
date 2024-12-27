@@ -1,4 +1,7 @@
 status is-interactive || exit
+command -vq tmux || exit
+
+# FIX: creating new session while inside tmux
 
 if not tmux has-session -t conf 2>/dev/null
     command -vq lazygit
