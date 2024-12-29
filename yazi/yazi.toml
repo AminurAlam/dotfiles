@@ -1,8 +1,10 @@
 "$schema" = "https://yazi-rs.github.io/schemas/yazi.json"
 
+tasks.suppress_preload = false
 open.prepend_rules = [
-  { mime = "application/x-bittorrent", use = "open" },
   { name = "*/", use = ["gui_fm", "dir2cbz", "open", "edit", "reveal"] },
+  { name = "*.cb{z,r}", use = ["extract", "reveal"] },
+  { mime = "application/x-bittorrent", use = "open" },
   { mime = "{image,audio,video}/*", use = "open" },
 ]
 
@@ -22,6 +24,7 @@ previewers = [
   # plugins
   { name = "*/", run = "eza-preview" },
   { mime = "audio/*", run = "exifaudio" },
+  { name = "*.cb{z,r}", run = "archive" },
   # default
   { mime = "text/*", run = "code" },
   { mime = "*/{xml,javascript,wine-extension-ini}", run = "code" },
@@ -99,6 +102,3 @@ shell_offset = [0, 0, 999, 3]
 open_title = "Open with:"
 open_origin = "hovered"
 open_offset = [0, 1, 50, 7]
-
-# [log]
-# enabled = true

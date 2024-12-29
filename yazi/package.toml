@@ -1,10 +1,10 @@
 [plugin]
 deps = [
-  { use = "yazi-rs/plugins:hide-preview", rev = "62f0789" },
-  { use = "yazi-rs/plugins:max-preview", rev = "62f0789" },
+  { use = "yazi-rs/plugins:hide-preview", rev = "71c4fc2" },
+  { use = "yazi-rs/plugins:max-preview", rev = "71c4fc2" },
   { use = "ahkohd/eza-preview", rev = "5ef05bc" },
   # { use = "AmeerArsala/smart-navigation", rev = "f87bae8" },
-  { use = "AnirudhG07/custom-shell", rev = "d7fb2b3" },
+  { use = "AnirudhG07/custom-shell", rev = "b8605b4" },
   { use = "Sonico98/exifaudio", rev = "d794614" },
   { use = "dedukun/relative-motions", rev = "df97039" },
 ]
