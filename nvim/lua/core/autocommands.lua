@@ -42,7 +42,6 @@ autocmd('BufNewFile', {
     )
     if #possibles == 0 then return end
 
-    pcall(require, 'dressing')
     vim.ui.select(possibles, {}, function(choice)
       if not choice then return end
       vim.cmd.edit(vim.fn.fnameescape(choice))

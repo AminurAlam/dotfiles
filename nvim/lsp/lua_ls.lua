@@ -18,13 +18,16 @@ return {
       typeFormat = { config = { auto_complete_end = true } },
       completion = { callSnippet = 'Replace', displayContext = 5 },
       diagnostics = {
-        globals = { 'vim', 'drastic', 'ya', 'Command', 'cx' },
+        globals = { '_G', 'vim', 'drastic', 'ya', 'Command', 'cx' },
         libraryFiles = 'Disable',
         disable = { 'lowercase-global' },
       },
       format = { enable = false },
       hint = { enable = true },
-      runtime = { version = 'LuaJIT' },
+      runtime = {
+        version = 'LuaJIT',
+        path = { 'lua/?.lua', 'lua/?/init.lua' },
+      },
       semantic = { enable = false },
       telemetry = { enable = false },
       window = { progressBar = false },

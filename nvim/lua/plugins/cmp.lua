@@ -20,10 +20,10 @@ M.config = function()
   local luasnip = require 'luasnip'
   local kind_icons = {
     Text = '',
-    Method = '󰆧',
+    Method = '󰊕',
     Function = '󰊕',
     Constructor = '',
-    Field = '󰇽',
+    Field = '',
     Variable = '󰂡',
     Class = '󰠱',
     Interface = '',
@@ -43,7 +43,22 @@ M.config = function()
     Struct = '',
     Event = '',
     Operator = '󰆕',
-    TypeParameter = '󰅲',
+    Array = '',
+    Boolean = '󰨙',
+    Codeium = '󰘦',
+    Control = '',
+    Collapsed = '',
+    Copilot = '',
+    Key = '',
+    Namespace = '󰦮',
+    Null = '',
+    Number = '󰎠',
+    Object = '',
+    Package = '',
+    String = '',
+    Supermaven = '',
+    TabNine = '󰏚',
+    TypeParameter = '',
   }
   local buffer_text = {
     nvim_lsp = 'LSP',
@@ -58,6 +73,7 @@ M.config = function()
     snipmate = 'SNM',
     nvim_lsp_document_symbol = 'DOC',
     fish = 'FISH',
+    lazydev = 'LAZY',
   }
 
   cmp.setup {
@@ -94,24 +110,15 @@ M.config = function()
       end,
     },
     mapping = cmp.mapping.preset.insert {
-      ['<c-e>'] = cmp.mapping.abort(),
-      ['<cr>'] = cmp.mapping.confirm { select = true },
+      ['<c-space>'] = cmp.mapping.complete(),
+      ['<c-n>'] = cmp.mapping.select_next_item(),
+      ['<c-p>'] = cmp.mapping.select_prev_item(),
+      ['<c-y>'] = cmp.mapping.confirm { select = true },
       ['<c-u>'] = cmp.mapping.scroll_docs(-4),
       ['<c-d>'] = cmp.mapping.scroll_docs(4),
       ['<tab>'] = cmp.mapping(function(fallback)
-        if cmp.visible() then
-          cmp.select_next_item()
-        elseif luasnip.expand_or_jumpable() then
-          luasnip.expand_or_jump()
-        else
-          fallback()
-        end
-      end, { 'i', 's' }),
-      ['<S-Tab>'] = cmp.mapping(function(fallback)
-        if cmp.visible() then
-          cmp.select_prev_item()
-        elseif luasnip.jumpable(-1) then
-          luasnip.jump(-1)
+        if luasnip.jumpable() then
+          luasnip.jump()
         else
           fallback()
         end
@@ -121,6 +128,7 @@ M.config = function()
       { name = 'path' },
       { name = 'luasnip' },
       { name = 'fish' },
+      { name = 'lazydev', group_index = 0 },
       { name = 'nvim_lsp' },
       { name = 'nvim_lua' },
       { name = 'buffer' },

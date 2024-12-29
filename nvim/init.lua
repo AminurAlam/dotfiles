@@ -4,6 +4,7 @@ local g = vim.g
 
 g.mapleader = ' '
 g.maplocalleader = ' '
+g.have_nerd_font = true
 
 g.editorconfig = false
 g.loaded_gzip = 1
@@ -30,6 +31,7 @@ require 'core.lsp'
 require 'core.options'
 require 'core.mappings'
 require 'core.statusline'
+require 'core.neovide'
 
 vim.diagnostic.config {
   underline = { severity = vim.diagnostic.severity.ERROR },

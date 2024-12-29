@@ -52,8 +52,8 @@ do -- cmdline, statusline & statuscolumn
   set.numberwidth = 1
   set.shortmess = 'acCoOsSWF'
   set.number = true
-  set.relativenumber = true
-  set.signcolumn = 'auto'
+  set.relativenumber = false
+  set.signcolumn = 'number'
 end
 
 do -- folding
@@ -61,7 +61,7 @@ do -- folding
   set.foldclose = ''
   set.foldlevel = 10
   set.foldnestmax = set.foldlevel + 1
-  set.foldmethod = 'manual'
+  set.foldmethod = 'expr'
   set.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
   set.foldtext = ''
   -- .. [[substitute(getline(v:foldstart), "\\s\\(--\\|#\\).*", "", "" )]]
@@ -103,7 +103,7 @@ do -- others
   set.writebackup = false
   set.undofile = true
   set.confirm = true
-  set.clipboard = 'unnamed,unnamedplus'
+  vim.schedule(function() set.clipboard = 'unnamedplus' end)
   set.list = true
   set.listchars = dict2str {
     -- leadmultispace = '│   ',
