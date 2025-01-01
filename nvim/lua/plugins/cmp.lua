@@ -11,7 +11,10 @@ local M = {
     'mtoohey31/cmp-fish',
     'L3MON4D3/LuaSnip', -- helps create snippets
     'saadparwaiz1/cmp_luasnip', -- adds snippets to cmp
-    { 'AminurAlam/friendly-snippets', dev = true }, -- provides multiple snippets
+    {
+      'AminurAlam/friendly-snippets',
+      dev = vim.uv.fs_stat(vim.fn.expand('~/repos/friendly-snippets')) and true or false,
+    }, -- provides multiple snippets
   },
 }
 

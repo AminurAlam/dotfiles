@@ -1,8 +1,8 @@
 set REPO_NAME nvim-fork
 set REPO_PATH "$XDG_PROJECTS_DIR/$REPO_NAME"
 set REPO_URL "https://github.com/AminurAlam/neovim.git"
-set DEPENDENCIES binutils clang cmake gettext libuv make ninja openssl pkg-config \
-    tree-sitter-parsers libunibilium
+set DEPENDENCIES binutils clang cmake gettext libunibilium libuv luajit luv \
+    make ninja openssl pkg-config tree-sitter tree-sitter-parsers utf8proc
 
 function pre_build
     if command -vq apt
@@ -29,12 +29,7 @@ function build
         make distclean
     end
 
-    # cmake -S cmake.deps -B .deps -G Ninja -DUSE_BUNDLED=OFF -DUSE_BUNDLED_LPEG=OFF -DUSE_BUNDLED_UTF8PROCS=ON
-    # cmake --build .deps || exit
-    # cmake -B build -G Ninja || exit
-    # cmake --build build || exit
-
-    make BUNDLED_CMAKE_FLAG="-DUSE_BUNDLED=OFF -DUSE_BUNDLED_LPEG=ON -DUSE_BUNDLED_UTF8PROC=ON" || exit
+    make BUNDLED_CMAKE_FLAG="-DUSE_BUNDLED=ON -DUSE_BUNDLED_LPEG=ON" || exit
     make install CMAKE_INSTALL_PREFIX="$PREFIX/"
 end
 

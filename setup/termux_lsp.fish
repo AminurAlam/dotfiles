@@ -1,4 +1,4 @@
-set prerequisites python python-pip openjdk-21 maven nodejs
+set prerequisites python python-pip nodejs openjdk-21 maven
 set pkg_lsp ruff clang rust-analyzer lua-language-server taplo texlab
 set npm_lsp basedpyright
 set mason_lsp ktlint prettier bash-language-server html-lsp kotlin-language-server java-language-server
