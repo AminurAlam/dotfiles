@@ -11,11 +11,11 @@ function bm -d "bookmark manager"
         case repo
             $BROWSER (for repo in $XDG_PROJECTS_DIR/*
                 git -C "$repo" remote --verbose | awk '/push/ {print $2}'
-            end | $LAUNCHER)
+            end | fzf --query \')
         case '*'
             set -l LINK (
                 rg --no-filename --replace '' '^https?://(www\.)?' $BMPATH |
-                $LAUNCHER --query "$argv[1]" |
+                fzf --query "'$argv[1]" |
                 string split ' ' # remove tags from end
             )[1]
 
