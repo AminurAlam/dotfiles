@@ -133,6 +133,7 @@ file_type:
 filenames:
   prettierrc.toml: { icon: { glyph: "" } }
   .prettierrc.toml: { icon: { glyph: "" } }
+  LICENSE: { icon: { glyph: "" } }
   # : { icon: { glyph: , style: { foreground: null } } }
 
 extensions:

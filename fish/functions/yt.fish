@@ -10,7 +10,7 @@ function yt -a url fmt -d "yt-dlp wrapper"
     if [ -z "$fmt" ]
         set -f fmt (
             yt-dlp --quiet --verbose --no-sponsorblock -F "$url" 2>/dev/null \
-            | fzf --tac -q "'2k | '4k | '1080p | '1440p | '2160 | '2k | '4k" \
+            | fzf --tac -q "'2k | '4k | '1080p | '" \
             | cut -d ' ' -f1)
         [ -z "$fmt" ] && return 2
     end

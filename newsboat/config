@@ -31,8 +31,9 @@ ignore-article "https://superuser.com/feeds/week" "title =~ \"windows|powershell
 ignore-article "https://muspy.com/feed?id=mobwjpkr95u5p1b4f2w1bjt74qc8u3" "title =~ \"remix|taylor swift|bruce springsteen\""
 ignore-article "https://rssbridge.bus-hit.me/?action=display&bridge=BleepingComputerBridge&format=Atom" "title =~ \"(^| )(windows)( |$)\""
 ignore-article "https://www.404media.co/rss" "title =~ \"^(Podcast|Behind the Blog):\""
-ignore-article "https://hnrss.org/frontpage.atom?description=0" "title =~ \"^(Show HN): \""
+ignore-article "https://hnrss.org/frontpage.atom?description=0" "title =~ \"^(Show|Tell|Ask) HN: \""
 ignore-article "https://hnrss.org/frontpage.atom?description=0" "title =~ \"\\(YC .*\\)\""
+ignore-article "https://lobste.rs/rss" "title =~ \"^What are you doing this week\""
 
 # look for article update
 # reset-unread-on-update \

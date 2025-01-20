@@ -112,6 +112,7 @@ autocmd('BufEnter', { command = 'set formatoptions-=cro' })
 autocmd('BufLeave', { command = 'set nocursorline' })
 autocmd('BufEnter', { command = 'set cursorline' })
 
+-- TODO: https://github.com/ravibrock/regisfilter.nvim
 -- autocmd('VimEnter', {
 --   desc = 'intro screen',
 --   once = true,

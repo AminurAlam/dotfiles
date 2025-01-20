@@ -31,15 +31,15 @@ https://www.404media.co/rss news
 https://www.eff.org/rss/updates.xml "~eff.org" news
 https://newsboat.org/news.atom news
 https://blog.thunderbird.net/feed/ "~Thunderbird" news
+https://openrss.org/changelog/rss news
 https://torrentfreak.com/feed news
 https://rssbridge.bus-hit.me/?action=display&bridge=BleepingComputerBridge&format=Atom news
 https://feeds.feedburner.com/HaveIBeenPwnedLatestBreaches news
 
-# https://www.phoronix.com/rss.php  news
+# https://www.phoronix.com/rss.php news
 https://blog.opensource.org/feed/ news
 https://www.ghacks.net/feed/ news
 https://rss.slashdot.org/Slashdot/slashdotMain news
-https://reclaimthenet.org/feed/ news
 https://www.bitdefender.com/nuxt/api/en-us/rss/hotforsecurity/ news
 
 "query:----- CORPO BLOGS -----:tags # \"blogs_corpo\" and unread = \"yes\""
@@ -49,55 +49,58 @@ https://mullvad.net/en/blog/feed/atom/ blogs_corpo
 https://element.io/blog/rss/ blogs_corpo
 https://blog.cloudflare.com/rss/ blogs_corpo
 https://blog.nightly.mozilla.org/feed blogs_corpo
-https://blog.metabrainz.org/feed/ blogs_corpo
 https://security.googleblog.com/feeds/posts/default?alt=rss blogs_corpo
 https://crinacle.com/feed blogs_corpo
 https://medium.com/feed/phonepe/tagged/security blogs_corpo
 
 "query:----- PERSONAL BLOGS 1 -----:tags # \"personal_blog_1\" and unread = \"yes\""
 http://rachelbythebay.com/w/atom.xml personal_blog_1
-https://lukesmith.xyz/index.xml personal_blog_1
 https://www.schneier.com/feed/atom personal_blog_1
 https://drewdevault.com/blog/index.xml personal_blog_1
 https://thevaluable.dev/index.xml personal_blog_1
-https://emucross.com/rss/ personal_blog_1
 https://sizeof.cat/index.xml personal_blog_1
 https://strongly-typed-thoughts.net/blog/feed "~phaazon's blog" personal_blog_1
 https://kevquirk.com/feed.xml personal_blog_1
 
 https://cheapskatesguide.org/cheapskates-guide-rss-feed.xml personal_blog_1
 https://brainbaking.com/index.xml personal_blog_1
-https://monstro1.com/rss.xml personal_blog_1
-https://jacobwsmith.xyz/feed.xml personal_blog
-https://arjunyadav.xyz/rss.xml personal_blog_1
 https://denshi.org/index.xml personal_blog_1
 https://vkc.sh/feed/ personal_blog_1
 https://soatok.blog/feed personal_blog_1
 https://vonheikemen.github.io/devlog/atom.xml "~vonheikemen: nvim" personal_blog_1
+https://arjunyadav.xyz/rss.xml personal_blog_1
+
+https://emucross.com/rss/ personal_blog_1
+https://lukesmith.xyz/index.xml personal_blog_1
+https://www.amygoodchild.com/blog?format=rss personal_blog_1
+https://dx13.co.uk/index.atom personal_blog_1
+https://tonsky.me/atom.xml personal_blog_1
+https://robertheaton.com/feed.xml personal_blog_1
+https://pluralistic.net/feed/ "~Pluralistic" personal_blog_1
+https://ploum.net/atom_en.xml personal_blog_1
+https://monstro1.com/rss.xml personal_blog_1
+https://jacobwsmith.xyz/feed.xml personal_blog_1
 
 "query:----- PERSONAL BLOGS 2 -----:tags # \"personal_blog\" and unread = \"yes\""
-https://www.amygoodchild.com/blog?format=rss personal_blog
-https://dx13.co.uk/index.atom personal_blog
-https://tonsky.me/atom.xml personal_blog
-https://robertheaton.com/feed.xml personal_blog
-https://pluralistic.net/feed/ "~Pluralistic" personal_blog
+https://www.roboleary.net/feed.xml personal_blog
+https://daverupert.com/atom.xml personal_blog
+https://zerokspot.com/index.xml personal_blog
+https://alexwlchan.net/atom.xml personal_blog
+https://chelseatroy.com/feed personal_blog
+https://feeds.feedburner.com/avc personal_blog personal_blog
+https://ar.al/index.xml personal_blog
+
+https://thecodist.com/rss personal_blog
 https://100r.co/links/rss.xml personal_blog
 https://jvns.ca/atom.xml personal_blog
 https://hazelweakly.me/atom.xml personal_blog
 https://www.harihareswara.net/rss/ personal_blog
 https://hasbrouck.org/blog/index.xml personal_blog
-https://www.roboleary.net/feed.xml personal_blog
-https://daverupert.com/atom.xml personal_blog
 https://dotat.at/@/blog.atom personal_blog
-https://feeds.feedburner.com/avc personal_blog personal_blog
-https://zerokspot.com/index.xml personal_blog
-https://alexwlchan.net/atom.xml personal_blog
 https://cedwards.xyz/index.xml personal_blog
-https://chelseatroy.com/feed personal_blog
 https://vicki.substack.com/feed personal_blog
 https://adlrocha.substack.com/feed personal_blog
 https://alistairshepherd.uk/feed.xml personal_blog
-https://ar.al/index.xml personal_blog
 https://austinhenley.com/blog/feed.rss personal_blog
 https://benjamincongdon.me/blog/feed.xml personal_blog
 http://www.jonandnic.com/feed personal_blog
@@ -108,7 +111,6 @@ https://7c0h.com/blog/rss.xml personal_blog
 https://transitiontech.ca/feed.xml personal_blog
 https://vas.neocities.org/rss.xml personal_blog
 https://ciechanow.ski/atom.xml personal_blog
-https://ploum.net/atom_en.xml personal_blog
 https://seirdy.one/posts/atom.xml personal_blog
 https://1hiking.github.io/index.xml personal_blog
 https://nobodyspecial.neocities.org/rss2.xml personal_blog
