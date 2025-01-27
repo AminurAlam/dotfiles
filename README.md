@@ -85,14 +85,13 @@
 
 ```sh
 yes | termux-setup-storage
-curl -#Lq -o termux.sh -- github.com/AminurAlam/dotfiles/raw/main/setup/termux.sh
-bash termux.sh
+curl -#LOq -- github.com/AminurAlam/dotfiles/raw/main/setup/termux.sh
 ```
 
-- ubuntu
+- debian/ubuntu
 
 ```sh
-curl -#Lq github.com/AminurAlam/dotfiles/raw/main/setup/ubuntu.sh | sudo bash
+curl -#LOq -- github.com/AminurAlam/dotfiles/raw/main/setup/ubuntu.sh
 ```
 
 - windows
