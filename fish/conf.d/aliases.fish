@@ -1,4 +1,4 @@
-command -vq sudo && set sudo sudo
+set sudo (command -v sudo || command -v doas)
 
 set -l common "-las ext -F auto -I '.git*' --icons --no-user --group-directories-first --no-quotes --color-scale all --color-scale-mode fixed"
 alias l "eza $common --no-permissions --no-time"
@@ -6,7 +6,7 @@ alias ll "eza $common --git --total-size"
 alias lt "eza $common -T --git --total-size --no-permissions --no-time"
 alias tldr 'curl -qs cht.sh/$argv # '
 
-status is-interactive || exit
+status is-interactive || exit # no need to source abbreviations
 
 # common
 abbr cp "cp -ivr"
@@ -58,7 +58,8 @@ abbr rconf "rclone config"
 # du -> dust
 abbr du "dust -Dn 25"
 abbr dud "dust -d 1"
-abbr df 'df -h | awk \'/fuse/{print $3"/"$2,$5,$4}\''
+abbr df 'df -h | awk \'{print $3"/"$2,$5,$4,"\t",$6}\''
+[ (uname -o) = Android ] && abbr df 'df -h | awk \'/fuse/{print $3"/"$2,$5,$4}\''
 
 # pkg
 if command -vq apt
@@ -67,24 +68,16 @@ if command -vq apt
     abbr pu $sudo apt update "&&" $sudo apt upgrade
     abbr pf apt search
     abbr pa apt show
-    [ (uname -o) = Android ] && echo "deb https://packages-cf.termux.dev/apt/termux-main stable main" >$PREFIX/etc/apt/sources.list
 else if command -vq pacman
     abbr pi $sudo pacman -S
     abbr pr $sudo pacman -Rs
     abbr pu $sudo pacman -Syu
     abbr pf pacman -Ss
     abbr pa pacman -Si
-else if command -vq dnf
-    abbr pi $sudo dnf install
-    abbr pr $sudo dnf remove
-    abbr pu $sudo dnf upgrade
-    abbr pf dnf search
-    abbr pa dnf show
 end
 
 abbr --set-cursor zdl 'z $XDG_DOWNLOAD_DIR/%'
 abbr --set-cursor zd 'z $XDG_PROJECTS_DIR/dotfiles/%'
 abbr --set-cursor zf 'z $XDG_PROJECTS_DIR/dotfiles/fish/%'
 abbr --set-cursor zn 'z $XDG_PROJECTS_DIR/dotfiles/nvim/%'
-abbr --set-cursor zp 'z $PREFIX/%'
 abbr zz "z -"

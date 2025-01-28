@@ -22,6 +22,5 @@ function yt -a url fmt -d "yt-dlp wrapper"
         end
     end
 
-    # TODO: remove extra log
     yt-dlp -f "$fmt" -- "$url"
 end

@@ -33,7 +33,7 @@ set -gx VISUAL $EDITOR
 set -gx SUDO_EDITOR $EDITOR
 set -gx LESS --mouse
 set -gx MANPAGER "$EDITOR +Man!"
-set -gx MANPATH $PREFIX/share/fish/man $PREFIX/share/man
+# command -v mandoc && set -gx MANPATH $PREFIX/share/fish/man $PREFIX/share/man # breaks man pages on mint
 set -gx TERMINFO "$PREFIX/share/terminfo"
 set -gx BROWSER (command -v firefox || command -v xdg-open)
 set -gx LAUNCHER fzf

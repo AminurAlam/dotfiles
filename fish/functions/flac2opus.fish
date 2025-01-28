@@ -5,9 +5,8 @@ function flac2opus -d "convert audio from flac to opus"
         return 1
     end
 
-    # TODO: sort by size
     if fd -iq '(cover|folder)\.(jpg|png)'
-        set -f cover --picture (fd -i '(cover|folder)\.(jpg|png)' | $LAUNCHER) --discard-pictures
+        set -f cover --picture (du -h (fd -i '(cover|folder)\.(jpg|png)') | sort -hr | fzf) --discard-pictures
         echo "using `$cover[2]` as cover art"
     end
 
