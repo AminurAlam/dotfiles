@@ -58,7 +58,7 @@ abbr rconf "rclone config"
 # du -> dust
 abbr du "dust -Dn 25"
 abbr dud "dust -d 1"
-abbr df 'df -h | awk \'{print $3"/"$2,$5,$4,"\t",$6}\''
+abbr df 'df -hx tmpfs | awk \'{print $3"/"$2"\t"$5"\t"$4"\t"$6}\''
 [ (uname -o) = Android ] && abbr df 'df -h | awk \'/fuse/{print $3"/"$2,$5,$4}\''
 
 # pkg

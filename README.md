@@ -88,6 +88,12 @@ yes | termux-setup-storage
 curl -#LOq -- github.com/AminurAlam/dotfiles/raw/main/setup/termux.sh
 ```
 
+- arch
+
+```sh
+curl -#LOq -- github.com/AminurAlam/dotfiles/raw/main/setup/arch.sh
+```
+
 - debian/ubuntu
 
 ```sh
