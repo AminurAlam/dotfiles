@@ -1,10 +1,6 @@
 <!-- vim:set ft=html cc=37 sw=2: -->
-<div class="word">
-  {{furigana:Word Furigana}}
-</div>
-<div class="word-meaning">
-  {{Word Meaning}}
-</div>
+<div class="word">{{furigana:Word Furigana}}</div>
+<div class="word-meaning">{{Word Meaning}}</div>
 <div class="sentence">
   {{furigana:Sentence}}
   <br />
@@ -13,77 +9,32 @@
 
 <details>
   <summary></summary>
-  <div class="freq" id="freq">
-    {{Frequency}}
-  </div>
-  <span class="note">
-    {{#Notes}}({{Notes}}){{/Notes}}
-  </span>
+  <div class="freq" id="freq">{{Frequency}}</div>
+  <span class="note">{{#Notes}}({{Notes}}){{/Notes}}</span>
   <span class="tags">{{Tags}}</span>
 </details>
 
-<!-- <div class="note">
-  {{#Notes}}({{Notes}}){{/Notes}}
-</div>
--->
+<div class="note">{{#Notes}}({{Notes}}){{/Notes}}</div>
 
-<div class="pic" id="pic">
-  {{#Picture}}{{Picture}}{{/Picture}}
-</div>
+<div class="pic" id="pic">{{#Picture}}{{Picture}}{{/Picture}}</div>
 
 <div class="utils">
-  <a
-    class="jisho"
-    href="https://jisho.org/search/%23kanji%20{{Word}}">
-    漢字
-  </a>
+  <a class="jisho" href="https://jisho.org/search/%23kanji%20{{Word}}">漢字</a>
   <br />
   <br />
   {{#Audio}}{{Audio}}{{/Audio}}
 </div>
 
-<!-- TODO: custom buttons
-<button
-  style="width: 20%"
-  onclick="buttonAnswerEase1();">
-  Again
-</button>
-<button
-  style="width: 30%"
-  onclick="buttonAnswerEase2();">
-  Hard
-</button>
-<button
-  style="width: 30%"
-  onclick="buttonAnswerEase3();">
-  Good
-</button>
-<button
-  style="width: 20%"
-  onclick="buttonAnswerEase4();">
-  Easy
-</button>
--->
-
 <script>
-  freq.innerHTML =
-    freq.innerHTML.replace(
-      /(\d\d+|[6-9])\d{3}([^\d]?)/g,
-      "$1k$2",
-    );
-
-  if ("{{Tags}}".match("nsfw"))
-    pic.style.filter = "blur(8px)";
-  pic.addEventListener(
-    "click",
-    () => {
-      pic.style.filter = "none";
-    },
+  freq.innerHTML = freq.innerHTML.replace(
+    /(\d\d+|[6-9])\d{3}([^\d]?)/g,
+    "$1k$2",
   );
-  /* var api = new AnkiDroidJS({
-    version: "0.0.3",
-    developer: "lol@lmao.fun",
-  }); */
+
+  if ("{{Tags}}".match("nsfw")) pic.style.filter = "blur(8px)";
+  pic.addEventListener("click", () => {
+    pic.style.filter = "none";
+  });
 </script>
 <!-- -> <script src="https://cdn.jsdelivr.net/npm/eruda"></script>
 <script>eruda.init();</script> <!-- -->

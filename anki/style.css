@@ -2,17 +2,13 @@
 @font-face {
   font-family: "kana";
   src: url("_NotoSerifJP-Regular.ttf");
-  unicode-range: U+3040-309f,
-    U+30a0-30ff;
+  unicode-range: U+3040-309f, U+30a0-30ff;
 }
 
 @font-face {
   font-family: "kanji";
-  src: "ヒラギノ角ゴ Pro W3",
-    "Hiragino Kaku Gothic Pro",
-    "Noto Sans JP", "Osaka",
-    "メイリオ", "Meiryo",
-    "ＭＳ Ｐゴシック", "MS PGothic",
+  src: "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "Noto Sans JP",
+    "Osaka", "メイリオ", "Meiryo", "ＭＳ Ｐゴシック", "MS PGothic",
     "MS UI Gothic", "sans-serif";
   unicode-range: U+4e00-9faf;
 }
@@ -26,16 +22,12 @@
   margin: 10px 0px 0px 0px;
 }
 
-b {
-  color: #5586cd;
-}
+b { color: #5586cd; }
 .word {
   font-size: 44px;
   padding-top: 20px;
 }
-.word-meaning {
-  font-size: 25px;
-}
+.word-meaning { font-size: 25px; }
 .sentence {
   font-size: 25px;
   padding-top: 36px;
@@ -46,13 +38,9 @@ summary {
   padding-right: 20px;
   list-style-type: "+ ";
 }
-details {
-  font-size: 16px;
-}
+details { font-size: 16px; }
 details[open] {
-  summary {
-    list-style-type: "- ";
-  }
+  summary { list-style-type: "- "; }
   .freq {
     padding: 0px 0px 0px 10px;
     ul {
@@ -66,28 +54,25 @@ details[open] {
   }
 }
 
-.note {
-  font-size: 16px;
-}
+.note { font-size: 16px; }
 .pic {
   /* position: fixed; */
   bottom: 0px;
   left: 0px;
-  max-height: 100vw;
-  img {
-    max-height: 75vw;
-    max-width: 85vw;
-  }
+  max-height: 50%;
+  img { max-height: 300px; max-width: 30%; }
   img:first-child:nth-last-child(2),
-  img:first-child:nth-last-child(2)
-    ~ img {
+  img:first-child:nth-last-child(2) ~ img {
     max-width: 50%;
   }
-  /* @media (orientation: landscape) {
-    img {
-      display: none;
-    }
-  } /**/
+  @media (orientation: landscape) {
+    img { max-width: 60%; max-height: 60%; }
+    img { max-width: 400px; max-height: 400px; }
+  }
+  @media (orientation: portrait) {
+    img { max-width: 90%; max-height: 40%; }
+    img { max-width: 350px; max-height: 350px; }
+  }
 }
 
 .utils {
@@ -101,7 +86,7 @@ details[open] {
     color: #ffffff;
     background-color: #2ea44fcc;
     border-radius: 10px;
-    margin-right: 5px;
+    margin: 100px 10px;
     padding: 6px 10px;
   }
 }
