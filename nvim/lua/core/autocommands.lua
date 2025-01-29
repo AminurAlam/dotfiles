@@ -64,7 +64,7 @@ autocmd('VimEnter', {
 })
 
 -- TODO: buffer list float on buffer change
--- autocmd('FileType', {
+-- autocmd('BufEnter', {
 --   command = 'ls'
 -- })
 

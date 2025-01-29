@@ -13,7 +13,7 @@ local servers = {
   'texlab',
 }
 
-if vim.fn.has('nvim-0.11.0') then vim.lsp.enable(servers) end
+if vim.fn.has('nvim-0.11.0') == 1 then vim.lsp.enable(servers) end
 
 -- TODO: :TexlabCleanArtifacts
 -- stylua: ignore
