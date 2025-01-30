@@ -1,5 +1,11 @@
 ### EXPORTS ###
 set -gx EDITOR (command -v nvim || command -v vim || command -v vi)
+set -gx VISUAL $EDITOR
+set -gx SUDO_EDITOR $EDITOR
+set -gx LESS --mouse
+set -gx BROWSER (command -v firefox || command -v xdg-open)
+set -gx LAUNCHER fzf
+command -vq nvim && set -gx MANPAGER "nvim +Man!"
 
 # xdg
 set -gx XDG_VIDEOS_DIR $HOME/Videos
@@ -8,36 +14,28 @@ set -gx XDG_DOCUMENTS_DIR $HOME/Documents
 set -gx XDG_MUSIC_DIR $HOME/Music
 set -gx XDG_PICTURES_DIR $HOME/Pictures
 set -gx XDG_VIDEOS_DIR $HOME/Movies
-set -gx XDG_RUNTIME_DIR $TMPDIR
 set -gx XDG_PROJECTS_DIR $HOME/repos
 set -gx XDG_CONFIG_HOME $HOME/.config
 set -gx XDG_CACHE_HOME $HOME/.local/cache
 set -gx XDG_DATA_HOME $HOME/.local/share
 set -gx XDG_STATE_HOME $HOME/.local/state
 if [ (uname -o) = Android ] && [ -d /sdcard ]
+    set -gx XDG_RUNTIME_DIR $TMPDIR
+    set -gx TERMINFO "$PREFIX/share/terminfo"
+    set -gx DISPLAY ":3"
+    set -gx MANPATH $PREFIX/share/fish/man $PREFIX/share/man
+
     set -gx XDG_VIDEOS_DIR /sdcard/Movies
     set -gx XDG_DOWNLOAD_DIR /sdcard/Download
     set -gx XDG_DOCUMENTS_DIR /sdcard/Documents
     set -gx XDG_MUSIC_DIR /sdcard/Music
     set -gx XDG_PICTURES_DIR /sdcard/Pictures
     set -gx XDG_VIDEOS_DIR /sdcard/Movies
+
+    set dl $XDG_DOWNLOAD_DIR
+    set mu $XDG_MUSIC_DIR
+    set temp $XDG_CACHE_HOME/temp
 end
-
-# frequently used dirs
-set dl $XDG_DOWNLOAD_DIR
-set mu $XDG_MUSIC_DIR
-set temp $XDG_CACHE_HOME/temp
-
-# other
-set -gx VISUAL $EDITOR
-set -gx SUDO_EDITOR $EDITOR
-set -gx LESS --mouse
-set -gx MANPAGER "$EDITOR +Man!"
-# command -v mandoc && set -gx MANPATH $PREFIX/share/fish/man $PREFIX/share/man # breaks man pages on mint
-set -gx TERMINFO "$PREFIX/share/terminfo"
-set -gx BROWSER (command -v firefox || command -v xdg-open)
-set -gx LAUNCHER fzf
-set -gx DISPLAY ":3"
 
 # command config
 set -gx STARSHIP_CACHE $XDG_CACHE_HOME/starship
