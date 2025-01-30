@@ -1,10 +1,6 @@
 # set packages clang dust eza libgit2 fd git openssh python python-pip renameutils ripgrep starship lua-language-server termux-api zoxide
 set packages eza git fish curl
 
-# urls
-set url_font "https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/SourceCodePro/SauceCodeProNerdFont-Medium.ttf"
-set url_dotfiles "https://github.com/AminurAlam/dotfiles.git"
-
 # paths
 set path_dots "$HOME/repos/dotfiles" # NOTE: mae sure this is a full path
 set path_nvim "$HOME/repos/neovim"
@@ -32,11 +28,11 @@ sudo apt install $packages
 
 printf "DOWNLOADING DOTFILES... "
     [ -d "$path_dots" ] && command rm -fr "$path_dots"
-    git clone -q --depth 1 "$url_dotfiles" "$path_dots"
+    git clone -q --depth 1 "https://github.com/AminurAlam/dotfiles.git" "$path_dots"
 printf "done\n"
 
 printf "CHANGING FONT... "
-    curl -Lqs -o /usr/share/fonts/truetype/SauceCodeProNerdFont-Medium.ttf "$url_font" &>/dev/null
+    curl -Lqs -o /usr/share/fonts/truetype/SauceCodeProNerdFont-Medium.ttf "https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/SourceCodePro/SauceCodeProNerdFont-Medium.ttf" &>/dev/null
     fc-cache -f
 printf "done\n"
 

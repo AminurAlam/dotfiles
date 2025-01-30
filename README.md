@@ -81,14 +81,14 @@
 
 # setup commands
 
-- termux
+- termux :star2:
 
 ```sh
 yes | termux-setup-storage
 curl -#LOq -- github.com/AminurAlam/dotfiles/raw/main/setup/termux.sh
 ```
 
-- arch
+- arch :star2:
 
 ```sh
 curl -#LOq -- github.com/AminurAlam/dotfiles/raw/main/setup/arch.sh

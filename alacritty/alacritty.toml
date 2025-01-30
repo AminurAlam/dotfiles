@@ -1,4 +1,4 @@
-# [general] # in 0.15.0
+[general]
 import = ["~/.config/alacritty/tokyonight.toml", "~/.config/alacritty/keybindings.toml"]
 live_config_reload = true
 
@@ -20,5 +20,5 @@ bindings = [
 ]
 
 [font]
-size = 9
+size = 11
 normal = { family = "SauceCodePro Nerd Font" }
