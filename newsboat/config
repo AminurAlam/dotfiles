@@ -23,7 +23,7 @@ articlelist-format "%D %?T?%12T│?%t" # date ; group? && groupname ; title
 ignore-mode "display"
 ignore-article "*" "title =~ \"(^| )(Open)?AI( |$)\""
 ignore-article "*" "title =~ \"(^| )(Chat)?GPT-?(3|4|5)?( |$)\""
-ignore-article "*" "title =~ \"(^| )(LLMs?|large language models?|machine learning|Gemini|copilot)( |$)\""
+ignore-article "*" "title =~ \"(^| )(LLMs?|large language models?|machine learning|Gemini|copilot|DeepSeek)( |$)\""
 ignore-article "https://www.ghacks.net/feed/" "title =~ \"(^| )(windows)( |$)\""
 ignore-article "https://torrentfreak.com/feed" "title =~ \"IPTV\""
 ignore-article "https://torrentfreak.com/feed" "title =~ \"(^| )(Football|Boxing|sports|NFL)( |$)\""

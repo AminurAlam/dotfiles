@@ -7,8 +7,6 @@ https://xkcd.com/atom.xml misc
 https://github.com/neovim/neovim/commits/master/runtime/doc/news.txt.atom "~nvim - news.txt" misc
 https://www.thatmangahunter.com/blog-feed.xml misc
 https://muspy.com/feed?id=mobwjpkr95u5p1b4f2w1bjt74qc8u3 "~muspy New Releases" misc
-https://www.allmusic.com/rss misc
-https://pitchfork.com/feed/feed-news/rss "~Pitchfork News" misc
 
 "query:----- FORUMS & AGGREGATORS -----:tags # \"aggregators\" and unread = \"yes\""
 https://waxy.org/feed/ "~waxy.org by Andy Baio" aggregators
@@ -69,6 +67,7 @@ https://vkc.sh/feed/ personal_blog_1
 https://soatok.blog/feed personal_blog_1
 https://vonheikemen.github.io/devlog/atom.xml "~vonheikemen: nvim" personal_blog_1
 https://arjunyadav.xyz/rss.xml personal_blog_1
+https://daniel.haxx.se/blog/feed/ personal_blog_1
 
 https://emucross.com/rss/ personal_blog_1
 https://lukesmith.xyz/index.xml personal_blog_1
@@ -141,8 +140,6 @@ https://www.anildash.com/feed.xml personal_blog
 ### pending
 # Xenodium
 # https://xenodium.com/rss.xml
-# cURL
-# https://daniel.haxx.se/blog/feed/
 # inessential.com
 # https://inessential.com/xml/rss.xml
 # kofi.sexy
