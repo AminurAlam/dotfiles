@@ -58,7 +58,7 @@ abbr rconf "rclone config"
 # du -> dust
 abbr du "dust -Dn 25"
 abbr dud "dust -d 1"
-abbr df 'df -hx tmpfs | awk \'{print $3"/"$2"\t"$5"\t"$4"\t"$6}\''
+abbr df 'df -hx tmpfs'
 [ (uname -o) = Android ] && abbr df 'df -h | awk \'/fuse/{print $3"/"$2,$5,$4}\''
 
 # pkg
@@ -68,6 +68,12 @@ if command -vq apt
     abbr pu $sudo apt update "&&" $sudo apt upgrade
     abbr pf apt search
     abbr pa apt show
+else if command -vq yay
+    abbr pi yay -S
+    abbr pr yay -Rs
+    abbr pu yay -Syu
+    abbr pf yay -Ss
+    abbr pa yay -Si
 else if command -vq pacman
     abbr pi $sudo pacman -S
     abbr pr $sudo pacman -Rs
