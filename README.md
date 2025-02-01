@@ -14,6 +14,7 @@
 - [git](https://git-scm.com/) - vcs
   - [delta](https://dandavison.github.io/delta/) - git diff pager
 - [htop](https://htop.dev/) - process viewer
+- [keepassxc](https://keepassxc.org/) - password manager
 - [lazygit](https://github.com/jesseduffield/lazygit) - ui for git
 - [newsboat](https://newsboat.org/) :star2: - rss reader
 - [npm](https://npmjs.com/) - javascript runtime
