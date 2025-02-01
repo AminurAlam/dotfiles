@@ -3,7 +3,7 @@ return {
   main = 'nvim-treesitter.configs',
   build = ':TSUpdate',
   opts = {
-    ensure_installed = vim.fn.executable('clang') == 1 and {
+    ensure_installed = (vim.fn.executable('clang') == 1 or vim.fn.executable('gcc') == 1) and {
       'bash',
       'c',
       'comment',
