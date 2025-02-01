@@ -1,3 +1,6 @@
+/btop/btop.log
+/btop/themes/
+
 # allow completions manully
 /fish/completions/*
 !/fish/completions/mux.fish
