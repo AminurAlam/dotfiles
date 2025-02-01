@@ -2,11 +2,14 @@
 # sed -i 's/^#ParallelDownloads = 5$/ParallelDownloads = 5/' /etc/pacman.conf
 # pacman -Sy archinstall
 # archinstall
+
 # systemctl start NetworkManager.service
+# systemctl unmask power-profiles-daemon.service 
+# systemctl start power-profiles-daemon.service 
 
 ### post install
 sudo pacman -Syu --needed alacritty base-devel \
-    eza fd fish flatpak git man-db ripgrep thunderbird tmux vlc \
+    eza fd fish flatpak git man-db power-profiles-daemon ripgrep thunderbird tmux vlc \
     noto-fonts noto-fonts-cjk noto-fonts-emoji
 
 command -v fish && sudo chsh -s "$(command -v fish)"
