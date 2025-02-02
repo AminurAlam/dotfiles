@@ -11,10 +11,11 @@
   - [dircolors](https://www.gnu.org/software/coreutils/dircolors) - $LS_COLORS generator
 - [fish](https://fishshell.com/) :star2: - shell
 - [fzf](https://junegunn.github.io/fzf/) - fuzzy finder
-- [gdb](https://www.gnu.org/software/gdb/) - GNU Project debugge
+- [gdb](https://www.gnu.org/software/gdb/) - GNU Project debugger
 - [git](https://git-scm.com/) - vcs
   - [delta](https://dandavison.github.io/delta/) - git diff pager
 - [htop](https://htop.dev/) - process viewer
+- [hyprland](https://hyprland.org/) - wayland compositor
 - [keepassxc](https://keepassxc.org/) - password manager
 - [lazygit](https://github.com/jesseduffield/lazygit) - ui for git
 - [newsboat](https://newsboat.org/) :star2: - rss reader
