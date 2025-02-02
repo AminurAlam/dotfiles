@@ -1,1 +1,5 @@
+foreground-scripts=true
+prefix=~/.local/share/npm
+cache=~/.local/cache/npm
+init-module=~/.config/npm/config/npm-init.js
 fund=false
