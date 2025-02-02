@@ -90,6 +90,7 @@ autocmd('TermOpen', {
   end,
 })
 
+-- TODO: fold not loading
 autocmd('BufWinLeave', {
   desc = 'save folds & cursor on exit',
   pattern = '?*',

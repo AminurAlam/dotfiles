@@ -2,7 +2,7 @@ return {
   'https://github.com/folke/tokyonight.nvim',
   opts = {
     style = 'storm',
-    transparent = false,
+    transparent = true,
     terminal_colors = false,
     styles = {
       comments = { italic = false },
@@ -16,18 +16,24 @@ return {
     dim_inactive = false,
     lualine_bold = true,
     cached = true,
+    on_colors = function(c) c.bg_statusline = c.none end,
     on_highlights = function(hl, c)
-      hl.GitSignsAdd = { fg = hl.GitSignsAdd.fg, bg = c.bg }
-      hl.GitSignsChange = { fg = hl.GitSignsChange.fg, bg = c.bg }
-      hl.GitSignsDelete = { fg = hl.GitSignsDelete.fg, bg = c.bg }
-      hl.stl_hl_a = { bg = '#98c379', fg = '#30354A', bold = true }
-      hl.stl_hl_b = { fg = '#98c379', bg = '#30354A' }
-      hl.stl_hl_to = { fg = '#30354A', bg = 'bg' }
+      hl.stl_hl_a = { bg = c.green, fg = '#30354A', bold = true }
+      hl.stl_hl_b = { fg = c.green, bg = '#30354A' }
+      hl.stl_hl_to = { fg = '#30354A', bg = c.none }
+      hl.bg_statusline = c.none -- or "NONE"
+      hl.GitSignsAdd = { fg = hl.GitSignsAdd.fg, bg = c.none }
+      hl.GitSignsChange = { fg = hl.GitSignsChange.fg, bg = c.none }
+      hl.GitSignsDelete = { fg = hl.GitSignsDelete.fg, bg = c.none }
+      hl.DiagnosticError = { fg = c.error, bg = c.none }
+      hl.DiagnosticWarn = { fg = c.warning, bg = c.none }
+      hl.DiagnosticInfo = { fg = c.info, bg = c.none }
+      hl.DiagnosticHint = { fg = c.hint, bg = c.none }
+      hl.DiagnosticFloatingError = { bg = c.bg }
+      hl.DiagnosticFloatingWarn = { bg = c.bg }
+      hl.DiagnosticFloatingInfo = { bg = c.bg }
+      hl.DiagnosticFloatingHint = { bg = c.bg }
       -- hl('Whitespace', { bg = '#364a82' })
-      hl.DiagnosticFloatingError = { bg = nil }
-      hl.DiagnosticFloatingWarn = { bg = nil }
-      hl.DiagnosticFloatingInfo = { bg = nil }
-      hl.DiagnosticFloatingHint = { bg = nil }
       hl.CursorLineNr = {}
       hl.LineNr = { fg = '#3b4261' }
       hl.Folded = { bg = '#3b4261' }
