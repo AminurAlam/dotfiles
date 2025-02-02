@@ -5,6 +5,7 @@ local servers = {
   'clangd',
   'dart_language_server',
   'gopls',
+  'hyprls',
   'java_language_server',
   'lua_ls',
   'ruff',
