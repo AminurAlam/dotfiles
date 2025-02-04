@@ -34,6 +34,7 @@
 - [taplo](https://taplo.tamasfe.dev/) - lsp for toml
 - [termux](https://termux.dev/) - terminal emulator
 - [tmux](https://tmux.github.io/) :star2: - terminal multiplexer
+- [waybar](https://github.com/Alexays/Waybar) - status bar
 - [yazi](https://yazi-rs.github.io/) :star2: - terminal file manager
 - [yt-dlp](https://github.com/yt-dlp/yt-dlp) - video downloader
 - [zellij](https://zellij.dev/) - terminal workspace
