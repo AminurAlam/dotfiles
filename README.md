@@ -14,10 +14,10 @@
 - [gdb](https://www.gnu.org/software/gdb/) - GNU Project debugger
 - [git](https://git-scm.com/) - vcs
   - [delta](https://dandavison.github.io/delta/) - git diff pager
+ - [lazygit](https://github.com/jesseduffield/lazygit) - ui for git
 - [htop](https://htop.dev/) - process viewer
 - [hyprland](https://hyprland.org/) - wayland compositor
 - [keepassxc](https://keepassxc.org/) - password manager
-- [lazygit](https://github.com/jesseduffield/lazygit) - ui for git
 - [newsboat](https://newsboat.org/) :star2: - rss reader
 - [npm](https://npmjs.com/) - javascript runtime
 - [nvim](https://neovim.io/) :star2: - text editor
@@ -43,6 +43,7 @@
 <summary>nvim plugins</summary>
 <ul>
     <li>alpha-nvim</li>
+    <li>blink.cmp</li>
     <li>cmp-buffer</li>
     <li>cmp-cmdline</li>
     <li>cmp-fish</li>
@@ -62,6 +63,7 @@
     <li>highlight-undo.nvim</li>
     <li>indent-blankline.nvim</li>
     <li>lazy.nvim</li>
+    <li>lazydev.nvim</li>
     <li>LuaSnip</li>
     <li>mason.nvim</li>
     <li>mini.bracketed</li>
