@@ -12,5 +12,5 @@ function nerdsearch -d "better nerdfix serch"
         | string unescape \
         | fzf \
         | awk '{printf($1)}' \
-        | termux-clipboard-set
+        | fish_clipboard_copy
 end

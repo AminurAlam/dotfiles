@@ -1,10 +1,10 @@
 function unexe -d "mass chmod -x files"
     set exe (mktemp -dt "unexe.XXXXX") || return 2
-    count $argv &>/dev/null || set argv (fd -H -tf -S '-20mi')
+    count $argv &>/dev/null || set argv (fd -H -tf)
     set total (count $argv)
 
     if [ "$total" -lt 1 ]
-        printf "no input files supplied and failed to find files less than 20mb\n"
+        printf "no input files supplied and failed to find files\n"
         return 1
     else if [ "$total" -gt 20 ]
         [ "$(read -P "$total files will be processed, proceed? [y/N] ")" = y ]
@@ -14,14 +14,15 @@ function unexe -d "mass chmod -x files"
     for file in $argv
         [ -L "$file" ] && continue
 
-        if stat -c '%A' -- "$file" | rg -q rwx
+        if [ (uname -o) = Android ] && stat -c '%A' -- "$file" | rg -q rwx
             du -h -- "$file"
             mkdir -p -- (dirname "$exe/$file")
             mv -- "$file" "$exe/$file" &>/dev/null
             chmod -x -- "$exe/$file" &>/dev/null
-            # mv -- "$exe/$file" "$file"
             mv -- "$exe/$file" "$file" &>/dev/null
             [ -e "$file" ] || printf "$file was not restored properly\ncheck $exe\n"
+        else
+            chmod -x "$file"
         end
     end
 end
