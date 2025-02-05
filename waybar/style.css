@@ -1,0 +1,88 @@
+/* vim:set sw=2: */
+@import "macchiato.css";
+
+* {
+  font-family: FontAwesome, Roboto, Helvetica, Arial, sans-serif;
+  font-size: 17px;
+  min-height: 0;
+}
+
+#waybar {
+  background: transparent;
+  color: @text;
+  margin: 0px 0px;
+  transition-property: background-color;
+  transition-duration: 0.5s;
+}
+
+#waybar.hidden { opacity: 0.2; }
+
+#workspaces {
+  border-radius: 1rem;
+  margin: 5px;
+  background-color: @base;
+  margin-left: 1rem;
+}
+
+#workspaces button {
+  color: @lavender;
+  border-radius: 1rem;
+  padding: 0.4rem;
+}
+
+#workspaces button.active {
+  color: @sky;
+  border-radius: 1rem;
+}
+
+#workspaces button:hover {
+  color: @sapphire;
+  border-radius: 1rem;
+}
+
+#custom-music,
+#backlight,
+#battery,
+#clock,
+#cpu,
+#custom-lock,
+#custom-media,
+#custom-power,
+#disk,
+#idle_inhibitor,
+#memory,
+#mode,
+#network,
+#power-profiles-daemon,
+#pulseaudio,
+#scratchpad,
+#temperature,
+#tray,
+#wireplumber,
+#mpd {
+  background-color: @base;
+  padding: 0.1rem 1rem;
+  margin: 5px 0;
+}
+
+#battery.charging { color: @green; }
+#battery.warning:not(.charging) { color: @red; }
+
+#clock {
+  border-radius: 0px 1rem 1rem 0px;
+  margin-right: 1rem;
+}
+
+#pulseaudio {
+  border-radius: 1rem 0px 0px 1rem;
+  margin-left: 1rem;
+}
+
+#custom-music { border-radius: 1rem; }
+
+#custom-lock { border-radius: 1rem 0px 0px 1rem; }
+
+#tray {
+  margin-right: 1rem;
+  border-radius: 1rem;
+}
