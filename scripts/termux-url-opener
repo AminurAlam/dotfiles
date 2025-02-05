@@ -5,7 +5,7 @@ function re -a pattern
 end
 
 set url (echo $argv | grep -Eo 'https?://\S+')
-termux-clipboard-set "$argv"
+echo "$argv" | fish_clipboard_copy
 echo -- $url
 
 echo ==========================================================================
