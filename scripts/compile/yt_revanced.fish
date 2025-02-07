@@ -1,7 +1,7 @@
 set DEPENDENCIES jq
 
 function pre_build
-    pacman -S jq
+    yay -S --needed jq
 
     cd ~/Downloads/revanced
     curl -o api.json -LH "Accept: application/vnd.github+json" -H "X-GitHub-Api-Version: 2022-11-28" \
@@ -9,7 +9,7 @@ function pre_build
     set patchname (jq -r .assets[0].name api.json)
     set patchurl (jq -r .assets[0].browser_download_url api.json)
 
-    [ -e "$patchname" ] || curl -o "$patchname" "$patchurl"
+    [ -e "$patchname" ] || curl -Lo "$patchname" "$patchurl"
     ln -fs "$patchname" patch.rvp
 
     set apkversion (revanced-cli list-patches -pvf com.google.android.youtube patch.rvp \
