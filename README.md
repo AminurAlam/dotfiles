@@ -18,6 +18,7 @@
 - [htop](https://htop.dev/) - process viewer
 - [hyprland](https://hyprland.org/) - wayland compositor
 - [keepassxc](https://keepassxc.org/) - password manager
+- [mpv](https://mpv.io) - media player
 - [newsboat](https://newsboat.org/) :star2: - rss reader
 - [npm](https://npmjs.com/) - javascript runtime
 - [nvim](https://neovim.io/) :star2: - text editor
