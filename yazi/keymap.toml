@@ -59,15 +59,6 @@ manager.prepend_keymap = [
   { on = ["y", "b"], run = "copy name_without_ext", desc = "Copy the filename without extension" },
   # Filter & Find
   { on = "F", run = "filter --smart", desc = "Filter files" },
-  # Sorting
-  { on = [",", "a"], run = "sort natural --reverse=no", desc = "Sort naturally" },
-  { on = [",", "e"], run = "sort extension --reverse=no", desc = "Sort by extension" },
-  { on = [",", "s"], run = ["sort size --reverse=no", "linemode size"], desc = "Sort by size" },
-  { on = [",", "S"], run = ["sort size --reverse", "linemode size"], desc = "Sort by size (reverse)" },
-  { on = [",", "m"], run = ["sort modified --reverse=no", "linemode mtime"], desc = "Sort by modified time" },
-  { on = [",", "M"], run = ["sort modified --reverse", "linemode mtime"], desc = "Sort by modified time (reverse)" },
-  { on = [",", "c"], run = ["sort created --reverse=no", "linemode ctime"], desc = "Sort by created time" },
-  { on = [",", "C"], run = ["sort created --reverse", "linemode ctime"], desc = "Sort by created time (reverse)" },
   # Goto
   { on = ["g", "d"], run = "cd $XDG_DOWNLOAD_DIR" },
   { on = ["g", "v"], run = "cd $XDG_VIDEOS_DIR" },
