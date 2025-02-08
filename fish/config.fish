@@ -13,7 +13,7 @@ set -gx XDG_DOWNLOAD_DIR $HOME/Downloads
 set -gx XDG_DOCUMENTS_DIR $HOME/Documents
 set -gx XDG_MUSIC_DIR $HOME/Music
 set -gx XDG_PICTURES_DIR $HOME/Pictures
-set -gx XDG_VIDEOS_DIR $HOME/Movies
+set -gx XDG_VIDEOS_DIR $HOME/Videos
 set -gx XDG_PROJECTS_DIR $HOME/repos
 set -gx XDG_CONFIG_HOME $HOME/.config
 set -gx XDG_CACHE_HOME $HOME/.local/cache
