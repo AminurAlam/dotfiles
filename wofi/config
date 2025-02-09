@@ -1,0 +1,6 @@
+width=35%
+term=alacritty
+# matching=fuzzy
+# columns=2
+sort_order=default
+filter_rate=20

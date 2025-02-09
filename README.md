@@ -17,6 +17,8 @@
  - [lazygit](https://github.com/jesseduffield/lazygit) - ui for git
 - [htop](https://htop.dev/) - process viewer
 - [hyprland](https://hyprland.org/) - wayland compositor
+  - [waybar](https://github.com/Alexays/Waybar) - status bar
+  - [wofi](https://hg.sr.ht/~scoopta/wofi) - launcher
 - [keepassxc](https://keepassxc.org/) - password manager
 - [mpv](https://mpv.io) - media player
 - [newsboat](https://newsboat.org/) :star2: - rss reader
@@ -35,7 +37,6 @@
 - [taplo](https://taplo.tamasfe.dev/) - lsp for toml
 - [termux](https://termux.dev/) - terminal emulator
 - [tmux](https://tmux.github.io/) :star2: - terminal multiplexer
-- [waybar](https://github.com/Alexays/Waybar) - status bar
 - [yazi](https://yazi-rs.github.io/) :star2: - terminal file manager
 - [yt-dlp](https://github.com/yt-dlp/yt-dlp) - video downloader
 - [zellij](https://zellij.dev/) - terminal workspace
