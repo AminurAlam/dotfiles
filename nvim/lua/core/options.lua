@@ -61,8 +61,8 @@ do -- folding
   set.foldclose = ''
   set.foldlevel = 10
   set.foldnestmax = set.foldlevel + 1
-  set.foldmethod = 'expr'
   set.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+  -- set.foldmethod = 'expr'
   set.foldtext = ''
   -- .. [[substitute(getline(v:foldstart), "\\s\\(--\\|#\\).*", "", "" )]]
   -- .. [[ . " … " . trim(getline(v:foldend)) . ]]

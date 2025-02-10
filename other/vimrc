@@ -34,7 +34,6 @@ set foldenable
 set foldclose=
 set foldlevel=10
 set foldnestmax=11
-set foldmethod=manual
 set foldtext=
 set foldcolumn=1
 set viewoptions=cursor,folds
