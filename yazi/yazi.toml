@@ -1,32 +1,31 @@
 "$schema" = "https://yazi-rs.github.io/schemas/yazi.json"
 
-tasks.suppress_preload = false
 open.prepend_rules = [
-  { name = "*/", use = ["open", "dir2cbz", "android_fm", "edit", "reveal"] },
+  { name = "*/", use = ["android_fm", "open", "dir2cbz", "edit", "reveal"] },
   { name = "*.cb{z,r}", use = ["extract", "reveal"] },
   { name = "*.zip", use = ["extract", "reveal"] },
-  { mime = "application/x-bittorrent", use = "open" },
   { mime = "{image,audio,video}/*", use = "open" },
+]
+
+plugin.prepend_fetchers = [
+  { id = "git", name = "*", run = "git" },
+  { id = "git", name = "*/", run = "git" }
+]
+
+plugin.prepend_previewers = [
+  { name = "*/", run = "eza-preview" },
+  { mime = "audio/*", run = "exifaudio" },
+  { mime = "application/subrip", run = "code" },
+  { name = "*.cb{z,r}", run = "archive" },
+  { name = "*.zip", run = "archive" },
 ]
 
 [opener]
 # TODO: escape filepath first
-android_fm = [{ run = 'am start -n me.zhanghai.android.files/.filelist.FileListActivity -d "$(readlink -fn -- "$1")"' }]
-dir2cbz = [{ run = '''fish -c 'dir2cbz $argv' "$@" ''', block = true, desc = "dir2cbz" }]
-edit = [{ run = '${EDITOR:-vi} "$@"', desc = "$EDITOR", block = true, for = "unix" }]
-open = [{ run = 'xdg-open "$1"', for = "unix" }]
-reveal = [{ run = 'xdg-open "$(dirname "$1")"', desc = "Reveal", for = "linux" }]
-extract = [{ run = 'ya pub extract --list "$@"', desc = "Extract here", for = "unix" }]
-play = [{ run = 'mpv --force-window "$@"', orphan = true, for = "unix" }]
-
-[plugin]
-fetchers = [{ id = "mime", name = "*", run = "mime", if = "!mime", prio = "high" }]
-prepend_previewers = [
-  { name = "*/", run = "eza-preview" },
-  { mime = "audio/*", run = "exifaudio" },
-  { name = "*.cb{z,r}", run = "archive" },
-  { name = "*.zip", run = "archive" },
+android_fm = [
+  { run = 'am start -n me.zhanghai.android.files/.filelist.FileListActivity -d "$(readlink -fn -- "$1")"', for = 'android' },
 ]
+dir2cbz = [{ run = '''fish -c 'dir2cbz $argv' "$@" ''', block = true, desc = "dir2cbz" }]
 
 [manager]
 ratio = [0, 3, 2]
@@ -38,7 +37,7 @@ sort_translit = false
 linemode = "size"
 show_hidden = true
 show_symlink = true
-scrolloff = 5
+scrolloff = 10
 mouse_events = ["click", "scroll"]
 title_format = "Yazi: {cwd}"
 

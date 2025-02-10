@@ -22,3 +22,5 @@ end
 --   history_path = 'default',
 --   save_history = true,
 -- }
+
+require("git"):setup()

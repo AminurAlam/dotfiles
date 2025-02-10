@@ -1,38 +1,7 @@
 "$schema" = "https://yazi-rs.github.io/schemas/keymap.json"
 
 manager.prepend_keymap = [
-  # plugin: https://github.com/AmeerArsala/smart-navigation.yazi
-  # { on = "<C-k>", run = "arrow -1", desc = "Move cursor up 1 entry" },                                                 # i promise this will make sense
-  # { on = "<C-j>", run = "arrow 1", desc = "Move cursor down 1 entry" },                                                # i promise this will make sense
-  # { on = "<C-up>", run = "arrow -1", desc = "Move cursor up 1 entry" },                                                # i promise this will make sense
-  # { on = "<C-down>", run = "arrow 1", desc = "Move cursor down 1 entry" },                                             # i promise this will make sense
-  # { on = "<Up>", run = "plugin smart-navigation --args='jump -1 -1'", desc = "Go up" },
-  # { on = "k", run = "plugin smart-navigation --args='jump -1 -1'", desc = "Go up" },
-  # { on = "<Down>", run = "plugin smart-navigation --args='jump 1 1'", desc = "Go down" },
-  # { on = "j", run = "plugin smart-navigation --args='jump 1 1'", desc = "Go down" },
-  # { on = "<Left>", run = "plugin smart-navigation --args='left'", desc = "Go left" },
-  # { on = "h", run = "plugin smart-navigation --args='left'", desc = "Go left" },
-  # { on = "<Right>", run = "plugin smart-navigation --args='right'", desc = "Go right" },
-  # { on = "l", run = "plugin smart-navigation --args='right'", desc = "Go right" },
-  # { on = "<S-Up>", run = "plugin smart-navigation --args='jump -5 -50'", desc = "Jump upward" },
-  # { on = "<S-Down>", run = "plugin smart-navigation --args='jump 5 50'", desc = "Jump downward" },
-  # { on = "<PageUp>", run = "plugin smart-navigation --args='jump -50% -100'", desc = "Jump up half a page" },
-  # { on = "<PageDown>", run = "plugin smart-navigation --args='jump 50% 100'", desc = "Jump down half a page" },
-  # { on = "<Enter>", run = "plugin smart-navigation --args='open'", desc = "Open selected files" },
-  # { on = "^", run = "plugin smart-navigation --args='left'" },
-  # { on = "$", run = "plugin smart-navigation --args='right'" },
-
-  # https://github.com/dedukun/relative-motions.yazi
-  { on = ["1"], run = "plugin relative-motions --args=1" },
-  { on = ["2"], run = "plugin relative-motions --args=2" },
-  { on = ["3"], run = "plugin relative-motions --args=3" },
-  { on = ["4"], run = "plugin relative-motions --args=4" },
-  { on = ["5"], run = "plugin relative-motions --args=5" },
-  { on = ["6"], run = "plugin relative-motions --args=6" },
-  { on = ["7"], run = "plugin relative-motions --args=7" },
-  { on = ["8"], run = "plugin relative-motions --args=8" },
-  { on = ["9"], run = "plugin relative-motions --args=9" },
-
+  # plugins
   { on = ["s", "w"], run = "plugin eza-preview", desc = "Toggle tree/list dir preview" },
   { on = ["+"], run = "plugin eza-preview --args='--inc-level'", desc = "Increment tree level" },
   { on = ["-"], run = "plugin eza-preview --args='--dec-level'", desc = "Decrement tree level" },
@@ -41,6 +10,10 @@ manager.prepend_keymap = [
   # { on = ["f", "g"], run = "plugin rg", desc = "rg search" },
   { on = "z", run = "plugin zoxide", desc = "Jump to a directory using zoxide" },
   { on = ["s", "t"], run = "plugin hide-preview" },
+  { on = ["s", "T"], run = "plugin max-preview" },
+  { on = "l", run = "plugin smart-enter" },
+  { on = "<right>", run = "plugin smart-enter" },
+  { on = "M", run = "plugin mount" },
 
   { on = "^", run = "leave" },
   { on = "$", run = "enter" },
@@ -51,7 +24,7 @@ manager.prepend_keymap = [
   { on = "O", run = "create", desc = "Create a file/directory" },
   { on = ["y", "y"], run = "yank", desc = "Yank selected files (copy)" },
   { on = "d", run = "remove --permanently", desc = "Permanently delete selected files" },
-  { on = "D", run = '''shell "fish -c 'rmdir -p **'; true" --block --confirm''', desc = "purge empty directories" },
+  { on = "D", run = '''shell --block --confirm -- rmdir -p $(fd -H -td -d2); true ''', desc = "purge empty directories" },
   # Copy
   { on = ["y", "p"], run = "copy path", desc = "Copy the file path" },
   { on = ["y", "d"], run = "copy dirname", desc = "Copy the directory path" },
@@ -59,11 +32,6 @@ manager.prepend_keymap = [
   { on = ["y", "b"], run = "copy name_without_ext", desc = "Copy the filename without extension" },
   # Filter & Find
   { on = "F", run = "filter --smart", desc = "Filter files" },
-  # Goto
-  { on = ["g", "d"], run = "cd $XDG_DOWNLOAD_DIR" },
-  { on = ["g", "v"], run = "cd $XDG_VIDEOS_DIR" },
-  { on = ["g", "m"], run = "cd $XDG_MUSIC_DIR" },
-  { on = ["g", "p"], run = "cd $XDG_PICTURES_DIR" },
   # Tabs
   { on = "<C-Left>", run = "tab_switch -1 --relative", desc = "Switch to the previous tab" },
   { on = "<C-Right>", run = "tab_switch 1 --relative", desc = "Switch to the next tab" },
@@ -87,12 +55,12 @@ manager.prepend_keymap = [
 confirm.prepend_keymap = [
   { on = "<C-u>", run = "arrow -50%", desc = "Move cursor up half page" },
   { on = "<C-d>", run = "arrow 50%", desc = "Move cursor down half page" },
-  { on = ["g", "g"], run = "arrow -99999999", desc = "Move cursor to the top" },
-  { on = "G", run = "arrow 99999999", desc = "Move cursor to the bottom" },
+  { on = ["g", "g"], run = "arrow top", desc = "Move cursor to the top" },
+  { on = "G", run = "arrow bot", desc = "Move cursor to the bottom" },
 ]
 
 help.prepend_keymap = [{ on = "q", run = "close", desc = "Exit the process" }]
+input.prepend_keymap = [{ on = "<Esc>", run = "close", desc = "Cancel input" }]
 tasks.prepend_keymap = []
 pick.prepend_keymap = []
-input.prepend_keymap = []
 completion.prepend_keymap = []
