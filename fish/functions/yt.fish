@@ -1,5 +1,8 @@
 function yt -a url fmt -d "yt-dlp wrapper"
-    patch $PREFIX/lib/python3.12/site-packages/yt_dlp/YoutubeDL.py --input ~/repos/dotfiles/scripts/patches/yt-dlp-YoutubeDL.py.diff --silent -f --reject-file - &>/dev/null
+    [ -d "$PREFIX/lib/python3.12/" ] && set pyfile $PREFIX/lib/python3.12/site-packages/yt_dlp/YoutubeDL.py
+    [ -d "$PREFIX/lib/python3.13/" ] && set pyfile $PREFIX/lib/python3.13/site-packages/yt_dlp/YoutubeDL.py
+    set -q pyfile || exit
+    patch $pyfile --input ~/repos/dotfiles/scripts/patches/yt-dlp-YoutubeDL.py.diff --silent -f --reject-file - &>/dev/null
 
     if [ -z "$url" ]
         printf "no url given!\n"

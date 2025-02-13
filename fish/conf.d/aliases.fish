@@ -27,12 +27,7 @@ abbr --set-cursor fstack "ffmpeg -y -hide_banner -i % -filter_complex hstack out
 abbr --set-cursor ff "ffmpeg -y -hide_banner -stats -loglevel error -i % -vcodec copy -acodec copy -map 0:a"
 abbr --set-cursor mbz "python ~/repos/musicbrainzpy/cover_art.py -o \$XDG_MUSIC_DIR/#meta/ '%'"
 abbr --set-cursor --position anywhere awk "awk -F ' ' '{print \$%}'"
-
-# replicate =command from zsh
-function which_commander
-    command -v (string sub -s 2 $argv)
-end
-abbr --add equalcommand --regex '=\w+' --position anywhere --function which_commander
+abbr = command # replicate =command from zsh
 
 # parent dir
 abbr ... "cd ../.."
