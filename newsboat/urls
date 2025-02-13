@@ -15,11 +15,12 @@ https://hnrss.org/frontpage.atom?description=0 "~Hacker News" aggregators
 https://reddit.com/r/neovim/hot.rss "~r/neovim" aggregators
 https://reddit.com/r/OtoMusic/new.rss "~r/OtoMusic" aggregators
 https://dotfyle.com/this-week-in-neovim/rss.xml "~This Week in Neovim" aggregators
-https://dotfyle.com/neovim/plugins/rss.xml
+https://dotfyle.com/neovim/plugins/rss.xml aggregators
 https://vi.stackexchange.com/feeds/week "~StackExchange - vi" aggregators
 # https://superuser.com/feeds/week "~StackExchange - Super User" aggregators
 
 "query:----- NEWS -----:tags # \"news\" and unread = \"yes\""
+https://archlinux.org/feeds/news/ news
 https://dolphin-emu.org/blog/feeds/ "~Dolphin Emulator" news
 https://strato-emu.github.io/index.xml news
 https://melonds.kuribo64.net/rss.php news
@@ -34,7 +35,7 @@ https://torrentfreak.com/feed news
 https://rssbridge.bus-hit.me/?action=display&bridge=BleepingComputerBridge&format=Atom news
 https://feeds.feedburner.com/HaveIBeenPwnedLatestBreaches news
 
-# https://www.phoronix.com/rss.php news
+https://www.phoronix.com/rss.php news
 https://blog.opensource.org/feed/ news
 https://www.ghacks.net/feed/ news
 https://rss.slashdot.org/Slashdot/slashdotMain news
@@ -190,32 +191,6 @@ https://www.anildash.com/feed.xml personal_blog
 # https://www.smbc-comics.com/comic/rss
 # The Oatmeal
 # https://theoatmeal.com/feed/rss
-
-
-### broken sites info
-# http://www.jonandnic.com/feed: Could not connect to server
-# https://7c0h.com/blog/rss.xml: Could not connect to server
-# https://alt2-feed-proxy.azurewebsites.net/api/FeedTrigger?name=all-news: HTTP response code said error 404
-# https://benjamincongdon.me/blog/feed.xml: SSL connect error
-# https://chriswiegman.com/feed: SSL peer certificate or SSH remote key was not OK
-# https://citra-emu.org/index.xml: HTTP response code said error 404
-# https://daverupert.com/atom.xml: Failure when receiving data from the peer
-# https://denshi.org/rss.xml: Could not connect to server
-# https://hnrss.github.io/newest.atom?points=100&count=20&description=0: HTTP response code said error 404
-# https://hnrss.org/newest.atom?points=100&count=20&description=0: Could not resolve hostname
-# https://jvns.ca/atom.xml: Failure when receiving data from the peer
-# https://lckdscl.xyz/feed.xml: Could not resolve hostname
-# https://ntietz.com/atom.xml: Could not connect to server
-# https://ploum.net/atom_en.xml: Could not connect to server
-# https://rss-bridge.bb8.fun/?action=display&bridge=HaveIBeenPwned&order=dateAdded&item_limit=20&format=Atom: SSL connect error
-# https://strongly-typed-thoughts.net/blog/feed: Could not connect to server
-# https://tonsky.me/atom.xml: Could not connect to server
-# https://www.bitdefender.com/blog/api/rss/hotforsecurity/: HTTP response code said error 404
-# https://www.carrot.blog/feed.xml: Could not resolve hostname
-# https://www.carrot.blog/feed.xml: SSL connect error
-# https://www.fosskers.ca/en/rss: Could not connect to server
-# https://www.roboleary.net/feed.xml: Failure when receiving data from the peer
-
 
 ### blogroll sizeof(cat)
 # https://yeokhengmeng.com/index.xml Yeo Kheng Meng
