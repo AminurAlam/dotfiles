@@ -16,7 +16,7 @@ save_to_clipboard = true
 osc52 = "CopyPaste"
 
 [mouse]
-bindings = [{ mouse = "Right", action = "Paste" }]
+bindings = [{ mouse = "Middle", action = "Paste" }]
 
 [font]
 size = 11
