@@ -323,8 +323,8 @@ keybinding:
         nextPage: .
         scrollLeft: H
         scrollRight: L
-        gotoTop: <
-        gotoBottom: ">"
+        gotoTop: g
+        gotoBottom: G
         toggleRangeSelect: v
         rangeSelectDown: <s-down>
         rangeSelectUp: <s-up>
