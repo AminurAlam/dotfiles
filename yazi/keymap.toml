@@ -24,7 +24,7 @@ manager.prepend_keymap = [
   { on = "O", run = "create", desc = "Create a file/directory" },
   { on = ["y", "y"], run = "yank", desc = "Yank selected files (copy)" },
   { on = "d", run = "remove --permanently", desc = "Permanently delete selected files" },
-  { on = "D", run = '''shell --block --confirm -- rmdir -p $(fd -H -td -d2); true ''', desc = "purge empty directories" },
+  { on = "D", run = '''shell --block --confirm -- fd -H -td -d2 -x rmdir -p''', desc = "purge empty directories" },
   # Copy
   { on = ["y", "p"], run = "copy path", desc = "Copy the file path" },
   { on = ["y", "d"], run = "copy dirname", desc = "Copy the directory path" },
@@ -60,7 +60,7 @@ confirm.prepend_keymap = [
 ]
 
 help.prepend_keymap = [{ on = "q", run = "close", desc = "Exit the process" }]
-input.prepend_keymap = [{ on = "<Esc>", run = "close", desc = "Cancel input" }]
+input.prepend_keymap = []
 tasks.prepend_keymap = []
 pick.prepend_keymap = []
 completion.prepend_keymap = []

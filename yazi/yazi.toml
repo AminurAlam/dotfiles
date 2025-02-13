@@ -2,15 +2,11 @@
 
 open.prepend_rules = [
   { name = "*/", use = ["android_fm", "open", "dir2cbz", "edit", "reveal"] },
-  { name = "*.cb{z,r}", use = ["extract", "reveal"] },
+  { name = "*.cb{z,r}", use = ["open", "extract", "reveal"] },
   { name = "*.zip", use = ["extract", "reveal"] },
-  { mime = "{image,audio,video}/*", use = "open" },
 ]
 
-plugin.prepend_fetchers = [
-  { id = "git", name = "*", run = "git" },
-  { id = "git", name = "*/", run = "git" }
-]
+plugin.prepend_fetchers = [{ id = "git", name = "*", run = "git" }, { id = "git", name = "*/", run = "git" }]
 
 plugin.prepend_previewers = [
   { name = "*/", run = "eza-preview" },
