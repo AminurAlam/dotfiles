@@ -14,7 +14,7 @@
 - [gdb](https://www.gnu.org/software/gdb/) - GNU Project debugger
 - [git](https://git-scm.com/) - vcs
   - [delta](https://dandavison.github.io/delta/) - git diff pager
- - [lazygit](https://github.com/jesseduffield/lazygit) - ui for git
+  - [lazygit](https://github.com/jesseduffield/lazygit) - ui for git
 - [htop](https://htop.dev/) - process viewer
 - [hyprland](https://hyprland.org/) - wayland compositor
   - [waybar](https://github.com/Alexays/Waybar) - status bar
@@ -39,53 +39,8 @@
 - [tmux](https://tmux.github.io/) :star2: - terminal multiplexer
 - [yazi](https://yazi-rs.github.io/) :star2: - terminal file manager
 - [yt-dlp](https://github.com/yt-dlp/yt-dlp) - video downloader
+- [zathura](https://pwmt.org/projects/zathura/) - document viewer
 - [zellij](https://zellij.dev/) - terminal workspace
-
-<!-- l --no-filesize | awk -F ' ' '{print "  <li>" $0 "</li>"}' -->
-<details>
-<summary>nvim plugins</summary>
-<ul>
-    <li>alpha-nvim</li>
-    <li>blink.cmp</li>
-    <li>cmp-buffer</li>
-    <li>cmp-cmdline</li>
-    <li>cmp-fish</li>
-    <li>cmp-nvim-lsp</li>
-    <li>cmp-nvim-lua</li>
-    <li>cmp-path</li>
-    <li>cmp_luasnip</li>
-    <li>csvview.nvim</li>
-    <li>cybu.nvim</li>
-    <li>dial.nvim</li>
-    <li>diffview.nvim</li>
-    <li>dressing.nvim</li>
-    <li>friendly-snippets</li>
-    <li>full_visual_line.nvim</li>
-    <li>git-dev.nvim</li>
-    <li>gitsigns.nvim</li>
-    <li>highlight-undo.nvim</li>
-    <li>indent-blankline.nvim</li>
-    <li>lazy.nvim</li>
-    <li>lazydev.nvim</li>
-    <li>LuaSnip</li>
-    <li>mason.nvim</li>
-    <li>mini.bracketed</li>
-    <li>none-ls.nvim</li>
-    <li>nvim-cmp</li>
-    <li>nvim-colorizer.lua</li>
-    <li>nvim-surround</li>
-    <li>nvim-treesitter</li>
-    <li>nvim-web-devicons</li>
-    <li>plenary.nvim</li>
-    <li>tardis.nvim</li>
-    <li>telescope.nvim</li>
-    <li>todo-comments.nvim</li>
-    <li>tokyonight.nvim</li>
-    <li>treesj</li>
-    <li>trouble.nvim</li>
-    <li>ultimate-autopair.nvim</li>
-</ul>
-</details>
 
 # setup commands
 
