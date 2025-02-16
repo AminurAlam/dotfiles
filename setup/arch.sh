@@ -24,8 +24,7 @@ yay -Syu --devel
 yay -Y --devel --save
 
 ### load more packages
-yay -S tree-sitter-git neovim-git librewolf-bin anki-bin vesktop-bin
-# https://catppuccin.github.io/discord/dist/catppuccin-macchiato-blue.theme.css
+yay -S tree-sitter-git neovim-git librewolf-bin # android-studio anki-bin vesktop-bin
 
 printf "DOWNLOADING DOTFILES... "
 if [ -d ~/repos/dotfiles ]; then

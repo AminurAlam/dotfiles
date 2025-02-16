@@ -19,6 +19,9 @@ printf "LINKING CONFIG FILES... "
     ln -fs ~/repos/dotfiles/other/starship.toml ~/.config/starship.toml
     ln -fs ~/repos/dotfiles/other/stylua.toml   ~/.config/stylua.toml
     ln -fs ~/repos/dotfiles/other/taplo.toml    ~/.config/taplo.toml
+    if [ -e /etc/pacman.conf ]
+        sudo ln -fs ~/repos/dotfiles/other/pacman.arch.conf /etc/pacman.conf
+    end
     if [ (uname -o) = Android ]
         ln -fs ~/repos/dotfiles/other/pacman.termux.conf $PREFIX/etc/pacman.conf
         ln -fs ~/repos/dotfiles/termux/colors.properties ~/.termux/colors.properties # https://github.com/termux/termux-app/blob/master/termux-shared/src/main/java/com/termux/shared/termux/TermuxConstants.java#L657
