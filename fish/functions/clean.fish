@@ -36,6 +36,7 @@ function clean -d "cleanup to free storage"
 
 
     command -vq pacman && yes | $sudo pacman -Scc
+    command -vq yay && yay -Yc
     command -vq pip && pip cache purge
     command -vq npm && npm cache clean --force
     command -vq newsboat && not ps a | rg -q newsboat && newsboat -X
