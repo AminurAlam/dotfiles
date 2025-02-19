@@ -9,6 +9,8 @@
 !/fish/completions/z.fish
 /fish/fish_variables
 
+/mpv/shaders/
+
 /nvim/lazy-lock.json
 /nvim/parser/
 /nvim/spell/en.utf-8.add.spl
