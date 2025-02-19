@@ -11,17 +11,16 @@
   "modules-right": [
     "pulseaudio",
     // "mpd",
-    "idle_inhibitor",
-    "network",
-    "power-profiles-daemon",
+    // "idle_inhibitor",
+    "battery#bat2",
     "cpu",
     // "memory",
     "temperature",
     "backlight",
-    "keyboard-state",
-    "sway/language",
     "battery",
-    "battery#bat2",
+    "power-profiles-daemon",
+    "keyboard-state",
+    "network",
     "clock",
     "tray",
   ],
@@ -35,6 +34,25 @@
     },
   },
   "hyprland/submap": { "format": "<span style=\"italic\">{}</span>" },
+  "pulseaudio": {
+    // "scroll-step": 1, // %, can be a float
+    "format": "{volume}% {icon} {format_source}",
+    "format-bluetooth": "{volume}% {icon} {format_source}",
+    "format-bluetooth-muted": " {icon} {format_source}",
+    "format-muted": "󰸈 {format_source}",
+    "format-source": "{volume}% ",
+    "format-source-muted": "",
+    "format-icons": {
+      "headphone": "",
+      "hands-free": "",
+      "headset": "",
+      "phone": "",
+      "portable": "",
+      "car": "",
+      "default": ["", "", ""],
+    },
+    "on-click": "pavucontrol",
+  },
   "mpd": {
     "format": "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{artist} - {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) ⸨{songPosition}|{queueLength}⸩ {volume}% ",
     "format-disconnected": "Disconnected ",
@@ -61,23 +79,6 @@
     "tooltip-format": "MPD (connected)",
     "tooltip-format-disconnected": "MPD (disconnected)",
   },
-  "idle_inhibitor": {
-    "format": "{icon}",
-    "format-icons": {
-      "activated": "",
-      "deactivated": "",
-    },
-  },
-  "tray": {
-    // "icon-size": 21,
-    "spacing": 10,
-  },
-  "clock": {
-    // "timezone": "America/New_York",
-    "tooltip-format": "{:%Y %B}",
-    "format-alt": "{:%Y-%m-%d}",
-    "tooltip": false,
-  },
   "cpu": {
     "format": "{usage}% ",
     "tooltip": false,
@@ -93,8 +94,8 @@
   },
   "backlight": {
     // "device": "acpi_video1",
-    "format": "{percent}% {icon}",
-    "format-icons": ["", "", "", "", "", "", "", "", ""],
+    "format": "{percent} {icon}",
+    "format-icons": ["󰃟"],
     "tooltip": false,
   },
   "battery": {
@@ -134,23 +135,14 @@
     "format-linked": "(No IP)",
     "tooltip-format": "{gwaddr}",
   },
-  "pulseaudio": {
-    // "scroll-step": 1, // %, can be a float
-    "format": "{volume}% {icon} {format_source}",
-    "format-bluetooth": "{volume}% {icon} {format_source}",
-    "format-bluetooth-muted": " {icon} {format_source}",
-    "format-muted": "󰸈 {format_source}",
-    "format-source": "{volume}% ",
-    "format-source-muted": "",
-    "format-icons": {
-      "headphone": "",
-      "hands-free": "",
-      "headset": "",
-      "phone": "",
-      "portable": "",
-      "car": "",
-      "default": ["", "", ""],
-    },
-    "on-click": "pavucontrol",
+  "clock": {
+    // "timezone": "America/New_York",
+    "tooltip-format": "{:%Y %B}",
+    "format-alt": "{:%Y-%m-%d}",
+    "tooltip": false,
+  },
+  "tray": {
+    // "icon-size": 21,
+    "spacing": 10,
   },
 }
