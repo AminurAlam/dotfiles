@@ -1,7 +1,7 @@
 set DEPENDENCIES jq
 
 function pre_build
-    yay -S --needed jq
+    command -vq jq || yay -S --needed jq
 
     cd ~/Downloads/revanced
     curl -o api.json -LH "Accept: application/vnd.github+json" -H "X-GitHub-Api-Version: 2022-11-28" \
@@ -28,7 +28,7 @@ function build
     [ (count (adb devices)) -gt 2 ] && set adb -i
 
     revanced-cli patch -p patch.rvp yt.apk --keystore yt.keystore \
-        --ei 154 --ei 184 -OdarkThemeBackgroundColor=#FF24283B $adb
+        --ei 153 --ei 183 -OdarkThemeBackgroundColor=#FF24283B $adb
 end
 
 function post_build
