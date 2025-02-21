@@ -12,6 +12,9 @@ local servers = {
   'rust_analyzer',
   'taplo',
   'texlab',
+  'vscode_css_language_server',
+  'vscode_eslint_language_server',
+  'vscode_html_language_server',
 }
 
 if vim.fn.has('nvim-0.11.0') == 1 then vim.lsp.enable(servers) end
