@@ -15,7 +15,9 @@
   transition-duration: 0.5s;
 }
 
-#waybar.hidden { opacity: 0.2; }
+#waybar.hidden {
+  opacity: 0.2;
+}
 
 #workspaces {
   border-radius: 1rem;
@@ -37,16 +39,17 @@
 
 #workspaces button:hover {
   color: @sapphire;
+  background: @crust;
   border-radius: 1rem;
 }
 
-#custom-music,
 #backlight,
 #battery,
 #clock,
 #cpu,
 #custom-lock,
 #custom-media,
+#custom-music,
 #custom-power,
 #disk,
 #idle_inhibitor,
@@ -54,6 +57,7 @@
 #mode,
 #network,
 #power-profiles-daemon,
+#privacy,
 #pulseaudio,
 #scratchpad,
 #temperature,
@@ -65,8 +69,12 @@
   margin: 5px 0;
 }
 
-#battery.charging { color: @green; }
-#battery.warning:not(.charging) { color: @red; }
+#battery.charging {
+  color: @green;
+}
+#battery.warning:not(.charging) {
+  color: @red;
+}
 
 #clock {
   border-radius: 0px 1rem 1rem 0px;
@@ -78,11 +86,24 @@
   margin-left: 1rem;
 }
 
-#custom-music { border-radius: 1rem; }
+#custom-music {
+  border-radius: 1rem;
+}
 
-#custom-lock { border-radius: 1rem 0px 0px 1rem; }
+#custom-lock {
+  border-radius: 1rem 0px 0px 1rem;
+}
 
 #tray {
   margin-right: 1rem;
   border-radius: 1rem;
 }
+
+
+/* #taskbar */
+/* #taskbar button */
+/* #taskbar button.active */
+/* #taskbar button.minimized */
+/* #taskbar button.maximized */
+/* #taskbar button.fullscreen */
+/* #taskbar.empty */
