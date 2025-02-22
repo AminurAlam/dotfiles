@@ -29,7 +29,7 @@ M.config = function()
       if vim.fs.basename(filename) == 'COMMIT_EDITMSG' then goto continue end
 
       local len = #of_buttons + 1
-      if len == 6 then break end
+      if len == 10 then break end
       table.insert(
         of_buttons,
         button(
@@ -79,14 +79,6 @@ M.config = function()
       button('p', '󰆒  Paste in NF', scratch .. ' norm "*pi<cr>'),
       button('u', '󰚰  Update plugins', '<cmd>Lazy update<cr>', ''),
       button('q', '󰗼  Quit', '<cmd>qa<cr>', ''),
-      { type = 'padding', val = 2 },
-      button(
-        'd',
-        '  dotfiles',
-        '<cmd>cd ~/repos/dotfiles/ | Telescope find_files<cr>',
-        'Comment'
-      ),
-      button('n', '  notes', '<cmd>cd /sdcard/main/notes/ | Telescope find_files<cr>', 'Title'),
       { type = 'padding', val = 2 },
       { type = 'group', val = oldfiles },
     },
