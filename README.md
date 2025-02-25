@@ -7,6 +7,7 @@
 - [clang-format](https://clang.llvm.org/docs/ClangFormat.html) - c formatter
 - [clangd](https://clang.llvm.org/) - c++ lsp server
 - [curl](https://curl.se/) - request url
+- [dunst](https://dunst-project.org/) - notification daemon
 - [eza](https://github.com/eza-community/eza) - replacement for ls
   - [dircolors](https://www.gnu.org/software/coreutils/dircolors) - $LS_COLORS generator
 - [fish](https://fishshell.com/) :star2: - shell

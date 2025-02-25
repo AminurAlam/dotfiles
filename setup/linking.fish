@@ -1,7 +1,7 @@
 mkdir -p ~/backup
 
 printf "LINKING CONFIG DIRECTORIES... "
-for config in alacritty aria2 btop clangd eza fish gdb git htop hypr keepassxc lazygit mpv newsboat npm nvim python ruff streamrip termux tmux waybar wofi yazi yt-dlp zathura zellij
+for config in alacritty aria2 btop clangd dunst eza fish gdb git htop hypr keepassxc lazygit mpv newsboat npm nvim python ruff streamrip termux tmux waybar wofi yazi yt-dlp zathura zellij
     # skip non-existing dirs
     [ -e ~/repos/dotfiles/$config ] || continue
     # unlink/relocate old directories in ~/.config
