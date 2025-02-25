@@ -2,18 +2,23 @@
 
 open.prepend_rules = [
   { name = "*/", use = ["android_fm", "open", "dir2cbz", "edit", "reveal"] },
-  { name = "*.cb{z,r}", use = ["open", "extract", "reveal"] },
+  { name = "*.cb{z,r}", use = ["zathura", "open", "extract", "reveal"] },
   { name = "*.zip", use = ["extract", "reveal"] },
+  { name = "application/bittorrent", use = ["qbittorrent", "open"] },
+  { name = "*.torrent", use = ["qbittorrent", "open"] },
 ]
 
 plugin.prepend_fetchers = [{ id = "git", name = "*", run = "git" }, { id = "git", name = "*/", run = "git" }]
 
 plugin.prepend_previewers = [
   { name = "*/", run = "eza-preview" },
+  { name = "application/vnd.sqlite3", run = "sqlite" },
+  { name = "*.sqlite3", run = "sqlite" },
   { mime = "audio/*", run = "exifaudio" },
   { mime = "application/subrip", run = "code" },
   { name = "*.cb{z,r}", run = "archive" },
   { name = "*.zip", run = "archive" },
+  { name = "*", run = "hexyl" },
 ]
 
 [opener]
@@ -22,9 +27,11 @@ android_fm = [
   { run = 'am start -n me.zhanghai.android.files/.filelist.FileListActivity -d "$(readlink -fn -- "$1")"', for = 'android' },
 ]
 dir2cbz = [{ run = '''fish -c 'dir2cbz $argv' "$@" ''', block = true, desc = "dir2cbz" }]
+qbittorrent = [{ run = 'qbittorrent "$@"', block = false, orphan = true, desc = "qbittorrent", for = "linux" }]
+zathura = [{ run = 'zathura "$@"', block = false, orphan = true, desc = "zathura", for = "linux" }]
 
 [manager]
-ratio = [0, 3, 2]
+ratio = [0, 1, 1]
 sort_by = "extension"
 sort_sensitive = false
 sort_reverse = false
