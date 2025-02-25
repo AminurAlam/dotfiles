@@ -27,6 +27,6 @@ function bm -d "bookmark manager"
             end
 
             [ -z "$LINK" ] && return
-            $BROWSER "https://$LINK"
+            $BROWSER "https://$LINK" & disown
     end
 end

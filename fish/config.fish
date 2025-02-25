@@ -4,7 +4,7 @@ set -gx VISUAL $EDITOR
 set -gx SUDO_EDITOR $EDITOR
 set -gx LESS --mouse
 set -gx BROWSER (command -v firefox || command -v xdg-open)
-set -gx LAUNCHER fzf
+set -gx LAUNCHER wofi --dmenu
 command -vq nvim && set -gx MANPAGER "nvim +Man!"
 
 # xdg

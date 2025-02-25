@@ -19,18 +19,16 @@ M.config = function()
       null_ls.builtins.formatting.fish_indent,
       null_ls.builtins.formatting.clang_format.with { extra_filetypes = { 'json' } },
       -- null_ls.builtins.diagnostics.yamllint,
-      null_ls.builtins.diagnostics.sqlfluff.with { extra_args = { '--dialect', 'oracle' } },
-      null_ls.builtins.formatting.sqlfluff.with { extra_args = { '--dialect', 'oracle' } },
       -- require('none-ls-shellcheck.diagnostics'),
       -- require('none-ls-shellcheck.code_actions'),
-      null_ls.builtins.formatting.sqlfluff.with {
-        extra_args = { '--dialect', 'oracle' },
-        extra_filetypes = { 'sqloracle' },
-      },
-      null_ls.builtins.diagnostics.sqlfluff.with {
-        extra_args = { '--dialect', 'oracle' },
-        extra_filetypes = { 'sqloracle' },
-      },
+      -- null_ls.builtins.formatting.sqlfluff.with {
+      --   extra_args = { '--dialect', 'oracle' },
+      --   extra_filetypes = { 'sqloracle' },
+      -- },
+      -- null_ls.builtins.diagnostics.sqlfluff.with {
+      --   extra_args = { '--dialect', 'oracle' },
+      --   extra_filetypes = { 'sqloracle' },
+      -- },
     },
   }
 end
