@@ -6,19 +6,20 @@ open.prepend_rules = [
   { name = "*.zip", use = ["extract", "reveal"] },
   { name = "application/bittorrent", use = ["qbittorrent", "open"] },
   { name = "*.torrent", use = ["qbittorrent", "open"] },
+  { name = "*.exe", use = ["wine"] },
 ]
 
 plugin.prepend_fetchers = [{ id = "git", name = "*", run = "git" }, { id = "git", name = "*/", run = "git" }]
 
 plugin.prepend_previewers = [
   { name = "*/", run = "eza-preview" },
-  { name = "application/vnd.sqlite3", run = "sqlite" },
   { name = "*.sqlite3", run = "sqlite" },
+  { mime = "application/sqlite3", run = "sqlite" },
   { mime = "audio/*", run = "exifaudio" },
   { mime = "application/subrip", run = "code" },
   { name = "*.cb{z,r}", run = "archive" },
   { name = "*.zip", run = "archive" },
-  { name = "*", run = "hexyl" },
+  { mime = "application/octet-stream", run = "hexyl" },
 ]
 
 [opener]
@@ -28,6 +29,7 @@ android_fm = [
 ]
 dir2cbz = [{ run = '''fish -c 'dir2cbz $argv' "$@" ''', block = true, desc = "dir2cbz" }]
 qbittorrent = [{ run = 'qbittorrent "$@"', block = false, orphan = true, desc = "qbittorrent", for = "linux" }]
+wine = [{ run = 'wine "$@"', block = false, orphan = true, desc = "wine", for = "linux" }]
 zathura = [{ run = 'zathura "$@"', block = false, orphan = true, desc = "zathura", for = "linux" }]
 
 [manager]
