@@ -30,7 +30,7 @@ return {
     opts = {
       bs = { indent_ignore = true },
       space = { check_box_ft = { 'markdown', 'note' } },
-      tabout = { enable = true, hopout = true, map = '<s-tab>' },
+      tabout = { enable = false, hopout = false, map = '<s-tab>' },
       extensions = { cmdtype = { skip = { '@', '-' }, p = 100 } },
     },
   },

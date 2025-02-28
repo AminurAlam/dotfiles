@@ -1,0 +1,6 @@
+{
+  "verb": {
+    "prefix": "verb",
+    "body": "\\verb|${1:text}|"
+  }
+}

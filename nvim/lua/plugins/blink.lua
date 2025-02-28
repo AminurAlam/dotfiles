@@ -1,7 +1,7 @@
 return {
   'https://github.com/saghen/blink.cmp',
-  enabled = false,
-  {
+  enabled = true,
+  dependencies = {
     'AminurAlam/friendly-snippets',
     dev = vim.uv.fs_stat(vim.fn.expand('~/repos/friendly-snippets')) and true or false,
   }, -- provides multiple snippets
@@ -9,14 +9,42 @@ return {
   ---@module 'blink.cmp'
   ---@type blink.cmp.Config
   opts = {
-    keymap = { preset = 'default' },
-    appearance = { use_nvim_cmp_as_default = false, nerd_font_variant = 'mono' },
+    keymap = {
+      preset = 'none',
+      ['<tab>'] = { 'select_next', 'fallback' },
+      ['<s-tab>'] = { 'select_prev', 'fallback' },
+      ['<C-e>'] = { 'cancel' },
+      ['<C-y>'] = { 'select_and_accept' },
+      -- ['<cr>'] = { 'accept', 'fallback' },
+      ['<C-space>'] = { function(cmp) cmp.show({ providers = { 'snippets' } }) end },
+      ['<C-n>'] = { 'select_next' },
+      ['<C-p>'] = { 'select_prev' },
+    },
     sources = {
       default = { 'lsp', 'path', 'snippets', 'buffer' },
-      providers = { buffer = { opts = { get_bufnrs = vim.api.nvim_list_bufs } } },
-      -- cmdline = {},
+      providers = {
+        path = {
+          opts = {
+            trailing_slash = false,
+            label_trailing_slash = true,
+            show_hidden_files_by_default = true,
+          },
+        },
+        -- TODO: https://github.com/chrisgrieser/nvim-scissors#cookbook--faq
+        snippets = {
+          opts = {
+            friendly_snippets = true,
+            search_paths = { vim.fn.stdpath('config') .. '/snippets' },
+            global_snippets = {},
+            extended_filetypes = {},
+            ignored_filetypes = {},
+            -- Set to '+' to use the system clipboard, or '"' to use the unnamed register
+            clipboard_register = nil,
+          },
+        },
+        buffer = { opts = { get_bufnrs = vim.api.nvim_list_bufs } },
+      },
     },
-    signature = { enabled = true, window = { border = 'rounded' } },
     completion = {
       menu = {
         auto_show = true,
@@ -24,21 +52,65 @@ return {
         draw = {
           columns = {
             { 'label', 'label_description', gap = 1 },
-            { 'kind_icon', 'kind' },
+            { 'kind_icon' },
           },
         },
       },
       documentation = {
         auto_show = true,
-        auto_show_delay_ms = 500,
+        auto_show_delay_ms = 0,
         window = { border = 'rounded' },
       },
       keyword = { range = 'prefix' },
       accept = { auto_brackets = { enabled = false } },
-      list = { selection = { preselect = true, auto_insert = true } },
+      list = { selection = { preselect = false, auto_insert = true } },
       ghost_text = { enabled = true },
     },
+    fuzzy = {
+      implementation = 'prefer_rust_with_warning',
+      use_frecency = true,
+      use_proximity = false,
+      sorts = { 'score', 'sort_text' },
+    },
+    appearance = {
+      use_nvim_cmp_as_default = false,
+      nerd_font_variant = 'mono',
+      kind_icons = {
+        Text = '',
+        Method = '󰊕',
+        Function = '󰊕',
+        Constructor = '󰒓',
+
+        Field = '',
+        Variable = '󰂡',
+        Property = '󰜢',
+
+        Class = '󰠱',
+        Interface = '',
+        Struct = '',
+        Module = '',
+
+        Unit = '',
+        Value = '󰎠',
+        Enum = '',
+        EnumMember = '',
+
+        Keyword = '󰌋',
+        Constant = '󰏿',
+
+        Snippet = '',
+        Color = '󰏘',
+        File = '󰈙',
+        Reference = '',
+        Folder = '󰉋',
+        Event = '',
+        Operator = '󰆕',
+        TypeParameter = '',
+      },
+    },
+    signature = { enabled = true, window = { border = 'rounded' } },
     snippets = { preset = 'default' },
+    cmdline = { completion = { menu = { auto_show = true } } },
   },
   opts_extend = { 'sources.default' },
 }
