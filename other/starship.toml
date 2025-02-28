@@ -113,7 +113,7 @@ disabled = false
 # SPECIAL
 
 [fill]
-symbol = '─'
+symbol = ' '
 
 [character]
 format = '$symbol '
