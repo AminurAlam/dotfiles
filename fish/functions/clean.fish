@@ -1,5 +1,4 @@
 function clean -d "cleanup to free storage"
-    set sudo (command -v sudo || command -v doas)
     set -f __dirs \
         /sdcard/Android/media/com.whatsapp/WhatsApp/.StickerThumbs/ \
         /sdcard/Android/media/com.whatsapp/WhatsApp/Media/WhatsApp\ Stickers/ \
@@ -35,7 +34,12 @@ function clean -d "cleanup to free storage"
     [ -d ~/downloads ] && fd -tfile -epng . ~/downloads/ -x rm
 
 
-    command -vq pacman && yes | $sudo pacman -Scc
+    if command -vq sudo
+        command -vq pacman && yes | sudo pacman -Scc
+    else
+        command -vq pacman && yes | pacman -Scc
+    end
+
     command -vq yay && yay -Yc
     command -vq pip && pip cache purge
     command -vq npm && npm cache clean --force
