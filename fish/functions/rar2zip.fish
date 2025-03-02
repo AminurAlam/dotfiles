@@ -22,7 +22,7 @@ function rar2zip -d "convert archives from .rar to .zip"
         end
 
         set medium (mktemp -dt "rar2zip.XXXXX") || return 3
-        set output (string split -rm1 . (basename "$input"))[1].zip
+        set output (path change-extension zip (basename "$input"))
 
         if [ "$input" = "$output" ]
             printf "internal error: both input and output are same\n"

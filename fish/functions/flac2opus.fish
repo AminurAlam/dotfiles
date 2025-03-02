@@ -10,14 +10,13 @@ function flac2opus -d "convert audio from flac to opus"
         echo "using `$cover[2]` as cover art"
     end
 
-
     set total (count $argv)
     for n in (seq (count $argv))
         while [ (count (jobs | rg 'opusenc|ffmpeg|sox')) -ge 4 ]
             sleep 0.1
         end
 
-        set file "$argv[$n]" (string replace ".flac" ".opus" "$argv[$n]")
+        set file "$argv[$n]" (path change-extension opus "$argv[$n]")
         printf "[%02d/%02d] %s\n" "$n" "$total" "$file[1]"
 
         if command -vq opusenc
