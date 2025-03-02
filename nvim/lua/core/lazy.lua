@@ -1,14 +1,4 @@
-local url, lazypath, branch
-
-if vim.fn.has('termux') == 1 then
-  url = 'https://github.com/AminurAlam/lazy.nvim.git'
-  lazypath = '/data/data/com.termux/files/home/repos/lazy-fork'
-  branch = 'main'
-else
-  url = 'https://github.com/folke/lazy.nvim.git'
-  lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
-  branch = 'stable'
-end
+local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
 
 if not vim.uv.fs_stat(lazypath) then
   vim.fn.system {
@@ -16,8 +6,8 @@ if not vim.uv.fs_stat(lazypath) then
     'clone',
     '--filter=blob:none',
     '--depth=1',
-    url,
-    '--branch=' .. branch,
+    'git@github.com:folke/lazy.nvim.git',
+    '--branch=stable',
     lazypath,
   }
 end
