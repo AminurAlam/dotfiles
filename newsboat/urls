@@ -26,20 +26,21 @@ https://strato-emu.github.io/index.xml news
 https://melonds.kuribo64.net/rss.php news
 https://f-droid.org/feed.xml news
 https://android.izzysoft.de/rss/en/articles news
+https://fishshell.com/blog/feed.xml news
+https://newsboat.org/news.atom news
+https://openrss.org/changelog/rss news
+https://blog.thunderbird.net/feed/ "~Thunderbird" news
+
 https://www.404media.co/rss news
 https://www.eff.org/rss/updates.xml "~eff.org" news
-https://newsboat.org/news.atom news
-https://blog.thunderbird.net/feed/ "~Thunderbird" news
-https://openrss.org/changelog/rss news
 https://torrentfreak.com/feed news
 https://rssbridge.bus-hit.me/?action=display&bridge=BleepingComputerBridge&format=Atom news
 https://feeds.feedburner.com/HaveIBeenPwnedLatestBreaches news
-
 https://www.phoronix.com/rss.php news
 https://blog.opensource.org/feed/ news
 https://www.ghacks.net/feed/ news
-https://rss.slashdot.org/Slashdot/slashdotMain news
 https://www.bitdefender.com/nuxt/api/en-us/rss/hotforsecurity/ news
+# https://rss.slashdot.org/Slashdot/slashdotMain news
 
 "query:----- CORPO BLOGS -----:tags # \"blogs_corpo\" and unread = \"yes\""
 https://signal.org/blog/rss.xml blogs_corpo
@@ -138,59 +139,50 @@ https://twi.github.io/blog/atom.xml personal_blog
 https://vivekhaldar.com/index.xml personal_blog
 https://www.anildash.com/feed.xml personal_blog
 
-### pending
 # Xenodium
-# https://xenodium.com/rss.xml
+https://xenodium.com/rss.xml
 # inessential.com
-# https://inessential.com/xml/rss.xml
+https://inessential.com/xml/rss.xml
 # kofi.sexy
-# https://kofi.sexy/feed.xml
+https://kofi.sexy/feed.xml
 # nullrouted
-# https://nullrouted.space/feed/
+https://nullrouted.space/feed/
 # what if?
-# https://what-if.xkcd.com/feed.atom
+https://what-if.xkcd.com/feed.atom
 # Ansible Blog
-# https://www.ansible.com/blog/rss.xml
+https://www.ansible.com/blog/rss.xml
 # Blog on Tailscale
-# https://tailscale.com/blog/index.xml
-# Kubernetes
-# https://kubernetes.io/feed.xml
-# The Cloudflare Blog
-# https://blog.cloudflare.com/rss/
+https://tailscale.com/blog/index.xml
 # The Fly Blog
-# https://fly.io/blog/feed.xml
+https://fly.io/blog/feed.xml
 # WebKit
-# https://webkit.org/feed/
+https://webkit.org/feed/
 # Arstechnica IT
-# https://feeds.arstechnica.com/arstechnica/technology-lab
+https://feeds.arstechnica.com/arstechnica/technology-lab
 # EmNudge Reads
-# https://emnudge.dev/reads.xml
+https://emnudge.dev/reads.xml
 # Gamers Nexus
-# https://www.gamersnexus.net/news/feed
+https://www.gamersnexus.net/news/feed
 # LWN
-# https://lwn.net/headlines/rss
+https://lwn.net/headlines/rss
 # NixOS Webzine
-# https://webzine.snowflake.ovh/atom.xml
+https://webzine.snowflake.ovh/atom.xml
 # The Daily WTF
-# http://syndication.thedailywtf.com/TheDailyWtf
+http://syndication.thedailywtf.com/TheDailyWtf
 # emacs-news
-# https://sachachua.com/blog/category/emacs-news/feed/
-# Vaultwarden
-# https://github.com/dani-garcia/vaultwarden/releases.atom
-# uptime-kuma
-# https://github.com/louislam/uptime-kuma/releases.atom
+https://sachachua.com/blog/category/emacs-news/feed/
 # CommitStrip
-# https://www.commitstrip.com/en/feed/
+https://www.commitstrip.com/en/feed/
 # Loading Artist
-# https://loadingartist.com/index.xml
+https://loadingartist.com/index.xml
 # MonkeyUser
-# https://www.monkeyuser.com/feed.xml
+https://www.monkeyuser.com/feed.xml
 # Oglaf! -- Comics. Often dirty.
-# https://www.oglaf.com/feeds/rss/
+https://www.oglaf.com/feeds/rss/
 # Saturday Morning Breakfast Cereal
-# https://www.smbc-comics.com/comic/rss
+https://www.smbc-comics.com/comic/rss
 # The Oatmeal
-# https://theoatmeal.com/feed/rss
+https://theoatmeal.com/feed/rss
 
 ### blogroll sizeof(cat)
 # https://yeokhengmeng.com/index.xml Yeo Kheng Meng
