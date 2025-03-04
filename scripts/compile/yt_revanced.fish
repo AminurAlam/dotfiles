@@ -28,7 +28,7 @@ function build
     [ (count (adb devices)) -gt 2 ] && set adb -i
 
     revanced-cli patch -p patch.rvp yt.apk --keystore yt.keystore \
-        --ei 153 --ei 183 -OdarkThemeBackgroundColor=#FF24283B $adb
+    --enable "Custom branding" --enable "Theme" -OdarkThemeBackgroundColor=#FF24283B $adb
 end
 
 function post_build

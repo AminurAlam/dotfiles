@@ -1,6 +1,6 @@
 set REPO_NAME nvim-fork
 set REPO_PATH "$XDG_PROJECTS_DIR/$REPO_NAME"
-set REPO_URL "https://github.com/AminurAlam/neovim.git"
+set REPO_URL "git@github.com/AminurAlam/neovim.git"
 set DEPENDENCIES binutils clang cmake gettext libunibilium libuv luajit luv \
     make ninja openssl pkg-config tree-sitter tree-sitter-parsers utf8proc
 
@@ -20,7 +20,7 @@ function pre_build
 
     [ -d "$REPO_PATH" ] || git clone --branch custom "$REPO_URL" "$REPO_PATH"
     cd "$REPO_PATH"
-    # git remote show upstream &>/dev/null || git remote add upstream "https://github.com/neovim/neovim.git"
+    # git remote show upstream &>/dev/null || git remote add upstream "git@github.com:neovim/neovim.git"
 end
 
 function build

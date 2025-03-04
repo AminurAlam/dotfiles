@@ -1,6 +1,6 @@
 set REPO_NAME "yazi-fork"
 set REPO_PATH "$XDG_PROJECTS_DIR/$REPO_NAME"
-set REPO_URL "https://github.com/AminurAlam/yazi"
+set REPO_URL "git@github.com/AminurAlam/yazi.git"
 set DEPENDENCIES binutils gcc-default rust
 
 function pre_build

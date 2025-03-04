@@ -2,8 +2,8 @@
 
 # packages
 set base_packages eza fd git ripgrep termux-api termux-auth
-set extra_packages clang dust python python-pip python-ensurepip-wheels python-yt-dlp renameutils zoxide
-set python_packages "git+https://github.com/nathom/streamrip.git@dev" "git+https://github.com/AminurAlam/deflacue.git" "https://files.pythonhosted.org/packages/a1/fc/011727826f98417968f81a6f0c45722aceb2dcf9512f7cb691687733f304/dr14-t.meter-1.0.16.tar.gz"
+set extra_packages clang dust python python-pip python-ensurepip-wheels python-yt-dlp renameutils starship yazi zoxide
+set python_packages "git+https://github.com/nathom/streamrip.git@dev" "git+https://github.com/AminurAlam/deflacue.git"
 
 # urls
 set url_font "https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/SourceCodePro/SauceCodeProNerdFont-Medium.ttf"
@@ -20,7 +20,7 @@ set dots "$XDG_PROJECTS_DIR/dotfiles" # NOTE: make sure this is a full path
 
 command mkdir -p $XDG_PROJECTS_DIR $HOME/backup/ $HOME/.local/{share,bin,cache} $HOME/.local/share/zoxide
 
-printf "INSTALLING NEW PACKAGES...\n"
+printf "INSTALLING BASE PACKAGES...\n"
     pacman -Syu --noconfirm --needed $base_packages || exit
 
 printf "DOWNLOADING DOTFILES... "
@@ -33,16 +33,8 @@ printf "DOWNLOADING DOTFILES... "
     end
 printf "done\n"
 
-printf "INSTALLING MORE PACKAGES...\n"
-pacman -S --needed $extra_packages && begin
-    if [ "$(read -P 'install pip packages? [y/N] ')" = y ]
-        printf "INSTALLING PYTHON PACKAGES...\n"
-        env CFLAGS="-Wno-incompatible-function-pointer-types -Wno-implicit-function-declaration" pip install pycares
-        pip install $python_packages
-        [ -e $dots/scripts/patches/yt-dlp-YoutubeDL.py.diff ]
-        and patch $PREFIX/lib/python3.12/site-packages/yt_dlp/YoutubeDL.py <$dots/scripts/patches/yt-dlp-YoutubeDL.py.diff
-    end
-end
+printf "INSTALLING EXTRA PACKAGES...\n"
+pacman -S --needed $extra_packages 
 
 [ -e ~/repos/dotfiles/setup/linking.fish ] && fish ~/repos/dotfiles/setup/linking.fish
 
@@ -55,6 +47,10 @@ printf "done\n"
     printf "ADDING PASSWORD...\n"
     passwd
 end
+
+printf "SETTING UP YAZI...\n"
+    command -vq ya
+    and ya pack -u 2>/dev/null | rg Upgrading
 
 printf "CLEANUP... "
     truncate -s 0 "$PREFIX"/etc/motd*
@@ -78,14 +74,14 @@ end
 function setup_lsp
     set prerequisites python python-pip nodejs
     set pkg_lsp ruff clang lua-language-server taplo shellcheck shellharden shfmt
-    set npm_lsp basedpyright prettier bash-language-server html-lsp
+    set npm_lsp basedpyright prettier bash-language-server vscode-html-languageservice
 
     pacman -Syu --noconfirm --needed $pkg_lsp
     pacman -Syu --noconfirm --needed $prerequisites
 
     npm install -g $npm_lsp
 
-    termux-fix-shebang ~/.local/share/nvim/mason/bin/* ~/.local/share/npm/bin/*
+    termux-fix-shebang ~/.local/share/npm/bin/*
 end
 
 # TODO: put scripts in bin

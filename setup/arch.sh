@@ -5,7 +5,7 @@
 
 ### post install
 sudo pacman -Syu --needed alacritty base-devel \
-    eza fd fish flatpak git man-db power-profiles-daemon ripgrep thunderbird tmux vlc \
+    eza fd fish flatpak git man-db power-profiles-daemon ripgrep thunderbird tmux vlc yazi \
     noto-fonts noto-fonts-cjk noto-fonts-emoji
 
 systemctl enable NetworkManager.service power-profiles-daemon.service
@@ -36,6 +36,9 @@ else
 fi
 printf "done\n"
 [ -e ~/repos/dotfiles/setup/linking.fish ] && fish ~/repos/dotfiles/setup/linking.fish
+
+printf "SETTING UP YAZI...\n"
+command -v ya &>/dev/null && ya pack -u 2>/dev/null | rg Upgrading
 
 
 ### run these funcs whenever you need
