@@ -141,24 +141,8 @@ https://www.anildash.com/feed.xml personal_blog
 
 # Xenodium
 https://xenodium.com/rss.xml
-# inessential.com
-https://inessential.com/xml/rss.xml
-# kofi.sexy
-https://kofi.sexy/feed.xml
-# nullrouted
-https://nullrouted.space/feed/
-# what if?
-https://what-if.xkcd.com/feed.atom
 # Ansible Blog
 https://www.ansible.com/blog/rss.xml
-# Blog on Tailscale
-https://tailscale.com/blog/index.xml
-# The Fly Blog
-https://fly.io/blog/feed.xml
-# WebKit
-https://webkit.org/feed/
-# Arstechnica IT
-https://feeds.arstechnica.com/arstechnica/technology-lab
 # EmNudge Reads
 https://emnudge.dev/reads.xml
 # Gamers Nexus
