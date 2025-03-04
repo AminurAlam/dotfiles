@@ -32,6 +32,7 @@
 - [python](https://python.org/) - python interpreter
 - [ripgrep](https://github.com/BurntSushi/ripgrep) - grep alternative
 - [ruff](https://docs.astral.sh/ruff/) - python linter and formatter
+- [ssh](https://www.openssh.com/portable.html) - secure shell
 - [starship](https://starship.rs/) :star2: - shell prompt
 - [streamrip](https://github.com/nathom/streamrip)
 - [stylua](https://github.com/JohnnyMorganz/StyLua) - lua formatter

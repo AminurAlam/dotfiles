@@ -1,0 +1,17 @@
+# vim:ft=sshconfig:
+
+Host phone
+    User user
+    Hostname 192.168.14.145
+    Port 8022
+    IdentityFile ${HOME}/.ssh/ssh_ed25519
+    IdentitiesOnly yes
+
+    Compression yes
+    HashKnownHosts yes
+    ForwardX11 no
+    SetEnv TERM=xterm-256color
+
+Host github.com
+    User git
+    IdentityFile ${HOME}/.ssh/github_ed25519
