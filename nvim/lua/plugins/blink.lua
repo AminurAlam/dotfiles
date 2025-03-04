@@ -21,6 +21,7 @@ return {
       ['<C-p>'] = { 'select_prev' },
     },
     sources = {
+      -- TODO: cmp-fish
       default = { 'lsp', 'path', 'snippets', 'buffer' },
       providers = {
         path = {
