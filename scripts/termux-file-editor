@@ -1,0 +1,16 @@
+#!/data/data/com.termux/files/usr/bin/fish
+
+if echo "$argv" | rg -q '.*\.(png|jpg)'
+    ps -xo cmd | rg -q [m]anga_ocr
+    and begin
+        # am start -n "eu.kanade.tachiyomi.sy/eu.kanade.tachiyomi.ui.main.MainActivity"
+        am start -n "org.ironfoxoss.ironfox/org.mozilla.gecko.BrowserApp"
+        # am start -a "android.intent.action.VIEW" -n "us.spotco.fennec_dos/org.mozilla.gecko.BrowserApp"
+    end
+    or begin
+        echo "manga_ocr is not running!!"
+        sleep 2
+    end
+else
+    nvim $argv
+end

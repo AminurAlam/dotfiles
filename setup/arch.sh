@@ -41,7 +41,7 @@ printf "done\n"
 ### run these funcs whenever you need
 setup_lsp() {
     yay -S clang npm gopls basedpyright stylua lua-language-server ktlint \
-        bash-language-server shfmt shellharden ruff rust-analyzer taplo
+        bash-language-server shfmt shellcheck shellharden ruff rust-analyzer taplo
 }
 
 setup_wine() {

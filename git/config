@@ -37,7 +37,7 @@
 [user]
     name = AminurAlam
     email = 64137875+AminurAlam@users.noreply.github.com
-    signingkey = ~/.ssh/id_ed25519.pub
+    signingkey = ~/.ssh/github_ed25519.pub
 
 [credential]
     username = AminurAlam
