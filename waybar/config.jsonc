@@ -14,7 +14,7 @@
     // "keyboard-state",
     "pulseaudio",
     "backlight",
-    "battery#bat2",
+    // "battery#bat2",
     "cpu",
     "temperature",
     "battery",
@@ -98,9 +98,6 @@
     // "format-good": "", // An empty format will hide the module
     // "format-full": "",
     "format-icons": ["", "", "", "", ""],
-  },
-  "battery#bat2": {
-    "bat": "BAT2",
   },
   "power-profiles-daemon": {
     "format": "{icon}",
