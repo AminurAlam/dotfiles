@@ -24,6 +24,10 @@ printf "LINKING CONFIG FILES... "
         sudo ln -fs ~/repos/dotfiles/other/pacman.arch.conf /etc/pacman.conf
     end
     if [ (uname -o) = Android ]
+        mkdir -p ~/bin
+
+        ln -fs ~/repos/dotfiles/scripts/termux-url-opener ~/bin/
+        ln -fs ~/repos/dotfiles/scripts/termux-file-editor ~/bin/
         ln -fs ~/repos/dotfiles/other/pacman.termux.conf $PREFIX/etc/pacman.conf
         ln -fs ~/repos/dotfiles/termux/colors.properties ~/.termux/colors.properties # https://github.com/termux/termux-app/blob/master/termux-shared/src/main/java/com/termux/shared/termux/TermuxConstants.java#L657
         ln -fs ~/repos/dotfiles/termux/termux.properties ~/.termux/termux.properties
