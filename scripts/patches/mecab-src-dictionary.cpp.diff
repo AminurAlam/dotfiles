@@ -1,4 +1,4 @@
---- /data/data/com.termux/files/home/dictionary.cpp	2024-08-14 08:40:19.407432860 +0530
+--- src/dictionary.cpp	2024-08-14 08:40:19.407432860 +0530
 +++ src/dictionary.cpp	2024-08-14 08:40:28.415432860 +0530
 @@ -65,7 +65,7 @@
  }

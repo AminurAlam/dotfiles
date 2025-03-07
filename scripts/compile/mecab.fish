@@ -1,6 +1,6 @@
 set REPO_NAME mecab
 set REPO_PATH "$XDG_PROJECTS_DIR/$REPO_NAME"
-set REPO_URL "https://drive.google.com/uc?export=download&id=0B4y35FiV1wh7cENtOXlicTFaRUE"
+set REPO_URL "https://github.com/taku910/mecab.git"
 set DEPENDENCIES binutils make cmake
 # NOTE: manga_ocr deps
 # pacman -S python-numpy python-pillow python-torch
@@ -19,26 +19,22 @@ function pre_build
 
     $pm -- $DEPENDENCIES
 
-    if [ -d "$XDG_PROJECTS_DIR/mecab-0.996" ]
-        cd "$XDG_PROJECTS_DIR/mecab-0.996"
+    if [ -d "$REPO_PATH" ]
+        cd "$REPO_PATH"
+        [ "$(read -P 'run `git-pull`? [y/N] ')" = y ] && git pull --deepen 0 --depth 1 origin
     else
-        cd $XDG_PROJECTS_DIR || exit
-        if command -vq aria2c
-            aria2c "$REPO_URL"
-        else if command -vq wget
-            wget "$REPO_URL"
-        else
-            echo "install aria2c or wget"
-            exit
-        end
-        tar zxfv mecab-0.996.tar.gz
-        rm mecab-0.996.tar.gz
-        cd mecab-0.996/
+        git clone --depth 1 "$REPO_URL" "$REPO_PATH"
+        cd "$REPO_PATH"
     end
 end
 
 function build
-    ./configure --build aarch64-unknown-linux
+    cd "mecab"
+    pwd
+    # curl -Lo config.guess 'http://git.savannah.gnu.org/gitweb/?p=config.git;a=blob_plain;f=config.guess;hb=HEAD'
+    # curl -Lo config.sub 'http://git.savannah.gnu.org/gitweb/?p=config.git;a=blob_plain;f=config.sub;hb=HEAD'
+
+    ./configure --build aarch64-unknown-linux --prefix $PREFIX
     patch src/dictionary.cpp <~/repos/dotfiles/scripts/patches/mecab-src-dictionary.cpp.diff
     make CXXFLAGS='-Wno-register -mno-outline-atomics'
     make check || exit
