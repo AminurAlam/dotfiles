@@ -40,7 +40,6 @@ printf "done\n"
 printf "SETTING UP YAZI...\n"
 command -v ya &>/dev/null && ya pack -u 2>/dev/null | rg Upgrading
 
-
 ### run these funcs whenever you need
 setup_lsp() {
     yay -S clang npm gopls basedpyright stylua lua-language-server ktlint \
@@ -53,4 +52,9 @@ setup_wine() {
         lib32-libpulse alsa-plugins lib32-alsa-plugins alsa-lib lib32-alsa-lib sqlite lib32-sqlite libxcomposite \
         lib32-libxcomposite ocl-icd lib32-ocl-icd libva lib32-libva gtk3 lib32-gtk3 gst-plugins-base-libs \
         lib32-gst-plugins-base-libs vulkan-icd-loader lib32-vulkan-icd-loader sdl2-compat lib32-sdl2-compat
+}
+
+setup_latex() {
+    yay -S texlive-bin texlive-basic texlive-latex texlive-latexextra texlive-latexrecommended texlive-fontsrecommended \
+        meta-group-texlive-most texlive-binextra
 }
