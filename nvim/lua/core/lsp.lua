@@ -11,6 +11,7 @@ local servers = {
   'ruff',
   'rust_analyzer',
   'taplo',
+  'termux_language_server',
   'texlab',
   'vscode_css_language_server',
   'vscode_eslint_language_server',
@@ -19,10 +20,14 @@ local servers = {
 
 if vim.fn.has('nvim-0.11.0') == 1 then vim.lsp.enable(servers) end
 
--- TODO: :TexlabCleanArtifacts
 -- stylua: ignore
 vim.api.nvim_create_user_command('Tex', function()
   vim.cmd(':silent !latexmk -pdf -interaction=nonstopmode -synctex=1 % ; open %:r.pdf')
+end, { desc = 'Builds your tex file', bang = true })
+
+-- stylua: ignore
+vim.api.nvim_create_user_command('TexClean', function()
+    vim.cmd(':silent !rm %:r.aux %:r.toc %:r.fdb_latexmk %:r.fls %:r.log %:r.pdf %:r.synctex.gz')
 end, { desc = 'Builds your tex file', bang = true })
 
 autocmd('LspAttach', {

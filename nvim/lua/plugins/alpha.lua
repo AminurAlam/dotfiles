@@ -75,6 +75,7 @@ M.config = function()
       button('f', '  Find file', '<cmd>Telescope find_files<cr>'),
       button('g', '  Find word', '<cmd>Telescope live_grep<cr>'),
       button('h', '  Find help', '<cmd>Telescope help_tags<cr>'),
+      button('t', '  See TODO comments', '<cmd>TodoTelescope<cr>'),
       button('i', '󱇨  New file', scratch .. 'startinsert<cr>'),
       button('p', '󰆒  Paste in NF', scratch .. ' norm "*pi<cr>'),
       button('u', '󰚰  Update plugins', '<cmd>Lazy update<cr>', ''),

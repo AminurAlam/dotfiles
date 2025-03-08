@@ -2,17 +2,8 @@ return {
   'https://github.com/nvim-treesitter/nvim-treesitter',
   main = 'nvim-treesitter.configs',
   build = ':TSUpdate',
-  enable = vim.uv.os_uname().sysname == 'Linux' and true or false,
   opts = {
-    ensure_installed = (vim.fn.executable('clang') == 1 or vim.fn.executable('gcc') == 1) and {
-      'bash',
-      'c',
-      'comment',
-      'diff',
-      'fish',
-      'python',
-      'rust',
-    } or {},
+    ensure_installed = {},
     sync_install = true,
     indent = { enable = true },
     highlight = {

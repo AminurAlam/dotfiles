@@ -1,5 +1,5 @@
 return {
-  'https://github.com/lewis6991/gitsigns.nvim', -- NOTE: https://github.com/lewis6991/gitsigns.nvim/issues/453
+  'https://github.com/lewis6991/gitsigns.nvim',
   opts = {
     signs = {
       add = { text = '┃' },

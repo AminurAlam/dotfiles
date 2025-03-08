@@ -57,6 +57,7 @@ nmap('cn', '*``"_cgn', 'search and replace') -- https://kevinli.co/posts/2017-01
 nmap('d<space>', [[m`<cmd>keeppatterns %s/\s\+$//e<cr>``]], 'delete trailing white pace')
 nmap('<bs>', 'i<bs><esc>l', 'backspace in normal mode')
 nmap('<cr>', '"_ciw', 'delete word at cursor')
+nmap('r', '<cmd>redo<cr>')
 
 -- write & quit
 nmap('<leader>w', '<cmd>silent w <bar> redraw <cr>', 'write')

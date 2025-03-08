@@ -104,7 +104,6 @@ M.config = function()
         scrollbar = true,
       },
     },
-    -- TODO: expandable indicator
     formatting = {
       format = function(entry, vim_item)
         vim_item.abbr = string.sub(vim_item.abbr, 1, 20)

@@ -1,5 +1,6 @@
 return {
   'https://github.com/stevearc/dressing.nvim',
+  enabled = false,
   opts = {
     input = {
       enabled = true, -- Set to false to disable the vim.ui.input implementation

@@ -1,6 +1,7 @@
 return {
-  'https://github.com/saghen/blink.cmp',
+  'https://github.com/saghen/blink.cmp', -- https://cmp.saghen.dev/
   enabled = true,
+  event = { 'CmdlineEnter', 'InsertEnter' },
   dependencies = {
     'AminurAlam/friendly-snippets',
     dev = vim.uv.fs_stat(vim.fn.expand('~/repos/friendly-snippets')) and true or false,
@@ -22,8 +23,14 @@ return {
     },
     sources = {
       -- TODO: cmp-fish
-      default = { 'lsp', 'path', 'snippets', 'buffer' },
+      default = { 'lazydev', 'lsp', 'path', 'snippets', 'buffer' },
       providers = {
+        lazydev = {
+          name = 'LazyDev',
+          module = 'lazydev.integrations.blink',
+          -- make lazydev completions top priority (see `:h blink.cmp`)
+          score_offset = 100,
+        },
         path = {
           opts = {
             trailing_slash = false,
@@ -31,7 +38,6 @@ return {
             show_hidden_files_by_default = true,
           },
         },
-        -- TODO: https://github.com/chrisgrieser/nvim-scissors#cookbook--faq
         snippets = {
           opts = {
             friendly_snippets = true,
@@ -111,7 +117,15 @@ return {
     },
     signature = { enabled = true, window = { border = 'rounded' } },
     snippets = { preset = 'default' },
-    cmdline = { completion = { menu = { auto_show = true } } },
+    cmdline = {
+      completion = {
+        menu = {
+          auto_show = true,
+          draw = { columns = { { 'label', 'label_description', gap = 0 } } },
+        },
+        list = { selection = { preselect = false, auto_insert = true } },
+      },
+    },
   },
   opts_extend = { 'sources.default' },
 }
