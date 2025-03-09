@@ -1,7 +1,6 @@
 ### EXPORTS ###
 set -gx EDITOR (command -v nvim || command -v vim || command -v vi)
 set -gx VISUAL $EDITOR
-set -gx SUDO_EDITOR $EDITOR
 set -gx LESS --mouse
 set -gx BROWSER (command -v firefox || command -v xdg-open)
 set -gx LAUNCHER wofi --dmenu

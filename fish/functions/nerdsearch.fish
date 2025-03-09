@@ -10,7 +10,7 @@ function nerdsearch -d "better nerdfix serch"
     nerdfix dump --output - 2>/dev/null \
         | jq -r "$jqscript" - \
         | string unescape \
-        | fzf \
+        | fzf --query "$argv[1]" \
         | awk '{printf($1)}' \
         | fish_clipboard_copy
 end
