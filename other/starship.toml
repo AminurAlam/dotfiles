@@ -1,6 +1,6 @@
 "$schema" = 'https://starship.rs/config-schema.json'
 format = """
-$username$directory$git_branch$git_commit$git_state$python${env_var.TMUX} \
+$username$hostname$directory$git_branch$git_commit$git_state$python${env_var.TMUX} \
 $fill \
 $status$git_status$git_metrics$cmd_duration$jobs$shlvl 
  $character"""
@@ -18,6 +18,10 @@ basic = """$directory$git_branch $character"""
 [username]
 format = ' [ $user](bright-yellow)'
 show_always = false
+
+[hostname]
+format = ' [ $hostname](bright-yellow)'
+aliases = { localhost = 'android' }
 
 [directory]
 format = ' [ $before_root_path$repo_root$path](bold green)[$read_only](red)'
