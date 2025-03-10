@@ -57,9 +57,6 @@ set -gx CARGO_LOG info
 set -gx CARGO_INCREMENTAL false
 set -gx VIMRUNTIME $PREFIX/share/nvim/runtime
 
-# fish config
-set -U fish_features qmark-noglob # TODO: remove in 4.0
-
 ### PATH ###
 set -gxp --path PATH "$HOME/.local/bin" # sometimes before
 set -gxp --path PATH "$CARGO_HOME/bin" # after declaring CARGO_HOME

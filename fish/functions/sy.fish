@@ -1,6 +1,7 @@
 function sy
     # update ssh address
-    sed -r -i "s/192\.168\.[0-9]+\.[0-9]+\$/$(route -n | awk '/^[0.]+/{print $2}' | uniq)/" ~/.ssh/config
+    set ip (route -n | awk '/^[0.]+/{print $2}' | uniq)
+    [ -n "$ip" ] && sed -r -i "s/192\.168\.[0-9]+\.[0-9]+\$/$ip/" ~/.ssh/config
 
     printf "\033[36m === PICTURES ===\033[0m\n"
     rsync --port 8022 -aP --exclude ocr --exclude Camera ~/Pictures/ user@phone:/sdcard/Pictures/
@@ -20,5 +21,5 @@ function sy
     rsync --port 8022 -aP user@phone:/sdcard/main/android.kdbx ~/Downloads/main/android.kdbx
 
     printf "\033[36m === ROMS ===\033[0m\n"
-    rsync --port 8022 -aP --exclude 'Switch' ~/Downloads/ROMS/ user@phone:/sdcard/Download/ROMS/ --delete
+    rsync --port 8022 -aP --exclude Switch ~/Downloads/ROMS/ user@phone:/sdcard/Download/ROMS/ --delete
 end
