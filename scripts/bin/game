@@ -1,0 +1,44 @@
+#!/usr/bin/env luajit
+
+local sudachi = function(rom_path)
+  return '/usr/bin/sudachi "/home/fisher/Downloads/ROMS/Switch/' .. rom_path .. '"'
+end
+
+local mgba = function(rom_path)
+  return '/usr/bin/mgba-qt "/home/fisher/Downloads/ROMS/Game Boy Advance/' .. rom_path .. '"'
+end
+
+local games = {
+  { ' Osu!lazer', 'osu-lazer' },
+  { ' Factorio', '/home/fisher/Downloads/GAMES/factorio/bin/x64/factorio' },
+  {
+    ' Touhou 10',
+    'wine "/home/fisher/Downloads/GAMES/(TH10) Touhou Fuujinroku ~ Mountain of Faith/th10.exe"',
+  },
+  { '󰟡 Celeste', sudachi 'Celeste/Celeste [01002B30028F6000][v0] (1.10 GB).nsp' },
+  {
+    '󰟡 Phoenix Wright Ace Attorney Trilogy',
+    sudachi 'Phoenix Wright Ace Attorney Trilogy/Phoenix Wright Ace Attorney Trilogy [0100CB000A142000][v0].nsp',
+  },
+  {
+    '󰟡 Guilty Gear XX Accent Core Plus R',
+    sudachi 'GUILTY GEAR XX ACCENT CORE PLUS R/GUILTY GEAR XX ACCENT CORE PLUS R [0100D1C00C700000][v0] (4.22 GB).nsp',
+  },
+  {
+    '󰟡 Guilty Gear Strive',
+    sudachi 'Guilty Gear Strive/Guilty Gear Strive [0100AB401F136000][v0].nsp',
+  },
+  { '󱎓 Pokemon - Emerald Version', mgba 'Pokemon - Emerald Version (USA, Europe).zip' },
+  { '󱎓 Pokemon - FireRed Version', mgba 'Pokemon - FireRed Version (USA, Europe) (Rev 1).zip' },
+  { '󱎓 Pokemon - LeafGreen Version', mgba 'Pokemon - LeafGreen Version (USA, Europe).zip' },
+  { '󱎓 Pokemon - Ruby Version', mgba 'Pokemon - Ruby Version (USA, Europe).zip' },
+  { '󱎓 Pokemon - Sapphire Version', mgba 'Pokemon - Sapphire Version (USA, Europe).zip' },
+}
+
+for i, spec in pairs(games) do
+  print(string.format('[%2d] %s', i, spec[1]))
+end
+
+io.write(' > ')
+local num = io.read('*n')
+if games[num] then os.execute(games[num][2] .. ' & disown') end

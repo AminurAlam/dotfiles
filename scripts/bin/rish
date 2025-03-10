@@ -1,0 +1,15 @@
+#!/system/bin/sh
+DEX="$(dirname "$1")/rish_shizuku.dex"
+
+[ ! -f "$DEX" ] && {
+    echo "Cannot find $DEX, please check the tutorial in Shizuku app"
+    exit 2
+}
+
+chmod 400 "$DEX"
+[ -w "$DEX" ] && {
+    echo "Cannot remove the write permission of $DEX."
+    exit 2
+}
+
+RISH_APPLICATION_ID=com.termux /system/bin/app_process -Djava.class.path="$DEX" /system/bin --nice-name=rish rikka.shizuku.shell.ShizukuShellLoader "$@"
