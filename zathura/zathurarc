@@ -1,18 +1,49 @@
-set selection-clipboard clipboard
+# keymaps
+# TODO: zoom, statusbar
 
-# Tokyonight color theme
+map <KPUp> feedkeys k
+map <KPDown> feedkeys j
+map <KPLeft> feedkeys h
+map <KPRight> feedkeys l
+map <Button1> toggle_statusbar
+map u scroll half-up
+map d scroll half-down
+map f toggle_fullscreen
+
+map [fullscreen] <KPUp> feedkeys k
+map [fullscreen] <KPDown> feedkeys j
+map [fullscreen] <KPLeft> feedkeys h
+map [fullscreen] <KPRight> feedkeys l
+map [fullscreen] <Button1> toggle_statusbar
+map [fullscreen] u scroll half-up
+map [fullscreen] d scroll half-down
+map [fullscreen] f toggle_fullscreen
+
+# TODO: better zoom
+# map a zoom in backward
+# map [fullscreen] a zoom out
+
+# options
+set selection-clipboard clipboard
+set statusbar-h-padding 0
+set statusbar-v-padding 0
+set page-padding 20
+
+# colorscheme
 set notification-error-bg "#f7768e"
 set notification-error-fg "#c0caf5"
 set notification-warning-bg "#e0af68"
 set notification-warning-fg "#414868"
 set notification-bg "#24283b"
 set notification-fg "#c0caf5"
-set completion-bg "#24283b"
+
+set completion-bg "#1d202f"
 set completion-fg "#a9b1d6"
-set completion-group-bg "#24283b"
+set completion-group-bg "#1d202f"
 set completion-group-fg "#a9b1d6"
-set completion-highlight-bg "#414868"
+set completion-highlight-bg "#2e3c64"
 set completion-highlight-fg "#c0caf5"
+
 set index-bg "#24283b"
 set index-fg "#c0caf5"
 set index-active-bg "#414868"
