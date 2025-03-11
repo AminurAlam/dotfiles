@@ -38,6 +38,16 @@ use = "Reledia/hexyl"
 rev = "228a9ef"
 hash = "cdc65cfe4e60e1bf5afe5769d074fa9c"
 
+[[plugin.deps]]
+use = "yazi-rs/plugins:jump-to-char"
+rev = "2bf70d8"
+hash = "a670c03eb3760812e044a24f94cedc55"
+
+[[plugin.deps]]
+use = "yazi-rs/plugins:toggle-pane"
+rev = "2bf70d8"
+hash = "812fd49667ab6823250f0411f8cf793a"
+
 [[flavor.deps]]
 use = "BennyOe/tokyo-night"
 rev = "695dac6"
