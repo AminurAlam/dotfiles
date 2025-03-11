@@ -1,7 +1,7 @@
 mkdir -p ~/backup ~/.ssh ~/.local/bin ~/bin
 
 printf "LINKING CONFIG DIRECTORIES... "
-for config in alacritty aria2 btop clangd dunst eza fish gdb git htop hypr keepassxc lazygit mpv newsboat npm nvim python ruff streamrip termux tmux waybar wofi yazi yt-dlp zathura zellij
+for config in alacritty aria2 btop clangd dunst eza fish gdb git htop hypr keepassxc lazygit mpv newsboat npm nvim python ruff streamrip termux tmux waybar wofi yay yazi yt-dlp zathura zellij
     # skip non-existing dirs
     [ -e ~/repos/dotfiles/$config ] || continue
     # unlink/relocate old directories in ~/.config
@@ -19,7 +19,7 @@ ln -fs ~/repos/dotfiles/other/tidal-dl.json ~/.config/.tidal-dl.json
 ln -fs ~/repos/dotfiles/other/starship.toml ~/.config/starship.toml
 ln -fs ~/repos/dotfiles/other/stylua.toml ~/.config/stylua.toml
 ln -fs ~/repos/dotfiles/other/taplo.toml ~/.config/taplo.toml
-ln -fs ~/repos/dotfiles/other/ssh-config ~/.ssh/config
+ln -fs ~/repos/dotfiles/other/ssh_config ~/.ssh/config
 
 if [ -e /etc/pacman.conf ]
     sudo ln -fs ~/repos/dotfiles/other/pacman.arch.conf /etc/pacman.conf
