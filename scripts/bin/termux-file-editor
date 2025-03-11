@@ -2,10 +2,8 @@
 
 if echo "$argv" | rg -q '.*\.(png|jpg)'
     ps -xo cmd | rg -q [m]anga_ocr
-    and begin
-        # am start -n "eu.kanade.tachiyomi.sy/eu.kanade.tachiyomi.ui.main.MainActivity"
-        # am start -n "org.ironfoxoss.ironfox/org.mozilla.gecko.BrowserApp"
-    end
+    and am start -n "org.ironfoxoss.ironfox/org.mozilla.gecko.BrowserApp"
+    or echo "manga_ocr is not running"
 else
     nvim $argv
 end

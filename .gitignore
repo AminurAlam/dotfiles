@@ -24,7 +24,10 @@ passwords.gpg
 /rclone/
 rclone.conf
 
+/scripts/bin/rish_shizuku.dex
+
+/streamrip/*downloads.db
+
 /yazi/plugins/*
 !/yazi/plugins/sqlite.yazi/
 /yazi/flavors/
-/streamrip/*downloads.db
