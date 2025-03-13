@@ -1,16 +1,19 @@
-function out -d "compile and run c code in an instant"
+function out -d "compile and run some code"
     clear
 
-    set ext (path extension $argv[1])
-
-    if [ "$ext" = .c ]
-        cc -lm -oout -Wno-all $argv[1]
-    else if [ "$ext" = .rs ]
-        rustc -oout -- $argv[1]
-    end
-
-    [ -e out ] && begin
-        ./out
-        rm out
+    switch (path extension $argv[1])
+        case .c
+            cc -lm -oout -Wno-all $argv[1]
+            ./out
+            rm out
+        case .rs
+            rustc -oout -- $argv[1]
+            ./out
+            rm out
+        case .tex
+            latexmk -pdf -interaction=nonstopmode -synctex=1 $argv[1]
+            open (path change-extension pdf "$argv[1]")
+            latexmk -c
+        case "*"
     end
 end
