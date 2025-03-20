@@ -4,7 +4,7 @@ open.prepend_rules = [
   { name = "*/", use = ["android_fm", "open", "dir2cbz", "edit", "reveal"] },
   { name = "*.cb{z,r}", use = ["zathura", "open", "extract", "reveal"] },
   { name = "*.zip", use = ["extract", "reveal"] },
-  { mime = "image/*", use = ["img", "gimp", "krita", "open"] },
+  { mime = "image/*", use = ["img","krita", "gimp", "open"] },
   { mime = "application/bittorrent", use = ["qbittorrent", "open"] },
   { name = "*.torrent", use = ["qbittorrent", "open"] },
   { name = "*.exe", use = ["wine", "open"] },

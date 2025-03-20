@@ -1,11 +1,11 @@
 [[plugin.deps]]
 use = "yazi-rs/plugins:hide-preview"
-rev = "a1b678d"
+rev = "2730199"
 hash = "53f826884e2c7e521cecc492a7f31d7e"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:max-preview"
-rev = "a1b678d"
+rev = "2730199"
 hash = "a8025f2bb311e869069364fba01abffc"
 
 [[plugin.deps]]
@@ -20,18 +20,18 @@ hash = "666ccba55119fba4c25b8ad354b2855c"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:smart-enter"
-rev = "a1b678d"
+rev = "2730199"
 hash = "7918aab6a71caf31b58411f789195677"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:mount"
-rev = "a1b678d"
+rev = "2730199"
 hash = "dd97eede8e20e59cd2604e8006e470e2"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:git"
-rev = "a1b678d"
-hash = "bcbf72738d4b7fb9a03cac84465b9ba4"
+rev = "2730199"
+hash = "e0d2c8d7e7afe5b82270367098d1a821"
 
 [[plugin.deps]]
 use = "Reledia/hexyl"
@@ -40,13 +40,13 @@ hash = "cdc65cfe4e60e1bf5afe5769d074fa9c"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:jump-to-char"
-rev = "2bf70d8"
+rev = "2730199"
 hash = "a670c03eb3760812e044a24f94cedc55"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:toggle-pane"
-rev = "2bf70d8"
-hash = "812fd49667ab6823250f0411f8cf793a"
+rev = "2730199"
+hash = "5c9dda1a587b8f5b6f63e3d5375bda88"
 
 [[flavor.deps]]
 use = "BennyOe/tokyo-night"
