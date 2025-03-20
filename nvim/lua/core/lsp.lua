@@ -11,7 +11,7 @@ local servers = {
   'ruff',
   'rust_analyzer',
   'taplo',
-  'termux_language_server',
+  -- 'termux_language_server',
   'texlab',
   'vscode_css_language_server',
   'vscode_eslint_language_server',
@@ -19,6 +19,26 @@ local servers = {
 }
 
 if vim.fn.has('nvim-0.11.0') == 1 then vim.lsp.enable(servers) end
+
+vim.api.nvim_create_autocmd({ 'BufEnter' }, {
+  pattern = {
+    'build.sh',
+    '*.subpackage.sh',
+    'PKGBUILD',
+    '*.install',
+    'makepkg.conf',
+    '*.ebuild',
+    '*.eclass',
+    'color.map',
+    'make.conf',
+  },
+  callback = function()
+    vim.lsp.start({
+      name = 'termux',
+      cmd = { 'termux-language-server' },
+    })
+  end,
+})
 
 -- stylua: ignore
 vim.api.nvim_create_user_command('Tex', function()

@@ -109,6 +109,7 @@ autocmd('TextYankPost', {
 
 autocmd('FileType', { pattern = { 'qf' }, command = 'nmap <buffer> <cr> <cr>' })
 autocmd('FileType', { pattern = { 'checkhealth' }, command = 'set bh=wipe nobl nonu nornu nowrap' })
+autocmd('VimLeave', { pattern = '*.tex', command = '!latexmk -c' })
 autocmd('BufEnter', { command = 'set formatoptions-=cro' })
 autocmd('BufLeave', { command = 'set nocursorline' })
 autocmd('BufEnter', { command = 'set cursorline' })
