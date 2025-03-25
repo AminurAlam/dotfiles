@@ -18,7 +18,7 @@ return {
       typeFormat = { config = { auto_complete_end = true } },
       completion = { callSnippet = 'Replace', displayContext = 5 },
       diagnostics = {
-        globals = { '_G', 'vim', 'drastic', 'ya', 'Command', 'cx' },
+        globals = { '_G', 'vim', 'love', 'drastic', 'ya', 'Command', 'cx' },
         libraryFiles = 'Disable',
         disable = { 'lowercase-global' },
       },

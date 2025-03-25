@@ -73,6 +73,7 @@ end
 
 do -- terminal, cursor & gui
   set.belloff = 'showmatch'
+  set.winborder = 'rounded'
   set.winblend = 0
   set.pumblend = 0
   set.pumheight = 15
