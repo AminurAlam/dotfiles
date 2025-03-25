@@ -1,5 +1,6 @@
 ### EXPORTS ###
 set -gx EDITOR (command -v nvim || command -v vim || command -v vi)
+set -gx SUDO_EDITOR nvim --clean
 set -gx VISUAL $EDITOR
 set -gx LESS --mouse
 set -gx BROWSER (command -v firefox || command -v xdg-open)
@@ -65,9 +66,6 @@ set -gxp --path PATH "$CARGO_HOME/bin" # after declaring CARGO_HOME
 set -gxp --path PATH "$HOME/.local/share/npm/bin"
 set -gxp --path PATH "$HOME/.local/share/nvim/mason/bin"
 set -gxp --path PATH "$PREFIX/lib/jvm/java-21-openjdk/bin"
-# set -gxp --path PATH "$PREFIX/bin/texlive" # replaced by $PREFIX/etc/fish/conf.d/texlive.fish
-
-# [ (uname -o) = Android ] && set -gxa LD_PRELOAD /data/data/com.termux/files/usr/lib/libluajit.so # https://github.com/termux/termux-packages/issues/22328
 
 
 

@@ -22,7 +22,8 @@ abbr yq "yq -oj --xml-attribute-prefix ''"
 abbr qmv "qmv -AXf do"
 abbr diff "diff -Naur"
 abbr py "python3 -q"
-abbr pst "ps -faxo 'pid,comm' | sed -E \"s:\$PREFIX/[a-z]+/::\""
+abbr pst pstree -Th
+[ (uname -o) = Android ] && abbr pst "ps -faxo 'pid,comm' | sed -E \"s:\$PREFIX/[a-z]+/::\""
 abbr --set-cursor fstack "ffmpeg -y -hide_banner -i % -filter_complex hstack out.png" # https://stackoverflow.com/questions/11552565/vertically-or-horizontally-stack-mosaic-several-videos-using-ffmpeg#33764934
 abbr --set-cursor ff "ffmpeg -y -hide_banner -stats -loglevel error -i % -vcodec copy -acodec copy -map 0:a"
 abbr --set-cursor mbz "python ~/repos/musicbrainzpy/cover_art.py -o \$XDG_MUSIC_DIR/#meta/ '%'"
@@ -49,6 +50,7 @@ abbr rls "rclone lsf"
 abbr rlt "rclone tree --level"
 abbr rdu "rclone size"
 abbr rconf "rclone config"
+abbr rsy "rsync --port 8022 -aP"
 
 # du -> dust
 abbr du "dust -Dn 25"

@@ -20,9 +20,8 @@ function sy
     rsync --port 8022 -aP ~/Downloads/main/arch.kdbx phone:/sdcard/main/arch.kdbx
     rsync --port 8022 -aP phone:/sdcard/main/android.kdbx ~/Downloads/main/android.kdbx
 
-    printf "\033[36m === ROMS ===\033[0m\n"
+    printf "\033[36m === MISC ===\033[0m\n"
     rsync --port 8022 -aP --exclude Switch ~/Downloads/ROMS/ phone:/sdcard/Download/ROMS/ --delete
-
-    printf "\033[36m === MUSIC ===\033[0m\n"
     rsync --port 8022 -aP --exclude .thumbnails phone:/sdcard/Music/ ~/Music/ --delete
+    rsync --port 8022 -aP phone:/sdcard/TachiyomiSY/local/\#lewd/ ~/Downloads/manga/#lewd/ --delete
 end

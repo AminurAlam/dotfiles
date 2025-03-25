@@ -39,12 +39,12 @@ function clean -d "cleanup to free storage"
     else
         command -vq pacman && yes | pacman -Scc
     end
-
     command -vq yay && yay -Yc
     command -vq pip && pip cache purge
     command -vq npm && npm cache clean --force
     command -vq newsboat && not ps a | rg -q newsboat && newsboat -X
     command -vq ccache && ccache --clear
+    command -vq journalctl && sudo journalctl --vacuum-time 7d
 
     echo
     echo (count (ls -1NA ~)) files in HOME
