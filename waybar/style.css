@@ -24,17 +24,26 @@
   margin: 5px;
   background-color: #24283b;
   margin-left: 1rem;
+  padding: 0px 10px;
 }
 
 #workspaces button {
   color: #c0caf5;
   border-radius: 1rem;
-  padding: 0.4rem;
+  padding: 0px 5px;
+  padding-top: 5px;
 }
 
 #workspaces button.active {
-  color: #8db0ff;
-  border-radius: 1rem;
+  color: #000000;
+  background: #8db0ff;
+  border-radius: 10px;
+  padding: 5px 10px 0px 10px;
+  margin: 5px;
+}
+
+#workspaces button.urgent {
+  border: 3px solid #db4b4b;
 }
 
 #workspaces button:hover {
@@ -97,6 +106,10 @@
 #tray {
   margin-right: 1rem;
   border-radius: 1rem;
+}
+
+#network.disabled {
+  background: red;
 }
 
 /* #taskbar */

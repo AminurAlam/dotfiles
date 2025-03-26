@@ -8,6 +8,7 @@
   // Choose the order of the modules
   "modules-left": ["hyprland/workspaces", "hyprland/submap"],
   "modules-center": [],
+  // TODO: network speed
   "modules-right": [
     // "mpd",
     // "memory",
@@ -26,12 +27,12 @@
     "tray",
   ],
   "hyprland/workspaces": {
-    "format": "{icon}",
+    "format": "{name}",
     "format-icons": {
-      "urgent": "",
-      "focused": "",
-      "active": "󰚍",
-      "default": "",
+      "urgent": "",
+      "focused": "",
+      "active": "",
+      "default": "",
     },
   },
   "hyprland/submap": { "format": "<span style=\"italic\">{}</span>" },
@@ -113,15 +114,16 @@
   },
   "idle_inhibitor": {
     "format": "{icon}",
-    "format-icons": { "activated": "", "deactivated": "" },
+    "format-icons": { "activated": "", "deactivated": "󰒲" },
   },
   "network": {
     "icon-size": 26,
     "format-disconnected": "󰤭",
-    "format-wifi": "󰤨",
+    "format-wifi": "{bandwidthTotalBits} {icon}",
+    "format-icons": ["󰤟", "󰤢", "󰤥", "󰤨"],
     "format-ethernet": "󰈀",
     "format-linked": "(No IP)",
-    "tooltip-format": "{gwaddr}",
+    "tooltip-format": "{essid} {frequency} {gwaddr}",
   },
   "privacy": {
     "icon-spacing": 4,
