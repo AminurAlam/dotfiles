@@ -73,7 +73,7 @@ end
 
 do -- terminal, cursor & gui
   set.belloff = 'showmatch'
-  set.winborder = 'rounded'
+  -- set.winborder = 'rounded' -- causes lot of unexpected behaviour
   set.winblend = 0
   set.pumblend = 0
   set.pumheight = 15
