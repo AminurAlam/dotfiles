@@ -7,18 +7,13 @@ function mux -d "tmux wrapper"
         set argv (tmux ls -F#S | fzf)
     end
 
-    if [ -n "$argv[1]" ] && tmux has-session -t "$argv[1]" 2>/dev/null && [ -n "$TMUX" ]
-        # the requested session exists and you are in tmux
-        tmux switch-client -t "$argv[1]"
-    else if [ -n "$argv[1]" ] && tmux has-session -t "$argv[1]" 2>/dev/null
-        # the requested session exists
-        tmux attach -t "$argv[1]"
-    else if [ -n "$argv[1]" ]
-        # the requested session doesnt exists
-        tmux new-session -ds "$argv[1]"
-        tmux attach -t "$argv[1]"
-    else if [ -z "$argv[1]" ]
-        # start unnamed sesh
-        tmux
+    if [ -z "$argv[1]" ]
+        set argv _
     end
+
+    tmux new-session -ds "$argv[1]" &>/dev/null
+
+    [ -n "$TMUX" ]
+    and tmux switch-client -t "$argv[1]"
+    or tmux attach -t "$argv[1]"
 end
