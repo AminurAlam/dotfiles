@@ -4,12 +4,14 @@
 # archinstall
 
 ### post install
+sudo pacman -Syu --needed reflector
+sudo reflector --sort rate --country India,China,Bangladesh --save /etc/pacman.d/mirrorlist
 sudo pacman -Syu --needed alacritty base-devel \
     eza fd fish flatpak git man-db power-profiles-daemon ripgrep thunderbird tmux vlc yazi \
     noto-fonts noto-fonts-cjk noto-fonts-emoji
 
 systemctl enable NetworkManager.service power-profiles-daemon.service
-command -v fish && sudo chsh -s "$(command -v fish)"
+command -v fish &>/dev/null && sudo chsh -s "$(command -v fish)"
 mkdir -p ~/.local/share/fonts/ttf/SauceCodeProNerdFont
 curl -Lqso ~/.local/share/fonts/ttf/SauceCodeProNerdFont/SauceCodeProNerdFont-Medium.ttf "https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/SourceCodePro/SauceCodeProNerdFont-Medium.ttf" &>/dev/null
 fc-cache -f
@@ -39,6 +41,9 @@ printf "done\n"
 
 printf "SETTING UP YAZI...\n"
 command -v ya &>/dev/null && ya pack -u 2>/dev/null | rg Upgrading
+
+printf "BATTERY LIMITER...\n"
+[ -e "/sys/bus/platform/drivers/ideapad_acpi/VPC2004:00/conservation_mode" ] && sudo su -c 'echo 1 >/sys/bus/platform/drivers/ideapad_acpi/VPC2004:00/conservation_mode'
 
 ### run these funcs whenever you need
 setup_lsp() {
