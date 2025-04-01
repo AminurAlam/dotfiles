@@ -9,4 +9,5 @@ return {
   },
   filetypes = { 'toml' },
   root_markers = { '.' }, -- taplo excludes files if ws doesnt exist
+  on_attach = function(client) client.server_capabilities.documentFormattingProvider = false end,
 }
