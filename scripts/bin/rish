@@ -1,5 +1,5 @@
 #!/system/bin/sh
-DEX="$(dirname "$1")/rish_shizuku.dex"
+DEX="$HOME/.local/bin/rish_shizuku.dex"
 
 [ ! -f "$DEX" ] && {
     echo "Cannot find $DEX, please check the tutorial in Shizuku app"

@@ -4,6 +4,7 @@
 # archinstall
 
 ### post install
+# TODO: reflector is being moved to AUR
 sudo pacman -Syu --needed reflector
 sudo reflector --sort rate --country India,China,Bangladesh --save /etc/pacman.d/mirrorlist
 sudo pacman -Syu --needed alacritty base-devel \

@@ -1,6 +1,4 @@
 # keymaps
-# TODO: zoom, statusbar
-
 map <KPUp> feedkeys k
 map <KPDown> feedkeys j
 map <KPLeft> feedkeys h
@@ -9,6 +7,7 @@ map <Button1> toggle_statusbar
 map u scroll half-up
 map d scroll half-down
 map f toggle_fullscreen
+map D toggle_page_mode
 
 map [fullscreen] <KPUp> feedkeys k
 map [fullscreen] <KPDown> feedkeys j
@@ -18,6 +17,7 @@ map [fullscreen] <Button1> toggle_statusbar
 map [fullscreen] u scroll half-up
 map [fullscreen] d scroll half-down
 map [fullscreen] f toggle_fullscreen
+map [fullscreen] D toggle_page_mode
 
 # TODO: better zoom
 # map a zoom in backward

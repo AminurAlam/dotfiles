@@ -1,5 +1,5 @@
 [general]
-import = ["~/.config/alacritty/tokyonight.toml", "~/.config/alacritty/keybindings.toml"]
+import = ["~/.config/alacritty/tokyonight.toml"]
 live_config_reload = true
 
 [window]

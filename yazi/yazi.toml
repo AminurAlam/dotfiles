@@ -41,7 +41,7 @@ gimp = [{ run = 'gimp "$@"', block = false, orphan = true, desc = "gimp", for = 
 krita = [{ run = 'krita "$@"', block = false, orphan = true, desc = "krita", for = "linux" }]
 apkintall = [
   { run = 'adb install "$@"', block = true, orphan = false, desc = "apk installer", for = "linux" },
-  { run = 'rish install "$@"', block = true, orphan = false, desc = "apk installer", for = "android" }
+  { run = 'rish install "$@"', block = true, orphan = false, desc = "apk installer", for = "android" },
 ]
 
 [manager]
