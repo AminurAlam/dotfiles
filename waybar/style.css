@@ -5,10 +5,11 @@
   font-size: 17px;
   min-height: 0;
   opacity: 0.99;
+  min-height: 24px;
 }
 
 #waybar {
-  background: transparent;
+  background: rgba(30, 32, 48, 0.8);
   color: #c0caf5;
   margin: 0px 0px;
   transition-property: background-color;
@@ -17,39 +18,6 @@
 
 #waybar.hidden {
   opacity: 0.2;
-}
-
-#workspaces {
-  border-radius: 1rem;
-  margin: 5px;
-  background-color: #24283b;
-  margin-left: 1rem;
-  padding: 0px 10px;
-}
-
-#workspaces button {
-  color: #c0caf5;
-  border-radius: 1rem;
-  padding: 0px 5px;
-  padding-top: 5px;
-}
-
-#workspaces button.active {
-  color: #000000;
-  background: #8db0ff;
-  border-radius: 10px;
-  padding: 5px 10px 0px 10px;
-  margin: 5px;
-}
-
-#workspaces button.urgent {
-  border: 3px solid #db4b4b;
-}
-
-#workspaces button:hover {
-  color: #7aa2f7;
-  background: #181926;
-  border-radius: 1rem;
 }
 
 #backlight,
@@ -73,49 +41,77 @@
 #tray,
 #wireplumber,
 #mpd {
-  background-color: #24283b;
-  padding: 0.1rem 1rem;
-  margin: 5px 0;
+  padding: 0.1rem 0.7rem;
+  min-width: 50px;
 }
 
-#battery.charging {
-  color: #5af79e;
-}
-#battery.warning:not(.charging) {
-  color: #f7768e;
+#workspaces {
+  margin: 0px 0px 0px 30px;
 }
 
-#clock {
-  border-radius: 0px 1rem 1rem 0px;
-  margin-right: 1rem;
+#workspaces button {
+  color: #c0caf5;
+  margin: 3px 0px 3px 0px;
+  padding: 5px 5px 0px 5px;
 }
 
-#pulseaudio {
-  border-radius: 1rem 0px 0px 1rem;
-  margin-left: 1rem;
+#workspaces button.active {
+  color: #000000;
+  background: #8db0ff;
+  border-radius: 10px;
+  padding: 5px 10px 0px 10px;
+  margin: 3px 5px 3px 5px;
 }
 
-#custom-music {
-  border-radius: 1rem;
-}
-
-#custom-lock {
-  border-radius: 1rem 0px 0px 1rem;
+#workspaces button.urgent {
+  color: #000000;
+  background: #db4b4b;
+  border-radius: 10px;
+  padding: 5px 10px 0px 10px;
+  margin: 3px 5px 3px 5px;
 }
 
 #tray {
-  margin-right: 1rem;
-  border-radius: 1rem;
+  margin: 0px 0px 0px 20px;
 }
 
-#network.disabled {
-  background: red;
+#tray menu {
+  color: #c0caf5;
+  background: #24283b;
 }
 
-/* #taskbar */
-/* #taskbar button */
-/* #taskbar button.active */
-/* #taskbar button.minimized */
-/* #taskbar button.maximized */
-/* #taskbar button.fullscreen */
-/* #taskbar.empty */
+#network {
+  min-width: 90px;
+}
+#network.disconnected {
+  min-width: 0;
+}
+
+#temperature.critical {
+  color: #f7768e;
+}
+
+#battery.warning {
+  color: #ff9e64;
+}
+#battery.critical {
+  color: #f7768e;
+}
+#battery.charging {
+  color: #5af79e;
+}
+#battery.charging.full {
+  color: #8db0ff;
+}
+
+#cpu.high {
+  color: #f7768e;
+}
+
+#power-profiles-daemon {
+  min-width: 20px;
+}
+
+#clock {
+  margin: 0px 20px 0px 0px;
+}

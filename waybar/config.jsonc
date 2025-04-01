@@ -1,30 +1,27 @@
 // vim:ft=jsonc sw=2:
 {
-  // "layer": "top", // Waybar at top layer
-  // "position": "bottom", // Waybar position (top|bottom|left|right)
-  "height": 25, // Waybar height (to be removed for auto height)
-  // "width": 1280, // Waybar width
+  // "layer": "top",
+  // "position": "bottom",
+  // "height": 25,
+  // "width": 1870,
   "spacing": 4, // Gaps between modules (4px)
-  // Choose the order of the modules
-  "modules-left": ["hyprland/workspaces", "hyprland/submap"],
-  "modules-center": [],
-  // TODO: network speed
+  "modules-left": ["hyprland/workspaces"],
+  "modules-center": ["tray"],
   "modules-right": [
     // "mpd",
     // "memory",
     // "keyboard-state",
     "pulseaudio",
     "backlight",
+    "network",
     // "battery#bat2",
     "cpu",
     "temperature",
     "battery",
     "power-profiles-daemon",
-    "idle_inhibitor",
-    "network",
-    "privacy",
+    // "idle_inhibitor",
+    // "privacy",
     "clock",
-    "tray",
   ],
   "hyprland/workspaces": {
     "format": "{name}",
@@ -35,14 +32,18 @@
       "default": "",
     },
   },
-  "hyprland/submap": { "format": "<span style=\"italic\">{}</span>" },
+  "tray": {
+    "icon-size": 25,
+    "spacing": 15,
+    "reverse-direction": true,
+  },
   "pulseaudio": {
     // "scroll-step": 1, // %, can be a float
-    "format": "{volume}% {icon} {format_source}",
+    "format": "{format_source} {volume}% {icon}",
     "format-bluetooth": "{volume}% {icon} {format_source}",
     "format-bluetooth-muted": " {icon} {format_source}",
     "format-muted": "󰸈 {format_source}",
-    "format-source": "{volume}% ",
+    "format-source": "{volume}%    ",
     "format-source-muted": "",
     "format-icons": {
       "headphone": "",
@@ -61,6 +62,15 @@
     "format-icons": ["󰃟"],
     "tooltip": false,
   },
+  "network": {
+    "interval": 1,
+    "format-disconnected": "󰤭",
+    "format-wifi": "{bandwidthTotalBytes} {icon}",
+    "format-icons": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"],
+    "format-ethernet": "{bandwidthTotalBytes} 󰈀",
+    "format-linked": "(No IP)",
+    "tooltip-format": "{essid} {gwaddr}",
+  },
   "mpd": {
     "format": "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{artist} - {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) ⸨{songPosition}|{queueLength}⸩ {volume}% ",
     "format-disconnected": "Disconnected ",
@@ -75,11 +85,16 @@
     "tooltip-format": "MPD (connected)",
     "tooltip-format-disconnected": "MPD (disconnected)",
   },
-  "cpu": { "format": "{usage}% ", "tooltip": false },
+  "cpu": {
+    "format": "{usage}% ",
+    "interval": 1,
+    "tooltip": true,
+    "states": { "high": 30, "low": 0 },
+  },
   "temperature": {
     // "thermal-zone": 2,
     // "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
-    "critical-threshold": 60,
+    "critical-threshold": 55,
     // "format-critical": "{temperatureC}°C {icon}",
     "format": "{temperatureC}°C {icon}",
     "format-icons": ["", "", "", "", ""],
@@ -95,10 +110,11 @@
     "format-full": "{capacity}% {icon}",
     "format-charging": "{capacity}% ",
     "format-plugged": "{capacity}% ",
-    "format-alt": "{time}",
+    "format-alt": "{time} | {cycles} cycles | {power} watts",
     // "format-good": "", // An empty format will hide the module
-    // "format-full": "",
-    "format-icons": ["", "", "", "", ""],
+    "format-icons": ["", "", "", "", "", ""],
+    "interval": 5,
+    "states": { "critical": 20, "warning": 40, "good": 75, "full": 100 },
   },
   "power-profiles-daemon": {
     "format": "{icon}",
@@ -115,15 +131,6 @@
   "idle_inhibitor": {
     "format": "{icon}",
     "format-icons": { "activated": "", "deactivated": "󰒲" },
-  },
-  "network": {
-    "icon-size": 26,
-    "format-disconnected": "󰤭",
-    "format-wifi": "{bandwidthTotalBits} {icon}",
-    "format-icons": ["󰤟", "󰤢", "󰤥", "󰤨"],
-    "format-ethernet": "󰈀",
-    "format-linked": "(No IP)",
-    "tooltip-format": "{essid} {frequency} {gwaddr}",
   },
   "privacy": {
     "icon-spacing": 4,
@@ -152,9 +159,5 @@
     "tooltip-format": "{:%Y %B}",
     "format-alt": "{:%Y-%m-%d}",
     "tooltip": false,
-  },
-  "tray": {
-    // "icon-size": 21,
-    "spacing": 10,
   },
 }
