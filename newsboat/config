@@ -1,9 +1,9 @@
 # vim: set ft=conf :
-# https://newsboat.org/releases/2.37/docs/newsboat.html
-# /data/data/com.termux/files/usr/share/doc/newsboat/examples/config
+# https://newsboat.org/releases/2.39/docs/newsboat.html
 
 include ~/.config/newsboat/colorscheme
 include ~/.config/newsboat/bindings
+include ~/.config/newsboat/filters
 error-log ~/.local/cache/newsboat-errors.log
 
 # title style
@@ -17,23 +17,6 @@ urlview-title-format ""
 datetime-format "%b %d"
 feedlist-format " %?l?[%4U]&      ? %t %S"
 articlelist-format "%D %?T?%12T│?%t" # date ; group? && groupname ; title
-
-# filters
-# ignore-article "" "title =~ \"(^| )()( |$)\""
-ignore-mode "display"
-ignore-article "*" "title =~ \"(^| )(Open)?AI( |$)\""
-ignore-article "*" "title =~ \"(^| )(Chat)?GPT-?(3|4|5)?( |$)\""
-ignore-article "*" "title =~ \"(^| )(LLMs?|large language models?|machine learning|Gemini|copilot|DeepSeek)( |$)\""
-ignore-article "https://www.ghacks.net/feed/" "title =~ \"(^| )(windows)( |$)\""
-ignore-article "https://torrentfreak.com/feed" "title =~ \"IPTV\""
-ignore-article "https://torrentfreak.com/feed" "title =~ \"(^| )(Football|Boxing|sports|NFL)( |$)\""
-ignore-article "https://superuser.com/feeds/week" "title =~ \"windows|powershell|batch\""
-ignore-article "https://muspy.com/feed?id=mobwjpkr95u5p1b4f2w1bjt74qc8u3" "title =~ \"remix|taylor swift|bruce springsteen\""
-ignore-article "https://rssbridge.bus-hit.me/?action=display&bridge=BleepingComputerBridge&format=Atom" "title =~ \"(^| )(windows)( |$)\""
-ignore-article "https://www.404media.co/rss" "title =~ \"^(Podcast|Behind the Blog):\""
-ignore-article "https://hnrss.org/frontpage.atom?description=0" "title =~ \"^(Show|Tell|Ask) HN: \""
-ignore-article "https://hnrss.org/frontpage.atom?description=0" "title =~ \"\\(YC .*\\)\""
-ignore-article "https://lobste.rs/rss" "title =~ \"^What are you doing this week\""
 
 # look for article update
 # reset-unread-on-update \
@@ -64,11 +47,8 @@ show-read-articles yes
 always-display-description no
 display-article-progress yes
 
-# always-download "https://lobste.rs/rss"
-# pager "nvim +'set ft=article'"
-# user-agent "Mozilla/5.0 (compatible)"
 notify-program "~/repos/dotfiles/scripts/newsboat_notify.fish"
 notify-format "Newsboat: %f unread feeds; %n unread articles"
-browser "termux-open %u &"
+browser "xdg-open %u &"
 bookmark-cmd "fish ~/repos/dotfiles/scripts/newsboat_bookmark.fish"
 bookmark-autopilot yes

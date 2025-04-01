@@ -1,4 +1,5 @@
 # vim: set ft=conf :
+# https://newsboat.org/releases/2.39/docs/newsboat.html#_key_bindings
 
 ### MACROS
 # macro SPACE refresh; open;
@@ -9,35 +10,48 @@
 #     set browser termux-open
 
 ### KEY BINDINGS
-# ENTER BACKSPACE LEFT RIGHT UP DOWN PPAGE NPAGE HOME END ESC TAB F1-12
-# all (default if not specified) feedlist filebrowser help articlelist article
+# ENTER BACKSPACE LEFT RIGHT UP DOWN PPAGE NPAGE HOME END ESC TAB LT GT ^ F1-12
+# everywhere feedlist filebrowser help articlelist article
 # tagselection filterselection urlview podboat dirbrowser searchresultslist
 
 # unbind keys
 unbind-key s # disable saving
 
 # open/close
-bind-key ^ quit
-bind-key $ open
-bind-key $ open-in-browser article
-bind-key RIGHT open
-bind-key LEFT quit
-bind-key BACKSPACE quit
-bind-key ^Q hard-quit
+bind <LEFT>       everywhere quit
+bind h            everywhere quit
+bind <BACKSPACE>  everywhere quit
+bind <^>          everywhere quit
+
+bind <RIGHT>      everywhere open
+bind l            everywhere open
+bind <ENTER>      everywhere open
+bind <$>          everywhere open
+
+bind <RIGHT>      article    open-in-browser
+bind l            article    open-in-browser
+bind <ENTER>      article    open-in-browser
+bind <$>          article    open-in-browser
+
+bind <ESC>        urlview    quit
+bind <C-q>        everywhere hard-quit
+bind Q            everywhere hard-quit
 
 # movement
-bind-key h quit
-bind-key l open
-bind-key l open-in-browser article
-bind-key j down
-bind-key k up
-bind-key n next-unread
-bind-key N prev-unread
-bind-key g home
-bind-key G end
-bind-key ^U halfpageup
-bind-key ^D halfpagedown
+bind gg           everywhere home
+bind G            everywhere end
+bind k            everywhere up
+bind j            everywhere down
+bind <C-u>        everywhere up;up;up;up;up
+bind <C-d>        everywhere down;down;down;down;down
 
 # read/unread
-bind-key a mark-all-above-as-read
-bind-key ` toggle-article-read
+bind n            everywhere next-unread
+bind N            everywhere prev-unread
+bind p            everywhere prev-unread
+bind a            everywhere mark-all-above-as-read
+bind `            everywhere toggle-article-read
+bind `            feedlist   set show-read-feeds!
+bind <SPACE>      everywhere toggle-article-read
+bind <SPACE>      feedlist   set show-read-feeds!
+bind m            everywhere toggle-article-read
