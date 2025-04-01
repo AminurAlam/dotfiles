@@ -4,10 +4,13 @@ open.prepend_rules = [
   { name = "*/", use = ["android_fm", "open", "dir2cbz", "edit", "reveal"] },
   { name = "*.cb{z,r}", use = ["zathura", "open", "extract", "reveal"] },
   { name = "*.zip", use = ["extract", "reveal"] },
-  { mime = "image/*", use = ["img","krita", "gimp", "open"] },
+  { mime = "image/*", use = ["loupe", "krita", "gimp", "open"] },
+  { mime = "video/*", use = ["open", "play"] },
   { mime = "application/bittorrent", use = ["qbittorrent", "open"] },
   { name = "*.torrent", use = ["qbittorrent", "open"] },
   { name = "*.exe", use = ["wine", "open"] },
+  { mime = "application/android.package-archive", use = ["apkintall", "open"] },
+  { name = "*.apk", use = ["apkintall", "open"] },
 ]
 
 plugin.prepend_fetchers = [{ id = "git", name = "*", run = "git" }, { id = "git", name = "*/", run = "git" }]
@@ -33,9 +36,13 @@ qbittorrent = [{ run = 'qbittorrent "$@"', block = false, orphan = true, desc = 
 wine = [{ run = 'wine "$@"', block = false, orphan = true, desc = "wine", for = "linux" }]
 zathura = [{ run = 'zathura "$@"', block = false, orphan = true, desc = "zathura", for = "linux" }]
 # img related
-img = [{ run = 'loupe "$@"', block = false, orphan = true, desc = "gnome img viewer", for = "linux" }]
+loupe = [{ run = 'loupe "$@"', block = false, orphan = true, desc = "gnome img viewer", for = "linux" }]
 gimp = [{ run = 'gimp "$@"', block = false, orphan = true, desc = "gimp", for = "linux" }]
 krita = [{ run = 'krita "$@"', block = false, orphan = true, desc = "krita", for = "linux" }]
+apkintall = [
+  { run = 'adb install "$@"', block = true, orphan = false, desc = "apk installer", for = "linux" },
+  { run = 'rish install "$@"', block = true, orphan = false, desc = "apk installer", for = "android" }
+]
 
 [manager]
 ratio = [0, 1, 1]
