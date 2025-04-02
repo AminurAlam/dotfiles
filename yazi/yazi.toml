@@ -1,7 +1,7 @@
 "$schema" = "https://yazi-rs.github.io/schemas/yazi.json"
 
 open.prepend_rules = [
-  { name = "*/", use = ["android_fm", "open", "dir2cbz", "edit", "reveal"] },
+  { name = "*/", use = ["reveal", "dir2cbz", "open", "edit"] },
   { name = "*.cb{z,r}", use = ["zathura", "open", "extract", "reveal"] },
   { name = "*.zip", use = ["extract", "reveal"] },
   { mime = "image/*", use = ["loupe", "krita", "gimp", "open"] },
@@ -9,8 +9,8 @@ open.prepend_rules = [
   { mime = "application/bittorrent", use = ["qbittorrent", "open"] },
   { name = "*.torrent", use = ["qbittorrent", "open"] },
   { name = "*.exe", use = ["wine", "open"] },
-  { mime = "application/android.package-archive", use = ["apkintall", "open"] },
-  { name = "*.apk", use = ["apkintall", "open"] },
+  { mime = "application/android.package-archive", use = ["apkinstall", "open"] },
+  { name = "*.apk", use = ["apkinstall", "open"] },
 ]
 
 plugin.prepend_fetchers = [{ id = "git", name = "*", run = "git" }, { id = "git", name = "*/", run = "git" }]
@@ -27,22 +27,26 @@ plugin.prepend_previewers = [
 ]
 
 [opener]
-# TODO: escape filepath first
-android_fm = [
-  { run = 'am start -n me.zhanghai.android.files/.filelist.FileListActivity -d "$(readlink -fn -- "$1")"', for = 'android' },
-]
+apkinstall = [{ run = 'adb install "$@"', block = true, orphan = false, desc = "apk installer", for = "linux" }]
 dir2cbz = [{ run = '''fish -c 'dir2cbz $argv' "$@" ''', block = true, desc = "dir2cbz" }]
 qbittorrent = [{ run = 'qbittorrent "$@"', block = false, orphan = true, desc = "qbittorrent", for = "linux" }]
 wine = [{ run = 'wine "$@"', block = false, orphan = true, desc = "wine", for = "linux" }]
 zathura = [{ run = 'zathura "$@"', block = false, orphan = true, desc = "zathura", for = "linux" }]
+play = [
+  { run = 'mpv --force-window "$@"', orphan = true, for = "unix" },
+  { run = 'mpv --force-window "$@"', orphan = true, for = "android" },
+]
+reveal = [
+  { run = 'xdg-open "$(dirname "$1")"', desc = "Reveal", for = "linux" },
+  { run = 'open -R "$1"', desc = "Reveal", for = "macos" },
+  { run = 'explorer /select,"%1"', orphan = true, desc = "Reveal", for = "windows" },
+  { run = 'opendir "$1"', for = 'android' },
+  { run = '''clear; exiftool "$1"; echo "Press enter to exit"; read _''', block = true, desc = "Show EXIF", for = "unix" },
+]
 # img related
 loupe = [{ run = 'loupe "$@"', block = false, orphan = true, desc = "gnome img viewer", for = "linux" }]
 gimp = [{ run = 'gimp "$@"', block = false, orphan = true, desc = "gimp", for = "linux" }]
 krita = [{ run = 'krita "$@"', block = false, orphan = true, desc = "krita", for = "linux" }]
-apkintall = [
-  { run = 'adb install "$@"', block = true, orphan = false, desc = "apk installer", for = "linux" },
-  { run = 'rish install "$@"', block = true, orphan = false, desc = "apk installer", for = "android" },
-]
 
 [manager]
 ratio = [0, 1, 1]

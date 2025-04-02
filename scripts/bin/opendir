@@ -1,0 +1,5 @@
+#!/usr/bin/env fish
+
+[ -z "$argv[1]" ] && set argv[1] "$PWD"
+set -f path (readlink -fn -- "$argv[1]" | string encode --style url)
+am start -n me.zhanghai.android.files/.filelist.FileListActivity -d "$path"

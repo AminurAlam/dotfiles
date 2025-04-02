@@ -44,6 +44,7 @@ manager.prepend_keymap = [
   { on = "r", run = "rename --cursor=before_ext" },
   { on = "R", run = ["toggle_all", "rename", "escape"] },
   { on = ["c", "c"], run = "rename --empty=all", desc = "rename empty" },
+  { on = ["c", "0"], run = "rename --empty=stem --cursor=start", desc = "rename stem" },
   { on = ["c", "^"], run = "rename --empty=stem --cursor=start", desc = "rename stem" },
   { on = ["c", "$"], run = "rename --empty=ext --cursor=end", desc = "rename ext" },
   # other

@@ -82,6 +82,10 @@ function fish_title
     printf "%s" (prompt_pwd)
 end
 
+function fish_should_add_to_history
+    not echo "$argv[1]" | grep -Eq '^(l|ll|ls|z|cd)(\s|$)'
+end
+
 function auto_pwd --on-variable PWD
     if test -d .git && git rev-parse --git-dir &>/dev/null
         git status -s

@@ -40,6 +40,7 @@ if [ (uname -o) = Android ]
     ln -fs ~/repos/dotfiles/scripts/bin/termux-file-editor ~/bin/termux-file-editor
     ln -fs ~/repos/dotfiles/scripts/bin/rish ~/.local/bin/rish
     ln -fs ~/repos/dotfiles/scripts/bin/tachi ~/.local/bin/tachi
+    ln -fs ~/repos/dotfiles/scripts/bin/opendir ~/.local/bin/opendir
 end
 
 rmdir --ignore-fail-on-non-empty ~/backup ~/bin
