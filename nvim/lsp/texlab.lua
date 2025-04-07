@@ -3,11 +3,11 @@ return {
   cmd = { 'texlab' },
   filetypes = { 'tex', 'plaintex', 'bib' },
   root_markers = {
-    '.git',
     '.latexmkrc',
     '.texlabroot',
     'texlabroot',
     'Tectonic.toml',
+    '.git',
   },
   settings = {
     texlab = {

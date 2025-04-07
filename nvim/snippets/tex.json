@@ -2,5 +2,21 @@
   "verb": {
     "prefix": "verb",
     "body": "\\verb|${1:text}|"
+  },
+  "generatetitlepage": {
+    "prefix": "generatetitlepage (extra)",
+    "body": "\\generatetitlepage{${SUBJECT}}{${name}}{${roll}}{${nth}}{${dept}}{${course}}{${institution}}"
+  },
+  "codequest": {
+    "prefix": "codequest (extra)",
+    "body": "\\codequest{${question}}{${path}}"
+  },
+  "gloss": {
+    "prefix": "gloss (extra)",
+    "body": "\\gloss{${term}}{${definition}}"
+  },
+  "shot": {
+    "prefix": "shot (extra)",
+    "body": "\\shot{${path}}{${height}}"
   }
 }

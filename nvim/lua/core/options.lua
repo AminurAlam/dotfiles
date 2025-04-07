@@ -72,7 +72,7 @@ do -- folding
 end
 
 do -- terminal, cursor & gui
-  set.belloff = 'showmatch'
+  set.belloff = termux and 'showmatch' or 'all'
   -- set.winborder = 'rounded' -- causes lot of unexpected behaviour
   set.winblend = 0
   set.pumblend = 0

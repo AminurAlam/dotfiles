@@ -1,3 +1,4 @@
+-- TODO: format on write
 local autocmd = vim.api.nvim_create_autocmd
 local servers = {
   'basedpyright',

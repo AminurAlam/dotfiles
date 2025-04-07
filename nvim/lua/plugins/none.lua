@@ -24,7 +24,7 @@ M.config = function()
         name = 'tex-fmt',
         method = 'NULL_LS_FORMATTING',
         filetypes = { 'tex' },
-        generator_opts = { command = { 'tex-fmt', '--stdin' }, to_stdin = true },
+        generator_opts = { command = { 'tex-fmt', '--nowrap', '--stdin' }, to_stdin = true },
         factory = h.formatter_factory,
       },
       h.make_builtin {
