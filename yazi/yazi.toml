@@ -1,20 +1,19 @@
 "$schema" = "https://yazi-rs.github.io/schemas/yazi.json"
 
+plugin.prepend_fetchers = [{ id = "git", name = "*", run = "git" }, { id = "git", name = "*/", run = "git" }]
 open.prepend_rules = [
   { name = "*/", use = ["reveal", "dir2cbz", "open", "edit"] },
   { name = "*.cb{z,r}", use = ["zathura", "open", "extract", "reveal"] },
   { name = "*.zip", use = ["extract", "reveal"] },
   { mime = "image/*", use = ["loupe", "krita", "gimp", "open"] },
-  { mime = "video/*", use = ["open", "play"] },
+  { mime = "video/*", use = ["play"] },
   { mime = "application/bittorrent", use = ["qbittorrent", "open"] },
   { name = "*.torrent", use = ["qbittorrent", "open"] },
   { name = "*.exe", use = ["wine", "open"] },
   { mime = "application/android.package-archive", use = ["apkinstall", "open"] },
   { name = "*.apk", use = ["apkinstall", "open"] },
+  { name = "*.{ass,srt,ssa,sty,sup,vtt}", use = ["add-sub", "edit"] },
 ]
-
-plugin.prepend_fetchers = [{ id = "git", name = "*", run = "git" }, { id = "git", name = "*/", run = "git" }]
-
 plugin.prepend_previewers = [
   { name = "*/", run = "eza-preview" },
   { name = "*.sqlite3", run = "sqlite" },
@@ -32,9 +31,10 @@ dir2cbz = [{ run = '''fish -c 'dir2cbz $argv' "$@" ''', block = true, desc = "di
 qbittorrent = [{ run = 'qbittorrent "$@"', block = false, orphan = true, desc = "qbittorrent", for = "linux" }]
 wine = [{ run = 'wine "$@"', block = false, orphan = true, desc = "wine", for = "linux" }]
 zathura = [{ run = 'zathura "$@"', block = false, orphan = true, desc = "zathura", for = "linux" }]
+add-sub = [{ run = ''' echo sub-add "'$0'" | socat - /tmp/mpv.sock ''', desc = "Add sub to MPV" }]
 play = [
   { run = 'mpv --force-window "$@"', orphan = true, for = "unix" },
-  { run = 'mpv --force-window "$@"', orphan = true, for = "android" },
+  { run = 'termux-open "$@"', orphan = true, for = "android" },
 ]
 reveal = [
   { run = 'xdg-open "$(dirname "$1")"', desc = "Reveal", for = "linux" },

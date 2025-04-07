@@ -1,14 +1,4 @@
 [[plugin.deps]]
-use = "yazi-rs/plugins:hide-preview"
-rev = "2730199"
-hash = "53f826884e2c7e521cecc492a7f31d7e"
-
-[[plugin.deps]]
-use = "yazi-rs/plugins:max-preview"
-rev = "2730199"
-hash = "a8025f2bb311e869069364fba01abffc"
-
-[[plugin.deps]]
 use = "ahkohd/eza-preview"
 rev = "6575a9a"
 hash = "72355a6c8b7c8de6ed4dda0f98f86fee"
@@ -22,11 +12,6 @@ hash = "666ccba55119fba4c25b8ad354b2855c"
 use = "yazi-rs/plugins:smart-enter"
 rev = "2730199"
 hash = "7918aab6a71caf31b58411f789195677"
-
-[[plugin.deps]]
-use = "yazi-rs/plugins:mount"
-rev = "2730199"
-hash = "dd97eede8e20e59cd2604e8006e470e2"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:git"

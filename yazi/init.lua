@@ -1,5 +1,4 @@
 ---@diagnostic disable: undefined-global
--- tostring(cx.active.current.cwd):gsub('(%.?)([^/])[^/]+/', '%1%2/')
 
 local old_layout = Tab.layout
 
@@ -14,13 +13,20 @@ Tab.layout = function(self, ...)
   return old_layout(self, ...)
 end
 
--- Header:children_add(function()
---   return ui.Span(ya.user_name() .. '@' .. ya.host_name() .. ':'):fg('blue')
--- end, 500, Header.LEFT)
+function Header:cwd()
+  local max = self._area.w - self._right_width
+  if max <= 0 then return '' end
+
+  local s = tostring(ya.readable_path(tostring(self._current.cwd))):gsub(
+    '(%.?)([^/])[^/]+/',
+    '%1%2/'
+  ) .. self:flags()
+  return ui.Span(ya.truncate(s, { max = max, rtl = true })):style(th.mgr.cwd)
+end
 
 -- require('custom-shell').setup {
 --   history_path = 'default',
 --   save_history = true,
 -- }
 
-require("git"):setup()
+require('git'):setup()
