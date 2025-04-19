@@ -14,13 +14,14 @@ open.prepend_rules = [
   { name = "*.apk", use = ["apkinstall", "open"] },
   { name = "*.{ass,srt,ssa,sty,sup,vtt}", use = ["add-sub", "edit"] },
 ]
+# TODO: add viu for android
 plugin.prepend_previewers = [
   { name = "*/", run = "eza-preview" },
   { name = "*.sqlite3", run = "sqlite" },
   { mime = "application/sqlite3", run = "sqlite" },
   { mime = "audio/*", run = "exifaudio" },
   { mime = "application/subrip", run = "code" },
-  { name = "*.cb{z,r}", run = "archive" },
+  { name = "*.cb{z,r}", run = "comic-info" },
   { name = "*.zip", run = "archive" },
   { mime = "application/octet-stream", run = "hexyl" },
 ]
@@ -78,10 +79,11 @@ ueberzug_offset = [0, 0, 0, 0]
 [input]
 cursor_blink = false
 
+# TODO: no border
 # rename
 rename_title = ""
 rename_origin = "hovered"
-rename_offset = [0, 1, 77, 3]
+rename_offset = [2, -1, 77, 3]
 
 # cd
 cd_title = "   "

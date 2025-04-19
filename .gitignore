@@ -29,5 +29,7 @@ rclone.conf
 /streamrip/*downloads.db
 
 /yazi/plugins/*
+!/yazi/plugins/comic-info.yazi/
 !/yazi/plugins/sqlite.yazi/
+!/yazi/plugins/viu.yazi/
 /yazi/flavors/
