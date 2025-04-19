@@ -50,7 +50,7 @@ abbr rls "rclone lsf"
 abbr rlt "rclone tree --level"
 abbr rdu "rclone size"
 abbr rconf "rclone config"
-abbr rsy "rsync --port 8022 -aP"
+abbr rsy "rsync -Pha"
 
 # du -> dust
 abbr du "dust -Dn 25"

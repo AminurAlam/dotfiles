@@ -9,7 +9,6 @@ function pd -a distro -d "proot-distro wrapper"
         }'
     end && return
 
-    # NOTE: keep this list updated
     set -l distros alpine archlinux artix chimera debian debian-oldstable deepin fedora manjaro openkylin opensuse pardus ubuntu ubuntu-oldlts void
 
     set distro (string replace arch archlinux $distro)
