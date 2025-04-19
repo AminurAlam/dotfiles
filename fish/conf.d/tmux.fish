@@ -11,8 +11,7 @@ end
 #     tmux new-session -ds rss newsboat \; set mouse off
 # end
 
-# TODO: test
-if [ (uname -o) = Android ] && not tmux has-session -t ssh 2>/dev/null
-    tmux new-session -ds ssh
+if [ (uname -o) = Android ]
+    tmux has-session -t ssh 2>/dev/null || tmux new-session -ds ssh
     set -q SSH_CLIENT && tmux attach -t ssh
 end
