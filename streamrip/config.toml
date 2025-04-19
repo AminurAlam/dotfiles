@@ -19,7 +19,7 @@ max_connections = 6
 requests_per_minute = 60
 # Verify SSL certificates for API connections
 # Set to false if you encounter SSL certificate verification errors (not recommended)
-verify_ssl = true
+verify_ssl = false
 
 [qobuz]
 # 1: 320kbps MP3, 2: 16/44.1, 3: 24/<=96, 4: 24/>=96
@@ -30,9 +30,9 @@ download_booklets = true
 # Authenticate to Qobuz using auth token? Value can be true/false only
 use_auth_token = true
 # Enter your userid if the above use_auth_token is set to true, else enter your email
-email_or_userid = "3684267"
+email_or_userid = "3821630"
 # Enter your auth token if the above use_auth_token is set to true, else enter the md5 hash of your plaintext password
-password_or_token = "OaoZuprCP1P8n-4BZp-RBAkHyYwCveq9bHjB3eeCtAS9ZsAWiACKpcVGvMaoGdMrkKmKF3bF_6fbGthpB-JEqQ"
+password_or_token = "KIPDhp--ekgILRicShDBbSZ8KinfKbjWt9DqRhxslRl6jVSm56-u901l1GKW48q8qs1kDkcRQH1NBy-rzpuIFg"
 # Do not change
 app_id = "579939560"
 # Do not change
