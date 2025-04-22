@@ -63,11 +63,6 @@ autocmd('VimEnter', {
   end,
 })
 
--- TODO: buffer list float on buffer change
--- autocmd('BufEnter', {
---   command = 'ls'
--- })
-
 autocmd('FileType', {
   pattern = 'oil',
   command = 'nmap <buffer> <scrollwheelup> <up> | nmap <buffer> <scrollwheeldown> <down>',
@@ -90,7 +85,6 @@ autocmd('TermOpen', {
   end,
 })
 
--- TODO: fold not loading
 autocmd('BufWinLeave', {
   desc = 'save folds & cursor on exit',
   pattern = '?*',

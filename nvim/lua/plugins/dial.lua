@@ -4,7 +4,6 @@ local M = {
   dependencies = { 'nvim-lua/plenary.nvim' },
 }
 
--- TODO: add more toggles
 M.config = function()
   local augend = require('dial.augend')
   require('dial.config').augends:register_group {
