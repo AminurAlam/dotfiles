@@ -258,7 +258,7 @@ refresher:
   # Auto-fetch can be disabled via option 'git.autoFetch'.
   fetchInterval: 3600
 # If true, show a confirmation popup before quitting Lazygit
-confirmOnQuit: false
+confirmOnQuit: true
 # If true, exit Lazygit when the user presses escape in a context where there is nothing to cancel/close
 quitOnTopLevelReturn: false
 # Config relating to things outside of Lazygit like how files are opened, copying to clipboard, etc
@@ -310,7 +310,7 @@ disableStartupPopups: false
 # - 'quit': exit Lazygit
 notARepository: prompt
 # If true, display a confirmation when subprocess terminates. This allows you to view the output of the subprocess before returning to Lazygit.
-promptToReturnFromSubprocess: true
+promptToReturnFromSubprocess: false
 # Keybindings
 keybinding:
   universal:
