@@ -8,7 +8,14 @@ local mgba = function(rom_path)
   return '/usr/bin/mgba-qt "/home/fisher/Downloads/ROMS/Game Boy Advance/' .. rom_path .. '"'
 end
 
+local azahar = function(rom_path)
+  return '/usr/bin/azahar "/home/fisher/Downloads/ROMS/3DS/' .. rom_path .. '"'
+end
+
+-- TODO: N64
+-- TODO: gamecube 
 local games = {
+  { '󰓓 Steam', 'steam' },
   { ' Osu!lazer', 'osu-lazer' },
   { ' Factorio', '/home/fisher/Downloads/GAMES/factorio/bin/x64/factorio' },
   {
@@ -27,6 +34,10 @@ local games = {
   {
     '󰟡 Guilty Gear Strive',
     sudachi 'Guilty Gear Strive/Guilty Gear Strive [0100AB401F136000][v0].nsp',
+  },
+  {
+    ' Pokemon - Omega Ruby',
+    azahar 'Pokemon Omega Ruby (USA) (En,Ja,Fr,De,Es,It,Ko) (Rev 2).cci',
   },
   { '󱎓 Pokemon - Emerald Version', mgba 'Pokemon - Emerald Version (USA, Europe).zip' },
   { '󱎓 Pokemon - FireRed Version', mgba 'Pokemon - FireRed Version (USA, Europe) (Rev 1).zip' },
