@@ -87,6 +87,9 @@ autocmd('LspAttach', {
     if client:supports_method('textDocument/hover') then
       nmap('K', function() vim.lsp.buf.hover { border = 'rounded' } end)
     end
+    if client:supports_method('textDocument/documentColor') then
+      vim.lsp.document_color.enable(true, info.buf)
+    end
     -- if client:supports_method('textDocument/inlayHint') then
     --   vim.lsp.inlay_hint.enable(true, { bufnr = info.buf })
     -- end

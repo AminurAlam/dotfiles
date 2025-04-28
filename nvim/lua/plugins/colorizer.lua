@@ -2,7 +2,7 @@ return {
   'https://github.com/catgoose/nvim-colorizer.lua',
   cmd = 'ColorizerToggle',
   keys = { { '<leader>co', '<cmd>ColorizerToggle<cr>' } },
-  ft = { 'css', 'jproperties' },
+  ft = { 'jproperties' },
   opts = {
     filetypes = { '*' }, -- Filetype options.  Accepts table like `user_default_options`
     buftypes = {}, -- Buftype options.  Accepts table like `user_default_options`
