@@ -86,6 +86,9 @@
 #network.disconnected {
   min-width: 0;
 }
+#network.disabled {
+  min-width: 0;
+}
 
 #temperature.critical {
   color: #f7768e;

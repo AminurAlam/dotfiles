@@ -65,6 +65,7 @@
   "network": {
     "interval": 1,
     "format-disconnected": "󰤭",
+    "format-disabled": "",
     "format-wifi": "{bandwidthTotalBytes} {icon}",
     "format-icons": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"],
     "format-ethernet": "{bandwidthTotalBytes} 󰈀",
