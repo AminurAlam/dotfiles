@@ -4,12 +4,14 @@ function pre_build
     command -vq jq || yay -S --needed $DEPENDENCIES
 
     cd ~/Downloads/revanced
-    curl -o api.json -LH "Accept: application/vnd.github+json" -H "X-GitHub-Api-Version: 2022-11-28" \
+    curl -o api.json -#LH "Accept: application/vnd.github+json" -H "X-GitHub-Api-Version: 2022-11-28" \
         https://api.github.com/repos/revanced/revanced-patches/releases/latest
     set patchname (jq -r .assets[0].name api.json)
     set patchurl (jq -r .assets[0].browser_download_url api.json)
 
-    [ -e "$patchname" ] || curl -Lo "$patchname" "$patchurl"
+    jq -r .body api.json
+
+    [ -e "$patchname" ] || curl -#Lo "$patchname" "$patchurl"
     ln -fs "$patchname" patch.rvp
 
     set apkversion (revanced-cli list-patches -pvf com.google.android.youtube patch.rvp \
@@ -17,7 +19,7 @@ function pre_build
     # https://www.apkmirror.com/?post_type=app_release&searchtype=apk&s=youtube+$apkversion
     [ -e "youtube_$apkversion.apk" ] || begin
         open "https://www.apkmirror.com/apk/google-inc/youtube/youtube-$(printf "$apkversion" | tr . -)-release/youtube-$(printf "$apkversion" | tr . -)-android-apk-download/"
-        echo "pls download the latest apk file and move it to `youtube_$apkversion.apk`"
+        printf "pls download the latest apk file and move it to `youtube_$apkversion.apk`\n"
         exit
     end
     ln -fs "youtube_$apkversion.apk" yt.apk
