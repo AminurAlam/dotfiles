@@ -20,7 +20,13 @@ function pre_build
 
     [ -d "$REPO_PATH" ] || git clone --branch custom "$REPO_URL" "$REPO_PATH"
     cd "$REPO_PATH"
-    # git remote show upstream &>/dev/null || git remote add upstream "git@github.com:neovim/neovim.git"
+    git remote show | grep -q upstream || git remote add upstream "git@github.com:neovim/neovim.git"
+    git fetch upstream
+    git rebase upstream/master || begin
+        printf "rebase failed...\n"
+        printf "try running `git mergetool` `git rebase --continue`...\n"
+        exit
+    end
 end
 
 function build

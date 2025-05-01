@@ -89,6 +89,8 @@ if len(sys.argv) > 1:
     fetch(sys.argv[1], './details.json')
 elif dirs := os.listdir(mihon_dir):
     for dir in dirs:
+        if dir.startswith('@') or dir.startswith('#'):
+            continue
         if os.path.isdir(dir) and not (os.path.exists(dir + "/details.json") or os.path.exists(dir + "/ComicInfo.xml")):
             title: str = re.sub(r'\s+\(.+\)$', '', dir)
             path: str = os.path.join(mihon_dir, dir, "details.json")
