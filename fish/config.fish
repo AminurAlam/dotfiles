@@ -47,6 +47,7 @@ set -gx RIPGREP_CONFIG_PATH $XDG_PROJECTS_DIR/dotfiles/other/ripgreprc
 set -gx FZF_DEFAULT_OPTS_FILE $XDG_PROJECTS_DIR/dotfiles/other/fzfrc
 set -gx WINEPREFIX $XDG_DATA_HOME/wineprefixes/default
 set -gx GRADLE_USER_HOME $XDG_DATA_HOME/gradle
+set -gx ANKI_WAYLAND 1
 
 # lang config
 set -gx JAVA_HOME $PREFIX/lib/jvm/java-21-openjdk

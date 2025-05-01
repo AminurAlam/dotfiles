@@ -21,6 +21,7 @@
   - [waybar](https://github.com/Alexays/Waybar) - status bar
   - [wofi](https://hg.sr.ht/~scoopta/wofi) - launcher
 - [keepassxc](https://keepassxc.org/) - password manager
+- [mgba](http://mgba.io) - GBA emulator
 - [mpv](https://mpv.io) - media player
 - [newsboat](https://newsboat.org/) :star2: - rss reader
 - [npm](https://npmjs.com/) - javascript runtime

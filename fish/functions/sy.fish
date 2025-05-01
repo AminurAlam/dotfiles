@@ -19,8 +19,8 @@ function sy
     rsync -Pha phone:/sdcard/DCIM/Camera ~/Pictures/ --delete
 
     printf "\033[36m === DOCUMENTS ===\033[0m\n"
-    rsync -Phaf '- notes' ~/Documents/ phone:/sdcard/Documents/
-    rsync -Phaf '- notes' phone:/sdcard/Documents/ ~/Documents/
+    rsync -Pha phone:/sdcard/Documents/ ~/Documents/
+    rsync -Pha ~/Documents/ phone:/sdcard/Documents/
 
     printf "\033[36m === TORRENTS ===\033[0m\n"
     rsync -Pha ~/Downloads/torrents/ phone:/sdcard/main/torrents/
@@ -31,7 +31,7 @@ function sy
     rsync -Pha phone:/sdcard/main/android.kdbx ~/Downloads/main/android.kdbx
 
     printf "\033[36m === MISC ===\033[0m\n"
-    rsync -Pha ~/Downloads/ROMS/ phone:/sdcard/Download/ROMS/ --delete --exclude Switch
+    # rsync -Pha ~/Downloads/ROMS/ phone:/sdcard/Download/ROMS/ --delete --exclude Switch
     rsync -Pha phone:/sdcard/Music/ ~/Music/ --delete --exclude .thumbnails
     rsync -Pha phone:/sdcard/TachiyomiSY/local/#lewd/ ~/Downloads/manga/#lewd/ --delete \
         --exclude @Alp \
