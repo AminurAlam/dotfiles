@@ -10,8 +10,11 @@ return {
     enabled = true,
     event = { 'CmdlineEnter', 'InsertEnter' },
     dependencies = {
-      'AminurAlam/friendly-snippets',
-      dev = vim.uv.fs_stat(vim.fn.expand('~/repos/friendly-snippets')) and true or false,
+      'mtoohey31/cmp-fish',
+      {
+        'AminurAlam/friendly-snippets',
+        dev = vim.uv.fs_stat(vim.fn.expand('~/repos/friendly-snippets')) and true or false,
+      },
     }, -- provides multiple snippets
     version = '*',
     ---@module 'blink.cmp'
@@ -29,14 +32,15 @@ return {
         ['<C-p>'] = { 'select_prev' },
       },
       sources = {
-        -- TODO: cmp-fish
         -- TODO: sorting
+        -- TODO: higher path priority
         default = { 'lazydev', 'lsp', 'path', 'snippets', 'buffer' },
+        per_filetype = { fish = { 'fish' } },
         providers = {
           lazydev = {
             name = 'LazyDev',
             module = 'lazydev.integrations.blink',
-            score_offset = 100, -- make lazydev completions top priority (see `:h blink.cmp`)
+            -- score_offset = 100, -- make lazydev completions top priority (see `:h blink.cmp`)
           },
           path = {
             opts = {
@@ -55,7 +59,12 @@ return {
               -- Set to '+' to use the system clipboard, or '"' to use the unnamed register
               clipboard_register = nil,
             },
-            score_offset = 50,
+          },
+          fish = {
+            name = 'fish',
+            module = 'blink.compat.source',
+            min_keyword_length = 0,
+            opts = {},
           },
           buffer = { opts = { get_bufnrs = vim.api.nvim_list_bufs } },
         },

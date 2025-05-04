@@ -70,6 +70,7 @@ https://vonheikemen.github.io/devlog/atom.xml "~vonheikemen: nvim" personal_blog
 https://arjunyadav.xyz/rss.xml personal_blog_1
 https://daniel.haxx.se/blog/feed/ personal_blog_1
 https://dylanbeattie.net/feed.xml personal_blog_1
+https://world.hey.com/dhh/feed.atom personal_blog_1
 
 https://emucross.com/rss/ personal_blog_1
 https://lukesmith.xyz/index.xml personal_blog_1
@@ -140,14 +141,10 @@ https://www.anildash.com/feed.xml personal_blog
 
 # Xenodium
 https://xenodium.com/rss.xml
-# Ansible Blog
-https://www.ansible.com/blog/rss.xml
 # EmNudge Reads
 https://emnudge.dev/reads.xml
 # LWN
 https://lwn.net/headlines/rss
-# NixOS Webzine
-https://webzine.snowflake.ovh/atom.xml
 # The Daily WTF
 http://syndication.thedailywtf.com/TheDailyWtf
 # emacs-news
@@ -156,8 +153,6 @@ https://sachachua.com/blog/category/emacs-news/feed/
 https://www.commitstrip.com/en/feed/
 # Loading Artist
 https://loadingartist.com/index.xml
-# MonkeyUser
-https://www.monkeyuser.com/feed.xml
 # Oglaf! -- Comics. Often dirty.
 https://www.oglaf.com/feeds/rss/
 # Saturday Morning Breakfast Cereal
