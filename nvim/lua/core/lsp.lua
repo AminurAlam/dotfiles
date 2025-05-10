@@ -48,7 +48,7 @@ end, { desc = 'Builds your tex file', bang = true })
 
 -- stylua: ignore
 vim.api.nvim_create_user_command('TexClean', function()
-    vim.cmd(':silent !rm %:r.aux %:r.toc %:r.fdb_latexmk %:r.fls %:r.log %:r.pdf %:r.synctex.gz')
+    vim.cmd(':silent !latexmk -c')
 end, { desc = 'Builds your tex file', bang = true })
 
 autocmd('LspAttach', {

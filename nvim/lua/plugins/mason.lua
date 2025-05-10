@@ -1,5 +1,6 @@
 return {
   'https://github.com/williamboman/mason.nvim',
+  enabled = false,
   cmd = { 'Mason', 'MasonInstall', 'MasonUpdate', 'MasonLog' },
   opts = {
     ui = {
