@@ -9,10 +9,14 @@ function yt -a url fmt -d "yt-dlp wrapper"
         return 1
     end
 
+    if [ -d "/home/fisher/.librewolf/cqmm902i.default-default/storage/default/https+++www.youtube.com" ]
+        set -f cookies --cookies-from-browser "firefox:$HOME/.librewolf/"
+    end
+
     # pick and choose if no fmt given
     if [ -z "$fmt" ]
         set -f fmt (
-            yt-dlp --quiet --verbose --no-sponsorblock -F "$url" 2>/dev/null \
+            yt-dlp $cookies --quiet --no-sponsorblock -F "$url" 2>/dev/null \
             | fzf --tac \
             | cut -d ' ' -f1)
         [ -z "$fmt" ] && return 2
@@ -25,5 +29,6 @@ function yt -a url fmt -d "yt-dlp wrapper"
         end
     end
 
-    yt-dlp -f "$fmt" -- "$url"
+
+    yt-dlp $cookies -f "$fmt" -- "$url"
 end

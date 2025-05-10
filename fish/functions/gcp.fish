@@ -1,3 +1,4 @@
+# TODO: auto convert https to ssh
 function gcp -a url path branch -d "git clone wrapper"
     [ -z "$url" ] && echo "ERROR: no url given" && return
     [ -n "$branch" ] && set -f branch "--branch" "$branch"
