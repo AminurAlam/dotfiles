@@ -12,7 +12,7 @@ open.prepend_rules = [
   { name = "*.exe", use = ["wine", "open"] },
   { mime = "application/android.package-archive", use = ["apkinstall", "open"] },
   { name = "*.apk", use = ["apkinstall", "open"] },
-  { name = "*.{ass,srt,ssa,sty,sup,vtt}", use = ["add-sub", "edit"] },
+  { name = "*.{ass,srt,ssa,sup,vtt}", use = ["add-sub", "edit"] },
 ]
 # TODO: add viu for android
 plugin.prepend_previewers = [

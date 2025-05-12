@@ -11,6 +11,7 @@
 - [eza](https://github.com/eza-community/eza) - replacement for ls
   - [dircolors](https://www.gnu.org/software/coreutils/dircolors) - $LS_COLORS generator
 - [fish](https://fishshell.com/) :star2: - shell
+- [fuzzel](https://codeberg.org/dnkl/fuzzel) - application launcher
 - [gallery-dl](https://github.com/mikf/gallery-dl) - program to download image-galleries
 - [fzf](https://junegunn.github.io/fzf/) - fuzzy finder
 - [gdb](https://www.gnu.org/software/gdb/) - GNU Project debugger
