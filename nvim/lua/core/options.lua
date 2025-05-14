@@ -104,7 +104,7 @@ do -- others
   set.writebackup = false
   set.undofile = true
   set.confirm = true
-  vim.schedule(function() set.clipboard = 'unnamedplus' end)
+  set.clipboard = vim.env.SSH_CLIENT and '' or 'unnamedplus'
   set.list = true
   set.listchars = dict2str {
     -- leadmultispace = '│   ',

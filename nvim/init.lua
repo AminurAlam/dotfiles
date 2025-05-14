@@ -24,6 +24,11 @@ g.tex_flavor = 'latex'
 g.do_filetype_lua = 1
 g.ft_man_folding_enable = 1
 g.health = { style = 'float' } -- TODO: style more
+if vim.env.SSH_CLIENT then
+  g.clipboard = 'osc52'
+elseif vim.env.TMUX then
+  g.clipboard = 'tmux'
+end
 
 -- [[ core ]]
 require 'core.lazy'
