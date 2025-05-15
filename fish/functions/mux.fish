@@ -1,6 +1,6 @@
 function mux -d "tmux wrapper"
     if [ -n "$argv[2]" ] && command -vq zoxide
-        z $argv[2]
+        pushd (zoxide query "$argv[2]" 2>/dev/null) 2>/dev/null
     end
 
     if [ -z "$argv[1]" ]
@@ -11,9 +11,12 @@ function mux -d "tmux wrapper"
         set argv _
     end
 
-    tmux new-session -ds "$argv[1]" &>/dev/null
-
     [ -n "$TMUX" ]
-    and tmux switch-client -t "$argv[1]"
-    or tmux attach -t "$argv[1]"
+    and begin
+        tmux new-session -ds "$argv[1]" &>/dev/null
+        tmux switch-client -t "$argv[1]"
+    end
+    or tmux new-session -As "$argv[1]"
+
+    popd 2>/dev/null
 end

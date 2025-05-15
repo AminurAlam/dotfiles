@@ -21,7 +21,7 @@ show_always = false
 
 [hostname]
 format = ' [ $hostname](bright-yellow)'
-aliases = { localhost = 'android' }
+aliases = { localhost = 'phone' }
 
 [directory]
 format = ' [ $before_root_path$repo_root$path](bold green)[$read_only](red)'

@@ -15,7 +15,7 @@ abbr rm "rm -i"
 abbr rf "rm -frI"
 abbr rd "rmdir -pv"
 abbr md "mkdir -pv"
-abbr vi nvim
+abbr vi nvim # TODO: sudoedit
 abbr cls clear
 abbr tar "tar xzf"
 abbr yq "yq -oj --xml-attribute-prefix ''"
@@ -29,6 +29,7 @@ abbr --set-cursor ff "ffmpeg -y -hide_banner -stats -loglevel error -i % -vcodec
 abbr --set-cursor mbz "python ~/repos/musicbrainzpy/cover_art.py -o \$XDG_MUSIC_DIR/#meta/ '%'"
 abbr --set-cursor --position anywhere awk "awk -F ' ' '{print \$%}'"
 abbr = command # replicate =command from zsh
+abbr komga "KOMGA_CONFIGDIR=~/.local/share/komga komga"
 
 # parent dir
 abbr ... "cd ../.."
@@ -79,6 +80,7 @@ else if command -vq pacman
     abbr pa pacman -Si
 end
 
+# TODO: yazi counterpart
 abbr --set-cursor zdl 'z $XDG_DOWNLOAD_DIR/%'
 abbr --set-cursor zd 'z $XDG_PROJECTS_DIR/dotfiles/%'
 abbr --set-cursor zf 'z $XDG_PROJECTS_DIR/dotfiles/fish/%'
