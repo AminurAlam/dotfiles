@@ -104,7 +104,7 @@ do -- others
   set.writebackup = false
   set.undofile = true
   set.confirm = true
-  set.clipboard = vim.env.SSH_CLIENT and '' or 'unnamedplus'
+  set.clipboard = (termux and vim.env.SSH_CLIENT) and '' or 'unnamedplus'
   set.list = true
   set.listchars = dict2str {
     -- leadmultispace = '│   ',
