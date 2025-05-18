@@ -30,13 +30,13 @@ download_booklets = true
 # Authenticate to Qobuz using auth token? Value can be true/false only
 use_auth_token = true
 # Enter your userid if the above use_auth_token is set to true, else enter your email
-email_or_userid = "3821630"
+email_or_userid = "4543561"
 # Enter your auth token if the above use_auth_token is set to true, else enter the md5 hash of your plaintext password
-password_or_token = "KIPDhp--ekgILRicShDBbSZ8KinfKbjWt9DqRhxslRl6jVSm56-u901l1GKW48q8qs1kDkcRQH1NBy-rzpuIFg"
+password_or_token = "AprlROJ7V9v0m0xMK9pWDvX4ihCd6IAOKG6p46C-YrzTcPNMSPTf4RWihAslvrIA2bR_Mvxsp8_xnyErBjlxQg"
 # Do not change
-app_id = "579939560"
+app_id = "798273057"
 # Do not change
-secrets = ["fa31fc13e7a28e7d70bb61e91aa9e178"]
+secrets = ["abb21364945c0583309667d13ca3d93a"]
 
 [tidal]
 # 0: 256kbps AAC, 1: 320kbps AAC, 2: 16/44.1 "HiFi" FLAC, 3: 24/44.1 "MQA" FLAC

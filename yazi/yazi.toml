@@ -34,8 +34,8 @@ wine = [{ run = 'wine "$@"', block = false, orphan = true, desc = "wine", for = 
 zathura = [{ run = 'zathura "$@"', block = false, orphan = true, desc = "zathura", for = "linux" }]
 add-sub = [{ run = ''' echo sub-add "'$0'" | socat - /tmp/mpv.sock ''', desc = "Add sub to MPV" }]
 play = [
-  { run = 'mpv --force-window "$@"', orphan = true, for = "unix" },
   { run = 'termux-open "$@"', orphan = true, for = "android" },
+  { run = 'mpv --force-window "$@"', orphan = true, for = "unix" },
 ]
 reveal = [
   { run = 'xdg-open "$(dirname "$1")"', desc = "Reveal", for = "linux" },
