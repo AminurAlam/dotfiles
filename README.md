@@ -30,6 +30,7 @@
 - [nvim](https://neovim.io/) :star2: - text editor
   - [vim](https://www.vim.org) - text editor
 - [pacman](https://archlinux.org/pacman/) - package manager
+- [paru](https://github.com/morganamilo/paru) - aur helper
 - [prettier](https://prettier.io/) - code formatter
 - [procs](https://github.com/dalance/procs) - process list
 - [python](https://python.org/) - python interpreter

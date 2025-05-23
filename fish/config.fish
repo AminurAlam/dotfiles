@@ -4,7 +4,7 @@ set -gx SUDO_EDITOR nvim --clean
 set -gx VISUAL $EDITOR
 set -gx LESS --mouse
 set -gx BROWSER (command -v firefox || command -v xdg-open)
-set -gx LAUNCHER wofi --dmenu
+set -gx LAUNCHER fuzzel --dmenu
 command -vq nvim && set -gx MANPAGER "nvim +Man!"
 
 # xdg
@@ -51,6 +51,7 @@ set -gx ANKI_WAYLAND 1
 
 # lang config
 set -gx JAVA_HOME $PREFIX/lib/jvm/java-21-openjdk
+set -gx _JAVA_OPTIONS -Djava.util.prefs.userRoot=$XDG_CONFIG_HOME/java
 set -gx PYTHONSTARTUP $XDG_CONFIG_HOME/python/startup.py
 set -gx NODE_REPL_HISTORY $XDG_STATE_HOME/node_repl_history
 set -gx NPM_CONFIG_USERCONFIG $XDG_CONFIG_HOME/npm/npmrc
@@ -59,7 +60,12 @@ set -gx CARGO_HOME $XDG_DATA_HOME/cargo
 set -gx CARGO_INSTALL_ROOT $CARGO_HOME
 set -gx CARGO_LOG info
 set -gx CARGO_INCREMENTAL false
+set -gx GOPATH $XDG_DATA_HOME/go
+set -gx GOMODCACHE $XDG_CACHE_HOME/go/mod
 set -gx VIMRUNTIME $PREFIX/share/nvim/runtime
+set -gx TEXMFHOME $XDG_DATA_HOME/texmf
+set -gx TEXMFVAR $XDG_CACHE_HOME/texlive/texmf-var
+set -gx TEXMFCONFIG $XDG_CONFIG_HOME/texlive/texmf-config
 
 ### PATH ###
 set -gxp --path PATH "$HOME/.local/bin" # sometimes before
@@ -67,8 +73,6 @@ set -gxp --path PATH "$CARGO_HOME/bin" # after declaring CARGO_HOME
 set -gxp --path PATH "$HOME/.local/share/npm/bin"
 set -gxp --path PATH "$HOME/.local/share/nvim/mason/bin"
 set -gxp --path PATH "$PREFIX/lib/jvm/java-21-openjdk/bin"
-
-
 
 status is-interactive || exit
 

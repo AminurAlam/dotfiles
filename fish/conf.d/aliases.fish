@@ -29,7 +29,7 @@ abbr --set-cursor ff "ffmpeg -y -hide_banner -stats -loglevel error -i % -vcodec
 abbr --set-cursor mbz "python ~/repos/musicbrainzpy/cover_art.py -o \$XDG_MUSIC_DIR/#meta/ '%'"
 abbr --set-cursor --position anywhere awk "awk -F ' ' '{print \$%}'"
 abbr = command # replicate =command from zsh
-abbr komga "KOMGA_CONFIGDIR=~/.local/share/komga komga"
+abbr komga 'KOMGA_CONFIGDIR=~/.local/share/komga komga | awk \'/^2025/{printf("%s %s ",substr($1,12,8),substr($2,0,1));for(i=9;i<=NF;i++)printf("%s ",$i);print""}\''
 
 # parent dir
 abbr ... "cd ../.."
@@ -66,6 +66,12 @@ if command -vq apt
     abbr pu $sudo apt update "&&" $sudo apt upgrade
     abbr pf apt search
     abbr pa apt show
+else if command -vq paru
+    abbr pi paru -S
+    abbr pr paru -Rs
+    abbr pu paru -Syu
+    abbr pf paru -Ss
+    abbr pa paru -Si
 else if command -vq yay
     abbr pi yay -S
     abbr pr yay -Rs

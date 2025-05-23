@@ -1,7 +1,7 @@
 mkdir -p ~/backup ~/.ssh ~/.local/bin ~/bin
 
 printf "LINKING CONFIG DIRECTORIES... "
-for config in alacritty aria2 btop clangd dunst eza fish fuzzel gallery-dl gdb git htop hypr keepassxc lazygit mgba mpv newsboat npm nvim python ruff sqlite3 streamrip termux tmux waybar wofi yay yazi yt-dlp zathura zellij
+for config in alacritty aria2 btop clangd dunst eza fish fuzzel gallery-dl gdb git htop hypr keepassxc lazygit mgba mpv newsboat npm nvim paru python ruff sqlite3 streamrip termux tmux waybar wofi yay yazi yt-dlp zathura zellij
     # skip non-existing dirs
     [ -e ~/repos/dotfiles/$config ] || continue
     # unlink/relocate old directories in ~/.config
