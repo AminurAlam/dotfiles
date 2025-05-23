@@ -2,7 +2,7 @@
 
 Host phone
     User user
-    Hostname 192.168.14.145
+    Hostname 192.168.252.185
     Port 8022
     IdentityFile ${HOME}/.ssh/ssh_ed25519
     IdentitiesOnly yes
@@ -11,6 +11,16 @@ Host phone
     HashKnownHosts yes
     ForwardX11 no
     SetEnv TERM=xterm-256color
+
+Host phone-tmux
+    User user
+    Hostname 192.168.252.185
+    Port 8022
+    IdentityFile ${HOME}/.ssh/ssh_ed25519
+    IdentitiesOnly yes
+
+    RequestTTY yes
+    RemoteCommand tmux new -A -s ssh
 
 Host github.com
     User git
