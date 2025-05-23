@@ -4,6 +4,7 @@ plugin.prepend_fetchers = [{ id = "git", name = "*", run = "git" }, { id = "git"
 open.prepend_rules = [
   { name = "*/", use = ["reveal", "dir2cbz", "open", "edit"] },
   { name = "*.cb{z,r}", use = ["zathura", "open", "extract", "reveal"] },
+  { mime = 'application/pdf', use = ["zathura", "open"] },
   { name = "*.zip", use = ["extract", "reveal"] },
   { mime = "image/*", use = ["loupe", "krita", "gimp", "open"] },
   { mime = "video/*", use = ["play"] },

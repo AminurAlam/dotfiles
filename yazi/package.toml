@@ -33,6 +33,16 @@ use = "yazi-rs/plugins:toggle-pane"
 rev = "864a021"
 hash = "f3853bbdd1da2fad09d059ab5464abfd"
 
+[[plugin.deps]]
+use = "boydaihungst/smart-truncate"
+rev = "7187ad3"
+hash = "82a81e792c0211e3df4ae0b202182e13"
+
+[[plugin.deps]]
+use = "boydaihungst/pref-by-location"
+rev = "be2deb8"
+hash = "9754591c47dbf05247d32f2bcd9ec0cb"
+
 [[flavor.deps]]
 use = "BennyOe/tokyo-night"
 rev = "b3950bf"
