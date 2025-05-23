@@ -1,4 +1,5 @@
 #!/usr/bin/env sh
+# TODO: detect gamemode without animation
 HYPRGAMEMODE=$(hyprctl getoption animations:enabled | awk 'NR==1{print $2}')
 if [ "$HYPRGAMEMODE" = 1 ] ; then
     hyprctl --batch "\
