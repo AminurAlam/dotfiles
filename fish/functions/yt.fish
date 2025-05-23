@@ -5,13 +5,19 @@ function yt -a url fmt -d "yt-dlp wrapper"
     patch $pyfile --input ~/repos/dotfiles/scripts/patches/yt-dlp-YoutubeDL.py.diff --silent -f --reject-file - &>/dev/null
 
     if [ -z "$url" ]
+        # TODO: enter loop mode instead!
         printf "no url given!\n"
         return 1
     end
 
-    if [ -d "/home/fisher/.librewolf/cqmm902i.default-default/storage/default/https+++www.youtube.com" ]
-        set -f cookies --cookies-from-browser "firefox:$HOME/.librewolf/"
-    end
+    # strip playlist params
+    set url (printf "$url" | sed -r 's/&list=.*$//')
+
+    # add cookies
+    # TODO: subs not loading when cookies are enabled
+    # if [ -d "/home/fisher/.librewolf/cqmm902i.default-default/storage/default/https+++www.youtube.com" ]
+    #     set -f cookies --cookies-from-browser "firefox:$HOME/.librewolf/"
+    # end
 
     # pick and choose if no fmt given
     if [ -z "$fmt" ]
@@ -28,7 +34,6 @@ function yt -a url fmt -d "yt-dlp wrapper"
             set fmt $fmt+bestaudio
         end
     end
-
 
     yt-dlp $cookies -f "$fmt" -- "$url"
 end

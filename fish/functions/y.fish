@@ -1,5 +1,6 @@
 function y -d "yazi wrapper to change directories"
     set tmp (mktemp -t "yazi-cwd.XXXXXX")
+    # TODO: repeat on all args
     if [ -n "$argv[1]" ] && ! [ -e "$argv[1]" ]
         set argv[1] (zoxide query "$argv[1]")
         [ -e "$argv[1]" ] && zoxide add "$argv[1]"

@@ -32,7 +32,8 @@ function sy
 
     printf "\033[36m === MISC ===\033[0m\n"
     # rsync -Pha ~/Downloads/ROMS/ phone:/sdcard/Download/ROMS/ --delete --exclude Switch
-    rsync -Pha phone:/sdcard/main/backup/ ~/Download/backup/
+    rsync -Pha ~/.local/share/newsboat/cache.db phone:~/.local/share/newsboat/cache.db
+    rsync -Pha phone:/sdcard/main/backup/ ~/Downloads/backup/
     rsync -Pha phone:/sdcard/Music/ ~/Music/ --delete --exclude .thumbnails
     rsync -Pha phone:/sdcard/TachiyomiSY/local/#lewd/ ~/Downloads/manga/#lewd/ --delete \
         --exclude @Alp \
