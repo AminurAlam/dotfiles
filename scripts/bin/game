@@ -46,10 +46,20 @@ local games = {
   { '󱎓 Pokemon - Sapphire Version', mgba 'Pokemon - Sapphire Version (USA, Europe).zip' },
 }
 
-for i, spec in pairs(games) do
-  print(string.format('[%2d] %s', i, spec[1]))
-end
+-- TODO: fuzzel
+if arg[1] == nil then
+  for i, spec in pairs(games) do
+    print(string.format('[%2d] %s', i, spec[1]))
+  end
 
-io.write(' > ')
-local num = io.read('*n')
-if games[num] then os.execute(games[num][2] .. ' & disown') end
+  io.write(' > ')
+  local num = io.read('*n')
+  if games[num] then os.execute(games[num][2] .. ' & disown') end
+elseif arg[1] == '0' then
+  for _, spec in pairs(games) do
+    print(string.format('%s', spec[1]))
+  end
+elseif tonumber(arg[1]) > 0 then
+  num = tonumber(arg[1])
+  if games[num] then os.execute(games[num][2] .. ' & disown') end
+end
