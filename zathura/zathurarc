@@ -1,5 +1,5 @@
 # keymaps
-map <Button1> toggle_statusbar
+# map <Button1> toggle_statusbar
 map <Button3> scroll half-down
 map u scroll half-up
 map d scroll half-down
@@ -9,7 +9,7 @@ map f toggle_fullscreen
 map D toggle_page_mode
 map gO toggle_index
 
-map [fullscreen] <Button1> toggle_statusbar
+# map [fullscreen] <Button1> toggle_statusbar
 map [fullscreen] <Button3> scroll half-down
 map [fullscreen] u scroll half-up
 map [fullscreen] d scroll half-down
@@ -22,7 +22,7 @@ map [fullscreen] gO toggle_index
 # TODO: better zoom
 
 ### OPTIONS
-set guioptions "v"
+set guioptions "vs"
 set page-right-to-left
 set font "monospace normal 12"
 set selection-clipboard clipboard
