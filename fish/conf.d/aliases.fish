@@ -66,18 +66,18 @@ if command -vq apt
     abbr pu $sudo apt update "&&" $sudo apt upgrade
     abbr pf apt search
     abbr pa apt show
-else if command -vq paru
-    abbr pi paru -S
-    abbr pr paru -Rs
-    abbr pu paru -Syu
-    abbr pf paru -Ss
-    abbr pa paru -Si
 else if command -vq yay
     abbr pi yay -S
     abbr pr yay -Rs
     abbr pu yay -Syu
     abbr pf yay -Ss
     abbr pa yay -Si
+else if command -vq paru
+    abbr pi paru -S
+    abbr pr paru -Rs
+    abbr pu paru -Syu
+    abbr pf paru -Ss
+    abbr pa paru -Si
 else if command -vq pacman
     abbr pi $sudo pacman -S
     abbr pr $sudo pacman -Rs
