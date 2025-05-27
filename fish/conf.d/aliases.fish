@@ -22,7 +22,8 @@ abbr yq "yq -oj --xml-attribute-prefix ''"
 abbr qmv "qmv -AXf do"
 abbr diff "diff -Naur"
 abbr py "python3 -q"
-abbr pst pstree -Th
+abbr pst "pstree -Th"
+abbr Listen "rip url"
 [ (uname -o) = Android ] && abbr pst "ps -faxo 'pid,comm' | sed -E \"s:\$PREFIX/[a-z]+/::\""
 abbr --set-cursor fstack "ffmpeg -y -hide_banner -i % -filter_complex hstack out.png" # https://stackoverflow.com/questions/11552565/vertically-or-horizontally-stack-mosaic-several-videos-using-ffmpeg#33764934
 abbr --set-cursor ff "ffmpeg -y -hide_banner -stats -loglevel error -i % -vcodec copy -acodec copy -map 0:a"
