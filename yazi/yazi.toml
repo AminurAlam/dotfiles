@@ -1,6 +1,5 @@
 "$schema" = "https://yazi-rs.github.io/schemas/yazi.json"
 
-plugin.prepend_fetchers = [{ id = "git", name = "*", run = "git" }, { id = "git", name = "*/", run = "git" }]
 open.prepend_rules = [
   { name = "*/", use = ["reveal", "dir2cbz", "open", "edit"] },
   { name = "*.cb{z,r}", use = ["zathura", "open", "extract", "reveal"] },
@@ -17,14 +16,14 @@ open.prepend_rules = [
 ]
 # TODO: add viu for android
 plugin.prepend_previewers = [
-  { name = "*/", run = "eza-preview" },
+  # { name = "*/", run = "eza-preview" },
   { name = "*.sqlite3", run = "sqlite" },
   { mime = "application/sqlite3", run = "sqlite" },
-  { mime = "audio/*", run = "exifaudio" },
+  # { mime = "audio/*", run = "exifaudio" },
   { mime = "application/subrip", run = "code" },
   { name = "*.cb{z,r}", run = "comic-info" },
   { name = "*.zip", run = "archive" },
-  { mime = "application/octet-stream", run = "hexyl" },
+  # { mime = "application/octet-stream", run = "hexyl" },
 ]
 
 [opener]
@@ -50,7 +49,7 @@ loupe = [{ run = 'loupe "$@"', block = false, orphan = true, desc = "gnome img v
 gimp = [{ run = 'gimp "$@"', block = false, orphan = true, desc = "gimp", for = "linux" }]
 krita = [{ run = 'krita "$@"', block = false, orphan = true, desc = "krita", for = "linux" }]
 
-[manager]
+[mgr]
 ratio = [0, 1, 1]
 sort_by = "extension"
 sort_sensitive = false

@@ -1,6 +1,19 @@
 "$schema" = "https://yazi-rs.github.io/schemas/keymap.json"
 
-manager.prepend_keymap = [
+confirm.prepend_keymap = [
+  { on = "<C-u>", run = "arrow -50%", desc = "Move cursor up half page" },
+  { on = "<C-d>", run = "arrow 50%", desc = "Move cursor down half page" },
+  { on = ["g", "g"], run = "arrow top", desc = "Move cursor to the top" },
+  { on = "G", run = "arrow bot", desc = "Move cursor to the bottom" },
+]
+
+help.prepend_keymap = [{ on = "q", run = "close", desc = "Exit the process" }]
+input.prepend_keymap = []
+tasks.prepend_keymap = []
+pick.prepend_keymap = []
+cmp.prepend_keymap = []
+
+mgr.prepend_keymap = [
   # plugins
   { on = ["s", "w"], run = "plugin eza-preview", desc = "Toggle tree/list dir preview" },
   { on = ["+"], run = "plugin eza-preview --args='--inc-level'", desc = "Increment tree level" },
@@ -51,16 +64,3 @@ manager.prepend_keymap = [
   # { on = ":", run = '''shell "fish -c " --block --interactive''' },
   { on = ".", run = "hidden toggle" },
 ]
-
-confirm.prepend_keymap = [
-  { on = "<C-u>", run = "arrow -50%", desc = "Move cursor up half page" },
-  { on = "<C-d>", run = "arrow 50%", desc = "Move cursor down half page" },
-  { on = ["g", "g"], run = "arrow top", desc = "Move cursor to the top" },
-  { on = "G", run = "arrow bot", desc = "Move cursor to the bottom" },
-]
-
-help.prepend_keymap = [{ on = "q", run = "close", desc = "Exit the process" }]
-input.prepend_keymap = []
-tasks.prepend_keymap = []
-pick.prepend_keymap = []
-cmp.prepend_keymap = []

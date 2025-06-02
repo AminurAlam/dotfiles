@@ -1,27 +1,7 @@
 [[plugin.deps]]
-use = "ahkohd/eza-preview"
-rev = "6575a9a"
-hash = "72355a6c8b7c8de6ed4dda0f98f86fee"
-
-[[plugin.deps]]
-use = "Sonico98/exifaudio"
-rev = "7ff7141"
-hash = "666ccba55119fba4c25b8ad354b2855c"
-
-[[plugin.deps]]
 use = "yazi-rs/plugins:smart-enter"
 rev = "63f9650"
 hash = "a7ab702e1ef0c097defbc976ed34c186"
-
-[[plugin.deps]]
-use = "yazi-rs/plugins:git"
-rev = "63f9650"
-hash = "bf6f074cd41ee33c3360341d168f9733"
-
-[[plugin.deps]]
-use = "Reledia/hexyl"
-rev = "016a09b"
-hash = "50da29476e744dba37d77fb209328fd1"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:jump-to-char"
@@ -32,11 +12,6 @@ hash = "30fc0b37f03a597b92d387268319450f"
 use = "yazi-rs/plugins:toggle-pane"
 rev = "63f9650"
 hash = "d5d4f3527592da5fbe77fd6f51815f80"
-
-[[plugin.deps]]
-use = "boydaihungst/smart-truncate"
-rev = "b0f59fd"
-hash = "ab83ca8acd192f1fd7e6f00ae7e33564"
 
 [[plugin.deps]]
 use = "boydaihungst/pref-by-location"
