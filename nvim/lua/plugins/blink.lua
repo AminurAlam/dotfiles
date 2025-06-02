@@ -35,7 +35,7 @@ return {
         -- TODO: sorting
         -- TODO: higher path priority
         default = { 'lazydev', 'lsp', 'path', 'snippets', 'buffer' },
-        per_filetype = { fish = { 'fish' } },
+        per_filetype = { fish = { 'fish', 'path', 'snippets', 'buffer' } },
         providers = {
           lazydev = {
             name = 'LazyDev',

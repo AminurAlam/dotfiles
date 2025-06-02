@@ -1,4 +1,5 @@
 return {
+  -- TODO: move to main branch
   'https://github.com/nvim-treesitter/nvim-treesitter',
   main = 'nvim-treesitter.configs',
   build = ':TSUpdate',

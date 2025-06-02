@@ -73,7 +73,7 @@ vim.g.stl = {
     return ud.seq_cur ~= ud.seq_last and ' ←' .. ud.seq_last - ud.seq_cur or ''
   end,
   hlsearch = function() -- https://github.com/nvim-lualine/lualine.nvim/pull/1088
-    local ok, sc = pcall(vim.fn.searchcount, { maxcount = 99, timeout = 20 })
+    local ok, sc = pcall(vim.fn.searchcount, { maxcount = 999, timeout = 20 })
     if not ok or sc.current == nil then return '' end
     return string.format('[%d/%d]', sc.current or 0, sc.total or 0)
   end,
