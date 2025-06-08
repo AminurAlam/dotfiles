@@ -1,6 +1,8 @@
 function sy
     # TODO: use function {...} | exclude-from -
     # update ssh address
+
+    [ (uname -o) = Android ] && return 1
     set ip (route -n | awk '/^[0.]+/{print $2}' | uniq)
     [ -n "$ip" ] && sed -r -i "s/192\.168\.[0-9]+\.[0-9]+\$/$ip/" ~/.ssh/config
 
@@ -8,6 +10,7 @@ function sy
     rsync -Pha ~/Pictures/ phone:/sdcard/Pictures/ \
         --exclude 'redmi vid' \
         --exclude 'redmi vid2' \
+        --exclude 'WhatsApp Images' \
         --exclude Camera \
         --exclude ocr \
         --exclude TachiyomiSY
@@ -17,10 +20,15 @@ function sy
         --exclude .nomedia
 
     rsync -Pha phone:/sdcard/DCIM/Camera ~/Pictures/ --delete
+    rsync -Pha 'phone:/sdcard/Android/media/com.whatsapp/WhatsApp/Media/WhatsApp Images' ~/Pictures/ --delete
 
     printf "\033[36m === DOCUMENTS ===\033[0m\n"
     rsync -Pha phone:/sdcard/Documents/ ~/Documents/
     rsync -Pha ~/Documents/ phone:/sdcard/Documents/
+    pushd "$XDG_PROJECTS_DIR/notes/" && begin
+        git pull
+        popd
+    end
 
     printf "\033[36m === TORRENTS ===\033[0m\n"
     rsync -Pha ~/Downloads/torrents/ phone:/sdcard/main/torrents/
