@@ -42,6 +42,9 @@ bind gg           everywhere home
 bind G            everywhere end
 bind k            everywhere up
 bind j            everywhere down
+# TODO: pls fix
+bind <C-j>        article    next
+bind <C-k>        article    prev
 bind <C-u>        everywhere up;up;up;up;up
 bind <C-d>        everywhere down;down;down;down;down
 

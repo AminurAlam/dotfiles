@@ -3,17 +3,37 @@
 # ignore-article "" "title =~ \"(^| )()( |$)\""
 
 ignore-mode "display"
-ignore-article "*" "title =~ \"(^| )(Open)?AI( |$)\""
-ignore-article "*" "title =~ \"(^| )(Chat)?GPT-?(3|4|5)?( |$)\""
-ignore-article "*" "title =~ \"(^| )(LLMs?|large language models?|machine learning|Gemini|copilot|DeepSeek)( |$)\""
-ignore-article "https://www.ghacks.net/feed/" "title =~ \"(^| )(windows)( |$)\""
-ignore-article "https://torrentfreak.com/feed" "title =~ \"IPTV\""
-ignore-article "https://torrentfreak.com/feed" "title =~ \"(^| )(Football|Boxing|sports|NFL)( |$)\""
-ignore-article "https://superuser.com/feeds/week" "title =~ \"windows|powershell|batch\""
-ignore-article "https://muspy.com/feed?id=mobwjpkr95u5p1b4f2w1bjt74qc8u3" "title =~ \"remix|taylor swift|bruce springsteen\""
-ignore-article "https://rssbridge.bus-hit.me/?action=display&bridge=BleepingComputerBridge&format=Atom" "title =~ \"(^| )(windows)( |$)\""
-ignore-article "https://www.404media.co/rss" "title =~ \"^(Podcast|Behind the Blog):\""
+
+
+# ignore-article "*" "title =~ \"(^| )(Open)?AI( |$)\""
+# ignore-article "*" "title =~ \"(^| )(Chat)?GPT-?(3|4|5)?( |$)\""
+# ignore-article "*" "title =~ \"(^| )(LLMs?|large language models?|machine learning|Gemini|copilot|DeepSeek)( |$)\""
+
+
+# MISC
+ignore-article "https://github.com/neovim/neovim/commits/master/runtime/doc/news.txt.atom" \
+               "title =~ \"^docs: \""
+ignore-article "https://muspy.com/feed?id=mobwjpkr95u5p1b4f2w1bjt74qc8u3" \
+               "title =~ \"remix|taylor swift|bruce springsteen|live from |live in | version\""
+
+# FORUMS & AGGREGATORS
+ignore-article "https://lobste.rs/rss" "title =~ \"^What are you doing this week\""
 ignore-article "https://hnrss.org/frontpage.atom" "title =~ \"^(Show|Tell|Ask|Launch) HN: \""
 ignore-article "https://hnrss.org/frontpage.atom" "title =~ \"\\(YC .*\\)\""
-ignore-article "https://lobste.rs/rss" "title =~ \"^What are you doing this week\""
-ignore-article "https://dotfyle.com/neovim/plugins/rss.xml" "title =~ \"(theme|colorscheme)\""
+ignore-article "https://dotfyle.com/neovim/plugins/rss.xml" "title =~ \"theme|colorscheme\""
+ignore-article "https://dotfyle.com/neovim/plugins/rss.xml" "content =~ \"theme|colorscheme\""
+
+# NEWS
+ignore-article "https://www.404media.co/rss" "title =~ \"^(Podcast|Behind the Blog):\""
+ignore-article "https://www.404media.co/rss" "content =~ \"welcome back to the abstract\""
+ignore-article "https://torrentfreak.com/feed" "title =~ \"IPTV\""
+ignore-article "https://torrentfreak.com/feed" "title =~ \"(^| )(Football|Boxing|sports|NFL)( |$)\""
+ignore-article "https://rssbridge.bus-hit.me/?action=display&bridge=BleepingComputerBridge&format=Atom" \
+               "title =~ \"(^| )(windows)( |$)\""
+ignore-article "https://www.phoronix.com/rss.php" "title =~ \"intel|nvidia|driver|mesa|vulkan\""
+ignore-article "https://www.ghacks.net/feed/" "title =~ \"(^| )(windows)( |$)\""
+
+# BLOGS
+ignore-article "https://www.schneier.com/feed/atom" "title =~ \"^Friday Squid Blogging: \""
+ignore-article "https://daringfireball.net/feeds/main" "title =~ \"(sponsor|apple|ipad|iphone|macos)\""
+ignore-article "https://daringfireball.net/feeds/main" "content =~ \"(apple|ipad|iphone|macos)\""
