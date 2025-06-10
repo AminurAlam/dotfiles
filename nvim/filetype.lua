@@ -1,10 +1,11 @@
 vim.filetype.add {
   pattern = {
-    ['.*%.log'] = 'log',
+    -- ['.*%.log'] = 'log',
     ['.*%.cue'] = 'cuesheet',
     ['.*%.note'] = 'note',
-    ['.*%.conf'] = 'conf',
-    ['fzfrc'] = 'markdown',
-    ['mihon_update_errors.txt'] = 'markdown',
+    -- ['.*%.conf'] = 'conf',
+    ['mihon_update_errors%.txt'] = 'markdown',
+    ['PKGBUILD'] = 'sh',
+    ['.*%.PKGBUILD'] = 'sh',
   },
 }
