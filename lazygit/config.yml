@@ -1,4 +1,4 @@
-# Config relating to the Lazygit UI
+# yaml-language-server: $schema=https://raw.githubusercontent.com/jesseduffield/lazygit/master/schema/config.json# Config relating to the Lazygit UI
 gui:
   # The number of lines you scroll by when scrolling the main window
   scrollHeight: 1
@@ -26,7 +26,7 @@ gui:
   expandFocusedSidePanel: true
   # The weight of the expanded side panel, relative to the other panels. 2 means
   # twice as tall as the other panels. Only relevant if `expandFocusedSidePanel` is true.
-  expandedSidePanelWeight: 2
+  expandedSidePanelWeight: 3
   # Sometimes the main window is split in two (e.g. when the selected file has both staged and unstaged changes). This setting controls how the two sections are split.
   # Options are:
   # - 'horizontal': split the window horizontally
@@ -257,7 +257,7 @@ refresher:
   # Auto-fetch can be disabled via option 'git.autoFetch'.
   fetchInterval: 3600
 # If true, show a confirmation popup before quitting Lazygit
-confirmOnQuit: true
+confirmOnQuit: false
 # If true, exit Lazygit when the user presses escape in a context where there is nothing to cancel/close
 quitOnTopLevelReturn: false
 # Config relating to things outside of Lazygit like how files are opened, copying to clipboard, etc
@@ -333,8 +333,6 @@ keybinding:
     rangeSelectUp: <s-up>
     prevBlock: <left>
     nextBlock: <right>
-    prevBlock-alt: h
-    nextBlock-alt: l
     nextBlock-alt2: <tab>
     prevBlock-alt2: <backtab>
     jumpToBlock:
@@ -354,7 +352,7 @@ keybinding:
     confirmInEditor: <a-enter>
     remove: d
     new: "n"
-    edit: e
+    edit: l
     openFile: o
     scrollUpMain: <pgup>
     scrollDownMain: <pgdown>
