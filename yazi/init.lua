@@ -44,7 +44,11 @@ pref_by_location:setup({
     -- linemode: "none" |"size" |"btime" |"mtime" |"permissions" |"owner"
     -- show_hidden: true|false
     {
-      location = '^/(home/fisher|sdcard)/Pictures/.*',
+      location = '^/sdcard/Pictures/.*',
+      sort = { 'mtime', reverse = true },
+    },
+    {
+      location = '^/home/fisher/Pictures/.*',
       sort = { 'mtime', reverse = true },
     },
     -- { location = '^/home/fisher', show_hidden = false },
