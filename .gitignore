@@ -1,15 +1,13 @@
 /btop/btop.log
-/btop/themes/
 
 # allow completions manully
 /fish/completions/*
 !/fish/completions/mux.fish
-!/fish/completions/x11.fish
 !/fish/completions/y.fish
 !/fish/completions/z.fish
 /fish/fish_variables
 
-/mpv/shaders/
+# TODO: update mpv shaders
 
 /mgba/qt.ini
 /mgba/*.sqlite3
