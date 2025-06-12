@@ -1,0 +1,23 @@
+;; vim:ft=cl:
+
+(defcfg
+    process-unmapped-keys yes
+)
+
+(defsrc a s d f l ;)
+(defvar
+    tap-time 200
+    hold-time 250
+)
+
+(defalias
+    a (multi f24 (tap-hold $tap-time $hold-time a lalt))
+    s (multi f24 (tap-hold $tap-time $hold-time s lsft))
+    d (multi f24 (tap-hold $tap-time $hold-time d lmet))
+    f (multi f24 (tap-hold $tap-time $hold-time f lctl))
+
+    l (multi f24 (tap-hold $tap-time $hold-time l rsft))
+    ; (multi f24 (tap-hold $tap-time $hold-time ; ralt))
+)
+
+(deflayer base @a @s @d @f @l @;)

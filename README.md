@@ -22,6 +22,7 @@
 - [hyprland](https://hyprland.org/) - wayland compositor
   - [waybar](https://github.com/Alexays/Waybar) - status bar
   - [wofi](https://hg.sr.ht/~scoopta/wofi) - launcher
+- [kanata](https://github.com/jtroo/kanata) - keyboard customizer
 - [keepassxc](https://keepassxc.org/) - password manager
 - [kitty](https://github.com/kovidgoyal/kitty) - terminal emulator
 - [mgba](http://mgba.io) - GBA emulator
