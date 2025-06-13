@@ -3,7 +3,7 @@ function sy
     # update ssh address
 
     [ (uname -o) = Android ] && return 1
-    set ip (route -n | awk '/^[0.]+/{print $2}' | uniq)
+    set ip (route -n | awk '/^[0.]+/{print $2}' | uniq | head -n1)
     [ -n "$ip" ] && sed -r -i "s/192\.168\.[0-9]+\.[0-9]+\$/$ip/" ~/.ssh/config
 
     printf "\033[36m === PICTURES ===\033[0m\n"
@@ -31,17 +31,17 @@ function sy
     end
 
     printf "\033[36m === TORRENTS ===\033[0m\n"
-    rsync -Pha ~/Downloads/torrents/ phone:/sdcard/main/torrents/
-    rsync -Pha phone:/sdcard/main/torrents/ ~/Downloads/torrents/
+    rsync -Pha ~/Downloads/main/torrents/ phone:/sdcard/main/torrents/
+    rsync -Pha phone:/sdcard/main/torrents/ ~/Downloads/main/torrents/
 
     printf "\033[36m === KEEPASS DB ===\033[0m\n"
     rsync -Pha ~/Downloads/main/arch.kdbx phone:/sdcard/main/arch.kdbx
     rsync -Pha phone:/sdcard/main/android.kdbx ~/Downloads/main/android.kdbx
 
     printf "\033[36m === MISC ===\033[0m\n"
-    # rsync -Pha ~/Downloads/ROMS/ phone:/sdcard/Download/ROMS/ --delete --exclude Switch
+    # rsync -Pha ~/Downloads/main/ROMS/ phone:/sdcard/Download/main/ROMS/ --delete --exclude Switch
     rsync -Pha ~/.local/share/newsboat/cache.db phone:~/.local/share/newsboat/cache.db
-    rsync -Pha phone:/sdcard/main/backup/ ~/Downloads/backup/
+    rsync -Pha phone:/sdcard/main/backup/ ~/Downloads/main/backup/
     rsync -Pha phone:/sdcard/Music/ ~/Music/ --delete --exclude .thumbnails
     rsync -Pha phone:/sdcard/TachiyomiSY/local/#lewd/ ~/Downloads/manga/#lewd/ --delete \
         --exclude @Alp \

@@ -5,7 +5,7 @@ set update_url "https://www.apkmirror.com/apk/google-inc/youtube/youtube-%s-rele
 function pre_build
     command -vq jq || yay -S --needed $DEPENDENCIES
 
-    cd ~/Downloads/revanced
+    cd ~/Downloads/main/revanced || exit
     curl -o api.json -#LH "Accept: application/vnd.github+json" -H "X-GitHub-Api-Version: 2022-11-28" \
         https://api.github.com/repos/revanced/revanced-patches/releases/latest
     set patchname (jq -r .assets[0].name api.json)
@@ -30,7 +30,7 @@ function pre_build
 end
 
 function build
-    cd ~/Downloads/revanced
+    cd ~/Downloads/main/revanced || exit
     set -e DISPLAY # DISPLAY breaks decoding resourses
     [ (count (adb devices)) -gt 2 ] && set adb -i
 

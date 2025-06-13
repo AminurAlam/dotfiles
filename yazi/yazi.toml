@@ -14,6 +14,7 @@ open.prepend_rules = [
   { name = "*.apk", use = ["apkinstall", "open"] },
   { name = "*.{ass,srt,ssa,sup,vtt}", use = ["add-sub", "edit"] },
 ]
+open.append_rules = [{ name = "*", use = ["rsync"] }]
 # TODO: add viu for android
 plugin.prepend_previewers = [
   # { name = "*/", run = "eza-preview" },
@@ -33,6 +34,7 @@ qbittorrent = [{ run = 'qbittorrent "$@"', block = false, orphan = true, desc = 
 wine = [{ run = 'wine "$@"', block = false, orphan = true, desc = "wine", for = "linux" }]
 zathura = [{ run = 'zathura "$@"', block = false, orphan = true, desc = "zathura", for = "linux" }]
 add-sub = [{ run = ''' echo sub-add "'$0'" | socat - /tmp/mpv.sock ''', desc = "Add sub to MPV" }]
+rsync = [{ run = '''rsync -Pha -- $0 phone:/sdcard/Download/ ''', block = false, orphan = true, desc = "rsync" }]
 play = [
   { run = 'termux-open "$@"', orphan = true, for = "android" },
   { run = 'mpv --force-window "$@"', orphan = true, for = "unix" },

@@ -2,7 +2,7 @@
 set packages eza git fish curl
 
 # paths
-set path_dots "$HOME/repos/dotfiles" # NOTE: mae sure this is a full path
+set path_dots "$HOME/repos/dotfiles" # NOTE: make sure this is a full path
 set path_nvim "$HOME/repos/neovim"
 
 command mkdir -p $HOME/repos $HOME/.local/{share,bin,cache}/
