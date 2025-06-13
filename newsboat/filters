@@ -14,7 +14,7 @@ ignore-mode "display"
 ignore-article "https://github.com/neovim/neovim/commits/master/runtime/doc/news.txt.atom" \
                "title =~ \"^docs: \""
 ignore-article "https://muspy.com/feed?id=mobwjpkr95u5p1b4f2w1bjt74qc8u3" \
-               "title =~ \"remix|taylor swift|bruce springsteen|live from |live in | version\""
+               "title =~ \"remix|taylor swift|bruce springsteen|live| version\""
 
 # FORUMS & AGGREGATORS
 ignore-article "https://lobste.rs/rss" "title =~ \"^What are you doing this week\""
