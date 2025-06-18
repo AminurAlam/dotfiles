@@ -22,16 +22,16 @@ function fish_right_prompt
         set -f time "["(echo $CMD_DURATION)"ms]"
     end
 
-    printf "%s%s" \
+    printf '%s%s' \
         (set_color $fish_color_error) $prompt_status \
         (set_color grey) $time
 end
 
 function fish_prompt
     echo
-    printf "%b%b " \
+    printf '%b%b ' \
         (set_color cyan) (git symbolic-ref --short HEAD 2>/dev/null) \
         (set_color $fish_color_cwd) (prompt_pwd)
     set_color normal
-    [ (string length (prompt_pwd)) -gt 20 ] && printf "\n ❯ " || printf "❯ "
+    [ (string length (prompt_pwd)) -gt 20 ] && printf '\n ❯ ' || printf '❯ '
 end

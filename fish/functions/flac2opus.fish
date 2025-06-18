@@ -17,7 +17,7 @@ function flac2opus -d "convert audio from flac to opus"
         end
 
         set file "$argv[$n]" (path change-extension opus "$argv[$n]")
-        printf "[%02d/%02d] %s\n" "$n" "$total" "$file[1]"
+        printf '[%02d/%02d] %s\n' "$n" "$total" "$file[1]"
 
         if command -vq opusenc
             opusenc --quiet --music --comp 10 --bitrate 256 $cover "$file[1]" "$file[2]" &

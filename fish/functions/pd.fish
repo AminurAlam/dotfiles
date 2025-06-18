@@ -20,7 +20,7 @@ function pd -a distro -d "proot-distro wrapper"
         case "i*"
             proot-distro install "$distro"
         case "*"
-            printf "%s is not a supported distro\n" "$distro"
+            printf '%s is not a supported distro\n' "$distro"
             return
     end
 

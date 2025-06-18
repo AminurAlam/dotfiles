@@ -8,10 +8,6 @@ function bm -d "bookmark manager"
             echo "$argv[2]" >>"$BMPATH[1]"
         case e ed edit
             $EDITOR $BMPATH
-        case repo
-            $BROWSER (for repo in $XDG_PROJECTS_DIR/*
-                git -C "$repo" remote --verbose | awk '/push/ {print $2}'
-            end | fzf --query \')
         case '*'
             set -l LINK (
                 rg --no-filename --replace '' '^https?://(www\.)?' $BMPATH |

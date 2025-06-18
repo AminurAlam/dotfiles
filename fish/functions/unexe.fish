@@ -4,7 +4,7 @@ function unexe -d "mass chmod -x files"
     set total (count $argv)
 
     if [ "$total" -lt 1 ]
-        printf "no input files supplied and failed to find files\n"
+        printf 'no input files supplied and failed to find files\n'
         return 1
     else if [ "$total" -gt 20 ]
         [ "$(read -P "$total files will be processed, proceed? [y/N] ")" = y ]
@@ -20,7 +20,7 @@ function unexe -d "mass chmod -x files"
             mv -- "$file" "$exe/$file" &>/dev/null
             chmod -x -- "$exe/$file" &>/dev/null
             mv -- "$exe/$file" "$file" &>/dev/null
-            [ -e "$file" ] || printf "$file was not restored properly\ncheck $exe\n"
+            [ -e "$file" ] || printf '%s was not restored properly\ncheck %s\n' "$file" "$exe"
         else
             chmod -x "$file"
         end

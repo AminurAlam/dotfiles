@@ -85,13 +85,7 @@ dircolors ~/repos/dotfiles/eza/dircolors -c | sed 's/^setenv /set -gx /' | sourc
 
 ### FUNCTIONS ###
 function fish_title
-    printf "%s" (prompt_pwd)
-end
-
-function auto_pwd --on-variable PWD
-    if test -d .git && git rev-parse --git-dir &>/dev/null
-        git status -s
-    end
+    printf '%s' (prompt_pwd)
 end
 
 ### COLORSCHEME ###

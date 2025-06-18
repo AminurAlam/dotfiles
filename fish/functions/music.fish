@@ -1,7 +1,7 @@
 function music -d "process music files with a single command"
     set files (fd -d1 '.*\.(mp3|ogg|opus|flac|lrc)' | sort -g) # list of editable files
     set filecount (count $files) # number of editable files
-    set max (printf "%s\n" $files | wc -L) # find length of longest string
+    set max (printf '%s\n' $files | wc -L) # find length of longest string
 
     if [ "$filecount" = 0 ]
         echo no audio files

@@ -17,7 +17,7 @@ function rar2zip -d "convert archives from .rar to .zip"
         set count (math $count + 1)
 
         if not [ -e "$input" ]
-            printf "input file `$input` doesnt exist\n"
+            printf 'input file `%s` doesnt exist\n' "$input"
             continue
         end
 
@@ -25,7 +25,7 @@ function rar2zip -d "convert archives from .rar to .zip"
         set output (path change-extension zip (basename "$input"))
 
         if [ "$input" = "$output" ]
-            printf "internal error: both input and output are same\n"
+            printf 'internal error: both input and output are same\n'
             continue
         end
 
@@ -35,7 +35,7 @@ function rar2zip -d "convert archives from .rar to .zip"
             or continue
         end
 
-        printf "[%02d/%02d] %s ... " "$count" "$total" "$input"
+        printf '[%02d/%02d] %s ... ' "$count" "$total" "$input"
         unrar x -idnq "$input" "$medium/" || return 1
 
         set ogdir "$PWD"
