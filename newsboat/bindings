@@ -28,10 +28,10 @@ bind l            everywhere open
 bind <ENTER>      everywhere open
 bind <$>          everywhere open
 
-bind <RIGHT>      article    open-in-browser
-bind l            article    open-in-browser
-bind <ENTER>      article    open-in-browser
-bind <$>          article    open-in-browser
+bind <RIGHT>      article    open-in-browser;redraw
+bind l            article    open-in-browser;redraw
+bind <ENTER>      article    open-in-browser;redraw
+bind <$>          article    open-in-browser;redraw
 
 bind <ESC>        urlview    quit
 bind <C-q>        everywhere hard-quit
@@ -42,8 +42,7 @@ bind gg           everywhere home
 bind G            everywhere end
 bind k            everywhere up
 bind j            everywhere down
-# TODO: pls fix
-bind <C-j>        article    next
+bind <C-j>        article    next # https://github.com/newsboat/newsboat/issues/2760
 bind <C-k>        article    prev
 bind <C-u>        everywhere up;up;up;up;up
 bind <C-d>        everywhere down;down;down;down;down

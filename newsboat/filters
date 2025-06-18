@@ -1,14 +1,7 @@
 # vim: set ft=conf :
-
 # ignore-article "" "title =~ \"(^| )()( |$)\""
 
 ignore-mode "display"
-
-
-# ignore-article "*" "title =~ \"(^| )(Open)?AI( |$)\""
-# ignore-article "*" "title =~ \"(^| )(Chat)?GPT-?(3|4|5)?( |$)\""
-# ignore-article "*" "title =~ \"(^| )(LLMs?|large language models?|machine learning|Gemini|copilot|DeepSeek)( |$)\""
-
 
 # MISC
 ignore-article "https://github.com/neovim/neovim/commits/master/runtime/doc/news.txt.atom" \
