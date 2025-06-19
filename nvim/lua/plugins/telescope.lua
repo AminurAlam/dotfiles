@@ -1,7 +1,7 @@
 local M = {
   'https://github.com/nvim-telescope/telescope.nvim',
-  keys = { '<leader>f' }, -- mapping
-  cmd = 'Telescope', -- alpha
+  keys = { '<leader>f' },
+  cmd = 'Telescope',
   dependencies = { 'nvim-lua/plenary.nvim' },
 }
 
@@ -35,13 +35,15 @@ M.config = function()
         'target/',
         -- 'build/',
       },
-      path_display = { shorten = { len = 1, exclude = { 1, -1 } } },
+      path_display = vim.fn.has 'termux' == 1 and { shorten = { len = 1, exclude = { 1, -1 } } }
+        or {},
       mappings = {
         i = {
-          ['<C-q>'] = 'close',
           ['<esc>'] = 'close',
           ['<C-Down>'] = 'cycle_history_next',
           ['<C-Up>'] = 'cycle_history_prev',
+          ['j'] = 'move_selection_next',
+          ['k'] = 'move_selection_previous',
           ['<S-Tab>'] = 'move_selection_next',
           ['<Tab>'] = 'move_selection_previous',
         },

@@ -1,28 +1,26 @@
 return {
   'https://github.com/folke/todo-comments.nvim',
-  event = { 'InsertEnter' },
-  cmd = {
-    'TodoFzfLua',
-    'TodoLocList',
-    'TodoQuickFix',
-    'TodoTelescope',
-    'TodoTrouble',
-  },
+  -- event = { 'InsertEnter' },
+  -- cmd = {
+  --   'TodoFzfLua',
+  --   'TodoLocList',
+  --   'TodoQuickFix',
+  --   'TodoTelescope',
+  --   'TodoTrouble',
+  -- },
   dependencies = { 'nvim-lua/plenary.nvim' },
   opts = {
     signs = false,
-    sign_priority = 8,
     keywords = {
       FIX = { icon = ' ', color = 'error', alt = { 'FIXME', 'BUG', 'FIXIT', 'ISSUE' } },
       TODO = { icon = ' ', color = 'info' },
-      HACK = { icon = ' ', color = 'warning' },
       WARN = { icon = ' ', color = 'warning', alt = { 'WARNING', 'XXX' } },
       PERF = { icon = ' ', alt = { 'OPTIM', 'PERFORMANCE', 'OPTIMIZE' } },
-      NOTE = { icon = ' ', color = 'hint', alt = { 'INFO' } },
-      TEST = { icon = '⏲ ', color = 'test', alt = { 'TESTING', 'PASSED', 'FAILED' } },
+      NOTE = { icon = ' ', color = 'hint', alt = { 'INFO' } },
+      TEST = { icon = '󰙨 ', color = 'test', alt = { 'TESTING', 'PASSED', 'FAILED' } },
     },
     gui_style = { fg = 'NONE', bg = 'BOLD' },
-    merge_keywords = true, -- when true, custom keywords will be merged with the defaults
+    merge_keywords = false, -- when true, custom keywords will be merged with the defaults
     -- highlighting of the line containing the todo comment
     -- * before: highlights before the keyword (typically comment characters)
     -- * keyword: highlights of the keyword
