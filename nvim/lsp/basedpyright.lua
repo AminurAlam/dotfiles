@@ -13,7 +13,7 @@ return {
   settings = {
     python = {
       analysis = {
-        diagnosticMode = 'document',
+        diagnosticMode = 'workspace',
         autoSearchPaths = true,
         useLibraryCodeForTypes = true,
       },
