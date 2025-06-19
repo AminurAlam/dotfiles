@@ -1,5 +1,3 @@
-# vim:ft=sshconfig:
-
 Host phone
     User user
     Hostname 192.168.252.185

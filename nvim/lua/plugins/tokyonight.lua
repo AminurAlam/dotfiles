@@ -42,7 +42,6 @@ return {
       hl.MsgSeparator = { link = 'TermCursorNC' }
       hl.WinSeparator = { link = 'TermCursorNC' }
       hl.texEmphStyle = { link = 'Normal' }
-      hl['@function.call.fish'] = { link = 'Special' }
       hl['@variable.fish'] = { link = 'Constant' }
       hl['@function.diff'] = { link = 'TabLineSel' }
       hl['@attribute.diff'] = { fg = '#7dcfff', bg = '#3b4261' }

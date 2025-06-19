@@ -1,6 +1,23 @@
 local set = vim.opt_local
 local autocmd = vim.api.nvim_create_autocmd
 
+autocmd('FileType', {
+  desc = 'automatically start treesitter',
+  pattern = vim.tbl_flatten(
+    vim.tbl_map(
+      vim.treesitter.language.get_filetypes,
+      require('nvim-treesitter').get_installed('parsers')
+    )
+  ),
+  callback = function(details)
+    vim.treesitter.start()
+    -- if not details.match == 'css' then end
+    vim.bo[details.buf].syntax = 'on'
+    vim.wo.foldmethod = 'expr'
+    vim.wo.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+  end,
+})
+
 autocmd({ 'FileType', 'BufNewFile' }, {
   desc = 'reading mode for some filetypes',
   pattern = {

@@ -1,3 +1,4 @@
+# vim:ft=yaml:
 ---
 Language:        Cpp
 # BasedOnStyle:  LLVM
