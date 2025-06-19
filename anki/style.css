@@ -28,12 +28,10 @@ b { color: #5586cd; }
 summary {
   text-align: right;
   padding-right: 20px;
-  list-style-type: "+ ";
+  list-style-type: "+";
 }
 details { font-size: 16px; }
 details[open] {
-  /* TODO: centre align frequencies */
-  summary { list-style-type: "- "; }
   .freq {
     padding: 0px 0px 0px 10px;
     ul {

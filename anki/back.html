@@ -1,4 +1,4 @@
-<!-- vim:set ft=html sw=2: -->
+<!-- vim:set ft=handlebars sw=2: -->
 <div class="word">{{furigana:Word Furigana}}</div>
 <div class="word-meaning">{{Word Meaning}}</div>
 <div class="sentence">
@@ -9,9 +9,9 @@
 
 <details>
   <summary></summary>
-  <div class="freq" id="freq">{{Frequency}}</div>
-  <span class="note">{{#Notes}}({{Notes}}){{/Notes}}</span>
   <span class="tags">{{Tags}}</span>
+  <span class="freq" id="freq">{{Frequency}}</span>
+  <span class="note">{{#Notes}}({{Notes}}){{/Notes}}</span>
 </details>
 
 <div class="note">{{#Notes}}({{Notes}}){{/Notes}}</div>
@@ -26,13 +26,10 @@
 </div>
 
 <script>
-  freq.innerHTML = freq.innerHTML.replace(
-    /(\d\d+|[6-9])\d{3}([^\d]?)/g,
-    "$1k$2",
-  );
+  freq.innerHTML = freq.innerHTML.replace(/^(\d\d+|[6-9])\d{3}$/, "$1k");
 
-  if ("{{Tags}}".match("nsfw")) pic.style.filter = "blur(8px)";
+  if ("{{Tags}}".match("nsfw")) pic.style.filter = "blur(9px)";
   pic.addEventListener("click", () => {
-    pic.style.filter = "none";
+    pic.style.filter = "";
   });
 </script>
