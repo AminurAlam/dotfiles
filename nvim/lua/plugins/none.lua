@@ -19,7 +19,7 @@ M.config = function()
       null_ls.builtins.formatting.stylua,
       null_ls.builtins.diagnostics.fish,
       null_ls.builtins.formatting.fish_indent,
-      null_ls.builtins.formatting.clang_format.with { extra_filetypes = { 'json' } },
+      null_ls.builtins.formatting.clang_format.with { extra_filetypes = { 'json', 'glsl' } },
       h.make_builtin {
         name = 'tex-fmt',
         method = 'NULL_LS_FORMATTING',

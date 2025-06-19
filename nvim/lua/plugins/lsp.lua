@@ -25,9 +25,13 @@ M.init = function()
     end,
   })
 
-  vim.api.nvim_create_user_command('Tex', function(info)
-    vim.cmd(':silent !latexmk -pdf -interaction=nonstopmode -synctex=1 % ; open %:r.pdf')
-  end, { desc = 'Builds your tex file', bang = true })
+  vim.api.nvim_create_user_command(
+    'Tex',
+    function(info)
+      vim.cmd(':silent !latexmk -pdf -interaction=nonstopmode -synctex=1 % ; open %:r.pdf')
+    end,
+    { desc = 'Builds your tex file', bang = true }
+  )
 end
 
 M.config = function()

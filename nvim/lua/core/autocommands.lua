@@ -11,7 +11,6 @@ autocmd('FileType', {
   ),
   callback = function(details)
     vim.treesitter.start()
-    -- if not details.match == 'css' then end
     vim.bo[details.buf].syntax = 'on'
     vim.wo.foldmethod = 'expr'
     vim.wo.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
@@ -20,20 +19,7 @@ autocmd('FileType', {
 
 autocmd({ 'FileType', 'BufNewFile' }, {
   desc = 'reading mode for some filetypes',
-  pattern = {
-    'alpha',
-    'article',
-    'diff',
-    'gitcommit',
-    'help',
-    'lazy',
-    'lspinfo',
-    'log',
-    'man',
-    'text',
-    'netrw',
-    'Trouble',
-  },
+  pattern = { 'help', 'man' },
   callback = function()
     set.linebreak = true
     set.number = false
@@ -44,6 +30,20 @@ autocmd({ 'FileType', 'BufNewFile' }, {
       .. '%#stl_hl_to#%#Normal# %='
       .. '%{ v:hlsearch ? g:stl.hlsearch(searchcount()) : "" } '
       .. '%{ g:stl.progress(line("."), line("$")) } '
+  end,
+})
+
+vim.api.nvim_create_autocmd({ 'Filetype' }, {
+  desc = 'helper commands for latex',
+  pattern = { 'tex', 'plaintex', 'bib' },
+  callback = function()
+    vim.api.nvim_create_user_command('Tex', function() --
+      vim.cmd('silent !latexmk -pdf -interaction=nonstopmode -synctex=1 % ; open %:r.pdf')
+    end, { desc = 'Builds your tex file', bang = true })
+
+    vim.api.nvim_create_user_command('TexClean', function() --
+      vim.cmd('silent !latexmk -c')
+    end, { desc = 'Builds your tex file', bang = true })
   end,
 })
 
@@ -115,7 +115,7 @@ autocmd('BufWinEnter', {
 })
 
 autocmd('TextYankPost', {
-  callback = function() vim.highlight.on_yank { higroup = 'IncSearch', timeout = 250 } end,
+  callback = function() vim.hl.on_yank { higroup = 'IncSearch', timeout = 250 } end,
 })
 
 autocmd('FileType', { pattern = { 'qf' }, command = 'nmap <buffer> <cr> <cr>' })
@@ -125,7 +125,6 @@ autocmd('BufEnter', { command = 'set formatoptions-=cro' })
 autocmd('BufLeave', { command = 'set nocursorline' })
 autocmd('BufEnter', { command = 'set cursorline' })
 
--- TODO: https://github.com/ravibrock/regisfilter.nvim
 -- autocmd('VimEnter', {
 --   desc = 'intro screen',
 --   once = true,
@@ -151,28 +150,8 @@ autocmd('BufEnter', { command = 'set cursorline' })
 --     end
 --   end,
 -- })
--- https://github.com/mawkler/modicator.nvim
--- vim.api.nvim_create_autocmd('ModeChanged', {
---   desc = 'change cursor line number based on mode',
---   callback = function()
---     local modes = {
---       ['i'] = '#7aa2f7',
---       ['c'] = '#e06c75',
---       ['cv'] = '#e06c75',
---       ['ce'] = '#e06c75',
---       ['R'] = '#e06c75',
---       ['v'] = '#c678dd',
---       ['V'] = '#c678dd',
---       ['\22'] = '#c678dd',
---       ['s'] = '#c678dd',
---       ['S'] = '#c678dd',
---       ['\19'] = '#c678dd',
---     }
---     vim.api.nvim_set_hl(0, 'CursorLineNr', {
---       fg = modes[vim.api.nvim_get_mode().mode] or '#98c379',
---     })
---   end,
--- })
+
+-- https://github.com/ravibrock/regisfilter.nvim
 -- https://github.com/ibhagwan/smartyank.nvim
 -- autocmd({ 'TextYankPost' }, {
 --   desc = 'stop certain stuff from going to clipboard',

@@ -1,6 +1,5 @@
--- TODO: format on write
-local autocmd = vim.api.nvim_create_autocmd
-local servers = {
+local filter = function(server) return vim.fn.executable(vim.lsp.config[server].cmd[1]) == 1 end
+vim.lsp.enable(vim.tbl_filter(filter, {
   'basedpyright',
   'bash_language_server',
   'clangd',
@@ -17,11 +16,10 @@ local servers = {
   'vscode_css_language_server',
   'vscode_eslint_language_server',
   'vscode_html_language_server',
-}
-
-if vim.fn.has('nvim-0.11.0') == 1 then vim.lsp.enable(servers) end
+}))
 
 vim.api.nvim_create_autocmd({ 'BufEnter' }, {
+  desc = 'start termux lsp on opening specific files',
   pattern = {
     'build.sh',
     '*.subpackage.sh',
@@ -34,6 +32,7 @@ vim.api.nvim_create_autocmd({ 'BufEnter' }, {
     'make.conf',
   },
   callback = function()
+    if vim.fn.executable 'termux-language-server' == 0 then return end
     vim.lsp.start({
       name = 'termux',
       cmd = { 'termux-language-server' },
@@ -41,57 +40,27 @@ vim.api.nvim_create_autocmd({ 'BufEnter' }, {
   end,
 })
 
--- stylua: ignore
-vim.api.nvim_create_user_command('Tex', function()
-  vim.cmd(':silent !latexmk -pdf -interaction=nonstopmode -synctex=1 % ; open %:r.pdf')
-end, { desc = 'Builds your tex file', bang = true })
-
--- stylua: ignore
-vim.api.nvim_create_user_command('TexClean', function()
-    vim.cmd(':silent !latexmk -c')
-end, { desc = 'Builds your tex file', bang = true })
-
-autocmd('LspAttach', {
+vim.api.nvim_create_autocmd('LspAttach', {
+  desc = 'enable lsp features',
   callback = function(info)
-    local nmap = function(lhs, rhs) vim.keymap.set('n', lhs, rhs, { buffer = info.buf }) end
     local client = vim.lsp.get_client_by_id(vim.tbl_get(info, 'data', 'client_id'))
-
-    nmap('<leader>lf', vim.lsp.buf.format)
-    nmap('grd', vim.lsp.buf.definition)
-    nmap('<leader>li', function()
-      local clients = vim.lsp.get_clients()
-      local text = #clients .. ' clients attached\n'
-      local template = [[ CLIENT: %s (id: %d)
-     ft: %s
-     ws: %s
-]]
-
-      local get_ws = function(dirs)
-        return dirs and vim.fn.fnamemodify(dirs[1].name, ':~') or 'single file mode'
-      end
-
-      for _, client in pairs(clients) do
-        text = text
-          .. string.format(
-            template,
-            client.name,
-            client.id,
-            table.concat(client.config.filetypes, ', '),
-            get_ws(client.workspace_folders) -- client.config.root_dir
-          )
-      end
-      print(text)
-    end)
 
     if client == nil then return end
     if client:supports_method('textDocument/hover') then
-      nmap('K', function() vim.lsp.buf.hover { border = 'rounded' } end)
+      vim.keymap.set('n', 'K', function() --
+        vim.lsp.buf.hover { border = 'rounded' }
+      end, { buffer = info.buf })
     end
+
     if client:supports_method('textDocument/documentColor') then
       vim.lsp.document_color.enable(true, info.buf)
     end
+
     -- if client:supports_method('textDocument/inlayHint') then
     --   vim.lsp.inlay_hint.enable(true, { bufnr = info.buf })
     -- end
+
+    vim.keymap.set('n', '<leader>lf', vim.lsp.buf.format, { buffer = info.buf })
+    vim.keymap.set('n', 'grd', vim.lsp.buf.definition, { buffer = info.buf })
   end,
 })

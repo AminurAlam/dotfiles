@@ -1,7 +1,7 @@
 return {
   {
     'https://github.com/windwp/nvim-autopairs',
-    enabled = false,
+    enabled = true,
     event = { 'InsertEnter', 'CmdlineEnter' },
     opts = {
       disable_filetype = { 'TelescopePrompt' },
@@ -24,7 +24,7 @@ return {
   },
   {
     'https://github.com/altermo/ultimate-autopair.nvim',
-    enabled = true,
+    enabled = false,
     event = { 'InsertEnter', 'CmdlineEnter' },
     branch = 'v0.6',
     opts = {
