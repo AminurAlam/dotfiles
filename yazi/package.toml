@@ -18,6 +18,16 @@ use = "boydaihungst/pref-by-location"
 rev = "1a50a3c"
 hash = "b0a66f27b4b01bad4e5972cf0754dcc9"
 
+[[plugin.deps]]
+use = "yazi-rs/plugins:types"
+rev = "86d28e4"
+hash = "c255054d6a70754db6cb96b97ad1ccd7"
+
+[[plugin.deps]]
+use = "yazi-rs/plugins:piper"
+rev = "86d28e4"
+hash = "684ef2121ac1e33611355f02b799bd67"
+
 [[flavor.deps]]
 use = "BennyOe/tokyo-night"
 rev = "b3950bf"

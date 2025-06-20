@@ -18,13 +18,19 @@ open.append_rules = [{ name = "*", use = ["rsync"] }]
 # TODO: add viu for android
 plugin.prepend_previewers = [
   # { name = "*/", run = "eza-preview" },
-  { name = "*.sqlite3", run = "sqlite" },
-  { mime = "application/sqlite3", run = "sqlite" },
-  # { mime = "audio/*", run = "exifaudio" },
+  { name = "*.sqlite3", run = 'piper -- sqlite3 "$1" .schema' },
+  { mime = "application/sqlite3", run = 'piper -- sqlite3 "$1" .schema' },
+  { mime = "audio/mpegurl", run = 'code' },
+  { mime = "audio/*", run = 'coverart' },
+  # { mime = "audio/*", run = 'piper -- mediainfo "$1" --Output="General;%Performer% - %Track%\nAlbum: %Album%\n\nGenre: %Genre%\nReleased: %Recorded_Date%"' },
   { mime = "application/subrip", run = "code" },
-  { name = "*.cb{z,r}", run = "comic-info" },
+  { name = "*.cb{z,r}", run = 'cbz' },
   { name = "*.zip", run = "archive" },
   # { mime = "application/octet-stream", run = "hexyl" },
+]
+plugin.prepend_preloaders = [
+  { mime = "audio/*", run = 'coverart' },
+  { name = "*.cb{z,r}", run = 'cbz' }
 ]
 
 [opener]
@@ -34,7 +40,7 @@ qbittorrent = [{ run = 'qbittorrent "$@"', block = false, orphan = true, desc = 
 wine = [{ run = 'wine "$@"', block = false, orphan = true, desc = "wine", for = "linux" }]
 zathura = [{ run = 'zathura "$@"', block = false, orphan = true, desc = "zathura", for = "linux" }]
 add-sub = [{ run = ''' echo sub-add "'$0'" | socat - /tmp/mpv.sock ''', desc = "Add sub to MPV" }]
-rsync = [{ run = '''rsync -Pha -- $0 phone:/sdcard/Download/ ''', block = false, orphan = true, desc = "rsync" }]
+rsync = [{ run = '''rsync -Pha -- "$0" phone:/sdcard/Download/ ''', block = false, orphan = true, desc = "rsync" }]
 play = [
   { run = 'termux-open "$@"', orphan = true, for = "android" },
   { run = 'mpv --force-window "$@"', orphan = true, for = "unix" },
@@ -68,13 +74,12 @@ title_format = "Yazi: {cwd}"
 [preview]
 wrap = "no"
 tab_size = 2
-max_width = 600
-max_height = 900
+max_width = 1500
+max_height = 1500
 cache_dir = ""
 image_delay = 30
 image_filter = "triangle"
 image_quality = 75
-sixel_fraction = 15
 ueberzug_scale = 1
 ueberzug_offset = [0, 0, 0, 0]
 
@@ -85,7 +90,7 @@ cursor_blink = false
 # rename
 rename_title = ""
 rename_origin = "hovered"
-rename_offset = [2, -1, 77, 3]
+rename_offset = [2, -1, 77, 3] # TODO: fix schema
 
 # cd
 cd_title = "   "
