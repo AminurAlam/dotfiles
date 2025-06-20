@@ -1,0 +1,32 @@
+#!/usr/bin/env fish
+
+[ -z "$argv[1]" ] && exit 1
+[ -z "$argv[2]" ] && exit 2
+[ -z "$argv[3]" ] && set argv[3] 1
+
+set ext (path extension "$argv[1]")
+set mime (file --mime -b "$argv[1]" | awk -F\; '{print $1}')
+
+if [ "$ext" = ".cbz" ] || [ "$ext" = ".zip" ] || [ "$mime" = application/zip ]
+    set cover (zipinfo -1 "$argv[1]" \
+        | rg '\.(png|jpg|jpeg|jxl|webp)$' \
+        | sort -n | sed -n "$argv[3]"p \
+        | sed -E 's/(\[|\]|\*|\?)/\\\\\1/g')
+    if [ -z "$cover" ]
+        count (zipinfo -1 "$argv[1]" | rg '\.(png|jpg|jpeg|jxl|webp)$')
+        exit 1
+    end
+
+    unzip -p "$argv[1]" "$cover" >"$argv[2]" || exit 4
+else if [ "$ext" = ".cbr" ] || [ "$ext" = ".rar" ] || [ "$mime" = "application/vnd.rar" ]
+    set cover (unrar lb "$argv[1]" | rg '\.(png|jpg|jpeg|jxl|webp)$' | sort -n | sed -n "$argv[3]"p)
+    if [ -z "$cover" ]
+        count (unrar lb "$argv[1]" | rg '\.(png|jpg|jpeg|jxl|webp)$')
+        exit 1
+    end
+
+    unrar x -op(dirname "$argv[2]") "$argv[1]" "$cover" || exit 4
+    mv -f -- "$(dirname "$argv[2]")/$cover" "$argv[2]"
+else
+    exit 5
+end

@@ -46,4 +46,6 @@ if [ (uname -o) = Android ]
     ln -fs ~/repos/dotfiles/scripts/bin/opendir ~/.local/bin/opendir
 end
 
+ln -fs ~/repos/dotfiles/scripts/bin/cbzcover ~/.local/bin/cbzcover
+
 rmdir --ignore-fail-on-non-empty ~/backup ~/bin
