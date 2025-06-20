@@ -2,18 +2,34 @@ local M = {}
 
 function M:peek(job)
   local start, cache = os.clock(), ya.file_cache(job)
-  if not cache then return end
 
   local ok, err = self:preload(job)
-  if not ok or err then return end
 
-  ya.sleep(math.max(0, rt.preview.image_delay / 1000 + start - os.clock()))
+  if ya.target_os() == 'android' then
+    local output
 
-  local _, err = ya.image_show(Url(fs.cwd() .. '/cover.jpg'), job.area)
-  if err then
-    _, err = ya.image_show(cache, job.area)
+    output = Command('viu'):arg({ fs.cwd() .. '/cover.jpg' }):stdout(Command.PIPED):output()
+    if not output.status.success then
+      output = Command('viu'):arg({ tostring(cache) }):stdout(Command.PIPED):output()
+      if not output.status.success then
+        output = Command('mediainfo')
+          :arg({
+            tostring(job.file.name),
+            [[--Output=General;%Performer% - %Track%\nAlbum: %Album%\n\nGenre: %Genre%\nReleased: %Recorded_Date%]],
+          })
+          :stdout(Command.PIPED)
+          :output()
+      end
+    end
+
+    ya.preview_widgets(job, { ui.Text.parse(output.stdout):area(job.area) })
+  else
+    local _, err = ya.image_show(Url(fs.cwd() .. '/cover.jpg'), job.area)
+    if err then
+      _, err = ya.image_show(cache, job.area)
+    end
+    ya.preview_widget(job, err and ui.Text(err):area(job.area):wrap(ui.Wrap.YES))
   end
-  ya.preview_widget(job, err and ui.Text(err):area(job.area):wrap(ui.Wrap.YES))
 end
 
 function M:seek(job) end
@@ -48,7 +64,7 @@ function M:preload(job)
   if ok then
     return true
   else
-    return false, Err('Failed to rename: %s', err)
+    return true, Err('Failed to rename: %s', err)
   end
 end
 

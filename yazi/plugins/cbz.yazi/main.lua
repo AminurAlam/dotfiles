@@ -1,21 +1,6 @@
 local M = {}
 
 function M:peek(job)
-  if ya.target_os() == 'android' then
-    local child, err = Command('unzip')
-      :arg({ '-p', tostring(job.file.url), 'ComicInfo.xml' })
-      :stdout(Command.PIPED)
-      :output()
-
-    if not err then
-      text = child.stdout
-      ya.preview_widget(job, ui.Text.parse(text):area(job.area):wrap(ui.Text.WRAP))
-    else
-      ya.preview_widget(job, ui.Text.parse(err):area(job.area):wrap(ui.Text.WRAP))
-    end
-    return
-  end
-
   local start, cache = os.clock(), ya.file_cache(job)
   if not cache then return end
 
@@ -24,12 +9,16 @@ function M:peek(job)
 
   ya.sleep(math.max(0, rt.preview.image_delay / 1000 + start - os.clock()))
 
-  local _, err = ya.image_show(cache, job.area)
-  ya.preview_widget(job, err and ui.Text(err):area(job.area):wrap(ui.Wrap.YES))
+  if ya.target_os() == 'android' then
+    local output, err = Command('viu'):arg({ tostring(cache) }):stdout(Command.PIPED):output()
+    ya.preview_widgets(job, { ui.Text.parse(output.stdout):area(job.area) })
+  else
+    local _, err = ya.image_show(cache, job.area)
+    ya.preview_widget(job, err and ui.Text(err):area(job.area):wrap(ui.Wrap.YES))
+  end
 end
 
 function M:seek(job)
-  if ya.target_os() == 'android' then return true end
   local h = cx.active.current.hovered
   if h and h.url == job.file.url then
     ya.emit('peek', {
@@ -42,7 +31,6 @@ end
 function M:preload(job)
   local cache = ya.file_cache(job)
   if not cache or fs.cha(cache) then return true end
-  if ya.target_os() == 'android' then return true end
 
   local output, err = Command('cbzcover')
     :arg({
