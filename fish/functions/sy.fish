@@ -1,61 +1,37 @@
 function sy
     # TODO: use function {...} | exclude-from -
-    # update ssh address
 
     [ (uname -o) = Android ] && return 1
+
     set ip (route -n | awk '/^[0.]+/{print $2}' | uniq | head -n1)
-    [ -n "$ip" ] && sed -r -i "s/192\.168\.[0-9]+\.[0-9]+\$/$ip/" ~/.ssh/config
+    [ -n "$ip" ] && sed -r -i "s/192\.168\.[0-9]+\.[0-9]+\$/$ip/" ~/.ssh/config || return 192
 
-    printf "\033[36m === PICTURES ===\033[0m\n"
-    rsync -Pha ~/Pictures/ phone:/sdcard/Pictures/ \
-        --exclude 'redmi vid' \
-        --exclude 'redmi vid2' \
-        --exclude 'WhatsApp Images' \
-        --exclude Camera \
-        --exclude ocr \
-        --exclude TachiyomiSY
+    set comm -ha --out-format "%o %n" --exclude={.thumbnails,.nomedia}
 
-    rsync -Pha phone:/sdcard/Pictures/ ~/Pictures/ \
-        --exclude .thumbnails \
-        --exclude .nomedia
+    begin
+        # === PICTURES ===
+        rsync $comm ~/Pictures/ phone:/sdcard/Pictures/ --exclude={Camera,TachiyomiSY,WhatsApp Images}
+        rsync $comm phone:/sdcard/Pictures/ ~/Pictures/
+        rsync $comm phone:/sdcard/{DCIM/Camera,Pictures/TachiyomiSY,Android/media/com.whatsapp/WhatsApp/Media/WhatsApp Images} ~/Pictures/ --delete
 
-    rsync -Pha phone:/sdcard/DCIM/Camera ~/Pictures/ --delete
-    rsync -Pha 'phone:/sdcard/Android/media/com.whatsapp/WhatsApp/Media/WhatsApp Images' ~/Pictures/ --delete
+        # === DOCUMENTS ===
+        rsync $comm phone:/sdcard/Documents/ ~/Documents/
+        rsync $comm ~/Documents/ phone:/sdcard/Documents/
 
-    printf "\033[36m === DOCUMENTS ===\033[0m\n"
-    rsync -Pha phone:/sdcard/Documents/ ~/Documents/
-    rsync -Pha ~/Documents/ phone:/sdcard/Documents/
-    pushd "$XDG_PROJECTS_DIR/notes/" && begin
-        git pull
-        popd
-    end
+        # === TORRENTS ===
+        rsync $comm ~/Downloads/main/torrents/ phone:/sdcard/main/torrents/
+        rsync $comm phone:/sdcard/main/torrents/ ~/Downloads/main/torrents/
 
-    printf "\033[36m === TORRENTS ===\033[0m\n"
-    rsync -Pha ~/Downloads/main/torrents/ phone:/sdcard/main/torrents/
-    rsync -Pha phone:/sdcard/main/torrents/ ~/Downloads/main/torrents/
+        # === KEEPASS DB ===
+        rsync $comm ~/Downloads/main/arch.kdbx phone:/sdcard/main/arch.kdbx
+        rsync $comm phone:/sdcard/main/android.kdbx ~/Downloads/main/android.kdbx
 
-    printf "\033[36m === KEEPASS DB ===\033[0m\n"
-    rsync -Pha ~/Downloads/main/arch.kdbx phone:/sdcard/main/arch.kdbx
-    rsync -Pha phone:/sdcard/main/android.kdbx ~/Downloads/main/android.kdbx
-
-    printf "\033[36m === MISC ===\033[0m\n"
-    # rsync -Pha ~/Downloads/main/ROMS/ phone:/sdcard/Download/main/ROMS/ --delete --exclude Switch
-    rsync -Pha ~/.local/share/newsboat/cache.db phone:~/.local/share/newsboat/cache.db
-    rsync -Pha phone:/sdcard/main/backup/ ~/Downloads/main/backup/
-    rsync -Pha phone:/sdcard/Music/ ~/Music/ --delete --exclude .thumbnails
-    rsync -Pha phone:/sdcard/TachiyomiSY/local/#lewd/ ~/Downloads/manga/#lewd/ --delete \
-        --exclude @Alp \
-        --exclude @Arakure \
-        --exclude '@Hinahara Emi' \
-        --exclude '@Ouchi Kaeru' \
-        --exclude '@Wantan Meo' \
-        --exclude @Yuruyakatou \
-        --exclude .nomedia
-    rsync -Pha phone:/sdcard/TachiyomiSY/local/@{Alp,Arakure,Hinahara Emi,Ouchi Kaeru,Wantan Meo,Yuruyakatou} ~/Downloads/manga/#lewd/ --delete --exclude .nomedia
-
-    # else if [ (uname -o) = Android ]
-    #     # FIX: rsync always overwrites
-    #     set sdcard (df | awk '/\/storage\/[A-Z0-9]{4}-[A-Z0-9]{4}$/ {print $6}')
-    #     echo $sdcard
-    # end
+        # === MISC ===
+        # rsync ~/Downloads/main/ROMS/ phone:/sdcard/Download/main/ROMS/ --delete --exclude Switch
+        rsync $comm ~/.local/share/newsboat/cache.db phone:~/.local/share/newsboat/cache.db
+        rsync $comm phone:/sdcard/main/backup/ ~/Downloads/main/backup/
+        rsync $comm phone:/sdcard/Music/ ~/Music/ --delete
+        rsync $comm phone:/sdcard/TachiyomiSY/local/\#lewd/ ~/Downloads/manga/\#lewd/ --exclude=@{Alp,Arakure,Hinahara Emi,Ouchi Kaeru,Wantan Meo,Yuruyakatou}
+        rsync $comm phone:/sdcard/TachiyomiSY/local/@{Alp,Arakure,Hinahara Emi,Ouchi Kaeru,Wantan Meo,Yuruyakatou} ~/Downloads/manga/\#lewd/ --delete
+    end | rg -v '/$' | sed -r 's/^send /-> /; s/^recv /<- /; s/^del\. /-- /'
 end
