@@ -1,5 +1,5 @@
 # vim: set ft=conf :
-# https://newsboat.org/releases/2.39/docs/newsboat.html
+# https://newsboat.org/releases/2.40/docs/newsboat.html
 
 include ~/.config/newsboat/colorscheme
 include ~/.config/newsboat/bindings

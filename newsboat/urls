@@ -73,7 +73,8 @@ https://daniel.haxx.se/blog/feed/ "~Daniel Stenberg (curl)"                     
 https://dylanbeattie.net/feed.xml "~Dylan Beattie"                               personal_blog_1
 https://world.hey.com/dhh/feed.atom "~David Heinemeier Hansson (DHH)"            personal_blog_1
 https://daringfireball.net/feeds/main "~John Gruber (Daring Fireball)"           personal_blog_1
-https://www.troyhunt.com/rss                                                     personal_blog_1
+https://www.troyhunt.com/rss                                                         personal_blog_1
+https://jvns.ca/atom.xml                                                         personal_blog_1
 
 https://axlefublr.github.io/rss.xml "~axlefublr"              personal_blog_1
 https://lukesmith.xyz/index.xml "~Luke Smith"                 personal_blog_1
@@ -84,6 +85,7 @@ https://robertheaton.com/feed.xml "~Robert Heaton"            personal_blog_1
 https://pluralistic.net/feed/ "~Cory Doctorow (Pluralistic)"  personal_blog_1
 https://ploum.net/atom_en.xml                                 personal_blog_1
 https://monstro1.com/rss.xml                                  personal_blog_1
+https://fireborn.mataroa.blog/rss/                            personal_blog_1
 
 "query:----- PERSONAL BLOGS 2 -----:tags # \"personal_blog\" and unread = \"yes\""
 https://www.roboleary.net/feed.xml personal_blog
@@ -97,7 +99,6 @@ https://krebsonsecurity.com/feed personal_blog
 https://danluu.com/atom.xml personal_blog
 https://www.fromjason.xyz/p/notebook/feed/feed.xml personal_blog
 https://mtwb.blog/rss/ "~Matt's Blog (Linux Cast YT)" personal_blog
-https://jvns.ca/atom.xml personal_blog
 
 https://thecodist.com/rss personal_blog
 https://100r.co/links/rss.xml personal_blog

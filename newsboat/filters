@@ -19,6 +19,7 @@ ignore-article "https://dotfyle.com/neovim/plugins/rss.xml" "content =~ \"theme|
 # NEWS
 ignore-article "https://www.404media.co/rss" "title =~ \"^(Podcast|Behind the Blog):\""
 ignore-article "https://www.404media.co/rss" "content =~ \"welcome back to the abstract\""
+ignore-article "https://www.404media.co/rss" "content =~ \"exciting and mind-boggling science news and studies\""
 ignore-article "https://torrentfreak.com/feed" "title =~ \"IPTV\""
 ignore-article "https://torrentfreak.com/feed" "title =~ \"(^| )(Football|Boxing|sports|NFL)( |$)\""
 ignore-article "https://rssbridge.bus-hit.me/?action=display&bridge=BleepingComputerBridge&format=Atom" \
