@@ -33,5 +33,5 @@ function sy
         rsync $comm phone:/sdcard/Music/ ~/Music/ --delete
         rsync $comm phone:/sdcard/TachiyomiSY/local/\#lewd/ ~/Downloads/manga/\#lewd/ --exclude=@{Alp,Arakure,Hinahara Emi,Ouchi Kaeru,Wantan Meo,Yuruyakatou}
         rsync $comm phone:/sdcard/TachiyomiSY/local/@{Alp,Arakure,Hinahara Emi,Ouchi Kaeru,Wantan Meo,Yuruyakatou} ~/Downloads/manga/\#lewd/ --delete
-    end | rg -v '/$' | sed -r 's/^send /-> /; s/^recv /<- /; s/^del\. /-- /'
+    end | rg -v '/$' # | sed -r 's/^send /-> /; s/^recv /<- /; s/^del\. /-- /'
 end
