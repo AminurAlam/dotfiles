@@ -64,3 +64,8 @@ setup_latex() {
     yay -S texlive-bin texlive-basic texlive-latex texlive-latexextra texlive-latexrecommended texlive-fontsrecommended \
         meta-group-texlive-most texlive-binextra
 }
+
+setup_servers() {
+    # TODO: create service files and add it to dotfiles
+    yay -S anki kiwix-tools komga kanata-bin
+}

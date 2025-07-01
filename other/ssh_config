@@ -1,6 +1,6 @@
 Host phone
     User user
-    Hostname 192.168.252.185
+    Hostname 192.168.0.0
     Port 8022
     IdentityFile ${HOME}/.ssh/ssh_ed25519
     IdentitiesOnly yes
@@ -11,7 +11,7 @@ Host phone
 
 Host phone-tmux
     User user
-    Hostname 192.168.252.185
+    Hostname 192.168.0.0
     Port 8022
     IdentityFile ${HOME}/.ssh/ssh_ed25519
     IdentitiesOnly yes

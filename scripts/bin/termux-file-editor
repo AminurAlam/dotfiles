@@ -4,6 +4,7 @@ if echo "$argv" | rg -q '.*\.(png|jpg)'
     ps -xo cmd | rg -q [m]anga_ocr
     and am start -n "org.ironfoxoss.ironfox/org.mozilla.gecko.BrowserApp"
     or echo "manga_ocr is not running"
+    # TODO: check suspend
 else
     nvim $argv
 end

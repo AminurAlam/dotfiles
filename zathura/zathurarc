@@ -23,8 +23,6 @@ map [fullscreen] f toggle_fullscreen
 map [fullscreen] D toggle_page_mode
 map [fullscreen] gO toggle_index
 
-# TODO: better zoom
-
 ### OPTIONS
 set guioptions "vs"
 set page-right-to-left

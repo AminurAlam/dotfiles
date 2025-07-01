@@ -14,6 +14,7 @@ end
 
 -- TODO: N64
 -- TODO: gamecube 
+-- TODO: new paths
 local games = {
   { '󰓓 Steam', 'steam' },
   { ' Osu!lazer', 'osu-lazer' },
