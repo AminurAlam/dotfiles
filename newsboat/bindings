@@ -28,10 +28,10 @@ bind l            everywhere open
 bind <ENTER>      everywhere open
 bind <$>          everywhere open
 
-bind <RIGHT>      article    open-in-browser;redraw
-bind l            article    open-in-browser;redraw
-bind <ENTER>      article    open-in-browser;redraw
-bind <$>          article    open-in-browser;redraw
+bind <RIGHT>      article    open-in-browser
+bind l            article    open-in-browser
+bind <ENTER>      article    open-in-browser
+bind <$>          article    open-in-browser
 
 bind <ESC>        urlview    quit
 bind <C-q>        everywhere hard-quit

@@ -49,6 +49,6 @@ display-article-progress yes
 
 notify-program "~/repos/dotfiles/scripts/newsboat_notify.fish"
 notify-format "Newsboat: %f unread feeds; %n unread articles"
-browser "xdg-open %u &"
+browser "xdg-open %u 2>/dev/null &"
 bookmark-cmd "fish ~/repos/dotfiles/scripts/newsboat_bookmark.fish"
 bookmark-autopilot yes

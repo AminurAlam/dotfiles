@@ -4,54 +4,55 @@
 
 "query:----- MISC -----:tags # \"misc\" and unread = \"yes\""
 # https://xkcd.com/atom.xml misc
-https://github.com/neovim/neovim/commits/master/runtime/doc/news.txt.atom "~nvim - news.txt" misc
-https://www.thatmangahunter.com/blog-feed.xml misc
-https://muspy.com/feed?id=mobwjpkr95u5p1b4f2w1bjt74qc8u3 "~muspy New Releases" misc
-https://noted.lol/rss misc
+https://github.com/neovim/neovim/commits/master/runtime/doc/news.txt.atom "~nvim news" misc
+https://www.thatmangahunter.com/blog-feed.xml                                              misc
+https://muspy.com/feed?id=mobwjpkr95u5p1b4f2w1bjt74qc8u3 "~muspy New Releases"         misc
+https://noted.lol/rss                                                                  misc
 
 "query:----- FORUMS & AGGREGATORS -----:tags # \"aggregators\" and unread = \"yes\""
-https://waxy.org/feed/ "~waxy.org by Andy Baio" aggregators
-https://lobste.rs/rss aggregators
-https://hnrss.org/frontpage.atom "~Hacker News" aggregators
-https://reddit.com/r/neovim/hot.rss "~r/neovim" aggregators
-https://reddit.com/r/OtoMusic/new.rss "~r/OtoMusic" aggregators
+https://waxy.org/feed/ "~waxy.org by Andy Baio"                        aggregators
+https://alecmuffett.com/feed "~Dropsafe by Alec Muffett"               aggregators
+https://lobste.rs/rss                                                  aggregators
+https://hnrss.org/frontpage.atom "~Hacker News"                        aggregators
+https://reddit.com/r/neovim/hot.rss "~r/neovim"                        aggregators
+https://reddit.com/r/OtoMusic/new.rss "~r/OtoMusic"                    aggregators
 https://dotfyle.com/this-week-in-neovim/rss.xml "~This Week in Neovim" aggregators
-https://dotfyle.com/neovim/plugins/rss.xml aggregators
-https://vi.stackexchange.com/feeds/week "~StackExchange - vi" aggregators
+https://dotfyle.com/neovim/plugins/rss.xml                             aggregators
+https://vi.stackexchange.com/feeds/week "~StackExchange - vi"          aggregators
 
 "query:----- NEWS -----:tags # \"news\" and unread = \"yes\""
-https://archlinux.org/feeds/news/ news
+https://archlinux.org/feeds/news/                       news
 https://dolphin-emu.org/blog/feeds/ "~Dolphin Emulator" news
-https://strato-emu.github.io/index.xml news
-https://melonds.kuribo64.net/rss.php news
-https://f-droid.org/feed.xml news
-https://android.izzysoft.de/rss/en/articles news
-https://fishshell.com/blog/feed.xml news
-https://hyprland.org/rss.xml news
-https://newsboat.org/news.atom news
-https://blog.thunderbird.net/feed/ "~Thunderbird" news
-https://blog.ajay.app/rss.xml news
+https://strato-emu.github.io/index.xml                  news
+https://melonds.kuribo64.net/rss.php                    news
+https://f-droid.org/feed.xml                            news
+https://android.izzysoft.de/rss/en/articles             news
+https://fishshell.com/blog/feed.xml                     news
+https://hyprland.org/rss.xml                            news
+https://newsboat.org/news.atom                          news
+https://blog.thunderbird.net/feed/ "~Thunderbird"       news
+https://blog.ajay.app/rss.xml                           news
 
-https://www.404media.co/rss news
-https://www.eff.org/rss/updates.xml "~eff.org" news
-https://torrentfreak.com/feed news
-https://www.bleepingcomputer.com/feed/ news
-https://feeds.feedburner.com/HaveIBeenPwnedLatestBreaches news
-https://www.phoronix.com/rss.php news
-https://blog.opensource.org/feed/ news
-https://www.ghacks.net/feed/ news
+https://www.404media.co/rss                                    news
+https://www.eff.org/rss/updates.xml "~eff.org"                 news
+https://torrentfreak.com/feed                              news
+https://www.bleepingcomputer.com/feed/                         news
+https://feeds.feedburner.com/HaveIBeenPwnedLatestBreaches  news
+https://www.phoronix.com/rss.php                               news
+https://blog.opensource.org/feed/                          news
+https://www.ghacks.net/feed/                                   news
 https://www.bitdefender.com/nuxt/api/en-us/rss/hotforsecurity/ news
-# https://rss.slashdot.org/Slashdot/slashdotMain news
+# https://rss.slashdot.org/Slashdot/slashdotMain             news
 
 "query:----- CORPO BLOGS -----:tags # \"blogs_corpo\" and unread = \"yes\""
-https://signal.org/blog/rss.xml blogs_corpo
-https://blog.archive.org/feed/ blogs_corpo
-https://mullvad.net/en/blog/feed/atom/ blogs_corpo
-https://element.io/blog/rss/ blogs_corpo
-https://blog.cloudflare.com/rss/ blogs_corpo
-https://blog.nightly.mozilla.org/feed blogs_corpo
+https://signal.org/blog/rss.xml                             blogs_corpo
+https://blog.archive.org/feed/                              blogs_corpo
+https://mullvad.net/en/blog/feed/atom/                      blogs_corpo
+https://element.io/blog/rss/                                blogs_corpo
+https://blog.cloudflare.com/rss/                            blogs_corpo
+https://blog.nightly.mozilla.org/feed                       blogs_corpo
 https://security.googleblog.com/feeds/posts/default?alt=rss blogs_corpo
-https://crinacle.com/feed blogs_corpo
+https://crinacle.com/feed                                   blogs_corpo
 
 "query:----- PERSONAL BLOGS 1 -----:tags # \"personal_blog_1\" and unread = \"yes\""
 http://rachelbythebay.com/w/atom.xml "~rachel by the bay"      personal_blog_1
@@ -100,6 +101,8 @@ https://danluu.com/atom.xml personal_blog
 https://www.fromjason.xyz/p/notebook/feed/feed.xml personal_blog
 https://mtwb.blog/rss/ "~Matt's Blog (Linux Cast YT)" personal_blog
 
+https://herecomesthemoon.net/posts/index.xml personal_blog
+https://neilzone.co.uk/index.xml personal_blog
 https://thecodist.com/rss personal_blog
 https://100r.co/links/rss.xml personal_blog
 https://hazelweakly.me/atom.xml personal_blog
