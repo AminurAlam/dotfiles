@@ -5,7 +5,7 @@
   // "height": 25,
   // "width": 1870,
   "spacing": 4, // Gaps between modules (4px)
-  "modules-left": ["hyprland/workspaces"],
+  "modules-left": ["hyprland/workspaces", "niri/workspaces"],
   "modules-center": ["tray"],
   "modules-right": [
     // "mpd",

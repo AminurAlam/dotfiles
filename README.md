@@ -19,7 +19,7 @@
   - [delta](https://dandavison.github.io/delta/) - git diff pager
   - [lazygit](https://github.com/jesseduffield/lazygit) - ui for git
 - [htop](https://htop.dev/) - process viewer
-- [hyprland](https://hyprland.org/) - wayland compositor
+- [hyprland](https://hyprland.org/) - tiling wayland compositor
   - [waybar](https://github.com/Alexays/Waybar) - status bar
   - [wofi](https://hg.sr.ht/~scoopta/wofi) - launcher
 - [kanata](https://github.com/jtroo/kanata) - keyboard customizer
@@ -28,6 +28,7 @@
 - [mgba](http://mgba.io) - GBA emulator
 - [mpv](https://mpv.io) - media player
 - [newsboat](https://newsboat.org/) :star2: - rss reader
+- [niri](https://github.com/YaLTeR/niri) - scrollable-tiling wayland compositor
 - [npm](https://npmjs.com/) - javascript runtime
 - [nvim](https://neovim.io/) :star2: - text editor
   - [vim](https://www.vim.org) - text editor
