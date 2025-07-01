@@ -1,34 +1,34 @@
 [[plugin.deps]]
 use = "yazi-rs/plugins:smart-enter"
-rev = "63f9650"
-hash = "a7ab702e1ef0c097defbc976ed34c186"
+rev = "2ad42fa"
+hash = "56fdabc96fc1f4d53c96eb884b02a5be"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:jump-to-char"
-rev = "63f9650"
-hash = "30fc0b37f03a597b92d387268319450f"
+rev = "2ad42fa"
+hash = "d2f04875bbd4ed3dd5696e8c4b094fde"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:toggle-pane"
-rev = "63f9650"
-hash = "d5d4f3527592da5fbe77fd6f51815f80"
+rev = "2ad42fa"
+hash = "d6f60c24d8c0cf57a855bf46115b2502"
 
 [[plugin.deps]]
 use = "boydaihungst/pref-by-location"
-rev = "1a50a3c"
-hash = "b0a66f27b4b01bad4e5972cf0754dcc9"
+rev = "68f006d"
+hash = "67b7a8c5d39cba04d8e3c2f3581a3ab4"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:types"
-rev = "86d28e4"
-hash = "c255054d6a70754db6cb96b97ad1ccd7"
+rev = "2ad42fa"
+hash = "3726d68a6c7ad8e7259c47dd592c1e66"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:piper"
-rev = "86d28e4"
-hash = "684ef2121ac1e33611355f02b799bd67"
+rev = "2ad42fa"
+hash = "2143a53182dbbe935a1abd1623424aa5"
 
 [[flavor.deps]]
 use = "BennyOe/tokyo-night"
-rev = "b3950bf"
-hash = "319ce574cdb2865baf4323db90456504"
+rev = "5f56364"
+hash = "c0bf69ad2c44005892d586e9693993c6"

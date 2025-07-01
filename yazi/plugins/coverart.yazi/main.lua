@@ -27,6 +27,16 @@ function M:peek(job)
     local _, err = ya.image_show(Url(fs.cwd() .. '/cover.jpg'), job.area)
     if err then
       _, err = ya.image_show(cache, job.area)
+      if err then
+        local output = Command('mediainfo')
+          :arg({
+            tostring(job.file.name),
+            [[--Output=General;%Performer% - %Track%\nAlbum: %Album%\n\nGenre: %Genre%\nReleased: %Recorded_Date%]],
+          })
+          :stdout(Command.PIPED)
+          :output()
+        ya.preview_widgets(job, { ui.Text.parse(output.stdout):area(job.area) })
+      end
     end
     ya.preview_widget(job, err and ui.Text(err):area(job.area):wrap(ui.Wrap.YES))
   end

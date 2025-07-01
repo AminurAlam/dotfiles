@@ -12,6 +12,7 @@ input.prepend_keymap = []
 tasks.prepend_keymap = []
 pick.prepend_keymap = []
 cmp.prepend_keymap = []
+spot.prepend_keymap = [{ on = 'q', run = 'close', desc = 'Close the spot' }]
 
 mgr.prepend_keymap = [
   # plugins
