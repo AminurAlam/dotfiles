@@ -35,7 +35,7 @@ require('lazy').setup('plugins', {
     filter = true,
   },
   dev = {
-    path = os.getenv('XDG_PROJECTS_DIR') or '~/repos',
+    path = '~/repos',
     patterns = {},
     fallback = false,
   },

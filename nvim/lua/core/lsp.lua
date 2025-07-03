@@ -17,6 +17,7 @@ vim.lsp.enable(vim.tbl_filter(filter, {
   'vscode_css_language_server',
   'vscode_eslint_language_server',
   'vscode_html_language_server',
+  'yamlls',
 }))
 
 vim.api.nvim_create_autocmd({ 'BufEnter' }, {

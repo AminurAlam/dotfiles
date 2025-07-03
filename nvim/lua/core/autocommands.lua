@@ -1,14 +1,17 @@
 local set = vim.opt_local
 local autocmd = vim.api.nvim_create_autocmd
 
+local tsft = {}
+
+for f in vim.fs.dir(vim.fn.stdpath('data') .. '/site/parser') do
+  for _, ft in ipairs(vim.treesitter.language.get_filetypes(vim.fn.fnamemodify(f, ':r'))) do
+    table.insert(tsft, ft)
+  end
+end
+
 autocmd('FileType', {
   desc = 'automatically start treesitter',
-  pattern = vim.tbl_flatten(
-    vim.tbl_map(
-      vim.treesitter.language.get_filetypes,
-      require('nvim-treesitter').get_installed('parsers')
-    )
-  ),
+  pattern = tsft,
   callback = function(details)
     vim.treesitter.start()
     vim.bo[details.buf].syntax = 'on'
