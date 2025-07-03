@@ -1,6 +1,4 @@
-function sy
-    # TODO: use function {...} | exclude-from -
-
+function sy -d "sync files effortlessly"
     [ (uname -o) = Android ] && return 1
 
     set ip (route -n | awk '/^[0.]+/{print $2}' | uniq | head -n1)

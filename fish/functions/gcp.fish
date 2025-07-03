@@ -1,9 +1,19 @@
-# TODO: auto convert https to ssh
 function gcp -a url path branch -d "git clone wrapper"
     [ -z "$url" ] && echo "ERROR: no url given" && return
-    [ -n "$branch" ] && set -f branch "--branch" "$branch"
+    [ -n "$branch" ] && set -f branch "
+
+    " "$branch"
     set -q XDG_PROJECTS_DIR || set XDG_PROJECTS_DIR $HOME/repos
     [ -e "$XDG_PROJECTS_DIR" ] || mkdir "$XDG_PROJECTS_DIR"
+
+    set url (string replace -r -- 'https://([^/]+)/([^/]+)/([^/]+).*' 'https://$1/$2/$3' "$url")
+
+    if [ -e ~/.ssh/github_ed25519 ] && string match -q -- "https://github.com/" "$url"
+        set url (string replace -r -- 'https://github.com/([^/]+)/([^/]+)' 'git@gittub.com:$1/$2.git' "$url")
+    # else if [ -e ~/.ssh/gitlab_ed25519 ] && string match -q -- "https://gitlab.com/" "$url"
+    # else if [ -e ~/.ssh/codeberg_ed25519 ] && string match -q -- "https://codeberg.org/" "$url"
+    # else if [ -e ~/.ssh/sourcehut_ed25519 ] && string match -q -- "https://git.sr.ht/" "$url"
+    end
 
     cd "$XDG_PROJECTS_DIR"
 
