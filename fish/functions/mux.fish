@@ -8,7 +8,7 @@ function mux -d "tmux wrapper"
     end
 
     if [ -z "$argv[1]" ]
-        set argv _
+        return 1
     end
 
     [ -n "$TMUX" ]

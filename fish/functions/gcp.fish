@@ -3,8 +3,7 @@ function gcp -a url path branch -d "git clone wrapper"
     [ -n "$branch" ] && set -f branch "
 
     " "$branch"
-    set -q XDG_PROJECTS_DIR || set XDG_PROJECTS_DIR $HOME/repos
-    [ -e "$XDG_PROJECTS_DIR" ] || mkdir "$XDG_PROJECTS_DIR"
+    [ -e "$HOME/repos" ] || mkdir "$HOME/repos"
 
     set url (string replace -r -- 'https://([^/]+)/([^/]+)/([^/]+).*' 'https://$1/$2/$3' "$url")
 
@@ -15,7 +14,7 @@ function gcp -a url path branch -d "git clone wrapper"
     # else if [ -e ~/.ssh/sourcehut_ed25519 ] && string match -q -- "https://git.sr.ht/" "$url"
     end
 
-    cd "$XDG_PROJECTS_DIR"
+    cd "$HOME/repos"
 
     git clone --depth 1 $branch -- $url $path
     and set success true

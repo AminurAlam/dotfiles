@@ -2,9 +2,9 @@ function note -a file -d "notes manager"
     if [ -n "$file" ]
         [ -f "$file" ]
         and $EDITOR "$file"
-        or $EDITOR "$XDG_PROJECTS_DIR/notes/$file.note"
+        or $EDITOR "$HOME/repos/notes/$file.note"
     else
-        cd $XDG_PROJECTS_DIR/notes/
+        cd $HOME/repos/notes/
         $EDITOR +"lua require 'telescope.builtin'.find_files()"
     end
 end

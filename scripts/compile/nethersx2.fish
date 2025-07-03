@@ -1,5 +1,5 @@
 set REPO_NAME NetherSX2-patch
-set REPO_PATH "$XDG_PROJECTS_DIR/$REPO_NAME"
+set REPO_PATH "$HOME/repos/$REPO_NAME"
 set REPO_URL "https://github.com/Trixarian/NetherSX2-patch"
 set DEPENDENCIES aapt2 wget apksigner # apksigner|openjdk-17
 

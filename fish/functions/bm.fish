@@ -1,7 +1,6 @@
 function bm -d "bookmark manager"
     set BMPATH $XDG_DOCUMENTS_DIR/bookmarks
     set -q LAUNCHER || set LAUNCHER fzf
-    set -q BROWSER || set BROWSER open
 
     switch "$argv[1]"
         case a add
@@ -23,6 +22,6 @@ function bm -d "bookmark manager"
             end
 
             [ -z "$LINK" ] && return
-            $BROWSER "https://$LINK" & disown
+            open "https://$LINK" & disown
     end
 end

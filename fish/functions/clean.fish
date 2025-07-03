@@ -1,12 +1,8 @@
 function clean -d "cleanup to free storage"
     set -f __dirs \
-        /sdcard/Android/media/com.whatsapp/WhatsApp/.StickerThumbs/ \
-        /sdcard/Android/media/com.whatsapp/WhatsApp/Media/WhatsApp\ Stickers/ \
-        /sdcard/{Aurora/,Telegram/,MIUI/} \
-        /sdcard/DCIM/.thumbnails/ \
-        /sdcard/Download/Nearby\ Share/ \
+        /sdcard/Android/media/com.whatsapp/WhatsApp/{.StickerThumbs,Media/WhatsApp Stickers}/ \
         /sdcard/TachiyomiSY/downloads/*/*/*_tmp/ \
-        ~/.local/share/cargo/registry/ \
+        ~/.cache/ \
         ~/.gradle/caches/
 
     for dir in $__dirs
@@ -31,7 +27,7 @@ function clean -d "cleanup to free storage"
         command rm -fr -- $files
     end
 
-    [ -d ~/downloads ] && fd -tfile -epng . ~/downloads/ -x rm
+    [ -d ~/downloads -a (uname -o) = Android ] && fd -tfile -epng . ~/downloads/ -x rm
 
 
     if command -vq sudo
@@ -49,7 +45,7 @@ function clean -d "cleanup to free storage"
     echo
     echo (count (ls -1NA ~)) files in HOME
     echo (count (pacman -Qe)) packages installed
-    command df -h | awk '/fuse/{print $3"/"$2,$5,$4}'
+    command df -h | awk '/fuse|home/{print $3"/"$2,$5,$4}'
     echo
-    dust -PDd0 -n6 --skip-total $XDG_PROJECTS_DIR/* 2>/dev/null
+    dust -PDd1 -n6 --skip-total $HOME/repos/ 2>/dev/null
 end

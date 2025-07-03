@@ -13,12 +13,11 @@ set url_fish_setup "https://raw.githubusercontent.com/AminurAlam/dotfiles/main/s
 set url_mbz "https://github.com/AminurAlam/musicbrainzpy.git"
 
 # paths
-[ -z "$XDG_PROJECTS_DIR" ] && set -gx XDG_PROJECTS_DIR "$HOME/repos"
-set dots "$XDG_PROJECTS_DIR/dotfiles" # NOTE: make sure this is a full path
+set dots "$HOME/repos/dotfiles" # NOTE: make sure this is a full path
 
 
 
-command mkdir -p $XDG_PROJECTS_DIR $HOME/backup/ $HOME/.local/{share,bin,cache} $HOME/.local/share/zoxide
+command mkdir -p $HOME/{repos,backup} $HOME/.local/{share,bin,cache} $HOME/.local/share/zoxide
 
 printf "INSTALLING BASE PACKAGES...\n"
     pacman -Syu --noconfirm --needed $base_packages || exit
@@ -34,7 +33,7 @@ printf "DOWNLOADING DOTFILES... "
 printf "done\n"
 
 printf "INSTALLING EXTRA PACKAGES...\n"
-pacman -S --needed $extra_packages 
+pacman -S --needed $extra_packages
 
 [ -e ~/repos/dotfiles/setup/linking.fish ] && fish ~/repos/dotfiles/setup/linking.fish
 
@@ -67,7 +66,7 @@ function setup_latex
     pacman -Syu --noconfirm --needed texlive-installer || exit
 
     # tlmgr update --all
-    termux-install-tl --profile "$XDG_PROJECTS_HOME/dotfiles/scripts/texlive.profile"
+    termux-install-tl --profile "$HOME/repos/dotfiles/scripts/texlive.profile"
     termux-patch-texlive
 end
 

@@ -1,4 +1,4 @@
-set sudo (command -v sudo || command -v doas)
+set sudo (command -v sudo)
 
 set -l common "-las ext -F auto -I '.git*' --icons --no-user --group-directories-first --no-quotes --color-scale all --color-scale-mode fixed"
 alias l "eza $common --no-permissions --no-time"
@@ -32,9 +32,14 @@ abbr --set-cursor --position anywhere awk "awk -F ' ' '{print \$%}'"
 abbr = command # replicate =command from zsh
 abbr komga 'KOMGA_CONFIGDIR=~/.local/share/komga komga | awk \'/^2025/{printf("%s %s ",substr($1,12,8),substr($2,0,1));for(i=9;i<=NF;i++)printf("%s ",$i);print""}\''
 
-# parent dir
+# navigating
 abbr ... "cd ../.."
 abbr .... "cd ../../.."
+abbr --set-cursor yd 'y $HOME/repos/dotfiles/%'
+abbr --set-cursor ydl 'y $XDG_DOWNLOAD_DIR/%'
+abbr --set-cursor zd 'z $HOME/repos/dotfiles/%'
+abbr --set-cursor zdl 'z $XDG_DOWNLOAD_DIR/%'
+abbr zz "z -"
 
 # git
 abbr --set-cursor gac "git add % && git commit"
@@ -46,11 +51,10 @@ abbr pull "git pull origin"
 abbr push "git push origin"
 abbr fr "git fetch upstream && git rebase upstream/(git symbolic-ref refs/remotes/origin/HEAD | sed s@^refs/remotes/origin/@@)"
 
-# rclone
+# rclone/rsync
 abbr rcp "rclone copy -P --transfers 8 --"
 abbr rls "rclone lsf"
 abbr rlt "rclone tree --level"
-abbr rdu "rclone size"
 abbr rconf "rclone config"
 abbr rsy "rsync -Pha"
 
@@ -86,10 +90,3 @@ else if command -vq pacman
     abbr pf pacman -Ss
     abbr pa pacman -Si
 end
-
-# TODO: yazi counterpart
-abbr --set-cursor zdl 'z $XDG_DOWNLOAD_DIR/%'
-abbr --set-cursor zd 'z $XDG_PROJECTS_DIR/dotfiles/%'
-abbr --set-cursor zf 'z $XDG_PROJECTS_DIR/dotfiles/fish/%'
-abbr --set-cursor zn 'z $XDG_PROJECTS_DIR/dotfiles/nvim/%'
-abbr zz "z -"

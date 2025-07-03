@@ -1,5 +1,5 @@
 set REPO_NAME ""
-set REPO_PATH "$XDG_PROJECTS_DIR/$REPO_NAME"
+set REPO_PATH "$HOME/repos/$REPO_NAME"
 set REPO_URL ""
 set DEPENDENCIES binutils
 

@@ -1,5 +1,5 @@
 set REPO_NAME nvim-fork
-set REPO_PATH "$XDG_PROJECTS_DIR/$REPO_NAME"
+set REPO_PATH "$HOME/repos/$REPO_NAME"
 set REPO_URL "git@github.com/AminurAlam/neovim.git"
 set DEPENDENCIES binutils clang cmake gettext libunibilium libuv luajit luv \
     make ninja openssl pkg-config tree-sitter tree-sitter-parsers utf8proc

@@ -2,24 +2,22 @@ status is-interactive || exit
 
 [ "$USER" = student ] && exit
 
-set -l m (set_color brcyan)
 set -l i (set_color brgreen)
 set -l o (set_color brcyan)
-# set -l pad (string repeat -Nn (math -s0 $COLUMNS/2 - 20) ' ')
-set -l pad '  '
 
-set fish_greeting $pad'                 '$o'___'\n \
-    $pad'  ___======____='$m'-'$i'-'$m'-='$o')'\n \
-    $pad'/T            \_'$i'--='$m'=='$o')'\n \
-    $pad'| \ '$m'('$i'0'$m')   '$o'\~    \_'$i'-='$m'='$o')'\n \
-    $pad' \      / )J'$m'~~    '$o'\\'$i'-='$o')'\n \
-    $pad'  \\\\___/  )JJ'$m'~'$i'~~   '$o'\)'\n \
-    $pad'   \_____/JJJ'$m'~~'$i'~~    '$o'\\'\n \
-    $pad'   '$m'/ '$o'\  '$i', \\'$o'J'$m'~~~'$i'~~     '$m'\\'\n \
-    $pad'  (-'$i'\)'$o'\='$m'|'$i'\\\\\\'$m'~~'$i'~~       '$m'L_'$i'_'\n \
-    $pad'  '$m'('$o'\\'$m'\\)  ('$i'\\'$m'\\\)'$o'_           '$i'\=='$m'__'\n \
-    $pad'   '$o'\V    '$m'\\\\'$o'\) =='$m'=_____   '$i'\\\\\\\\'$m'\\\\'\n \
-    $pad'          '$o'\V)     \_) '$m'\\\\'$i'\\\\JJ\\'$m'J\)'\n \
-    $pad'                      '$o'/'$m'J'$i'\\'$m'J'$o'T\\'$m'JJJ'$o'J)'\n \
-    $pad'                      (J'$m'JJ'$o'| \UUU)'\n \
-    $pad'                       (UU)'
+set fish_greeting \
+    '                   '$o'___'\n \
+    '    ___======____='$o'-'$i'-'$o'-='$o')'\n \
+    '  /T            \_'$i'--='$o'=='$o')'\n \
+    '  | \ '$o'('$i'0'$o')   '$o'\~    \_'$i'-='$o'='$o')'\n \
+    '   \      / )J'$o'~~    '$o'\\'$i'-='$o')'\n \
+    '    \\\\___/  )JJ'$o'~'$i'~~   '$o'\)'\n \
+    '     \_____/JJJ'$o'~~'$i'~~    '$o'\\'\n \
+    '     '$o'/ '$o'\  '$i', \\'$o'J'$o'~~~'$i'~~     '$o'\\'\n \
+    '    (-'$i'\)'$o'\='$o'|'$i'\\\\\\'$o'~~'$i'~~       '$o'L_'$i'_'\n \
+    '    '$o'('$o'\\'$o'\\)  ('$i'\\'$o'\\\)'$o'_           '$i'\=='$o'__'\n \
+    '     '$o'\V    '$o'\\\\'$o'\) =='$o'=_____   '$i'\\\\\\\\'$o'\\\\'\n \
+    '            '$o'\V)     \_) '$o'\\\\'$i'\\\\JJ\\'$o'J\)'\n \
+    '                        '$o'/'$o'J'$i'\\'$o'J'$o'T\\'$o'JJJ'$o'J)'\n \
+    '                        (J'$o'JJ'$o'| \UUU)'\n \
+    '                         (UU)'

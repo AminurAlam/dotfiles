@@ -1,5 +1,5 @@
 set REPO_NAME mecab
-set REPO_PATH "$XDG_PROJECTS_DIR/$REPO_NAME"
+set REPO_PATH "$HOME/repos/$REPO_NAME"
 set REPO_URL "https://github.com/taku910/mecab.git"
 set DEPENDENCIES binutils make cmake
 # NOTE: manga_ocr deps
