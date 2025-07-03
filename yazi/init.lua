@@ -24,6 +24,7 @@ function Header:cwd()
   return ui.Span(ya.truncate(s, { max = max, rtl = true })):style(th.mgr.cwd)
 end
 
+
 local pref_by_location = require('pref-by-location')
 pref_by_location:setup({
   prefs = {

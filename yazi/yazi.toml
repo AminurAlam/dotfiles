@@ -1,11 +1,11 @@
 "$schema" = "https://yazi-rs.github.io/schemas/yazi.json"
 
 open.prepend_rules = [
-  { name = "*/", use = ["reveal", "dir2cbz", "open", "edit"] },
+  { name = "*/", use = ["reveal", "dir2cbz", "nsxiv_gallery", "open", "edit"] },
   { name = "*.cb{z,r}", use = ["zathura", "open", "extract", "reveal"] },
   { mime = 'application/pdf', use = ["zathura", "open"] },
   { name = "*.zip", use = ["extract", "reveal"] },
-  { mime = "image/*", use = ["loupe", "krita", "gimp", "open"] },
+  { mime = "image/*", use = ["nsxiv", "loupe", "krita", "gimp", "open"] },
   { mime = "video/*", use = ["play"] },
   { mime = "application/bittorrent", use = ["qbittorrent", "open"] },
   { name = "*.torrent", use = ["qbittorrent", "open"] },
@@ -44,6 +44,8 @@ keepass = [{ run = 'keepassxc -- "$0"', block = false, orphan = true, desc = "�
 # img related
 # TODO: get better image viewer
 loupe = [{ run = 'loupe "$@"', block = false, orphan = true, desc = " gnome img viewer", for = "linux" }]
+nsxiv = [{ run = 'nsxiv -bf --anti-alias=no "$@"', block = false, orphan = true, desc = " nsxiv", for = "linux" }]
+nsxiv_gallery = [{ run = 'nsxiv -tbf "$@"', block = false, orphan = true, desc = " gallery", for = "linux" }]
 gimp = [{ run = 'gimp "$@"', block = false, orphan = true, desc = " gimp", for = "linux" }]
 krita = [{ run = 'krita "$@"', block = false, orphan = true, desc = " krita", for = "linux" }]
 # defaults
