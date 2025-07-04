@@ -1,5 +1,17 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/jesseduffield/lazygit/master/schema/config.json# Config relating to the Lazygit UI
 gui:
+  # See https://github.com/jesseduffield/lazygit/blob/master/docs/Config.md#custom-author-color
+  authorColors:
+    "*": "#b7bdf8"
+  # See https://github.com/jesseduffield/lazygit/blob/master/docs/Config.md#custom-branch-color
+  branchColorPatterns: {}
+  # Custom icons for filenames and file extensions
+  # See https://github.com/jesseduffield/lazygit/blob/master/docs/Config.md#custom-files-icon--color
+  customIcons:
+    # Map of filenames to icon properties (icon and color)
+    filenames: {}
+    # Map of file extensions (including the dot) to icon properties (icon and color)
+    extensions: {}
   # The number of lines you scroll by when scrolling the main window
   scrollHeight: 3
   # If true, allow scrolling past the bottom of the content in the main window
@@ -8,9 +20,14 @@ gui:
   scrollOffMargin: 2
   # One of: 'margin' (default) | 'jump'
   scrollOffBehavior: margin
+  # The number of spaces per tab; used for everything that's shown in the main view, but probably mostly relevant for diffs.
+  # Note that when using a pager, the pager has its own tab width setting, so you need to pass it separately in the pager command.
+  tabWidth: 2
   # If true, capture mouse events.
   # When mouse events are captured, it's a little harder to select text: e.g. requiring you to hold the option key when on macOS.
   mouseEvents: true
+  # If true, do not show a warning when amending a commit.
+  skipAmendWarning: false
   # If true, do not show a warning when discarding changes in the staging view.
   skipDiscardChangeWarning: false
   # If true, do not show warning when applying/popping the stash
@@ -21,7 +38,7 @@ gui:
   skipRewordInEditorWarning: false
   # Fraction of the total screen width to use for the left side section. You may want to pick a small number (e.g. 0.2) if you're using a narrow screen, so that you can see more of the main section.
   # Number from 0 to 1.0.
-  sidePanelWidth: 0.4
+  sidePanelWidth: 0.35
   # If true, increase the height of the focused side window; creating an accordion effect.
   expandFocusedSidePanel: true
   # The weight of the expanded side panel, relative to the other panels. 2 means
@@ -38,6 +55,10 @@ gui:
   # - 'left': split the window horizontally (side panel on the left, main view on the right)
   # - 'top': split the window vertically (side panel on top, main view below)
   enlargedSideViewLocation: top
+  # If true, wrap lines in the staging view to the width of the view. This
+  # makes it much easier to work with diffs that have long lines, e.g.
+  # paragraphs of markdown text.
+  wrapLinesInStagingView: true
   # One of 'auto' (default) | 'en' | 'zh-CN' | 'zh-TW' | 'pl' | 'nl' | 'ja' | 'ko' | 'ru'
   language: auto
   # Format used when displaying time e.g. commit time.
@@ -61,6 +82,9 @@ gui:
       - "#7aa2f7"
     selectedLineBgColor:
       - "#2e3c64"
+    # TODO: pr tokyonight
+    inactiveViewSelectedLineBgColor:
+      - underline
     cherryPickedCommitFgColor:
       - "#7aa2f7"
     cherryPickedCommitBgColor:
@@ -73,8 +97,6 @@ gui:
       - "#db4b4b"
     defaultFgColor:
       - "#c0caf5"
-  authorColors:
-    "*": "#b7bdf8"
   # Config relating to the commit length indicator
   commitLength:
     # If true, show an indicator of commit message length
@@ -82,8 +104,10 @@ gui:
   # If true, show the '5 of 20' footer at the bottom of list views
   showListFooter: false
   # If true, display the files in the file views as a tree. If false, display the files as a flat list.
-  # This can be toggled from within Lazygit with the '~' key, but that will not change the default.
+  # This can be toggled from within Lazygit with the '`' key, but that will not change the default.
   showFileTree: false
+  # If true, add a "/" root item in the file tree representing the root of the repository. It is only added when necessary, i.e. when there is more than one item at top level.
+  showRootItemInFileTree: false
   # If true, show the number of lines changed per file in the Files view
   showNumstatInFilesView: true
   # If true, show a random tip in the command log when Lazygit starts
@@ -94,8 +118,6 @@ gui:
   showBottomLine: false
   # If true, show jump-to-window keybindings in window titles.
   showPanelJumps: false
-  # Deprecated: use nerdFontsVersion instead
-  showIcons: false
   # Nerd fonts version to use.
   # One of: '2' | '3' | empty string (default)
   # If empty, do not show icons.
@@ -119,11 +141,11 @@ gui:
   # One of: 'auto' | 'always'
   # If 'auto', only split the main window when a file has both staged and unstaged changes
   splitDiff: auto
-  # Default size for focused window. Window size can be changed from within Lazygit with '+' and '_' (but this won't change the default).
+  # Default size for focused window. Can be changed from within Lazygit with '+' and '_' (but this won't change the default).
   # One of: 'normal' (default) | 'half' | 'full'
   screenMode: normal
   # Window border style.
-  # One of 'rounded' (default) | 'single' | 'double' | 'hidden'
+  # One of 'rounded' (default) | 'single' | 'double' | 'hidden' | 'bold'
   border: rounded
   # If true, show a seriously epic explosion animation when nuking the working tree.
   animateExplosion: true
@@ -198,6 +220,9 @@ git:
   autoFetch: false
   # If true, periodically refresh files and submodules
   autoRefresh: true
+  # If not "none", lazygit will automatically fast-forward local branches to match their upstream after fetching. Applies to branches that are not the currently checked out branch, and only to those that are strictly behind their upstream (as opposed to diverged).
+  # Possible values: 'none' | 'onlyMainBranches' | 'allBranches'
+  autoForwardBranches: onlyMainBranches
   # If true, pass the --all arg to git fetch
   fetchAll: true
   # If true, lazygit will automatically stage files that used to have merge
@@ -207,16 +232,17 @@ git:
   autoStageResolvedConflicts: true
   # Command used when displaying the current branch git log in the main window
   branchLogCmd: git log --graph --color=always --abbrev-commit --decorate --date=relative --pretty=medium {{branchName}} --
+  # Commands used to display git log of all branches in the main window, they will be cycled in order of appearance (array of strings)
+  allBranchesLogCmds:
+    - git log --graph --all --color=always --abbrev-commit --decorate --date=relative  --pretty=medium
   # If true, do not spawn a separate process when using GPG
   overrideGpg: false
   # If true, do not allow force pushes
   disableForcePushing: false
   # See https://github.com/jesseduffield/lazygit/blob/master/docs/Config.md#predefined-commit-message-prefix
-  commitPrefix:
-    - # pattern to match on. E.g. for 'feature/AB-123' to match on the AB-123 use "^\\w+\\/(\\w+-\\w+).*"
-      pattern: ""
-      # Replace directive. E.g. for 'feature/AB-123' to start the commit message with 'AB-123 ' use "[$1] "
-      replace: ""
+  commitPrefix: []
+  # See https://github.com/jesseduffield/lazygit/blob/master/docs/Config.md#predefined-commit-message-prefix
+  commitPrefixes: {}
   # See https://github.com/jesseduffield/lazygit/blob/master/docs/Config.md#predefined-branch-name-prefix
   branchPrefix: ""
   # If true, parse emoji strings in commit messages e.g. render :rocket: as 🚀
@@ -224,24 +250,11 @@ git:
   parseEmoji: false
   # Config for showing the log in the commits view
   log:
-    # One of: 'date-order' | 'author-date-order' | 'topo-order' | 'default'
-    # 'topo-order' makes it easier to read the git log graph, but commits may not
-    # appear chronologically. See https://git-scm.com/docs/
-    #
-    # Deprecated: Configure this with `Log menu -> Commit sort order` (<c-l> in the commits window by default).
-    order: topo-order
-    # This determines whether the git graph is rendered in the commits panel
-    # One of 'always' | 'never' | 'when-maximised'
-    #
-    # Deprecated: Configure this with `Log menu -> Show git graph` (<c-l> in the commits window by default).
-    showGraph: never
     # displays the whole git graph by default in the commits view (equivalent to passing the `--all` argument to `git log`)
     showWholeGraph: false
   # When copying commit hashes to the clipboard, truncate them to this
   # length. Set to 40 to disable truncation.
   truncateCopiedCommitHashesTo: 12
-  allBranchesLogCmds:
-    - git log --graph --all --color=always --abbrev-commit --decorate --date=relative  --pretty=medium
 # Periodic update checks
 update:
   # One of: 'prompt' (default) | 'background' | 'never'
@@ -270,6 +283,8 @@ os:
   # Same as EditAtLine, except that the command needs to wait until the
   # window is closed.
   editAtLineAndWait: ""
+  # Whether lazygit suspends until an edit process returns
+  editInTerminal: true
   # For opening a directory in an editor
   openDirInEditor: ""
   # A built-in preset that sets all of the above settings. Supported presets
@@ -280,28 +295,22 @@ os:
   open: ""
   # Command for opening a link. Should contain "{{link}}".
   openLink: ""
-  # EditCommand is the command for editing a file.
-  # Deprecated: use Edit instead. Note that semantics are different:
-  # EditCommand is just the command itself, whereas Edit contains a
-  # "{{filename}}" variable.
-  editCommand: ""
-  # EditCommandTemplate is the command template for editing a file
-  # Deprecated: use EditAtLine instead.
-  editCommandTemplate: ""
-  # OpenCommand is the command for opening a file
-  # Deprecated: use Open instead.
-  openCommand: ""
-  # OpenLinkCommand is the command for opening a link
-  # Deprecated: use OpenLink instead.
-  openLinkCommand: ""
   # CopyToClipboardCmd is the command for copying to clipboard.
   # See https://github.com/jesseduffield/lazygit/blob/master/docs/Config.md#custom-command-for-copying-to-and-pasting-from-clipboard
   copyToClipboardCmd: ""
   # ReadFromClipboardCmd is the command for reading the clipboard.
   # See https://github.com/jesseduffield/lazygit/blob/master/docs/Config.md#custom-command-for-copying-to-and-pasting-from-clipboard
   readFromClipboardCmd: ""
+  # A shell startup file containing shell aliases or shell functions. This will be sourced before running any shell commands, so that shell functions are available in the `:` command prompt or even in custom commands.
+  # See https://github.com/jesseduffield/lazygit/blob/master/docs/Config.md#using-aliases-or-functions-in-shell-commands
+  shellFunctionsFile: ""
 # If true, don't display introductory popups upon opening Lazygit.
 disableStartupPopups: false
+# User-configured commands that can be invoked from within Lazygit
+# See https://github.com/jesseduffield/lazygit/blob/master/docs/Custom_Command_Keybindings.md
+customCommands: []
+# See https://github.com/jesseduffield/lazygit/blob/master/docs/Config.md#custom-pull-request-urls
+services: {}
 # What to do when opening Lazygit outside of a git repo.
 # - 'prompt': (default) ask whether to initialize a new repo or open in the most recent repo
 # - 'create': initialize a new repo
@@ -328,11 +337,15 @@ keybinding:
     scrollRight: L
     gotoTop: g
     gotoBottom: G
+    # gotoTop-alt: <home>
+    # gotoBottom-alt: <end>
     toggleRangeSelect: v
     rangeSelectDown: <s-down>
     rangeSelectUp: <s-up>
     prevBlock: <left>
     nextBlock: <right>
+    # prevBlock-alt: h
+    # nextBlock-alt: l
     nextBlock-alt2: <tab>
     prevBlock-alt2: <backtab>
     jumpToBlock:
@@ -341,6 +354,7 @@ keybinding:
       - "3"
       - "4"
       - "5"
+    focusMainView: "0"
     nextMatch: "n"
     prevMatch: "N"
     startSearch: /
@@ -350,10 +364,11 @@ keybinding:
     goInto: <enter>
     confirm: <enter>
     confirmInEditor: <a-enter>
+    confirmInEditor-alt: <c-s>
     remove: d
     new: "n"
     edit: l
-    openFile: o
+    openFile: ""
     scrollUpMain: <pgup>
     scrollDownMain: <pgdown>
     scrollUpMain-alt1: K
@@ -409,6 +424,8 @@ keybinding:
     openMergeTool: M
     openStatusFilter: <c-b>
     copyFileInfoToClipboard: "y"
+    collapseAll: "-"
+    expandAll: =
   branches:
     createPullRequest: o
     viewPullRequestOptions: O
@@ -418,6 +435,7 @@ keybinding:
     rebaseBranch: r
     renameBranch: R
     mergeIntoCurrentBranch: M
+    moveCommitsToNewBranch: "N"
     viewGitFlowOptions: i
     fastForward: f
     createTag: T
@@ -452,6 +470,7 @@ keybinding:
     openInBrowser: o
     viewBisectOptions: b
     startInteractiveRebase: i
+    selectCommitsOfCurrentBranch: "*"
   amendAttribute:
     resetAuthor: a
     setAuthor: A
