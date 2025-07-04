@@ -31,5 +31,6 @@ rclone.conf
 /yazi/plugins/*
 !/yazi/plugins/cbz.yazi
 !/yazi/plugins/coverart.yazi
+!/yazi/plugins/font-cjk.yazi
 !/yazi/plugins/gitinfo.yazi
 /yazi/flavors/

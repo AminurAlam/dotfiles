@@ -15,39 +15,46 @@ open.prepend_rules = [
   { name = "*.kdbx", use = "keepass" },
   { name = "*.{ass,srt,ssa,sup,vtt}", use = ["add-sub", "edit"] },
 ]
-open.append_rules = [{ name = "*", use = ["rsync"] }]
+open.append_rules = [{ name = "*", use = ["open", "rsync"] }]
 plugin.prepend_previewers = [
-  { name = '**/.git/', run = "gitinfo" },
-  { name = "*.sqlite3", run = 'piper -- sqlite3 "$1" .schema' },
-  { mime = "application/sqlite3", run = 'piper -- sqlite3 "$1" .schema' },
+  # custom
+  { name = "*.cb{z,r}", run = 'cbz' },
   { mime = "audio/mpegurl", run = 'code' },
   { mime = "audio/*", run = 'coverart' },
+  { mime = "font/*", run = "font-cjk" },
+  { mime = "application/ms-opentype", run = "font-cjk" },
+  { name = "**/.git/", run = "gitinfo" },
+  # plugins
+  { name = "*.sqlite3", run = 'piper -- sqlite3 "$1" .schema' },
+  { mime = "application/sqlite3", run = 'piper -- sqlite3 "$1" .schema' },
+  # { mime = "application/octet-stream", run = "hexyl" },
+  # misc
   { mime = "application/subrip", run = "code" },
-  { name = "*.cb{z,r}", run = 'cbz' },
   { name = "*.zip", run = "archive" },
   { name = "*.!qB", run = "noop" },
-  # { mime = "application/octet-stream", run = "hexyl" },
 ]
-plugin.prepend_preloaders = [{ mime = "audio/*", run = 'coverart' }, { name = "*.cb{z,r}", run = 'cbz' }]
+plugin.prepend_preloaders = [
+  { name = "*.cb{z,r}", run = 'cbz' },
+  { mime = "audio/*", run = 'coverart' },
+  { mime = "font/*", run = "font-cjk" },
+  { mime = "application/ms-opentype", run = "font-cjk" },
+]
 
 [opener]
+add-sub = [{ run = ''' echo sub-add "'$0'" | socat - /tmp/mpv.sock ''', desc = "󰨗 Add sub to MPV" }]
 apkinstall = [{ run = 'adb install "$@"', block = true, orphan = false, desc = " apk installer", for = "linux" }]
 dir2cbz = [{ run = '''fish -c 'dir2cbz $argv' "$@" ''', block = true, desc = " dir2cbz" }]
+keepass = [{ run = 'keepassxc -- "$0"', block = false, orphan = true, desc = " keepass" }]
 qbittorrent = [{ run = 'qbittorrent "$@"', block = false, orphan = true, desc = " qbittorrent", for = "linux" }]
+rsync = [{ run = 'rsync -Pha -- "$0" phone:/sdcard/Download/', block = false, orphan = true, desc = " Send to phone" }]
 wine = [{ run = 'wine "$@"', block = false, orphan = true, desc = "󰡶 wine", for = "linux" }]
 zathura = [{ run = 'zathura "$@"', block = false, orphan = true, desc = " zathura", for = "linux" }]
-add-sub = [{ run = ''' echo sub-add "'$0'" | socat - /tmp/mpv.sock ''', desc = "󰨗 Add sub to MPV" }]
-rsync = [
-  { run = '''rsync -Pha -- "$0" phone:/sdcard/Download/ ''', block = false, orphan = true, desc = " Send to phone" },
-]
-keepass = [{ run = 'keepassxc -- "$0"', block = false, orphan = true, desc = " keepass" }]
 # img related
-# TODO: get better image viewer
+gimp = [{ run = 'gimp "$@"', block = false, orphan = true, desc = " gimp", for = "linux" }]
+krita = [{ run = 'krita "$@"', block = false, orphan = true, desc = " krita", for = "linux" }]
 loupe = [{ run = 'loupe "$@"', block = false, orphan = true, desc = " gnome img viewer", for = "linux" }]
 nsxiv = [{ run = 'nsxiv -bf --anti-alias=no "$@"', block = false, orphan = true, desc = " nsxiv", for = "linux" }]
 nsxiv_gallery = [{ run = 'nsxiv -tbf "$@"', block = false, orphan = true, desc = " gallery", for = "linux" }]
-gimp = [{ run = 'gimp "$@"', block = false, orphan = true, desc = " gimp", for = "linux" }]
-krita = [{ run = 'krita "$@"', block = false, orphan = true, desc = " krita", for = "linux" }]
 # defaults
 edit = [{ run = '${EDITOR:-vi} "$@"', desc = " $EDITOR", block = true, for = "unix" }]
 open = [
