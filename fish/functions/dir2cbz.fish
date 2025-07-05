@@ -19,13 +19,12 @@ function dir2cbz -d "convert directory to .cbz archive"
             or continue
         end
 
-        printf "$out ... "
         set ogdir "$PWD"
         pushd "$dir/" || continue
         zip -0rq "$ogdir/$out" . || return 2
         popd
         # and rm -fr "$dir"
-        printf "done\n"
+        printf "$out\n" # NOTE: may be used as input for other programs
     end
 
     while popd &>/dev/null

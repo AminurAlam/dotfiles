@@ -22,6 +22,6 @@ function bm -d "bookmark manager"
             end
 
             [ -z "$LINK" ] && return
-            open "https://$LINK" & disown
+            xdg-open "https://$LINK" & disown
     end
 end

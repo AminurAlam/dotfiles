@@ -6,4 +6,9 @@ function passh -d "patch from ssh"
     - ssh is working properly
     - there are no conflicts
     - pass filenames as args if necessary\n"
+
+    for file in (ssh phone git -C \~/repos/dotfiles status -s | rg --replace '' '^\?\? ')
+        [ -e "~/repos/dotfiles/$file" ]
+        or scp "phone:~/repos/dotfiles/$file" ~/repos/dotfiles/$file
+    end
 end
