@@ -1,3 +1,5 @@
+---@module "lazy"
+---@type LazyPluginSpec
 return {
   'https://github.com/lukas-reineke/indent-blankline.nvim',
   config = function()

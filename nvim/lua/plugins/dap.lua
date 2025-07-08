@@ -1,7 +1,9 @@
+---@module "lazy"
+---@type LazyPluginSpec
 return {
   'rcarriga/nvim-dap-ui',
   enabled = false,
-  opts = true,
+  config = true,
   dependencies = {
     {
       'mfussenegger/nvim-dap',

@@ -1,3 +1,5 @@
+---@module "lazy"
+---@type LazyPluginSpec
 local M = { 'https://github.com/goolord/alpha-nvim', enabled = true }
 
 M.config = function()

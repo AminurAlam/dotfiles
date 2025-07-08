@@ -1,3 +1,5 @@
+---@module "lazy"
+---@type LazyPluginSpec
 return {
   'https://github.com/williamboman/mason.nvim',
   enabled = false,

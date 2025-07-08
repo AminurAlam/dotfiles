@@ -1,3 +1,6 @@
+---@diagnostic disable: redundant-parameter
+---@module "lazy"
+---@type LazyPluginSpec
 local M = {
   'https://github.com/hrsh7th/nvim-cmp',
   enabled = false,

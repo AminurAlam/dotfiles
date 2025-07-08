@@ -1,3 +1,5 @@
+---@module "lazy"
+---@type LazyPluginSpec
 local M = {
   'https://github.com/monaqa/dial.nvim',
   keys = { { '+', '<plug>(dial-increment)' }, { '-', '<plug>(dial-decrement)' } },

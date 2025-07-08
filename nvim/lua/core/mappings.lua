@@ -31,8 +31,6 @@ umap('<c-left>', '<cmd>CybuPrev<cr>', 'previous buffer')
 umap('<c-right>', '<cmd>CybuNext<cr>', 'next buffer')
 umap('<c-up>', '<cmd>CybuPrev<cr>', 'previous buffer')
 umap('<c-down>', '<cmd>CybuNext<cr>', 'next buffer')
-umap('<c-h>', '<cmd>CybuPrev<cr>', 'previous buffer')
-umap('<c-l>', '<cmd>CybuNext<cr>', 'next buffer')
 umap('<c-k>', '<cmd>CybuPrev<cr>', 'previous buffer')
 umap('<c-j>', '<cmd>CybuNext<cr>', 'next buffer')
 

@@ -1,3 +1,5 @@
+---@module "lazy"
+---@type LazyPluginSpec
 local M = {
   'https://github.com/nvim-telescope/telescope.nvim',
   keys = { '<leader>f' },

@@ -16,26 +16,12 @@ return {
   settings = {
     Lua = {
       library = vim.api.nvim_get_runtime_file('', true),
-      typeFormat = { config = { auto_complete_end = true } },
       completion = { callSnippet = 'Replace', displayContext = 5 },
-      diagnostics = {
-        globals = { '_G', 'vim', 'love', 'drastic', 'ya', 'Command', 'cx' },
-        libraryFiles = 'Disable',
-        disable = { 'lowercase-global' },
-      },
       format = { enable = false },
-      hint = { enable = true },
-      runtime = {
-        version = 'LuaJIT',
-        path = { 'lua/?.lua', 'lua/?/init.lua' },
-      },
       semantic = { enable = false },
       telemetry = { enable = false },
-      window = { progressBar = false },
-      workspace = {
-        checkThirdParty = false,
-        library = { vim.env.VIMRUNTIME },
-      },
+      window = { progressBar = true },
+      workspace = { checkThirdParty = false },
     },
   },
 }

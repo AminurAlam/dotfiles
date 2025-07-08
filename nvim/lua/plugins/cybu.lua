@@ -1,3 +1,5 @@
+---@module "lazy"
+---@type LazyPluginSpec
 return {
   'https://github.com/ghillb/cybu.nvim',
   cmd = { 'CybuNext', 'CybuPrev' },

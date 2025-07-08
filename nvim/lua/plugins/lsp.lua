@@ -1,3 +1,5 @@
+---@module "lazy"
+---@type LazyPluginSpec
 local M = {
   'https://github.com/neovim/nvim-lspconfig',
   enabled = vim.version().minor < 11,
@@ -27,9 +29,7 @@ M.init = function()
 
   vim.api.nvim_create_user_command(
     'Tex',
-    function(info)
-      vim.cmd(':silent !latexmk -pdf -interaction=nonstopmode -synctex=1 % ; open %:r.pdf')
-    end,
+    function() vim.cmd 'silent !latexmk -pdf -interaction=nonstopmode -synctex=1 % ; open %:r.pdf' end,
     { desc = 'Builds your tex file', bang = true }
   )
 end

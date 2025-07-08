@@ -1,3 +1,5 @@
+---@module "lazy"
+---@type LazyPluginSpec
 return {
   'https://github.com/stevearc/dressing.nvim',
   enabled = false,

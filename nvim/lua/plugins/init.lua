@@ -1,3 +1,5 @@
+---@module "lazy"
+---@type LazyPluginSpec[]
 return {
   { '0xAdk/full_visual_line.nvim', event = 'ModeChanged *:V', config = true },
   {

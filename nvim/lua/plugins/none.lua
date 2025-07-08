@@ -1,3 +1,5 @@
+---@module "lazy"
+---@type LazyPluginSpec
 local M = {
   'https://github.com/nvimtools/none-ls.nvim',
   dependencies = {
@@ -19,7 +21,7 @@ M.config = function()
       null_ls.builtins.formatting.stylua,
       null_ls.builtins.diagnostics.fish,
       null_ls.builtins.formatting.fish_indent,
-      null_ls.builtins.formatting.clang_format.with { extra_filetypes = { 'json', 'glsl' } },
+      null_ls.builtins.formatting.clang_format.with { extra_filetypes = { 'glsl' } },
       h.make_builtin {
         name = 'tex-fmt',
         method = 'NULL_LS_FORMATTING',

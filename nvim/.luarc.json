@@ -1,0 +1,31 @@
+{
+  "$schema": "https://raw.githubusercontent.com/LuaLS/vscode-lua/master/setting/schema.json",
+  "library": "",
+  "completion": {
+    "callSnippet": "Replace",
+    "displayContext": 5
+  },
+  "diagnostics": {
+    "disable": ["lowercase-global"],
+    "globals": ["_G", "vim"],
+    "libraryFiles": "Disable",
+    "unusedLocalExclude": ["_*"]
+  },
+  "format": { "enable": false },
+  "hint": { "enable": true },
+  "runtime": {
+    "path": ["lua/?.lua", "lua/?/init.lua"],
+    "version": "LuaJIT"
+  },
+  "semantic": { "enable": false },
+  "telemetry": { "enable": false },
+  "type": { "castNumberToInteger": false },
+  "typeFormat": {
+    "config": {
+      "auto_complete_end": "true",
+      "format_line": "false"
+    }
+  },
+  "window": { "progressBar": true },
+  "workspace": { "checkThirdParty": "Disable", }
+}

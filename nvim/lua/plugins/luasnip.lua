@@ -1,3 +1,5 @@
+---@module "lazy"
+---@type LazyPluginSpec
 local M = {
   'https://github.com/L3MON4D3/LuaSnip',
   event = 'InsertEnter',

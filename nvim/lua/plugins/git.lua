@@ -1,3 +1,5 @@
+---@module "lazy"
+---@type LazyPluginSpec
 return {
   'https://github.com/lewis6991/gitsigns.nvim',
   opts = {
