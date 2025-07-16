@@ -4,6 +4,7 @@ function hentai
     printf "working on HentaiNexus...\n"
     cd "/storage/emulated/0/TachiyomiSY/downloads/HentaiNexus (EN)/"
     and for i in @*
+        printf " - $i\n"
         mv -i --no-clobber $i/Chapter.cbz /sdcard/TachiyomiSY/local/\#lewd/$i.cbz
         rmdir $i &>/dev/null
     end
@@ -24,6 +25,8 @@ function hentai
         mv -i --no-clobber $i.cbz /sdcard/TachiyomiSY/local/\#lewd/
     end
 
+    # TODO: append new chapters
+    # TODO: ask author name
     set args (count $argv)
     [ $args -lt 2 ] && return 2
     cd "/storage/emulated/0/TachiyomiSY/downloads/HentaiNexus (EN)/" || return 3

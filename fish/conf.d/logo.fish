@@ -1,6 +1,11 @@
 status is-interactive || exit
 
 [ "$USER" = student ] && exit
+command -vq pokeget && begin
+    printf "   %s\n" (pokeget --hide-name magikarp)
+    set fish_greeting ""
+    exit
+end
 
 set -l i (set_color brgreen)
 set -l o (set_color brcyan)

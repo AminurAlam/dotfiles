@@ -70,6 +70,7 @@ if [ (uname -o) = Android ] && [ -d /sdcard ]
     set -gxp --path PATH "$CARGO_HOME/bin" # after declaring CARGO_HOME
     set -gxp --path PATH "$HOME/.local/share/npm/bin"
 end
+set -gxp --path PATH "$HOME/.local/bin" # sometimes before
 
 status is-interactive || exit
 

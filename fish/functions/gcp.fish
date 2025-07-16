@@ -1,8 +1,6 @@
 function gcp -a url path branch -d "git clone wrapper"
     [ -z "$url" ] && echo "ERROR: no url given" && return
-    [ -n "$branch" ] && set -f branch "
-
-    " "$branch"
+    [ -n "$branch" ] && set -f branch "--branch" "$branch"
     [ -e "$HOME/repos" ] || mkdir "$HOME/repos"
 
     set url (string replace -r -- 'https://([^/]+)/([^/]+)/([^/]+).*' 'https://$1/$2/$3' "$url")
