@@ -1,7 +1,6 @@
 /* vim:set sw=2: */
 
 * {
-  font-family: FontAwesome, Roboto, Helvetica, Arial, sans-serif;
   font-size: 17px;
   min-height: 0;
   opacity: 0.99;
@@ -9,6 +8,7 @@
 }
 
 #waybar {
+  font-family: "SauceCodePro Nerd Font";
   background: rgba(30, 32, 48, 0.8);
   color: #c0caf5;
   margin: 0px 0px;
@@ -46,6 +46,7 @@
 }
 
 #workspaces {
+  font-family: "Noto Sans CJK JP";
   margin: 0px 0px 0px 30px;
 }
 
