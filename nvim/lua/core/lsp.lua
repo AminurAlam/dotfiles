@@ -10,6 +10,7 @@ vim.lsp.enable(vim.tbl_filter(filter, {
   'lua_ls',
   'ruff',
   'rust_analyzer',
+  'systemd',
   'taplo',
   -- 'termux_language_server',
   'texlab',

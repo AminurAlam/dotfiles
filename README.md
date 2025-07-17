@@ -7,31 +7,28 @@
 - [clang-format](https://clang.llvm.org/docs/ClangFormat.html) - c formatter
 - [clangd](https://clang.llvm.org/) - c++ lsp server
 - [curl](https://curl.se/) - request url
+- [delta](https://dandavison.github.io/delta/) - git diff pager
+- [dircolors](https://www.gnu.org/software/coreutils/dircolors) - $LS_COLORS generator
 - [dunst](https://dunst-project.org/) - notification daemon
 - [eza](https://github.com/eza-community/eza) - replacement for ls
-  - [dircolors](https://www.gnu.org/software/coreutils/dircolors) - $LS_COLORS generator
 - [fish](https://fishshell.com/) :star2: - shell
 - [fuzzel](https://codeberg.org/dnkl/fuzzel) - application launcher
-- [gallery-dl](https://github.com/mikf/gallery-dl) - program to download image-galleries
 - [fzf](https://junegunn.github.io/fzf/) - fuzzy finder
+- [gallery-dl](https://github.com/mikf/gallery-dl) - program to download image-galleries
 - [gdb](https://www.gnu.org/software/gdb/) - GNU Project debugger
 - [git](https://git-scm.com/) - vcs
-  - [delta](https://dandavison.github.io/delta/) - git diff pager
-  - [lazygit](https://github.com/jesseduffield/lazygit) - ui for git
 - [htop](https://htop.dev/) - process viewer
 - [hyprland](https://hyprland.org/) - tiling wayland compositor
-  - [waybar](https://github.com/Alexays/Waybar) - status bar
-  - [wofi](https://hg.sr.ht/~scoopta/wofi) - launcher
 - [kanata](https://github.com/jtroo/kanata) - keyboard customizer
 - [keepassxc](https://keepassxc.org/) - password manager
 - [kitty](https://github.com/kovidgoyal/kitty) - terminal emulator
+- [lazygit](https://github.com/jesseduffield/lazygit) - ui for git
 - [mgba](http://mgba.io) - GBA emulator
 - [mpv](https://mpv.io) - media player
 - [newsboat](https://newsboat.org/) :star2: - rss reader
 - [niri](https://github.com/YaLTeR/niri) - scrollable-tiling wayland compositor
 - [npm](https://npmjs.com/) - javascript runtime
 - [nvim](https://neovim.io/) :star2: - text editor
-  - [vim](https://www.vim.org) - text editor
 - [pacman](https://archlinux.org/pacman/) - package manager
 - [paru](https://github.com/morganamilo/paru) - aur helper
 - [prettier](https://prettier.io/) - code formatter
@@ -44,9 +41,13 @@
 - [starship](https://starship.rs/) :star2: - shell prompt
 - [streamrip](https://github.com/nathom/streamrip)
 - [stylua](https://github.com/JohnnyMorganz/StyLua) - lua formatter
+- [systemd](https://www.github.com/systemd/systemd) - system and service manager
 - [taplo](https://taplo.tamasfe.dev/) - lsp for toml
 - [termux](https://termux.dev/) - terminal emulator
 - [tmux](https://tmux.github.io/) :star2: - terminal multiplexer
+- [vim](https://www.vim.org) - text editor
+- [waybar](https://github.com/Alexays/Waybar) - status bar
+- [wofi](https://hg.sr.ht/~scoopta/wofi) - launcher
 - [yay](https://github.com/Jguer/yay) - aur helper
 - [yazi](https://yazi-rs.github.io/) :star2: - terminal file manager
 - [yt-dlp](https://github.com/yt-dlp/yt-dlp) - video downloader

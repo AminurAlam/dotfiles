@@ -67,5 +67,8 @@ setup_latex() {
 
 setup_servers() {
     # TODO: create service files and add it to dotfiles
-    yay -S anki kiwix-tools komga kanata-bin
+    yay -S anki kiwix-tools komga kanata-bin mariadb
+    systemctl enable mariadb
+    systemctl start mariadb
+    sudo mariadb-install-db --user=mysql --ldata=/var/lib/mysql --basedir=/usr --user root
 }

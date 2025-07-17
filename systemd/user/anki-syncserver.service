@@ -1,0 +1,12 @@
+[Unit]
+Description=Anki Sync Server
+Documentation=https://docs.ankiweb.net/sync-server.html
+
+[Service]
+Environment=PATH=/usr/local/bin:/usr/local/sbin:/usr/bin:/bin
+Environment=SYNC_PORT=8100 SYNC_BASE=.local/state/anki-syncserver SYNC_USER1=a@a.aa:aaaa
+Type=exec
+ExecStart=/usr/bin/anki --syncserver
+
+[Install]
+WantedBy=default.target
