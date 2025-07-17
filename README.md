@@ -17,6 +17,7 @@
 - [gallery-dl](https://github.com/mikf/gallery-dl) - program to download image-galleries
 - [gdb](https://www.gnu.org/software/gdb/) - GNU Project debugger
 - [git](https://git-scm.com/) - vcs
+- [glow](https://github.com/charmbracelet/glow) - Command-line markdown renderer
 - [htop](https://htop.dev/) - process viewer
 - [hyprland](https://hyprland.org/) - tiling wayland compositor
 - [kanata](https://github.com/jtroo/kanata) - keyboard customizer
