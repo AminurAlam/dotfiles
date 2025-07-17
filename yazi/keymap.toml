@@ -9,10 +9,10 @@ confirm.prepend_keymap = [
 
 help.prepend_keymap = [{ on = "q", run = "close", desc = "Exit the process" }]
 input.prepend_keymap = []
-tasks.prepend_keymap = []
-pick.prepend_keymap = []
+tasks.prepend_keymap = [{ on = "q", run = "close", desc = "Close the spot" }]
+pick.prepend_keymap = [{ on = "l", run = "close --submit" }]
 cmp.prepend_keymap = []
-spot.prepend_keymap = [{ on = 'q', run = 'close', desc = 'Close the spot' }]
+spot.prepend_keymap = [{ on = "q", run = "close", desc = "Close the spot" }]
 
 mgr.prepend_keymap = [
   # plugins
@@ -37,6 +37,7 @@ mgr.prepend_keymap = [
   { on = ["y", "y"], run = "yank", desc = "yank file" },
   { on = ["y", "p"], run = "copy path", desc = "yank ENTIRE path" },
   { on = ["y", "f"], run = "copy filename", desc = "yank filename" },
+  { on = ["y", "u"], run = "shell --confirm -- wl-copy -t text/uri-list file://$(realpath $0)", desc = "yank uri" },
   { on = "p", run = ["paste", "unyank"], desc = "Paste yanked files" },
   # Tabs
   { on = "<C-Left>", run = "tab_switch -1 --relative", desc = "Switch to the previous tab" },
@@ -69,6 +70,7 @@ mgr.prepend_keymap = [
   { on = [",", "B"], run = ["sort btime --reverse"], desc = "" },
   # other
   # { on = ":", run = '''shell "fish -c " --block --interactive''' },
+  { on = ";", run = "noop" },
   { on = "<C-g>", run = '''shell --block --confirm -- nvim +Telescope\ live_grep''', desc = "rg search" },
   { on = ".", run = "hidden toggle" },
   { on = "<Esc>", run = ["escape", "unyank"], desc = "Exit visual mode, clear selection, or cancel search" },
