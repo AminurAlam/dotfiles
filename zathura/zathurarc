@@ -1,3 +1,6 @@
+# TODO: fix gaps in cbz
+# TODO: export images as attachments
+
 # keymaps
 # map <Button1> toggle_statusbar
 map <Button3> scroll half-down
@@ -25,7 +28,7 @@ map [fullscreen] gO toggle_index
 
 ### OPTIONS
 set guioptions "vs"
-set page-right-to-left
+set page-right-to-left true
 set font "monospace normal 12"
 set selection-clipboard clipboard
 set statusbar-h-padding 0
@@ -44,7 +47,7 @@ set zoom-max 400
 set zoom-step 8
 
 # synctex
-set synctex
+set synctex true
 set synctex-edit-modifier ctrl
 set synctex-editor-command "nvim"
 

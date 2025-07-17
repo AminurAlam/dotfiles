@@ -1,11 +1,11 @@
 "$schema" = "https://yazi-rs.github.io/schemas/yazi.json"
 
 open.prepend_rules = [
-  { name = "*/", use = ["reveal", "dir2cbz", "nsxiv_gallery", "open", "edit"] },
-  { name = "*.cb{z,r}", use = ["zathura", "open", "extract", "reveal"] },
-  { mime = 'application/pdf', use = ["zathura", "open"] },
-  { name = "*.zip", use = ["extract", "reveal"] },
-  { mime = "image/*", use = ["nsxiv", "loupe", "krita", "gimp", "open"] },
+  { name = "*/", use = ["reveal", "dir2cbz", "nsxiv_gallery", "open", "rsync", "edit"] },
+  { mime = 'application/pdf', use = ["zathura", "okular", "open"] },
+  { name = "*.cb{z,r}", use = ["zathura", "okular", "open", "extract"] },
+  { name = "*.{zip,rar}", use = ["extract", "zathura", "okular", "open"] },
+  { mime = "image/*", use = ["nsxiv", "nsxiv_gallery", "krita", "gimp", "open"] },
   { mime = "video/*", use = ["play"] },
   { mime = "application/bittorrent", use = ["qbittorrent", "open"] },
   { name = "*.torrent", use = ["qbittorrent", "open"] },
@@ -13,7 +13,7 @@ open.prepend_rules = [
   { mime = "application/android.package-archive", use = ["apkinstall", "open"] },
   { name = "*.apk", use = ["apkinstall", "open"] },
   { name = "*.kdbx", use = "keepass" },
-  { name = "*.{ass,srt,ssa,sup,vtt}", use = ["add-sub", "edit"] },
+  { name = "*.{ass,srt,ssa,sup,vtt}", use = [ "add-sub", "aegisub", "edit" ] },
 ]
 open.append_rules = [{ name = "*", use = ["open", "rsync"] }]
 plugin.prepend_previewers = [
@@ -30,10 +30,11 @@ plugin.prepend_previewers = [
   # { mime = "application/octet-stream", run = "hexyl" },
   # misc
   { mime = "application/subrip", run = "code" },
-  { name = "*.zip", run = "archive" },
+  { name = "*.{zip,rar}", run = "archive" },
   { name = "*.!qB", run = "noop" },
 ]
 plugin.prepend_preloaders = [
+  { name = "*.!qB", run = "noop" },
   { name = "*.cb{z,r}", run = 'cbz' },
   { mime = "audio/*", run = 'coverart' },
   { mime = "font/*", run = "font-cjk" },
@@ -41,14 +42,17 @@ plugin.prepend_preloaders = [
 ]
 
 [opener]
-add-sub = [{ run = ''' echo sub-add "'$0'" | socat - /tmp/mpv.sock ''', desc = "󰨗 Add sub to MPV" }]
+add-sub = [{ run = ''' echo sub-add "'$0'" | socat - /tmp/mpv.sock ''', desc = "󰨗 Add sub to MPV", for = "linux" }]
+aegisub = [{ run = 'aegisub -- "$@"', block = false, orphan = true, desc = "󰨗 Aegisub", for = "linux" }]
 apkinstall = [{ run = 'adb install "$@"', block = true, orphan = false, desc = " apk installer", for = "linux" }]
 dir2cbz = [{ run = '''fish -c 'dir2cbz $argv' "$@" ''', block = true, desc = " dir2cbz" }]
-keepass = [{ run = 'keepassxc -- "$0"', block = false, orphan = true, desc = " keepass" }]
+keepass = [{ run = 'keepassxc -- "$0"', block = false, orphan = true, desc = " keepass", for = "linux" }]
+okular = [{ run = 'okular "$@"', block = false, orphan = true, desc = " okular", for = "linux" }]
 qbittorrent = [{ run = 'qbittorrent "$@"', block = false, orphan = true, desc = " qbittorrent", for = "linux" }]
-rsync = [{ run = 'rsync -Pha -- "$0" phone:/sdcard/Download/', block = false, orphan = true, desc = " Send to phone" }]
+rsync = [{ run = 'rsync -Pha -- "$1" phone:/sdcard/Download/', block = false, desc = " Send to phone", for = "linux" }]
 wine = [{ run = 'wine "$@"', block = false, orphan = true, desc = "󰡶 wine", for = "linux" }]
 zathura = [{ run = 'zathura "$@"', block = false, orphan = true, desc = " zathura", for = "linux" }]
+paper = [{ run = 'hyprctl hyprpaper reload ,tile:"$1"' }]
 # img related
 gimp = [{ run = 'gimp "$@"', block = false, orphan = true, desc = " gimp", for = "linux" }]
 krita = [{ run = 'krita "$@"', block = false, orphan = true, desc = " krita", for = "linux" }]
@@ -98,7 +102,7 @@ image_delay = 30
 image_filter = "triangle"
 image_quality = 75
 ueberzug_scale = 1
-ueberzug_offset = [0, 0, 0, 0]
+ueberzug_offset = [0, 0.2, 0, 0]
 
 [input]
 cursor_blink = false
@@ -107,7 +111,7 @@ cursor_blink = false
 # rename
 rename_title = ""
 rename_origin = "hovered"
-rename_offset = [2, -1, 77, 3] # TODO: fix schema
+rename_offset = [2, -1, 77, 3]
 
 # cd
 cd_title = "   "
@@ -140,4 +144,4 @@ shell_offset = [0, 0, 999, 3]
 [pick]
 open_title = "Open with:"
 open_origin = "hovered"
-open_offset = [0, 1, 50, 7]
+open_offset = [0, 1, 30, 30]
