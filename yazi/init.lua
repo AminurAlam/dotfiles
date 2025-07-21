@@ -60,6 +60,12 @@ Tab.layout = function(self, ...)
   return old_layout(self, ...)
 end
 
+-- start with cut if xdg-desktop-portal-termfilechooser
+if rt.args.chooser_file then ya.emit('yank', { cut = true }) end
+
+-- start with zoxide if fileManager
+if os.getenv('YAZI_ID') == '48937' then ya.emit('plugin', { 'zoxide' }) end
+
 -- plugins
 local pref_by_location = require('pref-by-location')
 pref_by_location:setup({
