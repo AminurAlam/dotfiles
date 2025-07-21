@@ -46,6 +46,7 @@ show-read-feeds no
 show-read-articles yes
 always-display-description no
 display-article-progress yes
+cleanup-on-quit yes
 
 notify-program "~/repos/dotfiles/scripts/newsboat_notify.fish"
 notify-format "Newsboat: %f unread feeds; %n unread articles"

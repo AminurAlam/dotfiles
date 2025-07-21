@@ -22,9 +22,9 @@ highlight article "\\((link|image|video|audio|iframe|embedded flash)\\)" color8 
 
 color background          default default
 color listnormal          default default
-color listfocus           default color8
+color listfocus           default color18
 color listnormal_unread   color2 default
-color listfocus_unread    color2 color8
+color listfocus_unread    color2 color18
 color title               default default
 color info                color4  color8
 color hint-key            default default
