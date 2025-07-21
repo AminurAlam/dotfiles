@@ -16,10 +16,9 @@ bind -M insert ctrl-d exit
 bind -M insert ctrl-up history-token-search-backward
 bind -M insert ctrl-down history-token-search-forward
 
-bind -M insert ctrl-h backward-word
 bind -M insert ctrl-j history-token-search-forward
 bind -M insert ctrl-k history-token-search-backward
-bind -M insert ctrl-l forward-word
+bind -M insert ctrl-l 'commandline -f ([ "$(commandline)" = "" ] && echo clear-screen || echo forward-word)'
 
 bind -M insert alt-h backward-char
 bind -M insert alt-j down-or-search
