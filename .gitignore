@@ -12,6 +12,8 @@
 /mgba/qt.ini
 /mgba/*.sqlite3
 
+/nom/nom.db
+
 /nvim/lazy-lock.json
 /nvim/parser/
 

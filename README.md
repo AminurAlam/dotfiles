@@ -28,6 +28,7 @@
 - [mpv](https://mpv.io) - media player
 - [newsboat](https://newsboat.org/) :star2: - rss reader
 - [niri](https://github.com/YaLTeR/niri) - scrollable-tiling wayland compositor
+- [nom](https://github.com/guyfedwards/nom) - rss reader
 - [npm](https://npmjs.com/) - javascript runtime
 - [nvim](https://neovim.io/) :star2: - text editor
 - [pacman](https://archlinux.org/pacman/) - package manager
