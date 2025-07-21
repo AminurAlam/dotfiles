@@ -16,6 +16,7 @@
 - [fzf](https://junegunn.github.io/fzf/) - fuzzy finder
 - [gallery-dl](https://github.com/mikf/gallery-dl) - program to download image-galleries
 - [gdb](https://www.gnu.org/software/gdb/) - GNU Project debugger
+- [ghostty](https://github.com/ghostty-org/ghostty) - terminal emulator
 - [git](https://git-scm.com/) - vcs
 - [glow](https://github.com/charmbracelet/glow) - Command-line markdown renderer
 - [htop](https://htop.dev/) - process viewer
