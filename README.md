@@ -49,6 +49,7 @@
 - [vim](https://www.vim.org) - text editor
 - [waybar](https://github.com/Alexays/Waybar) - status bar
 - [wofi](https://hg.sr.ht/~scoopta/wofi) - launcher
+- [xdg-desktop-portal-termfilechooser](https://github.com/boydaihungst/xdg-desktop-portal-termfilechooser) - xdg-desktop-portal backend for terminal file manager
 - [yay](https://github.com/Jguer/yay) - aur helper
 - [yazi](https://yazi-rs.github.io/) :star2: - terminal file manager
 - [yt-dlp](https://github.com/yt-dlp/yt-dlp) - video downloader
