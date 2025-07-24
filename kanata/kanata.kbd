@@ -12,7 +12,7 @@
 )
 (defvar
     tt 200
-    ht 200
+    ht 250
 )
 
 (defalias
