@@ -5,8 +5,10 @@ vim.filetype.add {
   },
   extension = {
     log = 'log',
+    kbd = 'scheme',
+    service = 'systemd',
     cue = 'cuesheet',
-    note = 'note',
+    note = 'markdown',
     PKGBUILD = 'sh',
     handlebars = 'handlebars',
   },

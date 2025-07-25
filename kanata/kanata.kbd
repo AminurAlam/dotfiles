@@ -1,26 +1,53 @@
-;; vim:ft=scheme:
-
-(defsrc
-    a  s  d  f   l  ;
-)
-(deflayer base
-    @a @s @d @f  @l @;
-)
+;; vim:ft=scheme:cms=;;\ %s:syntax=off:
 
 (defcfg
-    process-unmapped-keys yes
-)
+    process-unmapped-keys yes)
 (defvar
     tt 200
-    ht 250
-)
+    ht 250)
+
+(defsrc
+  esc
+  grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
+  tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
+  caps a    s    d    f    g    h    j    k    l    ;    '    ret
+  lsft z    x    c    v    b    n    m    ,    .    /    rsft
+  lctl lmet lalt           spc            ralt rmet rctl)
+(deflayer base
+  @esc
+  _    _    _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    _    _    _    _    _    _    _    _    _    _    _    _
+  @cap @a   @s   @d   @f   _    _    _    _    @l   @;   _    _
+  _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    _              _              _    _    _)
+(deflayer dvorak
+  @esc
+  _    _    _    _    _    _    _    _    _    _    _    [    ]    _
+  _    '    ,    .    p    y    f    g    c    r    l    /    =    _
+  @cap @da  @do  @de  @du  i    d    h    t    @dn  @ds  -    _
+  _    ;    q    j    k    x    b    m    w    v    z    _
+  _    _    _              _              _    _    _)
 
 (defalias
-    a (tap-hold-release $tt $ht a lalt)
-    s (tap-hold-release $tt $ht s lsft)
-    d (tap-hold-release $tt $ht d lmet)
-    f (tap-hold-release $tt $ht f lctl)
+   esc (tap-hold 500 500 caps lrld)
+   cap esc
 
-    l (tap-hold-release $tt $ht l rsft)
-    ; (tap-hold-release $tt $ht ; ralt)
+   ;; qwerty
+   ;; ! (tap-dance 50 (2))
+   a (tap-hold $tt $ht a lalt)
+   s (tap-hold $tt $ht s lsft)
+   d (tap-hold $tt $ht d lmet)
+   f (tap-hold $tt $ht f lctl)
+
+   l (tap-hold $tt $ht l rsft)
+   ; (tap-hold $tt $ht ; ralt)
+
+   ;; dvorak
+   da (tap-hold $tt $ht a lalt)
+   do (tap-hold $tt $ht o lsft)
+   de (tap-hold $tt $ht e lmet)
+   du (tap-hold $tt $ht u lctl)
+
+   dn (tap-hold $tt $ht n rsft)
+   ds (tap-hold $tt $ht s ralt)
 )
