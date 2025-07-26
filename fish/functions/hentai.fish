@@ -1,5 +1,5 @@
 function hentai
-    [ (uname -o) = Android ] || return 1
+    set -q TERMUX_VERSION || return 1
 
     printf "working on HentaiNexus...\n"
     cd "/storage/emulated/0/TachiyomiSY/downloads/HentaiNexus (EN)/"

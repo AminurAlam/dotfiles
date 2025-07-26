@@ -1,5 +1,4 @@
 status is-interactive || exit
-fish --version | tr -dc [:digit:] | grep -q ^4 || exit
 
 fish_vi_key_bindings
 

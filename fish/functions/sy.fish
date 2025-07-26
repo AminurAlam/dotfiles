@@ -1,5 +1,5 @@
 function sy -d "sync files between phone and pc"
-    [ (uname -o) = Android ] && return 1
+    set -q TERMUX_VERSION && return 1
 
     set ip (route -n | awk '/^[0.]+/{print $2}' | rg -v '127\.0\.0\.1' | uniq | head -n1)
     [ -n "$ip" ] && sed -r -i "s/192\.168\.[0-9]+\.[0-9]+\$/$ip/" ~/.ssh/config || return 192

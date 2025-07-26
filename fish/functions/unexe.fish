@@ -14,7 +14,7 @@ function unexe -d "mass `chmod -x` files"
     for file in $argv
         [ -L "$file" ] && continue
 
-        if [ (uname -o) = Android ] && stat -c '%A' -- "$file" | rg -q rwx
+        if set -q TERMUX_VERSION && stat -c '%A' -- "$file" | rg -q rwx
             du -h -- "$file"
             mkdir -p -- (dirname "$exe/$file")
             mv -- "$file" "$exe/$file" &>/dev/null

@@ -1,5 +1,3 @@
-set sudo (command -v sudo)
-
 set -l common "-las ext -F auto -I '.git*' --icons --no-user --group-directories-first --no-quotes --color-scale all --color-scale-mode fixed"
 alias l "eza $common --no-permissions --no-time"
 alias ll "eza $common --git --total-size"
@@ -15,7 +13,7 @@ abbr rm "rm -i"
 abbr rf "rm -frI"
 abbr rd "rmdir -pv"
 abbr md "mkdir -pv"
-abbr vi nvim # TODO: sudoedit
+abbr vi nvim
 abbr cls clear
 abbr tar "tar xzf"
 abbr yq "yq -oj --xml-attribute-prefix ''"
@@ -24,7 +22,7 @@ abbr diff "diff -Naur"
 abbr py "python3 -q"
 abbr pst "pstree -Th"
 abbr Listen "rip url"
-[ (uname -o) = Android ] && abbr pst "ps -faxo 'pid,comm' | sed -E \"s:\$PREFIX/[a-z]+/::\""
+set -q TERMUX_VERSION && abbr pst "ps -faxo 'pid,comm' | sed -E \"s:\$PREFIX/[a-z]+/::\""
 abbr --set-cursor fstack "ffmpeg -y -hide_banner -i % -filter_complex hstack out.png" # https://stackoverflow.com/questions/11552565/vertically-or-horizontally-stack-mosaic-several-videos-using-ffmpeg#33764934
 abbr --set-cursor ff "ffmpeg -y -hide_banner -stats -loglevel error -i % -vcodec copy -acodec copy -map 0:a"
 abbr --set-cursor mbz "python ~/repos/musicbrainzpy/cover_art.py -o \$XDG_MUSIC_DIR/#meta/ '%'"
@@ -62,10 +60,12 @@ abbr rsy "rsync -Pha"
 abbr du "dust -Dn 25"
 abbr dud "dust -d 1"
 abbr df 'df -hx tmpfs'
-[ (uname -o) = Android ] && abbr df 'df -h | awk \'/fuse/{print $3"/"$2,$5,$4}\''
+set -q TERMUX_VERSION && abbr df 'df -h | awk \'/fuse/{print $3"/"$2,$5,$4}\''
 
 # pkg
 if command -vq apt
+    set sudo (command -v sudo | path basename)
+
     abbr pi $sudo apt install
     abbr pr $sudo apt remove
     abbr pu $sudo apt update "&&" $sudo apt upgrade
@@ -84,6 +84,8 @@ else if command -vq paru
     abbr pf paru -Ss
     abbr pa paru -Si
 else if command -vq pacman
+    set sudo (command -v sudo | path basename)
+
     abbr pi $sudo pacman -S
     abbr pr $sudo pacman -Rs
     abbr pu $sudo pacman -Syu
