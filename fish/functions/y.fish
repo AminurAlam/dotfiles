@@ -1,17 +1,21 @@
 function y -d "yazi wrapper to change directories"
     set tmp (mktemp -t "yazi-cwd.XXXXXX")
-    # TODO: repeat on all args
-    if [ -n "$argv[1]" ] && ! [ -e "$argv[1]" ]
-        set argv[1] (zoxide query "$argv[1]")
-        [ -e "$argv[1]" ] && zoxide add "$argv[1]"
+
+    for i in (seq (count $argv))
+        string match -rq -- '^-' "$argv[$i]" && continue
+        [ -e "$argv[$i]" ] && continue
+        set resolved (zoxide query "$argv[$i]" 2>/dev/null)
+        [ -z "$resolved" ] && continue
+        set argv[$i] "$resolved"
+        zoxide add "$resolved"
     end
 
-    yazi $argv --cwd-file="$tmp"
+    yazi --cwd-file="$tmp" $argv
 
     if set cwd (command cat -- "$tmp")
         and [ -n "$cwd" ]
         and [ "$cwd" != "$PWD" ]
-        builtin cd -- "$cwd"
+        cd -- "$cwd"
     end
     rm -f -- "$tmp"
 end

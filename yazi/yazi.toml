@@ -1,85 +1,77 @@
-'$schema' = 'file:///home/fisher/repos/yazi-schemas/schemas/yazi.json'
-# '$schema' = 'https://yazi-rs.github.io/schemas/yazi.json'
+'$schema' = 'https://yazi-rs.github.io/schemas/yazi.json'
 
 ### OPEN
-open.prepend_rules = [
-  { name = '*/', use = ['reveal', 'dir2cbz', 'nsxiv_gallery', 'rsync'] },
+open.rules = [
+  { name = '*/', use = ['reveal', 'dir2cbz', 'rsync'] },
   { mime = 'application/pdf', use = ['zathura', 'okular'] },
   { name = '*.cb{z,r}', use = ['zathura', 'okular', 'extract'] },
+  { mime = 'application/{zip,rar,7z*,tar,gzip,xz,zstd,bzip*,lzma,compress,archive,cpio,arj,xar,ms-cab*}', use = ['extract'] },
   { name = '*.{zip,rar}', use = ['extract', 'zathura', 'okular'] },
-  { mime = 'image/*', use = ['nsxiv', 'nsxiv_gallery', 'krita', 'gimp', 'paper'] },
-  { mime = 'video/*', use = ['play'] },
-  { mime = 'audio/*', use = ['play', 'kid3'] },
-  { mime = 'application/bittorrent', use = ['qbittorrent'] },
-  { name = '*.torrent', use = ['qbittorrent'] },
+  { mime = 'image/*', use = ['nsxiv', 'loupe', 'krita', 'hyprpaper'] },
+  { mime = 'audio/*', use = ['kid3'] },
   { name = '*.exe', use = ['wine'] },
   { mime = 'application/android.package-archive', use = ['apkinstall'] },
   { name = '*.apk', use = ['apkinstall'] },
-  { name = '*.{ass,srt,ssa,sup,vtt}', use = ['add-sub', 'aegisub', 'edit'] },
+  { name = '*.{ass,srt,ssa,sup,vtt}', use = ['add-sub', 'edit'] },
+  # text
+  { mime = 'text/*', use = ['edit'] },
+  { mime = 'inode/empty', use = ['edit'] },
+  { mime = 'application/{json,ndjson}', use = ['edit'] },
+  { mime = '*/javascript', use = ['edit'] },
+
+  { name = '*', use = ['open', 'rsync'] },
 ]
-open.append_rules = [{ name = '*', use = ['open', 'rsync'] }]
 
 ### PREVIEW
 plugin.prepend_previewers = [
+  { name = '*.!qB', run = 'noop' },
   # custom
   { name = '*.cb{z,r}', run = 'cbz' },
   { mime = 'audio/mpegurl', run = 'code' },
   { mime = 'audio/*', run = 'coverart' },
   { mime = 'font/*', run = 'font-cjk' },
-  { mime = 'application/ms-opentype', run = 'font-cjk' },
   { name = '**/.git/', run = 'gitinfo' },
   # plugins
   { name = '*.sqlite3', run = 'piper -- sqlite3 "$1" .schema' },
   { mime = 'application/sqlite3', run = 'piper -- sqlite3 "$1" .schema' },
-  # { mime = 'application/octet-stream', run = 'hexyl' },
+  # { mime = 'application/octet-stream', run = 'piper -- hexyl -n1000 -PC --panels 1 --border none "$1"' },
   # misc
   { mime = 'application/subrip', run = 'code' },
   { name = '*.{zip,rar}', run = 'archive' },
-  { name = '*.!qB', run = 'noop' },
 ]
 plugin.prepend_preloaders = [
   { name = '*.!qB', run = 'noop' },
   { name = '*.cb{z,r}', run = 'cbz' },
   { mime = 'audio/*', run = 'coverart' },
   { mime = 'font/*', run = 'font-cjk' },
-  { mime = 'application/ms-opentype', run = 'font-cjk' },
 ]
 
 [opener]
 add-sub = [{ run = ''' echo sub-add "'$0'" | socat - /tmp/mpv.sock ''', desc = '󰨗 Add sub to MPV', for = 'linux' }]
-aegisub = [{ run = 'aegisub -- "$@"', block = false, orphan = true, desc = '󰨗 Aegisub', for = 'linux' }]
 apkinstall = [{ run = 'adb install "$@"', block = true, orphan = false, desc = ' apk installer', for = 'linux' }]
 dir2cbz = [{ run = '''fish -c 'dir2cbz $argv' "$@" ''', block = true, desc = ' dir2cbz' }]
+hyprpaper = [{ run = 'hyprctl hyprpaper reload ,"$1"', desc = ' hyprpaper' }]
 kid3 = [{ run = 'kid3 -- "$@"', orphan = true, for = 'linux', desc = ' kid3' }]
+krita = [{ run = 'krita "$@"', block = false, orphan = true, desc = ' krita', for = 'linux' }]
+loupe = [{ run = 'loupe "$@"', block = false, orphan = true, desc = ' gnome loupe', for = 'linux' }]
+nsxiv = [{ run = 'nsxiv -bf --anti-alias=no "$@"', block = false, orphan = true, desc = ' nsxiv', for = 'linux' }]
 okular = [{ run = 'okular "$@"', block = false, orphan = true, desc = ' okular', for = 'linux' }]
-paper = [{ run = 'hyprctl hyprpaper reload ,tile:"$1"' }]
-qbittorrent = [{ run = 'qbittorrent "$@"', block = false, orphan = true, desc = ' qbittorrent', for = 'linux' }]
 rsync = [{ run = 'rsync -Pha -- "$1" phone:/sdcard/Download/', block = false, desc = ' Send to phone', for = 'linux' }]
 wine = [{ run = 'wine "$@"', block = false, orphan = true, desc = '󰡶 wine', for = 'linux' }]
 zathura = [{ run = 'zathura "$@"', block = false, orphan = true, desc = ' zathura', for = 'linux' }]
-# img related
-gimp = [{ run = 'gimp "$@"', block = false, orphan = true, desc = ' gimp', for = 'linux' }]
-krita = [{ run = 'krita "$@"', block = false, orphan = true, desc = ' krita', for = 'linux' }]
-loupe = [{ run = 'loupe "$@"', block = false, orphan = true, desc = ' gnome img viewer', for = 'linux' }]
-nsxiv = [{ run = 'nsxiv -bf --anti-alias=no "$@"', block = false, orphan = true, desc = ' nsxiv', for = 'linux' }]
-nsxiv_gallery = [{ run = 'nsxiv -tbf "$@"', block = false, orphan = true, desc = ' gallery', for = 'linux' }]
 # defaults
 edit = [{ run = '${EDITOR:-vi} "$@"', desc = ' $EDITOR', block = true, for = 'unix' }]
 open = [
   { run = 'xdg-open "$1"', desc = '󰏌 Open', for = 'linux' },
   { run = 'termux-open "$1"', desc = '󰏌 Open', for = 'android' },
 ]
+reveal = [
+  { run = 'xdg-open "$(dirname "$1")"', desc = ' Reveal', for = 'linux' },
+  { run = 'opendir "$1"', desc = ' Reveal', for = 'android' },
+]
 extract = [
   { run = 'ya pub extract --list "$@"', desc = '󱉛 Extract here', for = 'unix' },
   { run = 'ya pub extract --list %*', desc = '󱉛 Extract here', for = 'windows' },
-]
-play = [
-  { run = 'termux-open "$@"', orphan = true, for = 'android', desc = '󰏌 termux-open' },
-  { run = 'mpv --force-window "$@"', orphan = true, for = 'unix', desc = ' mpv' },
-]
-reveal = [
-  { run = 'xdg-open "$(dirname "$1")"', desc = ' Reveal', for = 'linux' },
-  { run = 'opendir "$1"', desc = ' opendir', for = 'android' },
 ]
 
 [mgr]
