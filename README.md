@@ -21,6 +21,7 @@
 - [glow](https://github.com/charmbracelet/glow) - Command-line markdown renderer
 - [htop](https://htop.dev/) - process viewer
 - [hyprland](https://hyprland.org/) - tiling wayland compositor
+- [jujustu](https://github.com/jj-vcs/jj) -  vcs
 - [kanata](https://github.com/jtroo/kanata) - keyboard customizer
 - [keepassxc](https://keepassxc.org/) - password manager
 - [kitty](https://github.com/kovidgoyal/kitty) - terminal emulator

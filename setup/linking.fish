@@ -9,6 +9,7 @@ for config in alacritty aria2 \
     fish fuzzel \
     gallery-dl gdb ghostty git glow \
     htop hypr \
+    jj \
     kanata keepassxc kitty \
     lazygit \
     mgba mpv \
