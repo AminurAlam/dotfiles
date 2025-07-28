@@ -20,9 +20,13 @@
 /termux/font.ttf
 /termux/shell
 
-# sensitive
 /mutt/passwords.gpg
 passwords.gpg
+
+qBittorrent/lockfile
+qBittorrent/qBittorrent-data.conf
+qBittorrent/rss/storage.lock
+
 /rclone/
 rclone.conf
 

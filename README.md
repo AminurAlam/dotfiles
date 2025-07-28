@@ -20,7 +20,7 @@
 - [git](https://git-scm.com/) - vcs
 - [glow](https://github.com/charmbracelet/glow) - Command-line markdown renderer
 - [htop](https://htop.dev/) - process viewer
-- [hyprland](https://hyprland.org/) - tiling wayland compositor
+- [hyprland](https://hyprland.org/) :star2: - tiling wayland compositor
 - [jujustu](https://github.com/jj-vcs/jj) -  vcs
 - [kanata](https://github.com/jtroo/kanata) - keyboard customizer
 - [keepassxc](https://keepassxc.org/) - password manager
@@ -38,6 +38,7 @@
 - [prettier](https://prettier.io/) - code formatter
 - [procs](https://github.com/dalance/procs) - process list
 - [python](https://python.org/) - python interpreter
+- [qBittorrent](https://www.qbittorrent.org) - torrent client
 - [ripgrep](https://github.com/BurntSushi/ripgrep) - grep alternative
 - [ruff](https://docs.astral.sh/ruff/) - python linter and formatter
 - [sqlite3](https://www.sqlite.org/) - SQL database
