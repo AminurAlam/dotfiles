@@ -18,7 +18,7 @@ for config in alacritty aria2 \
     sqlite3 streamrip systemd \
     termux tmux \
     waybar wofi \
-    xdg-desktop-portal-termfilechooser \
+    xdg-desktop-portal xdg-desktop-portal-termfilechooser \
     yay yazi yt-dlp \
     zathura zellij
     # skip non-existing dirs
