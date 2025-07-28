@@ -2,6 +2,7 @@ local filter = function(server) return vim.fn.executable(vim.lsp.config[server].
 vim.lsp.enable(vim.tbl_filter(filter, {
   'basedpyright',
   'bash_language_server',
+  'ccls',
   'clangd',
   'dart_language_server',
   'gopls',

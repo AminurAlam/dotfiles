@@ -1,5 +1,7 @@
 ;; extends
 
-; (table
-;   (bare_key) @keyword.function
-;   (pair))
+(table
+  (bare_key) @keyword)
+
+(dotted_key
+  (bare_key) @keyword)

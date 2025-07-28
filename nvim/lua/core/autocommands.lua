@@ -13,6 +13,7 @@ autocmd('FileType', {
   desc = 'automatically start treesitter',
   pattern = tsft,
   callback = function(details)
+    if #tsft == 0 then return end
     vim.treesitter.start()
     vim.bo[details.buf].syntax = 'on'
     vim.wo.foldmethod = 'expr'
