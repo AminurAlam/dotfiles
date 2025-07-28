@@ -447,7 +447,7 @@ keybinding:
     viewWorktreeOptions: w
   commits:
     squashDown: s
-    renameCommit: r
+    renameCommit: i
     renameCommitWithEditor: R
     viewResetOptions: g
     markCommitAsFixup: f
@@ -469,7 +469,7 @@ keybinding:
     openLogMenu: <c-l>
     openInBrowser: o
     viewBisectOptions: b
-    startInteractiveRebase: i
+    # startInteractiveRebase: i
     selectCommitsOfCurrentBranch: "*"
   amendAttribute:
     resetAuthor: a
