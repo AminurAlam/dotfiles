@@ -62,10 +62,10 @@ set nowritebackup
 set confirm
 "set clipboard+=unnamed,unnamedplus
 set list
-set listchars="leadmultispace:│   ,tab:> ,trail: ,precedes:…,conceal:●,nbsp:␣"
-set fillchars="stl: ,fold: ,foldclose:,msgsep:─,eob: ,lastline:.,diff:╱"
+"set listchars="leadmultispace:│   ,tab:> ,trail: ,precedes:…,conceal:●,nbsp:␣"
+"set fillchars="stl: ,fold: ,foldclose:,msgsep:─,eob: ,lastline:.,diff:╱"
 
-colorscheme habamax
+"colorscheme habamax
 
 let g:mapleader=" "
 
@@ -85,6 +85,7 @@ nmap cn *``"_cgn
 nmap <bs> i<bs><esc>l
 nmap <cr> "_ciw
 
+nmap q <cmd>q<cr>
 nmap <leader>w <cmd>silent w <bar> redraw <cr>
 nmap <leader>W <cmd>silent w <bar> redraw <cr>
 
