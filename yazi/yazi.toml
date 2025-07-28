@@ -8,7 +8,8 @@ open.rules = [
   { mime = 'application/{zip,rar,7z*,tar,gzip,xz,zstd,bzip*,lzma,compress,archive,cpio,arj,xar,ms-cab*}', use = ['extract'] },
   { name = '*.{zip,rar}', use = ['extract', 'zathura', 'okular'] },
   { mime = 'image/*', use = ['nsxiv', 'loupe', 'krita', 'hyprpaper'] },
-  { mime = 'audio/*', use = ['kid3'] },
+  { mime = 'video/*', use = ['play'] },
+  { mime = 'audio/*', use = ['kid3', 'play'] },
   { name = '*.exe', use = ['wine'] },
   { mime = 'application/android.package-archive', use = ['apkinstall'] },
   { name = '*.apk', use = ['apkinstall'] },
@@ -62,8 +63,12 @@ zathura = [{ run = 'zathura "$@"', block = false, orphan = true, desc = ' zat
 # defaults
 edit = [{ run = '${EDITOR:-vi} "$@"', desc = ' $EDITOR', block = true, for = 'unix' }]
 open = [
-  { run = 'xdg-open "$1"', desc = '󰏌 Open', for = 'linux' },
-  { run = 'termux-open "$1"', desc = '󰏌 Open', for = 'android' },
+  { run = 'xdg-open "$1"', orphan = true, desc = '󰏌 Open', for = 'linux' },
+  { run = 'termux-open "$1"', orphan = true, desc = '󰏌 Open', for = 'android' },
+]
+play = [
+  { run = 'termux-open "$@"', orphan = true, for = 'android', desc = '󰏌 termux-open' },
+  { run = 'mpv --force-window "$@"', orphan = true, for = 'unix', desc = ' mpv' },
 ]
 reveal = [
   { run = 'xdg-open "$(dirname "$1")"', desc = ' Reveal', for = 'linux' },
