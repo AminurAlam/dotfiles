@@ -9,9 +9,8 @@ command mkdir -p $HOME/repos $HOME/.local/{share,bin,cache}/
 
 if apt show starship &>/dev/null
     set -a packages starship
-else
-    printf "install starship? [y/N] "
-    curl -sS https://starship.rs/install.sh | sh >/dev/null
+else if not command -vq starship
+    curl -sS https://starship.rs/install.sh | sh
 end
 
 if not apt show eza &>/dev/null

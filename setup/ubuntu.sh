@@ -2,7 +2,7 @@
 # shellcheck disable=2015
 
 apt update && apt upgrade
-yes '\n' | apt-add-repository ppa:fish-shell/release-3
+yes '\n' | add-apt-repository ppa:fish-shell/release-4
 apt-get update
 apt-get install fish git
 

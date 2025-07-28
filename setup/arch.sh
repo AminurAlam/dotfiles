@@ -4,7 +4,6 @@
 # archinstall
 
 ### post install
-# TODO: reflector is being moved to AUR
 sudo pacman -Syu --needed reflector
 sudo reflector --sort rate --country India,China,Bangladesh --save /etc/pacman.d/mirrorlist
 sudo pacman -Syu --needed alacritty base-devel \
@@ -66,9 +65,8 @@ setup_latex() {
 }
 
 setup_servers() {
-    # TODO: create service files and add it to dotfiles
-    yay -S anki kiwix-tools komga kanata-bin mariadb
-    systemctl enable mariadb
-    systemctl start mariadb
-    sudo mariadb-install-db --user=mysql --ldata=/var/lib/mysql --basedir=/usr --user root
+    yay -S anki kiwix-tools komga kanata-bin
+    # systemctl enable mariadb
+    # systemctl start mariadb
+    # sudo mariadb-install-db --user=mysql --ldata=/var/lib/mysql --basedir=/usr --user root
 }
