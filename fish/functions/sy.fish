@@ -46,7 +46,7 @@ function sy -d "sync files between phone and pc"
         # $send && rsync ~/Downloads/main/ROMS/ phone:/sdcard/Download/main/ROMS/ --delete --exclude Switch
         $send && rsync $comm ~/.local/share/newsboat/cache.db phone:~/.local/share/newsboat/cache.db
         $recv && rsync $comm phone:/sdcard/main/backup/ ~/Downloads/main/backup/
-        # $recv && rsync $comm phone:/sdcard/Music/ ~/Music/ --delete
+        $recv && rsync $comm phone:/sdcard/Music/ ~/Music/ --delete
         $recv && rsync $comm phone:/sdcard/TachiyomiSY/local/\#lewd/ ~/Downloads/manga/\#lewd/ --exclude=@{Alp,Arakure,Hinahara Emi,Ouchi Kaeru,Wantan Meo,Yuruyakatou} --delete
         $recv && rsync $comm phone:/sdcard/TachiyomiSY/local/@{Alp,Arakure,Hinahara Emi,Ouchi Kaeru,Wantan Meo,Yuruyakatou} ~/Downloads/manga/\#lewd/ --delete
     end | rg -v '/$'
