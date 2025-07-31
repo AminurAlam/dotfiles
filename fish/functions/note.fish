@@ -1,10 +1,11 @@
 function note -a file -d "notes manager"
+    builtin cd "$HOME/repos/notes/"
+
     if [ -n "$file" ]
         [ -f "$file" ]
         and $EDITOR "$file"
-        or $EDITOR "$HOME/repos/notes/$file.note"
+        or $EDITOR "$file.note"
     else
-        cd $HOME/repos/notes/
-        $EDITOR +"lua require 'telescope.builtin'.find_files()"
+        $EDITOR +"Telescope find_files"
     end
 end

@@ -104,3 +104,6 @@
 
 [rerere]
     enabled = true
+[safe]
+	directory = /mnt/phone/repos/*
+	directory = /mnt/termux/repos/*
