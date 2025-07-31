@@ -42,7 +42,7 @@ vim.keymap.set('n', '<leader>li', function()
     return string.format('\n%s (%s): %s',
       client.name,
       client.name == 'null-ls' and '*' or table.concat(client.config.filetypes, ', '),
-      client.workspace_folders and vim.fn.fnamemodify(client.workspace_folders[1].name, ':~') or 'single file mode'
+      client.workspace_folders and fn.fnamemodify(client.workspace_folders[1].name, ':~') or 'single file mode'
     )
   end, vim.lsp.get_clients()), ''))
 end, { desc = 'LspInfo' })
@@ -130,8 +130,11 @@ nmap('z=', function()
   )
 end, 'open spellsuggests in select menu')
 
--- abbreviations
-if fn.has('nvim-0.10.0') == 1 then
+-- cmdline & abbreviations
+vim.cmd 'cmap <c-j> <down>'
+vim.cmd 'cmap <c-k> <up>'
+
+if fn.has('termux') == 1 and fn.has('nvim-0.10.0') == 1 then
   map { 'ca' }('vq', 'wq') -- dvorak
   map { 'ca' }('qn', 'q!') -- qwert
 end
