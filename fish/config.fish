@@ -55,6 +55,7 @@ if set -q TERMUX_VERSION
     set -gxp --path PATH ~/.local/share/npm/bin
 end
 set -gxp --path PATH ~/.local/bin # sometimes before
+set -gxp --path PATH ~/.local/share/npm/bin
 
 status is-interactive || exit
 

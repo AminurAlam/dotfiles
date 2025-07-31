@@ -1,5 +1,11 @@
 '$schema' = 'https://yazi-rs.github.io/schemas/yazi.json'
 
+### FETCH
+plugin.prepend_fetchers = [
+  { id = 'mime', name = '*.!qB', run = 'noop', prio = 'high' },
+  { id = 'mime', name = '/mnt/**', run = 'noop', prio = 'high' },
+]
+
 ### OPEN
 open.rules = [
   { name = '*/', use = ['reveal', 'dir2cbz', 'rsync'] },
@@ -26,6 +32,7 @@ open.rules = [
 ### PREVIEW
 plugin.prepend_previewers = [
   { name = '*.!qB', run = 'noop' },
+  { name = '/mnt/**', run = 'noop' },
   # custom
   { name = '*.cb{z,r}', run = 'cbz' },
   { mime = 'audio/mpegurl', run = 'code' },
@@ -42,6 +49,7 @@ plugin.prepend_previewers = [
 ]
 plugin.prepend_preloaders = [
   { name = '*.!qB', run = 'noop' },
+  { name = '/mnt/**', run = 'noop' },
   { name = '*.cb{z,r}', run = 'cbz' },
   { mime = 'audio/*', run = 'coverart' },
   { mime = 'font/*', run = 'font-cjk' },
