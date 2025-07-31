@@ -12,6 +12,13 @@ function Header:cwd()
   return ui.Span(ya.truncate(s, { max = max, rtl = true })):style(th.mgr.cwd)
 end
 
+-- show remaining storage
+--[[
+Header:children_add(function()
+  local main = (ya.target_family() == 'android') and '/storage/emulated' or '/home'
+  return os.execute(string.format("df -h '%s' | tail -n1 | awk '{print $4}'", main))
+end, 500, Header.RIGHT) --]]
+
 -- put progress in header
 function Header:redraw()
   local right = self:children_redraw(self.RIGHT)
@@ -64,7 +71,7 @@ end
 if rt.args.chooser_file then ya.emit('yank', { cut = true }) end
 
 -- start with zoxide if fileManager
-if os.getenv('YAZI_ID') == '48937' then ya.emit('plugin', { 'zoxide' }) end
+if ya.id('app').value == 48937 then ya.emit('plugin', { 'zoxide' }) end
 
 -- plugins
 local pref_by_location = require('pref-by-location')
