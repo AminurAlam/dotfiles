@@ -15,39 +15,37 @@
   lctl lmet lalt           spc            ralt rmet rctl)
 (deflayer base
   @esc
-  _    _    _    _    _    _    _    _    _    _    _    _    _    _
+  _    @1   @2   @3   @4   @5   @6   @7   @8   @9   @0   @-    @=    _
   _    _    _    _    _    _    _    _    _    _    _    _    _    _
   @cap @a   @s   @d   @f   _    _    _    _    @l   @;   _    _
   _    _    _    _    _    _    _    _    _    _    _    _
   _    _    _              _              _    _    _)
-(deflayer dvorak
-  @esc
-  _    _    _    _    _    _    _    _    _    _    _    [    ]    _
-  _    '    ,    .    p    y    f    g    c    r    l    /    =    _
-  @cap @da  @do  @de  @du  i    d    h    t    @dn  @ds  -    _
-  _    ;    q    j    k    x    b    m    w    v    z    _
-  _    _    _              _              _    _    _)
 
-(defalias
+(defalias ;; esc <-> caps
    esc (tap-hold 500 500 caps lrld)
    cap esc
-
-   ;; qwerty
-   ;; ! (tap-dance 50 (2))
+)
+(defalias ;; num row
+   1 (tap-hold-release $tt $ht 1 S-1)
+   2 (tap-hold-release $tt $ht 2 S-2)
+   3 (tap-hold-release $tt $ht 3 S-3)
+   4 (tap-hold-release $tt $ht 4 S-4)
+   5 (tap-hold-release $tt $ht 5 S-5)
+   6 (tap-hold-release $tt $ht 6 S-6)
+   7 (tap-hold-release $tt $ht 7 S-7)
+   8 (tap-hold-release $tt $ht 8 S-8)
+   9 (tap-hold-release $tt $ht 9 S-9)
+   0 (tap-hold-release $tt $ht 0 S-0)
+   - (tap-hold-release $tt $ht - S--)
+   = (tap-hold-release $tt $ht = S-=)
+)
+(defalias ;; top row
    a (tap-hold $tt $ht a lalt)
    s (tap-hold $tt $ht s lsft)
    d (tap-hold $tt $ht d lmet)
    f (tap-hold $tt $ht f lctl)
-
+)
+(defalias ;; mid row
    l (tap-hold $tt $ht l rsft)
    ; (tap-hold $tt $ht ; ralt)
-
-   ;; dvorak
-   da (tap-hold $tt $ht a lalt)
-   do (tap-hold $tt $ht o lsft)
-   de (tap-hold $tt $ht e lmet)
-   du (tap-hold $tt $ht u lctl)
-
-   dn (tap-hold $tt $ht n rsft)
-   ds (tap-hold $tt $ht s ralt)
 )
