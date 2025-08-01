@@ -15,6 +15,7 @@ vim.lsp.enable(vim.tbl_filter(filter, {
   'taplo',
   -- 'termux_language_server',
   'texlab',
+  'tinymist',
   'ts_ls',
   'vscode_css_language_server',
   'vscode_eslint_language_server',
