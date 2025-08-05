@@ -59,7 +59,7 @@ abbr rsy "rsync -Pha"
 # du -> dust
 abbr du "dust -Dn 25"
 abbr dud "dust -d 1"
-abbr df 'df -hx tmpfs'
+abbr df 'df --output=pcent,avail,target -h -x tmpfs -x efivarfs'
 set -q TERMUX_VERSION && abbr df 'df -h | awk \'/fuse/{print $3"/"$2,$5,$4}\''
 
 # pkg

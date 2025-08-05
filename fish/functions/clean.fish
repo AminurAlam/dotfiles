@@ -27,7 +27,7 @@ function clean -d "cleanup to free storage"
         command rm -fr -- $files
     end
 
-    [ -d ~/downloads -a (uname -o) = Android ] && fd -tfile -epng . ~/downloads/ -x rm
+    [ -d ~/downloads -a (uname -o) = Android ] && fd -tfile -epng 'Screenshot_.*_Samsung capture.png' ~/downloads/ -x rm
 
 
     if command -vq sudo
