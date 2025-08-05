@@ -17,6 +17,7 @@
 -o "%(channel&{} - |)s%(title)s.%(ext)s"
 --no-overwrites
 --continue
+# --cookies-from-browser "firefox:$HOME/.librewolf/"
 
 ### Verbosity and Simulation Options:
 --progress
@@ -35,6 +36,6 @@
 --remux-video 'mp4'
 
 ### SponsorBlock Options:
---sponsorblock-mark 'poi_highlight,chapter'
---sponsorblock-remove 'sponsor,selfpromo,interaction'
---sponsorblock-chapter-title '* %(category_names)l'
+# --sponsorblock-mark 'poi_highlight,chapter'
+# --sponsorblock-remove 'sponsor,selfpromo,interaction'
+# --sponsorblock-chapter-title '* %(category_names)l'

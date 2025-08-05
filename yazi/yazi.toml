@@ -3,7 +3,7 @@
 ### FETCH
 plugin.prepend_fetchers = [
   { id = 'mime', name = '*.!qB', run = 'noop', prio = 'high' },
-  { id = 'mime', name = '/mnt/**', run = 'noop', prio = 'high' },
+  { id = 'mime', name = '/mnt/rclone/**', run = 'noop', prio = 'high' },
 ]
 
 ### OPEN
@@ -32,7 +32,7 @@ open.rules = [
 ### PREVIEW
 plugin.prepend_previewers = [
   { name = '*.!qB', run = 'noop' },
-  { name = '/mnt/**', run = 'noop' },
+  { name = '/mnt/rclone/**', run = 'noop' },
   # custom
   { name = '*.cb{z,r}', run = 'cbz' },
   { mime = 'audio/mpegurl', run = 'code' },
@@ -49,7 +49,7 @@ plugin.prepend_previewers = [
 ]
 plugin.prepend_preloaders = [
   { name = '*.!qB', run = 'noop' },
-  { name = '/mnt/**', run = 'noop' },
+  { name = '/mnt/rclone/**', run = 'noop' },
   { name = '*.cb{z,r}', run = 'cbz' },
   { mime = 'font/*', run = 'font-cjk' },
 ]
