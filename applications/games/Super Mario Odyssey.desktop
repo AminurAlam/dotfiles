@@ -1,0 +1,7 @@
+[Desktop Entry]
+Name=Super Mario Odyssey
+Icon=
+Exec=/usr/bin/sudachi "/home/fisher/Downloads/main/ROMS/Switch/Super Mario Odyssey/Super Mario Odyssey [0100000000010000][v0].nsp"
+Type=Application
+Categories=Game;
+Keywords=smo

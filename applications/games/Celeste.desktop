@@ -1,0 +1,7 @@
+[Desktop Entry]
+Name=Celeste
+Icon=
+Exec=/usr/bin/sudachi "/home/fisher/Downloads/main/ROMS/Switch/Celeste/Celeste [01002B30028F6000][v0] (1.10 GB).nsp"
+Type=Application
+Categories=Game;
+Keywords=
