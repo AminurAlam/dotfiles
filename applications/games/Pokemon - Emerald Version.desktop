@@ -1,0 +1,7 @@
+[Desktop Entry]
+Name=Pokemon - Emerald Version
+Icon=
+Exec=/usr/bin/mgba-qt "/home/fisher/Downloads/main/ROMS/Game Boy Advance/Pokemon - Emerald Version (USA, Europe).zip"
+Type=Application
+Categories=Game;
+Keywords=

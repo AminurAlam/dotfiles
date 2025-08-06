@@ -1,0 +1,7 @@
+[Desktop Entry]
+Name=Pokemon - FireRed Version
+Icon=
+Exec=/usr/bin/mgba-qt "/home/fisher/Downloads/main/ROMS/Game Boy Advance/Pokemon - FireRed Version (USA, Europe) (Rev 1).zip"
+Type=Application
+Categories=Game;
+Keywords=

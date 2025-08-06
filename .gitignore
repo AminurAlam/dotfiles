@@ -1,3 +1,6 @@
+/applications/*
+!/applications/games/
+
 /btop/btop.log
 
 # allow completions manully
@@ -23,9 +26,9 @@
 /mutt/passwords.gpg
 passwords.gpg
 
-qBittorrent/lockfile
-qBittorrent/qBittorrent-data.conf
-qBittorrent/rss/storage.lock
+/qBittorrent/lockfile
+/qBittorrent/qBittorrent-data.conf
+/qBittorrent/rss/storage.lock
 
 /rclone/
 rclone.conf
