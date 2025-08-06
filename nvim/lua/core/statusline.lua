@@ -60,18 +60,10 @@ local buflogo = { [0] = '', '', '二 ', '三 ', '四 ', '五 ', '六 ', '七 ', 
 local hl = vim.api.nvim_set_hl
 local secondary = '#30354A'
 
+-- TODO: remove unused
 vim.g.stl = {
-  lsp_attached = function() return #vim.lsp.get_clients() > 0 and '  ' or '' end,
   mode = function() return mode_names[vim.api.nvim_get_mode().mode] or '???' end,
   bufcount = function() return buflogo[#vim.fn.getbufinfo { buflisted = 1 }] or '十 ' end,
-  is_git = function()
-    if vim.b.is_git == nil then vim.b.is_git = vim.fs.root(0, '.git') and true or false end
-    return vim.b.is_git
-  end,
-  undo_status = function()
-    local ud = vim.fn.undotree()
-    return ud.seq_cur ~= ud.seq_last and ' ←' .. ud.seq_last - ud.seq_cur or ''
-  end,
   hlsearch = function() -- https://github.com/nvim-lualine/lualine.nvim/pull/1088
     local ok, sc = pcall(vim.fn.searchcount, { timeout = 20 })
     if not ok or sc.current == nil then return '' end
@@ -87,19 +79,20 @@ vim.g.stl = {
     return string.format('%2d%%', math.floor(current / total * 100))
   end,
   diagnostics = function()
-    local count = function(severity)
-      return #vim.diagnostic.count(0, { severity = vim.diagnostic.severity[severity] })
-    end
+    local count = vim.diagnostic.count(0)
 
-    return (count 'ERROR' > 0 and '%#DiagnosticError# ' or '')
-      .. (count 'WARN' > 0 and '%#DiagnosticWarn# ' or '')
-      .. (count 'HINT' > 0 and '%#DiagnosticHint#󰌶 ' or '')
+    return (count[1] and '%#DiagnosticError# ' or '')
+      .. (count[2] and '%#DiagnosticWarn# ' or '')
+      .. (count[3] and '%#DiagnosticInfo# ' or '')
+      .. (count[4] and '%#DiagnosticHint# ' or '')
   end,
+  -- diagnostics = vim.diagnostic.status,
 }
 
 vim.api.nvim_create_autocmd({ 'ModeChanged' }, {
   pattern = '*',
   callback = function(_)
+    ---@diagnostic disable-next-line: undefined-field
     local mode_color = mode_colors[vim.v.event.new_mode]
     hl(0, 'stl_hl_a', { bg = mode_color, fg = secondary, bold = true })
     hl(0, 'stl_hl_b', { fg = mode_color, bg = secondary })
@@ -115,9 +108,6 @@ vim.api.nvim_create_autocmd({ 'FileType' }, {
 vim.opt.stl = '%#stl_hl_a# %{ g:stl.mode() } %#stl_hl_b#' -- a to b
   .. ' %{ g:stl.bufcount() }%t '
   .. '%{ &modified ? "󰆓 " : "" }'
-  -- .. '%{ !empty(finddir(".git", expand("%:p:h") .. ";")) ? " " : "" }'
-  .. '%{ g:stl.is_git() ? " " : "" }'
-  .. '%{ g:stl.lsp_attached() }'
   -- .. '%{ &cb == "unnamedplus" ? "󰆒 " : "" }'
   .. '%{ &spell ? "󰓆 " : "" }'
   .. '%{ &readonly ? "󰌾 " : "" }'
@@ -126,7 +116,6 @@ vim.opt.stl = '%#stl_hl_a# %{ g:stl.mode() } %#stl_hl_b#' -- a to b
   .. '%#stl_hl_to#%#Normal# ' -- b to c
   .. '%{% g:stl.diagnostics() %}'
   .. '%{% get(b:, "gitsigns_status", "") %}'
-  -- .. '%{% g:stl.undo_status() %}'
   .. '%#Normal#%=%S ' -- middle seperator
   .. '%{ v:hlsearch ? g:stl.hlsearch() : "" } '
   .. '%{ reg_recording() != "" ? " " .. reg_recording() : "" } '
