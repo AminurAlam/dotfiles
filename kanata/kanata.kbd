@@ -15,10 +15,10 @@
   lctl lmet lalt           spc            ralt rmet rctl)
 (deflayer base
   @esc
-  _    @1   @2   @3   @4   @5   @6   @7   @8   @9   @0   @-    @=    _
-  _    _    _    _    _    _    _    _    _    _    _    _    _    _
-  @cap @a   @s   @d   @f   _    _    _    _    @l   @;   _    _
-  _    _    _    _    _    _    _    _    _    _    _    _
+  _    @1   @2   @3   @4   @5   @6   @7   @8   @9   @0   @-   @=   _
+  _    _    _    _    _    _    _    _    _    _    _    @lb  @rb  @bs
+  @cap @a   @s   @d   @f   _    _    _    _    @l   @;   @'   _
+  _    _    _    _    _    _    _    _    _    _    @/    _
   _    _    _              _              _    _    _)
 
 (defalias ;; esc <-> caps
@@ -40,12 +40,21 @@
    = (tap-hold-release $tt $ht = S-=)
 )
 (defalias ;; top row
+   lb (tap-hold-release $tt $ht [ S-[)
+   rb (tap-hold-release $tt $ht ] S-])
+   bs (tap-hold-release $tt $ht \ S-\ )
+)
+(defalias ;; mid row
    a (tap-hold $tt $ht a lalt)
    s (tap-hold $tt $ht s lsft)
    d (tap-hold $tt $ht d lmet)
    f (tap-hold $tt $ht f lctl)
-)
-(defalias ;; mid row
+
    l (tap-hold $tt $ht l rsft)
-   ; (tap-hold $tt $ht ; ralt)
+   ;; co (tap-hold $tt $ht ; ralt)
+   ; (tap-hold-release $tt $ht ; S-;)
+   ' (tap-hold-release $tt $ht ' S-')
+)
+(defalias ;; bot row
+   / (tap-hold-release $tt $ht / S-/)
 )
