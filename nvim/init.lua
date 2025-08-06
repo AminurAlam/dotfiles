@@ -37,7 +37,7 @@ vim.diagnostic.config {
   underline = { severity = vim.diagnostic.severity.ERROR },
   virtual_text = true,
   signs = {
-    text = { '', '', '', '' },
+    text = { '', '', '', '' }, -- { ' ', ' ', ' ', ' ' },
     numhl = {
       'DiagnosticSignError',
       'DiagnosticSignWarn',
