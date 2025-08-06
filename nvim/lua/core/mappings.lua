@@ -18,21 +18,15 @@ local macro = function(reg, expr) vim.cmd.let(string.format([[@%s = '%s']], reg,
 local nmap = map { 'n' }
 local vmap = map { 'x' }
 local umap = map { '', 'i' }
-local lazy = require 'lazy'
-
--- lazy
-nmap('<leader>pu', lazy.update, 'update plugins')
-nmap('<leader>pp', lazy.profile, 'open profiler')
-nmap('<leader>pa', lazy.home, 'plugins info')
-nmap('<leader>tt', require('lazy.util').float_term, 'floating terminal')
+-- local lazy = require 'lazy'
 
 -- movement
-umap('<c-left>', '<cmd>CybuPrev<cr>', 'previous buffer')
-umap('<c-right>', '<cmd>CybuNext<cr>', 'next buffer')
-umap('<c-up>', '<cmd>CybuPrev<cr>', 'previous buffer')
-umap('<c-down>', '<cmd>CybuNext<cr>', 'next buffer')
-umap('<c-k>', '<cmd>CybuPrev<cr>', 'previous buffer')
-umap('<c-j>', '<cmd>CybuNext<cr>', 'next buffer')
+umap('<c-left>', '<cmd>bp<cr>', 'previous buffer')
+umap('<c-right>', '<cmd>bn<cr>', 'next buffer')
+umap('<c-up>', '<cmd>bp<cr>', 'previous buffer')
+umap('<c-down>', '<cmd>bn<cr>', 'next buffer')
+umap('<c-k>', '<cmd>bp<cr>', 'previous buffer')
+umap('<c-j>', '<cmd>bn<cr>', 'next buffer')
 
 -- diagnostics
 nmap('<leader>d', vim.diagnostic.open_float, 'view line diagnostics')
@@ -48,16 +42,16 @@ vim.keymap.set('n', '<leader>li', function()
 end, { desc = 'LspInfo' })
 
 -- git
-nmap('H', require('gitsigns').preview_hunk_inline, 'preview hunk')
-nmap('U', require('gitsigns').reset_hunk, 'undo hunk')
-nmap('[h', function() require('gitsigns').nav_hunk('prev') end, 'goto previous hunk')
-nmap(']h', function() require('gitsigns').nav_hunk('next') end, 'goto next hunk')
+-- nmap('H', require('gitsigns').preview_hunk_inline, 'preview hunk')
+-- nmap('U', require('gitsigns').reset_hunk, 'undo hunk')
+-- nmap('[h', function() require('gitsigns').nav_hunk('prev') end, 'goto previous hunk')
+-- nmap(']h', function() require('gitsigns').nav_hunk('next') end, 'goto next hunk')
 
 -- deleting & registers
 nmap('_', '"_', 'use void register')
 nmap('s', '"_s')
 nmap('x', '"_x')
-vmap('p', '"_dP')
+vmap('p', '"_dp')
 nmap('<del>', '"_x')
 nmap('y<esc>', function() end)
 nmap('cn', '*``"_cgn', 'search and replace') -- https://kevinli.co/posts/2017-01-19-multiple-cursors-in-500-bytes-of-vimscript/
@@ -108,6 +102,8 @@ nmap('<leader>y', '<cmd>silent %y<cr>', 'yank entire buffer')
 nmap('<leader>y', function() fn.setreg('+', fn.getreg '0') end, 'put last yank in sys clipboard')
 nmap('<leader>p', '"+p', 'put last yank in sys clipboard')
 nmap('<leader>a', 'moggVG<c-a>`o', 'increment all numbers')
+nmap('+', '<plug>(dial-increment)')
+nmap('-', '<plug>(dial-decrement)')
 
 -- visual
 nmap('v', 'm`v') -- TODO: handle with autocmd
