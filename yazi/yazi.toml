@@ -1,4 +1,4 @@
-'$schema' = 'https://yazi-rs.github.io/schemas/yazi.json'
+#:schema https://yazi-rs.github.io/schemas/yazi.json
 
 ### FETCH
 plugin.prepend_fetchers = [
@@ -55,18 +55,18 @@ plugin.prepend_preloaders = [
 ]
 
 [opener]
-add-sub = [{ run = ''' echo sub-add "'$0'" | socat - /tmp/mpv.sock ''', desc = '󰨗 Add sub to MPV', for = 'linux' }]
+add-sub    = [{ run = ''' echo sub-add "'$0'" | socat - /tmp/mpv.sock ''', desc = '󰨗 Add sub to MPV', for = 'linux' }]
 apkinstall = [{ run = 'adb install "$@"', block = true, orphan = false, desc = ' apk installer', for = 'linux' }]
-dir2cbz = [{ run = '''fish -c 'dir2cbz $argv' "$@" ''', block = true, desc = ' dir2cbz' }]
-hyprpaper = [{ run = 'hyprctl hyprpaper reload ,"$1"', desc = ' hyprpaper' }]
-kid3 = [{ run = 'kid3 -- "$@"', orphan = true, for = 'linux', desc = ' kid3' }]
-krita = [{ run = 'krita "$@"', block = false, orphan = true, desc = ' krita', for = 'linux' }]
-loupe = [{ run = 'loupe "$@"', block = false, orphan = true, desc = ' gnome loupe', for = 'linux' }]
-nsxiv = [{ run = 'nsxiv -bf --anti-alias=no "$@"', block = false, orphan = true, desc = ' nsxiv', for = 'linux' }]
-okular = [{ run = 'okular "$@"', block = false, orphan = true, desc = ' okular', for = 'linux' }]
-rsync = [{ run = 'rsync -Pha -- "$1" phone:/sdcard/Download/', block = false, desc = ' Send to phone', for = 'linux' }]
-wine = [{ run = 'wine "$@"', block = false, orphan = true, desc = '󰡶 wine', for = 'linux' }]
-zathura = [{ run = 'zathura "$@"', block = false, orphan = true, desc = ' zathura', for = 'linux' }]
+dir2cbz    = [{ run = '''fish -c 'dir2cbz $argv' "$@" ''', block = true, desc = ' dir2cbz' }]
+hyprpaper  = [{ run = 'hyprctl hyprpaper reload ,"$1"', desc = ' hyprpaper' }]
+kid3       = [{ run = 'kid3 -- "$@"', orphan = true, for = 'linux', desc = ' kid3' }]
+krita      = [{ run = 'krita "$@"', block = false, orphan = true, desc = ' krita', for = 'linux' }]
+loupe      = [{ run = 'loupe "$@"', block = false, orphan = true, desc = ' gnome loupe', for = 'linux' }]
+nsxiv      = [{ run = 'nsxiv -bf --anti-alias=no "$@"', block = false, orphan = true, desc = ' nsxiv', for = 'linux' }]
+okular     = [{ run = 'okular "$@"', block = false, orphan = true, desc = ' okular', for = 'linux' }]
+rsync      = [{ run = 'rsync -Pha -- "$1" phone:/sdcard/Download/', block = false, desc = ' Send to phone', for = 'linux' }]
+wine       = [{ run = 'wine "$@"', block = false, orphan = true, desc = '󰡶 wine', for = 'linux' }]
+zathura    = [{ run = 'zathura "$@"', block = false, orphan = true, desc = ' zathura', for = 'linux' }]
 # defaults
 edit = [{ run = '${EDITOR:-vi} "$@"', desc = ' $EDITOR', block = true, for = 'unix' }]
 open = [
@@ -87,29 +87,29 @@ extract = [
 ]
 
 [mgr]
-ratio = [0, 1, 1]
-sort_by = 'extension'
+ratio          = [0, 1, 1]
+sort_by        = 'extension'
 sort_sensitive = false
-sort_reverse = false
+sort_reverse   = false
 sort_dir_first = true
-sort_translit = false
-linemode = 'size'
-show_hidden = true
-show_symlink = true
-scrolloff = 10
-mouse_events = ['click', 'scroll']
-title_format = 'Yazi: {cwd}'
+sort_translit  = false
+linemode       = 'size'
+show_hidden    = true
+show_symlink   = true
+scrolloff      = 10
+mouse_events   = ['click', 'scroll']
+title_format   = 'Yazi: {cwd}'
 
 [preview]
-wrap = 'no'
-tab_size = 2
-max_width = 1500
-max_height = 1500
-cache_dir = ''
-image_delay = 30
-image_filter = 'triangle'
-image_quality = 75
-ueberzug_scale = 1
+wrap            = 'no'
+tab_size        = 2
+max_width       = 1500
+max_height      = 1500
+cache_dir       = ''
+image_delay     = 30
+image_filter    = 'triangle'
+image_quality   = 75
+ueberzug_scale  = 1
 ueberzug_offset = [0, 0.2, 0, 0]
 
 [input]
@@ -117,12 +117,12 @@ cursor_blink = false
 
 # TODO: no border
 # rename
-rename_title = ''
+rename_title  = ''
 rename_origin = 'hovered'
 rename_offset = [2, -1, 77, 3]
 
 # cd
-cd_title = '   '
+cd_title  = '   '
 cd_origin = 'bottom-left'
 cd_offset = [0, 0, 999, 3]
 
@@ -130,26 +130,26 @@ cd_offset = [0, 0, 999, 3]
 create_offset = [0, 0, 999, 3]
 
 # filter
-filter_title = ' 󰈲 '
+filter_title  = ' 󰈲 '
 filter_origin = 'bottom-left'
 filter_offset = [0, 0, 999, 3]
 
 # find
-find_title = [' / ', ' ? ']
+find_title  = [' / ', ' ? ']
 find_origin = 'bottom-left'
 find_offset = [0, 0, 999, 3]
 
 # search
-search_title = '  {n} '
+search_title  = '  {n} '
 search_origin = 'bottom-left'
 search_offset = [0, 0, 999, 3]
 
 # shell
-shell_title = ['  ', '  block ']
+shell_title  = ['  ', '  block ']
 shell_origin = 'bottom-left'
 shell_offset = [0, 0, 999, 3]
 
 [pick]
-open_title = 'Open with:'
+open_title  = 'Open with:'
 open_origin = 'hovered'
 open_offset = [0, 1, 30, 30]
