@@ -11,7 +11,7 @@
     "libraryFiles": "Disable",
     "unusedLocalExclude": ["_*"]
   },
-  "format": { "enable": false },
+  "format": { "enable": true },
   "hint": { "enable": true },
   "runtime": {
     "path": ["lua/?.lua", "lua/?/init.lua"],
@@ -27,5 +27,5 @@
     }
   },
   "window": { "progressBar": true },
-  "workspace": { "checkThirdParty": "Disable", }
+  "workspace": { "checkThirdParty": "Disable" }
 }

@@ -25,13 +25,20 @@ g.do_filetype_lua = 1
 g.ft_man_folding_enable = 1
 
 -- [[ core ]]
-require 'core.lazy'
+if vim.pack then
+  require 'core.pack'
+else
+  require 'core.lazy'
+end
 require 'core.autocommands'
+require 'core.colors'
+require 'core.git'
 require 'core.lsp'
-require 'core.options'
 require 'core.mappings'
+require 'core.options'
 require 'core.statusline'
-require 'core.neovide'
+require 'core.telescope'
+require 'core.treesitter'
 
 vim.diagnostic.config {
   underline = { severity = vim.diagnostic.severity.ERROR },
@@ -49,5 +56,3 @@ vim.diagnostic.config {
   update_in_insert = true,
   severity_sort = true,
 }
-
-vim.cmd.colorscheme 'tokyonight'
