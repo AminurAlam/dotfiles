@@ -1,4 +1,4 @@
-"$schema" = "https://yazi-rs.github.io/schemas/theme.json"
+#:schema https://yazi-rs.github.io/schemas/theme.json
 
 [flavor]
 # use = "tokyo-night"
@@ -6,18 +6,18 @@ dark = "tokyo-night"
 
 
 [mgr]
-count_copied = { fg = "black", bg = "green" }
-count_cut = { fg = "black", bg = "red" }
-count_selected = { fg = "black", bg = "yellow" }
-hovered = { bg = "#2e3c64", bold = true }
+count_copied    = { fg = "black", bg = "green" }
+count_cut       = { fg = "black", bg = "red" }
+count_selected  = { fg = "black", bg = "yellow" }
+hovered         = { bg = "#2e3c64", bold = true }
 preview_hovered = { bold = true }
 
-find_keyword = { fg = "#ff9e64", bold = true }
+find_keyword  = { fg = "#ff9e64", bold = true }
 find_position = { fg = "white", bg = "#2e3c64", bold = true }
 
 
 [tabs]
-active = { bg = "lightred", fg = "black", bold = true }
+active   = { bg = "lightred", fg = "black", bold = true }
 inactive = { fg = "white", bg = "reset" }
 
 sep_inner = { open = " ", close = " " }

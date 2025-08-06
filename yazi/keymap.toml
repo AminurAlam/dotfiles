@@ -1,4 +1,4 @@
-"$schema" = "https://yazi-rs.github.io/schemas/keymap.json"
+#:schema https://yazi-rs.github.io/schemas/keymap.json
 
 confirm.prepend_keymap = [
   { on = "<C-u>", run = "arrow -50%", desc = "Move cursor up half page" },
@@ -7,12 +7,12 @@ confirm.prepend_keymap = [
   { on = "G", run = "arrow bot", desc = "Move cursor to the bottom" },
 ]
 
-help.prepend_keymap = [{ on = "q", run = "close", desc = "Exit the process" }]
+help.prepend_keymap  = [{ on = "q", run = "close", desc = "Exit the process" }]
 input.prepend_keymap = []
 tasks.prepend_keymap = [{ on = "q", run = "close", desc = "Close the spot" }]
-pick.prepend_keymap = [{ on = "l", run = "close --submit" }, { on = "<right>", run = "close --submit" }]
-cmp.prepend_keymap = []
-spot.prepend_keymap = [{ on = "q", run = "close", desc = "Close the spot" }]
+pick.prepend_keymap  = [{ on = "l", run = "close --submit" }, { on = "<right>", run = "close --submit" }]
+cmp.prepend_keymap   = []
+spot.prepend_keymap  = [{ on = "q", run = "close", desc = "Close the spot" }]
 
 mgr.prepend_keymap = [
   # plugins

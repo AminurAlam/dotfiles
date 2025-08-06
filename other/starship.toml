@@ -1,4 +1,5 @@
-"$schema" = 'https://starship.rs/config-schema.json'
+#:schema https://starship.rs/config-schema.json
+
 format = """
 $username$hostname$directory$git_branch$git_commit$git_state$python${env_var.TMUX} \
 $fill \
@@ -16,20 +17,20 @@ basic = """$directory$git_branch $character"""
 # LEFT PROMPT
 
 [username]
-format = ' [ $user](bright-yellow)'
+format      = ' [ $user](bright-yellow)'
 show_always = false
 
 [hostname]
-format = ' [ $hostname](bright-yellow)'
+format  = ' [ $hostname](bright-yellow)'
 aliases = { localhost = 'phone' }
 
 [directory]
-format = ' [ $before_root_path$repo_root$path](bold green)[$read_only](red)'
+format    = ' [ $before_root_path$repo_root$path](bold green)[$read_only](red)'
 read_only = ''
 # read_only = ' 󰌾'
-truncation_length = 1
+truncation_length         = 1
 fish_style_pwd_dir_length = 1
-use_logical_path = true
+use_logical_path          = true
 
 # truncate_to_repo = false
 # truncation_symbol = '%'
@@ -44,20 +45,20 @@ format = ' [ ($remote_name/)$branch](bold purple)'
 # only_attached = true
 
 [git_commit]
-format = '( [ $hash](yellow))( [ $tag](bright-yellow))'
+format        = '( [ $hash](yellow))( [ $tag](bright-yellow))'
 only_detached = true
 
 [git_state]
-format = ' [$state](bright-red)' # (\[[$progress_current](red)/[$progress_total](red)\])'
-rebase = ' rebase'
-merge = ' merge'
-revert = ' revert'
+format      = ' [$state](bright-red)' # (\[[$progress_current](red)/[$progress_total](red)\])'
+rebase      = ' rebase'
+merge       = ' merge'
+revert      = ' revert'
 cherry_pick = ' cherry pick'
-bisect = '󱦒 bisect'
+bisect      = '󱦒 bisect'
 
 [python]
-format = ' [ $virtualenv](yellow)'
-detect_files = []
+format            = ' [ $virtualenv](yellow)'
+detect_files      = []
 detect_extensions = []
 
 [env_var.TMUX]
@@ -67,50 +68,50 @@ format = " [ tmux](green)"
 # RIGHT PROMPT
 
 [status]
-format = '\[[✘$status](red)\]'
-pipestatus_format = '\[$pipestatus\]'
+format                    = '\[[✘$status](red)\]'
+pipestatus_format         = '\[$pipestatus\]'
 pipestatus_segment_format = '[$status](red)'
-pipestatus_separator = '|'
+pipestatus_separator      = '|'
 
-map_symbol = false
+map_symbol            = false
 recognize_signal_code = false
-pipestatus = true
-disabled = false
+pipestatus            = true
+disabled              = false
 
 [git_status]
 format = """$ahead_behind\
 $conflicted$untracked$stashed$staged"""
 
-ahead = '\[[ $count](bright-cyan)\]'
-behind = '\[[ $count](green)\]'
+ahead    = '\[[ $count](bright-cyan)\]'
+behind   = '\[[ $count](green)\]'
 diverged = '\[[󰃻](red)\]'
 
 conflicted = '\[[󰞇 $count](red)\]'
-untracked = '\[[$count](bright-white)\]'
-stashed = '\[[ $count](bright-yellow)\]'
-staged = '\[[ $count](green)\]'
+untracked  = '\[[$count](bright-white)\]'
+stashed    = '\[[ $count](bright-yellow)\]'
+staged     = '\[[ $count](green)\]'
 
 [git_metrics]
-format = '(\[[+$added]($added_style)\])(\[[-$deleted]($deleted_style)\])'
-disabled = true
+format            = '(\[[+$added]($added_style)\])(\[[-$deleted]($deleted_style)\])'
+disabled          = true
 ignore_submodules = true
 
 [cmd_duration]
-format = '\[[$duration](cyan)\]'
-min_time = 50
-show_milliseconds = false
+format             = '\[[$duration](cyan)\]'
+min_time           = 50
+show_milliseconds  = false
 show_notifications = false
 min_time_to_notify = 45000
 
 [jobs]
-format = '\[[$symbol$number](blue)\]'
+format           = '\[[$symbol$number](blue)\]'
 symbol_threshold = 1
 number_threshold = 2
-symbol = '✦'
+symbol           = '✦'
 
 [shlvl]
-format = '\[[$symbol$shlvl](green)\]'
-symbol = ''
+format   = '\[[$symbol$shlvl](green)\]'
+symbol   = ''
 disabled = false
 
 
@@ -120,10 +121,10 @@ disabled = false
 symbol = ' '
 
 [character]
-format = '$symbol '
-success_symbol = '[❯](bold)'
-error_symbol = '[❯](bold red)'
-vimcmd_symbol = '[](bold green)'
-vimcmd_visual_symbol = '[](bold purple)'
-vimcmd_replace_symbol = '[](bold red)'
+format                    = '$symbol '
+success_symbol            = '[❯](bold)'
+error_symbol              = '[❯](bold red)'
+vimcmd_symbol             = '[](bold green)'
+vimcmd_visual_symbol      = '[](bold purple)'
+vimcmd_replace_symbol     = '[](bold red)'
 vimcmd_replace_one_symbol = '[](bold red)'
