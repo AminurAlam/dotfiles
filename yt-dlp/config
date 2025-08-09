@@ -33,7 +33,7 @@
 ### Post-Processing Options:
 --embed-metadata
 --embed-thumbnail
---remux-video 'mp4'
+# --remux-video 'mp4'
 
 ### SponsorBlock Options:
 # --sponsorblock-mark 'poi_highlight,chapter'
