@@ -34,20 +34,17 @@ function sy -d "sync files between phone and pc"
         $recv && rsync $comm phone:/sdcard/Documents/ ~/Documents/
         $send && rsync $comm ~/Documents/ phone:/sdcard/Documents/
 
-        printf "=== TORRENTS ===\n"
-        $send && rsync $comm ~/Downloads/main/torrents/ phone:/sdcard/main/torrents/
-        $recv && rsync $comm phone:/sdcard/main/torrents/ ~/Downloads/main/torrents/
-
-        printf "=== KEEPASS DB ===\n"
-        $send && rsync $comm ~/Downloads/main/arch.kdbx phone:/sdcard/main/arch.kdbx
-        $recv && rsync $comm phone:/sdcard/main/android.kdbx ~/Downloads/main/android.kdbx
-
-        printf "=== MISC ===\n"
-        # $send && rsync ~/Downloads/main/ROMS/ phone:/sdcard/Download/main/ROMS/ --delete --exclude Switch
-        $send && rsync $comm ~/.local/share/newsboat/cache.db phone:~/.local/share/newsboat/cache.db
-        $recv && rsync $comm phone:/sdcard/main/backup/ ~/Downloads/main/backup/
+        printf "=== MUSIC ===\n"
         $recv && rsync $comm phone:/sdcard/Music/ ~/Music/ --delete
+
+        printf "=== MANGA ===\n"
         $recv && rsync $comm phone:/sdcard/TachiyomiSY/local/\#lewd/ ~/Downloads/manga/\#lewd/ --exclude=@{Alp,Arakure,Hinahara Emi,Ouchi Kaeru,Wantan Meo,Yuruyakatou} --delete
         $recv && rsync $comm phone:/sdcard/TachiyomiSY/local/@{Alp,Arakure,Hinahara Emi,Ouchi Kaeru,Wantan Meo,Yuruyakatou} ~/Downloads/manga/\#lewd/ --delete
+
+        printf "=== MISC ===\n"
+        $send && rsync $comm ~/Downloads/main/arch.kdbx phone:/sdcard/main/arch.kdbx
+        $recv && rsync $comm phone:/sdcard/main/android.kdbx ~/Downloads/main/android.kdbx
+        $send && rsync $comm ~/.local/share/newsboat/cache.db phone:~/.local/share/newsboat/cache.db
+        $recv && rsync $comm phone:/sdcard/main/backup/ ~/Downloads/main/backup/
     end | rg -v '/$'
 end

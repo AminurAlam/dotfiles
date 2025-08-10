@@ -12,6 +12,7 @@ function y -d "yazi wrapper to change directories"
 
     yazi --cwd-file="$tmp" $argv
 
+    # FIX: stuck when sshfs mounted
     if set cwd (command cat -- "$tmp")
         and [ -n "$cwd" ]
         and [ "$cwd" != "$PWD" ]
