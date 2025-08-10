@@ -14,8 +14,7 @@ vim.pack.add({
   'https://github.com/monaqa/dial.nvim',
   'https://github.com/nvim-telescope/telescope.nvim',
   'https://github.com/nvimtools/none-ls.nvim',
-  -- 'https://github.com/folke/lazydev.nvim',
-  -- 'https://github.com/lukas-reineke/indent-blankline.nvim',
+  'https://github.com/folke/lazydev.nvim',
 })
 
 local augend = require('dial.augend')
@@ -43,6 +42,10 @@ vim.api.nvim_create_autocmd({ 'FileType' }, {
   end,
 })
 
--- nmap('<leader>pu', lazy.update, 'update plugins')
--- nmap('<leader>pp', lazy.profile, 'open profiler')
--- nmap('<leader>pa', lazy.home, 'plugins info')
+vim.keymap.set('n', '<leader>pu', vim.pack.update, { desc = 'update plugins' })
+vim.keymap.set('n', '<leader>pa', function()
+  -- stylua: ignore
+  vim.print(table.concat(vim.tbl_map(function(pack)
+      return string.format('\n%s %s', pack.active and '󰸞' or ' ', pack.spec.name)
+  end, vim.pack.get()),'') .. '\nTotal count: ' .. #vim.pack.get())
+end, { desc = 'plugins info' })

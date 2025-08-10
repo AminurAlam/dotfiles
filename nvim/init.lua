@@ -25,21 +25,17 @@ g.do_filetype_lua = 1
 g.ft_man_folding_enable = 1
 
 -- [[ core ]]
-if vim.pack then
-  require 'core.pack'
-else
-  require 'core.lazy'
-end
-require 'core.autocommands'
-require 'core.colors'
-require 'core.git'
-require 'core.lsp'
-require 'core.mappings'
-require 'core.options'
-require 'core.pairs'
-require 'core.statusline'
-require 'core.telescope'
-require 'core.treesitter'
+require(vim.pack and 'pack' or 'lazy')
+require 'autocommands'
+require 'colors'
+require 'git'
+require 'lsp'
+require 'mappings'
+require 'options'
+require 'pairs'
+require 'statusline'
+require 'picker'
+require 'treesitter'
 
 vim.diagnostic.config {
   underline = { severity = vim.diagnostic.severity.ERROR },
