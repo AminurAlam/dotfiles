@@ -1,35 +1,4 @@
-local set = vim.opt_local
 local autocmd = vim.api.nvim_create_autocmd
-
-autocmd({ 'FileType', 'BufNewFile' }, {
-  desc = 'reading mode for some filetypes',
-  pattern = { 'help', 'man' },
-  callback = function()
-    set.linebreak = true
-    set.number = false
-    set.relativenumber = false
-    set.signcolumn = 'no'
-    set.foldcolumn = '0'
-    set.statusline = '%#stl_hl_b# %t %{ &modified ? "󰆓 " : "" }'
-      .. '%#stl_hl_to#%#Normal# %='
-      .. '%{ v:hlsearch ? g:stl.hlsearch(searchcount()) : "" } '
-      .. '%{ g:stl.progress(line("."), line("$")) } '
-  end,
-})
-
-vim.api.nvim_create_autocmd({ 'Filetype' }, {
-  desc = 'helper commands for latex',
-  pattern = { 'tex', 'plaintex', 'bib' },
-  callback = function()
-    vim.api.nvim_create_user_command('Tex', function() --
-      vim.cmd('silent !latexmk -pdf -interaction=nonstopmode -synctex=1 % ; open %:r.pdf')
-    end, { desc = 'Builds your tex file', bang = true })
-
-    vim.api.nvim_create_user_command('TexClean', function() --
-      vim.cmd('silent !latexmk -c')
-    end, { desc = 'Builds your tex file', bang = true })
-  end,
-})
 
 -- https://github.com/mong8se/actually.nvim
 autocmd('BufNewFile', {
@@ -53,20 +22,35 @@ autocmd('BufNewFile', {
 })
 
 autocmd('VimEnter', {
+  desc = 'intro screen',
+  once = true,
+  callback = function()
+    if vim.fn.argc() > 0 then return end
+    local nmap = function(lhs, rhs) vim.keymap.set('n', lhs, rhs, { buffer = true, silent = true }) end
+    vim.bo.bufhidden = 'hide'
+    vim.bo.buftype = 'nofile'
+    nmap('f', '<cmd>Telescope find_files<cr>')
+    nmap('g', '<cmd>Telescope live_grep<cr>') -- TODO: del `gg`
+    nmap('h', '<cmd>Telescope help_tags<cr>')
+    -- TODO: reset mappings
+    -- autocmd('CursorMoved', {
+    --   once = true,
+    --   bufffer = 0,
+    --   command = 'nmapc <buffer>',
+    -- })
+  end,
+})
+
+autocmd('VimEnter', {
   desc = 'open directory in telescope',
   callback = function(details)
     if vim.fn.isdirectory(details.file) == 1 then
-      set.buftype = 'nofile'
-      set.bufhidden = 'delete'
+      vim.bo.buftype = 'nofile'
+      vim.bo.bufhidden = 'delete'
       vim.cmd.cd(details.file)
       vim.cmd 'Telescope find_files'
     end
   end,
-})
-
-autocmd('FileType', {
-  pattern = 'oil',
-  command = 'nmap <buffer> <scrollwheelup> <up> | nmap <buffer> <scrollwheeldown> <down>',
 })
 
 autocmd('BufWritePre', {
@@ -74,15 +58,6 @@ autocmd('BufWritePre', {
   callback = function(details)
     local path = vim.fs.dirname(details.match)
     if vim.fn.isdirectory(path) == 0 then vim.fn.mkdir(path, 'p') end
-  end,
-})
-
-autocmd('TermOpen', {
-  desc = 'when opening a new terminal buffer',
-  callback = function()
-    set.number = false
-    set.relativenumber = false
-    vim.cmd.startinsert()
   end,
 })
 
@@ -98,42 +73,22 @@ autocmd('BufWinEnter', {
   command = 'silent! loadview 1',
 })
 
+autocmd('FileType', {
+  desc = 'use smaller indent linnes',
+  pattern = 'lua,toml,html,css,json',
+  command = 'setl listchars+=leadmultispace:│\\ ',
+})
+
 autocmd('TextYankPost', {
   callback = function() vim.hl.on_yank { higroup = 'IncSearch', timeout = 250 } end,
 })
 
-autocmd('FileType', { pattern = { 'qf' }, command = 'nmap <buffer> <cr> <cr>' })
 autocmd('FileType', { pattern = { 'checkhealth' }, command = 'set bh=wipe nobl nonu nornu nowrap' })
+autocmd('FileType', { pattern = { 'qf' }, command = 'nmap <buffer> <cr> <cr>' })
 autocmd('VimLeave', { pattern = '*.tex', command = '!latexmk -c' })
 autocmd('BufEnter', { command = 'set formatoptions-=cro' })
 autocmd('BufLeave', { command = 'set nocursorline' })
 autocmd('BufEnter', { command = 'set cursorline' })
-
--- autocmd('VimEnter', {
---   desc = 'intro screen',
---   once = true,
---   group = vim.api.nvim_create_augroup('IntroScreen', {}),
---   callback = function()
---     if vim.fn.argc() == 0 then
---       local nmap = function(lhs, rhs)
---         vim.keymap.set('n', lhs, rhs, { buffer = true, silent = true })
---       end
---       set.bufhidden = 'hide'
---       set.buftype = 'nofile'
---       nmap('f', '<cmd>Telescope find_files<cr>')
---       nmap('g', '<cmd>Telescope live_grep<cr>')
---       nmap('h', '<cmd>Telescope help_tags<cr>')
---       nmap('o', '<cmd>Telescope oldfiles<cr>')
---       nmap('u', '<cmd>Lazy update<cr>')
---       nmap('q', '<cmd>q!<cr>')
---       -- TODO
---       -- autocmd('CursorMoved', {
---       --   once = true,
---       --   command = 'nmapc <buffer>',
---       -- })
---     end
---   end,
--- })
 
 -- https://github.com/ravibrock/regisfilter.nvim
 -- https://github.com/ibhagwan/smartyank.nvim

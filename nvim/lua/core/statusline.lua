@@ -60,7 +60,6 @@ local buflogo = { [0] = '', '', '二 ', '三 ', '四 ', '五 ', '六 ', '七 ', 
 local hl = vim.api.nvim_set_hl
 local secondary = '#30354A'
 
--- TODO: remove unused
 vim.g.stl = {
   mode = function() return mode_names[vim.api.nvim_get_mode().mode] or '???' end,
   bufcount = function() return buflogo[#vim.fn.getbufinfo { buflisted = 1 }] or '十 ' end,
@@ -86,7 +85,6 @@ vim.g.stl = {
       .. (count[3] and '%#DiagnosticInfo# ' or '')
       .. (count[4] and '%#DiagnosticHint# ' or '')
   end,
-  -- diagnostics = vim.diagnostic.status,
 }
 
 vim.api.nvim_create_autocmd({ 'ModeChanged' }, {

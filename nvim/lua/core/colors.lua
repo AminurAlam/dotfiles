@@ -4,7 +4,7 @@ require('colorizer').setup {
     names = false,
     names_custom = false,
     RGB = true,
-   RGBA = true,
+    RGBA = true,
     RRGGBB = true,
     RRGGBBAA = true,
     AARRGGBB = true,
