@@ -1,12 +1,10 @@
-local set = vim.opt
-
-set.tabstop = 2
-set.shiftwidth = 2
-set.softtabstop = 2
-set.autoindent = true
-set.smartindent = true
-set.smarttab = true
-set.expandtab = true
-set.shiftround = true
-set.foldmethod = 'expr'
-set.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+vim.bo.tabstop = 2
+vim.bo.shiftwidth = 2
+vim.bo.softtabstop = 2
+vim.bo.autoindent = true
+vim.bo.smartindent = true
+vim.o.smarttab = true
+vim.bo.expandtab = true
+vim.o.shiftround = true
+vim.wo.foldmethod = 'expr'
+vim.wo.foldexpr = 'v:lua.vim.treesitter.foldexpr()'

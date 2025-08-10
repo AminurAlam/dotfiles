@@ -18,7 +18,6 @@ local macro = function(reg, expr) vim.cmd.let(string.format([[@%s = '%s']], reg,
 local nmap = map { 'n' }
 local vmap = map { 'x' }
 local umap = map { '', 'i' }
--- local lazy = require 'lazy'
 
 -- movement
 umap('<c-left>', '<cmd>bp<cr>', 'previous buffer')
@@ -28,25 +27,6 @@ umap('<c-down>', '<cmd>bn<cr>', 'next buffer')
 umap('<c-k>', '<cmd>bp<cr>', 'previous buffer')
 umap('<c-j>', '<cmd>bn<cr>', 'next buffer')
 
--- diagnostics
-nmap('<leader>d', vim.diagnostic.open_float, 'view line diagnostics')
--- stylua: ignore
-vim.keymap.set('n', '<leader>li', function()
-  print(table.concat(vim.tbl_map(function(client)
-    return string.format('\n%s (%s): %s',
-      client.name,
-      client.name == 'null-ls' and '*' or table.concat(client.config.filetypes, ', '),
-      client.workspace_folders and fn.fnamemodify(client.workspace_folders[1].name, ':~') or 'single file mode'
-    )
-  end, vim.lsp.get_clients()), ''))
-end, { desc = 'LspInfo' })
-
--- git
--- nmap('H', require('gitsigns').preview_hunk_inline, 'preview hunk')
--- nmap('U', require('gitsigns').reset_hunk, 'undo hunk')
--- nmap('[h', function() require('gitsigns').nav_hunk('prev') end, 'goto previous hunk')
--- nmap(']h', function() require('gitsigns').nav_hunk('next') end, 'goto next hunk')
-
 -- deleting & registers
 nmap('_', '"_', 'use void register')
 nmap('s', '"_s')
@@ -54,10 +34,10 @@ nmap('x', '"_x')
 vmap('p', '"_dp')
 nmap('<del>', '"_x')
 nmap('y<esc>', function() end)
-nmap('cn', '*``"_cgn', 'search and replace') -- https://kevinli.co/posts/2017-01-19-multiple-cursors-in-500-bytes-of-vimscript/
+nmap('cn', '*``"_cgn', 'search and replace') -- https://www.kevinli.co/posts/2017-01-19-multiple-cursors-in-500-bytes-of-vimscript/
 nmap('<bs>', 'X', 'backspace in normal mode')
 nmap('<cr>', '"_ciw', 'delete word at cursor')
-nmap('r', '<cmd>redo<cr>')
+nmap('r', '<cmd>silent redo<cr>')
 
 -- write & quit
 nmap('<leader>w', '<cmd>silent w <bar> redraw <cr>', 'write')
@@ -71,7 +51,6 @@ nmap('>', '>>')
 nmap('<', '<<')
 vmap('>', '>gv')
 vmap('<', '<gv')
-nmap(']f', 'zf%')
 
 -- toggles
 nmap('<leader>ss', '<cmd>setlocal spell!<cr>', 'toggle spell')
@@ -92,6 +71,8 @@ nmap('<leader>sn', function()
 end, 'toggle statuscolumn')
 
 -- other
+nmap('<leader>d', vim.diagnostic.open_float, 'view line diagnostics')
+nmap('<leader>tt', '<cmd>split | term<cr><cmd>startinsert<cr>')
 umap('<c-c>', 'g~iw', 'toggle word case')
 vmap('.', ':norm .<cr>', 'dot repeat on all selected lines')
 nmap(';', '@:', 'dot repeat the last command')
@@ -118,7 +99,7 @@ end, 'repeat v to change visual mode')
 -- overrides
 nmap('z=', function()
   vim.ui.select(
-    fn.spellsuggest(fn.expand('<cword>')),
+    fn.spellsuggest(fn.expand('<cword>'), 10),
     {},
     vim.schedule_wrap(function(word)
       if word then fn.feedkeys(vim.keycode('"_ciw' .. word .. '<esc>')) end

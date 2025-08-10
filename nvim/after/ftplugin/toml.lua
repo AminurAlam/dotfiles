@@ -1,10 +1,8 @@
-local set = vim.opt
-
-set.tabstop = 2
-set.shiftwidth = 2
-set.softtabstop = 2
-set.autoindent = true
-set.smartindent = true
-set.smarttab = true
-set.expandtab = true
-set.shiftround = true
+vim.bo.tabstop = 2
+vim.bo.shiftwidth = 2
+vim.bo.softtabstop = 2
+vim.bo.autoindent = true
+vim.bo.smartindent = true
+vim.o.smarttab = true
+vim.bo.expandtab = true
+vim.o.shiftround = true

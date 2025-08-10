@@ -1,5 +1,5 @@
 local set = vim.o
-local termux = vim.fn.has('termux') == 1
+local termux = (vim.fn.has('termux') == 1)
 
 ---@param opt_table table
 ---@return string
@@ -42,72 +42,55 @@ do -- scrolling
 end
 
 do -- cmdline, statusline & statuscolumn
-  set.showmode = false
-  set.ruler = false
-  set.rulerformat = '%p%%'
-  set.showcmd = true
   set.showcmdloc = 'statusline'
   set.laststatus = 3
   set.cmdheight = 0
   set.numberwidth = 1
   set.shortmess = 'acCoOsSWF'
   set.number = true
-  set.relativenumber = false
-  set.signcolumn = 'number'
+  set.signcolumn = termux and 'number' or 'auto:1'
 end
 
 do -- folding
-  set.foldenable = true
-  set.foldclose = ''
   set.foldlevel = 10
   set.foldnestmax = set.foldlevel + 1
   set.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
-  -- set.foldmethod = 'expr'
   set.foldtext = ''
   -- .. [[substitute(getline(v:foldstart), "\\s\\(--\\|#\\).*", "", "" )]]
   -- .. [[ . " … " . trim(getline(v:foldend)) . ]]
   -- .. [[" [" . (v:foldend-v:foldstart+1) . " lines]"]]
-  set.foldcolumn = 'auto'
+  -- set.foldcolumn = 'auto'
   set.viewoptions = 'cursor,folds'
 end
 
 do -- terminal, cursor & gui
   set.belloff = termux and 'showmatch' or 'all'
   -- set.winborder = 'rounded' -- causes lot of unexpected behaviour
-  set.winblend = 0
-  set.pumblend = 0
   set.pumheight = 15
   set.termguicolors = true
   set.startofline = true
-  set.cursorline = true
-  set.cursorlineopt = 'number,screenline'
   set.mouse = 'a'
-  set.background = 'dark'
   set.helpheight = 25
   set.wrap = false
   set.linebreak = true
   set.breakindent = true
   set.guicursor = dict2str {
-    ['n-sm-r'] = termux and 'hor100' or 'block',
+    ['n-sm-r'] = 'block',
     ['v-o-i-c-ci-cr'] = 'ver100',
   }
 end
 
 do -- others
   set.concealcursor = 'n'
-  set.matchtime = 1
-  set.grepprg = 'rg --vimgrep '
   set.timeout = false -- remove for which-key
-  set.timeoutlen = 1000 -- use 0 for which-key
   set.swapfile = true
-  set.backup = false
   set.writebackup = false
   set.undofile = true
   set.confirm = true
-  set.clipboard = (termux and vim.env.SSH_CLIENT) and '' or 'unnamedplus'
+  set.clipboard = (termux and vim.env.SSH_CONNECTION) and '' or 'unnamedplus'
   set.list = true
   set.listchars = dict2str {
-    -- leadmultispace = '│   ',
+    leadmultispace = '│   ',
     tab = '> ',
     trail = ' ',
     extends = '…',

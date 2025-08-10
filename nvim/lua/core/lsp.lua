@@ -99,3 +99,15 @@ vim.api.nvim_create_autocmd('LspAttach', {
     vim.keymap.set('n', 'grd', vim.lsp.buf.definition, { buffer = info.buf })
   end,
 })
+
+
+-- stylua: ignore
+vim.keymap.set('n', '<leader>li', function()
+  print(table.concat(vim.tbl_map(function(client)
+    return string.format('\n%s (%s): %s',
+      client.name,
+      client.name == 'null-ls' and '*' or table.concat(client.config.filetypes, ', '),
+      client.workspace_folders and vim.fn.fnamemodify(client.workspace_folders[1].name, ':~') or 'single file mode'
+    )
+  end, vim.lsp.get_clients()), ''))
+end, { desc = 'LspInfo' })
