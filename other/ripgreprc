@@ -3,6 +3,8 @@
 --smart-case
 --no-line-number
 --trim
+--no-ignore-parent
+--no-ignore-files
 
 --glob=!node_modules
 --glob=!.git
