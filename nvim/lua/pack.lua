@@ -4,7 +4,6 @@ vim.pack.add({
   {
     src = 'https://github.com/nvim-treesitter/nvim-treesitter',
     version = 'main',
-    build = ':TSUpdate', -- TODO: implement autocmd
   },
   'https://github.com/altermo/ultimate-autopair.nvim',
   'https://github.com/catgoose/nvim-colorizer.lua',
@@ -46,6 +45,6 @@ vim.keymap.set('n', '<leader>pu', vim.pack.update, { desc = 'update plugins' })
 vim.keymap.set('n', '<leader>pa', function()
   -- stylua: ignore
   vim.print(table.concat(vim.tbl_map(function(pack)
-      return string.format('\n%s %s', pack.active and '󰸞' or ' ', pack.spec.name)
+      return string.format('\n%s %s (%s)', pack.active and '󰸞' or ' ', pack.spec.name, pack.spec.version)
   end, vim.pack.get()),'') .. '\nTotal count: ' .. #vim.pack.get())
 end, { desc = 'plugins info' })

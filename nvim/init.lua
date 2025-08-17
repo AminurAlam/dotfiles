@@ -25,7 +25,7 @@ g.do_filetype_lua = 1
 g.ft_man_folding_enable = 1
 
 -- [[ core ]]
-require(vim.pack and 'pack' or 'lazy')
+require 'pack'
 require 'autocommands'
 require 'colors'
 require 'git'

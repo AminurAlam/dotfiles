@@ -22,26 +22,6 @@ autocmd('BufNewFile', {
 })
 
 autocmd('VimEnter', {
-  desc = 'intro screen',
-  once = true,
-  callback = function()
-    if vim.fn.argc() > 0 then return end
-    local nmap = function(lhs, rhs) vim.keymap.set('n', lhs, rhs, { buffer = true, silent = true }) end
-    vim.bo.bufhidden = 'hide'
-    vim.bo.buftype = 'nofile'
-    nmap('f', '<cmd>Telescope find_files<cr>')
-    nmap('g', '<cmd>Telescope live_grep<cr>') -- TODO: del `gg`
-    nmap('h', '<cmd>Telescope help_tags<cr>')
-    -- TODO: reset mappings
-    -- autocmd('CursorMoved', {
-    --   once = true,
-    --   bufffer = 0,
-    --   command = 'nmapc <buffer>',
-    -- })
-  end,
-})
-
-autocmd('VimEnter', {
   desc = 'open directory in telescope',
   callback = function(details)
     if vim.fn.isdirectory(details.file) == 1 then
@@ -89,6 +69,27 @@ autocmd('VimLeave', { pattern = '*.tex', command = '!latexmk -c' })
 autocmd('BufEnter', { command = 'set formatoptions-=cro' })
 autocmd('BufLeave', { command = 'set nocursorline' })
 autocmd('BufEnter', { command = 'set cursorline' })
+
+-- buggy pos
+-- autocmd('VimEnter', {
+--   desc = 'intro screen',
+--   once = true,
+--   callback = function()
+--     if vim.fn.argc() > 0 then return end
+--     local nmap = function(lhs, rhs) vim.keymap.set('n', lhs, rhs, { buffer = true, silent = true }) end
+--     vim.bo.bufhidden = 'hide'
+--     vim.bo.buftype = 'nofile'
+--     nmap('f', '<cmd>Telescope find_files<cr>')
+--     nmap('g', '<cmd>Telescope live_grep<cr>') -- TODO: del `gg`
+--     nmap('h', '<cmd>Telescope help_tags<cr>')
+--     -- TODO: reset mappings
+--     -- autocmd('CursorMoved', {
+--     --   once = true,
+--     --   bufffer = 0,
+--     --   command = 'nmapc <buffer>',
+--     -- })
+--   end,
+-- })
 
 -- https://github.com/ravibrock/regisfilter.nvim
 -- https://github.com/ibhagwan/smartyank.nvim
