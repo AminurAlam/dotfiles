@@ -25,6 +25,7 @@ set -gx RIPGREP_CONFIG_PATH $HOME/repos/dotfiles/other/ripgreprc
 set -gx FZF_DEFAULT_OPTS_FILE $HOME/repos/dotfiles/other/fzfrc
 set -gx WINEPREFIX $XDG_DATA_HOME/wineprefixes/default
 set -gx GRADLE_USER_HOME $XDG_DATA_HOME/gradle
+set -gx QT_QPA_PLATFORMTHEME qt6ct
 
 # lang config
 set -gx _JAVA_OPTIONS -Djava.util.prefs.userRoot=$XDG_CONFIG_HOME/java

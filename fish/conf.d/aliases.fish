@@ -75,6 +75,7 @@ else if command -vq yay
     abbr pi yay -S
     abbr pr yay -Rs
     abbr pu yay -Syu
+    abbr puu sudo pacman -Syu
     abbr pf yay -Ss
     abbr pa yay -Si
 else if command -vq paru
