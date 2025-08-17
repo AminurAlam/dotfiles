@@ -1,4 +1,4 @@
-# vim:ft=urls:
+# vim:ft=urls:noexpandtab:
 # https://rss-bridge.github.io/rss-bridge/General/Public_Hosts.html
 # yq -r -pxml '.opml.body.outline[].outline[] | [.+@xmlUrl, .+@title] | join(" ")' feed.opml
 
@@ -33,11 +33,12 @@ https://newsboat.org/news.atom                          news
 https://blog.thunderbird.net/feed/ "~Thunderbird"       news
 https://blog.ajay.app/rss.xml                           news
 
+https://astral.sh/blog/rss.xml                             news
 https://www.404media.co/rss                                    news
 https://www.eff.org/rss/updates.xml "~eff.org"                 news
 https://torrentfreak.com/feed                              news
 https://www.bleepingcomputer.com/feed/                         news
-https://feeds.feedburner.com/HaveIBeenPwnedLatestBreaches  news
+https://haveibeenpwned.com/feed/breaches/                  news
 https://www.phoronix.com/rss.php                               news
 https://blog.opensource.org/feed/                          news
 https://www.ghacks.net/feed/                                   news
@@ -55,13 +56,13 @@ https://security.googleblog.com/feeds/posts/default?alt=rss blogs_corpo
 https://crinacle.com/feed                                   blogs_corpo
 
 "query:----- PERSONAL BLOGS 1 -----:tags # \"personal_blog_1\" and unread = \"yes\""
-http://rachelbythebay.com/w/atom.xml "~rachel by the bay"      personal_blog_1
-https://www.schneier.com/feed/atom "~Bruce Schneier"                personal_blog_1
-https://drewdevault.com/blog/index.xml "~Drew Devault"          personal_blog_1
-https://thevaluable.dev/index.xml                               personal_blog_1
-https://sizeof.cat/index.xml                                    personal_blog_1
-https://strongly-typed-thoughts.net/blog/feed "~phaazon's blog" personal_blog_1
-https://kevquirk.com/feed.xml                                   personal_blog_1
+http://rachelbythebay.com/w/atom.xml "~rachel by the bay"               personal_blog_1
+https://www.schneier.com/feed/atom "~Bruce Schneier"                         personal_blog_1
+https://drewdevault.com/blog/index.xml "~Drew Devault"                   personal_blog_1
+https://thevaluable.dev/index.xml                                        personal_blog_1
+https://sizeof.cat/index.xml                                             personal_blog_1
+https://strongly-typed-thoughts.net/blog/feed "~strongly-typed-thoughts" personal_blog_1
+https://kevquirk.com/feed.xml                                            personal_blog_1
 
 https://cheapskatesguide.org/cheapskates-guide-rss-feed.xml "~Cheapskates Guide" personal_blog_1
 https://brainbaking.com/index.xml                                                personal_blog_1
@@ -101,6 +102,7 @@ https://danluu.com/atom.xml personal_blog
 https://www.fromjason.xyz/p/notebook/feed/feed.xml personal_blog
 https://mtwb.blog/rss/ "~Matt's Blog (Linux Cast YT)" personal_blog
 
+https://xn--gckvb8fzb.com/index.xml personal_blog
 https://herecomesthemoon.net/posts/index.xml personal_blog
 https://neilzone.co.uk/index.xml personal_blog
 https://thecodist.com/rss personal_blog

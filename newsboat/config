@@ -1,13 +1,15 @@
-# vim: set ft=conf :
+# vim:set ft=conf:
 # https://newsboat.org/releases/2.40/docs/newsboat.html
 
-include ~/.config/newsboat/colorscheme
-include ~/.config/newsboat/bindings
-include ~/.config/newsboat/filters
+# TODO: max article width to 80
+
+include ~/.config/newsboat/colorscheme.conf
+include ~/.config/newsboat/bindings.conf
+include ~/.config/newsboat/filters.conf
 error-log ~/.local/cache/newsboat-errors.log
 
 # title style
-show-title-bar "yes"
+show-title-bar "no"
 feedlist-title-format "        Articles: %U  Feeds: %u  %T"
 articlelist-title-format "    %4u/%-4t    %T"
 itemview-title-format ""
@@ -15,8 +17,9 @@ urlview-title-format ""
 
 # list style
 datetime-format "%b %d"
-feedlist-format " %?l?[%4U]&      ? %t %S"
+feedlist-format " %?l?%3U&   ? %t %S"
 articlelist-format "%D %?T?%12T│?%t" # date ; group? && groupname ; title
+datetime-format "%m-%d"
 
 # look for article update
 # reset-unread-on-update \
@@ -39,7 +42,8 @@ scrolloff 8
 goto-next-feed no
 toggleitemread-jumps-to-next-unread yes
 prepopulate-query-feeds yes
-wrap-scroll no
+wrap-scroll yes
+text-width 80
 
 show-keymap-hint no
 show-read-feeds no
