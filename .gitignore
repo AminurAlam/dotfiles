@@ -1,6 +1,40 @@
 /applications/*
 !/applications/games/
 
+!/applications/assistant.desktop
+!/applications/avahi-discover.desktop
+!/applications/bssh.desktop
+!/applications/btop.desktop
+!/applications/bvnc.desktop
+!/applications/cmake-gui.desktop
+!/applications/designer.desktop
+!/applications/java-java-openjdk.desktop
+!/applications/java-java17-openjdk.desktop
+!/applications/java-java21-openjdk.desktop
+!/applications/jconsole-java-openjdk.desktop
+!/applications/jconsole-java17-openjdk.desktop
+!/applications/jconsole-java21-openjdk.desktop
+!/applications/jshell-java-openjdk.desktop
+!/applications/jshell-java17-openjdk.desktop
+!/applications/jshell-java21-openjdk.desktop
+!/applications/linguist.desktop
+!/applications/lstopo.desktop
+!/applications/mpv.desktop
+!/applications/nm-connection-editor.desktop
+!/applications/nvim.desktop
+!/applications/nwg-look.desktop
+!/applications/org.pwmt.zathura.desktop
+!/applications/qdbusviewer.desktop
+!/applications/qt5ct.desktop
+!/applications/qt6ct.desktop
+!/applications/qv4l2.desktop
+!/applications/qvidcap.desktop
+!/applications/uuctl.desktop
+!/applications/xdvi.desktop
+!/applications/xgps.desktop
+!/applications/xgpsspeed.desktop
+!/applications/yazi.desktop
+
 /btop/btop.log
 
 # allow completions manully
