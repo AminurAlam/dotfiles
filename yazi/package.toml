@@ -1,31 +1,31 @@
 [[plugin.deps]]
 use = "yazi-rs/plugins:smart-enter"
-rev = "b886025"
+rev = "e95c7b3"
 hash = "56fdabc96fc1f4d53c96eb884b02a5be"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:jump-to-char"
-rev = "b886025"
+rev = "e95c7b3"
 hash = "d2f04875bbd4ed3dd5696e8c4b094fde"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:toggle-pane"
-rev = "b886025"
+rev = "e95c7b3"
 hash = "d6f60c24d8c0cf57a855bf46115b2502"
 
 [[plugin.deps]]
 use = "boydaihungst/pref-by-location"
-rev = "68f006d"
-hash = "67b7a8c5d39cba04d8e3c2f3581a3ab4"
+rev = "882e752"
+hash = "f45cf212024c85b5f0ea0423e27196a"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:types"
-rev = "b886025"
+rev = "e95c7b3"
 hash = "1e047e1b13b5e3fc6ab1f5d0d04a14e2"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:piper"
-rev = "b886025"
+rev = "e95c7b3"
 hash = "2143a53182dbbe935a1abd1623424aa5"
 
 [[flavor.deps]]

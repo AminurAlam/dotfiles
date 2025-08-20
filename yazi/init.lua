@@ -68,16 +68,16 @@ Tab.layout = function(self, ...)
 end
 
 -- start with cut if xdg-desktop-portal-termfilechooser
-if rt.args.chooser_file then ya.emit('yank', { cut = true }) end
+require('topaste'):setup {}
 
--- start with zoxide if fileManager
+-- start with zoxide if launching as fileManager
 if ya.id('app').value == 48937 then ya.emit('plugin', { 'zoxide' }) end
 
 -- plugins
-local pref_by_location = require('pref-by-location')
-pref_by_location:setup({
+require('pref-by-location'):setup {
+  disable_fallback_preference = false,
   prefs = {
     { location = '^/sdcard/Pictures/.*', sort = { 'mtime', reverse = true } },
     { location = '^/home/fisher/Pictures/.*', sort = { 'mtime', reverse = true } },
   },
-})
+}
