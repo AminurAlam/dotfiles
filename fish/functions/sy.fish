@@ -7,6 +7,7 @@ function sy -d "sync files between phone and pc"
     set send true
     set recv true
     set comm -ha --out-format "%o %n" --exclude={.thumbnails,.nomedia}
+    set artists Alp Arakure Herio 'Hinahara Emi' 'Nikubou Maranoshin' 'Ouchi Kaeru' 'Wantan Meo' Yuruyakatou
 
     switch "$argv[1]"
         case ip
@@ -38,8 +39,8 @@ function sy -d "sync files between phone and pc"
         $recv && rsync $comm phone:/sdcard/Music/ ~/Music/ --delete
 
         printf "=== MANGA ===\n"
-        $recv && rsync $comm phone:/sdcard/TachiyomiSY/local/\#lewd/ ~/Downloads/manga/\#lewd/ --exclude=@{Alp,Arakure,Hinahara Emi,Ouchi Kaeru,Wantan Meo,Yuruyakatou} --delete
-        $recv && rsync $comm phone:/sdcard/TachiyomiSY/local/@{Alp,Arakure,Hinahara Emi,Ouchi Kaeru,Wantan Meo,Yuruyakatou} ~/Downloads/manga/\#lewd/ --delete
+        $recv && rsync $comm phone:/sdcard/TachiyomiSY/local/\#lewd/ ~/Downloads/manga/\#lewd/ --exclude=@$artists --delete
+        $recv && rsync $comm phone:/sdcard/TachiyomiSY/local/@$artists ~/Downloads/manga/\#lewd/ --delete
 
         printf "=== MISC ===\n"
         $send && rsync $comm ~/Downloads/main/arch.kdbx phone:/sdcard/main/arch.kdbx
