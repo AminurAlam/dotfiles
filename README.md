@@ -35,6 +35,7 @@
 - [nvim](https://neovim.io/) :star2: - text editor
 - [pacman](https://archlinux.org/pacman/) - package manager
 - [paru](https://github.com/morganamilo/paru) - aur helper
+- [powershell](https://github.com/PowerShell/PowerShell) - shell
 - [prettier](https://prettier.io/) - code formatter
 - [procs](https://github.com/dalance/procs) - process list
 - [python](https://python.org/) - python interpreter
@@ -84,5 +85,6 @@ curl -#LOq -- github.com/AminurAlam/dotfiles/raw/main/setup/ubuntu.sh
 - windows
 
 ```ps1
-Invoke-Expression $((Invoke-WebRequest https://github.com/AminurAlam/dotfiles/raw/main/setup/windows.ps1).Content)
+irm "https://github.com/AminurAlam/dotfiles/raw/main/setup/windows.ps1" -OutFile windows.ps1
+iex windows.ps1
 ```

@@ -14,7 +14,7 @@ for config in alacritty aria2 \
     lazygit \
     mgba mpv \
     newsboat niri npm nvim \
-    pacman paru python \
+    pacman paru powershell python \
     qBittorrent \
     ruff \
     sqlite3 streamrip systemd \
