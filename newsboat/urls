@@ -8,6 +8,7 @@ https://github.com/neovim/neovim/commits/master/runtime/doc/news.txt.atom "~nvim
 https://www.thatmangahunter.com/blog-feed.xml                                              misc
 https://muspy.com/feed?id=mobwjpkr95u5p1b4f2w1bjt74qc8u3 "~muspy New Releases"         misc
 https://noted.lol/rss                                                                  misc
+https://pudding.cool/rss.xml                                                           misc
 
 "query:----- FORUMS & AGGREGATORS -----:tags # \"aggregators\" and unread = \"yes\""
 https://waxy.org/feed/ "~waxy.org by Andy Baio"                        aggregators
