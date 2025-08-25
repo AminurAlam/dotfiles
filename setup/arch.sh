@@ -6,9 +6,7 @@
 ### post install
 sudo pacman -Syu --needed reflector
 sudo reflector --sort rate --country India,China,Bangladesh --save /etc/pacman.d/mirrorlist
-sudo pacman -Syu --needed alacritty base-devel \
-    eza fd fish flatpak git man-db power-profiles-daemon ripgrep thunderbird tmux vlc yazi \
-    noto-fonts noto-fonts-cjk noto-fonts-emoji
+sudo pacman -Syu --needed alacritty base-devel eza fd fish git power-profiles-daemon ripgrep tmux yazi
 
 systemctl enable NetworkManager.service power-profiles-daemon.service
 command -v fish &>/dev/null && sudo chsh -s "$(command -v fish)"
@@ -26,7 +24,7 @@ yay -Syu --devel
 yay -Y --devel --save
 
 ### load more packages
-yay -S tree-sitter-git neovim-git librewolf-bin # android-studio anki-bin vesktop-bin
+yay -S tree-sitter-git neovim-git librewolf-bin # anki-bin vesktop-bin
 
 printf "DOWNLOADING DOTFILES... "
 if [ -d ~/repos/dotfiles ]; then

@@ -24,9 +24,7 @@ for config in alacritty aria2 \
     yay yazi yt-dlp \
     zathura zellij
 
-    # skip non-existing dirs
     [ -e ~/repos/dotfiles/$config ] || continue
-    # unlink/relocate old directories in ~/.config
     [ -L ~/.config/$config ] && command unlink ~/.config/$config
     [ -d ~/.config/$config ] && command mv -f ~/.config/$config ~/backup/
 
@@ -61,7 +59,7 @@ end
 
 printf "LINKING LINUX FILES...\n"
 [ -e /etc/pacman.conf ] && sudo ln -fs ~/repos/dotfiles/other/pacman.arch.conf /etc/pacman.conf
-ln -s ~/repos/dotfiles/applications ~/.local/share/
+ln -fs ~/repos/dotfiles/applications ~/.local/share/
 ln -fs ~/repos/dotfiles/scripts/bin/cbzcover ~/.local/bin/cbzcover
 
-rmdir --ignore-fail-on-non-empty ~/{backup,bin}
+rmdir --ignore-fail-on-non-empty ~/{backup,bin,.ssh}
