@@ -61,5 +61,6 @@ printf "LINKING LINUX FILES...\n"
 [ -e /etc/pacman.conf ] && sudo ln -fs ~/repos/dotfiles/other/pacman.arch.conf /etc/pacman.conf
 ln -fs ~/repos/dotfiles/applications ~/.local/share/
 ln -fs ~/repos/dotfiles/scripts/bin/cbzcover ~/.local/bin/cbzcover
+ln -fs ~/repos/dotfiles/scripts/bin/ctl ~/.local/bin/ctl
 
 rmdir --ignore-fail-on-non-empty ~/{backup,bin,.ssh}

@@ -1,0 +1,33 @@
+#!/usr/bin/env fish
+
+switch $argv[1]
+    case vol
+        if [ -n "$argv[2]" ]
+            wpctl set-volume @DEFAULT_AUDIO_SINK@ 2%$argv[2]
+            notify-send -h string:x-canonical-private-synchronous:volume -t 500 "Volume: $(wpctl get-volume @DEFAULT_AUDIO_SINK@ | tr -dc [:digit:] | math)"
+        else
+            wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
+            wpctl get-volume @DEFAULT_AUDIO_SINK@ | rg -q MUTED
+            and notify-send -h string:x-canonical-private-synchronous:mute -t 500 "MUTED 󰸈"
+            or notify-send -h string:x-canonical-private-synchronous:mute -t 500 "AUDIBLE 󰖀"
+        end
+
+    case mic
+        wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle
+        wpctl get-volume @DEFAULT_AUDIO_SOURCE@ | rg -q MUTED
+        and notify-send -h string:x-canonical-private-synchronous:mic -t 500 "MUTED "
+        or notify-send -h string:x-canonical-private-synchronous:mic -t 500 "AUDIBLE "
+
+    case lum
+        brightnessctl s 2%$argv[2]
+        notify-send -h string:x-canonical-private-synchronous:brightness -t 500 "Brightness: $(math -s0 (brightnessctl g) x 100 / (brightnessctl m))"
+
+    case ss
+        set filename Screenshot_(date +'%Y%m%d_%H%M%S')_grim.png
+
+        if [ "$argv[2]" = full ]
+            grim ~/Pictures/Screenshots/$filename && notify-send "$filename taken"
+        else
+            grim -g (slurp) ~/Pictures/Screenshots/$filename && notify-send "$filename taken"
+        end
+end
