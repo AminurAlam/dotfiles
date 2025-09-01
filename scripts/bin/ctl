@@ -3,7 +3,7 @@
 switch $argv[1]
     case vol
         if [ -n "$argv[2]" ]
-            wpctl set-volume @DEFAULT_AUDIO_SINK@ 2%$argv[2]
+            wpctl set-volume @DEFAULT_AUDIO_SINK@ (math 2 x (printf $argv[2] | wc -c))%$(string sub -l1 -- $argv[2])
             notify-send -h string:x-canonical-private-synchronous:volume -t 500 "Volume: $(wpctl get-volume @DEFAULT_AUDIO_SINK@ | tr -dc [:digit:] | math)"
         else
             wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
@@ -19,7 +19,7 @@ switch $argv[1]
         or notify-send -h string:x-canonical-private-synchronous:mic -t 500 "AUDIBLE "
 
     case lum
-        brightnessctl s 2%$argv[2]
+        brightnessctl s (math 2 x (printf $argv[2] | wc -c))%$(string sub -l1 -- $argv[2])
         notify-send -h string:x-canonical-private-synchronous:brightness -t 500 "Brightness: $(math -s0 (brightnessctl g) x 100 / (brightnessctl m))"
 
     case ss
