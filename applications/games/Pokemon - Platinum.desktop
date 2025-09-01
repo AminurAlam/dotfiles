@@ -1,0 +1,7 @@
+[Desktop Entry]
+Name=Pokemon - Platinum Version
+Icon=
+Exec=/usr/bin/melonDS "/home/fisher/Downloads/main/ROMS/NDS/Pokemon - Platinum Version (USA) (Rev 1).nds"
+Type=Application
+Categories=Game;
+Keywords=
