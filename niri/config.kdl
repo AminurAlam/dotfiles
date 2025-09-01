@@ -2,6 +2,7 @@
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Introduction
 
 spawn-at-startup "waybar"
+spawn-at-startup "xwayland-satellite"
 spawn-at-startup "swaybg" "-m" "fill" "-i" "Pictures/desu/126278795_p0.jpg"
 screenshot-path "~/Pictures/Screenshots/Screenshot_%Y%m%d_%H%M%S_grim.png"
 prefer-no-csd
@@ -12,6 +13,7 @@ environment {
     XCURSOR_THEME "Bibata-Modern-Ice"
     MESA_SHADER_CACHE_DISABLE "true"
     QT_SCALE_FACTOR "1.26"
+    DISPLAY ":0"
 }
 
 input {
@@ -46,9 +48,6 @@ input {
     workspace-auto-back-and-forth
 }
 
-// Settings that influence how windows are positioned and sized.
-// Find more information on the wiki:
-// https://github.com/YaLTeR/niri/wiki/Configuration:-Layout
 layout {
     gaps 3
     center-focused-column "never"
@@ -97,12 +96,12 @@ animations {
     slowdown 0.7
 }
 
-// https://github.com/YaLTeR/niri/wiki/Configuration:-Window-Rules
 window-rule {
-    match app-id="^(ki|Alacri)tty$" title="^(Save File|Select Directory|Select File):$"
+    match title="^(Save File|Select Directory|Select File):$"
 
     open-floating true
-    max-height 800
+    default-column-width { proportion 0.80; }
+    default-window-height { proportion 0.90; }
 }
 
 window-rule {
@@ -149,7 +148,7 @@ binds {
     XF86AudioRaiseVolume  { spawn "ctl" "vol" "+"; }
     XF86AudioMicMute      { spawn "ctl" "mic"; }
     XF86MonBrightnessDown { spawn "ctl" "lum" "-"; }
-    XF86MonBrightnessUp   { spawn "ctl" "lum" "-"; }
+    XF86MonBrightnessUp   { spawn "ctl" "lum" "+"; }
 
     Mod+C       { spawn "ctl" "lum" "-"; }
     Mod+Shift+C { spawn "ctl" "lum" "+"; }
