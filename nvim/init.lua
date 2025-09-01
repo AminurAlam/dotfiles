@@ -28,6 +28,7 @@ g.ft_man_folding_enable = 1
 require 'pack'
 require 'autocommands'
 require 'colors'
+require 'completion'
 require 'git'
 require 'lsp'
 require 'mappings'

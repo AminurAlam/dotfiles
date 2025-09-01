@@ -14,6 +14,8 @@ vim.pack.add({
   'https://github.com/nvim-telescope/telescope.nvim',
   'https://github.com/nvimtools/none-ls.nvim',
   'https://github.com/folke/lazydev.nvim',
+  'https://github.com/saghen/blink.cmp', -- https://cmp.saghen.dev/
+  'https://github.com/saghen/blink.compat',
 })
 
 local augend = require('dial.augend')
