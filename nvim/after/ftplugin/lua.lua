@@ -8,3 +8,4 @@ vim.bo.expandtab = true
 vim.o.shiftround = true
 vim.wo.foldmethod = 'expr'
 vim.wo.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+pcall(vim.lsp.on_type_formatting.enable)
