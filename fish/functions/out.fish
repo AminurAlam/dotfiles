@@ -2,7 +2,7 @@ function out -d "compile and run some code"
     clear
 
     switch (path extension $argv[1])
-        case .c
+        case .c .cpp
             cc -lm -lGL -lGLU -lglut -oout -Wno-all $argv[1]
             ./out
             rm out

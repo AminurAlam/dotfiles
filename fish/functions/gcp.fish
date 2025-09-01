@@ -1,5 +1,10 @@
 function gcp -a url path branch -d "git clone wrapper"
-    [ -z "$url" ] && echo "ERROR: no url given" && return
+    if [ -z "$url" ]
+        command -vq wl-paste && set url (wl-paste)
+        command -vq termux-clipboard-get && set url (termux-clipboard-get)
+
+        [ -z "$url" ] && echo "ERROR: no url given" && return
+    end
     [ -n "$branch" ] && set -f branch "--branch" "$branch"
     [ -e "$HOME/repos" ] || mkdir "$HOME/repos"
 
