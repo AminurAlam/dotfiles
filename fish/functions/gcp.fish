@@ -7,10 +7,12 @@ function gcp -a url path branch -d "git clone wrapper"
     end
     [ -n "$branch" ] && set -f branch "--branch" "$branch"
     [ -e "$HOME/repos" ] || mkdir "$HOME/repos"
+    set is_gh string match -q -- "https://github.com/" "$url"
 
-    set url (string replace -r -- 'https://([^/]+)/([^/]+)/([^/]+).*' 'https://$1/$2/$3' "$url")
+    # TODO: only for github links
+    $is_gh && set url (string replace -r -- 'https://([^/]+)/([^/]+)/([^/]+).*' 'https://$1/$2/$3' "$url")
 
-    if [ -e ~/.ssh/github_ed25519 ] && string match -q -- "https://github.com/" "$url"
+    if $is_gh && [ -e ~/.ssh/github_ed25519 ]
         set url (string replace -r -- 'https://github.com/([^/]+)/([^/]+)' 'git@gittub.com:$1/$2.git' "$url")
     # else if [ -e ~/.ssh/gitlab_ed25519 ] && string match -q -- "https://gitlab.com/" "$url"
     # else if [ -e ~/.ssh/codeberg_ed25519 ] && string match -q -- "https://codeberg.org/" "$url"
