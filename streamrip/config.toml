@@ -13,7 +13,7 @@ concurrency = true
 # If you have very fast internet, you will benefit from a higher value,
 # A value that is too high for your bandwidth may cause slowdowns
 # Set to -1 for no limit
-max_connections = 6
+max_connections = 3
 # Max number of API requests per source to handle per minute
 # Set to -1 for no limit
 requests_per_minute = 60
@@ -30,9 +30,9 @@ download_booklets = true
 # Authenticate to Qobuz using auth token? Value can be true/false only
 use_auth_token = true
 # Enter your userid if the above use_auth_token is set to true, else enter your email
-email_or_userid = "5550051"
+email_or_userid = ""
 # Enter your auth token if the above use_auth_token is set to true, else enter the md5 hash of your plaintext password
-password_or_token = "LBweaE2PxattU_WQfPgGuYeKLvDrIBiNaZBElWc8oWgkwHNrmW55zklMOjL1ZEJ9jDFQbJg3YdLTQU22pJg09g"
+password_or_token = ""
 # Do not change
 app_id = "798273057"
 # Do not change
