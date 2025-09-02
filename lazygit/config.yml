@@ -17,7 +17,7 @@ gui:
   # If true, allow scrolling past the bottom of the content in the main window
   scrollPastBottom: true
   # See https://github.com/jesseduffield/lazygit/blob/master/docs/Config.md#scroll-off-margin
-  scrollOffMargin: 2
+  scrollOffMargin: 4
   # One of: 'margin' (default) | 'jump'
   scrollOffBehavior: margin
   # The number of spaces per tab; used for everything that's shown in the main view, but probably mostly relevant for diffs.
@@ -27,7 +27,7 @@ gui:
   # When mouse events are captured, it's a little harder to select text: e.g. requiring you to hold the option key when on macOS.
   mouseEvents: true
   # If true, do not show a warning when amending a commit.
-  skipAmendWarning: false
+  skipAmendWarning: true
   # If true, do not show a warning when discarding changes in the staging view.
   skipDiscardChangeWarning: false
   # If true, do not show warning when applying/popping the stash
@@ -191,10 +191,10 @@ git:
     # delta --dark --paging=never
     # ydiff -p cat -s --wrap --width={{columnWidth}}
     pager: "delta --dark --paging=never"
-    # If true, Lazygit will use whatever pager is specified in `$GIT_PAGER`, `$PAGER`, or your *git config*. If the pager ends with something like ` | less` we will strip that part out, because less doesn't play nice with our rendering approach. If the custom pager uses less under the hood, that will also break rendering (hence the `--paging=never` flag for the `delta` pager).
-    useConfig: false
     # e.g. 'difft --color=always'
     externalDiffCommand: ""
+    # If true, Lazygit will use git's `diff.external` config for paging. The advantage over `externalDiffCommand` is that this can be configured per file type in .gitattributes; see https://git-scm.com/docs/gitattributes#_defining_an_external_diff_driver.
+    useExternalDiffGitConfig: false
   # Config relating to committing
   commit:
     # If true, pass '--signoff' flag when committing
@@ -343,7 +343,7 @@ services: {}
 # - 'create': initialize a new repo
 # - 'skip': open most recent repo
 # - 'quit': exit Lazygit
-notARepository: prompt
+notARepository: skip
 # If true, display a confirmation when subprocess terminates. This allows you to view the output of the subprocess before returning to Lazygit.
 promptToReturnFromSubprocess: false
 # Keybindings
