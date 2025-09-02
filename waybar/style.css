@@ -72,6 +72,10 @@
   margin: 3px 5px 3px 5px;
 }
 
+#window {
+  margin-left: 60px;
+}
+
 #tray {
   margin: 0px 0px 0px 20px;
 }

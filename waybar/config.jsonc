@@ -6,7 +6,7 @@
   // "height": 25,
   // "width": 1870,
   "spacing": 4, // Gaps between modules (4px)
-  "modules-left": ["hyprland/workspaces", "niri/workspaces", "hyprland/window"],
+  "modules-left": ["hyprland/workspaces", "niri/workspaces", "hyprland/window", "niri/window"],
   "modules-center": ["tray"],
   "modules-right": [
     // "mpd",
@@ -44,16 +44,36 @@
       "10": "十",
     },
   },
+  "niri/workspaces": {
+    // "all-outputs": true,
+    "disable-click": true,
+    "disable-markup": true,
+    "format": "{icon}",
+    "format-icons": {
+      // "urgent": "",
+      // "focused": "",
+      // "active": "",
+      // "default": "",
+      "1": "一",
+      "2": "二",
+      "3": "三",
+      "4": "四",
+      "5": "五",
+      "6": "六",
+      "7": "七",
+      "8": "八",
+      "9": "九",
+      "10": "十",
+    },
+  },
+  "niri/window": {
+    "format": "",
+    "icon": true,
+  },
   "tray": {
     "icon-size": 25,
     "spacing": 15,
     "reverse-direction": true,
-  },
-  "hyprland/window": {
-    "rewrite": {
-      "(.*) — LibreWolf": "🌎 $1",
-      "Yazi: (.*)": "󰇥 $1",
-    },
   },
   "pulseaudio": {
     // "scroll-step": 1, // %, can be a float
