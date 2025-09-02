@@ -6,7 +6,7 @@ Documentation=https://komga.org/docs/introduction
 Environment=PATH=/usr/local/bin:/usr/local/sbin:/usr/bin:/bin
 Environment=SERVER_PORT=8102 KOMGA_CONFIGDIR=.local/share/komga
 Type=exec
-ExecStart=/usr/bin/komga
+ExecStart=/usr/bin/komga -Xmx1G --spring.profiles.active=claim
 PrivateTmp=true
 PrivateDevices=true
 PrivateUsers=true

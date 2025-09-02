@@ -5,6 +5,7 @@ Documentation=https://kiwix.org/
 [Service]
 Environment=PATH=/usr/local/bin:/usr/local/sbin:/usr/bin:/bin
 Type=exec
+ExecStartPre=sh -c "kiwix-manage ~/Downloads/main/zim/library_zim.xml add ~/Downloads/main/zim/*.zim"
 ExecStart=/usr/bin/kiwix-serve -p 8101 --library Downloads/main/zim/library_zim.xml
 PrivateTmp=true
 PrivateDevices=true
