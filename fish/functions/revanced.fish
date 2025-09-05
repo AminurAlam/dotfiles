@@ -30,10 +30,11 @@ function revanced -d "patch and install apks with revanced" -a apkid
 
     cd ~/Downloads/main/revanced || return
 
-    [ (math (date +%s) - (stat -c '%Y' -- api.json)) -gt 3600 ]
-    and curl -o api.json -#LH "Accept: application/vnd.github+json" \
-        -H "X-GitHub-Api-Version: 2022-11-28" \
-        https://api.github.com/repos/revanced/revanced-patches/releases/latest
+    if not [ -e api.json ] || [ (math (date +%s) - (stat -c '%Y' -- api.json)) -gt 3600 ]
+        curl -o api.json -#LH "Accept: application/vnd.github+json" \
+            -H "X-GitHub-Api-Version: 2022-11-28" \
+            https://api.github.com/repos/revanced/revanced-patches/releases/latest
+    end
 
     set patchname (jq -r .assets[0].name api.json)
     set patchurl (jq -r .assets[0].browser_download_url api.json)
