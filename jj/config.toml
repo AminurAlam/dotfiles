@@ -1,4 +1,54 @@
 #:schema https://jj-vcs.github.io/jj/latest/config-schema.json
 
 [user]
-name = "AminurAlam"
+name  = "AminurAlam"
+email = "64137875+AminurAlam@users.noreply.github.com"
+
+[git]
+colocate = true
+
+[ui]
+editor = "nvim"
+
+[templates]
+log = 'pretty'
+
+[template-aliases]
+# https://github.com/jj-vcs/jj/blob/main/cli/src/config/templates.toml
+'format_timestamp(timestamp)' = 'timestamp.local().format("%Y-%m-%d")'
+description_placeholder = 'label("description placeholder", "\"\"")'
+
+pretty = 'pretty(self)'
+'pretty(commit)' = '''
+
+if(commit.root(),
+  format_root_commit(commit),
+  label(
+    separate(" ",
+      if(commit.current_working_copy(), "working_copy"),
+      if(commit.immutable(), "immutable", "mutable"),
+      if(commit.conflict(), "conflicted"),
+    ),
+    concat(
+      separate(" ",
+        format_short_change_id_with_hidden_and_divergent_info(commit),
+        if(false, commit.author().name()),
+        commit.bookmarks(),
+        commit.tags(),
+        commit.working_copies(),
+        if(commit.git_head(), label("git_head", "git_head()")),
+        format_short_commit_id(commit.commit_id()),
+        if(commit.conflict(), label("conflict", "conflict")),
+        if(config("ui.show-cryptographic-signatures").as_boolean(),
+          format_short_cryptographic_signature(commit.signature())),
+        if(commit.empty(), label("empty", "(empty)")),
+        if(commit.description(),
+          commit.description().first_line(),
+          label(if(commit.empty(), "empty"), description_placeholder),
+        ),
+        format_timestamp(commit_timestamp(commit)),
+      ) ++ "\n",
+    ),
+  )
+)
+'''
