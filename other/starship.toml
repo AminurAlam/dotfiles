@@ -1,7 +1,7 @@
 #:schema https://starship.rs/config-schema.json
 
 format = """
-$username$hostname$directory$git_branch$git_commit$git_state$python${env_var.TMUX} \
+$username$hostname$directory$git_branch$git_commit$git_state$python${custom.jj}${env_var.TMUX} \
 $fill \
 $status$git_status$git_metrics$cmd_duration$jobs$shlvl 
  $character"""
@@ -25,20 +25,23 @@ format  = ' [ $hostname](bright-yellow)'
 aliases = { localhost = 'phone' }
 
 [directory]
-format    = ' [ $before_root_path$repo_root$path](bold green)[$read_only](red)'
-read_only = ''
-# read_only = ' 󰌾'
+format                    = ' [ $before_root_path$repo_root$path](bold green)[$read_only](red)'
+read_only                 = ''
 truncation_length         = 1
 fish_style_pwd_dir_length = 1
 use_logical_path          = true
 
-# truncate_to_repo = false
-# truncation_symbol = '%'
-# before_repo_root_style = "cyan"
-# repo_root_style = "yellow"
-# repo_root_format = "$before_root_path|$repo_root|$path"
-# [directory.substitutions]
-# "/data/data/com.termux/files/usr" = "prefix"
+# truncate_to_repo       = false
+# truncation_symbol      = '%'
+# before_repo_root_style = 'cyan'
+# repo_root_style        = 'yellow'
+# repo_root_format       = ' [ $repo_root$path](bold green)'
+
+# substitutions = { "/data/data/com.termux/files/usr" = "prefix" }
+
+[custom.jj]
+format         = ' [󰊢 jj](blue)'
+detect_folders = ['.jj']
 
 [git_branch]
 format = ' [ ($remote_name/)$branch](bold purple)'
@@ -62,7 +65,7 @@ detect_files      = []
 detect_extensions = []
 
 [env_var.TMUX]
-format = " [ tmux](green)"
+format = ' [ tmux](green)'
 
 
 # RIGHT PROMPT
@@ -110,9 +113,10 @@ number_threshold = 2
 symbol           = '✦'
 
 [shlvl]
-format   = '\[[$symbol$shlvl](green)\]'
-symbol   = ''
-disabled = false
+format    = '\[[$symbol$shlvl](green)\]'
+symbol    = ''
+threshold = 4
+disabled  = false
 
 
 # SPECIAL
