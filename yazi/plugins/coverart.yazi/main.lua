@@ -9,8 +9,14 @@ function M:peek(job)
         .. [[\nGenre: %Genre%\nReleased: %Recorded_Date%]],
     })
     :stdout(Command.PIPED)
-    :output()
-  ya.preview_widgets(job, { ui.Text.parse(output.stdout):area(job.area) })
+    :output().stdout .. Command('mediainfo')
+    :arg({
+      tostring(job.file.name),
+      [[--Output=Image;\nCover: %Format% %Width%x%Height% %StreamSize/String1%]],
+    })
+    :stdout(Command.PIPED)
+    :output().stdout
+  ya.preview_widgets(job, { ui.Text.parse(output):area(job.area) })
 end
 
 function M:seek(job) end

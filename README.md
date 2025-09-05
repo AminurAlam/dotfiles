@@ -47,6 +47,7 @@
 - [starship](https://starship.rs/) :star2: - shell prompt
 - [streamrip](https://github.com/nathom/streamrip)
 - [stylua](https://github.com/JohnnyMorganz/StyLua) - lua formatter
+- [swayimg](https://github.com/artemsen/swayimg) - image viewer
 - [systemd](https://www.github.com/systemd/systemd) - system and service manager
 - [taplo](https://taplo.tamasfe.dev/) - lsp for toml
 - [termux](https://termux.dev/) - terminal emulator

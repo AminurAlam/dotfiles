@@ -70,6 +70,7 @@ rclone.conf
 /scripts/bin/rish_shizuku.dex
 
 /streamrip/*downloads.db
+
 /systemd/user/default.target.wants
 
 /yazi/plugins/*
