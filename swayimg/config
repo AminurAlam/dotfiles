@@ -7,6 +7,9 @@ overlay = yes
 window = #000000
 antialiasing = mks13
 
+[list]
+order = mtime
+
 [info.viewer]
 top_left = none
 bottom_left = +imagesize,+exif,scale,frame
@@ -40,3 +43,6 @@ h = step_left
 l = step_right
 k = step_up
 j = step_down
+
+KP_Add = zoom +10
+KP_Subtract = zoom -10

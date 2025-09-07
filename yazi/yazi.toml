@@ -80,6 +80,7 @@ play = [
 reveal = [
   { run = 'xdg-open "$(dirname "$1")"', desc = ' Reveal', for = 'linux' },
   { run = 'opendir "$1"', desc = ' Reveal', for = 'android' },
+  { run = 'swayimg -g "$@"', desc = ' gallery' },
 ]
 extract = [
   { run = 'ya pub extract --list "$@"', desc = '󱉛 Extract here', for = 'unix' },
