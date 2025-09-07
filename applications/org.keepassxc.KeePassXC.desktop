@@ -1,0 +1,16 @@
+[Desktop Entry]
+Name=KeePassXC
+Comment=Community-driven port of the Windows application “KeePass Password Safe”
+Exec=env QT_QPA_PLATFORMTHEME= keepassxc %f
+TryExec=env QT_QPA_PLATFORMTHEME= keepassxc
+Icon=keepassxc
+StartupWMClass=keepassxc
+StartupNotify=true
+Terminal=false
+Type=Application
+Version=1.5
+Categories=Utility;Security;Qt;
+MimeType=application/x-keepass2;
+SingleMainWindow=true
+X-GNOME-SingleWindow=true
+Keywords=security;privacy;password-manager;yubikey;password;keepass;
