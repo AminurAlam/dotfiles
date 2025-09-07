@@ -63,7 +63,21 @@ abbr df 'df --output=pcent,avail,target -h -x tmpfs -x efivarfs'
 set -q TERMUX_VERSION && abbr df 'df -h | awk \'/fuse/{print $3"/"$2,$5,$4}\''
 
 # pkg
-if command -vq apt
+if command -vq pacstall
+    abbr pi pacstall -I
+    abbr pr pacstall -R
+    abbr pu pacstall -U "&&" pacstall -Up
+    abbr pf pacstall -S
+    abbr pa pacstall -Si
+
+    set sudo (command -v sudo | path basename)
+
+    abbr pii $sudo apt install
+    abbr prr $sudo apt remove
+    abbr puu $sudo apt update "&&" $sudo apt upgrade
+    abbr pff apt search
+    abbr paa apt show
+else if command -vq apt
     set sudo (command -v sudo | path basename)
 
     abbr pi $sudo apt install
