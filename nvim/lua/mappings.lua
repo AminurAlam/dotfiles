@@ -85,6 +85,7 @@ nmap('<leader>p', '"+p', 'put last yank in sys clipboard')
 nmap('<leader>a', 'moggVG<c-a>`o', 'increment all numbers')
 nmap('+', '<plug>(dial-increment)')
 nmap('-', '<plug>(dial-decrement)')
+nmap('z=', '1z=')
 
 -- visual
 nmap('v', 'm`v') -- TODO: handle with autocmd
@@ -95,17 +96,6 @@ vmap('v', function()
   local next = { v = 'V', V = '\22', ['\22'] = '<esc>' }
   fn.feedkeys(vim.keycode(next[vim.api.nvim_get_mode().mode]))
 end, 'repeat v to change visual mode')
-
--- overrides
-nmap('z=', function()
-  vim.ui.select(
-    fn.spellsuggest(fn.expand('<cword>'), 10),
-    {},
-    vim.schedule_wrap(function(word)
-      if word then fn.feedkeys(vim.keycode('"_ciw' .. word .. '<esc>')) end
-    end)
-  )
-end, 'open spellsuggests in select menu')
 
 -- cmdline & abbreviations
 vim.cmd 'cmap <c-j> <down>'

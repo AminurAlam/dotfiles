@@ -69,7 +69,7 @@ blink.setup {
   },
   fuzzy = {
     implementation = 'prefer_rust_with_warning',
-    use_frecency = true,
+    frecency = { enabled = true },
     use_proximity = false,
     sorts = { 'score', 'sort_text' },
     prebuilt_binaries = { force_version = 'v1.6.0' },
@@ -116,13 +116,13 @@ blink.setup {
   cmdline = {
     completion = {
       menu = {
-        auto_show = false,
+        auto_show = true,
         draw = { columns = { { 'label', 'label_description', gap = 0 } } },
       },
       list = { selection = { preselect = false, auto_insert = true } },
     },
     keymap = {
-      preset = 'none',
+      preset = 'inherit',
       ['<tab>'] = { 'select_next', 'fallback' },
       ['<s-tab>'] = { 'select_prev', 'fallback' },
       ['<C-e>'] = { 'cancel' },
