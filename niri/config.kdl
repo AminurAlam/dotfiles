@@ -100,18 +100,25 @@ window-rule {
     match title="^(Save File|Select Directory|Select File):$"
 
     open-floating true
+    open-focused true
     default-column-width { proportion 0.80; }
     default-window-height { proportion 0.90; }
 }
 
 window-rule {
-    match app-id="(firefox|librewolf)$" title="^Picture-in-Picture$"
-    open-floating true
+    match title="^KeePassXC - Browser Access Request$"
+
+    open-focused true
 }
 
 window-rule {
-    match app-id=r#"^org\.keepassxc\.KeePassXC$"#
-    block-out-from "screen-capture"
+    match app-id="librewolf|vesktop|org.kde.kdeconnect.app|org.musicbrainz.Picard"
+    default-column-width { proportion 1.0; }
+}
+
+window-rule {
+    match app-id="librewolf$" title="^Picture-in-Picture$"
+    open-floating true
 }
 
 window-rule {
@@ -143,17 +150,17 @@ binds {
     Mod+Alt+P { screenshot-window; }
 
     // FUNC
-    XF86AudioMute         { spawn "ctl" "vol";}
-    XF86AudioLowerVolume  { spawn "ctl" "vol" "-"; }
-    XF86AudioRaiseVolume  { spawn "ctl" "vol" "+"; }
-    XF86AudioMicMute      { spawn "ctl" "mic"; }
-    XF86MonBrightnessDown { spawn "ctl" "lum" "-"; }
-    XF86MonBrightnessUp   { spawn "ctl" "lum" "+"; }
+    XF86AudioMute repeat=false    { spawn "ctl" "vol";}
+    XF86AudioLowerVolume          { spawn "ctl" "vol" "-"; }
+    XF86AudioRaiseVolume          { spawn "ctl" "vol" "+"; }
+    XF86AudioMicMute repeat=false { spawn "ctl" "mic"; }
+    XF86MonBrightnessDown         { spawn "ctl" "lum" "-"; }
+    XF86MonBrightnessUp           { spawn "ctl" "lum" "+"; }
 
     Mod+C       { spawn "ctl" "lum" "-"; }
     Mod+Shift+C { spawn "ctl" "lum" "+"; }
-    Mod+V       { spawn "ctl" "lum" "-"; }
-    Mod+Shift+V { spawn "ctl" "lum" "+"; }
+    Mod+V       { spawn "ctl" "vol" "-"; }
+    Mod+Shift+V { spawn "ctl" "vol" "+"; }
 
     // COL
     Mod+H { focus-column-left; }
@@ -175,10 +182,10 @@ binds {
     Mod+Ctrl+Shift+K { move-workspace-up; }
 
     // MOUSE
-    Mod+TouchpadScrollDown { set-column-width "+3%"; }
-    Mod+TouchpadScrollUp   { set-column-width "-3%"; }
-    Mod+TouchpadScrollLeft { set-column-width "+3%"; }
-    Mod+TouchpadScrollRight   { set-column-width "-3%"; }
+    Mod+TouchpadScrollDown  { set-window-height "-3%"; }
+    Mod+TouchpadScrollUp    { set-window-height "+3%"; }
+    Mod+TouchpadScrollLeft  { set-column-width "+3%"; }
+    Mod+TouchpadScrollRight { set-column-width "-3%"; }
 
     // Alternative commands that move across workspaces when reaching
     // the first or last window in a column.
