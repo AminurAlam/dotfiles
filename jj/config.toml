@@ -9,6 +9,7 @@ colocate = true
 
 [ui]
 editor = "nvim"
+default-command = "log"
 
 [templates]
 log = 'pretty'
@@ -16,6 +17,7 @@ log = 'pretty'
 [template-aliases]
 # https://github.com/jj-vcs/jj/blob/main/cli/src/config/templates.toml
 'format_timestamp(timestamp)' = 'timestamp.local().format("%Y-%m-%d")'
+'format_short_id(id)' = 'id.shortest()'
 description_placeholder = 'label("description placeholder", "\"\"")'
 
 pretty = 'pretty(self)'
@@ -32,12 +34,13 @@ if(commit.root(),
     concat(
       separate(" ",
         format_short_change_id_with_hidden_and_divergent_info(commit),
-        if(false, commit.author().name()),
+        if(false, format_short_commit_id(commit.commit_id())),
+        if(!commit.mine(), commit.author().name()),
+        format_timestamp(commit_timestamp(commit)),
         commit.bookmarks(),
         commit.tags(),
         commit.working_copies(),
-        if(commit.git_head(), label("git_head", "git_head()")),
-        format_short_commit_id(commit.commit_id()),
+        if(commit.git_head(), label("git_head", "HEAD")),
         if(commit.conflict(), label("conflict", "conflict")),
         if(config("ui.show-cryptographic-signatures").as_boolean(),
           format_short_cryptographic_signature(commit.signature())),
@@ -46,7 +49,6 @@ if(commit.root(),
           commit.description().first_line(),
           label(if(commit.empty(), "empty"), description_placeholder),
         ),
-        format_timestamp(commit_timestamp(commit)),
       ) ++ "\n",
     ),
   )
