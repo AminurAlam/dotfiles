@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Version=1.0
+Name=GUILTY GEAR XX ΛCORE PLUS R
+Comment=Start GUILTY GEAR XX ΛCORE PLUS R with the eden Emulator
+Icon=/home/fisher/.local/share/icons/hicolor/256x256/eden-0100D1C00C700000.png
+TryExec=/opt/eden-bin/eden-bin.AppImage
+Exec=/opt/eden-bin/eden-bin.AppImage -f -g "/home/fisher/Downloads/main/ROMS/Switch/GUILTY GEAR XX ACCENT CORE PLUS R/GUILTY GEAR XX ACCENT CORE PLUS R [0100D1C00C700000][v0] (4.22 GB).nsp"
+Categories=Game;Emulator;Qt;
+Keywords=Switch;Nintendo;

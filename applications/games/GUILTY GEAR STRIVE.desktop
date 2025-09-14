@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Version=1.0
+Name=GUILTY GEAR STRIVE
+Comment=Start GUILTY GEAR STRIVE with the eden Emulator
+Icon=/home/fisher/.local/share/icons/hicolor/256x256/eden-0100AB401F136000.png
+TryExec=/opt/eden-bin/eden-bin.AppImage
+Exec=/opt/eden-bin/eden-bin.AppImage -f -g "/home/fisher/Downloads/main/ROMS/Switch/Guilty Gear Strive/Guilty Gear Strive [0100AB401F136000][v0].nsp"
+Categories=Game;Emulator;Qt;
+Keywords=Switch;Nintendo;
