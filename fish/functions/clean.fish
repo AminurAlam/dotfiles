@@ -1,13 +1,10 @@
 function clean -d "cleanup to free storage"
-    set -f __dirs \
+    set dirs (path filter -d -- \
         /sdcard/Android/media/com.whatsapp/WhatsApp/{.StickerThumbs,Media/WhatsApp Stickers}/ \
         /sdcard/TachiyomiSY/downloads/*/*/*_tmp/ \
         ~/.cache/ \
-        ~/.gradle/caches/
-
-    for dir in $__dirs
-        [ -d "$dir" ] && set -fa dirs "$dir"
-    end
+        /sdcard/Download/SongSync \
+        ~/.gradle/caches/)
 
     if count $dirs &>/dev/null
         dust -PDd0 -- $dirs 2>/dev/null
@@ -28,7 +25,6 @@ function clean -d "cleanup to free storage"
     end
 
     [ -d ~/downloads -a (uname -o) = Android ] && fd -tfile -epng 'Screenshot_.*_Samsung capture.png' ~/downloads/ -x rm
-
 
     if command -vq sudo
         command -vq pacman && yes | sudo pacman -Scc

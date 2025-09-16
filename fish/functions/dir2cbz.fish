@@ -5,12 +5,7 @@ function dir2cbz -d "convert directory to .cbz archive"
         return 1
     end
 
-    for dir in $argv
-        if not [ -d "$dir" ]
-            echo "skipping $dir: not a directory"
-            continue
-        end
-
+    for dir in (path filter -d $argv)
         set out (basename (string replace '_1.cbz' '' "$dir" )).cbz
 
         if [ -e "$out" ]

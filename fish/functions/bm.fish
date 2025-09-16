@@ -1,5 +1,5 @@
 function bm -d "bookmark manager"
-    set BMPATH $XDG_DOCUMENTS_DIR/bookmarks
+    set BMPATH ~/repos/notes/bookmarks
     set -q LAUNCHER || set LAUNCHER fzf
 
     switch "$argv[1]"

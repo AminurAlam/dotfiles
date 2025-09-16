@@ -13,6 +13,7 @@ function unexe -d "mass `chmod -x` files"
 
     for file in $argv
         [ -L "$file" ] && continue
+        [ -d "$file" ] && continue
 
         if set -q TERMUX_VERSION && stat -c '%A' -- "$file" | rg -q rwx
             du -h -- "$file"

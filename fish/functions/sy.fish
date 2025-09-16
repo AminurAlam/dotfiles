@@ -19,7 +19,6 @@ function sy -d "sync files between phone and pc"
         case dry
             set -a comm --dry-run
         case ""
-            :
         case '*'
             printf "usage `sy [ip|send|recv|dry]`\n"
             return 1
