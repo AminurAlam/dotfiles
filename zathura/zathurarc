@@ -48,7 +48,6 @@ set zoom-step 8
 
 # synctex
 set synctex true
-set synctex-edit-modifier ctrl
 set synctex-editor-command "nvim"
 
 ### COLORSCHEME
