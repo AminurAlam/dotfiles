@@ -25,6 +25,7 @@
 
 ### Video Format Options:
 --audio-multistreams
+--format-sort vbr,res,size
 
 ### Subtitle Options:
 --write-subs
