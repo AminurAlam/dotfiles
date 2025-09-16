@@ -15,7 +15,7 @@ for config in alacritty aria2 \
     mgba mpv \
     newsboat niri npm nvim \
     pacman paru powershell python \
-    qBittorrent \
+    qalculate qBittorrent \
     ruff \
     sqlite3 streamrip swayimg systemd \
     termux tmux \
@@ -42,7 +42,6 @@ ln -fs ~/repos/dotfiles/other/taplo.toml ~/.config/taplo.toml
 # ln -fs ~/repos/dotfiles/other/ssh_config ~/.ssh/config # NOTE: do this manually
 printf "done\n"
 
-
 if set -q TERMUX_VERSION
     printf "LINKING TERMUX FILES... "
     ln -fs ~/repos/dotfiles/other/pacman.termux.conf $PREFIX/etc/pacman.conf
@@ -54,6 +53,8 @@ if set -q TERMUX_VERSION
     ln -fs ~/repos/dotfiles/scripts/bin/rish ~/.local/bin/rish
     ln -fs ~/repos/dotfiles/scripts/bin/tachi ~/.local/bin/tachi
     ln -fs ~/repos/dotfiles/scripts/bin/opendir ~/.local/bin/opendir
+
+    ln -fs /sdcard/Download/ ~/downloads
     printf "done\n"
 end
 

@@ -13,7 +13,7 @@ open.rules = [
   { name = '*.cb{z,r}', use = ['zathura', 'extract'] },
   { mime = 'application/{zip,rar,7z*,tar,gzip,xz,zstd,bzip*,lzma,compress,archive,cpio,arj,xar,ms-cab*}', use = ['extract'] },
   { name = '*.{zip,rar}', use = ['extract', 'zathura'] },
-  { mime = 'image/*', use = ['swayimg', 'loupe', 'krita', 'hyprpaper'] },
+  { mime = 'image/*', use = ['swayimg', 'krita', 'swaybg'] },
   { mime = 'video/*', use = ['play'] },
   { mime = 'audio/*', use = ['kid3', 'play', 'picard'] },
   { name = '*.exe', use = ['wine'] },
@@ -58,11 +58,10 @@ plugin.prepend_preloaders = [
 add-sub    = [{ run = ''' echo sub-add "'$0'" | socat - /tmp/mpv.sock ''', desc = '󰨗 Add sub to MPV', for = 'linux' }]
 apkinstall = [{ run = 'adb install "$@"', block = true, orphan = false, desc = ' apk installer', for = 'linux' }]
 dir2cbz    = [{ run = '''fish -c 'dir2cbz $argv' "$@" ''', block = true, desc = ' dir2cbz' }]
-hyprpaper  = [{ run = 'hyprctl hyprpaper reload ,"$1"', desc = ' hyprpaper' }]
 kid3       = [{ run = 'kid3 -- "$@"', orphan = true, for = 'linux', desc = ' kid3' }]
 picard     = [{ run = 'picard -- "$@"', orphan = true, for = 'linux', desc = '󰫅 picard' }]
 krita      = [{ run = 'krita "$@"', block = false, orphan = true, desc = ' krita', for = 'linux' }]
-loupe      = [{ run = 'loupe "$@"', block = false, orphan = true, desc = ' gnome loupe', for = 'linux' }]
+swaybg     = [{ run = 'swaybg -m fill -i "$0"', block = false, orphan = true, desc = ' swaybg', for = 'linux' }]
 swayimg    = [{ run = 'swayimg "$@"', block = false, orphan = true, desc = ' swayimg', for = 'linux' }]
 rsync      = [{ run = 'rsync -Pha -- "$1" phone:/sdcard/Download/', block = false, desc = ' Send to phone', for = 'linux' }]
 wine       = [{ run = 'wine "$@"', block = false, orphan = true, desc = '󰡶 wine', for = 'linux' }]
@@ -105,7 +104,7 @@ title_format   = 'Yazi: {cwd}'
 wrap            = 'no'
 tab_size        = 2
 max_width       = 1500
-max_height      = 1500
+max_height      = 980
 cache_dir       = ''
 image_delay     = 30
 image_filter    = 'triangle'

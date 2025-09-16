@@ -56,6 +56,8 @@
 /nvim/lazy-lock.json
 /nvim/parser/
 
+/qalculate/qalc.history
+
 /termux/font.ttf
 /termux/shell
 

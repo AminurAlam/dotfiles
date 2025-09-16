@@ -21,7 +21,7 @@
 - [glow](https://github.com/charmbracelet/glow) - Command-line markdown renderer
 - [htop](https://htop.dev/) - process viewer
 - [hyprland](https://hyprland.org/) :star2: - tiling wayland compositor
-- [jujustu](https://github.com/jj-vcs/jj) -  vcs
+- [jujustu](https://github.com/jj-vcs/jj) - vcs
 - [kanata](https://github.com/jtroo/kanata) - keyboard customizer
 - [keepassxc](https://keepassxc.org/) - password manager
 - [kitty](https://github.com/kovidgoyal/kitty) - terminal emulator
@@ -39,6 +39,7 @@
 - [prettier](https://prettier.io/) - code formatter
 - [procs](https://github.com/dalance/procs) - process list
 - [python](https://python.org/) - python interpreter
+- [qalculate](https://qalculate.github.io/) - Multi-purpose desktop calculator
 - [qBittorrent](https://www.qbittorrent.org) - torrent client
 - [ripgrep](https://github.com/BurntSushi/ripgrep) - grep alternative
 - [ruff](https://docs.astral.sh/ruff/) - python linter and formatter
