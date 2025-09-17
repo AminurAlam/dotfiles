@@ -4,10 +4,12 @@ Host phone
     Port 8022
     IdentityFile ${HOME}/.ssh/ssh_ed25519
     IdentitiesOnly yes
+    CheckHostIP no
+    StrictHostKeyChecking no
 
-    HashKnownHosts yes
+    HashKnownHosts no
     ForwardX11 no
-    SetEnv TERM=xterm-256color
+    AddressFamily inet
 
 Host phone-tmux
     User user
@@ -17,7 +19,9 @@ Host phone-tmux
     IdentitiesOnly yes
 
     RequestTTY yes
+    ForwardX11 no
     RemoteCommand tmux new -A -s ssh
+    AddressFamily inet
 
 Host github.com
     User git
