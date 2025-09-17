@@ -1,0 +1,94 @@
+_pkgname=neovim
+pkgname="$_pkgname-git"
+pkgver=0.12.0.r1249.gc3effa92ee
+pkgrel=1
+pkgdesc='Fork of Vim aiming to improve user experience, plugins, and GUIs'
+arch=(armv7h aarch64)
+url='https://neovim.io'
+license=('custom:neovim')
+depends=(
+    'binutils'
+    'clang'
+    'gettext'
+    'libunibilium'
+    'libuv'
+    'lua51-lpeg'
+    'luajit'
+    'luv'
+    'openssl'
+    'pkg-config'
+    'tree-sitter'
+    'tree-sitter-parsers'
+    'utf8proc'
+)
+makedepends=('cmake' 'git' 'ninja' 'unzip' 'bsdtar')
+optdepends=('python-pynvim: for Python plugin support (see :help python)')
+provides=("$_pkgname=${pkgver/\.r*/}" 'vim-plugin-runtime')
+conflicts=("$_pkgname")
+# source=("git+https://github.com/AminurAlam/$_pkgname.git")
+source=("$_pkgname::git+file:///data/data/com.termux/files/home/repos/nvim-fork")
+sha512sums=('SKIP')
+b2sums=('SKIP')
+
+pkgver() {
+    cd "$_pkgname"
+    local nvim_version nvim_version_git
+    nvim_version="$(sed -nE '/NVIM_VERSION_/ s/.* +([0-9]+)\).*/\1/p' ./CMakeLists.txt | sed ':b;N;$!bb;s/\n/\./g')"
+    nvim_version_git="$(git describe --first-parent --always | sed -E 's/^v[0-9]+.[0-9]+.[0-9]+-//; s/^([0-9]+)-([a-z0-9]+)/\1\.\2/')"
+    printf "%s.r%s\n" "$nvim_version" "$nvim_version_git"
+}
+
+build() {
+    cd "$_pkgname"
+
+    cmake -S cmake.deps -B .deps -G Ninja -DUSE_BUNDLED=OFF
+    cmake --build .deps
+
+    cmake \
+        -Bbuild \
+        -DCMAKE_BUILD_TYPE=RelWithDebInfo \
+        -DCMAKE_INSTALL_PREFIX=/data/data/com.termux/files/usr \
+        -G Ninja \
+        -W no-dev
+    cmake --build build
+}
+
+check() {
+    cd "$_pkgname"
+    ./build/bin/nvim --version
+    ./build/bin/nvim --headless -u NONE -i NONE +q
+}
+
+prepare() {
+    true
+    # patch -Np1 -i "${srcdir}"/file.patch
+}
+
+package() {
+    mkdir -p "$pkgdir/$prefix/share/libalpm/hooks" "$pkgdir/$prefix/share/libalpm/scripts"
+    cat >"$pkgdir/$prefix/share/libalpm/hooks/nvimdoc.hook" <<-EOF
+[Trigger]
+Operation = Install
+Operation = Upgrade
+Operation = Remove
+Type = Path
+Target = usr/share/nvim/site/pack/dist/start/*/doc/
+
+[Action]
+Description = Updating Neovim help tags...
+Exec = /usr/share/libalpm/scripts/nvimdoc
+When = PostTransaction
+EOF
+    cat >"$pkgdir/$prefix/share/libalpm/scripts/nvimdoc" <<-EOF
+#!/bin/bash
+
+for f in /usr/share/nvim/site/pack/dist/start/*/doc/; do
+    /usr/bin/nvim -es "+helptags \$f" +q
+done
+EOF
+
+    cd "$_pkgname"
+    DESTDIR="$pkgdir" cmake --install build
+
+    ln -s "${prefix}"/lib/tree_sitter "${pkgdir}/${prefix}/share/nvim/runtime/parser"
+}

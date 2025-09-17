@@ -35,8 +35,8 @@ function build
         make distclean
     end
 
-    make BUNDLED_CMAKE_FLAG="-DUSE_BUNDLED=ON -DUSE_BUNDLED_LPEG=ON" || exit
-    make install CMAKE_INSTALL_PREFIX="$PREFIX/"
+    make BUNDLED_CMAKE_FLAG="-G Ninja -DUSE_BUNDLED=OFF" || exit
+    make install BUNDLED_CMAKE_FLAG="-G Ninja -W no-dev" CMAKE_INSTALL_PREFIX="$PREFIX/"
 end
 
 function post_build
