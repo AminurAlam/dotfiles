@@ -68,7 +68,7 @@ blink.setup {
     ghost_text = { enabled = false },
   },
   fuzzy = {
-    implementation = 'prefer_rust_with_warning',
+    implementation = vim.fn.has('termux') == 1 and 'lua' or 'prefer_rust',
     frecency = { enabled = true },
     use_proximity = false,
     sorts = { 'score', 'sort_text' },
