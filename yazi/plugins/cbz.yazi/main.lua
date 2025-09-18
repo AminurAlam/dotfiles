@@ -9,13 +9,8 @@ function M:peek(job)
 
   ya.sleep(math.max(0, rt.preview.image_delay / 1000 + start - os.clock()))
 
-  if ya.target_os() == 'android' then
-    local output, err = Command('viu'):arg({ tostring(cache) }):stdout(Command.PIPED):output()
-    ya.preview_widgets(job, { ui.Text.parse(output.stdout):area(job.area) })
-  else
-    local _, err = ya.image_show(cache, job.area)
-    ya.preview_widget(job, err and ui.Text(err):area(job.area):wrap(ui.Wrap.YES))
-  end
+  local _, err = ya.image_show(cache, job.area)
+  ya.preview_widget(job, err and ui.Text(err):area(job.area):wrap(ui.Wrap.YES))
 end
 
 function M:seek(job)

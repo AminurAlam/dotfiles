@@ -72,10 +72,7 @@ open = [
   { run = 'xdg-open "$1"', orphan = true, desc = '󰏌 Open', for = 'linux' },
   { run = 'termux-open "$1"', orphan = true, desc = '󰏌 Open', for = 'android' },
 ]
-play = [
-  { run = 'termux-open "$@"', orphan = true, for = 'android', desc = '󰏌 termux-open' },
-  { run = 'mpv --force-window "$@"', orphan = true, for = 'unix', desc = ' mpv' },
-]
+play = [{ run = 'mpv --force-window "$@"', orphan = true, for = 'linux', desc = ' mpv' }]
 reveal = [
   { run = 'xdg-open "$(dirname "$1")"', desc = ' Reveal', for = 'linux' },
   { run = 'opendir "$1"', desc = ' Reveal', for = 'android' },
