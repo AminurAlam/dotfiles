@@ -96,7 +96,7 @@ animations {
     slowdown 0.7
 }
 
-window-rule {
+window-rule { // floatinng save as window
     match title="^(Save File|Select Directory|Select File):$"
 
     open-floating true
@@ -105,23 +105,28 @@ window-rule {
     default-window-height { proportion 0.90; }
 }
 
-window-rule {
+window-rule { // focus on keepass
     match title="^KeePassXC - Browser Access Request$"
 
     open-focused true
 }
 
-window-rule {
+window-rule { // fullscreen
     match app-id="librewolf|vesktop|org.kde.kdeconnect.app|org.musicbrainz.Picard"
     default-column-width { proportion 1.0; }
 }
 
-window-rule {
+window-rule { // floating pip
     match app-id="librewolf$" title="^Picture-in-Picture$"
     open-floating true
 }
 
-window-rule {
+window-rule { // fullscreen glut
+    match app-id="^graphics$"
+    default-column-width { proportion 1.0; }
+}
+
+window-rule { // *
     geometry-corner-radius 12
     clip-to-geometry true
 }
