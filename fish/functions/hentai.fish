@@ -1,16 +1,26 @@
 function hentai
+    : "USAGE:
+    hentai
+    hentai [dir [dir...]]
+    "
+    set mangadir /sdcard/TachiyomiSY
+    # set targetdir "$mangadir/local/#lewd"
+    set targetdir "$mangadir/downloads/HentaiNexus (EN)/#processed"
+
     set -q TERMUX_VERSION || return 1
+    [ -d "$mangadir" ] || return 1
 
     printf "working on HentaiNexus...\n"
-    cd "/storage/emulated/0/TachiyomiSY/downloads/HentaiNexus (EN)/"
+    cd "$mangadir/downloads/HentaiNexus (EN)/" 2>/dev/null
     and for i in @*
+        # TODO: match for known artists
         printf " - $i\n"
-        mv -i --no-clobber $i/Chapter.cbz /sdcard/TachiyomiSY/local/\#lewd/$i.cbz
+        mv -i --no-clobber $i/Chapter.cbz $targetdir/$i.cbz
         rmdir $i &>/dev/null
     end
 
     printf "working on Doujin.io...\n"
-    cd "/sdcard/TachiyomiSY/downloads/Doujin.io - J18 (EN)"
+    cd "$mangadir/downloads/Doujin.io - J18 (EN)" 2>/dev/null
     and for i in @*
         printf " - $i\n"
         pushd $i
@@ -22,30 +32,65 @@ function hentai
         end
         popd
         dir2cbz $i && rm -fr $i
-        mv -i --no-clobber $i.cbz /sdcard/TachiyomiSY/local/\#lewd/
+        mv -i --no-clobber $i.cbz $targetdir/
     end
 
-    # TODO: append new chapters
+    [ -z "$argv[1]" ] && return 0
+    printf "working on args...\n"
+    cd "$targetdir"
+    set name (fd -tf -d1 -ecbz . | fzf)
+    cd "$mangadir/downloads/HentaiNexus (EN)/" || return 3
+
+    # TODO: get artist name from ComicInfo.xml
     # TODO: ask author name
-    set args (count $argv)
-    [ $args -lt 2 ] && return 2
-    cd "/storage/emulated/0/TachiyomiSY/downloads/HentaiNexus (EN)/" || return 3
+    if [ -z "$name" ]
+        # get biggest common substring
+        for n in (seq (string length $argv[1]) -1 1)
+            set sub (string trim (string sub -l $n $argv[1]))
+            string match -q "$sub*" $argv[2]
+            and break
+        end
 
-    for n in (seq (string length $argv[1]) -1 1)
-        set sub (string trim (string sub -l $n $argv[1]))
-        string match -q "$sub*" $argv[2]
-        and break
+        if [ "$(string length -- "$sub")" -le 2 ]
+            set name (string join + $argv)
+        else
+            set name "$sub 1-$(count $argv)"
+        end
+
+        set name (string replace -a -- / '' "$name")
+
+        mkdir -p $name
+
+    else
+        set name (path change-extension '' "$name")
+        # printf "adding to `%s` ...\n" $name
+
+        # unzip $name
+        unzip -qd "$name" "$targetdir/$name.cbz"
+
+        # get count
+        set count 1
+        while [ -e "$name/$count" ]
+            set count (math $count + 1)
+        end
+        set count (math $count - 1)
+        set oldcount $count
     end
-    set name "$sub 1-$args"
-
-    mkdir -p $name
 
     for i in $argv/Chapter.cbz
+        [ -e "$i" ] || continue
         set count (math $count + 1)
         mkdir -p $name/$count
         unzip -qd $name/$count $i
     end
 
+    # TODO: update series name   ????
+    # set oldname $name
+    # set name (string replace -- " 1-$oldcount" " 1-$count" "$name")
+    # mv -i "$oldname" "$name"
+
+    printf ' - '
     dir2cbz $name && rm -fr $name/
-    mv -i --no-clobber $name.cbz /sdcard/TachiyomiSY/local/\#lewd/
+    printf "   - %s\n" $argv
+    mv -i $name.cbz $targetdir/
 end
