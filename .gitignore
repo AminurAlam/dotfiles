@@ -82,5 +82,6 @@ rclone.conf
 !/yazi/plugins/coverart.yazi
 !/yazi/plugins/font-cjk.yazi
 !/yazi/plugins/gitinfo.yazi
+!/yazi/plugins/spot*.yazi
 !/yazi/plugins/topaste.yazi
 /yazi/flavors/

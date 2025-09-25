@@ -22,3 +22,6 @@ inactive = { fg = "white", bg = "reset" }
 
 sep_inner = { open = " ", close = " " }
 sep_outer = { open = " ", close = " " }
+
+[spot]
+title = { fg = 'green' }

@@ -38,6 +38,7 @@ plugin.prepend_previewers = [
   { mime = 'audio/mpegurl', run = 'code' },
   { mime = 'audio/*', run = 'coverart' },
   { mime = 'font/*', run = 'font-cjk' },
+  { name = '*.{otf,ttf}', run = 'font-cjk' },
   { name = '**/.git/', run = 'gitinfo' },
   # plugins
   { name = '*.sqlite3', run = 'piper -- sqlite3 "$1" .schema' },
@@ -50,8 +51,25 @@ plugin.prepend_previewers = [
 plugin.prepend_preloaders = [
   { name = '*.!qB', run = 'noop' },
   { name = '/mnt/rclone/**', run = 'noop' },
+  # { mime = 'audio/*', run = 'noop' },
   { name = '*.cb{z,r}', run = 'cbz' },
   { mime = 'font/*', run = 'font-cjk' },
+  { name = '*.{otf,ttf}', run = 'font-cjk' },
+]
+plugin.spotters = [
+  { name = "*/", run = "folder" },
+  # Code
+  { mime = "application/{mbox,javascript,wine-extension-ini}", run = "code" },
+  # Image
+  { mime = "image/{avif,hei?,jxl}", run = "magick" },
+  { mime = "image/svg+xml", run = "svg" },
+  { mime = "image/*", run = "image" },
+
+  { mime = "video/*", run = "spot-video" },
+  # { mime = "text/*", run = "spot-code" },
+  { mime = "audio/*", run = "spot-audio" },
+  { name = "*", run = "spot" },
+  # { name = "*", run = "file" },
 ]
 
 [opener]
@@ -59,6 +77,7 @@ add-sub    = [{ run = ''' echo sub-add "'$0'" | socat - /tmp/mpv.sock ''', desc 
 apkinstall = [{ run = 'adb install "$@"', block = true, orphan = false, desc = ' apk installer', for = 'linux' }]
 dir2cbz    = [{ run = '''fish -c 'dir2cbz $argv' "$@" ''', block = true, desc = ' dir2cbz' }]
 kid3       = [{ run = 'kid3 -- "$@"', orphan = true, for = 'linux', desc = ' kid3' }]
+audacity   = [{ run = 'audacity -- "$@"', orphan = true, for = 'linux', desc = '󰋋 audacity' }]
 picard     = [{ run = 'picard -- "$@"', orphan = true, for = 'linux', desc = '󰫅 picard' }]
 krita      = [{ run = 'krita "$@"', block = false, orphan = true, desc = ' krita', for = 'linux' }]
 swaybg     = [{ run = 'swaybg -m fill -i "$0"', block = false, orphan = true, desc = ' swaybg', for = 'linux' }]

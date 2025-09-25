@@ -1,5 +1,6 @@
 local M = {}
 
+-- TODO: convert to image display
 function M:peek(job)
   local output = Command('mediainfo')
     :arg({
