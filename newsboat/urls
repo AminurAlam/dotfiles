@@ -64,6 +64,7 @@ https://thevaluable.dev/index.xml                                        persona
 https://sizeof.cat/index.xml                                             personal_blog_1
 https://strongly-typed-thoughts.net/blog/feed "~strongly-typed-thoughts" personal_blog_1
 https://kevquirk.com/feed.xml                                            personal_blog_1
+https://mitchellh.com/feed.xml                                           personal_blog_1
 
 https://cheapskatesguide.org/cheapskates-guide-rss-feed.xml "~Cheapskates Guide" personal_blog_1
 https://brainbaking.com/index.xml                                                personal_blog_1
@@ -80,6 +81,8 @@ https://www.troyhunt.com/rss                                                    
 https://jvns.ca/atom.xml                                                         personal_blog_1
 
 https://axlefublr.github.io/rss.xml "~axlefublr"              personal_blog_1
+https://ficd.sh/rss.xml                                       personal_blog_1
+https://jdugan6240.dev/feed.xml                               personal_blog_1
 https://lukesmith.xyz/index.xml "~Luke Smith"                 personal_blog_1
 https://www.amygoodchild.com/blog?format=rss "~Amy Goodchild"     personal_blog_1
 https://dx13.co.uk/index.atom ~dx13                           personal_blog_1
@@ -111,6 +114,8 @@ https://100r.co/links/rss.xml personal_blog
 https://hazelweakly.me/atom.xml personal_blog
 https://esham.io/atom.xml personal_blog
 https://www.harihareswara.net/rss/ personal_blog
+https://maia.crimew.gay/feed.xml personal_blog
+https://oppi.li/index.xml personal_blog
 https://hasbrouck.org/blog/index.xml personal_blog
 https://dotat.at/@/blog.atom personal_blog
 https://cedwards.xyz/index.xml personal_blog
@@ -139,7 +144,6 @@ http://pb.co.za/posts.atom personal_blog
 https://gabrielsimmer.com/rss personal_blog
 https://nanotipsforvim.prose.sh/rss personal_blog
 https://www.supergoodcode.com/feed.xml personal_blog
-https://maia.crimew.gay/feed.xml personal_blog
 https://ntietz.com/atom.xml personal_blog
 https://rubenerd.com/feed/ personal_blog
 https://www.lopcode.com/feed.xml personal_blog
