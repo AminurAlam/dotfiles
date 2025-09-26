@@ -4,7 +4,7 @@ function note -a file -d "notes manager"
     if [ -n "$file" ]
         [ -f "$file" ]
         and $EDITOR "$file"
-        or $EDITOR "$file.note"
+        or $EDITOR "$file.md"
     else
         $EDITOR +"Telescope find_files"
     end

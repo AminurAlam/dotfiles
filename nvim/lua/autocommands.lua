@@ -63,8 +63,9 @@ autocmd('TextYankPost', {
   callback = function() vim.hl.on_yank { higroup = 'IncSearch', timeout = 250 } end,
 })
 
-autocmd('FileType', { pattern = { 'checkhealth' }, command = 'set bh=wipe nobl nonu nornu nowrap' })
-autocmd('FileType', { pattern = { 'qf' }, command = 'nmap <buffer> <cr> <cr>' })
+autocmd('FileType', { pattern = 'checkhealth', command = 'set bh=wipe nobl nonu nornu nowrap' })
+autocmd('FileType', { pattern = 'nvim-pack', command = 'ColorizerDetachFromBuffer' })
+autocmd('FileType', { pattern = 'qf', command = 'nmap <buffer> <cr> <cr>' })
 autocmd('VimLeave', { pattern = '*.tex', command = '!latexmk -c' })
 autocmd('BufEnter', { command = 'set formatoptions-=cro' })
 autocmd('BufLeave', { command = 'set nocursorline' })
