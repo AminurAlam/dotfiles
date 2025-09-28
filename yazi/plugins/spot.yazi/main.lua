@@ -29,11 +29,11 @@ end
 local hash = function(file)
   local h = file
   if h.cha.len > 100000000 then return '' end -- 100M
-  local cmd = Command('sha256sum'):arg { '-b', h.name }
+  local cmd = Command('cksum'):arg { '-acrc', h.name }
 
   local output, err = cmd:output()
   if not output then return '', Err('Failed to start `ffprobe`, error: %s', err) end
-  return output.stdout:sub(1, 16)
+  return output.stdout:gsub('^(%d+ %d+).*', '%1')
 end
 
 ---@param file File
@@ -78,7 +78,7 @@ function M:render_table(job, extra)
     { 'Created', fileTimestamp(job.file, 'btime') },
     { 'Modified', fileTimestamp(job.file, 'mtime') },
     { 'Accessed', fileTimestamp(job.file, 'atime') },
-    -- { 'Hash', hash(job.file) },
+    { 'Hash', hash(job.file) },
   }
 
   -- Extras
