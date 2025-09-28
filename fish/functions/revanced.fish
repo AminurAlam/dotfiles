@@ -1,6 +1,5 @@
 function revanced -d "patch and install apks with revanced" -a apkid
-    set -f update_url
-    switch apkid
+    switch $apkid
         case ch.protonmail.android
         case com.bandcamp.android
         case com.crunchyroll.crunchyroid
@@ -14,7 +13,7 @@ function revanced -d "patch and install apks with revanced" -a apkid
         case com.google.android.apps.youtube.music
             set update_url "https://www.apkmirror.com/apk/google-inc/youtube-music/youtube-music-%s-release/youtube-music-%s-android-apk-download/"
         case com.google.android.youtube
-            set update_url "https://www.apkmirror.com/apk/google-inc/youtube/youtube-%s-release/youtube-%s-android-apk-download/"
+            set update_url "https://www.apkmirror.com/apk/google-inc/youtube/youtube-%s-release/youtube-%s-2-android-apk-download/"
         case com.instagram.android
         case com.instagram.barcelona
         case com.microblink.photomath
