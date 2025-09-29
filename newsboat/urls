@@ -61,7 +61,6 @@ http://rachelbythebay.com/w/atom.xml "~rachel by the bay"               personal
 https://www.schneier.com/feed/atom "~Bruce Schneier"                         personal_blog_1
 https://drewdevault.com/blog/index.xml "~Drew Devault"                   personal_blog_1
 https://thevaluable.dev/index.xml                                        personal_blog_1
-https://sizeof.cat/index.xml                                             personal_blog_1
 https://strongly-typed-thoughts.net/blog/feed "~strongly-typed-thoughts" personal_blog_1
 https://kevquirk.com/feed.xml                                            personal_blog_1
 https://mitchellh.com/feed.xml                                           personal_blog_1
@@ -159,9 +158,7 @@ https://twi.github.io/blog/atom.xml personal_blog
 https://vivekhaldar.com/index.xml personal_blog
 https://www.anildash.com/feed.xml personal_blog
 
-# Xenodium
 https://xenodium.com/rss.xml
-# EmNudge Reads
 https://emnudge.dev/reads.xml
 # LWN
 https://lwn.net/headlines/rss
@@ -179,136 +176,3 @@ https://www.oglaf.com/feeds/rss/
 https://www.smbc-comics.com/comic/rss
 # The Oatmeal
 https://theoatmeal.com/feed/rss
-
-### blogroll sizeof(cat)
-# https://yeokhengmeng.com/index.xml Yeo Kheng Meng
-# https://www.sevarg.net/feed.xml Russell Graves
-# https://www.steelsnowflake.org/blog-feed.xml Paul D. Wilke
-# https://feeds.feedburner.com/AnnaHavron Anna Havron
-# https://jatan.space/rss/ Jatan Mehta
-# https://kzimmermann.0x.no/articles/atom.xml Klaus Zimmermann
-# https://kheohyeewei.com/feed/feed.xml Kheoh Yee Wei
-# https://seandietrich.com/feed/ Sean Dietrich
-# https://www.copetti.org/index.xml Rodrigo Copetti
-# https://garden.bradwoods.io/rss.xml Brad Woods
-# https://chenhuijing.com/feed.xml Chen Hui Jing
-# https://conway.scot/atom.xml Scott Conway
-# https://drwho.virtadpt.net/rss/feed.xml Bryce Alexander Lynch
-# https://evgenykuznetsov.org/index.xml Evgeny Kuznetsov
-# https://nagekar.com/?feed=rss2 Abhishek Nagekar
-# https://zerokspot.com/index.xml Horst Gutmann
-# https://cyan.garamon.de/index.xml Randy Sommerfeld
-# https://blog.trueelena.org/atom.xml Elena Grandi
-# https://www.hillelwayne.com/index.xml Hillel Wayne
-# https://monospacedmonologues.com/index.xml Samir Talwar
-# https://koldfront.dk/atom.xml Adam Sjøgren
-# https://www.filfre.net/feed/rss/ Jimmy Maher
-# https://journal.paoloamoroso.com/feed/ Paolo Amoroso
-# https://www.matuzo.at/feed.xml Manuel Matuzović
-# https://ciechanow.ski/atom.xml Bartosz Ciechanowski
-# http://boginjr.com/feed/ Jozef Bogin
-# http://www.loper-os.org/?feed=rss2 Stanislav Datskovskiy
-# https://blog.taoetc.org/atom.xml Beto Dealmeida
-# https://iridakos.com/feed.xml Lazarus Lazaridis
-# https://blog.sahil.world/rss.xml Sahil Kokamkar
-# https://stegard.net/feed/ Øyvind Stegard
-# https://youssefy.com/index.xml Youssef Hesham
-# https://davquar.it/index.xml Davide Quaranta
-# https://jaycarlson.net/feed/ Jay Carlson
-# https://ondrovo.com/index.xml Ondřej Hruška
-# https://www.andrewshay.me/feed.xml Andrew Shay
-# https://electro.pizza/feed.xml Ryan Oles
-# https://rishikeshs.com/feed/ Rishikesh Sreehari
-# https://vit.baisa.cz/index.xml Vít Baisa
-# https://wolfmd.me/feed.xml Michael Wolf
-# https://mariovillalobos.com/feed.xml Mario Villalobos
-# https://yiming.dev/rss.xml Yiming Chen
-# https://j3s.sh/feed.atom Jes Olson
-# https://kandr3s.co/feeds Andrés Cárdenas
-# https://ploum.net/atom_en.xml Lionel Dricot
-# https://derekkedziora.com/rss Derek Kedziora
-# https://0xadada.pub/rss.xml Ron Adams
-# https://fogknife.com/atom.xml Jason McIntosh
-# https://membarrier.wordpress.com/feed/ Elad Lahav
-# https://jcs.org/rss Joshua Stein
-# https://ruffell.nz/feed.xml Matthew Ruffell
-# https://worthdoingbadly.com/feed.xml Zhuowei Zhang
-# http://3.14.by/en/rss Mikhail Svarichevsky
-# https://petermolnar.net/feed/index.xml Peter Molnar
-# https://gwern.substack.com/feed Gwern Branwen
-# https://ounapuu.ee/index.xml Herman Õunapuu
-# https://manuelmoreale.com/feed/rss Manuel Moreale
-# https://www.preining.info/blog/feed/ Norbert Preining
-# https://davidyat.es/rss David Yates
-# https://sanlive.com/feed.xml Sandy Lim
-# https://alicja.space/feed.xml Alicja Musiał
-# http://www.chivanet.org/~jpw/rss.xml John P. Willis
-# https://joeyh.name/blog/index.rss Joey Hess
-# https://www.datagubbe.se/atom.xml Carl Svensson
-# https://schroer.ca/atom.xml Dominick Schroer
-# https://vaghetti.dev/index.xml Douglas Vaghetti
-# https://www.charlieharrington.com/rss.xml Charlie Harrington
-# https://taravancil.com/feed/feed.xml Tara Vancil
-# https://pluralistic.net/feed/ Cory Doctorow
-# https://blog.mro.name/index.xml Marcus Rohrmoser
-# https://nchrs.xyz/links/rss.xml Clemens Scott
-# http://www.ampelofilosofies.gr/feed.xml Vassilis Rizopoulos
-# https://www.windytan.com/feeds/posts/default Oona Räisänen
-# https://apenwarr.ca/log/rss.php Avery Pennarum
-# https://sagrista.info/index.xml Toni Sagristà Sellés
-# https://ravidwivedi.in/posts/index.xml Ravi Dwivedi
-# https://www.fsfla.org/ikiwiki/blogs/lxo/index.en.rss Alexandre Oliva
-# https://fabiensanglard.net/rss.xml Fabien Sanglard
-# https://www.bunniestudios.com/blog/feed/ Andrew Huang
-# https://chrisx.xyz/blog/index.xml Chris Xiao
-# http://bactra.org/weblog/index.rss Cosma Shalizi
-# https://neustadt.fr/rss.xml Parimal Satyal
-# https://www.geeklan.co.uk/?feed=rss2 Sevan Janiyan
-# https://snarky.ca/rss/ Brett Cannon
-# http://antirez.com/rss Salvatore Sanfillipo
-# https://ellie.wtf/index.xml Ellie Huxtable
-# https://busterbenson.com/atom.xml Buster Benson
-# https://www.xythobuz.de/rss.xml Thomas Buck
-# https://jmmv.dev/feed.xml Julio Merino
-# https://blog.haschek.at/rss.xml Christian Haschek
-# https://michael.stapelberg.ch/feed.xml Michael Stapelberg
-# https://mary.codes/rss.xml Mary Knize
-# https://monkemanx.github.io/index.xml monkemanx
-# https://box.matto.nl/index.rss box.matto.nl
-# https://commodorian.org/rss.xml Commodorian
-# https://voicedrew.xyz/rss.xml VoiceDrew
-# https://www.cozynet.org/feed/feed.xml CozyNet
-# https://suragu.net/blog/rss.cgi Suragu
-# https://blog.tinfoil-hat.net/index.xml Tinfoil Hat
-# https://www.s-config.com/feed/ S-Config
-# https://0x19.org/posts/feed.php 0x19
-# https://tilde.team/~zinricky/atom.xml zinricky
-# https://bsandro.tech/posts/index.xml bsandro.tech
-# https://whitevhs.xyz/articles/atom.xml Hayden White
-# https://risingthumb.xyz/Writing/Blog/index.rss Aaron Leonard
-# https://jasco.website/jasco.rss Jasco
-# https://sizeof.life/index.xml sizeof(life)
-# https://triapul.cz/feed/english.xml Triapul
-# https://wolfmd.me/feed.xml Michael Wolf
-# https://articexploit.xyz/blog/rss.xml The Arcade
-# https://solar.lowtechmagazine.com/feeds Low Tech Magazine
-# http://cheapskatesguide.org/cheapskates-guide-rss-feed.xml Cheapskate's Guide
-# https://wearethemutants.com/feed/ We are the Mutants
-# https://reallifemag.com/feed/ Real Life Magazine
-# https://n-o-d-e.net/rss/rss.xml n-o-d-e
-# https://www.atomic14.com/feed.xml atomic14
-# https://www.briandorey.com/rss.xml Brian Dorey
-# https://ripitapart.com/feed/ Rip It Apart
-# https://blondihacks.com/feed/ Blondihacks
-# https://zeptobars.com/en/rss Zeptobars
-# https://www.righto.com/feeds/posts/default?alt=rss Ken Shirriff
-# https://viewpointmag.com/feed/ Viewpoint Magazine
-# https://hearthwilde.com/feed/ HearthWilde
-# https://themicrogardener.com/feed/ The Micro Gardener
-# https://howtosaveseeds.com/feed/ How to Save Seeds
-# https://roadtothesea.com/feed/ Road to the Sea
-# https://workingbyhand.wordpress.com/feed/ Working by Hand
-# https://www.anoffgridlife.com/feed/ An Offgrid Life
-# https://cyberdeck.cafe/mix?format=rss Cyberdeck Cafe
-# https://opacity.ru/rss/ Opacity
-# https://liliputing.com/feed/ Liliputing
