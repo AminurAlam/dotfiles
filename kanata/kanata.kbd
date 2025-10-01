@@ -4,7 +4,9 @@
     process-unmapped-keys yes)
 (defvar
     tt 200
-    ht 250)
+    ht 250
+    ntt 100
+    nht 150)
 
 (defsrc
   esc
@@ -26,23 +28,23 @@
    cap esc
 )
 (defalias ;; num row
-   1 (tap-hold-release $tt $ht 1 S-1)
-   2 (tap-hold-release $tt $ht 2 S-2)
-   3 (tap-hold-release $tt $ht 3 S-3)
-   4 (tap-hold-release $tt $ht 4 S-4)
-   5 (tap-hold-release $tt $ht 5 S-5)
-   6 (tap-hold-release $tt $ht 6 S-6)
-   7 (tap-hold-release $tt $ht 7 S-7)
-   8 (tap-hold-release $tt $ht 8 S-8)
-   9 (tap-hold-release $tt $ht 9 S-9)
-   0 (tap-hold-release $tt $ht 0 S-0)
-   - (tap-hold-release $tt $ht - S--)
-   = (tap-hold-release $tt $ht = S-=)
+   1 (tap-hold-release $ntt $nht 1 S-1)
+   2 (tap-hold-release $ntt $nht 2 S-2)
+   3 (tap-hold-release $ntt $nht 3 S-3)
+   4 (tap-hold-release $ntt $nht 4 S-4)
+   5 (tap-hold-release $ntt $nht 5 S-5)
+   6 (tap-hold-release $ntt $nht 6 S-6)
+   7 (tap-hold-release $ntt $nht 7 S-7)
+   8 (tap-hold-release $ntt $nht 8 S-8)
+   9 (tap-hold-release $ntt $nht 9 S-9)
+   0 (tap-hold-release $ntt $nht 0 S-0)
+   - (tap-hold-release $ntt $nht - S--)
+   = (tap-hold-release $ntt $nht = S-=)
 )
 (defalias ;; top row
-   lb (tap-hold-release $tt $ht [ S-[)
-   rb (tap-hold-release $tt $ht ] S-])
-   bs (tap-hold-release $tt $ht \ S-\ )
+   lb (tap-hold-release $ntt $nht [ S-[)
+   rb (tap-hold-release $ntt $nht ] S-])
+   bs (tap-hold-release $ntt $nht \ S-\ )
 )
 (defalias ;; mid row
    a (tap-hold $tt $ht a lalt)
