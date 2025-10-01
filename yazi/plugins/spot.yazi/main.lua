@@ -17,15 +17,6 @@ end
 
 ---@param file File
 ---@return string
-local file_size_and_folder_childs = function(file)
-  local h = file
-  if not h or h.cha.is_link then return '' end
-
-  return h.cha.len and ya.readable_size(h.cha.len) or ''
-end
-
----@param file File
----@return string
 local hash = function(file)
   local h = file
   if h.cha.len > 100000000 then return '' end -- 100M
@@ -73,7 +64,6 @@ function M:render_table(job, extra)
     title = 'Metadata',
     { 'Mimetype', job.mime },
     { 'Mode', permission(job.file) },
-    -- { 'Size', file_size_and_folder_childs(job.file) },
     -- TODO: relative
     { 'Created', fileTimestamp(job.file, 'btime') },
     { 'Modified', fileTimestamp(job.file, 'mtime') },

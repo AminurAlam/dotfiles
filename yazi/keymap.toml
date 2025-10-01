@@ -18,7 +18,8 @@ mgr.prepend_keymap = [
   # plugins
   { on = ["s", "t"], run = "plugin toggle-pane min-preview" },
   { on = ["s", "T"], run = "plugin toggle-pane max-preview" },
-  { on = "f", run = "plugin jump-to-char", desc = "Jump to char" },
+  # { on = "f", run = "plugin jump-to-char", desc = "Jump to char" },
+  { on = "f", run = "plugin fchar", desc = "Jump to char" },
   { on = "F", run = "plugin fzf", desc = "fzf search" },
   { on = "z", run = "plugin zoxide", desc = "Jump to a directory using zoxide" },
   { on = "l", run = "plugin smart-enter" },

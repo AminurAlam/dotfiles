@@ -51,7 +51,7 @@ plugin.prepend_previewers = [
 plugin.prepend_preloaders = [
   { name = '*.!qB', run = 'noop' },
   { name = '/mnt/rclone/**', run = 'noop' },
-  # { mime = 'audio/*', run = 'noop' },
+  { mime = 'audio/*', run = 'coverart' },
   { name = '*.cb{z,r}', run = 'cbz' },
   { mime = 'font/*', run = 'font-cjk' },
   { name = '*.{otf,ttf}', run = 'font-cjk' },
