@@ -16,7 +16,6 @@ spot.prepend_keymap  = [{ on = "q", run = "close", desc = "Close the spot" }]
 
 mgr.prepend_keymap = [
   # plugins
-  { on = ["s", "w"], run = "plugin eza-preview", desc = "Toggle tree/list dir preview" },
   { on = ["s", "t"], run = "plugin toggle-pane min-preview" },
   { on = ["s", "T"], run = "plugin toggle-pane max-preview" },
   { on = "f", run = "plugin jump-to-char", desc = "Jump to char" },
