@@ -9,6 +9,6 @@ function passh -d "patch from ssh"
 
     for file in (ssh phone git -C \~/repos/dotfiles status -s | rg --replace '' '^\?\? ')
         [ -e "~/repos/dotfiles/$file" ]
-        or scp "phone:~/repos/dotfiles/$file" ~/repos/dotfiles/$file
+        or scp "brick:~/repos/dotfiles/$file" ~/repos/dotfiles/$file
     end
 end

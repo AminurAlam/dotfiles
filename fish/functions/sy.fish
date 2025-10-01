@@ -2,7 +2,7 @@ function sy -d "sync files between phone and pc"
     set -q TERMUX_VERSION && return 1
 
     set ip (route -n | awk '/^[0.]+/{print $2}' | rg -v '127\.0\.0\.1' | uniq | head -n1)
-    [ -n "$ip" ] && sed -r -i "s/192\.168\.[0-9]+\.[0-9]+\$/$ip/" ~/.ssh/config || return 192
+    [ -n "$ip" ] && sed -r -i "s/192\.168\.[0-9]+\.[0-9]+ #brick\$/$ip #brick/" ~/.ssh/config || return 192
 
     set send true
     set recv true
@@ -26,25 +26,25 @@ function sy -d "sync files between phone and pc"
 
     begin
         printf "=== PICTURES ===\n"
-        $send && rsync $comm ~/Pictures/ phone:/sdcard/Pictures/ --exclude={Camera,Komikku,WhatsApp Images}
-        $recv && rsync $comm phone:/sdcard/Pictures/ ~/Pictures/
-        $recv && rsync $comm phone:/sdcard/{DCIM/Camera,Pictures/Komikku,Android/media/com.whatsapp/WhatsApp/Media/WhatsApp Images} ~/Pictures/ --delete
+        $send && rsync $comm ~/Pictures/ brick:/sdcard/Pictures/ --exclude={Camera,Komikku,WhatsApp Images}
+        $recv && rsync $comm brick:/sdcard/Pictures/ ~/Pictures/
+        $recv && rsync $comm brick:/sdcard/{DCIM/Camera,Pictures/Komikku,Android/media/com.whatsapp/WhatsApp/Media/WhatsApp Images} ~/Pictures/ --delete
 
         printf "=== DOCUMENTS ===\n"
-        $recv && rsync $comm phone:/sdcard/Documents/ ~/Documents/
-        $send && rsync $comm ~/Documents/ phone:/sdcard/Documents/
+        $recv && rsync $comm brick:/sdcard/Documents/ ~/Documents/
+        $send && rsync $comm ~/Documents/ brick:/sdcard/Documents/
 
         printf "=== MUSIC ===\n"
-        $recv && rsync $comm phone:/sdcard/Music/ ~/Music/ --delete
+        $recv && rsync $comm brick:/sdcard/Music/ ~/Music/ --delete
 
         printf "=== MANGA ===\n"
-        $recv && rsync $comm phone:/sdcard/TachiyomiSY/local/\#lewd/ ~/Downloads/manga/\#lewd/ --exclude=@$artists --delete
-        $recv && rsync $comm phone:/sdcard/TachiyomiSY/local/@$artists ~/Downloads/manga/\#lewd/ --delete
+        $recv && rsync $comm brick:/sdcard/TachiyomiSY/local/\#lewd/ ~/Downloads/manga/\#lewd/ --exclude=@$artists --delete
+        $recv && rsync $comm brick:/sdcard/TachiyomiSY/local/@$artists ~/Downloads/manga/\#lewd/ --delete
 
         printf "=== MISC ===\n"
-        $send && rsync $comm ~/Downloads/main/arch.kdbx phone:/sdcard/main/arch.kdbx
-        $recv && rsync $comm phone:/sdcard/main/android.kdbx ~/Downloads/main/android.kdbx
-        $send && rsync $comm ~/.local/share/newsboat/cache.db phone:~/.local/share/newsboat/cache.db
-        $recv && rsync $comm phone:/sdcard/main/backup/ ~/Downloads/main/backup/
+        $send && rsync $comm ~/Downloads/main/arch.kdbx brick:/sdcard/main/arch.kdbx
+        $recv && rsync $comm brick:/sdcard/main/android.kdbx ~/Downloads/main/android.kdbx
+        $send && rsync $comm ~/.local/share/newsboat/cache.db brick:~/.local/share/newsboat/cache.db
+        $recv && rsync $comm brick:/sdcard/main/backup/ ~/Downloads/main/backup/
     end | rg -v '/$'
 end

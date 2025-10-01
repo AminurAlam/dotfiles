@@ -82,7 +82,7 @@ picard     = [{ run = 'picard -- "$@"', orphan = true, for = 'linux', desc = '�
 krita      = [{ run = 'krita "$@"', block = false, orphan = true, desc = ' krita', for = 'linux' }]
 swaybg     = [{ run = 'swaybg -m fill -i "$0"', block = false, orphan = true, desc = ' swaybg', for = 'linux' }]
 swayimg    = [{ run = 'swayimg "$@"', block = false, orphan = true, desc = ' swayimg', for = 'linux' }]
-rsync      = [{ run = 'rsync -Pha -- "$1" phone:/sdcard/Download/', block = false, desc = ' Send to phone', for = 'linux' }]
+rsync      = [{ run = 'rsync -Pha -- "$1" brick:/sdcard/Download/', block = false, desc = ' Send to phone', for = 'linux' }]
 wine       = [{ run = 'wine "$@"', block = false, orphan = true, desc = '󰡶 wine', for = 'linux' }]
 zathura    = [{ run = 'zathura "$@"', block = false, orphan = true, desc = ' zathura', for = 'linux' }]
 # defaults
@@ -120,7 +120,7 @@ title_format   = 'Yazi: {cwd}'
 wrap            = 'no'
 tab_size        = 2
 max_width       = 1500
-max_height      = 980
+max_height      = 1500
 cache_dir       = ''
 image_delay     = 30
 image_filter    = 'triangle'

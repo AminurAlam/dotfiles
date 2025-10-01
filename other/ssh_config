@@ -1,6 +1,6 @@
-Host phone
+Host brick
     User user
-    Hostname 192.168.0.0
+    Hostname 192.168.0.0 #brick
     Port 8022
     IdentityFile ${HOME}/.ssh/ssh_ed25519
     IdentitiesOnly yes
@@ -11,9 +11,9 @@ Host phone
     ForwardX11 no
     AddressFamily inet
 
-Host phone-tmux
+Host tmux
     User user
-    Hostname 192.168.0.0
+    Hostname 192.168.0.0 #brick
     Port 8022
     IdentityFile ${HOME}/.ssh/ssh_ed25519
     IdentitiesOnly yes
@@ -21,6 +21,32 @@ Host phone-tmux
     RequestTTY yes
     ForwardX11 no
     RemoteCommand tmux new -A -s ssh
+    AddressFamily inet
+
+Host slab
+    User user
+    Hostname 192.168.0.0 #slab
+    Port 8022
+    IdentityFile ${HOME}/.ssh/ssh_ed25519
+    IdentitiesOnly yes
+    CheckHostIP no
+    StrictHostKeyChecking no
+
+    HashKnownHosts no
+    ForwardX11 no
+    AddressFamily inet
+
+Host paper
+    User user
+    Hostname 192.168.0.0 #paper
+    Port 8022
+    IdentityFile ${HOME}/.ssh/ssh_ed25519
+    IdentitiesOnly yes
+    CheckHostIP no
+    StrictHostKeyChecking no
+
+    HashKnownHosts no
+    ForwardX11 no
     AddressFamily inet
 
 Host github.com
