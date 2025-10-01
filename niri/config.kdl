@@ -1,8 +1,6 @@
 // "/-" comments out the following node.
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Introduction
 
-spawn-at-startup "waybar"
-spawn-at-startup "xwayland-satellite"
 spawn-at-startup "swaybg" "-m" "fill" "-i" "Pictures/desu/126278795_p0.jpg"
 screenshot-path "~/Pictures/Screenshots/Screenshot_%Y%m%d_%H%M%S_grim.png"
 prefer-no-csd
@@ -136,9 +134,9 @@ binds {
     Mod+Q repeat=false { close-window; }
     Mod+W repeat=false { spawn "fuzzel"; }
     Mod+E repeat=false { spawn "alacritty" "-e" "fish" "-C" "y --client-id=48937"; }
-    Mod+U repeat=false { close-window; }
-    Mod+I repeat=false { spawn "fuzzel"; }
-    Mod+O repeat=false { spawn "alacritty" "-e" "fish" "-C" "y --client-id=48937"; }
+    // Mod+U repeat=false { close-window; }
+    // Mod+I repeat=false { spawn "fuzzel"; }
+    // Mod+O repeat=false { spawn "alacritty" "-e" "fish" "-C" "y --client-id=48937"; }
 
     Mod+A repeat=false { spawn "alacritty"; }
     Mod+S repeat=false { spawn "librewolf"; }
@@ -161,11 +159,14 @@ binds {
     XF86AudioMicMute repeat=false { spawn "ctl" "mic"; }
     XF86MonBrightnessDown         { spawn "ctl" "lum" "-"; }
     XF86MonBrightnessUp           { spawn "ctl" "lum" "+"; }
+    // Help                          { spawn "ctl" "lim"; } // TODO: run with sudo
 
     Mod+C       { spawn "ctl" "lum" "-"; }
     Mod+Shift+C { spawn "ctl" "lum" "+"; }
     Mod+V       { spawn "ctl" "vol" "-"; }
     Mod+Shift+V { spawn "ctl" "vol" "+"; }
+    Mod+U       { spawn "ctl" "pow" "down"; }
+    Mod+Shift+U { spawn "ctl" "pow" "up"; }
 
     // COL
     Mod+H { focus-column-left; }

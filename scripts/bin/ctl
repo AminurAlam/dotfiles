@@ -1,4 +1,4 @@
-#!/usr/bin/env fish
+#!/usr/bin/fish --no-config
 
 switch $argv[1]
     case vol
@@ -30,4 +30,21 @@ switch $argv[1]
         else
             grim -g (slurp) ~/Pictures/Screenshots/$filename && notify-send "$filename taken"
         end
+
+    case pow
+        set current (powerprofilesctl get)
+        if [ "$argv[2]" = up -a "$current" = balanced ]
+            powerprofilesctl set performance
+        else if [ "$argv[2]" = up -a "$current" = power-saver ] \
+                || [ "$argv[2]" = down -a "$current" = performance ]
+            powerprofilesctl set balanced
+        else if [ "$argv[2]" = down -a "$current" = balanced ]
+            powerprofilesctl set power-saver
+        end
+    case lim
+        set file /sys/bus/platform/drivers/ideapad_acpi/VPC2004:00/conservation_mode
+        test -w $file && echo $(math bitxor 1,(cat $file)) >$file
+        [ "$(cat $file)" = 1 ]
+        and notify-send -h string:x-canonical-private-synchronous:limit -t 500 " BATTERY LIMITED"
+        or notify-send -h string:x-canonical-private-synchronous:limit -t 500 " BATTERY UNLOCKED"
 end

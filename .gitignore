@@ -76,6 +76,7 @@ rclone.conf
 /streamrip/*downloads.db
 
 /systemd/user/default.target.wants
+/systemd/user/graphical-session.target.wants
 
 /yazi/plugins/*
 !/yazi/plugins/cbz.yazi
