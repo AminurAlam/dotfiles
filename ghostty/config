@@ -1,6 +1,6 @@
 # https://ghostty.org/docs/config/reference
 
-theme = tokyonight-storm
+theme = TokyoNight Storm
 background-opacity = 0.95
 background-blur = true
 window-padding-balance = true

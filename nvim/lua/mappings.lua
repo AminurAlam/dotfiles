@@ -103,8 +103,8 @@ vim.cmd 'cmap <c-k> <up>'
 
 if fn.has('termux') == 1 and fn.has('nvim-0.10.0') == 1 then
   map { 'ca' }('vq', 'wq') -- dvorak
-  map { 'ca' }('qn', 'q!') -- qwert
 end
+map { 'ca' }('msg', 'messages')
 
 -- macros
 macro('m', [[mmA;`m]]) -- put ; at end of statements

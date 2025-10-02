@@ -114,11 +114,6 @@ window-rule { // fullscreen
     default-column-width { proportion 1.0; }
 }
 
-window-rule { // floating pip
-    match app-id="librewolf$" title="^Picture-in-Picture$"
-    open-floating true
-}
-
 window-rule { // fullscreen glut
     match app-id="^graphics$"
     default-column-width { proportion 1.0; }

@@ -34,11 +34,14 @@ switch $argv[1]
     case pow
         set current (powerprofilesctl get)
         if [ "$argv[2]" = up -a "$current" = balanced ]
+            notify-send -h string:x-canonical-private-synchronous:power -t 500 "PERFORMANCE  "
             powerprofilesctl set performance
         else if [ "$argv[2]" = up -a "$current" = power-saver ] \
                 || [ "$argv[2]" = down -a "$current" = performance ]
+            notify-send -h string:x-canonical-private-synchronous:power -t 500 "BALANCED  "
             powerprofilesctl set balanced
         else if [ "$argv[2]" = down -a "$current" = balanced ]
+            notify-send -h string:x-canonical-private-synchronous:power -t 500 "POWER-SAVER  "
             powerprofilesctl set power-saver
         end
     case lim
