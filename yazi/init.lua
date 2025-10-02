@@ -69,11 +69,37 @@ end
 
 -- start with cut if xdg-desktop-portal-termfilechooser
 require('topaste'):setup {}
+-- require('hover-after-moved'):setup()
 
 -- start with zoxide if launching as fileManager
 if ya.id('app').value == 48937 then ya.emit('plugin', { 'zoxide' }) end
 
 -- plugins
+require('fchar').setup({
+  aliases = {
+    a = 'あア',
+    b = 'ばびぶべぼバビブベボ',
+    c = 'ちチ',
+    d = 'だぢづでどダヂヅデド',
+    e = 'えエ',
+    g = 'がぎぐげごガギグゲゴ',
+    h = 'はひふへほハヒフヘホ',
+    i = 'いイ',
+    j = 'じジ',
+    k = 'かきくけこカキクケコ',
+    m = 'まみむめもマミムメモ',
+    n = 'なにぬねのんナニヌネノン',
+    o = 'おオ',
+    p = 'ぱぴぷぺぽパピプペポ',
+    r = 'らりるれろラリルレロ',
+    s = 'さしすせそサシスセソ',
+    t = 'たつてとタツテト',
+    u = 'うウ',
+    w = 'わをワヲ',
+    y = 'やゆよヤユヨ',
+    z = 'ざずぜぞザズゼゾ',
+  },
+})
 require('pref-by-location'):setup {
   disable_fallback_preference = false,
   prefs = {

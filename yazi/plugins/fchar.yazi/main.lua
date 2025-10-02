@@ -3,7 +3,6 @@ local changed = ya.sync(function(st, new)
   st.last = new
   return b or not cx.active.finder
 end)
-
 local matched = ya.sync(function()
   for _, file in ipairs(cx.active.current.files) do
     local highlights = file:highlights()
@@ -11,34 +10,31 @@ local matched = ya.sync(function()
   end
   return false
 end)
+local set_config = ya.sync(function(st, opts) st.opts = opts end)
+local get_config = ya.sync(
+  function(st)
+    return st.opts
+      or {
+        insensitive = true,
+        keep_searching = { enable = false, limit = 10 },
+        aliases = {},
+      }
+  end
+)
+local function tbl_deep_extend(default, config)
+  if type(config) ~= 'table' then return config end
 
--- TODO: backwards on uppercase
--- TODO: setup for aliases
+  default = (type(default) == 'table') and default or {}
+  for key, _ in pairs(config) do
+    default[key] = tbl_deep_extend(default[key], config[key])
+  end
+
+  return default
+end
+
 return {
+  setup = function(config) set_config(tbl_deep_extend(get_config(), config)) end,
   entry = function()
-    local aliases = {
-      a = 'あア',
-      b = 'ばびぶべぼバビブベボ',
-      c = 'ちチ',
-      d = 'だぢづでどダヂヅデド',
-      e = 'えエ',
-      g = 'がぎぐげごガギグゲゴ',
-      h = 'はひふへほハヒフヘホ',
-      i = 'いイ',
-      j = 'じジ',
-      k = 'かきくけこカキクケコ',
-      m = 'まみむめもマミムメモ',
-      n = 'なにぬねのんナニヌネノン',
-      o = 'おオ',
-      p = 'ぱぴぷぺぽパピプペポ',
-      r = 'らりるれろラリルレロ',
-      s = 'さしすせそサシスセソ',
-      t = 'たつてとタツテト',
-      u = 'うウ',
-      w = 'わをワヲ',
-      y = 'やゆよヤユヨ',
-      z = 'ざずぜぞザズゼゾ',
-    }
     local cands = {
       { on = '0' },
       { on = '1' },
@@ -78,22 +74,23 @@ return {
       { on = 'y' },
       { on = 'z' },
     }
+    local opts = get_config()
 
     local idx = ya.which { cands = cands, silent = true }
     if not idx then return end
 
-    local kw = '[' .. cands[idx].on .. (aliases[cands[idx].on] or '') .. ']'
+    local kw = '[' .. cands[idx].on .. (opts.aliases[cands[idx].on] or '') .. ']'
     local count = 0
     if changed(kw) then
-      ya.emit('find_do', { [[^\W?]] .. string.rep('.', count) .. kw, insensitive = true })
-      while not matched() and count < 10 do
+      ya.emit(
+        'find_do',
+        { [[^\W?]] .. string.rep('.', count) .. kw, insensitive = opts.insensitive }
+      )
+      while opts.keep_searching.enable and count < opts.keep_searching.limit and not matched() do
         count = count + 1
-        ya.emit('find_do', { [[^\.?]] .. string.rep('.', count) .. kw })
+        ya.emit('find_do', { [[^\.?]] .. string.rep('.', count) .. kw, insensitive = true })
       end
     else
-      -- TODO: incremental search
-      -- count = count + 1
-      -- ya.emit('find_do', { [[^\.?]] .. string.rep('.', count) .. kw })
       ya.emit('find_arrow', {})
     end
   end,

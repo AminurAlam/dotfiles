@@ -23,6 +23,11 @@ use = "yazi-rs/plugins:piper"
 rev = "d1c8baa"
 hash = "a20327710c3a8d37ee0972128dcb6a31"
 
+[[plugin.deps]]
+use = "boydaihungst/hover-after-moved"
+rev = "76e496c"
+hash = "e5ed8cee5509f89fd8d8f3e53c6559fc"
+
 [[flavor.deps]]
 use = "BennyOe/tokyo-night"
 rev = "5f56364"
