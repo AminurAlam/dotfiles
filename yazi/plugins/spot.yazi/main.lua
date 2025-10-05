@@ -1,6 +1,8 @@
 local M = {}
 
-local function permission(file)
+---@param file File
+---@return string
+local permission = function(file)
   local h = file
   if not h then return '' end
 
@@ -30,7 +32,7 @@ end
 ---@param file File
 ---@param type "mtime" | "atime" | "btime"
 ---@return string
-local function fileTimestamp(file, type)
+local fileTimestamp = function(file, type)
   local h = file
   if not h or h.cha.is_link then return '' end
   local time = math.floor(h.cha[type] or 0)
