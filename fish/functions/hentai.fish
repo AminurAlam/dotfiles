@@ -1,11 +1,9 @@
-function hentai
-    : "USAGE:
+function hentai: "USAGE:
     hentai
     hentai [dir [dir...]]
     "
     set mangadir /sdcard/TachiyomiSY
-    # set targetdir "$mangadir/local/#lewd"
-    set targetdir "$mangadir/downloads/HentaiNexus (EN)/#processed"
+    set targetdir "$mangadir/local/#lewd"
 
     set -q TERMUX_VERSION || return 1
     [ -d "$mangadir" ] || return 1
@@ -38,12 +36,12 @@ function hentai
     [ -z "$argv[1]" ] && return 0
     printf "working on args...\n"
     cd "$targetdir"
-    set name (fd -tf -d1 -ecbz . | fzf)
+    set name (fd -tf -d1 -ecbz . | fzf) # TODO: preview contents
     cd "$mangadir/downloads/HentaiNexus (EN)/" || return 3
 
     # TODO: get artist name from ComicInfo.xml
     # TODO: ask author name
-    if [ -z "$name" ]
+    if [ -z "$name" ] # creating new cbz
         # get biggest common substring
         for n in (seq (string length $argv[1]) -1 1)
             set sub (string trim (string sub -l $n $argv[1]))
@@ -58,13 +56,10 @@ function hentai
         end
 
         set name (string replace -a -- / '' "$name")
-
         mkdir -p $name
-
-    else
+    else # adding to cbz
         set name (path change-extension '' "$name")
         # printf "adding to `%s` ...\n" $name
-
         # unzip $name
         unzip -qd "$name" "$targetdir/$name.cbz"
 
