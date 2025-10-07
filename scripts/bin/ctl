@@ -46,7 +46,8 @@ switch $argv[1]
         end
     case lim
         set file /sys/bus/platform/drivers/ideapad_acpi/VPC2004:00/conservation_mode
-        test -w $file && echo $(math bitxor 1,(cat $file)) >$file
+        set toggle $(math bitxor 1,(cat $file))
+        sudo su -c "echo $toggle >$file"
         [ "$(cat $file)" = 1 ]
         and notify-send -h string:x-canonical-private-synchronous:limit -t 500 " BATTERY LIMITED"
         or notify-send -h string:x-canonical-private-synchronous:limit -t 500 " BATTERY UNLOCKED"

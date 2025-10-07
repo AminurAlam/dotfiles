@@ -1,7 +1,7 @@
 // "/-" comments out the following node.
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Introduction
 
-spawn-at-startup "swaybg" "-m" "fill" "-i" "Pictures/desu/126278795_p0.jpg"
+spawn-at-startup "swaybg" "-m" "fill" "-i" "Pictures/desu/135499121_p0.jpg"
 screenshot-path "~/Pictures/Screenshots/Screenshot_%Y%m%d_%H%M%S_grim.png"
 prefer-no-csd
 
@@ -122,6 +122,22 @@ window-rule { // fullscreen glut
 window-rule { // *
     geometry-corner-radius 12
     clip-to-geometry true
+}
+
+window-rule { // unfocused
+    match is-focused=false
+
+    draw-border-with-background false
+    opacity 0.93
+    /-shadow {
+        on
+        softness 40
+        spread 5
+        offset x=0 y=5
+        draw-behind-window true
+        color "#00000064"
+        inactive-color "#00000064"
+    }
 }
 
 binds {
