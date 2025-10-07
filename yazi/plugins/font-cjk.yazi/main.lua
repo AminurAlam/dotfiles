@@ -1,4 +1,7 @@
+local M = {}
+
 local set_config = ya.sync(function(st, opts) st.opts = opts end)
+
 local get_config = ya.sync(
   function(st)
     return st.opts
@@ -9,20 +12,19 @@ local get_config = ya.sync(
       }
   end
 )
-local function tbl_deep_extend(default, config)
-  if type(config) ~= 'table' then return config end
 
-  default = (type(default) == 'table') and default or {}
-  for key, _ in pairs(config) do
-    default[key] = tbl_deep_extend(default[key], config[key])
+local function tbl_strict_extend(default, config)
+  if type(default) ~= type(config) then return default end
+  if type(default) ~= 'table' then return config or default end
+
+  for key, _ in pairs(default) do
+    default[key] = tbl_strict_extend(default[key], config[key])
   end
 
   return default
 end
 
-local M = {}
-
-function M:setup(config) set_config(tbl_deep_extend(get_config(), config)) end
+function M:setup(config) set_config(tbl_strict_extend(get_config(), config)) end
 
 function M:peek(job)
   local start, cache = os.clock(), ya.file_cache(job)

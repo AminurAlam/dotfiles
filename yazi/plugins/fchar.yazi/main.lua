@@ -1,8 +1,11 @@
+local M = {}
+
 local changed = ya.sync(function(st, new)
   local b = st.last ~= new
   st.last = new
   return b or not cx.active.finder
 end)
+
 local matched = ya.sync(function()
   for _, file in ipairs(cx.active.current.files) do
     local highlights = file:highlights()
@@ -10,7 +13,9 @@ local matched = ya.sync(function()
   end
   return false
 end)
+
 local set_config = ya.sync(function(st, opts) st.opts = opts end)
+
 local get_config = ya.sync(
   function(st)
     return st.opts
@@ -21,6 +26,7 @@ local get_config = ya.sync(
       }
   end
 )
+
 local function tbl_deep_extend(default, config)
   if type(config) ~= 'table' then return config end
 
@@ -32,66 +38,64 @@ local function tbl_deep_extend(default, config)
   return default
 end
 
-return {
-  setup = function(config) set_config(tbl_deep_extend(get_config(), config)) end,
-  entry = function()
-    local cands = {
-      { on = '0' },
-      { on = '1' },
-      { on = '2' },
-      { on = '3' },
-      { on = '4' },
-      { on = '5' },
-      { on = '6' },
-      { on = '7' },
-      { on = '8' },
-      { on = '9' },
-      { on = '_' },
-      { on = 'a' },
-      { on = 'b' },
-      { on = 'c' },
-      { on = 'd' },
-      { on = 'e' },
-      { on = 'f' },
-      { on = 'g' },
-      { on = 'h' },
-      { on = 'i' },
-      { on = 'j' },
-      { on = 'k' },
-      { on = 'l' },
-      { on = 'm' },
-      { on = 'n' },
-      { on = 'o' },
-      { on = 'p' },
-      { on = 'q' },
-      { on = 'r' },
-      { on = 's' },
-      { on = 't' },
-      { on = 'u' },
-      { on = 'v' },
-      { on = 'w' },
-      { on = 'x' },
-      { on = 'y' },
-      { on = 'z' },
-    }
-    local opts = get_config()
+function M:setup(config) set_config(tbl_deep_extend(get_config(), config)) end
 
-    local idx = ya.which { cands = cands, silent = true }
-    if not idx then return end
+function M:entry()
+  local cands = {
+    { on = '0' },
+    { on = '1' },
+    { on = '2' },
+    { on = '3' },
+    { on = '4' },
+    { on = '5' },
+    { on = '6' },
+    { on = '7' },
+    { on = '8' },
+    { on = '9' },
+    { on = '_' },
+    { on = 'a' },
+    { on = 'b' },
+    { on = 'c' },
+    { on = 'd' },
+    { on = 'e' },
+    { on = 'f' },
+    { on = 'g' },
+    { on = 'h' },
+    { on = 'i' },
+    { on = 'j' },
+    { on = 'k' },
+    { on = 'l' },
+    { on = 'm' },
+    { on = 'n' },
+    { on = 'o' },
+    { on = 'p' },
+    { on = 'q' },
+    { on = 'r' },
+    { on = 's' },
+    { on = 't' },
+    { on = 'u' },
+    { on = 'v' },
+    { on = 'w' },
+    { on = 'x' },
+    { on = 'y' },
+    { on = 'z' },
+  }
+  local opts = get_config()
 
-    local kw = '[' .. cands[idx].on .. (opts.aliases[cands[idx].on] or '') .. ']'
-    local count = 0
-    if changed(kw) then
-      ya.emit(
-        'find_do',
-        { [[^\W?]] .. string.rep('.', count) .. kw, insensitive = opts.insensitive }
-      )
-      while opts.keep_searching.enable and count < opts.keep_searching.limit and not matched() do
-        count = count + 1
-        ya.emit('find_do', { [[^\.?]] .. string.rep('.', count) .. kw, insensitive = true })
-      end
-    else
-      ya.emit('find_arrow', {})
+  local idx = ya.which { cands = cands, silent = true }
+  if not idx then return end
+
+  local kw = '[' .. cands[idx].on .. (opts.aliases[cands[idx].on] or '') .. ']'
+  local count = 0
+  if changed(kw) then
+    ya.emit('find_do', { [[^\W?]] .. string.rep('.', count) .. kw, insensitive = opts.insensitive })
+    while opts.keep_searching.enable and count < opts.keep_searching.limit and not matched() do
+      count = count + 1
+      ya.emit('find_do', { [[^\.?]] .. string.rep('.', count) .. kw, insensitive = true })
     end
-  end,
-}
+  else
+    ya.emit('find_arrow', {})
+  end
+end
+
+return M

@@ -65,6 +65,7 @@ plugin.spotters = [
   { mime = "image/svg+xml", run = "svg" },
   { mime = "image/*", run = "image" },
 
+  { name = '*.cb{z,r}', run = 'cbz' },
   { mime = "video/*", run = "spot-video" },
   # { mime = "text/*", run = "spot-code" },
   { mime = "audio/*", run = "spot-audio" },
