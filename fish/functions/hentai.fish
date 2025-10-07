@@ -1,9 +1,16 @@
-function hentai: "USAGE:
+function hentai
+    : "USAGE:
     hentai
     hentai [dir [dir...]]
     "
     set mangadir /sdcard/TachiyomiSY
     set targetdir "$mangadir/local/#lewd"
+    function getlist
+        zipinfo -1 $argv[1] | rg --only-matching --replace '$1' '^(\d+)/' | sort | uniq | sort
+    end
+    function getartist
+        unzip -p $argv[1]/Chapter.cbz ComicInfo.xml | rg --only-matching --replace '$1' '<Penciller>(.*)</Penciller>' || termux-clipboard-get
+    end
 
     set -q TERMUX_VERSION || return 1
     [ -d "$mangadir" ] || return 1
@@ -35,57 +42,41 @@ function hentai: "USAGE:
 
     [ -z "$argv[1]" ] && return 0
     printf "working on args...\n"
+    [ -e "$targetdir" ] || mkdir -p "$targetdir"
     cd "$targetdir"
     set name (fd -tf -d1 -ecbz . | fzf) # TODO: preview contents
     cd "$mangadir/downloads/HentaiNexus (EN)/" || return 3
 
-    # TODO: get artist name from ComicInfo.xml
-    # TODO: ask author name
-    if [ -z "$name" ] # creating new cbz
-        # get biggest common substring
-        for n in (seq (string length $argv[1]) -1 1)
-            set sub (string trim (string sub -l $n $argv[1]))
-            string match -q "$sub*" $argv[2]
-            and break
-        end
-
-        if [ "$(string length -- "$sub")" -le 2 ]
-            set name (string join + $argv)
-        else
-            set name "$sub 1-$(count $argv)"
-        end
-
-        set name (string replace -a -- / '' "$name")
-        mkdir -p $name
+    if [ -n "$name" ]
+        set count (math max (getlist "$targetdir/$name" | string join ,))
     else # adding to cbz
-        set name (path change-extension '' "$name")
-        # printf "adding to `%s` ...\n" $name
-        # unzip $name
-        unzip -qd "$name" "$targetdir/$name.cbz"
+        set name (printf "%s\n" $argv | sed -e '$!{N;s/^\(.*\).*\n\1.*$/\1\n\1/;D;}' | string trim) # get biggest common substring
 
-        # get count
-        set count 1
-        while [ -e "$name/$count" ]
-            set count (math $count + 1)
-        end
-        set count (math $count - 1)
-        set oldcount $count
+        [ "$(string length -- "$name")" -le 4 ]
+        and set name (string join + $argv | string replace -a -- / '')
+        or set name "$name 1-$(count $argv)"
+
+        set name "@$(getartist $argv[1]) - $name"
+
+        set nfile (mktemp -t hentai.XXXXXXXX)
+        echo -- "$name" >$nfile
+        nvim $nfile
+        set name (cat $nfile).cbz
     end
 
-    for i in $argv/Chapter.cbz
-        [ -e "$i" ] || continue
+    set hdir (mktemp -dt hentai.XXXXXXXX)
+    for chz in $argv/Chapter.cbz
+        [ -e "$chz" ] || continue
         set count (math $count + 1)
-        mkdir -p $name/$count
-        unzip -qd $name/$count $i
+        mkdir -p $hdir/$count
+        unzip -qd $hdir/$count $chz
+        pushd "$hdir"
+        zip -0rq "$targetdir/$name" "$count"
+        rm -rf "$count"
+        popd
     end
 
-    # TODO: update series name   ????
-    # set oldname $name
-    # set name (string replace -- " 1-$oldcount" " 1-$count" "$name")
-    # mv -i "$oldname" "$name"
-
-    printf ' - '
-    dir2cbz $name && rm -fr $name/
-    printf "   - %s\n" $argv
-    mv -i $name.cbz $targetdir/
+    set newname (string replace -r -- " 1-\d+.cbz" " 1-$count.cbz" "$name")
+    [ -n "$newname" -a "$name" != "$newname" ] && mv -iv "$targetdir/$name" "$targetdir/$newname"
+    rm -rf "$hdir" "$nfile"
 end

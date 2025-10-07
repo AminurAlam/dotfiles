@@ -54,7 +54,7 @@ if set -q TERMUX_VERSION
     ln -fs ~/repos/dotfiles/scripts/bin/tachi ~/.local/bin/tachi
     ln -fs ~/repos/dotfiles/scripts/bin/opendir ~/.local/bin/opendir
 
-    ln -fs /sdcard/Download/ ~/downloads
+    ln -Tfs /sdcard/Download ~/downloads
     printf "done\n"
 end
 
