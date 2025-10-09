@@ -6,29 +6,6 @@ plugin.prepend_fetchers = [
   { id = 'mime', name = '/mnt/rclone/**', run = 'noop', prio = 'high' },
 ]
 
-### OPEN
-open.rules = [
-  { name = '*/', use = ['reveal', 'dir2cbz', 'rsync'] },
-  { mime = 'application/pdf', use = ['zathura'] },
-  { name = '*.cb{z,r}', use = ['zathura', 'extract'] },
-  { mime = 'application/{zip,rar,7z*,tar,gzip,xz,zstd,bzip*,lzma,compress,archive,cpio,arj,xar,ms-cab*}', use = ['extract'] },
-  { name = '*.{zip,rar}', use = ['extract', 'zathura'] },
-  { mime = 'image/*', use = ['swayimg', 'krita', 'swaybg'] },
-  { mime = 'video/*', use = ['play'] },
-  { mime = 'audio/*', use = ['kid3', 'play', 'picard'] },
-  { name = '*.exe', use = ['wine'] },
-  { mime = 'application/android.package-archive', use = ['apkinstall'] },
-  { name = '*.apk', use = ['apkinstall'] },
-  { name = '*.{ass,srt,ssa,sup,vtt}', use = ['add-sub', 'edit'] },
-  # text
-  { mime = 'text/*', use = ['edit'] },
-  { mime = 'inode/empty', use = ['edit'] },
-  { mime = 'application/{json,ndjson}', use = ['edit'] },
-  { mime = '*/javascript', use = ['edit'] },
-
-  { name = '*', use = ['open', 'rsync'] },
-]
-
 ### PREVIEW
 plugin.prepend_previewers = [
   { name = '*.!qB', run = 'noop' },
@@ -56,6 +33,8 @@ plugin.prepend_preloaders = [
   { mime = 'font/*', run = 'font-cjk' },
   { name = '*.{otf,ttf}', run = 'font-cjk' },
 ]
+
+### SPOT
 plugin.spotters = [
   { name = "*/", run = "folder" },
   # Code
@@ -71,6 +50,29 @@ plugin.spotters = [
   { mime = "audio/*", run = "spot-audio" },
   { name = "*", run = "spot" },
   # { name = "*", run = "file" },
+]
+
+### OPEN
+open.rules = [
+  { name = '*/', use = ['reveal', 'dir2cbz', 'rsync'] },
+  { mime = 'application/pdf', use = ['zathura'] },
+  { name = '*.cb{z,r}', use = ['zathura', 'extract'] },
+  { mime = 'application/{zip,rar,7z*,tar,gzip,xz,zstd,bzip*,lzma,compress,archive,cpio,arj,xar,ms-cab*}', use = ['extract'] },
+  { name = '*.{zip,rar}', use = ['extract', 'zathura'] },
+  { mime = 'image/*', use = ['swayimg', 'krita', 'swaybg'] },
+  { mime = 'video/*', use = ['play'] },
+  { mime = 'audio/*', use = ['kid3', 'play', 'picard'] },
+  { name = '*.exe', use = ['wine'] },
+  { mime = 'application/android.package-archive', use = ['apkinstall'] },
+  { name = '*.apk', use = ['apkinstall'] },
+  { name = '*.{ass,srt,ssa,sup,vtt}', use = ['add-sub', 'edit'] },
+  # text
+  { mime = 'text/*', use = ['edit'] },
+  { mime = 'inode/empty', use = ['edit'] },
+  { mime = 'application/{json,ndjson}', use = ['edit'] },
+  { mime = '*/javascript', use = ['edit'] },
+
+  { name = '*', use = ['open', 'rsync'] },
 ]
 
 [opener]
