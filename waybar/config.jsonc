@@ -1,7 +1,7 @@
 // vim:ft=jsonc sw=2:
 // TODO: vertical
 {
-  // "layer": "top",
+  "layer": "top",
   // "position": "bottom",
   // "height": 25,
   // "width": 1870,

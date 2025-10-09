@@ -51,6 +51,7 @@ layout {
     center-focused-column "never"
     default-column-width { proportion 0.5; }
     preset-window-heights { }
+    background-color "transparent"
 
     preset-column-widths {
         proportion 0.5
@@ -138,6 +139,13 @@ window-rule { // unfocused
         color "#00000064"
         inactive-color "#00000064"
     }
+}
+
+layer-rule {
+    match namespace="waybar|wallpaper"
+    match at-startup=true
+
+    place-within-backdrop true
 }
 
 binds {
