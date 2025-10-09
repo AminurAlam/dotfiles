@@ -1,4 +1,4 @@
-function hentai
+function hentai -d "for managing literature"
     : "USAGE:
     hentai
     hentai [dir [dir...]]
