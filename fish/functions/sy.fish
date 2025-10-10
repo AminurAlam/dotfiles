@@ -4,47 +4,35 @@ function sy -d "sync files between phone and pc"
     set ip (route -n | awk '/^[0.]+/{print $2}' | rg -v '127\.0\.0\.1' | uniq | head -n1)
     [ -n "$ip" ] && sed -r -i "s/192\.168\.[0-9]+\.[0-9]+ #brick\$/$ip #brick/" ~/.ssh/config || return 192
 
-    set send true
-    set recv true
-    set comm -ha --out-format "%o %n" --exclude={.thumbnails,.nomedia}
+    set comm --dry-run -ha --out-format "%o %n" --exclude={.thumbnails,.nomedia}
     set artists Alp Arakure Herio 'Hinahara Emi' 'Nikubou Maranoshin' 'Ouchi Kaeru' 'Wantan Meo' Yuruyakatou
 
-    switch "$argv[1]"
-        case ip
-            return 0
-        case send
-            set recv false
-        case recv
-            set send false
-        case dry
-            set -a comm --dry-run
-        case ""
-        case '*'
-            printf "usage `sy [ip|send|recv|dry]`\n"
-            return 1
-    end
-
-    begin
+    for state in dry wet
+        # TODO: add -y flag
+        if [ $state = wet ]
+            [ "$(read -P "make these changes? [y/N] ")" = y ] || continue
+            set -e comm[1]
+        end
         printf "=== PICTURES ===\n"
-        $send && rsync $comm ~/Pictures/ brick:/sdcard/Pictures/ --exclude={Camera,Komikku,WhatsApp Images}
-        $recv && rsync $comm brick:/sdcard/Pictures/ ~/Pictures/
-        $recv && rsync $comm brick:/sdcard/{DCIM/Camera,Pictures/Komikku,Android/media/com.whatsapp/WhatsApp/Media/WhatsApp Images} ~/Pictures/ --delete
+        rsync $comm ~/Pictures/ brick:/sdcard/Pictures/ --exclude={Camera,Komikku,WhatsApp Images} | rg -v '/$'
+        rsync $comm brick:/sdcard/Pictures/ ~/Pictures/ | rg -v '/$'
+        rsync $comm brick:/sdcard/{DCIM/Camera,Pictures/Komikku,Android/media/com.whatsapp/WhatsApp/Media/WhatsApp Images} ~/Pictures/ --delete | rg -v '/$'
 
         printf "=== DOCUMENTS ===\n"
-        $recv && rsync $comm brick:/sdcard/Documents/ ~/Documents/
-        $send && rsync $comm ~/Documents/ brick:/sdcard/Documents/
+        rsync $comm brick:/sdcard/Documents/ ~/Documents/ | rg -v '/$'
+        rsync $comm ~/Documents/ brick:/sdcard/Documents/ | rg -v '/$'
 
         printf "=== MUSIC ===\n"
-        $recv && rsync $comm brick:/sdcard/Music/ ~/Music/ --delete
+        rsync $comm brick:/sdcard/Music/ ~/Music/ --delete | rg -v '/$'
 
         printf "=== MANGA ===\n"
-        $recv && rsync $comm brick:/sdcard/TachiyomiSY/local/\#lewd/ ~/Downloads/manga/\#lewd/ --exclude=@$artists --delete
-        $recv && rsync $comm brick:/sdcard/TachiyomiSY/local/@$artists ~/Downloads/manga/\#lewd/ --delete
+        rsync $comm brick:/sdcard/TachiyomiSY/local/\#lewd/ ~/Downloads/manga/\#lewd/ --exclude=@$artists --delete | rg -v '/$'
+        rsync $comm brick:/sdcard/TachiyomiSY/local/@$artists ~/Downloads/manga/\#lewd/ --delete | rg -v '/$'
 
         printf "=== MISC ===\n"
-        $send && rsync $comm ~/Downloads/main/arch.kdbx brick:/sdcard/main/arch.kdbx
-        $recv && rsync $comm brick:/sdcard/main/android.kdbx ~/Downloads/main/android.kdbx
-        $send && rsync $comm ~/.local/share/newsboat/cache.db brick:~/.local/share/newsboat/cache.db
-        $recv && rsync $comm brick:/sdcard/main/backup/ ~/Downloads/main/backup/
-    end | rg -v '/$'
+        rsync $comm ~/Downloads/main/arch.kdbx brick:/sdcard/main/arch.kdbx
+        rsync $comm brick:/sdcard/main/android.kdbx ~/Downloads/main/android.kdbx
+        rsync $comm ~/.local/share/newsboat/cache.db brick:~/.local/share/newsboat/cache.db
+        rsync $comm brick:/sdcard/main/backup/ ~/Downloads/main/backup/
+    end
 end
