@@ -106,7 +106,7 @@ vim.keymap.set('n', '<leader>li', function()
   print(table.concat(vim.tbl_map(function(client)
     return string.format('\n%s (%s): %s',
       client.name,
-      client.name == 'null-ls' and '*' or table.concat(client.config.filetypes, ', '),
+      client.name == 'null-ls' and '*' or table.concat(client.config.filetypes or {}, ', '),
       client.workspace_folders and vim.fn.fnamemodify(client.workspace_folders[1].name, ':~') or 'single file mode'
     )
   end, vim.lsp.get_clients()), ''))
