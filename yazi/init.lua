@@ -75,7 +75,7 @@ require('topaste'):setup {}
 if ya.id('app').value == 48937 then ya.emit('plugin', { 'zoxide' }) end
 
 -- plugins
-require('fchar'):setup({
+require('fchar'):setup {
   insensitive = true,
   keep_searching = { enable = false, limit = 10 },
   aliases = {
@@ -101,13 +101,20 @@ require('fchar'):setup({
     y = 'やゆよヤユヨ',
     z = 'ざずぜぞザズゼゾ',
   },
-})
+}
 
-require('font-cjk'):setup({
+require('spot'):setup {
+  height = 25,
+  width = 70,
+  render_metadata = true,
+  render_plugins = false,
+}
+
+require('font-cjk'):setup {
   text = 'ABCD abcd\noO0 1lI\n1234567890\n!@#$%^&*()[]{}\n== <= >= !=\nこれ直楽糸',
   canvas_size = '700x800',
   font_size = 80,
-})
+}
 
 require('pref-by-location'):setup {
   disable_fallback_preference = false,
