@@ -72,6 +72,8 @@ passwords.gpg
 rclone.conf
 
 /scripts/bin/rish_shizuku.dex
+/scripts/build/*/*
+!/scripts/build/*/PKGBUILD
 
 /streamrip/*downloads.db
 
