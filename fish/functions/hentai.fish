@@ -9,7 +9,7 @@ function hentai -d "for managing literature"
         zipinfo -1 $argv[1] | rg --only-matching --replace '$1' '^(\d+)/' | sort | uniq | sort
     end
     function getartist
-        unzip -p $argv[1]/Chapter.cbz ComicInfo.xml | rg --only-matching --replace '$1' '<Penciller>(.*)</Penciller>' || termux-clipboard-get
+        unzip -p $argv[1]/Chapter*.cbz ComicInfo.xml | rg --only-matching --replace '$1' '<Penciller>(.*)</Penciller>' || termux-clipboard-get
     end
 
     set -q TERMUX_VERSION || return 1
@@ -20,7 +20,7 @@ function hentai -d "for managing literature"
     and for i in @*
         # TODO: match for known artists
         printf " - $i\n"
-        mv -i --no-clobber $i/Chapter.cbz $targetdir/$i.cbz
+        mv -i --no-clobber $i/Chapter*.cbz $targetdir/$i.cbz
         rmdir $i &>/dev/null
     end
 
@@ -65,7 +65,7 @@ function hentai -d "for managing literature"
     end
 
     set hdir (mktemp -dt hentai.XXXXXXXX)
-    for chz in $argv/Chapter.cbz
+    for chz in $argv/Chapter*.cbz
         [ -e "$chz" ] || continue
         set count (math $count + 1)
         mkdir -p $hdir/$count

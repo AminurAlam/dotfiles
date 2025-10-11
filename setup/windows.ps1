@@ -37,13 +37,15 @@ if (Test-Path -Path ~/dotfiles -PathType Container) {
 
 cls
 Write-Host "LINKING DOTFILES..."
-New-Item -Path ~/AppData/Local/nvim/ -ItemType SymbolicLink -Target ~/dotfiles/nvim/
-New-Item -Path ~/AppData/alacritty/ -ItemType SymbolicLink -Target ~/dotfiles/alacritty/
-New-Item -Path ~/AppData/yazi/ -ItemType SymbolicLink -Target ~/dotfiles/yazi/
+Copy-Item -Recursive -Force -Path ~/dotfiles/others/starship.toml ~/.config/starship.toml
+Copy-Item -Recursive -Force -Path ~/AppData/Local/nvim/           ~/dotfiles/nvim/
+Copy-Item -Recursive -Force -Path ~/AppData/alacritty/            ~/dotfiles/alacritty/
+Copy-Item -Recursive -Force -Path ~/AppData/yazi/                 ~/dotfiles/yazi/
+
 if ($PSVersionTable.PSEdition -eq "Core") {
-    New-Item -Path ~/Documents/Powershell/ -ItemType SymbolicLink -Target ~/dotfiles/powershell/
+    # New-Item -Path ~/Documents/Powershell/ -ItemType SymbolicLink -Target ~/dotfiles/powershell/
 } elseif ($PSVersionTable.PSEdition -eq "Desktop") {
-    New-Item -Path ~/Documents/WindowsPowerShell/ -ItemType SymbolicLink -Target ~/dotfiles/powershell/
+    # New-Item -Path ~/Documents/WindowsPowerShell/ -ItemType SymbolicLink -Target ~/dotfiles/powershell/
 }
 
 # irm https://christitus.com/win | iex
