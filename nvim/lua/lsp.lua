@@ -12,6 +12,7 @@ vim.lsp.enable(vim.tbl_filter(filter, {
   'hyprls',
   'java_language_server',
   'lua_ls',
+  'pyrefly',
   'ruff',
   'rust_analyzer',
   'systemd',
@@ -36,13 +37,6 @@ null_ls.setup {
     null_ls.builtins.diagnostics.fish,
     null_ls.builtins.formatting.fish_indent,
     null_ls.builtins.formatting.clang_format.with { extra_filetypes = { 'glsl' } },
-    h.make_builtin {
-      name = 'tex-fmt',
-      method = 'NULL_LS_FORMATTING',
-      filetypes = { 'tex' },
-      generator_opts = { command = { 'tex-fmt', '--nowrap', '--stdin' }, to_stdin = true },
-      factory = h.formatter_factory,
-    },
     h.make_builtin {
       name = 'taplo',
       method = 'NULL_LS_FORMATTING',
