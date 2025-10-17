@@ -23,14 +23,14 @@
     log = false
 
 [fetch]
-  writeCommitGraph = true
+    writeCommitGraph = true
 
 [interactive]
-        diffFilter = delta --color-only
+    diffFilter = delta --color-only
 
 [include]
-  # Delta config
-  path = ~/.config/git/delta.conf
+    # Delta config
+    path = ~/.config/git/delta.conf
 
 ### creds
 
@@ -47,7 +47,7 @@
     format = ssh
 
 [commit]
-  gpgsign = true
+    gpgsign = true
 
 
 ### aliases
@@ -104,6 +104,6 @@
 
 [rerere]
     enabled = true
+
 [safe]
-	directory = /mnt/phone/repos/*
-	directory = /mnt/termux/repos/*
+    directory = /mnt/*
