@@ -1,6 +1,7 @@
 [Unit]
 Description=Komga is a media server for your comics, mangas, BDs, magazines and eBooks.
 Documentation=https://komga.org/docs/introduction
+After=network.target
 
 [Service]
 Environment=PATH=/usr/local/bin:/usr/local/sbin:/usr/bin:/bin

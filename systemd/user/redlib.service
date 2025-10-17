@@ -1,6 +1,7 @@
 [Unit]
 Description=Private front-end for Reddit
 Documentation=https://github.com/redlib-org/redlib
+After=network.target
 
 [Service]
 Environment=PATH=/usr/local/bin:/usr/local/sbin:/usr/bin:/bin

@@ -1,6 +1,7 @@
 [Unit]
 Description=Anki Sync Server
 Documentation=https://docs.ankiweb.net/sync-server.html
+After=network.target
 
 [Service]
 Environment=PATH=/usr/local/bin:/usr/local/sbin:/usr/bin:/bin

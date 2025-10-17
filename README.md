@@ -20,7 +20,7 @@
 - [git](https://git-scm.com/) - vcs
 - [glow](https://github.com/charmbracelet/glow) - Command-line markdown renderer
 - [htop](https://htop.dev/) - process viewer
-- [hyprland](https://hyprland.org/) :star2: - tiling wayland compositor
+- [hyprland](https://hyprland.org/) - tiling wayland compositor
 - [jujustu](https://github.com/jj-vcs/jj) - vcs
 - [kanata](https://github.com/jtroo/kanata) - keyboard customizer
 - [keepassxc](https://keepassxc.org/) - password manager
@@ -29,13 +29,13 @@
 - [mgba](http://mgba.io) - GBA emulator
 - [mpv](https://mpv.io) - media player
 - [newsboat](https://newsboat.org/) :star2: - rss reader
-- [niri](https://github.com/YaLTeR/niri) - scrollable-tiling wayland compositor
+- [niri](https://github.com/YaLTeR/niri) :star2: - scrollable-tiling wayland compositor
 - [nom](https://github.com/guyfedwards/nom) - rss reader
 - [npm](https://npmjs.com/) - javascript runtime
 - [nvim](https://neovim.io/) :star2: - text editor
 - [pacman](https://archlinux.org/pacman/) - package manager
 - [paru](https://github.com/morganamilo/paru) - aur helper
-- [powershell](https://github.com/PowerShell/PowerShell) - shell
+- [powershell](https://github.com/PowerShell/PowerShell) - windows shell
 - [prettier](https://prettier.io/) - code formatter
 - [procs](https://github.com/dalance/procs) - process list
 - [python](https://python.org/) - python interpreter

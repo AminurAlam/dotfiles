@@ -1,6 +1,7 @@
 [Unit]
 Description=Kiwix is an offline reader for online content like Wikipedia, Project Gutenberg, or TED Talks.
 Documentation=https://kiwix.org/
+After=network.target
 
 [Service]
 Environment=PATH=/usr/local/bin:/usr/local/sbin:/usr/bin:/bin
