@@ -5,94 +5,94 @@
 "query:----- MISC -----:tags # \"misc\" and unread = \"yes\""
 # https://xkcd.com/atom.xml misc
 https://github.com/neovim/neovim/commits/master/runtime/doc/news.txt.atom "~nvim news" misc
-https://www.thatmangahunter.com/blog-feed.xml                                              misc
-https://muspy.com/feed?id=mobwjpkr95u5p1b4f2w1bjt74qc8u3 "~muspy New Releases"         misc
-https://noted.lol/rss                                                                  misc
-https://pudding.cool/rss.xml                                                           misc
+https://www.thatmangahunter.com/blog-feed.xml misc
+https://muspy.com/feed?id=mobwjpkr95u5p1b4f2w1bjt74qc8u3 "~muspy New Releases" misc
+https://noted.lol/rss misc
+https://pudding.cool/rss.xml misc
 
 "query:----- FORUMS & AGGREGATORS -----:tags # \"aggregators\" and unread = \"yes\""
-https://waxy.org/feed/ "~waxy.org by Andy Baio"                        aggregators
-https://alecmuffett.com/feed "~Dropsafe by Alec Muffett"               aggregators
-https://lobste.rs/rss                                                  aggregators
-https://hnrss.org/frontpage.atom "~Hacker News"                        aggregators
-https://reddit.com/r/neovim/hot.rss "~r/neovim"                        aggregators
-https://reddit.com/r/OtoMusic/new.rss "~r/OtoMusic"                    aggregators
-https://dotfyle.com/this-week-in-neovim/rss.xml "~This Week in Neovim" aggregators
-https://dotfyle.com/neovim/plugins/rss.xml                             aggregators
-https://vi.stackexchange.com/feeds/week "~StackExchange - vi"          aggregators
+https://waxy.org/feed/ "~waxy.org by Andy Baio" aggregators
+https://alecmuffett.com/feed "~Dropsafe by Alec Muffett" aggregators
+https://lobste.rs/rss aggregators
+https://hnrss.org/frontpage.atom "~Hacker News" aggregators
+https://dotfyle.com/neovim/plugins/rss.xml aggregators
+https://vi.stackexchange.com/feeds/week "~StackExchange - vi" aggregators
+# https://reddit.com/r/neovim/hot.rss "~r/neovim" aggregators
+# https://reddit.com/r/OtoMusic/new.rss "~r/OtoMusic" aggregators
+# https://dotfyle.com/this-week-in-neovim/rss.xml "~This Week in Neovim" aggregators
 
 "query:----- NEWS -----:tags # \"news\" and unread = \"yes\""
-https://archlinux.org/feeds/news/                       news
+https://archlinux.org/feeds/news/ news
 https://dolphin-emu.org/blog/feeds/ "~Dolphin Emulator" news
-https://strato-emu.github.io/index.xml                  news
-https://melonds.kuribo64.net/rss.php                    news
-https://f-droid.org/feed.xml                            news
-https://android.izzysoft.de/rss/en/articles             news
-https://fishshell.com/blog/feed.xml                     news
-https://hyprland.org/rss.xml                            news
-https://newsboat.org/news.atom                          news
-https://blog.thunderbird.net/feed/ "~Thunderbird"       news
-https://blog.ajay.app/rss.xml                           news
+https://melonds.kuribo64.net/rss.php news
+https://f-droid.org/feed.xml news
+https://android.izzysoft.de/rss/en/articles news
+https://fishshell.com/blog/feed.xml news
+https://newsboat.org/news.atom news
+https://blog.thunderbird.net/feed/ "~Thunderbird" news
+# https://strato-emu.github.io/index.xml news
+# https://hyprland.org/rss.xml news
+# https://blog.ajay.app/rss.xml news
 
-https://astral.sh/blog/rss.xml                             news
-https://www.404media.co/rss                                    news
-https://www.eff.org/rss/updates.xml "~eff.org"                 news
-https://torrentfreak.com/feed                              news
-https://www.bleepingcomputer.com/feed/                         news
-https://haveibeenpwned.com/feed/breaches/                  news
-https://www.phoronix.com/rss.php                               news
-https://blog.opensource.org/feed/                          news
-https://www.ghacks.net/feed/                                   news
-https://www.bitdefender.com/nuxt/api/en-us/rss/hotforsecurity/ news
-# https://rss.slashdot.org/Slashdot/slashdotMain             news
+https://astral.sh/blog/rss.xml news
+https://www.404media.co/rss news
+https://www.eff.org/rss/updates.xml "~eff.org" news
+https://torrentfreak.com/feed news
+https://www.bleepingcomputer.com/feed/ news
+https://haveibeenpwned.com/feed/breaches/ news
+https://www.phoronix.com/rss.php news
+https://www.ghacks.net/feed/ news
+https://lwn.net/headlines/rss
+# https://blog.opensource.org/feed/ news
+# https://www.bitdefender.com/nuxt/api/en-us/rss/hotforsecurity/ news
+# https://rss.slashdot.org/Slashdot/slashdotMain news
 
 "query:----- CORPO BLOGS -----:tags # \"blogs_corpo\" and unread = \"yes\""
-https://signal.org/blog/rss.xml                             blogs_corpo
-https://blog.archive.org/feed/                              blogs_corpo
-https://mullvad.net/en/blog/feed/atom/                      blogs_corpo
-https://element.io/blog/rss/                                blogs_corpo
-https://blog.cloudflare.com/rss/                            blogs_corpo
-https://blog.nightly.mozilla.org/feed                       blogs_corpo
+https://signal.org/blog/rss.xml blogs_corpo
+https://blog.archive.org/feed/ blogs_corpo
+https://mullvad.net/en/blog/feed/atom/ blogs_corpo
+https://element.io/blog/rss/ blogs_corpo
+https://blog.cloudflare.com/rss/ blogs_corpo
+https://blog.nightly.mozilla.org/feed blogs_corpo
 https://security.googleblog.com/feeds/posts/default?alt=rss blogs_corpo
-https://crinacle.com/feed                                   blogs_corpo
+https://crinacle.com/feed blogs_corpo
 
 "query:----- PERSONAL BLOGS 1 -----:tags # \"personal_blog_1\" and unread = \"yes\""
-http://rachelbythebay.com/w/atom.xml "~rachel by the bay"               personal_blog_1
-https://www.schneier.com/feed/atom "~Bruce Schneier"                         personal_blog_1
-https://drewdevault.com/blog/index.xml "~Drew Devault"                   personal_blog_1
-https://thevaluable.dev/index.xml                                        personal_blog_1
+http://rachelbythebay.com/w/atom.xml "~rachel by the bay" personal_blog_1
+https://www.schneier.com/feed/atom "~Bruce Schneier" personal_blog_1
+https://thevaluable.dev/index.xml personal_blog_1
 https://strongly-typed-thoughts.net/blog/feed "~strongly-typed-thoughts" personal_blog_1
-https://kevquirk.com/feed.xml                                            personal_blog_1
-https://mitchellh.com/feed.xml                                           personal_blog_1
-
+https://mitchellh.com/feed.xml personal_blog_1
+https://kevquirk.com/feed.xml personal_blog_1
 https://cheapskatesguide.org/cheapskates-guide-rss-feed.xml "~Cheapskates Guide" personal_blog_1
-https://brainbaking.com/index.xml                                                personal_blog_1
-https://denshi.org/index.xml                                                     personal_blog_1
-https://vkc.sh/feed/ "~Veronica Explains"                                        personal_blog_1
-https://soatok.blog/feed "~Soatok (Dhole Moments)"                               personal_blog_1
-https://vonheikemen.github.io/devlog/atom.xml "~vonheikemen (nvim)"              personal_blog_1
-https://arjunyadav.xyz/rss.xml "~Arjun Yadav"                                    personal_blog_1
-https://daniel.haxx.se/blog/feed/ "~Daniel Stenberg (curl)"                      personal_blog_1
-https://dylanbeattie.net/feed.xml "~Dylan Beattie"                               personal_blog_1
-https://world.hey.com/dhh/feed.atom "~David Heinemeier Hansson (DHH)"            personal_blog_1
-https://daringfireball.net/feeds/main "~John Gruber (Daring Fireball)"           personal_blog_1
-https://www.troyhunt.com/rss                                                         personal_blog_1
-https://jvns.ca/atom.xml                                                         personal_blog_1
-
-https://axlefublr.github.io/rss.xml "~axlefublr"              personal_blog_1
-https://ficd.sh/rss.xml                                       personal_blog_1
-https://jdugan6240.dev/feed.xml                               personal_blog_1
-https://lukesmith.xyz/index.xml "~Luke Smith"                 personal_blog_1
-https://www.amygoodchild.com/blog?format=rss "~Amy Goodchild"     personal_blog_1
-https://dx13.co.uk/index.atom ~dx13                           personal_blog_1
-https://tonsky.me/atom.xml "~Nikita Prokopov (tonsky.me)"     personal_blog_1
-https://robertheaton.com/feed.xml "~Robert Heaton"            personal_blog_1
-https://pluralistic.net/feed/ "~Cory Doctorow (Pluralistic)"  personal_blog_1
-https://ploum.net/atom_en.xml                                 personal_blog_1
-https://monstro1.com/rss.xml                                  personal_blog_1
-https://fireborn.mataroa.blog/rss/                            personal_blog_1
+https://brainbaking.com/index.xml personal_blog_1
+https://vkc.sh/feed/ "~Veronica Explains" personal_blog_1
+https://soatok.blog/feed "~Soatok (Dhole Moments)" personal_blog_1
+https://vonheikemen.github.io/devlog/atom.xml "~vonheikemen (nvim)" personal_blog_1
+https://arjunyadav.xyz/rss.xml "~Arjun Yadav" personal_blog_1
+https://daniel.haxx.se/blog/feed/ "~Daniel Stenberg (curl)" personal_blog_1
+https://dylanbeattie.net/feed.xml "~Dylan Beattie" personal_blog_1
+https://daringfireball.net/feeds/main "~John Gruber (Daring Fireball)" personal_blog_1
+https://www.troyhunt.com/rss personal_blog_1
+https://jvns.ca/atom.xml personal_blog_1
+https://axlefublr.github.io/rss.xml "~axlefublr" personal_blog_1
+https://ficd.sh/rss.xml personal_blog_1
+https://jdugan6240.dev/feed.xml personal_blog_1
+https://www.amygoodchild.com/blog?format=rss "~Amy Goodchild" personal_blog_1
+https://dx13.co.uk/index.atom ~dx13 personal_blog_1
+https://tonsky.me/atom.xml "~Nikita Prokopov (tonsky.me)" personal_blog_1
+https://robertheaton.com/feed.xml "~Robert Heaton" personal_blog_1
+https://pluralistic.net/feed/ "~Cory Doctorow (Pluralistic)" personal_blog_1
+https://ploum.net/atom_en.xml personal_blog_1
+https://monstro1.com/rss.xml personal_blog_1
+https://fireborn.mataroa.blog/rss/ personal_blog_1
+https://drewdevault.com/blog/index.xml "~Drew Devault" personal_blog_1
+https://world.hey.com/dhh/feed.atom "~David Heinemeier Hansson (DHH)" personal_blog_1
+https://denshi.org/index.xml personal_blog_1
+https://lukesmith.xyz/index.xml "~Luke Smith" personal_blog_1
 
 "query:----- PERSONAL BLOGS 2 -----:tags # \"personal_blog\" and unread = \"yes\""
+https://aphyr.com/posts.atom personal_blog
 https://www.roboleary.net/feed.xml personal_blog
 https://daverupert.com/atom.xml personal_blog
 https://zerokspot.com/index.xml personal_blog
@@ -103,19 +103,21 @@ https://ar.al/index.xml personal_blog
 https://krebsonsecurity.com/feed personal_blog
 https://danluu.com/atom.xml personal_blog
 https://www.fromjason.xyz/p/notebook/feed/feed.xml personal_blog
-https://mtwb.blog/rss/ "~Matt's Blog (Linux Cast YT)" personal_blog
-
 https://xn--gckvb8fzb.com/index.xml personal_blog
+https://100r.co/links/rss.xml personal_blog
+https://oppi.li/index.xml personal_blog
+
 https://herecomesthemoon.net/posts/index.xml personal_blog
 https://neilzone.co.uk/index.xml personal_blog
 https://thecodist.com/rss personal_blog
-https://100r.co/links/rss.xml personal_blog
+https://abner.page/index.xml personal_blog
 https://hazelweakly.me/atom.xml personal_blog
 https://esham.io/atom.xml personal_blog
 https://www.harihareswara.net/rss/ personal_blog
 https://maia.crimew.gay/feed.xml personal_blog
-https://oppi.li/index.xml personal_blog
+https://mrkaran.dev/posts/atom.xml personal_blog
 https://hasbrouck.org/blog/index.xml personal_blog
+https://nadh.in/index.xml personal_blog
 https://dotat.at/@/blog.atom personal_blog
 https://cedwards.xyz/index.xml personal_blog
 https://vicki.substack.com/feed personal_blog
@@ -160,8 +162,6 @@ https://www.anildash.com/feed.xml personal_blog
 
 https://xenodium.com/rss.xml
 https://emnudge.dev/reads.xml
-# LWN
-https://lwn.net/headlines/rss
 # The Daily WTF
 http://syndication.thedailywtf.com/TheDailyWtf
 # emacs-news
