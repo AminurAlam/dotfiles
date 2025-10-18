@@ -29,6 +29,7 @@
 - [mgba](http://mgba.io) - GBA emulator
 - [mpv](https://mpv.io) - media player
 - [newsboat](https://newsboat.org/) :star2: - rss reader
+- [newsraft](https://codeberg.org/newsraft/newsraft) - feed reader for terminal
 - [niri](https://github.com/YaLTeR/niri) :star2: - scrollable-tiling wayland compositor
 - [nom](https://github.com/guyfedwards/nom) - rss reader
 - [npm](https://npmjs.com/) - javascript runtime

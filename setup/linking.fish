@@ -13,7 +13,7 @@ for config in alacritty aria2 \
     kanata keepassxc kitty \
     lazygit \
     mgba mpv \
-    newsboat niri npm nvim \
+    newsboat newsraft niri npm nvim \
     pacman paru powershell python \
     qalculate qBittorrent \
     ruff \

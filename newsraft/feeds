@@ -1,0 +1,184 @@
+# vim:ft=feed:noexpandtab:conceallevel=3:
+
+# title NOT LIKE '%Rust%'
+# persons LIKE '%PHARMACIST%' OR persons LIKE '%OFFL1NX%'
+# attachments LIKE '%audio/mp3%' OR attachments LIKE '%video/mp4%'
+# CAST(strftime('%Y', publication_date, 'unixepoch') AS INTEGER) >= 2024
+# NOT (title REGEXP '.+:.+\".+\".+by' OR title LIKE '%(ultra slowed)%' OR title LIKE '%(1 hour version)%')
+
+@ MISC
+https://github.com/neovim/neovim/commits/master/runtime/doc/news.txt.atom "nvim news" < item-rule "title NOT LIKE 'docs: %'"
+https://www.thatmangahunter.com/blog-feed.xml
+https://muspy.com/feed?id=mobwjpkr95u5p1b4f2w1bjt74qc8u3 "muspy New Releases" < item-rule "NOT (title REGEXP 'Remix|live|Live|LIVE|Taylor Swift')"
+https://noted.lol/rss
+https://pudding.cool/rss.xml
+# https://xkcd.com/atom.xml
+
+@ FORUMS & AGGREGATORS
+https://waxy.org/feed/ < item-limit 40
+https://alecmuffett.com/feed "Alec Muffett"
+https://lobste.rs/rss < item-rule "title NOT LIKE 'What are you doing this week%'"
+https://hnrss.org/frontpage.atom "Hacker News" < item-rule "NOT (title REGEXP '^(Show|Tell|Ask|Launch) HN: ')"; proxy socks5://192.168.155.113:9050
+https://dotfyle.com/neovim/plugins/rss.xml  < item-rule "NOT (title REGEXP 'theme|colou?r ?scheme')"
+https://vi.stackexchange.com/feeds/week "StackExchange - vi"
+# https://reddit.com/r/neovim/hot.rss "r/neovim"
+# https://reddit.com/r/OtoMusic/new.rss "r/OtoMusic"
+# https://dotfyle.com/this-week-in-neovim/rss.xml "This Week in Neovim"
+
+
+
+@ NEWS < item-limit 40
+https://archlinux.org/feeds/news/
+https://dolphin-emu.org/blog/feeds/ "Dolphin Emulator"
+https://melonds.kuribo64.net/rss.php
+https://f-droid.org/feed.xml
+https://android.izzysoft.de/rss/en/articles
+https://fishshell.com/blog/feed.xml
+https://newsboat.org/news.atom
+https://blog.thunderbird.net/feed/ "Thunderbird"
+# https://strato-emu.github.io/index.xml
+# https://hyprland.org/rss.xml
+# https://blog.ajay.app/rss.xml
+
+https://astral.sh/blog/rss.xml
+https://www.404media.co/rss
+https://www.eff.org/rss/updates.xml "eff.org"
+https://torrentfreak.com/feed
+https://www.bleepingcomputer.com/feed/
+https://haveibeenpwned.com/feed/breaches/
+https://www.phoronix.com/rss.php
+https://www.ghacks.net/feed/
+https://lwn.net/headlines/rss
+# https://blog.opensource.org/feed/
+# https://www.bitdefender.com/nuxt/api/en-us/rss/hotforsecurity/
+# https://rss.slashdot.org/Slashdot/slashdotMain
+
+@ CORPO BLOGS < item-limit 30
+https://signal.org/blog/rss.xml blogs_corpo
+https://blog.archive.org/feed/ blogs_corpo
+https://mullvad.net/en/blog/feed/atom/ blogs_corpo
+https://element.io/blog/rss/ blogs_corpo
+https://blog.cloudflare.com/rss/ blogs_corpo
+https://blog.nightly.mozilla.org/feed blogs_corpo
+https://security.googleblog.com/feeds/posts/default?alt=rss blogs_corpo
+https://crinacle.com/feed blogs_corpo
+
+@ PERSONAL BLOGS 1
+http://rachelbythebay.com/w/atom.xml "rachel by the bay"
+https://www.schneier.com/feed/atom "Bruce Schneier"
+https://thevaluable.dev/index.xml
+https://strongly-typed-thoughts.net/blog/feed "strongly-typed-thoughts"
+https://mitchellh.com/feed.xml
+https://kevquirk.com/feed.xml
+https://cheapskatesguide.org/cheapskates-guide-rss-feed.xml "Cheapskates Guide"
+https://brainbaking.com/index.xml
+https://vkc.sh/feed/ "Veronica Explains"
+https://soatok.blog/feed "Soatok (Dhole Moments)"
+https://vonheikemen.github.io/devlog/atom.xml "vonheikemen (nvim)"
+https://arjunyadav.xyz/rss.xml "Arjun Yadav"
+https://daniel.haxx.se/blog/feed/ "Daniel Stenberg (curl)"
+https://dylanbeattie.net/feed.xml "Dylan Beattie"
+https://daringfireball.net/feeds/main "John Gruber (Daring Fireball)"
+https://www.troyhunt.com/rss
+https://jvns.ca/atom.xml
+https://axlefublr.github.io/rss.xml "axlefublr"
+https://ficd.sh/rss.xml
+https://jdugan6240.dev/feed.xml
+https://www.amygoodchild.com/blog?format=rss "Amy Goodchild"
+https://dx13.co.uk/index.atom ~dx13
+https://tonsky.me/atom.xml "Nikita Prokopov (tonsky.me)"
+https://robertheaton.com/feed.xml "Robert Heaton"
+https://pluralistic.net/feed/ "Cory Doctorow (Pluralistic)"
+https://ploum.net/atom_en.xml
+https://monstro1.com/rss.xml
+https://fireborn.mataroa.blog/rss/
+https://drewdevault.com/blog/index.xml "Drew Devault"
+https://world.hey.com/dhh/feed.atom "David Heinemeier Hansson (DHH)"
+https://denshi.org/index.xml
+https://lukesmith.xyz/index.xml "Luke Smith"
+
+@ PERSONAL BLOGS 2
+https://aphyr.com/posts.atom
+https://www.roboleary.net/feed.xml
+https://daverupert.com/atom.xml
+https://zerokspot.com/index.xml
+https://alexwlchan.net/atom.xml
+https://chelseatroy.com/feed
+https://feeds.feedburner.com/avc
+https://ar.al/index.xml
+https://krebsonsecurity.com/feed
+https://danluu.com/atom.xml
+https://www.fromjason.xyz/p/notebook/feed/feed.xml
+https://xn--gckvb8fzb.com/index.xml
+https://100r.co/links/rss.xml
+https://oppi.li/index.xml
+
+https://herecomesthemoon.net/posts/index.xml
+https://neilzone.co.uk/index.xml
+https://thecodist.com/rss
+https://abner.page/index.xml
+https://hazelweakly.me/atom.xml
+https://esham.io/atom.xml
+https://www.harihareswara.net/rss/
+https://maia.crimew.gay/feed.xml
+https://mrkaran.dev/posts/atom.xml
+https://hasbrouck.org/blog/index.xml
+https://nadh.in/index.xml
+https://dotat.at/@/blog.atom
+https://cedwards.xyz/index.xml
+https://vicki.substack.com/feed
+https://adlrocha.substack.com/feed
+https://alistairshepherd.uk/feed.xml
+https://austinhenley.com/blog/feed.rss
+https://benjamincongdon.me/blog/feed.xml
+http://www.jonandnic.com/feed
+https://borretti.me/feed.xml
+https://www.dannyvankooten.com/atom.xml "Danny van Kooten"
+https://drainerdomain.xyz/posts/index.xml
+https://drainerdomain.xyz/guides/index.xml
+https://7c0h.com/blog/rss.xml
+https://transitiontech.ca/feed.xml
+https://vas.neocities.org/rss.xml
+https://ciechanow.ski/atom.xml
+https://seirdy.one/posts/atom.xml
+https://1hiking.github.io/index.xml
+https://nobodyspecial.neocities.org/rss2.xml
+https://palone.blog/feed/atom/
+https://utcc.utoronto.ca/~cks/space/blog/?atom
+https://christine.website/blog.rss
+https://leafo.net/feed.xml
+http://pb.co.za/posts.atom
+https://gabrielsimmer.com/rss
+https://nanotipsforvim.prose.sh/rss
+https://www.supergoodcode.com/feed.xml
+https://ntietz.com/atom.xml
+https://rubenerd.com/feed/
+https://www.lopcode.com/feed.xml
+https://cendyne.dev/feed.xml "Cendyne's Posts"
+https://emnudge.dev/blog.xml
+https://fasterthanli.me/index.xml
+https://www.fosskers.ca/en/rss
+https://www.jefftk.com/news.rss
+https://www.masteringemacs.org/feed
+https://tailscale.dev/feed.xml
+https://www.tbray.org/ongoing/ongoing.atom
+https://twi.github.io/blog/atom.xml
+https://vivekhaldar.com/index.xml
+https://www.anildash.com/feed.xml
+
+https://xenodium.com/rss.xml
+https://emnudge.dev/reads.xml
+# The Daily WTF
+http://syndication.thedailywtf.com/TheDailyWtf
+# emacs-news
+https://sachachua.com/blog/category/emacs-news/feed/
+# CommitStrip
+https://www.commitstrip.com/en/feed/
+# Loading Artist
+https://loadingartist.com/index.xml
+# Oglaf! -- Comics. Often dirty.
+https://www.oglaf.com/feeds/rss/
+# Saturday Morning Breakfast Cereal
+https://www.smbc-comics.com/comic/rss
+# The Oatmeal
+https://theoatmeal.com/feed/rss

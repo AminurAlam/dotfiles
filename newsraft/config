@@ -1,0 +1,40 @@
+# vim:set ft=conf:
+
+color-status                green   default bold
+color-status-info           cyan    default bold
+color-status-fail           red     default bold
+color-list-item             default default
+# color-list-item-selected    default color18
+color-list-item-unread      yellow  default
+color-list-item-important   magenta default
+color-list-feed             default default
+# color-list-feed-selected    default color18
+color-list-feed-unread      yellow  default
+color-list-feed-failed      red     default
+color-list-section          default default
+# color-list-section-selected default color18
+color-list-section-unread   yellow  default
+color-list-section-failed   red     default
+
+bind , shift-reset
+bind d toggle-read;jump-to-next
+bind m toggle-read;jump-to-next
+# bind SPACE mark-read
+# bind space mark-read;jump-to-next
+# bind SPACE mark-read;jump-to-next
+
+scrolloff 5000
+# list-entry-date-format "%D"
+feeds-menu-paramount-explore false
+item-limit-unread true
+scrollwrap true
+pager-width 106
+status-placeholder ""
+item-content-link-format "[%i] %l<br>"
+database-clean-on-startup true
+download-max-host-connections 5
+
+menu-section-entry-format '%5u > %t'
+menu-feed-entry-format '%4u %t'
+menu-item-entry-format ' %d %o'
+item-content-format '%t<br>|%l<br>|<hr>%c<br>|<hr>%L'
