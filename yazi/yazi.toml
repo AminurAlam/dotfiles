@@ -39,8 +39,6 @@ plugin.prepend_preloaders = [
 ### SPOT
 plugin.spotters = [
   { name = "*/", run = "spot-directory" },
-  # Code
-  { mime = "application/{mbox,javascript,wine-extension-ini}", run = "code" },
   # Image
   { mime = "image/{avif,hei?,jxl}", run = "magick" },
   { mime = "image/svg+xml", run = "svg" },

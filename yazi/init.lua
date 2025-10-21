@@ -110,7 +110,7 @@ require('spot'):setup {
   render_plugins = false,
 }
 
-require('font-cjk'):setup {
+require('font-sample'):setup {
   text = 'ABCD abcd\noO0 1lI\n1234567890\n!@#$%^&*()[]{}\n== <= >= !=\nこれ直楽糸',
   canvas_size = '700x800',
   font_size = 80,

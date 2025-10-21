@@ -28,26 +28,6 @@ use = "boydaihungst/hover-after-moved"
 rev = "76e496c"
 hash = "e5ed8cee5509f89fd8d8f3e53c6559fc"
 
-[[plugin.deps]]
-use = "AminurAlam/yazi-plugins:spot"
-rev = "41c04d1"
-hash = "75378c181ac48c31a6cc007d4814ae52"
-
-[[plugin.deps]]
-use = "AminurAlam/yazi-plugins:coverart"
-rev = "41c04d1"
-hash = "6f3806c1d79d79bc5bd31c5cae5c9a46"
-
-[[plugin.deps]]
-use = "AminurAlam/yazi-plugins:spot-audio"
-rev = "41c04d1"
-hash = "126f6b7379d4864d90b3e5b4d45f2fcc"
-
-[[plugin.deps]]
-use = "AminurAlam/yazi-plugins:spot-video"
-rev = "41c04d1"
-hash = "c0b4dd572003c2691b4c4939734c8576"
-
 [[flavor.deps]]
 use = "BennyOe/tokyo-night"
 rev = "5f56364"
