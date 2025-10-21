@@ -8,9 +8,9 @@
 
 @ MISC
 https://github.com/neovim/neovim/commits/master/runtime/doc/news.txt.atom "nvim news" < item-rule "title NOT LIKE 'docs: %'"
-https://www.thatmangahunter.com/blog-feed.xml
-https://muspy.com/feed?id=mobwjpkr95u5p1b4f2w1bjt74qc8u3 "muspy New Releases" < item-rule "NOT (title REGEXP 'Remix|live|Live|LIVE|Taylor Swift')"
-https://noted.lol/rss
+https://www.thatmangahunter.com/blog-feed.xml < proxy socks5://192.168.155.113:9050
+https://muspy.com/feed?id=mobwjpkr95u5p1b4f2w1bjt74qc8u3 "muspy New Releases" < item-rule "NOT (title LIKE 'Taylor Swift%' OR title REGEXP 'Remix|live|Live|LIVE')"
+https://noted.lol/rss "noted.lol (self-host)"
 https://pudding.cool/rss.xml
 # https://xkcd.com/atom.xml
 
@@ -18,20 +18,18 @@ https://pudding.cool/rss.xml
 https://waxy.org/feed/ < item-limit 40
 https://alecmuffett.com/feed "Alec Muffett"
 https://lobste.rs/rss < item-rule "title NOT LIKE 'What are you doing this week%'"
-https://hnrss.org/frontpage.atom "Hacker News" < item-rule "NOT (title REGEXP '^(Show|Tell|Ask|Launch) HN: ')"; proxy socks5://192.168.155.113:9050
+https://hnrss.org/frontpage.atom "Hacker News" < item-rule "NOT (title REGEXP '^(Show|Tell|Ask|Launch) HN: ' OR title REGEXP '\(YC .*\)')"; proxy socks5://192.168.155.113:9050
 https://dotfyle.com/neovim/plugins/rss.xml  < item-rule "NOT (title REGEXP 'theme|colou?r ?scheme')"
 https://vi.stackexchange.com/feeds/week "StackExchange - vi"
 # https://reddit.com/r/neovim/hot.rss "r/neovim"
 # https://reddit.com/r/OtoMusic/new.rss "r/OtoMusic"
 # https://dotfyle.com/this-week-in-neovim/rss.xml "This Week in Neovim"
 
-
-
 @ NEWS < item-limit 40
 https://archlinux.org/feeds/news/
 https://dolphin-emu.org/blog/feeds/ "Dolphin Emulator"
 https://melonds.kuribo64.net/rss.php
-https://f-droid.org/feed.xml
+https://f-droid.org/feed.xml "F-Droid"
 https://android.izzysoft.de/rss/en/articles
 https://fishshell.com/blog/feed.xml
 https://newsboat.org/news.atom
@@ -40,34 +38,35 @@ https://blog.thunderbird.net/feed/ "Thunderbird"
 # https://hyprland.org/rss.xml
 # https://blog.ajay.app/rss.xml
 
-https://astral.sh/blog/rss.xml
-https://www.404media.co/rss
+https://astral.sh/blog/rss.xml "astral.sh"
+https://www.404media.co/rss < item-rule "NOT (title REGEXP '^(Podcast|Behind the Blog):' OR content LIKE '%welcome back to the abstract%')"
 https://www.eff.org/rss/updates.xml "eff.org"
-https://torrentfreak.com/feed
-https://www.bleepingcomputer.com/feed/
-https://haveibeenpwned.com/feed/breaches/
-https://www.phoronix.com/rss.php
-https://www.ghacks.net/feed/
-https://lwn.net/headlines/rss
+https://torrentfreak.com/feed < item-rule "title NOT LIKE '%IPTV%'"
+https://www.bleepingcomputer.com/feed/ < item-rule "NOT (title REGEXP '(^| )(Microsoft|Windows)')"
+https://haveibeenpwned.com/feed/breaches/ "Have I Been Pwned"
+https://www.phoronix.com/rss.php < item-rule "NOT (title REGEXP 'Intel|NVIDIA|driver|Mesa|Vulkan')"
+https://www.ghacks.net/feed/ "gHacks" < item-rule "NOT (title REGEXP '(^| )(Windows|Apple|Google|Microsoft|Amazon|Chrome|OpenAI|Meta|Spotify)')"
+https://lwn.net/headlines/rss < item-rule "title NOT LIKE '[$] %'"; proxy socks5://192.168.155.113:9050
+https://www.tomshardware.com/feeds.xml
 # https://blog.opensource.org/feed/
 # https://www.bitdefender.com/nuxt/api/en-us/rss/hotforsecurity/
 # https://rss.slashdot.org/Slashdot/slashdotMain
 
 @ CORPO BLOGS < item-limit 30
-https://signal.org/blog/rss.xml blogs_corpo
-https://blog.archive.org/feed/ blogs_corpo
-https://mullvad.net/en/blog/feed/atom/ blogs_corpo
-https://element.io/blog/rss/ blogs_corpo
-https://blog.cloudflare.com/rss/ blogs_corpo
-https://blog.nightly.mozilla.org/feed blogs_corpo
-https://security.googleblog.com/feeds/posts/default?alt=rss blogs_corpo
-https://crinacle.com/feed blogs_corpo
+https://signal.org/blog/rss.xml
+https://blog.archive.org/feed/
+https://mullvad.net/en/blog/feed/atom/ < proxy socks5://192.168.155.113:9050
+https://element.io/blog/rss/ < proxy socks5://192.168.155.113:9050
+https://blog.cloudflare.com/rss/
+https://blog.nightly.mozilla.org/feed
+https://security.googleblog.com/feeds/posts/default?alt=rss
+https://crinacle.com/feed
 
 @ PERSONAL BLOGS 1
-http://rachelbythebay.com/w/atom.xml "rachel by the bay"
+http://rachelbythebay.com/w/atom.xml "rachel by the bay" < proxy socks5://192.168.155.113:9050
 https://www.schneier.com/feed/atom "Bruce Schneier"
 https://thevaluable.dev/index.xml
-https://strongly-typed-thoughts.net/blog/feed "strongly-typed-thoughts"
+https://strongly-typed-thoughts.net/blog/feed "strongly typed thoughts"
 https://mitchellh.com/feed.xml
 https://kevquirk.com/feed.xml
 https://cheapskatesguide.org/cheapskates-guide-rss-feed.xml "Cheapskates Guide"
@@ -95,12 +94,13 @@ https://fireborn.mataroa.blog/rss/
 https://drewdevault.com/blog/index.xml "Drew Devault"
 https://world.hey.com/dhh/feed.atom "David Heinemeier Hansson (DHH)"
 https://denshi.org/index.xml
-https://lukesmith.xyz/index.xml "Luke Smith"
+https://lukesmith.xyz/index.xml "Luke Smith" < proxy socks5://192.168.155.113:9050
 
 @ PERSONAL BLOGS 2
 https://aphyr.com/posts.atom
 https://www.roboleary.net/feed.xml
 https://daverupert.com/atom.xml
+https://runxiyu.org/blog/index.xml
 https://zerokspot.com/index.xml
 https://alexwlchan.net/atom.xml
 https://chelseatroy.com/feed
@@ -113,6 +113,8 @@ https://xn--gckvb8fzb.com/index.xml
 https://100r.co/links/rss.xml
 https://oppi.li/index.xml
 
+https://www.anildash.com/feed.xml
+https://maia.crimew.gay/feed.xml
 https://herecomesthemoon.net/posts/index.xml
 https://neilzone.co.uk/index.xml
 https://thecodist.com/rss
@@ -120,7 +122,6 @@ https://abner.page/index.xml
 https://hazelweakly.me/atom.xml
 https://esham.io/atom.xml
 https://www.harihareswara.net/rss/
-https://maia.crimew.gay/feed.xml
 https://mrkaran.dev/posts/atom.xml
 https://hasbrouck.org/blog/index.xml
 https://nadh.in/index.xml
@@ -164,7 +165,6 @@ https://tailscale.dev/feed.xml
 https://www.tbray.org/ongoing/ongoing.atom
 https://twi.github.io/blog/atom.xml
 https://vivekhaldar.com/index.xml
-https://www.anildash.com/feed.xml
 
 https://xenodium.com/rss.xml
 https://emnudge.dev/reads.xml
@@ -176,8 +176,6 @@ https://sachachua.com/blog/category/emacs-news/feed/
 https://www.commitstrip.com/en/feed/
 # Loading Artist
 https://loadingartist.com/index.xml
-# Oglaf! -- Comics. Often dirty.
-https://www.oglaf.com/feeds/rss/
 # Saturday Morning Breakfast Cereal
 https://www.smbc-comics.com/comic/rss
 # The Oatmeal

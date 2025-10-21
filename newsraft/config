@@ -32,7 +32,8 @@ pager-width 106
 status-placeholder ""
 item-content-link-format "[%i] %l<br>"
 database-clean-on-startup true
-download-max-host-connections 5
+download-max-connections 8
+download-max-host-connections 3
 
 menu-section-entry-format '%5u > %t'
 menu-feed-entry-format '%4u %t'
