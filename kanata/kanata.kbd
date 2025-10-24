@@ -28,8 +28,8 @@
    cap esc
 )
 (defalias ;; num row
-   1 (tap-hold-release $ntt $nht 1 S-1)
-   2 (tap-hold-release $ntt $nht 2 S-2)
+   1 (tap-hold-release $tt  $ht  1 S-1)
+   2 (tap-hold-release $tt  $ht  2 S-2)
    3 (tap-hold-release $ntt $nht 3 S-3)
    4 (tap-hold-release $ntt $nht 4 S-4)
    5 (tap-hold-release $ntt $nht 5 S-5)
