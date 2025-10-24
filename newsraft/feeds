@@ -34,6 +34,7 @@ https://android.izzysoft.de/rss/en/articles
 https://fishshell.com/blog/feed.xml
 https://newsboat.org/news.atom
 https://blog.thunderbird.net/feed/ "Thunderbird"
+https://blog.tangled.org/blog/feed.xml
 # https://strato-emu.github.io/index.xml
 # https://hyprland.org/rss.xml
 # https://blog.ajay.app/rss.xml
@@ -46,7 +47,7 @@ https://www.bleepingcomputer.com/feed/ < item-rule "NOT (title REGEXP '(^| )(Mic
 https://haveibeenpwned.com/feed/breaches/ "Have I Been Pwned"
 https://www.phoronix.com/rss.php < item-rule "NOT (title REGEXP 'Intel|NVIDIA|driver|Mesa|Vulkan')"
 https://www.ghacks.net/feed/ "gHacks" < item-rule "NOT (title REGEXP '(^| )(Windows|Apple|Google|Microsoft|Amazon|Chrome|OpenAI|Meta|Spotify)')"
-https://lwn.net/headlines/rss < item-rule "title NOT LIKE '[$] %'"; proxy socks5://192.168.155.113:9050
+https://lwn.net/headlines/rss < item-rule "NOT (title LIKE '[$] %' OR title LIKE 'Security updates for %')"; proxy socks5://192.168.155.113:9050
 https://www.tomshardware.com/feeds.xml
 # https://blog.opensource.org/feed/
 # https://www.bitdefender.com/nuxt/api/en-us/rss/hotforsecurity/
@@ -64,7 +65,7 @@ https://crinacle.com/feed
 
 @ PERSONAL BLOGS 1
 http://rachelbythebay.com/w/atom.xml "rachel by the bay" < proxy socks5://192.168.155.113:9050
-https://www.schneier.com/feed/atom "Bruce Schneier"
+https://www.schneier.com/feed/atom "Bruce Schneier" < item-rule "title NOT LIKE 'Friday Squid Blogging: %'"
 https://thevaluable.dev/index.xml
 https://strongly-typed-thoughts.net/blog/feed "strongly typed thoughts"
 https://mitchellh.com/feed.xml
@@ -80,6 +81,7 @@ https://dylanbeattie.net/feed.xml "Dylan Beattie"
 https://daringfireball.net/feeds/main "John Gruber (Daring Fireball)"
 https://www.troyhunt.com/rss
 https://jvns.ca/atom.xml
+https://xn--gckvb8fzb.com/index.xml
 https://axlefublr.github.io/rss.xml "axlefublr"
 https://ficd.sh/rss.xml
 https://jdugan6240.dev/feed.xml
@@ -97,11 +99,14 @@ https://denshi.org/index.xml
 https://lukesmith.xyz/index.xml "Luke Smith" < proxy socks5://192.168.155.113:9050
 
 @ PERSONAL BLOGS 2
+https://steveklabnik.com/feed.xml
 https://aphyr.com/posts.atom
 https://www.roboleary.net/feed.xml
 https://daverupert.com/atom.xml
 https://runxiyu.org/blog/index.xml
 https://zerokspot.com/index.xml
+https://buttondown.com/hillelwayne/rss
+https://www.devever.net/~hl/index.feed
 https://alexwlchan.net/atom.xml
 https://chelseatroy.com/feed
 https://feeds.feedburner.com/avc
@@ -109,7 +114,6 @@ https://ar.al/index.xml
 https://krebsonsecurity.com/feed
 https://danluu.com/atom.xml
 https://www.fromjason.xyz/p/notebook/feed/feed.xml
-https://xn--gckvb8fzb.com/index.xml
 https://100r.co/links/rss.xml
 https://oppi.li/index.xml
 
