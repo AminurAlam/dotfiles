@@ -22,10 +22,3 @@ osc52 = "CopyPaste"
 [mouse]
 hide_when_typing = true
 bindings         = [{ mouse = "Middle", action = "Paste" }]
-
-[keyboard]
-bindings = [
-  # TODO: yank bindings in vi mode (maybe)
-  # { key = "N", mods = "Control|Shift", action = "CreateNewWindow" },
-  # { key = "L", mods = "Control|Shift", chars = "l" },
-]

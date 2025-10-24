@@ -83,6 +83,4 @@ function setup_lsp
     termux-fix-shebang ~/.local/share/npm/bin/*
 end
 
-# TODO: put scripts in bin
-
 : # making sure the script returns 0

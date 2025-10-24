@@ -6,6 +6,9 @@
 --live-from-start
 --color 'stderr:always'
 
+### Video Selection:
+--no-playlist
+
 ### Download Options:
 # --downloader "dash,m3u8:aria2c"
 --concurrent-fragments 4

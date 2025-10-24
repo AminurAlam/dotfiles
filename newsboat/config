@@ -1,8 +1,6 @@
 # vim:set ft=conf:
 # https://newsboat.org/releases/2.40/docs/newsboat.html
 
-# TODO: max article width to 80
-
 include ~/.config/newsboat/colorscheme.conf
 include ~/.config/newsboat/bindings.conf
 include ~/.config/newsboat/filters.conf

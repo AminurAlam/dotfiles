@@ -2,7 +2,6 @@ function remux -d "mux multiple files into one"
     set inputs
     set maps -map 0:v
 
-    # TODO: thumbnail
     set count 0
     for file in $argv
         set -a inputs -i "$file"

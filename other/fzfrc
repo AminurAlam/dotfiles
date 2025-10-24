@@ -1,4 +1,5 @@
 # vim:set ft=fzfrc cms=#\ %s:
+# TODO: fix oneonly
 
 ### Search mode
 --ignore-case
