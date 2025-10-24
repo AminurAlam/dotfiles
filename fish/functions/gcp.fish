@@ -7,6 +7,7 @@ function gcp -a url path branch -d "git clone wrapper"
     end
     [ -n "$branch" ] && set -f branch "--branch" "$branch"
 
+    # TODO: for codeberg
     if string match -qr -- "^https://github.com/" "$url"
         set url (string replace -r -- 'https://([^/]+)/([^/]+)/([^/]+).*' 'https://$1/$2/$3' "$url")
         [ -e ~/.ssh/github_ed25519 ]
@@ -16,6 +17,7 @@ function gcp -a url path branch -d "git clone wrapper"
     cd "$HOME/repos"
 
     echo $url
+    # TODO: set path to name-repo if repo already exists
     git clone --depth 1 $branch -- $url $path
     and begin
         if [ -n "$path" ]

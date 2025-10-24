@@ -1,10 +1,7 @@
 function bm -d "bookmark manager"
     set BMPATH ~/repos/notes/bookmarks
-    set -q LAUNCHER || set LAUNCHER fzf
 
     switch "$argv[1]"
-        case a add
-            echo "$argv[2]" >>"$BMPATH[1]"
         case e ed edit
             $EDITOR $BMPATH
         case '*'

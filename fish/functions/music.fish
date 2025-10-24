@@ -1,4 +1,5 @@
 function music -d "process music files with a single command"
+    # TODO: take urls or search for urls and download them 
     set files (fd -d1 '.*\.(mp3|ogg|opus|flac|m4a|lrc)' | sort -g) # list of editable files
     set filecount (count $files) # number of editable files
     set max (printf '%s\n' $files | wc -L) # find length of longest string

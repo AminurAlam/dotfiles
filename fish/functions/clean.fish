@@ -31,7 +31,7 @@ function clean -d "cleanup to free storage"
     else
         command -vq pacman && yes | pacman -Scc
     end
-    command -vq gio && gio trash --empty
+    command -vq trash-empty && trash-empty
     command -vq yay && yay -Sc
     command -vq pip && pip cache purge
     command -vq npm && npm cache clean --force

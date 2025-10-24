@@ -5,14 +5,16 @@ function sy -d "sync files between phone and pc"
     [ -n "$ip" ] && sed -r -i "s/192\.168\.[0-9]+\.[0-9]+ #brick\$/$ip #brick/" ~/.ssh/config || return 192
 
     set comm --dry-run -ha --out-format "%o %n" --exclude={.thumbnails,.nomedia}
-    set artists Alp Arakure Herio 'Hinahara Emi' 'Nikubou Maranoshin' 'Ouchi Kaeru' 'Wantan Meo' Yuruyakatou
+    set artists Alp Arakure Herio 'Hinahara Emi' Jury 'Nikubou Maranoshin' 'Ouchi Kaeru' 'Wantan Meo' Yuruyakatou
 
     for state in dry wet
-        # TODO: add -y flag
-        if [ $state = wet ]
+        if [ $state = dry ] && [ "$argv[1]" = -y ]
+            continue
+        else if [ $state = wet ] && [ "$argv[1]" != -y ]
             [ "$(read -P "make these changes? [y/N] ")" = y ] || continue
             set -e comm[1]
         end
+
         printf "=== PICTURES ===\n"
         rsync $comm ~/Pictures/ brick:/sdcard/Pictures/ --exclude={Camera,Komikku,WhatsApp Images} | rg -v '/$'
         rsync $comm brick:/sdcard/Pictures/ ~/Pictures/ | rg -v '/$'
@@ -33,6 +35,8 @@ function sy -d "sync files between phone and pc"
         rsync $comm ~/Downloads/main/arch.kdbx brick:/sdcard/main/arch.kdbx
         rsync $comm brick:/sdcard/main/android.kdbx ~/Downloads/main/android.kdbx
         rsync $comm ~/.local/share/newsboat/cache.db brick:~/.local/share/newsboat/cache.db
+        [ -e ~/.local/share/newsraft/newsraft.sqlite3-journal ]
+        or rsync $comm /home/fisher/.local/share/newsraft/newsraft.sqlite3 brick:~/.local/share/newsraft/newsraft.sqlite3
         rsync $comm brick:/sdcard/main/backup/ ~/Downloads/main/backup/
     end
 end

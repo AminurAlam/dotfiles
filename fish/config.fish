@@ -52,9 +52,9 @@ if set -q TERMUX_VERSION
     set -gx XDG_VIDEOS_DIR /sdcard/Movies
 
     set -gxp --path PATH ~/.local/bin # sometimes before
-    set -gxp --path PATH "$CARGO_HOME/bin" # after declaring CARGO_HOME
     set -gxp --path PATH ~/.local/share/npm/bin
 end
+set -gxp --path PATH "$CARGO_HOME/bin" # after declaring CARGO_HOME
 set -gxp --path PATH ~/.local/bin # sometimes before
 set -gxp --path PATH ~/.local/share/npm/bin
 

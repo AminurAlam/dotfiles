@@ -1,6 +1,5 @@
 function pong -d "mass ping multiple hosts to check connection"
     set addresses \
-        amazon.com \
         discord.com \
         github.com \
         google.com \
