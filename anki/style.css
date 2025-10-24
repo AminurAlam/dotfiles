@@ -65,23 +65,23 @@ details[open] {
   }
 }
 
-.utils {
-  position: fixed;
-  bottom: 10px;
-  right: 0px;
-
-  .jisho {
-    font-size: 16px;
-    text-decoration: none;
-    color: #ffffff;
-    background-color: #2ea44fcc;
-    border-radius: 10px;
-    margin: 100px 10px;
-    padding: 6px 10px;
-  }
-}
 button {
   height: 50px;
   margin: 0px;
   padding: 0px;
+}
+.utils {
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+
+  .jisho {
+    font-size: 1.1em;
+    text-decoration: none;
+    color: #ffffff;
+    background-color: #2ea44fcc;
+    border-radius: 30px;
+    margin: 0px 5px;
+    padding: 6px 15px;
+  }
 }
