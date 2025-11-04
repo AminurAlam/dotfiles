@@ -79,7 +79,7 @@ curl -#LOq -- github.com/AminurAlam/dotfiles/raw/main/setup/termux.sh
 curl -#LOq -- github.com/AminurAlam/dotfiles/raw/main/setup/arch.sh
 ```
 
-- debian/ubuntu
+- ubuntu
 
 ```sh
 curl -#LOq -- github.com/AminurAlam/dotfiles/raw/main/setup/ubuntu.sh
@@ -89,5 +89,4 @@ curl -#LOq -- github.com/AminurAlam/dotfiles/raw/main/setup/ubuntu.sh
 
 ```ps1
 irm "https://github.com/AminurAlam/dotfiles/raw/main/setup/windows.ps1" -OutFile windows.ps1
-iex windows.ps1
 ```
