@@ -40,7 +40,8 @@ https://blog.tangled.org/blog/feed.xml
 # https://blog.ajay.app/rss.xml
 
 https://astral.sh/blog/rss.xml "astral.sh"
-https://www.404media.co/rss < item-rule "NOT (title REGEXP '^(Podcast|Behind the Blog):' OR content LIKE '%welcome back to the abstract%')"
+https://www.404media.co/rss < item-rule "NOT (title REGEXP '^(Podcast|Behind the Blog):' OR persons LIKE '%Becky Ferreira%')"
+# OR content REGEXP '(welcome back to the abstract|bexfiles|BeX Files)')"
 https://www.eff.org/rss/updates.xml "eff.org"
 https://torrentfreak.com/feed < item-rule "title NOT LIKE '%IPTV%'"
 https://www.bleepingcomputer.com/feed/ < item-rule "NOT (title REGEXP '(^| )(Microsoft|Windows)')"
@@ -78,7 +79,6 @@ https://vonheikemen.github.io/devlog/atom.xml "vonheikemen (nvim)"
 https://arjunyadav.xyz/rss.xml "Arjun Yadav"
 https://daniel.haxx.se/blog/feed/ "Daniel Stenberg (curl)"
 https://dylanbeattie.net/feed.xml "Dylan Beattie"
-https://daringfireball.net/feeds/main "John Gruber (Daring Fireball)"
 https://www.troyhunt.com/rss
 https://jvns.ca/atom.xml
 https://xn--gckvb8fzb.com/index.xml
@@ -93,10 +93,6 @@ https://pluralistic.net/feed/ "Cory Doctorow (Pluralistic)"
 https://ploum.net/atom_en.xml
 https://monstro1.com/rss.xml
 https://fireborn.mataroa.blog/rss/
-https://drewdevault.com/blog/index.xml "Drew Devault"
-https://world.hey.com/dhh/feed.atom "David Heinemeier Hansson (DHH)"
-https://denshi.org/index.xml
-https://lukesmith.xyz/index.xml "Luke Smith"
 
 @ PERSONAL BLOGS 2
 https://steveklabnik.com/feed.xml
@@ -116,10 +112,10 @@ https://danluu.com/atom.xml
 https://www.fromjason.xyz/p/notebook/feed/feed.xml
 https://100r.co/links/rss.xml
 https://oppi.li/index.xml
-
-https://ludic.mataroa.blog/rss
 https://www.anildash.com/feed.xml
 https://maia.crimew.gay/feed.xml
+
+https://ludic.mataroa.blog/rss
 https://herecomesthemoon.net/posts/index.xml
 https://neilzone.co.uk/index.xml
 https://thecodist.com/rss
@@ -170,13 +166,10 @@ https://tailscale.dev/feed.xml
 https://www.tbray.org/ongoing/ongoing.atom
 https://twi.github.io/blog/atom.xml
 https://vivekhaldar.com/index.xml
-
 https://xenodium.com/rss.xml
 https://emnudge.dev/reads.xml
 # The Daily WTF
 http://syndication.thedailywtf.com/TheDailyWtf
-# emacs-news
-https://sachachua.com/blog/category/emacs-news/feed/
 # CommitStrip
 https://www.commitstrip.com/en/feed/
 # Loading Artist
@@ -185,3 +178,9 @@ https://loadingartist.com/index.xml
 https://www.smbc-comics.com/comic/rss
 # The Oatmeal
 https://theoatmeal.com/feed/rss
+
+https://daringfireball.net/feeds/main "John Gruber (Daring Fireball)"
+https://drewdevault.com/blog/index.xml "Drew Devault"
+https://world.hey.com/dhh/feed.atom "David Heinemeier Hansson (DHH)"
+https://denshi.org/index.xml
+https://lukesmith.xyz/index.xml "Luke Smith"
