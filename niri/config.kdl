@@ -1,17 +1,24 @@
 // "/-" comments out the following node.
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Introduction
 
-spawn-at-startup "swaybg" "-m" "fill" "-i" "Pictures/desu/135499121_p0.jpg"
+spawn-at-startup "swaybg" "-m" "fill" "-i" "Pictures/desu/126278795_p0.jpg"
+// spawn-at-startup "swaybg" "-m" "fill" "-i" "Pictures/desu/131954033_p0.jpg"
+// spawn-at-startup "swaybg" "-m" "fill" "-i" "Pictures/desu/135783037_p0.jpg"
 screenshot-path "~/Pictures/Screenshots/Screenshot_%Y%m%d_%H%M%S_grim.png"
 prefer-no-csd
 
 environment {
     ELECTRON_OZONE_PLATFORM_HINT "auto"
-    XCURSOR_SIZE "32"
+    XCURSOR_SIZE "30"
     XCURSOR_THEME "Bibata-Modern-Ice"
     MESA_SHADER_CACHE_DISABLE "true"
     QT_SCALE_FACTOR "1.26"
     DISPLAY ":0"
+}
+
+cursor {
+    xcursor-theme "Bibata-Modern-Ice"
+    xcursor-size 32
 }
 
 input {
