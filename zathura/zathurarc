@@ -33,7 +33,8 @@ set font "monospace normal 12"
 set selection-clipboard clipboard
 set statusbar-h-padding 0
 set statusbar-v-padding 0
-set page-padding 5
+set page-h-padding 5
+set page-v-padding 5
 set page-cache-size 20
 set scroll-step 40
 set scroll-page-aware true
