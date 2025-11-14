@@ -6,7 +6,12 @@ After=network.target
 [Service]
 Environment=PATH=/usr/local/bin:/usr/local/sbin:/usr/bin:/bin
 Type=exec
-ExecStartPre=sh -c "kiwix-manage ~/Downloads/main/zim/library_zim.xml add ~/Downloads/main/zim/*.zim"
+# TODO: use the old command after its fixed
+# https://github.com/kiwix/kiwix-tools/issues/780
+# https://github.com/kiwix/kiwix-tools/issues/781
+# https://github.com/kiwix/kiwix-tools/pull/782
+# ExecStartPre=sh -c "kiwix-manage ~/Downloads/main/zim/library_zim.xml add ~/Downloads/main/zim/*.zim"
+ExecStartPre=sh -c "fd --extension zim . ~/Downloads/main/zim/ -j1 -x kiwix-manage ~/Downloads/main/zim/library_zim.xml add"
 ExecStart=/usr/bin/kiwix-serve -p 8101 --library Downloads/main/zim/library_zim.xml
 PrivateTmp=true
 PrivateDevices=true
