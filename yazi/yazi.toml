@@ -16,7 +16,8 @@ plugin.prepend_previewers = [
   { mime = 'audio/mpegurl', run = 'code' },
   { mime = 'audio/*', run = 'coverart' },
   { mime = 'font/*', run = 'font-sample' },
-  { name = '*.{otf,ttf}', run = 'font-sample' },
+  { mime = 'application/ms-opentype', run = 'font-sample' },
+  { name = '*.{otf,ttf,woff,woff2}', run = 'font-sample' },
   { name = '**/.git/', run = 'gitinfo' },
   # plugins
   { name = '*.sqlite3', run = 'piper -- sqlite3 "$1" .schema' },
@@ -33,7 +34,8 @@ plugin.prepend_preloaders = [
   { mime = 'audio/*', run = 'coverart' },
   { name = '*.cb{z,r}', run = 'cbz' },
   { mime = 'font/*', run = 'font-sample' },
-  { name = '*.{otf,ttf}', run = 'font-sample' },
+  { mime = 'application/ms-opentype', run = 'font-sample' },
+  { name = '*.{otf,ttf,woff,woff2}', run = 'font-sample' },
 ]
 
 ### SPOT
@@ -58,7 +60,7 @@ open.rules = [
   { mime = 'application/pdf', use = ['zathura'] },
   { name = '*.cb{z,r}', use = ['zathura', 'extract'] },
   { mime = 'application/{zip,rar,7z*,tar,gzip,xz,zstd,bzip*,lzma,compress,archive,cpio,arj,xar,ms-cab*}', use = ['extract'] },
-  { name = '*.{zip,rar}', use = ['extract', 'zathura'] },
+  { name = '*.{zip,rar,deb}', use = ['extract', 'zathura'] },
   { mime = 'image/*', use = ['swayimg', 'identity', 'krita', 'swaybg'] },
   { mime = 'video/*', use = ['play'] },
   { mime = 'audio/*', use = ['kid3', 'play', 'picard'] },
@@ -99,7 +101,7 @@ play = [{ run = 'mpv --force-window "$@"', orphan = true, for = 'linux', desc = 
 reveal = [
   { run = 'xdg-open "$(dirname "$1")"', desc = ' Reveal', for = 'linux' },
   { run = 'opendir "$1"', desc = ' Reveal', for = 'android' },
-  { run = 'swayimg -g "$@"', desc = ' gallery' },
+  { run = 'swayimg -g "$@"', orphan = true, desc = ' gallery' },
 ]
 extract = [
   { run = 'ya pub extract --list "$@"', desc = '󱉛 Extract here', for = 'unix' },

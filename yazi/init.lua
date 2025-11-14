@@ -111,9 +111,11 @@ require('spot'):setup {
 }
 
 require('font-sample'):setup {
-  text = 'ABCD abcd\noO0 1lI\n1234567890\n!@#$%^&*()[]{}\n== <= >= !=\nこれ直楽糸',
-  canvas_size = '700x800',
-  font_size = 80,
+  text = 'ABCD abcd\noO0 1lI \n0123456789\n@#$%%&=()[]{};\n== <= >= != ffi\n및개요これ直楽糸',
+  canvas_size = '750x800',
+  font_size = 60,
+  bg = 'white',
+  fg = 'black',
 }
 
 require('pref-by-location'):setup {
