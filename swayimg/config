@@ -5,10 +5,12 @@ overlay = yes
 
 [viewer]
 window = #000000
+scale = fit
 antialiasing = mks13
 
 [list]
 order = mtime
+reverse = no
 
 [info.viewer]
 top_left = none
@@ -35,6 +37,9 @@ KP_Add = zoom +10
 KP_Subtract = zoom -10
 s = zoom width
 Equal = zoom fit
+
+comma = rotate_left
+period = rotate_right
 
 ScrollLeft = step_left 1
 ScrollRight = step_right 1
