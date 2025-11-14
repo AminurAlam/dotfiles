@@ -5,9 +5,6 @@ function hentai -d "for managing literature"
     "
     set mangadir /sdcard/TachiyomiSY
     set targetdir "$mangadir/local/#lewd"
-    function getlist
-        zipinfo -1 $argv[1] | rg --only-matching --replace '$1' '^(\d+)/' | sort | uniq | sort
-    end
     function getartist
         unzip -p $argv[1]/Chapter*.cbz ComicInfo.xml | rg --only-matching --replace '$1' '<Penciller>(.*)</Penciller>' || termux-clipboard-get
     end
@@ -48,7 +45,14 @@ function hentai -d "for managing literature"
     cd "$mangadir/downloads/HentaiNexus (EN)/" || return 3
 
     if [ -n "$name" ]
-        set count (math max (getlist "$targetdir/$name" | string join ,))
+        set count (math max (
+            zipinfo -1 "$targetdir/$name" \
+            | rg --only-matching --replace '$1' '^(\d+)/' \
+            | sort \
+            | uniq \
+            | sort \
+            | string join ,
+        ))
     else # adding to cbz
         set name (printf "%s\n" $argv | sed -e '$!{N;s/^\(.*\).*\n\1.*$/\1\n\1/;D;}' | string trim) # get biggest common substring
 
