@@ -49,20 +49,19 @@ https://haveibeenpwned.com/feed/breaches/ "Have I Been Pwned"
 https://www.phoronix.com/rss.php < item-rule "NOT (title REGEXP 'Intel|NVIDIA|driver|Mesa|Vulkan')"
 https://www.ghacks.net/feed/ "gHacks" < item-rule "NOT (title REGEXP '(^| )(Windows|Apple|Google|Microsoft|Amazon|Chrome|OpenAI|Meta|Spotify)')"
 https://lwn.net/headlines/rss < item-rule "NOT (title LIKE '[$] %' OR title LIKE 'Security updates for %')"
-https://www.tomshardware.com/feeds.xml
 # https://blog.opensource.org/feed/
 # https://www.bitdefender.com/nuxt/api/en-us/rss/hotforsecurity/
 # https://rss.slashdot.org/Slashdot/slashdotMain
 
 @ CORPO BLOGS < item-limit 30
-https://signal.org/blog/rss.xml
-https://blog.archive.org/feed/
 https://mullvad.net/en/blog/feed/atom/
-https://element.io/blog/rss/
 https://blog.cloudflare.com/rss/
 https://blog.nightly.mozilla.org/feed
 https://security.googleblog.com/feeds/posts/default?alt=rss
 https://crinacle.com/feed
+# https://signal.org/blog/rss.xml
+# https://blog.archive.org/feed/
+# https://element.io/blog/rss/
 
 @ PERSONAL BLOGS 1
 http://rachelbythebay.com/w/atom.xml "rachel by the bay"
@@ -91,15 +90,14 @@ https://tonsky.me/atom.xml "Nikita Prokopov (tonsky.me)"
 https://robertheaton.com/feed.xml "Robert Heaton"
 https://pluralistic.net/feed/ "Cory Doctorow (Pluralistic)"
 https://ploum.net/atom_en.xml
-https://monstro1.com/rss.xml
 https://fireborn.mataroa.blog/rss/
+https://runxiyu.org/blog/index.xml
 
 @ PERSONAL BLOGS 2
 https://steveklabnik.com/feed.xml
 https://aphyr.com/posts.atom
 https://www.roboleary.net/feed.xml
 https://daverupert.com/atom.xml
-https://runxiyu.org/blog/index.xml
 https://zerokspot.com/index.xml
 https://buttondown.com/hillelwayne/rss
 https://www.devever.net/~hl/index.feed
@@ -114,13 +112,19 @@ https://100r.co/links/rss.xml
 https://oppi.li/index.xml
 https://www.anildash.com/feed.xml
 https://maia.crimew.gay/feed.xml
-
-https://ludic.mataroa.blog/rss
+https://hazelweakly.me/atom.xml
+https://daringfireball.net/feeds/main "John Gruber (Daring Fireball)"
+https://drewdevault.com/blog/index.xml "Drew Devault"
+https://world.hey.com/dhh/feed.atom "David Heinemeier Hansson (DHH)"
+https://denshi.org/index.xml
+https://lukesmith.xyz/index.xml "Luke Smith"
 https://herecomesthemoon.net/posts/index.xml
+
+@ PERSONAL BLOGS 3
+https://ludic.mataroa.blog/rss
 https://neilzone.co.uk/index.xml
 https://thecodist.com/rss
 https://abner.page/index.xml
-https://hazelweakly.me/atom.xml
 https://esham.io/atom.xml
 https://www.harihareswara.net/rss/
 https://mrkaran.dev/posts/atom.xml
@@ -151,7 +155,6 @@ https://christine.website/blog.rss
 https://leafo.net/feed.xml
 http://pb.co.za/posts.atom
 https://gabrielsimmer.com/rss
-https://nanotipsforvim.prose.sh/rss
 https://www.supergoodcode.com/feed.xml
 https://ntietz.com/atom.xml
 https://rubenerd.com/feed/
@@ -166,21 +169,8 @@ https://tailscale.dev/feed.xml
 https://www.tbray.org/ongoing/ongoing.atom
 https://twi.github.io/blog/atom.xml
 https://vivekhaldar.com/index.xml
-https://xenodium.com/rss.xml
 https://emnudge.dev/reads.xml
-# The Daily WTF
 http://syndication.thedailywtf.com/TheDailyWtf
-# CommitStrip
-https://www.commitstrip.com/en/feed/
-# Loading Artist
 https://loadingartist.com/index.xml
-# Saturday Morning Breakfast Cereal
 https://www.smbc-comics.com/comic/rss
-# The Oatmeal
 https://theoatmeal.com/feed/rss
-
-https://daringfireball.net/feeds/main "John Gruber (Daring Fireball)"
-https://drewdevault.com/blog/index.xml "Drew Devault"
-https://world.hey.com/dhh/feed.atom "David Heinemeier Hansson (DHH)"
-https://denshi.org/index.xml
-https://lukesmith.xyz/index.xml "Luke Smith"

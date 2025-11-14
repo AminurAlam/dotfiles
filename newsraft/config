@@ -28,7 +28,7 @@ scrolloff 5000
 feeds-menu-paramount-explore false
 item-limit-unread true
 scrollwrap true
-pager-width 106
+pager-width 80
 status-placeholder ""
 item-content-link-format "[%i] %l<br>"
 database-clean-on-startup true
