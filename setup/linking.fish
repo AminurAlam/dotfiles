@@ -1,5 +1,7 @@
 mkdir -p ~/{backup,bin,.ssh} ~/.local/{bin,share}
 
+# TODO: use -n flag when linking
+
 printf "LINKING CONFIG DIRECTORIES... "
 for config in alacritty aria2 \
     btop \
@@ -58,10 +60,11 @@ if set -q TERMUX_VERSION
     printf "done\n"
 end
 
-printf "LINKING LINUX FILES...\n"
-[ -e /etc/pacman.conf ] && sudo ln -fs ~/repos/dotfiles/other/pacman.arch.conf /etc/pacman.conf
-ln -fs ~/repos/dotfiles/applications ~/.local/share/
-ln -fs ~/repos/dotfiles/scripts/bin/cbzcover ~/.local/bin/cbzcover
-ln -fs ~/repos/dotfiles/scripts/bin/ctl ~/.local/bin/ctl
+printf "LINKING OTHER FILES...\n"
+[ -e /etc/pacman.conf ] && sudo ln -nfs ~/repos/dotfiles/other/pacman.arch.conf /etc/pacman.conf
+ln -nfs ~/repos/dotfiles/applications ~/.local/share/applications
+ln -nfs ~/repos/dotfiles/scripts/bin/cbzcover ~/.local/bin/cbzcover
+ln -nfs ~/repos/dotfiles/scripts/bin/ctl ~/.local/bin/ctl
+ln -nfs ~/repos/yazi-plugins ~/repos/dotfiles/yazi/plugins
 
 rmdir --ignore-fail-on-non-empty ~/{backup,bin,.ssh}
