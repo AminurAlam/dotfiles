@@ -117,8 +117,10 @@ window-rule { // focus on keepass
     open-focused true
 }
 
-window-rule { // fullscreen
-    match app-id="librewolf|vesktop|org.kde.kdeconnect.app|org.musicbrainz.Picard"
+window-rule { // pseudo-fullscreen
+    match app-id="librewolf|vesktop"
+    match app-id="(org|com)\\..*\\.(Picard|Identity|rnote|kdeconnect.app)$"
+
     default-column-width { proportion 1.0; }
 }
 
@@ -127,16 +129,11 @@ window-rule { // fullscreen glut
     default-column-width { proportion 1.0; }
 }
 
-window-rule { // *
-    geometry-corner-radius 12
-    clip-to-geometry true
-}
-
 window-rule { // unfocused
     match is-focused=false
 
     draw-border-with-background false
-    opacity 0.93
+    opacity 0.95
     /-shadow {
         on
         softness 40
@@ -146,6 +143,11 @@ window-rule { // unfocused
         color "#00000064"
         inactive-color "#00000064"
     }
+}
+
+window-rule { // *
+    geometry-corner-radius 12
+    clip-to-geometry true
 }
 
 layer-rule {
