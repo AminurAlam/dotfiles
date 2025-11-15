@@ -27,6 +27,8 @@ switch $argv[1]
 
         if [ "$argv[2]" = full ]
             grim ~/Pictures/Screenshots/$filename && notify-send "$filename taken"
+        else if [ "$argv[2]" = ocr ]
+            grim -g (slurp) - | wl-copy -t image/png
         else
             grim -g (slurp) ~/Pictures/Screenshots/$filename && notify-send "$filename taken"
         end

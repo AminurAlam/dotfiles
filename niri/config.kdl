@@ -4,7 +4,7 @@
 spawn-at-startup "swaybg" "-m" "fill" "-i" "Pictures/desu/126278795_p0.jpg"
 // spawn-at-startup "swaybg" "-m" "fill" "-i" "Pictures/desu/131954033_p0.jpg"
 // spawn-at-startup "swaybg" "-m" "fill" "-i" "Pictures/desu/135783037_p0.jpg"
-screenshot-path "~/Pictures/Screenshots/Screenshot_%Y%m%d_%H%M%S_grim.png"
+screenshot-path "~/Pictures/Screenshots/Screenshot_%Y%m%d_%H%M%S_niri.png"
 prefer-no-csd
 
 environment {
@@ -19,6 +19,16 @@ environment {
 cursor {
     xcursor-theme "Bibata-Modern-Ice"
     xcursor-size 32
+    hide-when-typing
+    hide-after-inactive-ms 5000
+}
+
+overview {
+    zoom 0.48
+}
+
+hotkey-overlay {
+    skip-at-startup
 }
 
 input {
@@ -172,13 +182,15 @@ binds {
     Mod+F repeat=false { switch-preset-column-width; }
     Mod+Shift+F repeat=false { fullscreen-window; }
 
-    Mod+Z repeat=false { expand-column-to-available-width; }
+    // TURNING OFF
     Mod+M repeat=false { quit; }
+    Mod+N repeat=false { power-off-monitors; }
 
     // PRINT
-    Mod+P { spawn "ctl" "ss"; }
-    Mod+Shift+P { spawn "ctl" "ss" "full"; }
-    Mod+Alt+P { screenshot-window; }
+    Mod+P       { screenshot; }
+    Mod+Shift+P { screenshot-screen; }
+    Mod+Alt+P   { screenshot-window; }
+    Mod+Z       { spawn "ctl" "ss" "ocr"; }
 
     // FUNC
     XF86AudioMute repeat=false    { spawn "ctl" "vol";}
@@ -198,16 +210,23 @@ binds {
 
     // COL
     Mod+H { focus-column-left; }
-    Mod+J { focus-workspace-down; }
-    Mod+K { focus-workspace-up; }
+    Mod+J { focus-window-or-workspace-down; }
+    Mod+K { focus-window-or-workspace-up; }
     Mod+L { focus-column-right; }
+    Mod+Left  { focus-column-left; }
+    Mod+Down  { focus-window-or-workspace-down; }
+    Mod+Up    { focus-window-or-workspace-up; }
+    Mod+Right { focus-column-right; }
 
-    Mod+Shift+Left  { move-column-left; }
-    Mod+Shift+Right { move-column-right; }
-    Mod+Shift+H     { move-column-left; }
-    Mod+Shift+J     { move-column-to-workspace-down; }
-    Mod+Shift+K     { move-column-to-workspace-up; }
-    Mod+Shift+L     { move-column-right; }
+    Mod+Shift+Left   { move-column-left; }
+    Mod+Shift+Right  { move-column-right; }
+    Mod+Shift+H      { move-column-left; }
+    Mod+Shift+J      { move-column-to-workspace-down; }
+    Mod+Shift+K      { move-column-to-workspace-up; }
+    Mod+Shift+L      { move-column-right; }
+    Mod+BracketLeft  { consume-or-expel-window-left; }
+    Mod+BracketRight { consume-or-expel-window-right; }
+    Mod+Space        { center-column; }
 
     // WS
     Mod+Ctrl+J { move-workspace-down; }
@@ -218,10 +237,4 @@ binds {
     Mod+TouchpadScrollUp    { set-window-height "+3%"; }
     Mod+TouchpadScrollLeft  { set-column-width "+3%"; }
     Mod+TouchpadScrollRight { set-column-width "-3%"; }
-
-    // OTHER
-    Mod+BracketLeft  { consume-or-expel-window-left; }
-    Mod+BracketRight { consume-or-expel-window-right; }
-    Mod+Escape allow-inhibiting=false { toggle-keyboard-shortcuts-inhibit; }
-    Mod+Space { power-off-monitors; }
 }
