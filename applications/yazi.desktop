@@ -9,6 +9,3 @@ Type=Application
 MimeType=inode/directory
 Categories=Utility;Core;System;FileTools;FileManager;ConsoleOnly
 Keywords=File;Manager;Explorer;Browser;Launcher
-
-NoDisplay=true
-Hidden=true
