@@ -8,6 +8,7 @@ require('nvim-surround').setup {
   },
 }
 
+-- TODO: switch to v0.7 branch when ready
 require('ultimate-autopair').setup {
   bs = { indent_ignore = true },
   space = { check_box_ft = { 'markdown', 'note' } },

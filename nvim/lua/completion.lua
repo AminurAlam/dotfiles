@@ -14,10 +14,11 @@ blink.setup {
     ['<C-p>'] = { 'select_prev' },
   },
   sources = {
-    -- TODO: sorting
-    -- TODO: higher path priority
-    default = { 'lazydev', 'lsp', 'path', 'snippets', 'buffer' },
-    per_filetype = { fish = { 'fish', 'path', 'snippets', 'buffer' } },
+    default = { 'path', 'lsp', 'snippets', 'buffer' },
+    per_filetype = {
+      lua = { inherit_defaults = true, 'lazydev' },
+      fish = { inherit_defaults = true, 'fish' },
+    },
     providers = {
       lazydev = {
         name = 'LazyDev',

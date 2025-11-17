@@ -12,7 +12,6 @@ vim.lsp.enable(vim.tbl_filter(filter, {
   'hyprls',
   'java_language_server',
   'lua_ls',
-  -- 'pyrefly', -- TODO: check if this even does anything
   'ruff',
   'rust_analyzer',
   'systemd',

@@ -16,7 +16,11 @@ vim.pack.add({
   'https://github.com/folke/lazydev.nvim',
   'https://github.com/saghen/blink.cmp', -- https://cmp.saghen.dev/
   'https://github.com/saghen/blink.compat',
+  'https://github.com/mtoohey31/cmp-fish',
+  'https://github.com/0xAdk/full_visual_line.nvim',
 })
+
+require('full_visual_line').setup {}
 
 local augend = require('dial.augend')
 require('dial.config').augends:register_group {
@@ -32,16 +36,10 @@ require('dial.config').augends:register_group {
   },
 }
 
-vim.api.nvim_create_autocmd({ 'FileType' }, {
-  desc = 'reading mode for some filetypes',
-  pattern = { 'lua' },
-  callback = function()
-    -- require('lazydev').setup {
-    --   library = { { path = '${3rd}/luv/library', words = { 'vim%.uv' } } },
-    --   integrations = { cmp = false, lspconfig = false },
-    -- }
-  end,
-})
+require('lazydev').setup {
+  library = { { path = '${3rd}/luv/library', words = { 'vim%.uv' } } },
+  integrations = { cmp = false, lspconfig = false },
+}
 
 vim.keymap.set('n', '<leader>pu', vim.pack.update, { desc = 'update plugins' })
 vim.keymap.set('n', '<leader>pa', function()
