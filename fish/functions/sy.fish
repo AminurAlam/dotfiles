@@ -35,7 +35,6 @@ function sy -d "sync files between phone and pc"
         printf "=== MISC ===\n"
         rsync $comm ~/Downloads/main/arch.kdbx brick:/sdcard/main/arch.kdbx
         rsync $comm brick:/sdcard/main/android.kdbx ~/Downloads/main/android.kdbx
-        rsync $comm ~/.local/share/newsboat/cache.db brick:~/.local/share/newsboat/cache.db
         [ -e ~/.local/share/newsraft/newsraft.sqlite3-journal ]
         or rsync $comm /home/fisher/.local/share/newsraft/newsraft.sqlite3 brick:~/.local/share/newsraft/newsraft.sqlite3
         rsync $comm brick:/sdcard/main/backup/ ~/Downloads/main/backup/

@@ -2,13 +2,13 @@
 
 ### FETCH
 plugin.prepend_fetchers = [
-  { id = 'mime', name = '*.!qB', run = 'noop', prio = 'high' },
+  { id = 'mime', name = '*.{!qB,part}', run = 'noop', prio = 'high' },
   { id = 'mime', name = '/mnt/rclone/**', run = 'noop', prio = 'high' },
 ]
 
 ### PREVIEW
 plugin.prepend_previewers = [
-  { name = '*.!qB', run = 'noop' },
+  { name = '*.{!qB,part}', run = 'noop' },
   { name = '/mnt/rclone/**', run = 'noop' },
   # custom
   { mime = 'application/epub+zip', run = 'preview-ebook' },
@@ -28,7 +28,7 @@ plugin.prepend_previewers = [
   { name = '*.{zip,rar}', run = 'archive' },
 ]
 plugin.prepend_preloaders = [
-  { name = '*.!qB', run = 'noop' },
+  { name = '*.{!qB,part}', run = 'noop' },
   { name = '/mnt/rclone/**', run = 'noop' },
   { mime = 'application/epub+zip', run = 'preview-ebook' },
   { mime = 'audio/*', run = 'coverart' },
