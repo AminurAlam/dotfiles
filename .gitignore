@@ -79,5 +79,6 @@ rclone.conf
 /systemd/user/default.target.wants
 /systemd/user/graphical-session.target.wants
 
+/yazi/plugins
 /yazi/plugins/*
 /yazi/flavors/
