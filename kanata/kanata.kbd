@@ -17,10 +17,17 @@
   lctl lmet lalt           spc            ralt rmet rctl)
 (deflayer base
   @esc
-  _    @1   @2   @3   @4   @5   @6   @7   @8   @9   @0   @-   @=   _
-  _    _    _    _    _    _    _    _    _    _    _    @lb  @rb  @bs
+  @grv @1   @2   @3   @4   @5   @6   @7   @8   @9   @0   @-   @=   _
+  _    _    _    @e   _    _    _    _    _    _    _    @lb  @rb  @bs
   @cap @a   @s   @d   @f   _    _    _    _    @l   @;   @'   _
   _    _    _    _    _    _    _    _    _    _    @/    _
+  _    _    _              _              _    _    _)
+(deflayer symbols
+  _
+  _    _    _    _    _    _    _    @7   @8   @9    _    _    _    _
+  _    _    @s   _    @-   @=   _    @4^  @5   @6$   _    _    _    _
+  _    _    _    _    _    _    bspc @1   @2   @3    _    _    _
+  _    _    _    _    _    @lb  @0   ret  _    _     _    _
   _    _    _              _              _    _    _)
 
 (defalias ;; esc <-> caps
@@ -28,6 +35,7 @@
    cap esc
 )
 (defalias ;; num row
+   grv (tap-hold-release $ntt $nht grv S-grv)
    1 (tap-hold-release $tt  $ht  1 S-1)
    2 (tap-hold-release $tt  $ht  2 S-2)
    3 (tap-hold-release $ntt $nht 3 S-3)
@@ -40,8 +48,11 @@
    0 (tap-hold-release $ntt $nht 0 S-0)
    - (tap-hold-release $ntt $nht - S--)
    = (tap-hold-release $ntt $nht = S-=)
+   4^ (tap-hold-release $ntt $nht 4 S-6)
+   6$ (tap-hold-release $ntt $nht 6 S-4)
 )
 (defalias ;; top row
+   e  (tap-hold-release $ntt $nht e (layer-while-held symbols))
    lb (tap-hold-release $ntt $nht [ S-[)
    rb (tap-hold-release $ntt $nht ] S-])
    bs (tap-hold-release $ntt $nht \ S-\ )
@@ -53,7 +64,6 @@
    f (tap-hold $tt $ht f lctl)
 
    l (tap-hold $tt $ht l rsft)
-   ;; co (tap-hold $tt $ht ; ralt)
    ; (tap-hold-release $tt $ht ; S-;)
    ' (tap-hold-release $tt $ht ' S-')
 )
