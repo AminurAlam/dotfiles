@@ -49,6 +49,7 @@ mgr.prepend_keymap = [
   # Help
   { on = "?", run = "help", desc = "Open help" },
   # rename
+  { on = "@", run = ''' shell --block --confirm -- rat "$0" ''', for = "android" },
   { on = "I", run = "rename --cursor=start --hovered" },
   { on = "i", run = "rename --cursor=before_ext --hovered" },
   { on = "a", run = "rename --cursor=end --hovered" },

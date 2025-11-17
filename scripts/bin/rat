@@ -1,0 +1,7 @@
+#!/usr/bin/env fish
+
+cd "/sdcard/TachiyomiSY/downloads/HentaiNexus (EN)/"
+set chapter (path basename "$argv[1]")
+[ -e "$chapter" ] || exit
+
+mv -iv "$chapter" "@$(unzip -p "$chapter/Chapter.cbz" ComicInfo.xml | rg --only-matching --replace '$1' '<Penciller>(.*)</Penciller>') - $chapter"
