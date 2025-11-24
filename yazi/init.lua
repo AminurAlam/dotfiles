@@ -75,6 +75,20 @@ require('topaste'):setup {}
 if ya.id('app').value == 48937 then ya.emit('plugin', { 'zoxide' }) end
 
 -- plugins
+
+th.git = {
+  modified = ui.Style():fg('red'),
+  modified_sign = 'M',
+  added = ui.Style():fg('green'),
+  added_sign = 'A',
+  untracked = ui.Style():fg('red'),
+  untracked_sign = '?',
+  ignored_sign = 'I',
+  deleted_sign = 'D',
+  updated_sign = 'U',
+}
+require('git'):setup()
+
 require('fchar'):setup {
   insensitive = true,
   keep_searching = { enable = false, limit = 10 },
@@ -107,7 +121,7 @@ require('spot'):setup {
   height = 25,
   width = 70,
   render_metadata = true,
-  render_plugins = false,
+  render_plugins = true,
 }
 
 require('font-sample'):setup {

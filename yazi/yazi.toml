@@ -4,6 +4,8 @@
 plugin.prepend_fetchers = [
   { id = 'mime', name = '*.{!qB,part}', run = 'noop', prio = 'high' },
   { id = 'mime', name = '/mnt/rclone/**', run = 'noop', prio = 'high' },
+  { id = 'git', name = '*', run = 'git' },
+  { id = 'git', name = '*/', run = 'git' },
 ]
 
 ### PREVIEW
@@ -14,12 +16,13 @@ plugin.prepend_previewers = [
   { mime = 'application/epub+zip', run = 'preview-ebook' },
   { name = '*.cb{z,r}', run = 'cbz' },
   { mime = 'audio/mpegurl', run = 'code' },
-  { mime = 'audio/*', run = 'coverart' },
+  { mime = 'audio/*', run = 'preview-audio' },
   { mime = 'font/*', run = 'font-sample' },
   { mime = 'application/ms-opentype', run = 'font-sample' },
   { name = '*.{otf,ttf,woff,woff2}', run = 'font-sample' },
   { name = '**/.git/', run = 'gitinfo' },
   # plugins
+  # TODO: turn into standalone plugin with syntax highlight
   { name = '*.sqlite3', run = 'piper -- sqlite3 "$1" .schema' },
   { mime = 'application/sqlite3', run = 'piper -- sqlite3 "$1" .schema' },
   # { mime = 'application/octet-stream', run = 'piper -- hexyl -n1000 -PC --panels 1 --border none "$1"' },
@@ -31,7 +34,7 @@ plugin.prepend_preloaders = [
   { name = '*.{!qB,part}', run = 'noop' },
   { name = '/mnt/rclone/**', run = 'noop' },
   { mime = 'application/epub+zip', run = 'preview-ebook' },
-  { mime = 'audio/*', run = 'coverart' },
+  { mime = 'audio/*', run = 'preview-audio' },
   { name = '*.cb{z,r}', run = 'cbz' },
   { mime = 'font/*', run = 'font-sample' },
   { mime = 'application/ms-opentype', run = 'font-sample' },
@@ -73,6 +76,7 @@ open.rules = [
   { mime = 'inode/empty', use = ['edit'] },
   { mime = 'application/{json,ndjson}', use = ['edit'] },
   { mime = '*/javascript', use = ['edit'] },
+  { name = '*.patch', use = ['edit'] },
 
   { name = '*', use = ['open', 'rsync'] },
 ]
@@ -175,3 +179,5 @@ shell_offset = [0, 0, 999, 3]
 open_title  = 'Open with:'
 open_origin = 'hovered'
 open_offset = [0, 1, 30, 30]
+[tasks]
+image_bound = [20000, 20000]
