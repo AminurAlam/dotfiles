@@ -31,11 +31,15 @@ function clean -d "cleanup to free storage"
     else
         command -vq pacman && yes | pacman -Scc
     end
+    echo
     command -vq trash-empty && trash-empty
-    command -vq yay && yay -Sc
+    command -vq yay && begin
+        yay -Sc --noconfirm
+        [ (count (pacman -Qdtq)) -gt 20 ] && yay -Yc
+    end
+
     command -vq pip && pip cache purge
     command -vq npm && npm cache clean --force
-    command -vq newsboat && not ps a | rg -q newsboat && newsboat -X
     command -vq ccache && ccache --clear
     command -vq journalctl && sudo journalctl --vacuum-time 7d
 
