@@ -1,9 +1,8 @@
-// "/-" comments out the following node.
-// https://github.com/YaLTeR/niri/wiki/Configuration:-Introduction
+// https://yalter.github.io/niri/
 
-spawn-at-startup "swaybg" "-m" "fill" "-i" "Pictures/desu/126278795_p0.jpg"
-// spawn-at-startup "swaybg" "-m" "fill" "-i" "Pictures/desu/131954033_p0.jpg"
-// spawn-at-startup "swaybg" "-m" "fill" "-i" "Pictures/desu/135783037_p0.jpg"
+spawn-at-startup "swaybg" "-m" "fill" "-i" "Pictures/wp/126278795_p0.jpg"
+// spawn-at-startup "swaybg" "-m" "fill" "-i" "Pictures/wp/131954033_p0.jpg"
+// spawn-at-startup "swaybg" "-m" "fill" "-i" "Pictures/wp/135783037_p0.jpg"
 screenshot-path "~/Pictures/Screenshots/Screenshot_%Y%m%d_%H%M%S_niri.png"
 prefer-no-csd
 
