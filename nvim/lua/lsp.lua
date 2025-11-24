@@ -13,7 +13,7 @@ vim.lsp.enable(vim.tbl_filter(filter, {
   'java_language_server',
   'lua_ls',
   'ruff',
-  'rust_analyzer',
+  -- 'rust_analyzer',
   'systemd',
   'taplo',
   -- 'termux_language_server',
@@ -74,25 +74,33 @@ vim.api.nvim_create_autocmd('LspAttach', {
     local client = vim.lsp.get_client_by_id(vim.tbl_get(info, 'data', 'client_id'))
 
     if client == nil then return end
+
+    if client:supports_method('textDocument/documentColor') then
+      vim.lsp.document_color.enable(true, info.buf)
+    end
+
     if client:supports_method('textDocument/hover') then
       vim.keymap.set('n', 'K', function() --
         vim.lsp.buf.hover { border = 'rounded' }
       end, { buffer = info.buf })
     end
 
-    if client:supports_method('textDocument/documentColor') then
-      vim.lsp.document_color.enable(true, info.buf)
+    if client:supports_method('textDocument/formatting') then
+      vim.api.nvim_clear_autocmds({ buffer = info.buf })
+      vim.api.nvim_create_autocmd('BufWritePre', {
+        buffer = info.buf,
+        callback = function() vim.lsp.buf.format() end,
+      })
     end
-
-    -- if client:supports_method('textDocument/inlayHint') then
-    --   vim.lsp.inlay_hint.enable(true, { bufnr = info.buf })
-    -- end
 
     vim.keymap.set('n', '<leader>lf', vim.lsp.buf.format, { buffer = info.buf })
     vim.keymap.set('n', 'grd', vim.lsp.buf.definition, { buffer = info.buf })
+    vim.keymap.set('n', '<leader>sh', function()
+      local ih = vim.lsp.inlay_hint
+      ih.enable(not ih.is_enabled({ bufnr = 0 }))
+    end, { buffer = info.buf })
   end,
 })
-
 
 -- stylua: ignore
 vim.keymap.set('n', '<leader>li', function()

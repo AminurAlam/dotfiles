@@ -1,27 +1,25 @@
--- vim.treesitter.start()
--- require('nvim-treesitter').setup {}
--- -- vim.print(vim.treesitter.language.get_filetypes('glimmer'))
--- local tsft = {}
---
--- for f in vim.fs.dir(vim.fn.stdpath('data') .. '/site/parser') do
---   -- if f == 'glimmer.so' then
---   --   vim.print(vim.treesitter.language.get_filetypes(vim.fn.fnamemodify(f, ':r')))
---   -- end
---   for _, ft in ipairs(vim.treesitter.language.get_filetypes(vim.fn.fnamemodify(f, ':r'))) do
---     table.insert(tsft, ft)
---   end
--- end
-
 vim.api.nvim_create_autocmd('FileType', {
   desc = 'automatically start treesitter',
-  pattern = '*',
   callback = function(details)
-    -- if #tsft == 0 then return end
     if pcall(vim.treesitter.start) then
       vim.bo[details.buf].syntax = 'on'
-      vim.wo.foldmethod = 'expr'
       vim.wo.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+      vim.wo.foldmethod = 'expr'
+      vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
     end
+    -- if vim.bo[details.buf].buftype ~= '' then return end
+    -- local ts = require('nvim-treesitter')
+    -- local ft = vim.bo[details.buf].filetype
+    -- local is_available = vim.list_contains(ts.get_available(2), ft)
+    -- local is_installed = vim.list_contains(ts.get_installed(), ft)
+    -- if is_available then
+    --   if not is_installed then ts.install(ft) end
+    --   vim.treesitter.start(details.buf)
+    --   vim.wo.foldlevel = 2
+    --   vim.wo.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+    --   vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+    --   vim.wo.foldmethod = 'expr'
+    -- end
   end,
 })
 

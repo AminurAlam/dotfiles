@@ -33,6 +33,7 @@ require('dial.config').augends:register_group {
     augend.constant.new { elements = { '&&', '||' }, word = false, cyclic = true },
     augend.constant.new { elements = { '<', '>=' }, word = false, cyclic = true },
     augend.constant.new { elements = { '>', '<=' }, word = false, cyclic = true },
+    augend.constant.new { elements = { '[ ]', '[x]' }, word = false, cyclic = true },
   },
 }
 
