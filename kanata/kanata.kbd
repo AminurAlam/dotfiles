@@ -1,8 +1,13 @@
 ;; vim:ft=scheme:cms=;;\ %s:syntax=off:
 
 (defcfg
+    concurrent-tap-hold yes
+    log-layer-changes no
+    rapid-event-delay 0
     process-unmapped-keys yes)
 (defvar
+    int 15
+    dist 15
     tt 200
     ht 250
     ntt 100
@@ -18,16 +23,23 @@
 (deflayer base
   @esc
   @grv @1   @2   @3   @4   @5   @6   @7   @8   @9   @0   @-   @=   _
-  _    _    _    @e   _    _    _    _    _    _    _    @lb  @rb  @bs
+  _    _    @w   @e   _    _    _    _    _    _    _    @lb  @rb  @bs
   @cap @a   @s   @d   @f   _    _    _    _    @l   @;   @'   _
   _    _    _    _    _    _    _    _    _    _    @/    _
-  _    _    _              _              _    _    _)
+  _    _    _              @spc           _    _    _)
 (deflayer symbols
   _
   _    _    _    _    _    _    _    @7   @8   @9    _    _    _    _
-  _    _    @s   _    @-   @=   _    @4^  @5   @6$   _    _    _    _
-  _    _    _    _    _    _    bspc @1   @2   @3    _    _    _
+  _    _    lsft lsft -    =    _    @4^  @5   @6$   @bs  _    _    _
+  _    _    _    _    @cf  _    bspc @1   @2   @3    _    _    _
   _    _    _    _    _    @lb  @0   ret  _    _     _    _
+  _    _    _              _              _    _    _)
+(deflayer mouse
+  _
+  _    _    _    _    _    _    _    _    _    _     _    _    _    _
+  _    _    _    _    _    _    _    _    _    _     _    _    _    _
+  _    _    _    _    _    _    @mh  @mj  @mk   @ml  _    _   _
+  _    _    _    _    _    _    _    _    _    _     _    _
   _    _    _              _              _    _    _)
 
 (defalias ;; esc <-> caps
@@ -52,21 +64,30 @@
    6$ (tap-hold-release $ntt $nht 6 S-4)
 )
 (defalias ;; top row
-   e  (tap-hold-release $ntt $nht e (layer-while-held symbols))
-   lb (tap-hold-release $ntt $nht [ S-[)
-   rb (tap-hold-release $ntt $nht ] S-])
-   bs (tap-hold-release $ntt $nht \ S-\ )
+   w  (tap-hold 450 500 w (layer-while-held symbols))
+   e  (tap-hold $tt $ht e (layer-while-held symbols))
+   lb (tap-hold-release 100 150 [ S-[)
+   rb (tap-hold-release 100 150 ] S-])
+   bs (tap-hold-release $tt $ht \ S-\ )
 )
 (defalias ;; mid row
    a (tap-hold $tt $ht a lalt)
    s (tap-hold $tt $ht s lsft)
    d (tap-hold $tt $ht d lmet)
    f (tap-hold $tt $ht f lctl)
+   cf C-f
 
    l (tap-hold $tt $ht l rsft)
    ; (tap-hold-release $tt $ht ; S-;)
    ' (tap-hold-release $tt $ht ' S-')
 )
 (defalias ;; bot row
-   / (tap-hold-release $tt $ht / S-/)
+   / (tap-hold-release $tt $ht / bksl)
+   spc (tap-hold $tt $ht spc (layer-while-held mouse))
+)
+(defalias ;; mouse
+  mh (movemouse-left $int $dist)
+  mj (movemouse-down $int $dist)
+  mk (movemouse-up $int $dist)
+  ml (movemouse-right $int $dist)
 )
