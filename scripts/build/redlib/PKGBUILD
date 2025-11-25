@@ -1,34 +1,22 @@
 pkgname=redlib
 pkgver=0.36.0
-pkgrel=1
-pkgdesc="Private front-end for Reddit"
+pkgrel=0
+pkgdesc='Private front-end for Reddit'
 url='https://github.com/redlib-org/redlib'
-license=(AGPL-3.0)
-arch=("aarch64")
+license=('AGPL-3.0')
+arch=('aarch64')
 depends=()
 makedepends=(rust git)
 options=('!lto')
 source=("$pkgname-$pkgver.tar.gz::$url/archive/refs/tags/v$pkgver.zip")
 sha256sums=('cb5f474d2b38bfd5b14587af20459447f433188f72db1cd8f22178aecf753b0c')
 
-prepare() {
-    cd $pkgname-$pkgver
-    export RUSTUP_TOOLCHAIN=stable
-    cargo fetch --target "$(rustc -vV | sed -n 's/host: //p')"
-}
-
 build() {
     cd $pkgname-$pkgver
-    export RUSTUP_TOOLCHAIN=stable
-    export CARGO_TARGET_DIR=target
     cargo build --release --all-features
 }
 
 package() {
     cd "$pkgname-$pkgver"
     install -Dm755 "target/release/$pkgname" -t "$pkgdir/data/data/com.termux/files/usr/bin/"
-    install -Dm644 'LICENSE' -t "$pkgdir/data/data/com.termux/files/usr/share/licenses/$pkgname/"
-    # install -Dm644 'README.md' -t "$pkgdir/data/data/com.termux/files/usr/share/doc/$pkgname/"
-    # install -Dm644 "contrib/$pkgname.service" -t "$pkgdir/data/data/com.termux/files/usr/lib/systemd/system/"
-    # install -Dm644 "contrib/$pkgname.conf" -t "$pkgdir/data/data/com.termux/files/etc/"
 }
