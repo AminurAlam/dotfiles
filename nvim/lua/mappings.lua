@@ -56,6 +56,7 @@ vmap('<', '<gv')
 nmap('<leader>ss', '<cmd>setlocal spell!<cr>', 'toggle spell')
 nmap('<leader>sw', '<cmd>setlocal wrap!<cr>', 'toggle wrap')
 nmap('<leader>st', '<cmd>set ts=4 sw=4 sts=4 si sta et sr<cr>', 'use spaces over tab')
+nmap('<leader>sf', '<cmd>let g:save_fmt=g:save_fmt?v:false:v:true<cr>', 'toggle formatting on save')
 nmap('<leader>sn', function()
   if vim.o.number then
     vim.o.number = false
@@ -86,15 +87,15 @@ nmap('<leader>a', 'moggVG<c-a>`o', 'increment all numbers')
 nmap('+', '<plug>(dial-increment)')
 nmap('-', '<plug>(dial-decrement)')
 nmap('z=', '1z=')
+nmap('<leader>r', require('replace').line)
 
 -- visual
 nmap('v', 'm`v') -- TODO: handle with autocmd
 nmap('V', 'm`V')
 nmap('<c-v>', 'm`<c-v>')
 vmap('<esc>', '<esc><cmd>keepjumps norm ``<cr>') -- after umap '<esc>'
-vmap('v', function()
-  local next = { v = 'V', V = '\22', ['\22'] = '<esc>' }
-  fn.feedkeys(vim.keycode(next[vim.api.nvim_get_mode().mode]))
+vmap('v', function() --
+  fn.feedkeys(({ v = 'V', V = '\22', ['\22'] = '' })[vim.api.nvim_get_mode().mode])
 end, 'repeat v to change visual mode')
 
 -- cmdline & abbreviations

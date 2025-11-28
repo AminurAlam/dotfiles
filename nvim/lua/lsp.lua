@@ -89,7 +89,9 @@ vim.api.nvim_create_autocmd('LspAttach', {
       vim.api.nvim_clear_autocmds({ buffer = info.buf })
       vim.api.nvim_create_autocmd('BufWritePre', {
         buffer = info.buf,
-        callback = function() vim.lsp.buf.format() end,
+        callback = function()
+          if vim.g.save_fmt then vim.lsp.buf.format() end
+        end,
       })
     end
 

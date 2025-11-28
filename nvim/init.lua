@@ -5,8 +5,9 @@ local g = vim.g
 g.mapleader = ' '
 g.maplocalleader = ' '
 g.have_nerd_font = true
+g.save_fmt = true
 
-g.editorconfig = false
+g.editorconfig = true
 g.loaded_gzip = 1
 g.loaded_matchit = 1
 g.loaded_matchparen = 1
