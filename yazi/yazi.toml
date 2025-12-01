@@ -62,6 +62,7 @@ open.rules = [
   { name = '*/', use = ['reveal', 'dir2cbz', 'rsync'] },
   { mime = 'application/pdf', use = ['zathura'] },
   { name = '*.cb{z,r}', use = ['zathura', 'extract'] },
+  { mime = 'audio/mpegurl', use = ['edit'] },
   { mime = 'application/{zip,rar,7z*,tar,gzip,xz,zstd,bzip*,lzma,compress,archive,cpio,arj,xar,ms-cab*}', use = ['extract'] },
   { name = '*.{zip,rar,deb}', use = ['extract', 'zathura'] },
   { mime = 'image/*', use = ['swayimg', 'identity', 'krita', 'swaybg'] },

@@ -89,6 +89,8 @@ th.git = {
 }
 require('git'):setup()
 
+require('session'):setup { sync_yanked = true }
+
 require('fchar'):setup {
   insensitive = true,
   keep_searching = { enable = false, limit = 10 },
