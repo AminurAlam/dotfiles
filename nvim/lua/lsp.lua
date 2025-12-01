@@ -85,8 +85,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
       end, { buffer = info.buf })
     end
 
-    if client:supports_method('textDocument/formatting') then
-      vim.api.nvim_clear_autocmds({ buffer = info.buf })
+    if client:supports_method('textDocument/formatting') or client.name == 'tinymist' then
       vim.api.nvim_create_autocmd('BufWritePre', {
         buffer = info.buf,
         callback = function()
