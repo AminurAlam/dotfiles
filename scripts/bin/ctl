@@ -22,17 +22,6 @@ switch $argv[1]
         brightnessctl s (math 2 x (printf $argv[2] | wc -c))%$(string sub -l1 -- $argv[2])
         notify-send -h string:x-canonical-private-synchronous:brightness -t 500 "Brightness: $(math -s0 (brightnessctl g) x 100 / (brightnessctl m))"
 
-    case ss
-        set filename Screenshot_(date +'%Y%m%d_%H%M%S')_grim.png
-
-        if [ "$argv[2]" = full ]
-            grim ~/Pictures/Screenshots/$filename && notify-send "$filename taken"
-        else if [ "$argv[2]" = ocr ]
-            grim -g (slurp) - | wl-copy -t image/png
-        else
-            grim -g (slurp) ~/Pictures/Screenshots/$filename && notify-send "$filename taken"
-        end
-
     case pow
         set current (powerprofilesctl get)
         if [ "$argv[2]" = up -a "$current" = balanced ]

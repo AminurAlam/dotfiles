@@ -68,3 +68,7 @@ setup_servers() {
     # systemctl start mariadb
     # sudo mariadb-install-db --user=mysql --ldata=/var/lib/mysql --basedir=/usr --user root
 }
+
+setup_shell() {
+    yay -S xdg-desktop-portal-gnome swaylock org.freedesktop.secrets
+}
