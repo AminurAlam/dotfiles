@@ -6,10 +6,7 @@
   // "height": 25,
   // "width": 1870,
   "spacing": 4, // Gaps between modules (4px)
-  "modules-left": [
-    "niri/workspaces",
-    "niri/window",
-  ],
+  "modules-left": ["niri/workspaces", "niri/window"],
   "modules-center": ["tray"],
   "modules-right": [
     // "mpd",
