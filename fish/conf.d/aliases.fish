@@ -14,6 +14,7 @@ abbr rf "rm -frI"
 abbr rd "rmdir -pv"
 abbr md "mkdir -pv"
 abbr vi nvim
+abbr adb ANDROID_USER_HOME="$XDG_DATA_HOME"/.android HOME="$XDG_DATA_HOME"/ adb
 abbr cls clear
 abbr tar "tar xzf"
 abbr yq "yq -oj --xml-attribute-prefix ''"
