@@ -33,6 +33,17 @@ autocmd('VimEnter', {
   end,
 })
 
+autocmd('BufWritePost', {
+  callback = function(details)
+    print(details)
+    if vim.bo[details.buf].filetype == 'mermaid' then
+      vim.cmd('!oxdraw -i "%" -o "%:r.svg"')
+      vim.cmd('!typst c "swe.typ"')
+    end
+    if vim.bo[details.buf].filetype == 'typst' then vim.cmd('!typst c "%"') end
+  end,
+})
+
 autocmd('BufWritePre', {
   desc = 'automatically create missing directories when saving files',
   callback = function(details)

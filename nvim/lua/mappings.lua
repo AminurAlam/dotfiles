@@ -87,7 +87,6 @@ nmap('<leader>a', 'moggVG<c-a>`o', 'increment all numbers')
 nmap('+', '<plug>(dial-increment)')
 nmap('-', '<plug>(dial-decrement)')
 nmap('z=', '1z=')
-nmap('<leader>r', require('replace').line)
 
 -- visual
 nmap('v', 'm`v') -- TODO: handle with autocmd
