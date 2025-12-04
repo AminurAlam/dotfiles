@@ -31,7 +31,6 @@
 - [newsboat](https://newsboat.org/) :star2: - rss reader
 - [newsraft](https://codeberg.org/newsraft/newsraft) - feed reader for terminal
 - [niri](https://github.com/YaLTeR/niri) :star2: - scrollable-tiling wayland compositor
-- [nom](https://github.com/guyfedwards/nom) - rss reader
 - [npm](https://npmjs.com/) - javascript runtime
 - [nvim](https://neovim.io/) :star2: - text editor
 - [pacman](https://archlinux.org/pacman/) - package manager

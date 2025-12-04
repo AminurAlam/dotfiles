@@ -1,5 +1,0 @@
-feeds:
-  - url: https://github.com/neovim/neovim/commits/master/runtime/doc/news.txt.atom
-  - url: https://www.thatmangahunter.com/blog-feed.xml
-  - url: https://muspy.com/feed?id=mobwjpkr95u5p1b4f2w1bjt74qc8u3 # muspy New Releases
-  - url: https://noted.lol/rss
