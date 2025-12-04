@@ -1,0 +1,58 @@
+window-rule { // floatinng save as window
+    match title="^(Save File|Select Directory|Select File):$"
+
+    open-floating true
+    open-focused true
+    default-column-width { proportion 0.80; }
+    default-window-height { proportion 0.90; }
+}
+
+window-rule { // focus on keepass
+    match title="^KeePassXC - Browser Access Request$"
+
+    open-focused true
+}
+
+window-rule { // pseudo-fullscreen
+    match app-id="librewolf|vesktop"
+    match app-id="(org|com)\\..*\\.(Picard|Identity|rnote|kdeconnect.app)$"
+
+    default-column-width { proportion 1.0; }
+}
+
+window-rule { // fullscreen glut
+    match title="^2d$"
+    open-fullscreen false
+    open-floating true
+    open-focused false
+
+    default-column-width { proportion 1.0; }
+}
+
+window-rule { // unfocused
+    match is-focused=false
+
+    draw-border-with-background false
+    opacity 0.95
+    /-shadow {
+        on
+        softness 40
+        spread 5
+        offset x=0 y=5
+        draw-behind-window true
+        color "#00000064"
+        inactive-color "#00000064"
+    }
+}
+
+window-rule { // *
+    geometry-corner-radius 12
+    clip-to-geometry true
+}
+
+layer-rule {
+    match namespace="waybar|wallpaper"
+    match at-startup=true
+
+    place-within-backdrop true
+}

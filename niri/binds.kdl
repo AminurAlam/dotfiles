@@ -1,0 +1,69 @@
+binds {
+    // KEEB
+    Mod+Q repeat=false { close-window; }
+    Mod+W repeat=false { spawn "fuzzel"; }
+    Mod+E repeat=false { spawn "alacritty" "-e" "fish" "-C" "y --client-id=48937"; }
+    // Mod+U repeat=false { close-window; }
+    // Mod+I repeat=false { spawn "fuzzel"; }
+    // Mod+O repeat=false { spawn "alacritty" "-e" "fish" "-C" "y --client-id=48937"; }
+
+    Mod+A repeat=false { spawn "alacritty"; }
+    Mod+S repeat=false { spawn "librewolf"; }
+    Mod+D repeat=false { toggle-window-floating; }
+    Mod+F repeat=false { switch-preset-column-width; }
+    Mod+Shift+F repeat=false { fullscreen-window; }
+
+    // TURNING OFF
+    Mod+M repeat=false { quit; }
+    Mod+N repeat=false { power-off-monitors; }
+
+    // PRINT
+    Mod+P       { screenshot; }
+    Mod+Shift+P { screenshot-screen; }
+    Mod+Alt+P   { screenshot-window; }
+
+    // FUNC
+    XF86AudioMute repeat=false    { spawn "ctl" "vol";}
+    XF86AudioLowerVolume          { spawn "ctl" "vol" "-"; }
+    XF86AudioRaiseVolume          { spawn "ctl" "vol" "+"; }
+    XF86AudioMicMute repeat=false { spawn "ctl" "mic"; }
+    XF86MonBrightnessDown         { spawn "ctl" "lum" "-"; }
+    XF86MonBrightnessUp           { spawn "ctl" "lum" "+"; }
+    // Help                          { spawn "ctl" "lim"; } // TODO: run with sudo
+
+    Mod+C       { spawn "ctl" "lum" "-"; }
+    Mod+V       { spawn "ctl" "lum" "+"; }
+    // TODO: find better binds
+    Mod+U       { spawn "ctl" "pow" "down"; }
+    Mod+Shift+U { spawn "ctl" "pow" "up"; }
+
+    // COL
+    Mod+H { focus-column-left; }
+    Mod+J { focus-window-or-workspace-down; }
+    Mod+K { focus-window-or-workspace-up; }
+    Mod+L { focus-column-right; }
+    Mod+Left  { focus-column-left; }
+    Mod+Down  { focus-window-or-workspace-down; }
+    Mod+Up    { focus-window-or-workspace-up; }
+    Mod+Right { focus-column-right; }
+
+    Mod+Shift+Left   { move-column-left; }
+    Mod+Shift+Right  { move-column-right; }
+    Mod+Shift+H      { move-column-left; }
+    Mod+Shift+J      { move-column-to-workspace-down; }
+    Mod+Shift+K      { move-column-to-workspace-up; }
+    Mod+Shift+L      { move-column-right; }
+    Mod+BracketLeft  { consume-or-expel-window-left; }
+    Mod+BracketRight { consume-or-expel-window-right; }
+    Mod+Space        { center-column; }
+
+    // WS
+    Mod+Ctrl+J { move-workspace-down; }
+    Mod+Ctrl+K { move-workspace-up; }
+
+    // MOUSE
+    Mod+TouchpadScrollDown  { set-window-height "-3%"; }
+    Mod+TouchpadScrollUp    { set-window-height "+3%"; }
+    Mod+TouchpadScrollLeft  { set-column-width "+3%"; }
+    Mod+TouchpadScrollRight { set-column-width "-3%"; }
+}

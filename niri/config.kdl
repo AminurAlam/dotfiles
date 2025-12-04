@@ -1,8 +1,9 @@
 // https://yalter.github.io/niri/
 
+include "rules.kdl"
+include "binds.kdl"
+
 spawn-at-startup "swaybg" "-m" "fill" "-i" "Pictures/wp/126278795_p0.jpg"
-// spawn-at-startup "swaybg" "-m" "fill" "-i" "Pictures/wp/131954033_p0.jpg"
-// spawn-at-startup "swaybg" "-m" "fill" "-i" "Pictures/wp/135783037_p0.jpg"
 screenshot-path "~/Pictures/Screenshots/Screenshot_%Y%m%d_%H%M%S_niri.png"
 prefer-no-csd
 
@@ -109,131 +110,4 @@ layout {
 animations {
     // off
     slowdown 0.7
-}
-
-window-rule { // floatinng save as window
-    match title="^(Save File|Select Directory|Select File):$"
-
-    open-floating true
-    open-focused true
-    default-column-width { proportion 0.80; }
-    default-window-height { proportion 0.90; }
-}
-
-window-rule { // focus on keepass
-    match title="^KeePassXC - Browser Access Request$"
-
-    open-focused true
-}
-
-window-rule { // pseudo-fullscreen
-    match app-id="librewolf|vesktop"
-    match app-id="(org|com)\\..*\\.(Picard|Identity|rnote|kdeconnect.app)$"
-
-    default-column-width { proportion 1.0; }
-}
-
-window-rule { // fullscreen glut
-    match app-id="^graphics$"
-    default-column-width { proportion 1.0; }
-}
-
-window-rule { // unfocused
-    match is-focused=false
-
-    draw-border-with-background false
-    opacity 0.95
-    /-shadow {
-        on
-        softness 40
-        spread 5
-        offset x=0 y=5
-        draw-behind-window true
-        color "#00000064"
-        inactive-color "#00000064"
-    }
-}
-
-window-rule { // *
-    geometry-corner-radius 12
-    clip-to-geometry true
-}
-
-layer-rule {
-    match namespace="waybar|wallpaper"
-    match at-startup=true
-
-    place-within-backdrop true
-}
-
-binds {
-    // KEEB
-    Mod+Q repeat=false { close-window; }
-    Mod+W repeat=false { spawn "fuzzel"; }
-    Mod+E repeat=false { spawn "alacritty" "-e" "fish" "-C" "y --client-id=48937"; }
-    // Mod+U repeat=false { close-window; }
-    // Mod+I repeat=false { spawn "fuzzel"; }
-    // Mod+O repeat=false { spawn "alacritty" "-e" "fish" "-C" "y --client-id=48937"; }
-
-    Mod+A repeat=false { spawn "alacritty"; }
-    Mod+S repeat=false { spawn "librewolf"; }
-    Mod+D repeat=false { toggle-window-floating; }
-    Mod+F repeat=false { switch-preset-column-width; }
-    Mod+Shift+F repeat=false { fullscreen-window; }
-
-    // TURNING OFF
-    Mod+M repeat=false { quit; }
-    Mod+N repeat=false { power-off-monitors; }
-
-    // PRINT
-    Mod+P       { screenshot; }
-    Mod+Shift+P { screenshot-screen; }
-    Mod+Alt+P   { screenshot-window; }
-    Mod+Z       { spawn "ctl" "ss" "ocr"; }
-
-    // FUNC
-    XF86AudioMute repeat=false    { spawn "ctl" "vol";}
-    XF86AudioLowerVolume          { spawn "ctl" "vol" "-"; }
-    XF86AudioRaiseVolume          { spawn "ctl" "vol" "+"; }
-    XF86AudioMicMute repeat=false { spawn "ctl" "mic"; }
-    XF86MonBrightnessDown         { spawn "ctl" "lum" "-"; }
-    XF86MonBrightnessUp           { spawn "ctl" "lum" "+"; }
-    // Help                          { spawn "ctl" "lim"; } // TODO: run with sudo
-
-    Mod+C       { spawn "ctl" "lum" "-"; }
-    Mod+Shift+C { spawn "ctl" "lum" "+"; }
-    Mod+V       { spawn "ctl" "vol" "-"; }
-    Mod+Shift+V { spawn "ctl" "vol" "+"; }
-    Mod+U       { spawn "ctl" "pow" "down"; }
-    Mod+Shift+U { spawn "ctl" "pow" "up"; }
-
-    // COL
-    Mod+H { focus-column-left; }
-    Mod+J { focus-window-or-workspace-down; }
-    Mod+K { focus-window-or-workspace-up; }
-    Mod+L { focus-column-right; }
-    Mod+Left  { focus-column-left; }
-    Mod+Down  { focus-window-or-workspace-down; }
-    Mod+Up    { focus-window-or-workspace-up; }
-    Mod+Right { focus-column-right; }
-
-    Mod+Shift+Left   { move-column-left; }
-    Mod+Shift+Right  { move-column-right; }
-    Mod+Shift+H      { move-column-left; }
-    Mod+Shift+J      { move-column-to-workspace-down; }
-    Mod+Shift+K      { move-column-to-workspace-up; }
-    Mod+Shift+L      { move-column-right; }
-    Mod+BracketLeft  { consume-or-expel-window-left; }
-    Mod+BracketRight { consume-or-expel-window-right; }
-    Mod+Space        { center-column; }
-
-    // WS
-    Mod+Ctrl+J { move-workspace-down; }
-    Mod+Ctrl+K { move-workspace-up; }
-
-    // MOUSE
-    Mod+TouchpadScrollDown  { set-window-height "-3%"; }
-    Mod+TouchpadScrollUp    { set-window-height "+3%"; }
-    Mod+TouchpadScrollLeft  { set-column-width "+3%"; }
-    Mod+TouchpadScrollRight { set-column-width "-3%"; }
 }
