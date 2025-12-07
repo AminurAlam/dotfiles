@@ -4,8 +4,14 @@ theme = TokyoNight Storm
 background-opacity = 0.95
 background-blur = true
 window-padding-balance = true
+window-decoration = none
 mouse-hide-while-typing = true
 cursor-style-blink = false
 clipboard-read = allow
 clipboard-write = allow
 confirm-close-surface = false
+
+# gtk-opengl-debug = false
+# gtk-single-instance = true
+# gtk-titlebar = false
+# custom-shader-animation = false
