@@ -20,11 +20,10 @@ plugin.prepend_previewers = [
   { mime = 'font/*', run = 'font-sample' },
   { mime = 'application/ms-opentype', run = 'font-sample' },
   { name = '*.{otf,ttf,woff,woff2}', run = 'font-sample' },
-  { name = '**/.git/', run = 'gitinfo' },
+  { name = '**/.git/', run = 'preview-git' },
   # plugins
-  # TODO: turn into standalone plugin with syntax highlight
-  { name = '*.sqlite3', run = 'piper -- sqlite3 "$1" ".schema --indent"' },
-  { mime = 'application/sqlite3', run = 'piper -- sqlite3 "$1" ".schema --indent"' },
+  { name = '*.sqlite3', run = 'preview-sqlite' },
+  { mime = 'application/sqlite3', run = 'preview-sqlite' },
   # { mime = 'application/octet-stream', run = 'piper -- hexyl -n1000 -PC --panels 1 --border none "$1"' },
   # misc
   { mime = 'application/subrip', run = 'code' },

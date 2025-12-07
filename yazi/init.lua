@@ -75,7 +75,6 @@ end
 
 -- start with cut if xdg-desktop-portal-termfilechooser
 require('topaste'):setup {}
--- require('hover-after-moved'):setup()
 
 -- start with zoxide if launching as fileManager
 if ya.id('app').value == 48937 then
@@ -141,10 +140,6 @@ require('font-sample'):setup {
   fg = 'black',
 }
 
-require('pref-by-location'):setup {
-  disable_fallback_preference = false,
-  prefs = {
-    { location = '^/sdcard/Pictures/.*', sort = { 'mtime', reverse = true } },
-    { location = '^/home/fisher/Pictures/.*', sort = { 'mtime', reverse = true } },
-  },
-}
+require('sort-by-location'):setup({
+  { pattern = '.*/Pictures/.*', sort = { 'mtime', reverse = true } },
+})
