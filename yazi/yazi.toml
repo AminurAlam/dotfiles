@@ -23,8 +23,8 @@ plugin.prepend_previewers = [
   { name = '**/.git/', run = 'gitinfo' },
   # plugins
   # TODO: turn into standalone plugin with syntax highlight
-  { name = '*.sqlite3', run = 'piper -- sqlite3 "$1" .schema' },
-  { mime = 'application/sqlite3', run = 'piper -- sqlite3 "$1" .schema' },
+  { name = '*.sqlite3', run = 'piper -- sqlite3 "$1" ".schema --indent"' },
+  { mime = 'application/sqlite3', run = 'piper -- sqlite3 "$1" ".schema --indent"' },
   # { mime = 'application/octet-stream', run = 'piper -- hexyl -n1000 -PC --panels 1 --border none "$1"' },
   # misc
   { mime = 'application/subrip', run = 'code' },
@@ -65,10 +65,9 @@ open.rules = [
   { mime = 'audio/mpegurl', use = ['edit'] },
   { mime = 'application/{zip,rar,7z*,tar,gzip,xz,zstd,bzip*,lzma,compress,archive,cpio,arj,xar,ms-cab*}', use = ['extract'] },
   { name = '*.{zip,rar,deb}', use = ['extract', 'zathura'] },
-  { mime = 'image/*', use = ['swayimg', 'identity', 'krita', 'swaybg'] },
+  { mime = 'image/*', use = ['swayimg', 'swaybg', 'krita', 'identity'] },
   { mime = 'video/*', use = ['play'] },
   { mime = 'audio/*', use = ['kid3', 'play', 'picard'] },
-  { name = '*.exe', use = ['wine'] },
   { mime = 'application/android.package-archive', use = ['apkinstall'] },
   { name = '*.apk', use = ['apkinstall'] },
   { name = '*.{ass,srt,ssa,sup,vtt}', use = ['add-sub', 'edit'] },
@@ -94,7 +93,6 @@ picard     = [{ run = 'picard -- "$@"', orphan = true, for = 'linux', desc = '�
 rsync      = [{ run = 'rsync -Pha -- "$1" brick:/sdcard/Download/', block = false, desc = ' Send to phone', for = 'linux' }]
 swaybg     = [{ run = 'swaybg -m fill -i "$0"', block = false, orphan = true, desc = ' swaybg', for = 'linux' }]
 swayimg    = [{ run = 'swayimg "$@"', block = false, orphan = true, desc = ' swayimg', for = 'linux' }]
-wine       = [{ run = 'wine "$@"', block = false, orphan = true, desc = '󰡶 wine', for = 'linux' }]
 zathura    = [{ run = 'zathura "$@"', block = false, orphan = true, desc = ' zathura', for = 'linux' }]
 # defaults
 edit = [{ run = '${EDITOR:-vi} "$@"', desc = ' $EDITOR', block = true, for = 'unix' }]
