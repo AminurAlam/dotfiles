@@ -6,7 +6,7 @@
   // "height": 25,
   // "width": 1870,
   "spacing": 4, // Gaps between modules (4px)
-  "modules-left": ["niri/workspaces", "niri/window"],
+  "modules-left": ["niri/workspaces"],
   "modules-center": ["tray"],
   "modules-right": [
     // "mpd",
@@ -68,9 +68,9 @@
     "format-source": "",
     "format-source-muted": "",
     "format-icons": {
-      "headphone": "",
-      "hands-free": "",
-      "headset": "",
+      "headphone": "󱡏",
+      "hands-free": "󱡏",
+      "headset": "󱡏",
       "phone": "",
       "portable": "",
       "car": "",
@@ -186,7 +186,7 @@
     // "timezone": "America/New_York",
     "locale": "en_GB.UTF-8",
     "interval": 30,
-    "format": " {:%a %b %d  %H:%M}",
+    "format": "{:%a %b %d %H:%M}",
     "tooltip": true,
     "format-alt": "{:%a %B %d (%R)} 󰃰",
     "tooltip-format": "<tt><small>{calendar}</small></tt>",
