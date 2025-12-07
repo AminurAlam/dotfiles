@@ -65,27 +65,47 @@
 
 # setup commands
 
-- termux :star2:
+termux :star2:
 
 ```sh
 yes | termux-setup-storage
 curl -#LOq -- github.com/AminurAlam/dotfiles/raw/main/setup/termux.sh
 ```
 
-- arch :star2:
+arch :star2:
 
 ```sh
 curl -#LOq -- github.com/AminurAlam/dotfiles/raw/main/setup/arch.sh
 ```
 
-- ubuntu
+ubuntu
 
 ```sh
 curl -#LOq -- github.com/AminurAlam/dotfiles/raw/main/setup/ubuntu.sh
 ```
 
-- windows
+windows
 
 ```ps1
 irm "https://github.com/AminurAlam/dotfiles/raw/main/setup/windows.ps1" -OutFile windows.ps1
+```
+
+# mirrors
+
+[codeberg](https://codeberg.org/AminurAlam/dotfiles)
+
+```sh
+git clone https://codeberg.org/AminurAlam/dotfiles.git
+```
+
+[gitlab](https://gitlab.com/AminurAlam/dotfiles)
+
+```sh
+git clone https://gitlab.com/AminurAlam/dotfiles.git
+```
+
+[github](https://github.com/AminurAlam/dotfiles)
+
+```sh
+git clone https://github.com/AminurAlam/dotfiles.git
 ```
