@@ -17,12 +17,11 @@ color-list-section-unread   yellow  default
 color-list-section-failed   red     default
 
 bind , shift-reset
-bind d toggle-read;jump-to-next
-bind m toggle-read;jump-to-next
-# bind SPACE mark-read
-# bind space mark-read;jump-to-next
-# bind SPACE mark-read;jump-to-next
+bind m toggle-read;jump-to-next-unread
+bind f toggle-important
+bind SPACE toggle-read
 
+notification-command "true"
 scrolloff 5000
 # list-entry-date-format "%D"
 feeds-menu-paramount-explore false
@@ -31,11 +30,12 @@ scrollwrap true
 pager-width 80
 status-placeholder ""
 item-content-link-format "[%i] %l<br>"
-database-clean-on-startup true
+# database-clean-on-startup true
 download-max-connections 8
 download-max-host-connections 3
 
 menu-section-entry-format '%5u > %t'
 menu-feed-entry-format '%4u %t'
+menu-explore-item-entry-format '%d %-13O│%o'
 menu-item-entry-format ' %d %o'
 item-content-format '%t<br>|%l<br>|<hr>%c<br>|<hr>%L'

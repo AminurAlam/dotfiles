@@ -40,7 +40,7 @@ https://blog.tangled.org/blog/feed.xml
 # https://blog.ajay.app/rss.xml
 
 https://astral.sh/blog/rss.xml "astral.sh"
-https://www.404media.co/rss < item-rule "NOT (title REGEXP '^(Podcast|Behind the Blog):' OR persons LIKE '%Becky Ferreira%')"
+https://www.404media.co/rss < item-rule "NOT (title REGEXP '^(Podcast|Behind the Blog):' OR persons LIKE '%Becky Ferreira%' OR content LIKE '%Listen to the weekly podcast on%')"
 # OR content REGEXP '(welcome back to the abstract|bexfiles|BeX Files)')"
 https://www.eff.org/rss/updates.xml "eff.org"
 https://torrentfreak.com/feed < item-rule "title NOT LIKE '%IPTV%'"
@@ -94,6 +94,7 @@ https://fireborn.mataroa.blog/rss/
 https://runxiyu.org/blog/index.xml
 
 @ PERSONAL BLOGS 2
+https://ludic.mataroa.blog/rss
 https://steveklabnik.com/feed.xml
 https://aphyr.com/posts.atom
 https://www.roboleary.net/feed.xml
@@ -113,7 +114,7 @@ https://oppi.li/index.xml
 https://www.anildash.com/feed.xml
 https://maia.crimew.gay/feed.xml
 https://hazelweakly.me/atom.xml
-https://daringfireball.net/feeds/main "John Gruber (Daring Fireball)"
+# https://daringfireball.net/feeds/main "John Gruber (Daring Fireball)" < item-rule "NOT title REGEXP '(Sponsor|Apple|iPad|iPhone|MacOS|iOS|Macintosh)'"
 https://drewdevault.com/blog/index.xml "Drew Devault"
 https://world.hey.com/dhh/feed.atom "David Heinemeier Hansson (DHH)"
 https://denshi.org/index.xml
@@ -121,9 +122,10 @@ https://lukesmith.xyz/index.xml "Luke Smith"
 https://herecomesthemoon.net/posts/index.xml
 
 @ PERSONAL BLOGS 3
-https://ludic.mataroa.blog/rss
 https://neilzone.co.uk/index.xml
 https://thecodist.com/rss
+https://joelchrono.xyz/feed.xml
+https://mtwb.blog/index.xml
 https://abner.page/index.xml
 https://esham.io/atom.xml
 https://www.harihareswara.net/rss/
