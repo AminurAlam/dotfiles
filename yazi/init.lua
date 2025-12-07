@@ -3,7 +3,9 @@
 -- shorter header cwd
 function Header:cwd()
   local max = self._area.w - self._right_width
-  if max <= 0 then return '' end
+  if max <= 0 then
+    return ''
+  end
 
   local s = tostring(ya.readable_path(tostring(self._current.cwd))):gsub(
     '(%.?)([^/])[^/]+/',
@@ -45,7 +47,9 @@ end
 
 function Progress:redraw()
   local progress = cx.tasks.progress
-  if progress.total == 0 then return {} end
+  if progress.total == 0 then
+    return {}
+  end
 
   return ui.Line(string.format('%3d', progress.total))
     :area(self._area)
@@ -56,7 +60,9 @@ end
 -- turn off statusline
 local old_layout = Tab.layout
 
-Status.redraw = function() return {} end
+Status.redraw = function()
+  return {}
+end
 Tab.layout = function(self, ...)
   self._area = ui.Rect {
     x = self._area.x,
@@ -72,7 +78,11 @@ require('topaste'):setup {}
 -- require('hover-after-moved'):setup()
 
 -- start with zoxide if launching as fileManager
-if ya.id('app').value == 48937 then ya.emit('plugin', { 'zoxide' }) end
+if ya.id('app').value == 48937 then
+  ya.emit('plugin', { 'zoxide' })
+else
+  require('session'):setup { sync_yanked = true }
+end
 
 -- plugins
 
@@ -88,8 +98,6 @@ th.git = {
   updated_sign = 'U',
 }
 require('git'):setup()
-
-require('session'):setup { sync_yanked = true }
 
 require('fchar'):setup {
   insensitive = true,
@@ -127,7 +135,6 @@ require('spot'):setup {
 }
 
 require('font-sample'):setup {
-  text = 'ABCD abcd\noO0 1lI \n0123456789\n@#$%%&=()[]{};\n== <= >= != ffi\n및개요これ直楽糸',
   canvas_size = '750x800',
   font_size = 60,
   bg = 'white',

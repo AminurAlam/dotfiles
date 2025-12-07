@@ -5,15 +5,20 @@ autocmd('BufNewFile', {
   desc = 'when tab completion doesnt finish',
   once = true,
   callback = function(details)
-    if vim.fn.filereadable(details.file) == 1 then return end
-    local possibles = vim.tbl_filter(
-      function(file) return #file > 1 end,
-      vim.fn.glob(vim.fn.fnameescape(details.file) .. '*', false, true)
-    )
-    if #possibles == 0 then return end
+    if vim.fn.filereadable(details.file) == 1 then
+      return
+    end
+    local possibles = vim.tbl_filter(function(file)
+      return #file > 1
+    end, vim.fn.glob(vim.fn.fnameescape(details.file) .. '*', false, true))
+    if #possibles == 0 then
+      return
+    end
 
     vim.ui.select(possibles, {}, function(choice)
-      if not choice then return end
+      if not choice then
+        return
+      end
       vim.cmd.edit(vim.fn.fnameescape(choice))
       vim.cmd 'filetype detect'
       vim.api.nvim_buf_delete(details.buf, {})
@@ -40,7 +45,9 @@ autocmd('BufWritePost', {
       vim.cmd('!oxdraw -i "%" -o "%:r.svg"')
       vim.cmd('!typst c "swe.typ"')
     end
-    if vim.bo[details.buf].filetype == 'typst' then vim.cmd('!typst c "%"') end
+    if vim.bo[details.buf].filetype == 'typst' then
+      vim.cmd('!typst c "%"')
+    end
   end,
 })
 
@@ -48,7 +55,9 @@ autocmd('BufWritePre', {
   desc = 'automatically create missing directories when saving files',
   callback = function(details)
     local path = vim.fs.dirname(details.match)
-    if vim.fn.isdirectory(path) == 0 then vim.fn.mkdir(path, 'p') end
+    if vim.fn.isdirectory(path) == 0 then
+      vim.fn.mkdir(path, 'p')
+    end
   end,
 })
 
@@ -71,7 +80,9 @@ autocmd('FileType', {
 })
 
 autocmd('TextYankPost', {
-  callback = function() vim.hl.on_yank { higroup = 'IncSearch', timeout = 250 } end,
+  callback = function()
+    vim.hl.on_yank { higroup = 'IncSearch', timeout = 250 }
+  end,
 })
 
 autocmd('FileType', { pattern = 'checkhealth', command = 'set bh=wipe nobl nonu nornu nowrap' })

@@ -27,9 +27,13 @@ return {
             command = command,
             arguments = { vim.api.nvim_buf_get_name(bufnr) },
           }, { bufnr = bufnr }, function(err, res)
-            if err then return vim.notify(err.code .. ': ' .. err.message, vim.log.levels.ERROR) end
+            if err then
+              return vim.notify(err.code .. ': ' .. err.message, vim.log.levels.ERROR)
+            end
             -- vim.notify(res, vim.log.levels.INFO)
-            if command == 'tinymist.exportPdf' then vim.cmd('silent !xdg-open %:r.pdf &') end
+            if command == 'tinymist.exportPdf' then
+              vim.cmd('silent !xdg-open %:r.pdf &')
+            end
           end)
         end,
         { nargs = 0, desc = command }

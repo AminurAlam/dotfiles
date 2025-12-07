@@ -1,5 +1,7 @@
 local loaded, blink = pcall(require, 'blink-cmp')
-if not loaded then return end
+if not loaded then
+  return
+end
 
 -- TODO: disable auto popup
 blink.setup {
@@ -9,7 +11,11 @@ blink.setup {
     ['<s-tab>'] = { 'select_prev', 'fallback' },
     ['<C-e>'] = { 'cancel' },
     ['<C-y>'] = { 'select_and_accept' },
-    ['<C-space>'] = { function(cmp) cmp.show({ providers = { 'snippets' } }) end },
+    ['<C-space>'] = {
+      function(cmp)
+        cmp.show({ providers = { 'snippets' } })
+      end,
+    },
     ['<C-n>'] = { 'select_next' },
     ['<C-p>'] = { 'select_prev' },
   },

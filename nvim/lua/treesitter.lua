@@ -27,7 +27,9 @@ vim.api.nvim_create_autocmd({ 'PackChanged' }, {
   callback = function(args)
     local spec = args.data.spec
     if spec and spec.name == 'nvim-treesitter' and args.data.kind == 'update' then
-      vim.schedule(function() vim.cmd('TSUpdate') end)
+      vim.schedule(function()
+        vim.cmd('TSUpdate')
+      end)
     end
   end,
 })

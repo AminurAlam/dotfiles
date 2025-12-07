@@ -39,14 +39,24 @@ gs.setup {
   status_formatter = function(status)
     local added, changed, removed = status.added, status.changed, status.removed
     local statext = {}
-    if added and added > 0 then table.insert(statext, '%#GitSignsAdd#+' .. added) end
-    if changed and changed > 0 then table.insert(statext, '%#GitSignsChange#~' .. changed) end
-    if removed and removed > 0 then table.insert(statext, '%#GitSignsDelete#-' .. removed) end
+    if added and added > 0 then
+      table.insert(statext, '%#GitSignsAdd#+' .. added)
+    end
+    if changed and changed > 0 then
+      table.insert(statext, '%#GitSignsChange#~' .. changed)
+    end
+    if removed and removed > 0 then
+      table.insert(statext, '%#GitSignsDelete#-' .. removed)
+    end
     return table.concat(statext, ' ') .. '%#Normal#'
   end,
 }
 
 vim.keymap.set('n', 'H', gs.preview_hunk_inline, { desc = 'preview hunk' })
 vim.keymap.set('n', 'U', gs.reset_hunk, { desc = 'undo hunk' })
-vim.keymap.set('n', '[h', function() gs.nav_hunk('prev') end, { desc = 'goto previous hunk' })
-vim.keymap.set('n', ']h', function() gs.nav_hunk('next') end, { desc = 'goto next hunk' })
+vim.keymap.set('n', '[h', function()
+  gs.nav_hunk('prev')
+end, { desc = 'goto previous hunk' })
+vim.keymap.set('n', ']h', function()
+  gs.nav_hunk('next')
+end, { desc = 'goto next hunk' })

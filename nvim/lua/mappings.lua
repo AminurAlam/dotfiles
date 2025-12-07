@@ -14,7 +14,9 @@ local map = function(mode)
 end
 
 local fn = vim.fn
-local macro = function(reg, expr) vim.cmd.let(string.format([[@%s = '%s']], reg, expr)) end
+local macro = function(reg, expr)
+  vim.cmd.let(string.format([[@%s = '%s']], reg, expr))
+end
 local nmap = map { 'n' }
 local vmap = map { 'x' }
 local umap = map { '', 'i' }
@@ -81,7 +83,9 @@ umap('<esc>', '<cmd>nohlsearch<cr><esc>')
 nmap('gj', [[@='j^"_d0kgJ'<cr>]], 'join without leaving space')
 nmap('go', 'jA', 'like `o` but on existing line')
 nmap('<leader>y', '<cmd>silent %y<cr>', 'yank entire buffer')
-nmap('<leader>y', function() fn.setreg('+', fn.getreg '0') end, 'put last yank in sys clipboard')
+nmap('<leader>y', function()
+  fn.setreg('+', fn.getreg '0')
+end, 'put last yank in sys clipboard')
 nmap('<leader>p', '"+p', 'put last yank in sys clipboard')
 nmap('<leader>a', 'moggVG<c-a>`o', 'increment all numbers')
 nmap('+', '<plug>(dial-increment)')

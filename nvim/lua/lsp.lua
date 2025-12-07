@@ -1,4 +1,6 @@
-local filter = function(server) return vim.fn.executable(vim.lsp.config[server].cmd[1]) == 1 end
+local filter = function(server)
+  return vim.fn.executable(vim.lsp.config[server].cmd[1]) == 1
+end
 local null_ls = require 'null-ls'
 local h = require 'null-ls.helpers'
 
@@ -60,7 +62,9 @@ vim.api.nvim_create_autocmd({ 'BufEnter' }, {
     'make.conf',
   },
   callback = function()
-    if vim.fn.executable 'termux-language-server' == 0 then return end
+    if vim.fn.executable 'termux-language-server' == 0 then
+      return
+    end
     vim.lsp.start({
       name = 'termux',
       cmd = { 'termux-language-server' },
@@ -73,7 +77,9 @@ vim.api.nvim_create_autocmd('LspAttach', {
   callback = function(info)
     local client = vim.lsp.get_client_by_id(vim.tbl_get(info, 'data', 'client_id'))
 
-    if client == nil then return end
+    if client == nil then
+      return
+    end
 
     if client:supports_method('textDocument/documentColor') then
       vim.lsp.document_color.enable(true, info.buf)
@@ -89,7 +95,9 @@ vim.api.nvim_create_autocmd('LspAttach', {
       vim.api.nvim_create_autocmd('BufWritePre', {
         buffer = info.buf,
         callback = function()
-          if vim.g.save_fmt then vim.lsp.buf.format() end
+          if vim.g.save_fmt then
+            vim.lsp.buf.format()
+          end
         end,
       })
     end

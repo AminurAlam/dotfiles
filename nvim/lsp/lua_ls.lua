@@ -12,7 +12,9 @@ return {
     'selene.toml',
     'selene.yml',
   },
-  on_attach = function(client) client.server_capabilities.documentFormattingProvider = false end,
+  on_attach = function(client)
+    client.server_capabilities.documentFormattingProvider = false
+  end,
   settings = {
     Lua = {
       library = vim.api.nvim_get_runtime_file('', true),

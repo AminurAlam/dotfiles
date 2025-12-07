@@ -36,7 +36,9 @@ require('tokyonight').setup {
   dim_inactive = false,
   lualine_bold = true,
   cached = true,
-  on_colors = function(c) c.bg_statusline = c.none end,
+  on_colors = function(c)
+    c.bg_statusline = c.none
+  end,
   on_highlights = function(hl, c)
     hl.stl_hl_a = { bg = c.green, fg = '#30354A', bold = true }
     hl.stl_hl_b = { fg = c.green, bg = '#30354A' }

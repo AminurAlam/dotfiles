@@ -38,7 +38,9 @@ do -- scrolling
   set.sidescroll = 4
   set.sidescrolloff = 8
   set.smoothscroll = true
-  if termux then set.mousescroll = 'ver:1,hor:6' end
+  if termux then
+    set.mousescroll = 'ver:1,hor:6'
+  end
 end
 
 do -- cmdline, statusline & statuscolumn
