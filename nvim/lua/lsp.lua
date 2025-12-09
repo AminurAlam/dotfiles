@@ -81,10 +81,6 @@ vim.api.nvim_create_autocmd('LspAttach', {
       return
     end
 
-    if client:supports_method('textDocument/documentColor') then
-      vim.lsp.document_color.enable(true, info.buf)
-    end
-
     if client:supports_method('textDocument/hover') then
       vim.keymap.set('n', 'K', function() --
         vim.lsp.buf.hover { border = 'rounded' }
@@ -92,6 +88,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
     end
 
     if client:supports_method('textDocument/formatting') or client.name == 'tinymist' then
+      -- [[
       vim.api.nvim_create_autocmd('BufWritePre', {
         buffer = info.buf,
         callback = function()
@@ -100,6 +97,19 @@ vim.api.nvim_create_autocmd('LspAttach', {
           end
         end,
       })
+      --]]
+    end
+
+    if client:supports_method('textDocument/documentColor') then
+      vim.lsp.document_color.enable(true, info.buf)
+    end
+
+    if client:supports_method('textDocument/linkedEditingRange') then
+      vim.lsp.linked_editing_range.enable(true, { client_id = client.id })
+    end
+
+    if client:supports_method('textDocument/onTypeFormatting') then
+      vim.lsp.on_type_formatting.enable(true, { client_id = client.id })
     end
 
     vim.keymap.set('n', '<leader>lf', vim.lsp.buf.format, { buffer = info.buf })

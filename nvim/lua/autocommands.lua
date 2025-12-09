@@ -74,9 +74,9 @@ autocmd('BufWinEnter', {
 })
 
 autocmd('FileType', {
-  desc = 'use smaller indent linnes',
+  desc = 'use smaller indent lines',
   pattern = 'lua,toml,html,css,json',
-  command = 'setl listchars+=leadmultispace:│\\ ',
+  command = 'setl tabstop=2 shiftwidth=2 softtabstop=2 listchars+=leadmultispace:│\\ ',
 })
 
 autocmd('TextYankPost', {

@@ -1,5 +1,5 @@
 require('colorizer').setup {
-  filetypes = { '*' },
+  filetypes = { '*', vim.fn.executable('vscode-css-language-server') == 1 and '!css' },
   user_default_options = {
     names = false,
     names_custom = false,
