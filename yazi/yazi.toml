@@ -14,7 +14,7 @@ plugin.prepend_previewers = [
   { name = '/mnt/rclone/**', run = 'noop' },
   # custom
   { mime = 'application/epub+zip', run = 'preview-ebook' },
-  { name = '*.cb{z,r}', run = 'cbz' },
+  { name = '*.cb{z,r}', run = 'preview-cbz' },
   { mime = 'audio/mpegurl', run = 'code' },
   { mime = 'audio/*', run = 'preview-audio' },
   { mime = 'font/*', run = 'font-sample' },
@@ -34,7 +34,7 @@ plugin.prepend_preloaders = [
   { name = '/mnt/rclone/**', run = 'noop' },
   { mime = 'application/epub+zip', run = 'preview-ebook' },
   { mime = 'audio/*', run = 'preview-audio' },
-  { name = '*.cb{z,r}', run = 'cbz' },
+  { name = '*.cb{z,r}', run = 'preview-cbz' },
   { mime = 'font/*', run = 'font-sample' },
   { mime = 'application/ms-opentype', run = 'font-sample' },
   { name = '*.{otf,ttf,woff,woff2}', run = 'font-sample' },
@@ -48,7 +48,7 @@ plugin.spotters = [
   { mime = "image/svg+xml", run = "svg" },
   { mime = "image/*", run = "image" },
 
-  { name = '*.cb{z,r}', run = 'cbz' },
+  { name = '*.cb{z,r}', run = 'spot-cbz' },
   { mime = "video/*", run = "spot-video" },
   # { mime = "text/*", run = "spot-code" },
   { mime = "audio/*", run = "spot-audio" },

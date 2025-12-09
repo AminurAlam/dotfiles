@@ -1,80 +1,88 @@
 ---@diagnostic disable: duplicate-set-field
 
--- shorter header cwd
-function Header:cwd()
-  local max = self._area.w - self._right_width
-  if max <= 0 then
-    return ''
+------------------ LAYOUT ---------------
+
+do -- shorter header cwd
+  function Header:cwd()
+    local max = self._area.w - self._right_width
+    if max <= 0 then
+      return ''
+    end
+
+    local s = tostring(ya.readable_path(tostring(self._current.cwd))):gsub(
+      '(%.?)([^/])[^/]+/',
+      '%1%2/'
+    ) .. self:flags()
+    return ui.Span(ya.truncate(s, { max = max, rtl = true })):style(th.mgr.cwd)
+  end
+end
+
+do -- show remaining storage
+  --[[
+  Header:children_add(function()
+    local main = (ya.target_family() == 'android') and '/storage/emulated' or '/home'
+    return os.execute(string.format("df -h '%s' | tail -n1 | awk '{print $4}'", main))
+  end, 500, Header.RIGHT)
+  --]]
+end
+
+do -- put progress in header
+  function Header:redraw()
+    local right = self:children_redraw(self.RIGHT)
+    self._right_width = right:width()
+
+    local left = self:children_redraw(self.LEFT)
+
+    return {
+      ui.Line(left):area(self._area),
+      ui.Line(right):area(self._area):align(ui.Align.RIGHT),
+      table.unpack(ui.redraw(Progress:new(self._area, self._right_width))),
+    }
+  end
+end
+
+do -- smaller progress layout
+  function Progress:layout()
+    self._area = ui.Rect {
+      x = math.max(0, self._area.w - self._offset - 5),
+      y = self._area.y,
+      w = ya.clamp(0, self._area.w - self._offset, 4),
+      h = math.min(1, self._area.h),
+    }
   end
 
-  local s = tostring(ya.readable_path(tostring(self._current.cwd))):gsub(
-    '(%.?)([^/])[^/]+/',
-    '%1%2/'
-  ) .. self:flags()
-  return ui.Span(ya.truncate(s, { max = max, rtl = true })):style(th.mgr.cwd)
+  function Progress:redraw()
+    local progress = cx.tasks.progress
+    if progress.total == 0 then
+      return {}
+    end
+
+    return ui.Line(string.format('%3d', progress.total))
+      :area(self._area)
+      :fg(th.status.progress_label.fg)
+      :bg(th.status[progress.fail == 0 and 'progress_normal' or 'progress_error'].fg)
+  end
 end
 
--- show remaining storage
---[[
-Header:children_add(function()
-  local main = (ya.target_family() == 'android') and '/storage/emulated' or '/home'
-  return os.execute(string.format("df -h '%s' | tail -n1 | awk '{print $4}'", main))
-end, 500, Header.RIGHT) --]]
+do -- turn off statusline
+  local old_layout = Tab.layout
 
--- put progress in header
-function Header:redraw()
-  local right = self:children_redraw(self.RIGHT)
-  self._right_width = right:width()
-
-  local left = self:children_redraw(self.LEFT)
-
-  return {
-    ui.Line(left):area(self._area),
-    ui.Line(right):area(self._area):align(ui.Align.RIGHT),
-    table.unpack(ui.redraw(Progress:new(self._area, self._right_width))),
-  }
-end
-
--- smaller progress layout
-function Progress:layout()
-  self._area = ui.Rect {
-    x = math.max(0, self._area.w - self._offset - 5),
-    y = self._area.y,
-    w = ya.clamp(0, self._area.w - self._offset, 4),
-    h = math.min(1, self._area.h),
-  }
-end
-
-function Progress:redraw()
-  local progress = cx.tasks.progress
-  if progress.total == 0 then
+  Status.redraw = function()
     return {}
   end
 
-  return ui.Line(string.format('%3d', progress.total))
-    :area(self._area)
-    :fg(th.status.progress_label.fg)
-    :bg(th.status[progress.fail == 0 and 'progress_normal' or 'progress_error'].fg)
+  Tab.layout = function(self, ...)
+    self._area = ui.Rect {
+      x = self._area.x,
+      y = self._area.y,
+      w = self._area.w,
+      h = self._area.h + 1,
+    }
+    return old_layout(self, ...)
+  end
 end
 
--- turn off statusline
-local old_layout = Tab.layout
-
-Status.redraw = function()
-  return {}
-end
-Tab.layout = function(self, ...)
-  self._area = ui.Rect {
-    x = self._area.x,
-    y = self._area.y,
-    w = self._area.w,
-    h = self._area.h + 1,
-  }
-  return old_layout(self, ...)
-end
-
--- start with cut if xdg-desktop-portal-termfilechooser
-require('topaste'):setup {}
+------------------ STARTUP ---------------
 
 -- start with zoxide if launching as fileManager
 if ya.id('app').value == 48937 then
@@ -83,8 +91,7 @@ else
   require('session'):setup { sync_yanked = true }
 end
 
--- plugins
-
+-- git icon theming
 th.git = {
   modified = ui.Style():fg('red'),
   modified_sign = 'M',
@@ -96,11 +103,35 @@ th.git = {
   deleted_sign = 'D',
   updated_sign = 'U',
 }
-require('git'):setup()
+
+------------------ PLUGIN ---------------
+
+require('git'):setup {}
+
+require('topaste'):setup {}
+
+require('sort-by-location'):setup {
+  { pattern = '.*/Pictures/.*', sort = { 'mtime', reverse = true } },
+}
+
+require('spot'):setup {
+  height = 25,
+  width = 70,
+  render_metadata = true,
+  render_plugins = true,
+}
+
+require('font-sample'):setup {
+  canvas_size = '750x800',
+  font_size = 60,
+  bg = 'white',
+  fg = 'black',
+}
 
 require('fchar'):setup {
   insensitive = true,
-  keep_searching = { enable = false, limit = 10 },
+  skip_symbols = true,
+  search_entire_string = false,
   aliases = {
     a = 'あア',
     b = 'ばびぶべぼバビブベボ',
@@ -125,21 +156,3 @@ require('fchar'):setup {
     z = 'ざずぜぞザズゼゾ',
   },
 }
-
-require('spot'):setup {
-  height = 25,
-  width = 70,
-  render_metadata = true,
-  render_plugins = true,
-}
-
-require('font-sample'):setup {
-  canvas_size = '750x800',
-  font_size = 60,
-  bg = 'white',
-  fg = 'black',
-}
-
-require('sort-by-location'):setup({
-  { pattern = '.*/Pictures/.*', sort = { 'mtime', reverse = true } },
-})
