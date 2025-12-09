@@ -17,34 +17,23 @@ abbr vi nvim
 abbr adb ANDROID_USER_HOME="$XDG_DATA_HOME"/.android HOME="$XDG_DATA_HOME"/ adb
 abbr cls clear
 abbr tar "tar xzf"
-abbr yq "yq -oj --xml-attribute-prefix ''"
 abbr qmv "qmv -AXf do"
 abbr diff "diff -Naur"
 abbr py "python3 -q"
-abbr pst "pstree -Th"
 abbr ru "rip url"
 abbr lg lazygit
-set -q TERMUX_VERSION && abbr pst "ps -faxo 'pid,comm' | sed -E \"s:\$PREFIX/[a-z]+/::\""
-abbr --set-cursor fstack "ffmpeg -y -hide_banner -i % -filter_complex hstack out.png" # https://stackoverflow.com/questions/11552565/vertically-or-horizontally-stack-mosaic-several-videos-using-ffmpeg#33764934
+abbr pst "ps -faxo 'pid,comm' | sed -E \"s:\$PREFIX/[a-z]+/::\""
 abbr --set-cursor ff "ffmpeg -y -hide_banner -stats -loglevel error -i % -vcodec copy -acodec copy -map 0:a"
-abbr --set-cursor mbz "python ~/repos/musicbrainzpy/cover_art.py -o \$XDG_MUSIC_DIR/#meta/ '%'"
 abbr --set-cursor --position anywhere awk "awk -F ' ' '{print \$%}'"
-abbr = command # replicate =command from zsh
-abbr komga 'KOMGA_CONFIGDIR=~/.local/share/komga komga | awk \'/^2025/{printf("%s %s ",substr($1,12,8),substr($2,0,1));for(i=9;i<=NF;i++)printf("%s ",$i);print""}\''
 
 # navigating
 abbr ... "cd ../.."
 abbr .... "cd ../../.."
-abbr --set-cursor yd 'y $HOME/repos/dotfiles/%'
-abbr --set-cursor ydl 'y $XDG_DOWNLOAD_DIR/%'
 abbr --set-cursor zd 'z $HOME/repos/dotfiles/%'
 abbr --set-cursor zdl 'z $XDG_DOWNLOAD_DIR/%'
 abbr zz "z -"
 
 # git
-abbr --set-cursor gac "git add % && git commit"
-abbr ga "git add"
-abbr gc "git commit"
 abbr gl "git status -bs; git log --pretty=nice -n10"
 abbr gd "git diff"
 abbr pull "git pull origin"
@@ -52,11 +41,9 @@ abbr push "git push origin"
 abbr fr "git fetch upstream && git rebase upstream/(git symbolic-ref refs/remotes/origin/HEAD | sed s@^refs/remotes/origin/@@)"
 
 # rclone/rsync
+abbr rsy "rsync -Pha"
 abbr rcp "rclone copy -P --transfers 8 --"
 abbr rls "rclone lsf"
-abbr rlt "rclone tree --level"
-abbr rconf "rclone config"
-abbr rsy "rsync -Pha"
 
 # du -> dust
 abbr du "dust -Dn 25"
