@@ -51,17 +51,19 @@ do -- cmdline, statusline & statuscolumn
   set.shortmess = 'acCoOsSWF'
   set.number = true
   set.signcolumn = termux and 'number' or 'auto:1'
+
+  set.wildmode = 'noselect:lastused,full'
+  set.wildoptions = 'pum'
 end
 
 do -- folding
-  set.foldlevel = 10
-  set.foldnestmax = set.foldlevel + 1
-  set.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
-  set.foldtext = ''
-  -- .. [[substitute(getline(v:foldstart), "\\s\\(--\\|#\\).*", "", "" )]]
-  -- .. [[ . " … " . trim(getline(v:foldend)) . ]]
-  -- .. [[" [" . (v:foldend-v:foldstart+1) . " lines]"]]
+  set.foldclose = ''
   -- set.foldcolumn = 'auto'
+  set.foldenable = true
+  set.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+  set.foldlevel = 6
+  set.foldnestmax = set.foldlevel + 1
+  set.foldtext = ''
   set.viewoptions = 'cursor,folds'
 end
 

@@ -11,7 +11,9 @@ return {
   },
   settings = {
     init_options = {
-      settings = { configuration = vim.fn.expand '~/repos/dotfiles/other/ruff.toml' },
+      settings = {
+        configuration = (vim.env.XDG_CONFIG_HOME or vim.fn.expand '~/.config') .. 'ruff/ruff.toml',
+      },
     },
   },
 }

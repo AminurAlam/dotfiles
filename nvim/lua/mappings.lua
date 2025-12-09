@@ -20,31 +20,30 @@ end
 local nmap = map { 'n' }
 local vmap = map { 'x' }
 local umap = map { '', 'i' }
+local cmap = map { 'c' }
 
 -- movement
-umap('<c-left>', '<cmd>bp<cr>', 'previous buffer')
-umap('<c-right>', '<cmd>bn<cr>', 'next buffer')
-umap('<c-up>', '<cmd>bp<cr>', 'previous buffer')
-umap('<c-down>', '<cmd>bn<cr>', 'next buffer')
-umap('<c-k>', '<cmd>bp<cr>', 'previous buffer')
-umap('<c-j>', '<cmd>bn<cr>', 'next buffer')
+umap('<c-up>', '<cmd>bp<cr>')
+umap('<c-down>', '<cmd>bn<cr>')
+umap('<c-k>', '<cmd>bp<cr>')
+umap('<c-j>', '<cmd>bn<cr>')
 
 -- deleting & registers
-nmap('_', '"_', 'use void register')
+nmap('_', '"_')
 nmap('s', '"_s')
 nmap('x', '"_x')
 vmap('p', '"_dp')
 nmap('<del>', '"_x')
 nmap('y<esc>', function() end)
 nmap('cn', '*``"_cgn', 'search and replace') -- https://www.kevinli.co/posts/2017-01-19-multiple-cursors-in-500-bytes-of-vimscript/
-nmap('<bs>', 'X', 'backspace in normal mode')
+nmap('<bs>', 'X')
 nmap('<cr>', '"_ciw', 'delete word at cursor')
 nmap('r', '<cmd>silent redo<cr>')
 
 -- write & quit
-nmap('<leader>w', '<cmd>silent w <bar> redraw <cr>', 'write')
-nmap('<leader>W', '<cmd>silent w <bar> redraw <cr>', 'write')
-nmap('q', "<cmd>if len(getbufinfo({'buflisted': 1})) == 1|q|else|bd|endif<cr>", 'quit buffer')
+nmap('<leader>w', '<cmd>silent w <bar> redraw <cr>')
+nmap('<leader>W', '<cmd>silent w <bar> redraw <cr>')
+nmap('q', "<cmd>if len(getbufinfo({'buflisted': 1})) == 1|q|else|bd|endif<cr>")
 nmap('Q', 'q', 'record macro')
 
 -- indent & fold
@@ -53,11 +52,12 @@ nmap('>', '>>')
 nmap('<', '<<')
 vmap('>', '>gv')
 vmap('<', '<gv')
+nmap('zM', '<nop>')
 
 -- toggles
-nmap('<leader>ss', '<cmd>setlocal spell!<cr>', 'toggle spell')
-nmap('<leader>sw', '<cmd>setlocal wrap!<cr>', 'toggle wrap')
-nmap('<leader>st', '<cmd>set ts=4 sw=4 sts=4 si sta et sr<cr>', 'use spaces over tab')
+nmap('<leader>ss', '<cmd>setlocal spell!<cr>')
+nmap('<leader>sw', '<cmd>setlocal wrap!<cr>')
+nmap('<leader>st', '<cmd>set ts=4 sw=4 sts=4 si sta et sr<cr>')
 nmap('<leader>sf', '<cmd>let g:save_fmt=g:save_fmt?v:false:v:true<cr>', 'toggle formatting on save')
 nmap('<leader>sn', function()
   if vim.o.number then
@@ -78,16 +78,12 @@ nmap('<leader>d', vim.diagnostic.open_float, 'view line diagnostics')
 nmap('<leader>tt', '<cmd>split | term<cr><cmd>startinsert<cr>')
 umap('<c-c>', 'g~iw', 'toggle word case')
 vmap('.', ':norm .<cr>', 'dot repeat on all selected lines')
-nmap(';', '@:', 'dot repeat the last command')
+nmap(';', '@:', 'repeat the last command')
 umap('<esc>', '<cmd>nohlsearch<cr><esc>')
 nmap('gj', [[@='j^"_d0kgJ'<cr>]], 'join without leaving space')
-nmap('go', 'jA', 'like `o` but on existing line')
-nmap('<leader>y', '<cmd>silent %y<cr>', 'yank entire buffer')
 nmap('<leader>y', function()
   fn.setreg('+', fn.getreg '0')
 end, 'put last yank in sys clipboard')
-nmap('<leader>p', '"+p', 'put last yank in sys clipboard')
-nmap('<leader>a', 'moggVG<c-a>`o', 'increment all numbers')
 nmap('+', '<plug>(dial-increment)')
 nmap('-', '<plug>(dial-decrement)')
 nmap('z=', '1z=')
@@ -104,6 +100,8 @@ end, 'repeat v to change visual mode')
 -- cmdline & abbreviations
 vim.cmd 'cmap <c-j> <down>'
 vim.cmd 'cmap <c-k> <up>'
+vim.cmd('cnoremap <Left> <Space><BS><Left>')
+vim.cmd('cnoremap <Right> <Space><BS><Right>')
 
 if fn.has('termux') == 1 and fn.has('nvim-0.10.0') == 1 then
   map { 'ca' }('vq', 'wq') -- dvorak

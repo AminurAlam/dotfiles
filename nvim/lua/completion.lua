@@ -75,11 +75,10 @@ blink.setup {
     ghost_text = { enabled = false },
   },
   fuzzy = {
-    implementation = vim.fn.has('termux') == 1 and 'lua' or 'prefer_rust',
+    implementation = 'lua',
     frecency = { enabled = true },
     use_proximity = false,
     sorts = { 'score', 'sort_text' },
-    prebuilt_binaries = { force_version = 'v1.6.0' },
   },
   appearance = {
     use_nvim_cmp_as_default = false,
@@ -119,8 +118,8 @@ blink.setup {
   },
   signature = { enabled = true, window = { border = 'rounded' } },
   snippets = { preset = 'default' },
-  -- TODO: use native completions
   cmdline = {
+    enabled = false,
     completion = {
       menu = {
         auto_show = true,
@@ -139,3 +138,4 @@ blink.setup {
     },
   },
 }
+--]]

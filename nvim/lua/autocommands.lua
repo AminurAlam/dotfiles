@@ -28,6 +28,7 @@ autocmd('BufNewFile', {
 
 autocmd('VimEnter', {
   desc = 'open directory in telescope',
+  once = true,
   callback = function(details)
     if vim.fn.isdirectory(details.file) == 1 then
       vim.bo.buftype = 'nofile'
@@ -39,8 +40,8 @@ autocmd('VimEnter', {
 })
 
 autocmd('BufWritePost', {
+  desc = 'typst & mermaid auto compile',
   callback = function(details)
-    print(details)
     if vim.bo[details.buf].filetype == 'mermaid' then
       vim.cmd('!oxdraw -i "%" -o "%:r.svg"')
       vim.cmd('!typst c "swe.typ"')
@@ -61,17 +62,18 @@ autocmd('BufWritePre', {
   end,
 })
 
-autocmd('BufWinLeave', {
-  desc = 'save folds & cursor on exit',
-  pattern = '?*',
-  command = 'silent! mkview 1',
-})
-
-autocmd('BufWinEnter', {
-  desc = 'auto load folds & cursor',
-  pattern = '?*',
-  command = 'silent! loadview 1',
-})
+-- https://github.com/ravibrock/regisfilter.nvim
+-- https://github.com/ibhagwan/smartyank.nvim
+--[[
+autocmd({ 'TextYankPost' }, {
+  desc = 'stop certain stuff from going to system clipboard',
+  callback = function()
+    local data = vim.fn.getreg '0'
+    if data and #data > 1 then
+      vim.fn.setreg('+', data)
+    end
+  end,
+}) --]]
 
 autocmd('FileType', {
   desc = 'use smaller indent lines',
@@ -88,38 +90,14 @@ autocmd('TextYankPost', {
 autocmd('FileType', { pattern = 'checkhealth', command = 'set bh=wipe nobl nonu nornu nowrap' })
 autocmd('FileType', { pattern = 'nvim-pack', command = 'ColorizerDetachFromBuffer' })
 autocmd('FileType', { pattern = 'qf', command = 'nmap <buffer> <cr> <cr>' })
-autocmd('VimLeave', { pattern = '*.tex', command = '!latexmk -c' })
-autocmd('BufEnter', { command = 'set formatoptions-=cro' })
+autocmd('FileType', { pattern = 'help', command = 'wincmd L' })
+
+autocmd('BufEnter', { command = 'set cursorline formatoptions-=cro' })
 autocmd('BufLeave', { command = 'set nocursorline' })
-autocmd('BufEnter', { command = 'set cursorline' })
 
--- buggy pos
--- autocmd('VimEnter', {
---   desc = 'intro screen',
---   once = true,
---   callback = function()
---     if vim.fn.argc() > 0 then return end
---     local nmap = function(lhs, rhs) vim.keymap.set('n', lhs, rhs, { buffer = true, silent = true }) end
---     vim.bo.bufhidden = 'hide'
---     vim.bo.buftype = 'nofile'
---     nmap('f', '<cmd>Telescope find_files<cr>')
---     nmap('g', '<cmd>Telescope live_grep<cr>') -- TODO: del `gg`
---     nmap('h', '<cmd>Telescope help_tags<cr>')
---     -- TODO: reset mappings
---     -- autocmd('CursorMoved', {
---     --   once = true,
---     --   bufffer = 0,
---     --   command = 'nmapc <buffer>',
---     -- })
---   end,
--- })
+autocmd('CmdlineEnter', { pattern = '[:/?]', command = 'set pumborder=rounded' })
+-- autocmd('CmdlineChanged', { pattern = '[:/?]', command = 'call wildtrigger()' })
+autocmd('CmdlineLeave', { pattern = '[:/?]', command = 'set pumborder&' })
 
--- https://github.com/ravibrock/regisfilter.nvim
--- https://github.com/ibhagwan/smartyank.nvim
--- autocmd({ 'TextYankPost' }, {
---   desc = 'stop certain stuff from going to clipboard',
---   callback = function()
---     local ok, yank_data = pcall(vim.fn.getreg, '0')
---     if ok and #yank_data > 1 then pcall(vim.fn.setreg, '+', yank_data) end
---   end,
--- })
+autocmd('BufWinEnter', { pattern = '?*', command = 'silent! loadview 1' })
+autocmd('BufWinLeave', { pattern = '?*', command = 'silent! mkview 1' })
