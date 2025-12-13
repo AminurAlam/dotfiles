@@ -2,11 +2,11 @@ function sy -d "sync files between phone and pc"
     set -q TERMUX_VERSION && return 1
 
     # TODO: verify connected device
-    set ip (route -n | awk '/^[0.]+/{print $2}' | rg -v '127\.0\.0\.1' | uniq | head -n1)
-    [ -n "$ip" ] && sed -r -i "s/192\.168\.[0-9]+\.[0-9]+ #brick\$/$ip #brick/" ~/.ssh/config || return 192
+    # set ip (route -n | awk '/^[0.]+/{print $2}' | rg -v '127\.0\.0\.1' | uniq | head -n1)
+    # [ -n "$ip" ] && sed -r -i "s/192\.168\.[0-9]+\.[0-9]+ #brick\$/$ip #brick/" ~/.ssh/config || return 192
 
     set comm --dry-run -ha --out-format "%o %n" --exclude={.thumbnails,.nomedia}
-    set artists Alp Arakure Herio 'Hinahara Emi' Jury 'Morino Bambi' Nagayori 'Nikubou Maranoshin' 'Ouchi Kaeru' 'Wantan Meo' Yuruyakatou
+    set artists Alp Arakure Herio 'Hinahara Emi' Jury 'Morino Bambi' Nagayori 'Nikubou Maranoshin' 'Ouchi Kaeru' Sajipen 'Wantan Meo' Yuruyakatou
 
     for state in dry wet
         if [ $state = dry ] && [ "$argv[1]" = -y ]

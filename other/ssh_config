@@ -1,6 +1,5 @@
-Host brick
+Host brick slab paper tmux
     User user
-    Hostname 192.168.0.0 #brick
     Port 8022
     IdentityFile ${HOME}/.ssh/ssh_ed25519
     IdentitiesOnly yes
@@ -10,45 +9,29 @@ Host brick
     HashKnownHosts no
     ForwardX11 no
     AddressFamily inet
+
+Host brick
+    Hostname android.local
 
 Host tmux
-    User user
-    Hostname 192.168.0.0 #brick
-    Port 8022
-    IdentityFile ${HOME}/.ssh/ssh_ed25519
-    IdentitiesOnly yes
-
+    Hostname android.local
     RequestTTY yes
-    ForwardX11 no
     RemoteCommand tmux new -A -s ssh
-    AddressFamily inet
 
 Host slab
-    User user
-    Hostname 192.168.0.0 #slab
-    Port 8022
-    IdentityFile ${HOME}/.ssh/ssh_ed25519
-    IdentitiesOnly yes
-    CheckHostIP no
-    StrictHostKeyChecking no
-
-    HashKnownHosts no
-    ForwardX11 no
-    AddressFamily inet
+    Hostname 192.168.0.0
 
 Host paper
-    User user
-    Hostname 192.168.0.0 #paper
-    Port 8022
-    IdentityFile ${HOME}/.ssh/ssh_ed25519
-    IdentitiesOnly yes
-    CheckHostIP no
-    StrictHostKeyChecking no
-
-    HashKnownHosts no
-    ForwardX11 no
-    AddressFamily inet
+    Hostname 192.168.0.0
 
 Host github.com
     User git
     IdentityFile ${HOME}/.ssh/github_ed25519
+
+Host gitlab.com
+    User git
+    IdentityFile ${HOME}/.ssh/gitlab_ed25519
+
+Host codeberg.org
+    User git
+    IdentityFile ${HOME}/.ssh/codeberg_ed25519
