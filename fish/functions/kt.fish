@@ -5,6 +5,7 @@ function kt -d "cut columns with simple syntax"
         set argv $argv[2..]
     end
 
+    # https://github.com/fish-shell/fish-shell/issues/3339
     set cols \$(string join ',$' $argv)
 
     awk -F "$delim" "{print $cols}"

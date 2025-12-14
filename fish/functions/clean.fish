@@ -32,6 +32,9 @@ function clean -d "cleanup to free storage"
         command -vq pacman && yes | pacman -Scc
     end
     echo
+    for i in (trash-list)
+        string sub -s 34 $i | string split -f 1,2 / | string join /
+    end | sort | uniq -c | sort -n
     command -vq trash-empty && trash-empty
     command -vq yay && begin
         yay -Sc --noconfirm
@@ -46,6 +49,7 @@ function clean -d "cleanup to free storage"
     echo
     echo (count (ls -1NA ~)) files in HOME
     echo (count (pacman -Qe)) packages installed
+    echo
     command df -h | awk '/fuse|home/{print $3"/"$2,$5,$4}'
     echo
     dust -PDd1 -n6 --skip-total $HOME/repos/ 2>/dev/null
