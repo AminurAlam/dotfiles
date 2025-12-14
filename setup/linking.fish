@@ -19,7 +19,7 @@ for config in alacritty aria2 \
     pacman paru powershell python \
     qalculate qBittorrent \
     ruff \
-    sqlite3 streamrip swayimg systemd \
+    sqlite3 swayimg systemd \
     termux tmux \
     waybar wofi \
     xdg-desktop-portal xdg-desktop-portal-termfilechooser \
