@@ -16,6 +16,7 @@ Host brick
 Host tmux
     Hostname android.local
     RequestTTY yes
+    Compression yes
     RemoteCommand tmux new -A -s ssh
 
 Host slab
