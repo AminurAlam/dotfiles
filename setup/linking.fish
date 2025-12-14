@@ -63,6 +63,7 @@ end
 
 printf "LINKING OTHER FILES...\n"
 [ -e /etc/pacman.conf ] && sudo ln -nfs ~/repos/dotfiles/other/pacman.arch.conf /etc/pacman.conf
+[ -e /etc/ly/config.ini ] && sudo ln -nfs ~/repos/dotfiles/ly/config.ini /etc/ly/config.ini
 ln -nfs ~/repos/dotfiles/applications ~/.local/share/applications
 ln -nfs ~/repos/dotfiles/scripts/bin/cbzcover ~/.local/bin/cbzcover
 ln -nfs ~/repos/dotfiles/scripts/bin/ctl ~/.local/bin/ctl

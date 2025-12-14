@@ -27,6 +27,7 @@
 - [keepassxc](https://keepassxc.org/) - password manager
 - [kitty](https://github.com/kovidgoyal/kitty) - terminal emulator
 - [lazygit](https://github.com/jesseduffield/lazygit) - ui for git
+- [ly](https://codeberg.org/fairyglade/ly) - TUI display manager
 - [mgba](http://mgba.io) - GBA emulator
 - [mpv](https://mpv.io) - media player
 - [newsboat](https://newsboat.org/) - rss reader
