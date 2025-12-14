@@ -1,52 +1,54 @@
-### live boot
-# sed -i 's/^#ParallelDownloads = 5$/ParallelDownloads = 5/' /etc/pacman.conf
-# pacman -Sy archinstall
-# archinstall
+setup_live_boot() {
+    sed -i 's/^#ParallelDownloads = 5$/ParallelDownloads = 5/' /etc/pacman.conf
+    pacman -Sy archinstall
+    archinstall
+}
 
-### post install
-sudo pacman -Syu --needed reflector
-sudo reflector --sort rate --country India,China,Bangladesh --save /etc/pacman.d/mirrorlist
-sudo pacman -Syu --needed alacritty base-devel eza fd fish git power-profiles-daemon ripgrep tmux yazi
+setup_post_install() {
+    sudo pacman -Syu --needed reflector
+    sudo reflector --sort rate --country India,China,Bangladesh --save /etc/pacman.d/mirrorlist
+    sudo pacman -Syu --needed base-devel eza fd fish foot git power-profiles-daemon ripgrep yazi
 
-systemctl enable NetworkManager.service power-profiles-daemon.service
-command -v fish &>/dev/null && sudo chsh -s "$(command -v fish)"
-mkdir -p ~/.local/share/fonts/ttf/SauceCodeProNerdFont
-curl -Lqso ~/.local/share/fonts/ttf/SauceCodeProNerdFont/SauceCodeProNerdFont-Medium.ttf "https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/SourceCodePro/SauceCodeProNerdFont-Medium.ttf" &>/dev/null
-fc-cache -f
+    systemctl enable NetworkManager.service power-profiles-daemon.service
+    command -v fish &>/dev/null && sudo chsh -s "$(command -v fish)"
+    mkdir -p ~/.local/share/fonts/ttf/JetBrainsMono
+    curl -Lqso ~/.local/share/fonts/ttf/JetBrainsMono/JetBrainsMonoNerdFont-Medium.ttf \
+        "https://github.com/ryanoasis/nerd-fonts/raw/refs/heads/master/patched-fonts/JetBrainsMono/Ligatures/Medium/JetBrainsMonoNerdFont-Medium.ttf" &>/dev/null
+    fc-cache -f
+}
 
-### aur helper
-git clone -q --depth 1 https://aur.archlinux.org/yay.git ~/repos/yay
-cd ~/repos/yay || exit
-makepkg -si
+setup_aur() {
+    git clone -q --depth 1 https://aur.archlinux.org/yay.git ~/repos/yay
+    cd ~/repos/yay || exit
+    makepkg -si
 
-yay -Y --gendb
-yay -Syu --devel
-yay -Y --devel --save
+    yay -Y --gendb
+    yay -Syu --devel
+    yay -Y --devel --save
+}
 
-### load more packages
-yay -S tree-sitter-git neovim-git librewolf-bin # anki-bin vesktop-bin
+setup_dotfiles() {
+    printf "DOWNLOADING DOTFILES... "
+    if [ -d ~/repos/dotfiles ]; then
+        pushd ~/repos/dotfiles || return
+        git pull -q origin
+        popd || return
+    else
+        git clone -q --depth 1 "https://github.com/AminurAlam/dotfiles.git" ~/repos/dotfiles
+    fi
+    printf "done\n"
+    [ -e ~/repos/dotfiles/setup/linking.fish ] && fish ~/repos/dotfiles/setup/linking.fish
 
-printf "DOWNLOADING DOTFILES... "
-if [ -d ~/repos/dotfiles ]; then
-    pushd ~/repos/dotfiles
-    git pull -q origin
-    popd
-else
-    git clone -q --depth 1 "https://github.com/AminurAlam/dotfiles.git" ~/repos/dotfiles
-fi
-printf "done\n"
-[ -e ~/repos/dotfiles/setup/linking.fish ] && fish ~/repos/dotfiles/setup/linking.fish
+    printf "SETTING UP YAZI...\n"
+    command -v ya &>/dev/null && ya pack -u 2>/dev/null | rg Upgrading
+}
 
-printf "SETTING UP YAZI...\n"
-command -v ya &>/dev/null && ya pack -u 2>/dev/null | rg Upgrading
-
-printf "BATTERY LIMITER...\n"
-[ -e "/sys/bus/platform/drivers/ideapad_acpi/VPC2004:00/conservation_mode" ] && sudo su -c 'echo 1 >/sys/bus/platform/drivers/ideapad_acpi/VPC2004:00/conservation_mode'
-
-### run these funcs whenever you need
-setup_lsp() {
-    yay -S clang npm gopls basedpyright stylua lua-language-server ktlint \
-        bash-language-server shfmt shellcheck shellharden ruff rust-analyzer taplo
+setup_dev() {
+    yay -S --needed tree-sitter neovim-git librewolf-bin # anki-bin vesktop-bin
+    yay -S --needed basedpyright bash-language-server ccls clang lua-language-server \
+        ruff rust-analyzer shellcheck shfmt stylua taplo termux-language-server tinymist \
+        vscode-css-languageserver vscode-html-languageserver yaml-language-server
+    npm -g i serve
 }
 
 setup_wine() {
@@ -57,18 +59,8 @@ setup_wine() {
         lib32-gst-plugins-base-libs vulkan-icd-loader lib32-vulkan-icd-loader sdl2-compat lib32-sdl2-compat
 }
 
-setup_latex() {
-    yay -S texlive-bin texlive-basic texlive-latex texlive-latexextra texlive-latexrecommended texlive-fontsrecommended \
-        meta-group-texlive-most texlive-binextra
-}
-
-setup_servers() {
+setup_de() {
     yay -S anki kiwix-tools komga kanata-bin
-    # systemctl enable mariadb
-    # systemctl start mariadb
-    # sudo mariadb-install-db --user=mysql --ldata=/var/lib/mysql --basedir=/usr --user root
-}
-
-setup_shell() {
-    yay -S xdg-desktop-portal-gnome swaylock org.freedesktop.secrets
+    yay -S xdg-desktop-portal-gnome xdg-desktop-portal-wlr # org.freedesktop.secrets
+    systemctl --user enable {anki-syncserver,kanata,swaybg,waybar,xwayland-satellite,redlib,foot-server}.service
 }

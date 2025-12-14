@@ -43,4 +43,4 @@ printf "done\n"
 printf "RUNNING FISH SETUP...\n"
     curl -#Lq -o "$HOME/termux.fish" "$setup_url"
     fish=$(command -v fish)
-    $fish "$HOME/termux.fish"
+    "$fish" "$HOME/termux.fish"

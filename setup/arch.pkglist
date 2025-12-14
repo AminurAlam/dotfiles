@@ -22,8 +22,10 @@ ed
 eden-bin
 efibootmgr
 eza
+fastfetch
 fd
 fish
+foot
 fuzzel
 fzf
 git
@@ -39,6 +41,7 @@ hyperfine
 identity
 imagemagick
 inetutils
+inkscape
 intel-media-driver
 iw
 iwd
@@ -58,7 +61,6 @@ libappindicator
 libmpeg2
 libnotify
 libqalculate
-libreoffice-fresh
 librewolf-bin
 libva-intel-driver
 linux
@@ -69,10 +71,13 @@ lua-language-server
 ly
 lzip
 mandoc
+matrix-synapse
 mecab-git
 mediainfo
 megatools
+mosh
 mpv
+nchat
 neovim-git
 nerdfix
 net-tools
@@ -84,6 +89,7 @@ noto-fonts
 noto-fonts-cjk
 npm
 nsz
+nushell
 nwg-look
 obs-studio
 openresolv
@@ -108,7 +114,6 @@ prettier
 python-curl-cffi
 python-docutils
 python-gobject
-python-scikit-learn
 qbittorrent
 qbittorrent-nox
 qt5-wayland
@@ -141,7 +146,6 @@ streamrip
 stylua
 swaybg
 swayimg
-swaylock
 systemd-lsp
 taisei
 taplo-cli
@@ -152,11 +156,12 @@ tmux
 trash-cli
 tree-sitter
 tree-sitter-cli
+ttf-bitstream-vera
 ttf-dejavu
 ttf-ibm-plex
-ttf-jetbrains-mono
 ttf-liberation
 ttf-opensans
+ttf-twemoji-color
 typst
 unrar
 unzip
@@ -164,7 +169,8 @@ uv
 v4l2loopback-dkms
 v4l2loopback-utils
 vesktop-bin
-vscode-langservers-extracted
+vscode-css-languageserver
+vscode-html-languageserver
 vulkan-intel
 vulkan-radeon
 waybar
@@ -177,6 +183,7 @@ wpa_supplicant
 xbindkeys
 xdg-desktop-portal-gnome
 xdg-desktop-portal-termfilechooser-boydaihungst-git
+xdg-desktop-portal-wlr
 xdg-utils
 xf86-video-amdgpu
 xf86-video-ati
@@ -187,13 +194,11 @@ xwayland-satellite
 yaml-language-server
 yay
 yazi
-ydotool
 yq
 yt-dlp
 yt-dlp-ejs
 zathura
 zathura-cb
-zathura-language-server
 zathura-pdf-mupdf
 zellij
 zim-tools

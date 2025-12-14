@@ -6,7 +6,7 @@ set extra_packages clang dust python python-pip python-ensurepip-wheels python-y
 set python_packages "git+https://github.com/nathom/streamrip.git@dev" "git+https://github.com/AminurAlam/deflacue.git"
 
 # urls
-set url_font "https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/SourceCodePro/SauceCodeProNerdFont-Medium.ttf"
+set url_font "https://github.com/ryanoasis/nerd-fonts/raw/refs/heads/master/patched-fonts/JetBrainsMono/Ligatures/Medium/JetBrainsMonoNerdFont-Medium.ttf"
 set url_dotfiles "https://github.com/AminurAlam/dotfiles.git"
 set url_neovim "https://github.com/AminurAlam/neovim.git"
 set url_fish_setup "https://raw.githubusercontent.com/AminurAlam/dotfiles/main/setup.fish"

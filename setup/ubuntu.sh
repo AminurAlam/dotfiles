@@ -48,7 +48,7 @@ clear
 printf "LINKING DOTFILES...\n"
 fish ~/repos/dotfiles/setup/linking.fish
 for conf in alacritty fish nvim tmux yazi; do
-    if ! [ -L ~/.config/$conf ]; then
+    if ! [ -L ~/.config/"$conf" ]; then
         printf "%s not linked properly\n" "$conf"
         exit
     fi
