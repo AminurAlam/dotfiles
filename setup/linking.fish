@@ -8,7 +8,7 @@ for config in alacritty aria2 \
     clangd \
     dunst \
     eza \
-    fish fuzzel \
+    fish foot fuzzel \
     gallery-dl gdb ghostty git glow \
     htop hypr \
     jj \

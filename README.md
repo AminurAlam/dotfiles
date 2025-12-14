@@ -12,6 +12,7 @@
 - [dunst](https://dunst-project.org/) - notification daemon
 - [eza](https://github.com/eza-community/eza) - replacement for ls
 - [fish](https://fishshell.com/) :star2: - shell
+- [foot](https://codeberg.org/dnkl/foot) - Fast, lightweight, and minimalistic Wayland terminal emulator
 - [fuzzel](https://codeberg.org/dnkl/fuzzel) - application launcher
 - [fzf](https://junegunn.github.io/fzf/) - fuzzy finder
 - [gallery-dl](https://github.com/mikf/gallery-dl) - program to download image-galleries
@@ -22,13 +23,13 @@
 - [htop](https://htop.dev/) - process viewer
 - [hyprland](https://hyprland.org/) - tiling wayland compositor
 - [jujustu](https://github.com/jj-vcs/jj) - vcs
-- [kanata](https://github.com/jtroo/kanata) - keyboard customizer
+- [kanata](https://github.com/jtroo/kanata) :star2: - keyboard customizer
 - [keepassxc](https://keepassxc.org/) - password manager
 - [kitty](https://github.com/kovidgoyal/kitty) - terminal emulator
 - [lazygit](https://github.com/jesseduffield/lazygit) - ui for git
 - [mgba](http://mgba.io) - GBA emulator
 - [mpv](https://mpv.io) - media player
-- [newsboat](https://newsboat.org/) :star2: - rss reader
+- [newsboat](https://newsboat.org/) - rss reader
 - [newsraft](https://codeberg.org/newsraft/newsraft) - feed reader for terminal
 - [niri](https://github.com/YaLTeR/niri) :star2: - scrollable-tiling wayland compositor
 - [npm](https://npmjs.com/) - javascript runtime
@@ -56,6 +57,7 @@
 - [vim](https://www.vim.org) - text editor
 - [waybar](https://github.com/Alexays/Waybar) - status bar
 - [wofi](https://hg.sr.ht/~scoopta/wofi) - launcher
+- [xdg-desktop-portal](https://flatpak.github.io/xdg-desktop-portal/) - for desktop stuff
 - [xdg-desktop-portal-termfilechooser](https://github.com/boydaihungst/xdg-desktop-portal-termfilechooser) - xdg-desktop-portal backend for terminal file manager
 - [yay](https://github.com/Jguer/yay) - aur helper
 - [yazi](https://yazi-rs.github.io/) :star2: - terminal file manager

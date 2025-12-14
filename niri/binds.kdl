@@ -7,7 +7,7 @@ binds {
     // Mod+I repeat=false { spawn "fuzzel"; }
     // Mod+O repeat=false { spawn "alacritty" "-e" "fish" "-C" "y --client-id=48937"; }
 
-    Mod+A repeat=false { spawn "alacritty"; }
+    Mod+A repeat=false { spawn "footclient"; }
     Mod+S repeat=false { spawn "librewolf"; }
     Mod+D repeat=false { toggle-window-floating; }
     Mod+F repeat=false { switch-preset-column-width; }
