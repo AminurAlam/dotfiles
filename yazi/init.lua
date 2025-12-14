@@ -5,8 +5,13 @@
 do -- shorter header cwd
   function Header:cwd()
     local max = self._area.w - self._right_width
+
     if max <= 0 then
       return ''
+    end
+
+    if #cx.tabs > 1 then
+      return ui.Span(ya.truncate(self:flags(), { max = max, rtl = true })):style(th.mgr.cwd)
     end
 
     local s = tostring(ya.readable_path(tostring(self._current.cwd))):gsub(
@@ -20,10 +25,55 @@ end
 do -- show remaining storage
   --[[
   Header:children_add(function()
-    local main = (ya.target_family() == 'android') and '/storage/emulated' or '/home'
-    return os.execute(string.format("df -h '%s' | tail -n1 | awk '{print $4}'", main))
+    local now = ya.time()
+    local main = (ya.target_family() == 'android') and '/storage/emulated' or os.getenv('HOME')
+    local url = cx.active.current.cwd
+    local it = fs.calc_size(url)
+    local size = 0
+
+    while true do
+      local next = it:recv()
+      if next then
+        size = size + next
+      else
+        break
+      end
+    end
+
+    -- local op = fs.op('size', { url = url.parent, sizes = { [url.urn] = self.size } })
+    -- ya.emit('update_files', { op = op })
+
+    return tostring(url)
   end, 500, Header.RIGHT)
   --]]
+end
+
+do -- put tabs in header
+  function Tabs.height()
+    return 0
+  end
+
+  Header:children_add(function()
+    if #cx.tabs <= 1 then
+      return ''
+    end
+
+    local active = ui.Style():fg('black'):bg('white')
+    local inactive = ui.Style():fg('white'):bg('black')
+    local spans = {}
+
+    for i = 1, #cx.tabs do
+      local path = tostring(ya.readable_path(cx.tabs[i].name)):gsub('(%.?)([^/])[^/]+/', '%1%2/')
+      local name = string.format(' %d %s ', i, ya.truncate(path, { max = 20, rtl = true }))
+      spans[#spans + 1] = ui.Span(' ' .. i .. ' ')
+        :style(i == cx.tabs.idx and th.tabs.active or th.tabs.inactive)
+      spans[#spans + 1] = ui.Span(' ' .. ya.truncate(path, { max = 20, rtl = true }) .. ' ')
+        :style(i == cx.tabs.idx and active or inactive)
+      spans[#spans + 1] = ' '
+    end
+
+    return ui.Line(spans)
+  end, 500, Header.LEFT)
 end
 
 do -- put progress in header
@@ -85,7 +135,7 @@ end
 ------------------ STARTUP ---------------
 
 -- start with zoxide if launching as fileManager
-if ya.id('app').value == 48937 then
+if os.getenv('YAZI_START_PICKING') then
   ya.emit('plugin', { 'zoxide' })
 else
   require('session'):setup { sync_yanked = true }
