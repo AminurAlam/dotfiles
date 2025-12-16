@@ -69,7 +69,7 @@ else # upload only 1 file
     set -- --chooser-file="$(quote_string "$out")" "$(quote_string "$path")"
 fi
 
-eval "/usr/bin/alacritty --title $(quote_string "$TITLE") -e /usr/bin/yazi $@"
+eval "/usr/bin/footclient --title $(quote_string "$TITLE") -e /usr/bin/yazi $@"
 
 # case save file
 if [ "$save" = "1" ] && [ -s "$tmpfile" ]; then
