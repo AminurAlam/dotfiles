@@ -1,8 +1,10 @@
 ---@diagnostic disable: duplicate-set-field
 
+local trunc = ui.truncate and ui.truncate or ya.truncate
+
 ------------------ LAYOUT ---------------
 
-do -- shorter header cwd
+do -- [=[ shorter header cwd
   function Header:cwd()
     local max = self._area.w - self._right_width
 
@@ -11,19 +13,19 @@ do -- shorter header cwd
     end
 
     if #cx.tabs > 1 then
-      return ui.Span(ya.truncate(self:flags(), { max = max, rtl = true })):style(th.mgr.cwd)
+      return ui.Span(trunc(self:flags(), { max = max, rtl = true })):style(th.mgr.cwd)
     end
 
     local s = tostring(ya.readable_path(tostring(self._current.cwd))):gsub(
       '(%.?)([^/])[^/]+/',
       '%1%2/'
     ) .. self:flags()
-    return ui.Span(ya.truncate(s, { max = max, rtl = true })):style(th.mgr.cwd)
+    return ui.Span(trunc(s, { max = max, rtl = true })):style(th.mgr.cwd)
   end
+  --]=]
 end
 
-do -- show remaining storage
-  --[[
+do --[=[ show remaining storage
   Header:children_add(function()
     local now = ya.time()
     local main = (ya.target_family() == 'android') and '/storage/emulated' or os.getenv('HOME')
@@ -45,10 +47,10 @@ do -- show remaining storage
 
     return tostring(url)
   end, 500, Header.RIGHT)
-  --]]
+  --]=]
 end
 
-do -- put tabs in header
+do -- [=[ put tabs in header
   function Tabs.height()
     return 0
   end
@@ -64,19 +66,20 @@ do -- put tabs in header
 
     for i = 1, #cx.tabs do
       local path = tostring(ya.readable_path(cx.tabs[i].name)):gsub('(%.?)([^/])[^/]+/', '%1%2/')
-      local name = string.format(' %d %s ', i, ya.truncate(path, { max = 20, rtl = true }))
+
       spans[#spans + 1] = ui.Span(' ' .. i .. ' ')
         :style(i == cx.tabs.idx and th.tabs.active or th.tabs.inactive)
-      spans[#spans + 1] = ui.Span(' ' .. ya.truncate(path, { max = 20, rtl = true }) .. ' ')
+      spans[#spans + 1] = ui.Span(' ' .. trunc(path, { max = 20, rtl = true }) .. ' ')
         :style(i == cx.tabs.idx and active or inactive)
       spans[#spans + 1] = ' '
     end
 
     return ui.Line(spans)
   end, 500, Header.LEFT)
+  --]=]
 end
 
-do -- put progress in header
+do -- [=[ put progress in header
   function Header:redraw()
     local right = self:children_redraw(self.RIGHT)
     self._right_width = right:width()
@@ -89,9 +92,10 @@ do -- put progress in header
       table.unpack(ui.redraw(Progress:new(self._area, self._right_width))),
     }
   end
+  --]=]
 end
 
-do -- smaller progress layout
+do -- [=[ smaller progress layout
   function Progress:layout()
     self._area = ui.Rect {
       x = math.max(0, self._area.w - self._offset - 5),
@@ -101,6 +105,28 @@ do -- smaller progress layout
     }
   end
 
+  --[[
+  function Progress:redraw()
+    -- ya.dbg(cx.tasks.summary, cx.tasks.progress)
+    local summary = cx.tasks.summary
+    if summary.total == 0 then
+      return {}
+    end
+
+    local label, percent = '', summary.percent
+    if percent then
+      label = string.format('%3d%%', math.floor(percent))
+    else
+      label = string.format('%3d', string.format('%d', summary.total))
+    end
+
+    -- return gauge:percent(percent):label(ui.Span(label):style(th.status.progress_label))
+    return ui.Line(label):area(self._area):fg('white'):bg('blue')
+    -- :bg(th.status[progress.failed == 0 and 'progress_normal' or 'progress_error'].fg)
+  end
+  --]]
+
+  -- [[
   function Progress:redraw()
     local progress = cx.tasks.progress
     if progress.total == 0 then
@@ -112,9 +138,11 @@ do -- smaller progress layout
       :fg(th.status.progress_label.fg)
       :bg(th.status[progress.fail == 0 and 'progress_normal' or 'progress_error'].fg)
   end
+  --]]
+  --]=]
 end
 
-do -- turn off statusline
+do -- [=[ turn off statusline
   local old_layout = Tab.layout
 
   Status.redraw = function()
@@ -130,6 +158,18 @@ do -- turn off statusline
     }
     return old_layout(self, ...)
   end
+  --]=]
+end
+
+do -- [=[ turn off fancy rounded corners
+  function Entity:padding()
+    return ' '
+  end
+
+  function Linemode:padding()
+    return ' '
+  end
+  --]=]
 end
 
 ------------------ STARTUP ---------------
