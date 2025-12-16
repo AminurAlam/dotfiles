@@ -7,7 +7,7 @@ setup_live_boot() {
 setup_post_install() {
     sudo pacman -Syu --needed reflector
     sudo reflector --sort rate --country India,China,Bangladesh --save /etc/pacman.d/mirrorlist
-    sudo pacman -Syu --needed base-devel eza fd fish foot git power-profiles-daemon ripgrep yazi
+    sudo pacman -Syu --needed base-devel fd fish foot git power-profiles-daemon ripgrep yazi
 
     systemctl enable NetworkManager.service power-profiles-daemon.service
     command -v fish &>/dev/null && sudo chsh -s "$(command -v fish)"

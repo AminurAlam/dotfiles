@@ -143,59 +143,59 @@ EXEC 01;32
 .zoo 01;31
 .zst 01;31
 
-# # image formats
-# .avif 01;35
-# .jpg 01;35
-# .jpeg 01;35
-# .mjpg 01;35
-# .mjpeg 01;35
-# .gif 01;35
-# .bmp 01;35
-# .pbm 01;35
-# .pgm 01;35
-# .ppm 01;35
-# .tga 01;35
-# .xbm 01;35
-# .xpm 01;35
-# .tif 01;35
-# .tiff 01;35
-# .png 01;35
-# .svg 01;35
-# .svgz 01;35
-# .mng 01;35
-# .pcx 01;35
-# .mov 01;35
-# .mpg 01;35
-# .mpeg 01;35
-# .m2v 01;35
-# .mkv 01;35
-# .webm 01;35
-# .webp 01;35
-# .ogm 01;35
-# .mp4 01;35
-# .m4v 01;35
-# .mp4v 01;35
-# .vob 01;35
-# .qt 01;35
-# .nuv 01;35
-# .wmv 01;35
-# .asf 01;35
-# .rm 01;35
-# .rmvb 01;35
-# .flc 01;35
-# .avi 01;35
-# .fli 01;35
-# .flv 01;35
-# .gl 01;35
-# .dl 01;35
-# .xcf 01;35
-# .xwd 01;35
-# .yuv 01;35
-# .cgm 01;35
-# .emf 01;35
-# # https://wiki.xiph.org/MIME_Types_and_File_Extensions
-# .ogv 01;35
-# .ogx 01;35
+# image formats
+.avif 01;35
+.jpg 01;35
+.jpeg 01;35
+.mjpg 01;35
+.mjpeg 01;35
+.gif 01;35
+.bmp 01;35
+.pbm 01;35
+.pgm 01;35
+.ppm 01;35
+.tga 01;35
+.xbm 01;35
+.xpm 01;35
+.tif 01;35
+.tiff 01;35
+.png 01;35
+.svg 01;35
+.svgz 01;35
+.mng 01;35
+.pcx 01;35
+.mov 01;35
+.mpg 01;35
+.mpeg 01;35
+.m2v 01;35
+.mkv 01;35
+.webm 01;35
+.webp 01;35
+.ogm 01;35
+.mp4 01;35
+.m4v 01;35
+.mp4v 01;35
+.vob 01;35
+.qt 01;35
+.nuv 01;35
+.wmv 01;35
+.asf 01;35
+.rm 01;35
+.rmvb 01;35
+.flc 01;35
+.avi 01;35
+.fli 01;35
+.flv 01;35
+.gl 01;35
+.dl 01;35
+.xcf 01;35
+.xwd 01;35
+.yuv 01;35
+.cgm 01;35
+.emf 01;35
+# https://wiki.xiph.org/MIME_Types_and_File_Extensions
+.ogv 01;35
+.ogx 01;35
 
 # audio formats
 .aac 00;36

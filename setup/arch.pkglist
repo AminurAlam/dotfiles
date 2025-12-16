@@ -21,7 +21,6 @@ dust
 ed
 eden-bin
 efibootmgr
-eza
 fastfetch
 fd
 fish
@@ -43,6 +42,7 @@ imagemagick
 inetutils
 inkscape
 intel-media-driver
+iperf3
 iw
 iwd
 jdk17-openjdk
@@ -72,6 +72,7 @@ ly
 lzip
 mandoc
 matrix-synapse
+mautrix-whatsapp
 mecab-git
 mediainfo
 megatools
@@ -181,7 +182,6 @@ wireplumber
 wl-clipboard
 wpa_supplicant
 xbindkeys
-xdg-desktop-portal-gnome
 xdg-desktop-portal-termfilechooser-boydaihungst-git
 xdg-desktop-portal-wlr
 xdg-utils

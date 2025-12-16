@@ -35,7 +35,7 @@ fi
 
 clear
 printf "INSTALLING PACKAGES...\n"
-pacstall -I git neovim-git kanata-bin # alacritty librewolf-app eza-git fzf-bin tmux nerd-fonts:ttf-sourcecodepro-nerd
+pacstall -I git neovim-git kanata-bin # alacritty librewolf-app fzf-bin tmux nerd-fonts:ttf-sourcecodepro-nerd
 # curl -LsSf https://astral.sh/ruff/install.sh | sh
 for pkg in git kanata nvim; do
     if ! command -v "$pkg" &>/dev/null; then

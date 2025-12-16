@@ -1,7 +1,7 @@
 #!/data/data/com.termux/files/usr/bin/fish
 
 # packages
-set base_packages eza fd git ripgrep termux-api termux-auth
+set base_packages fd git ripgrep termux-api termux-auth
 set extra_packages clang dust python python-pip python-ensurepip-wheels python-yt-dlp renameutils starship yazi zoxide
 set python_packages "git+https://github.com/nathom/streamrip.git@dev" "git+https://github.com/AminurAlam/deflacue.git"
 

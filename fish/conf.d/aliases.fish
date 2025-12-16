@@ -1,7 +1,6 @@
-set -l common "-las ext -F auto -I '.git*' --icons --no-user --group-directories-first --no-quotes --color-scale all --color-scale-mode fixed"
-alias l "eza $common --no-permissions --no-time"
-alias ll "eza $common --git --total-size"
-alias lt "eza $common -T --git --total-size --no-permissions --no-time"
+set ls "ls --group-directories-first -1AXNGshF"
+alias l "$ls"
+alias ll "$ls -l"
 alias tldr 'curl -qs cht.sh/$argv # '
 
 status is-interactive || exit # no need to source abbreviations
