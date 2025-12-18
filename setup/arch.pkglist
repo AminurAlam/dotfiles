@@ -1,7 +1,7 @@
 7zip
-alacritty-graphics
 alsa-utils
 amd-ucode
+android-ndk
 anki-bin
 aria2
 base
@@ -89,7 +89,6 @@ niri
 noto-fonts
 noto-fonts-cjk
 npm
-nsz
 nushell
 nwg-look
 obs-studio
@@ -108,7 +107,6 @@ pipewire-alsa
 pipewire-jack
 pipewire-pulse
 pkgfile
-podman
 poppler
 power-profiles-daemon
 prettier
@@ -116,7 +114,6 @@ python-curl-cffi
 python-docutils
 python-gobject
 qbittorrent
-qbittorrent-nox
 qt5-wayland
 qt5ct
 qt6-wayland
@@ -129,18 +126,14 @@ renameutils
 resvg
 revanced-cli-bin
 ripgrep
-rnote
 rsync
-ruby
 ruff
 rust-analyzer
 scrcpy
 secrets
 shellcheck
-shellharden
 shfmt
 sof-firmware
-sshfs
 starship
 strace
 streamrip
@@ -148,7 +141,6 @@ stylua
 swaybg
 swayimg
 systemd-lsp
-taisei
 taplo-cli
 termux-language-server
 testdisk
@@ -176,6 +168,7 @@ vulkan-intel
 vulkan-radeon
 waybar
 wev
+wf-recorder
 whois
 wireless_tools
 wireplumber
@@ -188,7 +181,6 @@ xdg-utils
 xf86-video-amdgpu
 xf86-video-ati
 xf86-video-nouveau
-xf86-video-vmware
 xmlto
 xwayland-satellite
 yaml-language-server
@@ -200,7 +192,6 @@ yt-dlp-ejs
 zathura
 zathura-cb
 zathura-pdf-mupdf
-zellij
 zim-tools
 zip
 zoxide
