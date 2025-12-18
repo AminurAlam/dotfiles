@@ -8,4 +8,5 @@ git rebase upstream/master
 
 cd ~/repos/dotfiles/scripts/build/nvim/ || exit
 makepkg -si
+
 rm -rf ~/repos/dotfiles/scripts/build/nvim/{pkg,src}

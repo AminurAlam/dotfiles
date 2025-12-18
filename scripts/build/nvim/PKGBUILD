@@ -65,28 +65,6 @@ prepare() {
 }
 
 package() {
-    mkdir -p "$pkgdir/$prefix/share/libalpm/hooks" "$pkgdir/$prefix/share/libalpm/scripts"
-    cat >"$pkgdir/$prefix/share/libalpm/hooks/nvimdoc.hook" <<-EOF
-[Trigger]
-Operation = Install
-Operation = Upgrade
-Operation = Remove
-Type = Path
-Target = usr/share/nvim/site/pack/dist/start/*/doc/
-
-[Action]
-Description = Updating Neovim help tags...
-Exec = /usr/share/libalpm/scripts/nvimdoc
-When = PostTransaction
-EOF
-    cat >"$pkgdir/$prefix/share/libalpm/scripts/nvimdoc" <<-EOF
-#!/bin/bash
-
-for f in /usr/share/nvim/site/pack/dist/start/*/doc/; do
-    /usr/bin/nvim -es "+helptags \$f" +q
-done
-EOF
-
     cd "$_pkgname"
     DESTDIR="$pkgdir" cmake --install build
 
