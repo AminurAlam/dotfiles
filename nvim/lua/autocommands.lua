@@ -43,11 +43,10 @@ autocmd('BufWritePost', {
   desc = 'typst & mermaid auto compile',
   callback = function(details)
     if vim.bo[details.buf].filetype == 'mermaid' then
-      vim.cmd('!oxdraw -i "%" -o "%:r.svg"')
-      vim.cmd('!typst c "swe.typ"')
+      vim.cmd('make')
     end
     if vim.bo[details.buf].filetype == 'typst' then
-      vim.cmd('!typst c "%"')
+      vim.cmd('make')
     end
   end,
 })
@@ -61,19 +60,6 @@ autocmd('BufWritePre', {
     end
   end,
 })
-
--- https://github.com/ravibrock/regisfilter.nvim
--- https://github.com/ibhagwan/smartyank.nvim
---[[
-autocmd({ 'TextYankPost' }, {
-  desc = 'stop certain stuff from going to system clipboard',
-  callback = function()
-    local data = vim.fn.getreg '0'
-    if data and #data > 1 then
-      vim.fn.setreg('+', data)
-    end
-  end,
-}) --]]
 
 autocmd('FileType', {
   desc = 'use smaller indent lines',
@@ -92,12 +78,13 @@ autocmd('FileType', { pattern = 'nvim-pack', command = 'ColorizerDetachFromBuffe
 autocmd('FileType', { pattern = 'qf', command = 'nmap <buffer> <cr> <cr>' })
 autocmd('FileType', { pattern = 'help', command = 'wincmd L' })
 
+autocmd('UIEnter', { command = 'set clipboard=unnamedplus' })
+
 autocmd('BufEnter', { command = 'set cursorline formatoptions-=cro' })
 autocmd('BufLeave', { command = 'set nocursorline' })
+autocmd('BufWinEnter', { pattern = '?*', command = 'silent! loadview 1' })
+autocmd('BufWinLeave', { pattern = '?*', command = 'silent! mkview 1' })
 
 autocmd('CmdlineEnter', { pattern = '[:/?]', command = 'set pumborder=rounded' })
 -- autocmd('CmdlineChanged', { pattern = '[:/?]', command = 'call wildtrigger()' })
 autocmd('CmdlineLeave', { pattern = '[:/?]', command = 'set pumborder&' })
-
-autocmd('BufWinEnter', { pattern = '?*', command = 'silent! loadview 1' })
-autocmd('BufWinLeave', { pattern = '?*', command = 'silent! mkview 1' })
