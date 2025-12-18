@@ -91,7 +91,7 @@ do -- others
   set.writebackup = false
   set.undofile = true
   set.confirm = true
-  set.clipboard = (termux and vim.env.SSH_CONNECTION) and '' or 'unnamedplus'
+  -- set.clipboard = (termux and vim.env.SSH_CONNECTION) and '' or 'unnamedplus' -- moved to autocmd
   set.list = true
   set.listchars = dict2str {
     leadmultispace = '│   ',

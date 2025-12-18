@@ -20,13 +20,16 @@ end
 local nmap = map { 'n' }
 local vmap = map { 'x' }
 local umap = map { '', 'i' }
-local cmap = map { 'c' }
 
 -- movement
 umap('<c-up>', '<cmd>bp<cr>')
 umap('<c-down>', '<cmd>bn<cr>')
 umap('<c-k>', '<cmd>bp<cr>')
 umap('<c-j>', '<cmd>bn<cr>')
+umap('<A-h>', '<C-o>h')
+umap('<A-j>', '<C-o>j')
+umap('<A-k>', '<C-o>k')
+umap('<A-l>', '<C-o>l')
 
 -- deleting & registers
 nmap('_', '"_')
