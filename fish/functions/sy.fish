@@ -5,7 +5,7 @@ function sy -d "sync files between phone and pc"
     # set ip (route -n | awk '/^[0.]+/{print $2}' | rg -v '127\.0\.0\.1' | uniq | head -n1)
     # [ -n "$ip" ] && sed -r -i "s/192\.168\.[0-9]+\.[0-9]+ #brick\$/$ip #brick/" ~/.ssh/config || return 192
 
-    set comm --dry-run -ha --out-format "%o %n" --exclude={.thumbnails,.nomedia}
+    set comm --dry-run -ha --out-format "%o %n" --exclude={.thumbnails,.nomedia,.archive}
     set artists Alp Arakure Herio 'Hinahara Emi' Jury 'Morino Bambi' Nagayori 'Nikubou Maranoshin' 'Ouchi Kaeru' Sajipen 'Wantan Meo' Yuruyakatou
 
     for state in dry wet
@@ -22,8 +22,9 @@ function sy -d "sync files between phone and pc"
         rsync $comm brick:/sdcard/{DCIM/Camera,Pictures/Komikku,Android/media/com.whatsapp/WhatsApp/Media/WhatsApp Images} ~/Pictures/ --delete | rg -v '/$'
 
         printf "=== DOCUMENTS ===\n"
+        rsync $comm brick:/sdcard/Android/media/com.whatsapp/WhatsApp/Media/WhatsApp\ Documents/ ~/Documents/wa_docs/ --delete | rg -v '/$'
         rsync $comm brick:/sdcard/Documents/ ~/Documents/ | rg -v '/$'
-        rsync $comm ~/Documents/ brick:/sdcard/Documents/ | rg -v '/$'
+        rsync $comm ~/Documents/ brick:/sdcard/Documents/ --exclude wa_docs | rg -v '/$'
 
         printf "=== MUSIC ===\n"
         rsync $comm brick:/sdcard/Music/ ~/Music/ --delete | rg -v '/$'
