@@ -1,141 +1,77 @@
-local loaded, blink = pcall(require, 'blink-cmp')
-if not loaded then
-  return
+require('mini.completion').setup({
+  delay = { completion = 30, info = 100, signature = 50 },
+  window = {
+    info = { height = 25, width = 80, border = 'rounded' },
+    signature = { height = 25, width = 80, border = 'rounded' },
+  },
+  lsp_completion = {
+    source_func = 'completefunc', -- `source_func` should be one of 'completefunc' or 'omnifunc'.
+    process_items = function(args)
+      for i, _ in ipairs(args) do
+        args[i].labelDetails = ''
+      end
+
+      return args
+    end,
+  },
+  mappings = {},
+})
+
+local imap_expr = function(lhs, rhs)
+  vim.keymap.set('i', lhs, rhs, { expr = true })
 end
+imap_expr('<Tab>', [[pumvisible() ? "\<C-n>" : "\<Tab>"]])
+imap_expr('<S-Tab>', [[pumvisible() ? "\<C-p>" : "\<S-Tab>"]])
 
--- TODO: disable auto popup
-blink.setup {
-  keymap = {
-    preset = 'none',
-    ['<tab>'] = { 'select_next', 'fallback' },
-    ['<s-tab>'] = { 'select_prev', 'fallback' },
-    ['<C-e>'] = { 'cancel' },
-    ['<C-y>'] = { 'select_and_accept' },
-    ['<C-space>'] = {
-      function(cmp)
-        cmp.show({ providers = { 'snippets' } })
-      end,
-    },
-    ['<C-n>'] = { 'select_next' },
-    ['<C-p>'] = { 'select_prev' },
-  },
-  sources = {
-    default = { 'path', 'lsp', 'snippets', 'buffer' },
-    per_filetype = {
-      lua = { inherit_defaults = true, 'lazydev' },
-      fish = { inherit_defaults = true, 'fish' },
-    },
-    providers = {
-      lazydev = {
-        name = 'LazyDev',
-        module = 'lazydev.integrations.blink',
-        -- score_offset = 100, -- make lazydev completions top priority (see `:h blink.cmp`)
-      },
-      path = {
-        opts = {
-          trailing_slash = false,
-          label_trailing_slash = true,
-          show_hidden_files_by_default = true,
-        },
-      },
-      snippets = {
-        opts = {
-          friendly_snippets = true,
-          search_paths = { vim.fn.stdpath('config') .. '/snippets' },
-          global_snippets = {},
-          extended_filetypes = {},
-          ignored_filetypes = {},
-          -- Set to '+' to use the system clipboard, or '"' to use the unnamed register
-          clipboard_register = nil,
-        },
-      },
-      fish = { name = 'fish', module = 'blink.compat.source', min_keyword_length = 0, opts = {} },
-      buffer = { opts = { get_bufnrs = vim.api.nvim_list_bufs } },
-    },
-  },
-  completion = {
-    menu = {
-      auto_show = true,
-      border = 'rounded',
-      draw = {
-        columns = {
-          { 'label', 'label_description', gap = 1 },
-          { 'kind_icon' },
-        },
-      },
-    },
-    documentation = {
-      auto_show = false,
-      auto_show_delay_ms = 0,
-      window = { border = 'rounded' },
-    },
-    keyword = { range = 'prefix' },
-    accept = { auto_brackets = { enabled = false } },
-    list = { selection = { preselect = false, auto_insert = true } },
-    ghost_text = { enabled = false },
-  },
-  fuzzy = {
-    implementation = 'lua',
-    frecency = { enabled = true },
-    use_proximity = false,
-    sorts = { 'score', 'sort_text' },
-  },
-  appearance = {
-    use_nvim_cmp_as_default = false,
-    nerd_font_variant = 'mono',
-    kind_icons = {
-      Text = '',
-      Method = '󰊕',
-      Function = '󰊕',
-      Constructor = '󰒓',
+lsp_icons = {
+  Array = '',
+  Boolean = '󰔡',
+  Enummember = '',
+  Key = '󰌋',
+  Namespace = '',
+  Null = '',
+  Number = '󰎠',
+  Object = '',
+  Package = '',
+  String = '󰀬',
+  Typeparameter = '',
 
-      Field = '',
-      Variable = '󰂡',
-      Property = '󰜢',
+  Text = '',
+  Method = '󰊕',
+  Function = '󰊕',
+  Constructor = '󰒓',
 
-      Class = '󰠱',
-      Interface = '',
-      Struct = '',
-      Module = '',
+  Field = '',
+  Variable = '󰂡',
+  Property = '󰜢',
 
-      Unit = '',
-      Value = '󰎠',
-      Enum = '',
-      EnumMember = '',
+  Class = '󰠱',
+  Interface = '',
+  Struct = '',
+  Module = '',
 
-      Keyword = '󰌋',
-      Constant = '󰏿',
+  Unit = '',
+  Value = '󰎠',
+  Enum = '',
+  EnumMember = '',
 
-      Snippet = '',
-      Color = '󰏘',
-      File = '󰈙',
-      Reference = '',
-      Folder = '󰉋',
-      Event = '',
-      Operator = '󰆕',
-      TypeParameter = '',
-    },
-  },
-  signature = { enabled = true, window = { border = 'rounded' } },
-  snippets = { preset = 'default' },
-  cmdline = {
-    enabled = false,
-    completion = {
-      menu = {
-        auto_show = true,
-        draw = { columns = { { 'label', 'label_description', gap = 0 } } },
-      },
-      list = { selection = { preselect = false, auto_insert = true } },
-    },
-    keymap = {
-      preset = 'inherit',
-      ['<tab>'] = { 'select_next', 'fallback' },
-      ['<s-tab>'] = { 'select_prev', 'fallback' },
-      ['<C-e>'] = { 'cancel' },
-      ['<C-y>'] = { 'select_and_accept' },
-      ['<C-n>'] = { 'select_next' },
-      ['<C-p>'] = { 'select_prev' },
-    },
-  },
+  Keyword = '󰌋',
+  Constant = '󰏿',
+
+  Snippet = '',
+  Color = '󰏘',
+  File = '󰈙',
+  Reference = '',
+  Folder = '󰉋',
+  Event = '',
+  Operator = '󰆕',
+  TypeParameter = '',
 }
---]]
+
+local protocol = vim.lsp.protocol
+for i, kind in ipairs(protocol.CompletionItemKind) do
+  protocol.CompletionItemKind[i] = lsp_icons[kind] or '󰞋'
+end
+for i, kind in ipairs(protocol.SymbolKind) do
+  protocol.SymbolKind[i] = lsp_icons[kind] or '󰞋'
+end

@@ -1,6 +1,4 @@
-local gs = require('gitsigns')
-
-gs.setup {
+require('gitsigns').setup {
   signs = {
     add = { text = '┃' },
     change = { text = '┃' },
@@ -30,6 +28,7 @@ gs.setup {
   update_debounce = 100,
   max_file_length = 40000, -- Disable if file is longer than this (in lines)
   preview_config = {
+
     border = 'rounded',
     style = 'minimal',
     relative = 'cursor',
@@ -48,15 +47,12 @@ gs.setup {
     if removed and removed > 0 then
       table.insert(statext, '%#GitSignsDelete#-' .. removed)
     end
+
     return table.concat(statext, ' ') .. '%#Normal#'
   end,
 }
 
-vim.keymap.set('n', 'H', gs.preview_hunk_inline, { desc = 'preview hunk' })
-vim.keymap.set('n', 'U', gs.reset_hunk, { desc = 'undo hunk' })
-vim.keymap.set('n', '[h', function()
-  gs.nav_hunk('prev')
-end, { desc = 'goto previous hunk' })
-vim.keymap.set('n', ']h', function()
-  gs.nav_hunk('next')
-end, { desc = 'goto next hunk' })
+vim.keymap.set('n', 'H', '<cmd>Gitsigns preview_hunk_inline<cr>', { desc = 'preview hunk' })
+vim.keymap.set('n', 'U', '<cmd>Gitsigns reset_hunk<cr>', { desc = 'undo hunk' })
+vim.keymap.set('n', '[h', '<cmd>Gitsigns prev_hunk<cr>', { desc = 'goto previous hunk' })
+vim.keymap.set('n', ']h', '<cmd>Gitsigns next_hunk<cr>', { desc = 'goto next hunk' })

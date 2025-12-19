@@ -1,5 +1,5 @@
 require('colorizer').setup {
-  filetypes = { '*', vim.fn.executable('vscode-css-language-server') == 1 and '!css' or nil },
+  filetypes = {},
   user_default_options = {
     names = false,
     names_custom = false,
@@ -19,6 +19,8 @@ require('colorizer').setup {
     virtualtext = '███',
   },
 }
+
+vim.keymap.set('n', '<leader>co', '<cmd>ColorizerToggle<cr>')
 
 require('tokyonight').setup {
   style = 'storm',
@@ -64,6 +66,9 @@ require('tokyonight').setup {
     hl.MsgSeparator = { link = 'TermCursorNC' }
     hl.WinSeparator = { link = 'TermCursorNC' }
     hl.texEmphStyle = { link = 'Normal' }
+    hl.Pmenu = { link = 'Normal' }
+    hl.PmenuBorder = { link = 'FloatBorder' }
+    hl.PmenuMatch = { fg = '#2ac3de', bg = c.none }
     hl.Todo = c.none
     hl['@variable.fish'] = { link = 'Constant' }
     hl['@function.diff'] = { link = 'TabLineSel' }

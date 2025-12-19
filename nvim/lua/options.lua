@@ -31,6 +31,7 @@ do -- words, searching
   set.spellcapcheck = ''
   set.spelloptions = 'camel'
   set.spellsuggest = 'best,10'
+  set.completeopt = 'fuzzy,menuone,noselect'
 end
 
 do -- scrolling
@@ -71,6 +72,7 @@ do -- terminal, cursor & gui
   set.belloff = termux and 'showmatch' or 'all'
   -- set.winborder = 'rounded' -- causes lot of unexpected behaviour
   set.pumheight = 15
+  set.pumborder = 'rounded'
   set.termguicolors = true
   set.startofline = true
   set.mouse = 'a'
