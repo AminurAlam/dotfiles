@@ -45,9 +45,9 @@ autocmd('BufWritePost', {
     if vim.bo[details.buf].filetype == 'mermaid' then
       vim.cmd('make')
     end
-    if vim.bo[details.buf].filetype == 'typst' then
-      vim.cmd('make')
-    end
+    -- if vim.bo[details.buf].filetype == 'typst' then
+    --   vim.cmd('make')
+    -- end
   end,
 })
 
