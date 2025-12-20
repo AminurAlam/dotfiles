@@ -55,6 +55,7 @@
 - [taplo](https://taplo.tamasfe.dev/) - lsp for toml
 - [termux](https://termux.dev/) - terminal emulator
 - [tmux](https://tmux.github.io/) :star2: - terminal multiplexer
+- [tombi](https://tombi-toml.github.io/tombi/) - TOML Formatter / Linter / Language Server
 - [vim](https://www.vim.org) - text editor
 - [waybar](https://github.com/Alexays/Waybar) - status bar
 - [wofi](https://hg.sr.ht/~scoopta/wofi) - launcher

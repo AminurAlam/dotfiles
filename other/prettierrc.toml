@@ -1,4 +1,5 @@
 #:schema https://json.schemastore.org/prettierrc
+#:tombi schema.strict = false
 
 experimentalTernaries      = true
 tabWidth                   = 2

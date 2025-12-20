@@ -8,21 +8,20 @@ email = "64137875+AminurAlam@users.noreply.github.com"
 colocate = true
 
 [ui]
-editor = "nvim"
+editor          = "nvim"
 default-command = "log"
 
 [templates]
-log = 'pretty'
+log = "pretty"
 
 [template-aliases]
 # https://github.com/jj-vcs/jj/blob/main/cli/src/config/templates.toml
 # 'format_timestamp(timestamp)' = 'timestamp.local().format("%Y-%m-%d")'
-'format_timestamp(timestamp)' = 'timestamp.ago()'
-'format_short_id(id)' = 'id.shortest()'
-description_placeholder = 'label("description placeholder", "\"\"")'
-
-pretty = 'pretty(self)'
-'pretty(commit)' = '''
+'format_timestamp(timestamp)' = "timestamp.ago()"
+'format_short_id(id)'         = "id.shortest()"
+description_placeholder       = 'label("description placeholder", "\"\"")'
+pretty                        = "pretty(self)"
+'pretty(commit)'              = '''
 
 if(commit.root(),
   format_root_commit(commit),

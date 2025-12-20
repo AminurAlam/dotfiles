@@ -17,10 +17,11 @@ vim.lsp.enable(vim.tbl_filter(filter, {
   'ruff',
   -- 'rust_analyzer',
   'systemd',
-  'taplo',
+  -- 'taplo',
   -- 'termux_language_server',
   'texlab',
   'tinymist',
+  'tombi',
   'ts_ls',
   'vscode_css_language_server',
   'vscode_eslint_language_server',
@@ -38,13 +39,13 @@ null_ls.setup {
     null_ls.builtins.diagnostics.fish,
     null_ls.builtins.formatting.fish_indent,
     null_ls.builtins.formatting.clang_format.with { extra_filetypes = { 'glsl' } },
-    h.make_builtin {
-      name = 'taplo',
-      method = 'NULL_LS_FORMATTING',
-      filetypes = { 'toml' },
-      generator_opts = { command = { 'taplo', 'format', '-' }, to_stdin = true },
-      factory = h.formatter_factory,
-    },
+    -- h.make_builtin {
+    --   name = 'taplo',
+    --   method = 'NULL_LS_FORMATTING',
+    --   filetypes = { 'toml' },
+    --   generator_opts = { command = { 'taplo', 'format', '-' }, to_stdin = true },
+    --   factory = h.formatter_factory,
+    -- },
   },
 }
 
@@ -74,34 +75,37 @@ vim.api.nvim_create_autocmd({ 'BufEnter' }, {
 
 vim.api.nvim_create_autocmd('LspAttach', {
   desc = 'enable lsp features',
-  callback = function(info)
-    local client = vim.lsp.get_client_by_id(vim.tbl_get(info, 'data', 'client_id'))
+  callback = function(args)
+    local client = vim.lsp.get_client_by_id(vim.tbl_get(args, 'data', 'client_id'))
 
     if client == nil then
       return
     end
 
+    if client:supports_method('textDocument/completion') then
+      vim.bo[args.buf].omnifunc = 'v:lua.MiniCompletion.completefunc_lsp'
+    end
+
     if client:supports_method('textDocument/hover') then
       vim.keymap.set('n', 'K', function() --
         vim.lsp.buf.hover { border = 'rounded' }
-      end, { buffer = info.buf })
+      end, { buffer = args.buf })
     end
 
     if client:supports_method('textDocument/formatting') or client.name == 'tinymist' then
       -- [[
       vim.api.nvim_create_autocmd('BufWritePre', {
-        buffer = info.buf,
+        buffer = args.buf,
         callback = function()
           if vim.g.save_fmt then
             vim.lsp.buf.format()
           end
         end,
-      })
-      --]]
+      }) --]]
     end
 
     if client:supports_method('textDocument/documentColor') then
-      vim.lsp.document_color.enable(true, info.buf)
+      vim.lsp.document_color.enable(true, args.buf)
     end
 
     if client:supports_method('textDocument/linkedEditingRange') then
@@ -112,12 +116,12 @@ vim.api.nvim_create_autocmd('LspAttach', {
       vim.lsp.on_type_formatting.enable(true, { client_id = client.id })
     end
 
-    vim.keymap.set('n', '<leader>lf', vim.lsp.buf.format, { buffer = info.buf })
-    vim.keymap.set('n', 'grd', vim.lsp.buf.definition, { buffer = info.buf })
+    vim.keymap.set('n', '<leader>lf', vim.lsp.buf.format, { buffer = args.buf })
+    vim.keymap.set('n', 'grd', vim.lsp.buf.definition, { buffer = args.buf })
     vim.keymap.set('n', '<leader>sh', function()
       local ih = vim.lsp.inlay_hint
       ih.enable(not ih.is_enabled({ bufnr = 0 }))
-    end, { buffer = info.buf })
+    end, { buffer = args.buf })
   end,
 })
 

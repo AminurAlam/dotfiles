@@ -9,6 +9,7 @@ vim.filetype.add {
     service = 'systemd',
     cue = 'cuesheet',
     note = 'markdown',
+    mdx = 'markdown',
     PKGBUILD = 'sh',
     handlebars = 'handlebars',
   },

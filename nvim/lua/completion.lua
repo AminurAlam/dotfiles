@@ -6,6 +6,7 @@ require('mini.completion').setup({
   },
   lsp_completion = {
     source_func = 'completefunc', -- `source_func` should be one of 'completefunc' or 'omnifunc'.
+    auto_setup = false,
     process_items = function(args)
       for i, _ in ipairs(args) do
         args[i].labelDetails = ''

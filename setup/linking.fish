@@ -20,7 +20,7 @@ for config in alacritty aria2 \
     qalculate qBittorrent \
     ruff \
     sqlite3 swayimg systemd \
-    termux tmux \
+    termux tmux tombi \
     waybar wofi \
     xdg-desktop-portal xdg-desktop-portal-termfilechooser \
     yay yazi yt-dlp \

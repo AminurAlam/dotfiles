@@ -1,54 +1,50 @@
 #:schema https://yazi-rs.github.io/schemas/yazi.json
 
-### FETCH
-plugin.prepend_fetchers = [
-  { id = 'mime', name = '*.{!qB,part}', run = 'noop', prio = 'high' },
-  { id = 'mime', name = '/mnt/rclone/**', run = 'noop', prio = 'high' },
-  { id = 'git', name = '*', run = 'git' },
-  { id = 'git', name = '*/', run = 'git' },
+## FETCH
+[plugin]
+prepend_fetchers   = [
+  { id = "mime", name = "*.{!qB,part}", run = "noop", prio = "high" },
+  { id = "mime", name = "/mnt/rclone/**", run = "noop", prio = "high" },
+  { id = "git", name = "*", run = "git" },
+  { id = "git", name = "*/", run = "git" },
 ]
-
-### PREVIEW
-plugin.prepend_previewers = [
-  { name = '*.{!qB,part}', run = 'noop' },
-  { name = '/mnt/rclone/**', run = 'noop' },
+prepend_previewers = [
+  { name = "*.{!qB,part}", run = "noop" },
+  { name = "/mnt/rclone/**", run = "noop" },
   # custom
-  { mime = 'application/epub+zip', run = 'preview-ebook' },
-  { name = '*.cb{z,r}', run = 'preview-cbz' },
-  { mime = 'audio/mpegurl', run = 'code' },
-  { mime = 'audio/*', run = 'preview-audio' },
-  { mime = 'font/*', run = 'font-sample' },
-  { mime = 'application/ms-opentype', run = 'font-sample' },
-  { name = '*.{otf,ttf,woff,woff2}', run = 'font-sample' },
-  { name = '**/.git/', run = 'preview-git' },
+  { mime = "application/epub+zip", run = "preview-ebook" },
+  { name = "*.cb{z,r}", run = "preview-cbz" },
+  { mime = "audio/mpegurl", run = "code" },
+  { mime = "audio/*", run = "preview-audio" },
+  { mime = "font/*", run = "font-sample" },
+  { mime = "application/ms-opentype", run = "font-sample" },
+  { name = "*.{otf,ttf,woff,woff2}", run = "font-sample" },
+  { name = "**/.git/", run = "preview-git" },
   # plugins
-  { name = '*.sqlite3', run = 'preview-sqlite' },
-  { mime = 'application/sqlite3', run = 'preview-sqlite' },
+  { name = "*.sqlite3", run = "preview-sqlite" },
+  { mime = "application/sqlite3", run = "preview-sqlite" },
   # { mime = 'application/octet-stream', run = 'piper -- hexyl -n1000 -PC --panels 1 --border none "$1"' },
   # misc
-  { mime = 'application/subrip', run = 'code' },
-  { name = '*.{zip,rar}', run = 'archive' },
+  { mime = "application/subrip", run = "code" },
+  { name = "*.{zip,rar}", run = "archive" },
 ]
-plugin.prepend_preloaders = [
-  { name = '*.{!qB,part}', run = 'noop' },
-  { name = '/mnt/rclone/**', run = 'noop' },
-  { mime = 'application/epub+zip', run = 'preview-ebook' },
-  { mime = 'audio/*', run = 'preview-audio' },
-  { name = '*.cb{z,r}', run = 'preview-cbz' },
-  { mime = 'font/*', run = 'font-sample' },
-  { mime = 'application/ms-opentype', run = 'font-sample' },
-  { name = '*.{otf,ttf,woff,woff2}', run = 'font-sample' },
+prepend_preloaders = [
+  { name = "*.{!qB,part}", run = "noop" },
+  { name = "/mnt/rclone/**", run = "noop" },
+  { mime = "application/epub+zip", run = "preview-ebook" },
+  { mime = "audio/*", run = "preview-audio" },
+  { name = "*.cb{z,r}", run = "preview-cbz" },
+  { mime = "font/*", run = "font-sample" },
+  { mime = "application/ms-opentype", run = "font-sample" },
+  { name = "*.{otf,ttf,woff,woff2}", run = "font-sample" },
 ]
-
-### SPOT
-plugin.spotters = [
+spotters           = [
   { name = "*/", run = "folder" },
   # Image
   { mime = "image/{avif,hei?,jxl}", run = "magick" },
   { mime = "image/svg+xml", run = "svg" },
   { mime = "image/*", run = "image" },
-
-  { name = '*.cb{z,r}', run = 'spot-cbz' },
+  { name = "*.cb{z,r}", run = "spot-cbz" },
   { mime = "video/*", run = "spot-video" },
   # { mime = "text/*", run = "spot-code" },
   { mime = "audio/*", run = "spot-audio" },
@@ -56,126 +52,124 @@ plugin.spotters = [
   # { name = "*", run = "file" },
 ]
 
-### OPEN
-open.rules = [
-  { name = '*/', use = ['reveal', 'dir2cbz', 'rsync'] },
-  { mime = 'application/pdf', use = ['zathura'] },
-  { name = '*.cb{z,r}', use = ['zathura', 'extract'] },
-  { mime = 'audio/mpegurl', use = ['edit'] },
-  { mime = 'application/{zip,rar,7z*,tar,gzip,xz,zstd,bzip*,lzma,compress,archive,cpio,arj,xar,ms-cab*}', use = ['extract'] },
-  { name = '*.{zip,rar,deb}', use = ['extract', 'zathura'] },
-  { mime = 'image/*', use = ['swayimg', 'swaybg', 'krita', 'identity'] },
-  { mime = 'video/*', use = ['play'] },
-  { mime = 'audio/*', use = ['kid3', 'play', 'picard'] },
-  { mime = 'application/android.package-archive', use = ['apkinstall'] },
-  { name = '*.apk', use = ['apkinstall'] },
-  { name = '*.{ass,srt,ssa,sup,vtt}', use = ['add-sub', 'edit'] },
+## # OPEN
+[open]
+rules = [
+  { name = "*/", use = ["reveal", "dir2cbz", "rsync"] },
+  { mime = "application/pdf", use = ["zathura"] },
+  { name = "*.cb{z,r}", use = ["zathura", "extract"] },
+  { mime = "audio/mpegurl", use = ["edit"] },
+  { mime = "application/{zip,rar,7z*,tar,gzip,xz,zstd,bzip*,lzma,compress,archive,cpio,arj,xar,ms-cab*}", use = [
+    "extract"
+  ] },
+  { name = "*.{zip,rar,deb}", use = ["extract", "zathura"] },
+  { mime = "image/*", use = ["swayimg", "swaybg", "krita", "identity"] },
+  { mime = "video/*", use = ["play"] },
+  { mime = "audio/*", use = ["kid3", "play", "picard"] },
+  { mime = "application/android.package-archive", use = ["apkinstall"] },
+  { name = "*.apk", use = ["apkinstall"] },
+  { name = "*.{ass,srt,ssa,sup,vtt}", use = ["add-sub", "edit"] },
   # text
-  { mime = 'text/*', use = ['edit'] },
-  { mime = 'inode/empty', use = ['edit'] },
-  { mime = 'application/{json,ndjson}', use = ['edit'] },
-  { mime = '*/javascript', use = ['edit'] },
-  { name = '*.patch', use = ['edit'] },
-
-  { name = '*', use = ['open', 'rsync'] },
+  { mime = "text/*", use = ["edit"] },
+  { mime = "inode/empty", use = ["edit"] },
+  { mime = "application/{json,ndjson}", use = ["edit"] },
+  { mime = "*/javascript", use = ["edit"] },
+  { name = "*.patch", use = ["edit"] },
+  { name = "*", use = ["open", "rsync"] },
 ]
 
 [opener]
-add-sub    = [{ run = ''' echo sub-add "'$0'" | socat - /tmp/mpv.sock ''', desc = '󰨗 Add sub to MPV', for = 'linux' }]
-apkinstall = [{ run = 'adb install "$@"', block = true, orphan = false, desc = ' apk installer', for = 'linux' }]
-audacity   = [{ run = 'audacity -- "$@"', orphan = true, for = 'linux', desc = '󰋋 audacity' }]
-dir2cbz    = [{ run = '''fish -c 'dir2cbz $argv' "$@" ''', block = true, desc = ' dir2cbz' }]
-identity   = [{ run = 'identity -- "$@"', orphan = true, for = 'linux', desc = '󰆊 compare images' }]
-kid3       = [{ run = 'kid3 -- "$@"', orphan = true, for = 'linux', desc = ' kid3' }]
-krita      = [{ run = 'krita "$@"', block = false, orphan = true, desc = ' krita', for = 'linux' }]
-picard     = [{ run = 'picard -- "$@"', orphan = true, for = 'linux', desc = '󰫅 picard' }]
-rsync      = [{ run = 'rsync -Pha -- "$1" brick:/sdcard/Download/', block = false, desc = ' Send to phone', for = 'linux' }]
-swaybg     = [{ run = 'swaybg -m fill -i "$0"', block = false, orphan = true, desc = ' swaybg', for = 'linux' }]
-swayimg    = [{ run = 'swayimg "$@"', block = false, orphan = true, desc = ' swayimg', for = 'linux' }]
-zathura    = [{ run = 'zathura "$@"', block = false, orphan = true, desc = ' zathura', for = 'linux' }]
+add-sub    = [{ run = ''' echo sub-add "'$0'" | socat - /tmp/mpv.sock ''', desc = "󰨗 Add sub to MPV", for = "linux" }]
+apkinstall = [{ run = 'adb install "$@"', block = true, orphan = false, desc = " apk installer", for = "linux" }]
+audacity   = [{ run = 'audacity -- "$@"', orphan = true, for = "linux", desc = "󰋋 audacity" }]
+dir2cbz    = [{ run = '''fish -c 'dir2cbz $argv' "$@" ''', block = true, desc = " dir2cbz" }]
+identity   = [{ run = 'identity -- "$@"', orphan = true, for = "linux", desc = "󰆊 compare images" }]
+kid3       = [{ run = 'kid3 -- "$@"', orphan = true, for = "linux", desc = " kid3" }]
+krita      = [{ run = 'krita "$@"', block = false, orphan = true, desc = " krita", for = "linux" }]
+picard     = [{ run = 'picard -- "$@"', orphan = true, for = "linux", desc = "󰫅 picard" }]
+rsync      = [
+  { run = 'rsync -Pha -- "$1" brick:/sdcard/Download/', block = false, desc = " Send to phone", for = "linux" }
+]
+swaybg     = [{ run = 'swaybg -m fill -i "$0"', block = false, orphan = true, desc = " swaybg", for = "linux" }]
+swayimg    = [{ run = 'swayimg "$@"', block = false, orphan = true, desc = " swayimg", for = "linux" }]
+zathura    = [{ run = 'zathura "$@"', block = false, orphan = true, desc = " zathura", for = "linux" }]
 # defaults
-edit = [{ run = '${EDITOR:-vi} "$@"', desc = ' $EDITOR', block = true, for = 'unix' }]
-open = [
-  { run = 'xdg-open "$1"', orphan = true, desc = '󰏌 Open', for = 'linux' },
-  { run = 'termux-open "$1"', orphan = true, desc = '󰏌 Open', for = 'android' },
+edit       = [{ run = '${EDITOR:-vi} "$@"', desc = " $EDITOR", block = true, for = "unix" }]
+open       = [
+  { run = 'xdg-open "$1"', orphan = true, desc = "󰏌 Open", for = "linux" },
+  { run = 'termux-open "$1"', orphan = true, desc = "󰏌 Open", for = "android" },
 ]
-play = [{ run = 'mpv --force-window "$@"', orphan = true, for = 'linux', desc = ' mpv' }]
-reveal = [
-  { run = 'xdg-open "$(dirname "$1")"', desc = ' Reveal', for = 'linux' },
-  { run = 'opendir "$1"', desc = ' Reveal', for = 'android' },
-  { run = 'swayimg -g "$@"', orphan = true, desc = ' gallery' },
+play       = [{ run = 'mpv --force-window "$@"', orphan = true, for = "linux", desc = " mpv" }]
+reveal     = [
+  { run = 'xdg-open "$(dirname "$1")"', desc = " Reveal", for = "linux" },
+  { run = 'opendir "$1"', desc = " Reveal", for = "android" },
+  { run = 'swayimg -g "$@"', orphan = true, desc = " gallery" },
 ]
-extract = [
-  { run = 'ya pub extract --list "$@"', desc = '󱉛 Extract here', for = 'unix' },
-  { run = 'ya pub extract --list %*', desc = '󱉛 Extract here', for = 'windows' },
+extract    = [
+  { run = 'ya pub extract --list "$@"', desc = "󱉛 Extract here", for = "unix" },
+  { run = "ya pub extract --list %*", desc = "󱉛 Extract here", for = "windows" },
 ]
 
 [mgr]
 ratio          = [0, 1, 1]
-sort_by        = 'extension'
+sort_by        = "extension"
 sort_sensitive = false
 sort_reverse   = false
 sort_dir_first = true
 sort_translit  = false
-linemode       = 'size'
+linemode       = "size"
 show_hidden    = true
 show_symlink   = true
 scrolloff      = 10
-mouse_events   = ['click', 'scroll']
-title_format   = 'Yazi: {cwd}'
+mouse_events   = ["click", "scroll"]
+title_format   = "Yazi: {cwd}"
 
 [preview]
-wrap            = 'no'
+wrap            = "no"
 tab_size        = 2
 max_width       = 1500
 max_height      = 1007
-cache_dir       = ''
+cache_dir       = ""
 image_delay     = 30
-image_filter    = 'triangle'
+image_filter    = "triangle"
 image_quality   = 75
 ueberzug_scale  = 1
 ueberzug_offset = [0, 0.2, 0, 0]
 
 [input]
-cursor_blink = false
-
+cursor_blink  = false
 # TODO: no border
 # rename
-rename_title  = ''
-rename_origin = 'hovered'
+rename_title  = ""
+rename_origin = "hovered"
 rename_offset = [2, -1, 77, 3]
-
 # cd
-cd_title  = '   '
-cd_origin = 'bottom-left'
-cd_offset = [0, 0, 999, 3]
-
+cd_title      = "   "
+cd_origin     = "bottom-left"
+cd_offset     = [0, 0, 999, 3]
 # create
 create_offset = [0, 0, 999, 3]
-
 # filter
-filter_title  = ' 󰈲 '
-filter_origin = 'bottom-left'
+filter_title  = " 󰈲 "
+filter_origin = "bottom-left"
 filter_offset = [0, 0, 999, 3]
-
 # find
-find_title  = [' / ', ' ? ']
-find_origin = 'bottom-left'
-find_offset = [0, 0, 999, 3]
-
+find_title    = [" / ", " ? "]
+find_origin   = "bottom-left"
+find_offset   = [0, 0, 999, 3]
 # search
-search_title  = '  {n} '
-search_origin = 'bottom-left'
+search_title  = "  {n} "
+search_origin = "bottom-left"
 search_offset = [0, 0, 999, 3]
-
 # shell
-shell_title  = ['  ', '  block ']
-shell_origin = 'bottom-left'
-shell_offset = [0, 0, 999, 3]
+shell_title   = ["  ", "  block "]
+shell_origin  = "bottom-left"
+shell_offset  = [0, 0, 999, 3]
 
 [pick]
-open_title  = 'Open with:'
-open_origin = 'hovered'
+open_title  = "Open with:"
+open_origin = "hovered"
 open_offset = [0, 1, 30, 30]
+
 [tasks]
 image_bound = [20000, 20000]

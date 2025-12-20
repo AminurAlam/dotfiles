@@ -1,3 +1,5 @@
+#:tombi schema.strict = false
+
 [general]
 import             = ["~/.config/alacritty/tokyonight.toml"]
 live_config_reload = false

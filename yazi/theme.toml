@@ -1,10 +1,10 @@
 #:schema https://yazi-rs.github.io/schemas/theme.json
+# tombi: lint.rules.key-not-allowed.disabled = true
 #:schema /home/fisher/repos/yazi-schemas/schemas/theme.json
 
 [flavor]
 # use = "tokyo-night"
 dark = "tokyo-night"
-
 
 [mgr]
 count_copied    = { fg = "black", bg = "green" }
@@ -12,37 +12,30 @@ count_cut       = { fg = "black", bg = "red" }
 count_selected  = { fg = "black", bg = "yellow" }
 hovered         = { bg = "#2e3c64", bold = true }
 preview_hovered = { bold = true }
-
-find_keyword  = { fg = "#ff9e64", bold = true }
-find_position = { fg = "white", bg = "#2e3c64", bold = true }
-
+find_keyword    = { fg = "#ff9e64", bold = true }
+find_position   = { fg = "white", bg = "#2e3c64", bold = true }
 
 [tabs]
-active   = { bg = "red", fg = "black" }
-inactive = { fg = "red", bg = "darkgray" }
-
+active    = { bg = "red", fg = "black" }
+inactive  = { fg = "red", bg = "darkgray" }
 sep_inner = { open = " ", close = " " }
 sep_outer = { open = " ", close = " " }
 
 [spot]
-title = { fg = 'green' }
+title = { fg = "green" }
 
-[indicator]
+[indicator]  # tombi: lint.rules.key-not-allowed.disabled = true
 current = { bg = "#2e3c64", bold = true }
 # current = { reversed = true }
 preview = { bold = true }
 
-
 [filetype]
-
 rules = [
   # Images
   { mime = "image/*", fg = "#e0af68" },
-
   # Media
   { mime = "video/*", fg = "#f7768e" },
   { mime = "audio/*", fg = "#f7768e" },
-
   # Archives
   { mime = "application/zip", fg = "#bb9af7" },
   { mime = "application/x-tar", fg = "#bb9af7" },
@@ -51,19 +44,15 @@ rules = [
   { mime = "application/x-7z-compressed", fg = "#bb9af7" },
   { mime = "application/x-rar", fg = "#bb9af7" },
   { mime = "application/x-xz", fg = "#bb9af7" },
-
   # Documents
   { mime = "application/doc", fg = "#9ece6a" },
   { mime = "application/epub+zip", fg = "#9ece6a" },
   { mime = "application/pdf", fg = "#9ece6a" },
   { mime = "application/rtf", fg = "#9ece6a" },
   { mime = "application/vnd.*", fg = "#9ece6a" },
-
   # Fallback
   { name = "*", fg = "#c6d0f5" },
   { name = "*/", fg = "#7aa2f7" },
   { url = "*", fg = "#c6d0f5" },
   { url = "*/", fg = "#7aa2f7" },
 ]
-
-# : }}}
