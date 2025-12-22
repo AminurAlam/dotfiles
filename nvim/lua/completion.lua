@@ -5,7 +5,7 @@ require('mini.completion').setup({
     signature = { height = 25, width = 80, border = 'rounded' },
   },
   lsp_completion = {
-    source_func = 'completefunc', -- `source_func` should be one of 'completefunc' or 'omnifunc'.
+    source_func = 'omnifunc', -- `source_func` should be one of 'completefunc' or 'omnifunc'.
     auto_setup = false,
     process_items = function(args)
       for i, _ in ipairs(args) do

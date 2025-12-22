@@ -82,7 +82,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
       return
     end
 
-    if client:supports_method('textDocument/completion') then
+    if client:supports_method('textDocument/completion') or client.name == 'tinymist' then
       vim.bo[args.buf].omnifunc = 'v:lua.MiniCompletion.completefunc_lsp'
     end
 
