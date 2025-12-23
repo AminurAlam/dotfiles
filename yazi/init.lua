@@ -202,6 +202,7 @@ require('topaste'):setup {}
 
 require('sort-by-location'):setup {
   { pattern = '.*/Pictures/.*', sort = { 'mtime', reverse = true } },
+  { pattern = '.*/DCIM/.*', sort = { 'mtime', reverse = true } },
 }
 
 require('spot'):setup {
