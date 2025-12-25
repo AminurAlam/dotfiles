@@ -1,7 +1,5 @@
 # style name or JSON path (default "auto")
-# https://github.com/charmbracelet/glow/issues/713
-# https://github.com/charmbracelet/glow/issues/776
-# style: ~/repos/dotfiles/glow/style.json
+style: /home/fisher/repos/dotfiles/glow/style.json # https://github.com/charmbracelet/glow/pull/778
 # mouse support (TUI-mode only)
 mouse: true
 # use pager to display markdown
