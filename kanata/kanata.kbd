@@ -1,4 +1,6 @@
-;; vim:ft=scheme:cms=;;\ %s:syntax=off:
+;; vim:ft=keyboard:cms=;;\ %s:syntax=off:
+
+;; https://github.com/jtroo/kanata/blob/main/docs/config.adoc
 ;; https://github.com/jtroo/kanata/blob/main/parser/src/keys/mod.rs
 
 (defcfg
@@ -11,7 +13,6 @@
     dist 15
     tt 200
     ht 250
-    ntt 100
     nht 150)
 
 (defsrc
@@ -28,37 +29,40 @@
   @cap @a   @s   @d   @f   _    _    _    _    @l   @;   @'   _
   _    _    _    _    _    _    _    _    _    _    @/    _
   _    _    _              _              _    _    _)
+
+;; TODO: move numbers to top:789 mid:456 bot:123
 (deflayer symbols
   _
-  _    _    _    _    _    _    _    @7   @8   @9    _    _    _    _
-  _    _    lsft lsft -    =    _    @4^  @5   @6$   @bs  _    _    _
-  _    _    _    _    @cf  _    bspc @1   @2   @3    _    _    _
-  _    _    _    _    _    @lb  @0   ret  _    _     _    _
+  _    _    _    _    _    _    _    _    _    _     _    _    _    _
+  _    @q   lsft lsft @-   @=   _    @7   @8   @9    @bs  _    _    _
+  _    _    _    _    @cf  _    bspc @4^  @5   @6$   _    _    _
+  _    _    _    _    @v    @lb  @0  @1   @2   @3    _    _
   _    _    _              _              _    _    _)
 
 (defalias ;; num row
-    grv (tap-hold $ntt $nht grv S-grv)
-    1   (tap-hold $tt  $ht  1 S-1)
-    2   (tap-hold $tt  $ht  2 S-2)
-    3   (tap-hold $ntt $nht 3 S-3)
-    4   (tap-hold $ntt $nht 4 S-4)
-    5   (tap-hold $ntt $nht 5 S-5)
-    6   (tap-hold $ntt $nht 6 S-6)
-    7   (tap-hold $ntt $nht 7 S-7)
-    8   (tap-hold $ntt $nht 8 S-8)
-    9   (tap-hold $ntt $nht 9 S-9)
-    0   (tap-hold $ntt $nht 0 S-0)
-    -   (tap-hold $ntt $nht - S--)
-    =   (tap-hold $ntt $nht = S-=)
-    4^  (tap-hold-release $ntt $nht 4 S-6)
-    6$  (tap-hold-release $ntt $nht 6 S-4)
+    grv (tap-hold $tt $nht grv S-grv)
+    1   (tap-hold $tt $ht  1   S-1)
+    2   (tap-hold $tt $ht  2   S-2)
+    3   (tap-hold $tt $nht 3   S-3)
+    4   (tap-hold $tt $nht 4   S-4)
+    5   (tap-hold $tt $nht 5   S-5)
+    6   (tap-hold $tt $nht 6   S-6)
+    7   (tap-hold $tt $nht 7   S-7)
+    8   (tap-hold $tt $nht 8   S-8)
+    9   (tap-hold $tt $nht 9   S-9)
+    0   (tap-hold $tt $nht 0   S-0)
+    -   (tap-hold $tt $nht -   S--)
+    =   (tap-hold $tt $nht =   S-=)
+    4^  (tap-hold $tt $nht 4   S-6)
+    6$  (tap-hold $tt $nht 6   S-4)
 )
 (defalias ;; top row
+    q  (tap-hold $tt $nht ' S-')
     w  (tap-hold 450 500 w (layer-while-held symbols))
     e  (tap-hold $tt $ht e (layer-while-held symbols))
     lb (tap-hold-release 100 150 [ S-[)
     rb (tap-hold-release 100 150 ] S-])
-    bs (tap-hold-release $tt $ht \ S-\ )
+    bs (tap-hold-release $tt $nht \ S-\ )
 )
 (defalias ;; mid row
     a  (tap-hold $tt $ht a lalt)
@@ -68,13 +72,15 @@
     cf C-f
 
     l  (tap-hold $tt $ht l rsft)
-    ;  (tap-hold-release $ntt $nht ; S-;)
+    ;  (tap-hold-release $tt $nht ; S-;)
     '  (tap-hold-release $tt $ht ' S-')
 )
 (defalias ;; other
     esc (tap-hold 500 500 caps lrld)
     cap esc
     /   (tap-hold-release $tt $ht / bksl)
+    v   C-S-v
+    m   (tap-hold $tt $nht ret S-7)
     ;; spc (tap-hold $tt $ht spc (layer-while-held mouse))
     ;; mh  (movemouse-left $int $dist)
     ;; mj  (movemouse-down $int $dist)

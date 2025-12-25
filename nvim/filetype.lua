@@ -5,7 +5,7 @@ vim.filetype.add {
   },
   extension = {
     log = 'log',
-    kbd = 'scheme',
+    kbd = 'keyboard',
     service = 'systemd',
     cue = 'cuesheet',
     note = 'markdown',
@@ -14,3 +14,5 @@ vim.filetype.add {
     handlebars = 'handlebars',
   },
 }
+
+vim.treesitter.language.register('scheme', 'keyboard')
