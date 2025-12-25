@@ -46,6 +46,53 @@ null_ls.setup {
     --   generator_opts = { command = { 'taplo', 'format', '-' }, to_stdin = true },
     --   factory = h.formatter_factory,
     -- },
+    h.make_builtin {
+      name = 'kanata',
+      method = 'NULL_LS_DIAGNOSTICS_ON_SAVE',
+      filetypes = { 'keyboard' },
+      factory = h.generator_factory,
+      generator_opts = {
+        command = 'kanata',
+        args = { '-q', '--check', '--cfg-stdin' },
+        from_stderr = true,
+        to_stdin = true,
+        ignore_stderr = false,
+        multiple_files = false,
+        format = 'raw',
+        check_exit_code = function(c)
+          return c <= 1
+        end,
+        on_output = function(params, done)
+          local efm = '%-G%.%# [ERROR] %.%#,%E %.%#╭─[%f:%l:%c],%Z  help: %m,%-C%.%#'
+          local source = 'kanata'
+          local output = params.output
+          if not output then
+            return done()
+          end
+
+          local diagnostics = {}
+          local lines = require('null-ls.utils').split_at_newline(params.bufnr, output)
+
+          local qflist = vim.fn.getqflist({ efm = efm, lines = lines })
+          local severities = { e = 1, w = 2, i = 3, n = 4 }
+
+          for _, item in pairs(qflist.items) do
+            if item.valid == 1 then
+              local col = item.col > 0 and item.col - 1 or 0
+              table.insert(diagnostics, {
+                row = item.lnum + 1,
+                col = col,
+                source = source,
+                message = item.text,
+                severity = severities[item.type],
+              })
+            end
+          end
+
+          return done(diagnostics)
+        end,
+      },
+    },
   },
 }
 
