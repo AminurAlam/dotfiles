@@ -37,12 +37,16 @@ set -gx GOMODCACHE $XDG_CACHE_HOME/go/mod
 set -gx RUSTUP_HOME $XDG_DATA_HOME/rustup
 set -gx CARGO_HOME $XDG_DATA_HOME/cargo
 set -gx CARGO_INSTALL_ROOT $CARGO_HOME
-# set -gx VIMRUNTIME $PREFIX/share/nvim/runtime
+set -gx R_HISTFILE $XDG_STATE_HOME/R/history
+set -gx R_HOME_USER $HOME/.config/R
+set -gx R_PROFILE_USER $HOME/.config/R/profile
+set -gx R_LIBS_USER $XDG_DATA_HOME/R/x86_64-pc-linux-gnu-library
 
 if set -q TERMUX_VERSION
     set -gx XDG_RUNTIME_DIR $TMPDIR
-    set -gx TERMINFO "$PREFIX/share/terminfo"
+    set -gx TERMINFO $PREFIX/share/terminfo
     set -gx MANPATH $PREFIX/share/fish/man $PREFIX/share/man
+    # set -gx VIMRUNTIME $PREFIX/share/nvim/runtime
 
     set -gx XDG_VIDEOS_DIR /sdcard/Movies
     set -gx XDG_DOWNLOAD_DIR /sdcard/Download
