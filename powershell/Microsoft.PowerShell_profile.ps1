@@ -1,5 +1,8 @@
 # $env:XDG_CONFIG_HOME = "$HOME/dotfiles"
 
+# https://wiki.archlinux.org/title/PowerShell#Telemetry
+# POWERSHELL_TELEMETRY_OPTOUT=1
+
 Set-Alias -Name vi -Value nvim
 
 function cmdchk {

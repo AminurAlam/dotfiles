@@ -40,6 +40,7 @@ pkgver() {
 
 build() {
     cd "$_pkgname"
+    CFLAGS+=" -Wno-format-nonliteral"
 
     cmake -S cmake.deps -B .deps -G Ninja -DUSE_BUNDLED=OFF
     cmake --build .deps

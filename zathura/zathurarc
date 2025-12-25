@@ -77,7 +77,7 @@ set statusbar-fg "#c0caf5"
 set highlight-color rgba(46,60,100,0.6)
 set highlight-active-color rgba(224,175,104,0.6)
 set default-bg "#1d202f"
-set default-fg "#c0caf5"
+set default-fg "#ffffff"
 set render-loading true
 set render-loading-fg "#24283b"
 set render-loading-bg "#c0caf5"

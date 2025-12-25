@@ -36,9 +36,10 @@ switch $argv[1]
             powerprofilesctl set power-saver
         end
     case lim
+        # TODO: https://github.com/laurento/gnome-shell-extension-ideapad#additional-required-settings
         set file /sys/bus/platform/drivers/ideapad_acpi/VPC2004:00/conservation_mode
         set toggle $(math bitxor 1,(cat $file))
-        sudo su -c "echo $toggle >$file"
+        echo $toggle >$file
         [ "$(cat $file)" = 1 ]
         and notify-send -h string:x-canonical-private-synchronous:limit -t 500 " BATTERY LIMITED"
         or notify-send -h string:x-canonical-private-synchronous:limit -t 500 " BATTERY UNLOCKED"

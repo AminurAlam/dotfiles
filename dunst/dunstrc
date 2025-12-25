@@ -1,4 +1,4 @@
-# vim: ft=conf
+# vim: ft=ini
 
 [global]
     monitor = 0
