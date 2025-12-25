@@ -25,7 +25,7 @@ https://vi.stackexchange.com/feeds/week "StackExchange - vi"
 # https://reddit.com/r/OtoMusic/new.rss "r/OtoMusic"
 # https://dotfyle.com/this-week-in-neovim/rss.xml "This Week in Neovim"
 
-@ NEWS < item-limit 40
+@ NEWS & CORPO < item-limit 40
 https://archlinux.org/feeds/news/
 https://dolphin-emu.org/blog/feeds/ "Dolphin Emulator"
 https://melonds.kuribo64.net/rss.php
@@ -35,6 +35,8 @@ https://fishshell.com/blog/feed.xml
 https://newsboat.org/news.atom
 https://blog.thunderbird.net/feed/ "Thunderbird"
 https://blog.tangled.org/blog/feed.xml
+https://annas-archive.li/blog/rss.xml
+https://rue-lang.dev/blog/rss.xml
 # https://strato-emu.github.io/index.xml
 # https://hyprland.org/rss.xml
 # https://blog.ajay.app/rss.xml
@@ -53,7 +55,6 @@ https://lwn.net/headlines/rss < item-rule "NOT (title LIKE '[$] %' OR title LIKE
 # https://www.bitdefender.com/nuxt/api/en-us/rss/hotforsecurity/
 # https://rss.slashdot.org/Slashdot/slashdotMain
 
-@ CORPO BLOGS < item-limit 30
 https://mullvad.net/en/blog/feed/atom/
 https://blog.cloudflare.com/rss/
 https://blog.nightly.mozilla.org/feed
@@ -67,7 +68,7 @@ https://crinacle.com/feed
 http://rachelbythebay.com/w/atom.xml "rachel by the bay"
 https://www.schneier.com/feed/atom "Bruce Schneier" < item-rule "title NOT LIKE 'Friday Squid Blogging: %'"
 https://thevaluable.dev/index.xml
-https://strongly-typed-thoughts.net/blog/feed "strongly typed thoughts"
+https://strongly-typed-thoughts.net/blog/feed "strongly typed thoughts" < download-timeout 0
 https://mitchellh.com/feed.xml
 https://kevquirk.com/feed.xml
 https://cheapskatesguide.org/cheapskates-guide-rss-feed.xml "Cheapskates Guide"
@@ -96,6 +97,8 @@ https://runxiyu.org/blog/index.xml
 @ PERSONAL BLOGS 2
 https://ludic.mataroa.blog/rss
 https://steveklabnik.com/feed.xml
+https://matklad.github.io/feed.xml
+https://jyn.dev/atom.xml
 https://aphyr.com/posts.atom
 https://www.roboleary.net/feed.xml
 https://daverupert.com/atom.xml
@@ -114,6 +117,8 @@ https://oppi.li/index.xml
 https://www.anildash.com/feed.xml
 https://maia.crimew.gay/feed.xml
 https://hazelweakly.me/atom.xml
+https://lorendb.dev/index.xml
+https://blog.vaxry.net/feed
 # https://daringfireball.net/feeds/main "John Gruber (Daring Fireball)" < item-rule "NOT title REGEXP '(Sponsor|Apple|iPad|iPhone|MacOS|iOS|Macintosh)'"
 https://drewdevault.com/blog/index.xml "Drew Devault"
 https://world.hey.com/dhh/feed.atom "David Heinemeier Hansson (DHH)"
