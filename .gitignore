@@ -36,8 +36,6 @@
 !/applications/xgps.desktop
 !/applications/xgpsspeed.desktop
 
-/btop/btop.log
-
 # allow completions manully
 /fish/completions/*
 !/fish/completions/mux.fish
