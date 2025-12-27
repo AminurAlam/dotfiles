@@ -1,4 +1,4 @@
-;; vim:ft=keyboard:cms=;;\ %s:syntax=off:
+;; vim:cms=;;\ %s:
 
 ;; https://github.com/jtroo/kanata/blob/main/docs/config.adoc
 ;; https://github.com/jtroo/kanata/blob/main/parser/src/keys/mod.rs
@@ -29,14 +29,12 @@
   @cap @a   @s   @d   @f   _    _    _    _    @l   @;   @'   _
   _    _    _    _    _    _    _    _    _    _    @/    _
   _    _    _              _              _    _    _)
-
-;; TODO: move numbers to top:789 mid:456 bot:123
 (deflayer symbols
   _
   _    _    _    _    _    _    _    _    _    _     _    _    _    _
   _    @q   lsft lsft @-   @=   _    @7   @8   @9    @bs  _    _    _
-  _    _    _    _    @cf  _    bspc @4^  @5   @6$   _    _    _
-  _    _    _    _    @v    @lb  @0  @1   @2   @3    _    _
+  _    _    _    _    @cf  @g   bspc @4^  @5   @6$   _    _    _
+  _    _    _    _    @v   @lb  @0   @1   @2   @3    _    _
   _    _    _              _              _    _    _)
 
 (defalias ;; num row
@@ -70,6 +68,7 @@
     d  (tap-hold $tt $ht d lmet)
     f  (tap-hold $tt $ht f lctl)
     cf C-f
+    g  grv
 
     l  (tap-hold $tt $ht l rsft)
     ;  (tap-hold-release $tt $nht ; S-;)
@@ -80,10 +79,4 @@
     cap esc
     /   (tap-hold-release $tt $ht / bksl)
     v   C-S-v
-    m   (tap-hold $tt $nht ret S-7)
-    ;; spc (tap-hold $tt $ht spc (layer-while-held mouse))
-    ;; mh  (movemouse-left $int $dist)
-    ;; mj  (movemouse-down $int $dist)
-    ;; mk  (movemouse-up $int $dist)
-    ;; ml  (movemouse-right $int $dist)
 )
