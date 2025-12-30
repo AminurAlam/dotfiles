@@ -105,7 +105,7 @@ do -- [=[ smaller progress layout
     }
   end
 
-  --[[
+  -- [[
   function Progress:redraw()
     -- ya.dbg(cx.tasks.summary, cx.tasks.progress)
     local summary = cx.tasks.summary
@@ -126,7 +126,7 @@ do -- [=[ smaller progress layout
   end
   --]]
 
-  -- [[
+  --[[
   function Progress:redraw()
     local progress = cx.tasks.progress
     if progress.total == 0 then
@@ -201,8 +201,8 @@ require('git'):setup {}
 require('topaste'):setup {}
 
 require('sort-by-location'):setup {
-  { pattern = '.*/Pictures/.*', sort = { 'mtime', reverse = true } },
-  { pattern = '.*/DCIM/.*', sort = { 'mtime', reverse = true } },
+  { pattern = '.*/Pictures/.*', sort = { by = 'mtime', reverse = true } },
+  { pattern = '.*/DCIM/.*', sort = { by = 'mtime', reverse = true } },
 }
 
 require('spot'):setup {
@@ -210,7 +210,7 @@ require('spot'):setup {
   width = 70,
   plugins_section = { enable = true },
   metadata_section = {
-    hash_cmd = 'md5sum', -- other hashing commands can be slower
+    -- hash_cmd = 'md5sum', -- other hashing commands can be slower
     hash_filesize_limit = 100, -- in MB, set 0 to disable
   },
 }

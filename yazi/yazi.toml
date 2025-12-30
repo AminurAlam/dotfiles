@@ -3,111 +3,111 @@
 ## FETCH
 [plugin]
 prepend_fetchers   = [
-  { id = "mime", name = "*.{!qB,part}", run = "noop", prio = "high" },
-  { id = "mime", name = "/mnt/rclone/**", run = "noop", prio = "high" },
-  { id = "git", name = "*", run = "git" },
-  { id = "git", name = "*/", run = "git" },
+  { id = "mime", url = "*.{!qB,part}", run = "noop", prio = "high" },
+  { id = "mime", url = "/mnt/rclone/**", run = "noop", prio = "high" },
+  { id = "git", url = "*", run = "git" },
+  { id = "git", url = "*/", run = "git" },
 ]
 prepend_previewers = [
-  { name = "*.{!qB,part}", run = "noop" },
-  { name = "/mnt/rclone/**", run = "noop" },
+  { url = "*.{!qB,part}", run = "noop" },
+  { url = "/mnt/rclone/**", run = "noop" },
   # custom
   { mime = "application/epub+zip", run = "preview-ebook" },
-  { name = "*.cb{z,r}", run = "preview-cbz" },
+  { url = "*.cb{z,r}", run = "preview-cbz" },
   { mime = "audio/mpegurl", run = "code" },
   { mime = "audio/*", run = "preview-audio" },
   { mime = "font/*", run = "font-sample" },
   { mime = "application/ms-opentype", run = "font-sample" },
-  { name = "*.{otf,ttf,woff,woff2}", run = "font-sample" },
-  { name = "**/.git/", run = "preview-git" },
+  { url = "*.{otf,ttf,woff,woff2}", run = "font-sample" },
+  { url = "**/.git/", run = "preview-git" },
   # plugins
-  { name = "*.sqlite3", run = "preview-sqlite" },
+  { url = "*.sqlite3", run = "preview-sqlite" },
   { mime = "application/sqlite3", run = "preview-sqlite" },
   # { mime = 'application/octet-stream', run = 'piper -- hexyl -n1000 -PC --panels 1 --border none "$1"' },
   # misc
   { mime = "application/subrip", run = "code" },
-  { name = "*.{zip,rar}", run = "archive" },
+  { url = "*.{zip,rar}", run = "archive" },
 ]
 prepend_preloaders = [
-  { name = "*.{!qB,part}", run = "noop" },
-  { name = "/mnt/rclone/**", run = "noop" },
+  { url = "*.{!qB,part}", run = "noop" },
+  { url = "/mnt/rclone/**", run = "noop" },
   { mime = "application/epub+zip", run = "preview-ebook" },
   { mime = "audio/*", run = "preview-audio" },
-  { name = "*.cb{z,r}", run = "preview-cbz" },
+  { url = "*.cb{z,r}", run = "preview-cbz" },
   { mime = "font/*", run = "font-sample" },
   { mime = "application/ms-opentype", run = "font-sample" },
-  { name = "*.{otf,ttf,woff,woff2}", run = "font-sample" },
+  { url = "*.{otf,ttf,woff,woff2}", run = "font-sample" },
 ]
 spotters           = [
-  { name = "*/", run = "folder" },
+  { url = "*/", run = "folder" },
   # Image
   { mime = "image/{avif,hei?,jxl}", run = "magick" },
   { mime = "image/svg+xml", run = "svg" },
   { mime = "image/*", run = "image" },
-  { name = "*.cb{z,r}", run = "spot-cbz" },
+  { url = "*.cb{z,r}", run = "spot-cbz" },
   { mime = "video/*", run = "spot-video" },
   # { mime = "text/*", run = "spot-code" },
   { mime = "audio/*", run = "spot-audio" },
-  { name = "*", run = "spot" },
-  # { name = "*", run = "file" },
+  { url = "*", run = "spot" },
+  # { url = "*", run = "file" },
 ]
 
 ## # OPEN
 [open]
 rules = [
-  { name = "*/", use = ["reveal", "dir2cbz", "rsync"] },
-  { mime = "application/pdf", use = ["zathura"] },
-  { name = "*.cb{z,r}", use = ["zathura", "extract"] },
-  { mime = "audio/mpegurl", use = ["edit"] },
+  { url = "*/", use = ["reveal", "dir2cbz", "rsync"] },
+  { mime = "application/pdf", use = ["zathura", "open", "rsync"] },
+  { url = "*.cb{z,r}", use = ["zathura", "extract", "open", "rsync"] },
+  { mime = "audio/mpegurl", use = ["edit", "open", "rsync"] },
   { mime = "application/{zip,rar,7z*,tar,gzip,xz,zstd,bzip*,lzma,compress,archive,cpio,arj,xar,ms-cab*}", use = [
-    "extract"
+    "extract",
+    "open",
+    "rsync"
   ] },
-  { name = "*.{zip,rar,deb}", use = ["extract", "zathura"] },
-  { mime = "image/*", use = ["swayimg", "swaybg", "krita", "identity"] },
-  { mime = "video/*", use = ["play"] },
-  { mime = "audio/*", use = ["kid3", "play", "picard"] },
-  { mime = "application/android.package-archive", use = ["apkinstall"] },
-  { name = "*.apk", use = ["apkinstall"] },
-  { name = "*.{ass,srt,ssa,sup,vtt}", use = ["add-sub", "edit"] },
+  { url = "*.{zip,rar,deb}", use = ["extract", "zathura", "open", "rsync"] },
+  { mime = "image/*", use = ["swayimg", "swaybg", "krita", "identity", "open", "rsync"] },
+  { mime = "video/*", use = ["play", "open", "rsync"] },
+  { mime = "audio/*", use = ["kid3", "play", "picard", "open", "rsync"] },
+  { mime = "application/android.package-archive", use = ["apkinstall", "open", "rsync"] },
+  { url = "*.apk", use = ["apkinstall", "open", "rsync"] },
+  { url = "*.{ass,srt,ssa,sup,vtt}", use = ["add-sub", "edit", "open", "rsync"] },
   # text
-  { mime = "text/*", use = ["edit"] },
-  { mime = "inode/empty", use = ["edit"] },
-  { mime = "application/{json,ndjson}", use = ["edit"] },
-  { mime = "*/javascript", use = ["edit"] },
-  { name = "*.patch", use = ["edit"] },
-  { name = "*", use = ["open", "rsync"] },
+  { mime = "text/*", use = ["edit", "open", "rsync"] },
+  { mime = "inode/empty", use = ["edit", "open", "rsync"] },
+  { mime = "application/{json,ndjson}", use = ["edit", "open", "rsync"] },
+  { mime = "*/javascript", use = ["edit", "open", "rsync"] },
+  { url = "*.patch", use = ["edit", "open", "rsync"] },
+  { url = "*", use = ["open", "rsync"] },
 ]
 
 [opener]
-add-sub    = [{ run = ''' echo sub-add "'$0'" | socat - /tmp/mpv.sock ''', desc = "󰨗 Add sub to MPV", for = "linux" }]
-apkinstall = [{ run = 'adb install "$@"', block = true, orphan = false, desc = " apk installer", for = "linux" }]
-audacity   = [{ run = 'audacity -- "$@"', orphan = true, for = "linux", desc = "󰋋 audacity" }]
-dir2cbz    = [{ run = '''fish -c 'dir2cbz $argv' "$@" ''', block = true, desc = " dir2cbz" }]
-identity   = [{ run = 'identity -- "$@"', orphan = true, for = "linux", desc = "󰆊 compare images" }]
-kid3       = [{ run = 'kid3 -- "$@"', orphan = true, for = "linux", desc = " kid3" }]
-krita      = [{ run = 'krita "$@"', block = false, orphan = true, desc = " krita", for = "linux" }]
-picard     = [{ run = 'picard -- "$@"', orphan = true, for = "linux", desc = "󰫅 picard" }]
+add-sub    = [{ run = "echo sub-add %s | socat - /tmp/mpv.sock", desc = "󰨗 Add sub to MPV", for = "linux" }]
+apkinstall = [{ run = "adb install %s", block = true, orphan = false, desc = " apk installer", for = "linux" }]
+dir2cbz    = [{ run = "fish -c 'dir2cbz $argv' %s", block = true, desc = " dir2cbz" }]
+identity   = [{ run = "identity -- %s", orphan = true, for = "linux", desc = "󰆊 compare images" }]
+kid3       = [{ run = "kid3 -- %s", orphan = true, for = "linux", desc = " kid3" }]
+krita      = [{ run = "krita %s", block = false, orphan = true, desc = " krita", for = "linux" }]
+picard     = [{ run = "picard -- %s", orphan = true, for = "linux", desc = "󰫅 picard" }]
 rsync      = [
-  { run = 'rsync -Pha -- "$1" brick:/sdcard/Download/', block = false, desc = " Send to phone", for = "linux" }
+  { run = "rsync -Pha -- %s brick:/sdcard/Download/", block = false, desc = " Send to phone", for = "linux" }
 ]
-swaybg     = [{ run = 'swaybg -m fill -i "$0"', block = false, orphan = true, desc = " swaybg", for = "linux" }]
-swayimg    = [{ run = 'swayimg "$@"', block = false, orphan = true, desc = " swayimg", for = "linux" }]
-zathura    = [{ run = 'zathura "$@"', block = false, orphan = true, desc = " zathura", for = "linux" }]
+swaybg     = [{ run = "swaybg -m fill -i %s1", block = false, orphan = true, desc = " swaybg", for = "linux" }]
+swayimg    = [{ run = "swayimg %s", block = false, orphan = true, desc = " swayimg", for = "linux" }]
+zathura    = [{ run = "zathura %s", block = false, orphan = true, desc = " zathura", for = "linux" }]
 # defaults
-edit       = [{ run = '${EDITOR:-vi} "$@"', desc = " $EDITOR", block = true, for = "unix" }]
+edit       = [{ run = "${EDITOR:-vi} %s", desc = " $EDITOR", block = true, for = "unix" }]
 open       = [
-  { run = 'xdg-open "$1"', orphan = true, desc = "󰏌 Open", for = "linux" },
-  { run = 'termux-open "$1"', orphan = true, desc = "󰏌 Open", for = "android" },
+  { run = "xdg-open %s1", orphan = true, desc = "󰏌 Open", for = "linux" },
+  { run = "termux-open %s1", orphan = true, desc = "󰏌 Open", for = "android" },
 ]
-play       = [{ run = 'mpv --force-window "$@"', orphan = true, for = "linux", desc = " mpv" }]
+play       = [{ run = "mpv --force-window %s1", orphan = true, for = "linux", desc = " mpv" }]
 reveal     = [
-  { run = 'xdg-open "$(dirname "$1")"', desc = " Reveal", for = "linux" },
-  { run = 'opendir "$1"', desc = " Reveal", for = "android" },
-  { run = 'swayimg -g "$@"', orphan = true, desc = " gallery" },
+  { run = "xdg-open %d", desc = " Reveal", for = "linux" },
+  { run = "opendir %d", desc = " Reveal", for = "android" },
+  { run = "swayimg -g %s", orphan = true, desc = " gallery" },
 ]
 extract    = [
-  { run = 'ya pub extract --list "$@"', desc = "󱉛 Extract here", for = "unix" },
-  { run = "ya pub extract --list %*", desc = "󱉛 Extract here", for = "windows" },
+  { run = 'ya pub extract --list %s""', desc = "󱉛 Extract here", for = "unix" },
 ]
 
 [mgr]
