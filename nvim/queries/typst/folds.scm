@@ -1,0 +1,6 @@
+;; extends
+
+[
+  (content)
+  (term)
+] @fold
