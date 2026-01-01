@@ -1,0 +1,24 @@
+# key = { fg = "#ffffff", bg = "#000000", underline = { color = "#ff0000", style = "curl"} }
+
+inherits                 = "tokyonight"
+"ui.linenr.selected"     = { fg = "fg" }
+"ui.menu"                = { bg = "bg-menu", fg = "fg" }
+"ui.popup"               = { bg = "bg", fg = "border-highlight" }
+"ui.help"                = { bg = "bg", fg = "fg" }
+# no italics
+comment                  = { fg = "comment" }
+function                 = { fg = "blue" }
+keyword                  = { fg = "purple" }
+"keyword.control.return" = { fg = "purple" }
+"variable.parameter"     = { fg = "yellow" }
+"markup.italic"          = {  }
+"ui.text.inactive"       = { fg = "comment" }
+
+[palette]
+border           = "#1d202f"
+bg               = "#24283b"
+bg-inlay         = "#233745"
+bg-selection     = "#2e3c64"
+bg-menu          = "#1f2335"
+bg-focus         = "#2e3c64"
+border-highlight = "#29a4bd"

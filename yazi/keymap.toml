@@ -12,13 +12,14 @@ spot.prepend_keymap  = [{ on = "q", run = "close", desc = "Close the spot" }]
 prepend_keymap = [
   { on = "<C-u>", run = "arrow -50%", desc = "Move cursor up half page" },
   { on = "<C-d>", run = "arrow 50%", desc = "Move cursor down half page" },
-  { on = ["g", "g"], run = "arrow top", desc = "Move cursor to the top" },
+  { on = "g", run = "arrow top", desc = "Move cursor to the top" },
   { on = "G", run = "arrow bot", desc = "Move cursor to the bottom" },
 ]
 
 # TODO: Z -> cd -
 [mgr]
 prepend_keymap = [
+  { on = "g", run = "arrow top", desc = "Move cursor to the top" },
   # plugins
   { on = ["s", "t"], run = "plugin toggle-pane min-preview" },
   { on = ["s", "T"], run = "plugin toggle-pane max-preview" },

@@ -109,6 +109,7 @@
     "tooltip-format-disconnected": "MPD (disconnected)",
   },
   "memory": {
+    // TODO: change color on high ram usage
     "interval": 5,
     "format": " {}%",
     "max-length": 10,

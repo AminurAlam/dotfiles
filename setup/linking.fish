@@ -10,7 +10,7 @@ for config in alacritty aria2 \
     eza \
     fish foot fuzzel \
     gallery-dl gdb ghostty git glow \
-    htop hypr \
+    helix htop hypr \
     jj \
     kanata keepassxc kitty \
     lazygit \

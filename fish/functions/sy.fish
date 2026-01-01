@@ -10,6 +10,7 @@ function sy -d "sync files between phone and pc"
 
     for state in dry wet
         if [ $state = dry ] && [ "$argv[1]" = -y ]
+            set -e comm[1]
             continue
         else if [ $state = wet ] && [ "$argv[1]" != -y ]
             [ "$(read -P "make these changes? [y/N] ")" = y ] || continue

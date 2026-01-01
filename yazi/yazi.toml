@@ -95,7 +95,8 @@ swaybg     = [{ run = "swaybg -m fill -i %s1", block = false, orphan = true, des
 swayimg    = [{ run = "swayimg %s", block = false, orphan = true, desc = " swayimg", for = "linux" }]
 zathura    = [{ run = "zathura %s", block = false, orphan = true, desc = " zathura", for = "linux" }]
 # defaults
-edit       = [{ run = "${EDITOR:-vi} %s", desc = " $EDITOR", block = true, for = "unix" }]
+edit       = [{ run = "nvim %s", desc = " nvim", block = true, for = "unix" }]
+hx         = [{ run = "helix %s", desc = "󰚄 helix", block = true, for = "unix" }]
 open       = [
   { run = "xdg-open %s1", orphan = true, desc = "󰏌 Open", for = "linux" },
   { run = "termux-open %s1", orphan = true, desc = "󰏌 Open", for = "android" },

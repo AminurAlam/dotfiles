@@ -20,6 +20,7 @@
 - [ghostty](https://github.com/ghostty-org/ghostty) - terminal emulator
 - [git](https://git-scm.com/) - vcs
 - [glow](https://github.com/charmbracelet/glow) - Command-line markdown renderer
+- [helix](https://helix-editor.com) - A post-modern modal text editor
 - [htop](https://htop.dev/) - process viewer
 - [hyprland](https://hyprland.org/) - tiling wayland compositor
 - [jujustu](https://github.com/jj-vcs/jj) - vcs
