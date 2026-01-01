@@ -55,29 +55,28 @@ spotters           = [
 ## # OPEN
 [open]
 rules = [
-  { url = "*/", use = ["reveal", "dir2cbz", "rsync"] },
-  { mime = "application/pdf", use = ["zathura", "open", "rsync"] },
-  { url = "*.cb{z,r}", use = ["zathura", "extract", "open", "rsync"] },
-  { mime = "audio/mpegurl", use = ["edit", "open", "rsync"] },
+  { url = "*/", use = ["reveal", "dir2cbz", "fallback"] },
+  { mime = "application/pdf", use = ["zathura", "fallback"] },
+  { url = "*.cb{z,r}", use = ["zathura", "extract", "fallback"] },
+  { mime = "audio/mpegurl", use = ["edit", "fallback"] },
   { mime = "application/{zip,rar,7z*,tar,gzip,xz,zstd,bzip*,lzma,compress,archive,cpio,arj,xar,ms-cab*}", use = [
     "extract",
-    "open",
-    "rsync"
+    "fallback"
   ] },
-  { url = "*.{zip,rar,deb}", use = ["extract", "zathura", "open", "rsync"] },
-  { mime = "image/*", use = ["swayimg", "swaybg", "krita", "identity", "open", "rsync"] },
-  { mime = "video/*", use = ["play", "open", "rsync"] },
-  { mime = "audio/*", use = ["kid3", "play", "picard", "open", "rsync"] },
-  { mime = "application/android.package-archive", use = ["apkinstall", "open", "rsync"] },
-  { url = "*.apk", use = ["apkinstall", "open", "rsync"] },
-  { url = "*.{ass,srt,ssa,sup,vtt}", use = ["add-sub", "edit", "open", "rsync"] },
+  { url = "*.{zip,rar,deb}", use = ["extract", "zathura", "fallback"] },
+  { mime = "image/*", use = ["swayimg", "swaybg", "krita", "identity", "fallback"] },
+  { mime = "video/*", use = ["play", "fallback"] },
+  { mime = "audio/*", use = ["kid3", "play", "picard", "fallback"] },
+  { mime = "application/android.package-archive", use = ["apkinstall", "fallback"] },
+  { url = "*.apk", use = ["apkinstall", "fallback"] },
+  { url = "*.{ass,srt,ssa,sup,vtt}", use = ["add-sub", "edit", "fallback"] },
   # text
-  { mime = "text/*", use = ["edit", "open", "rsync"] },
-  { mime = "inode/empty", use = ["edit", "open", "rsync"] },
-  { mime = "application/{json,ndjson}", use = ["edit", "open", "rsync"] },
-  { mime = "*/javascript", use = ["edit", "open", "rsync"] },
-  { url = "*.patch", use = ["edit", "open", "rsync"] },
-  { url = "*", use = ["open", "rsync"] },
+  { mime = "text/*", use = ["edit", "fallback"] },
+  { mime = "inode/empty", use = ["edit", "fallback"] },
+  { mime = "application/{json,ndjson}", use = ["edit", "fallback"] },
+  { mime = "*/javascript", use = ["edit", "fallback"] },
+  { url = "*.patch", use = ["edit", "fallback"] },
+  { url = "*", use = ["fallback"] },
 ]
 
 [opener]
@@ -95,10 +94,13 @@ swaybg     = [{ run = "swaybg -m fill -i %s1", block = false, orphan = true, des
 swayimg    = [{ run = "swayimg %s", block = false, orphan = true, desc = " swayimg", for = "linux" }]
 zathura    = [{ run = "zathura %s", block = false, orphan = true, desc = " zathura", for = "linux" }]
 # defaults
-edit       = [{ run = "nvim %s", desc = " nvim", block = true, for = "unix" }]
-hx         = [{ run = "helix %s", desc = "󰚄 helix", block = true, for = "unix" }]
-open       = [
+edit       = [
+  { run = "nvim %s", desc = " nvim", block = true, for = "unix" },
+  { run = "helix %s", desc = "󰚄 helix", block = true, for = "unix" }
+]
+fallback   = [
   { run = "xdg-open %s1", orphan = true, desc = "󰏌 Open", for = "linux" },
+  { run = "rsync -Pha -- %s brick:/sdcard/Download/", block = false, desc = " Send to phone", for = "linux" },
   { run = "termux-open %s1", orphan = true, desc = "󰏌 Open", for = "android" },
 ]
 play       = [{ run = "mpv --force-window %s1", orphan = true, for = "linux", desc = " mpv" }]

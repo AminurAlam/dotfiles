@@ -25,6 +25,27 @@ do -- [=[ shorter header cwd
   --]=]
 end
 
+do -- [=[ hide fchar regex
+  function Header:flags()
+    local cwd = self._current.cwd
+    local filter = self._current.files.filter
+    local finder = self._tab.finder
+
+    local t = {}
+    if cwd.is_search then
+      t[#t + 1] = string.format('search: %s', cwd.domain)
+    end
+    if filter then
+      t[#t + 1] = string.format('filter: %s', filter)
+    end
+    if finder and not string.find(tostring(finder), 'preview') then
+      t[#t + 1] = string.format('find: %s', finder)
+    end
+    return #t == 0 and '' or ' (' .. table.concat(t, ', ') .. ')'
+  end
+  --]=]
+end
+
 do --[=[ show remaining storage
   Header:children_add(function()
     local now = ya.time()
@@ -225,7 +246,8 @@ require('font-sample'):setup {
 require('fchar'):setup {
   insensitive = true,
   skip_symbols = true,
-  search_entire_string = false,
+  skip_prefix = { 'yazi-', 'spot-', 'preview-', 'dot-', 'WhatsApp ' },
+  search_location = 'start',
   aliases = {
     a = 'あア',
     b = 'ばびぶべぼバビブベボ',
