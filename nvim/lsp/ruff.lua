@@ -4,10 +4,12 @@ return {
   filetypes = { 'python' },
   root_markers = {
     'pyproject.toml',
+    'ruff.toml',
+    '.ruff.toml',
+    '.git',
     'setup.py',
     'setup.cfg',
     'requirements.txt',
-    '.git',
   },
   settings = {
     init_options = {

@@ -1,7 +1,10 @@
 ;; extends
 
-(table
+(table ; [foo]
+  (bare_key) @function)
+
+(dotted_key ; [foo.bar]
   (bare_key) @keyword)
 
-(dotted_key
+(table_array_element ; [[foo]]
   (bare_key) @keyword)

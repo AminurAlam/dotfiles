@@ -8,7 +8,7 @@ return {
     'stdio',
   },
   filetypes = { 'toml' },
-  root_markers = { '.' }, -- taplo excludes files if ws doesnt exist
+  root_markers = { '.taplo.toml', 'taplo.toml', '.git' }, -- taplo excludes files if ws doesnt exist
   -- use null-ls bcz its faster and doesnt modify when no change is detected
   on_attach = function(client)
     client.server_capabilities.documentFormattingProvider = false

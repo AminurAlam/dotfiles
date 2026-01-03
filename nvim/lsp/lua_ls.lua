@@ -3,7 +3,7 @@ return {
   cmd = { 'lua-language-server' },
   filetypes = { 'lua' },
   root_markers = {
-    'lua/',
+    '.emmyrc.json',
     '.luarc.json',
     '.luarc.jsonc',
     '.luacheckrc',
@@ -11,6 +11,8 @@ return {
     'stylua.toml',
     'selene.toml',
     'selene.yml',
+    '.git',
+    'lua/',
   },
   on_attach = function(client)
     client.server_capabilities.documentFormattingProvider = false
@@ -24,6 +26,8 @@ return {
       telemetry = { enable = false },
       window = { progressBar = true },
       workspace = { checkThirdParty = false },
+      codeLens = { enable = true },
+      hint = { enable = true, semicolon = 'Disable' },
     },
   },
 }
