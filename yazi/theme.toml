@@ -1,19 +1,29 @@
 #:schema https://yazi-rs.github.io/schemas/theme.json
-# tombi: lint.rules.key-not-allowed.disabled = true
 #:schema /home/fisher/repos/yazi-schemas/schemas/theme.json
 
 [flavor]
-# use = "tokyo-night"
-dark = "tokyo-night"
 
 [mgr]
-count_copied    = { fg = "black", bg = "green" }
-count_cut       = { fg = "black", bg = "red" }
-count_selected  = { fg = "black", bg = "yellow" }
-hovered         = { bg = "#2e3c64", bold = true }
-preview_hovered = { bold = true }
+cwd             = { fg = "blue" }
+# Find
 find_keyword    = { fg = "#ff9e64", bold = true }
-find_position   = { fg = "white", bg = "#2e3c64", bold = true }
+find_position   = { bg = "#2e3c64", bold = true }
+# Symlink
+symlink_target  = { italic = true }
+# Marker
+marker_copied   = { fg = "green", bg = "green" }
+marker_cut      = { fg = "yellow", bg = "yellow" }
+marker_marked   = { fg = "lightblue", bg = "lightblue" }
+marker_selected = { fg = "blue", bg = "blue" }
+# Count
+count_copied    = { fg = "black", bg = "green" }
+count_cut       = { fg = "black", bg = "yellow" }
+count_selected  = { fg = "black", bg = "blue" }
+# Border
+border_symbol   = " "                                     # "│"
+border_style    = { fg = "gray" }
+# Highlighting
+syntect_theme   = ""                                      # TODO: what is this?
 
 [tabs]
 active    = { bg = "red", fg = "black" }
@@ -22,37 +32,64 @@ sep_inner = { open = " ", close = " " }
 sep_outer = { open = " ", close = " " }
 
 [spot]
-title = { fg = "green" }
+# title = { fg = "green" }
 
-[indicator]  # tombi: lint.rules.key-not-allowed.disabled = true
+[indicator]
 current = { bg = "#2e3c64", bold = true }
 # current = { reversed = true }
 preview = { bold = true }
 
+[status]
+# TODO: change fg to black
+progress_label  = { bold = true }
+progress_normal = { fg = "green", bg = "black" }
+progress_error  = { fg = "yellow", bg = "red" }
+
+[input]
+# border   = { fg = "#24283b" }
+selected = { bg = "#2e3c64" }
+
 [filetype]
 rules = [
   # Images
-  { mime = "image/*", fg = "#e0af68" },
+  { mime = "image/*", fg = "cyan" },
   # Media
-  { mime = "video/*", fg = "#f7768e" },
-  { mime = "audio/*", fg = "#f7768e" },
+  { mime = "video/*", fg = "magenta" },
+  { mime = "audio/*", fg = "cyan" },
   # Archives
-  { mime = "application/zip", fg = "#bb9af7" },
-  { mime = "application/x-tar", fg = "#bb9af7" },
-  { mime = "application/x-bzip*", fg = "#bb9af7" },
-  { mime = "application/x-bzip2", fg = "#bb9af7" },
-  { mime = "application/x-7z-compressed", fg = "#bb9af7" },
-  { mime = "application/x-rar", fg = "#bb9af7" },
-  { mime = "application/x-xz", fg = "#bb9af7" },
+  { mime = "application/zip", fg = "#f7768e" },
+  { mime = "application/x-tar", fg = "#f7768e" },
+  { mime = "application/x-bzip*", fg = "#f7768e" },
+  { mime = "application/x-bzip2", fg = "#f7768e" },
+  { mime = "application/x-7z-compressed", fg = "#f7768e" },
+  { mime = "application/x-rar", fg = "#f7768e" },
+  { mime = "application/x-xz", fg = "#f7768e" },
+  { mime = "application/zstd", fg = "#f7768e" },
   # Documents
-  { mime = "application/doc", fg = "#9ece6a" },
-  { mime = "application/epub+zip", fg = "#9ece6a" },
-  { mime = "application/pdf", fg = "#9ece6a" },
-  { mime = "application/rtf", fg = "#9ece6a" },
-  { mime = "application/vnd.*", fg = "#9ece6a" },
+  { mime = "application/doc", fg = "#db4b4b" },
+  { mime = "application/epub+zip", fg = "#db4b4b" },
+  { mime = "application/pdf", fg = "#db4b4b" },
+  { mime = "application/rtf", fg = "#db4b4b" },
+  { mime = "application/vnd.*", fg = "#db4b4b" },
   # Fallback
-  { name = "*", fg = "#c6d0f5" },
-  { name = "*/", fg = "#7aa2f7" },
   { url = "*", fg = "#c6d0f5" },
-  { url = "*/", fg = "#7aa2f7" },
+  { url = "*/", fg = "blue" },
+]
+
+[icon]
+dirs = [
+  { name = ".config", text = "" },
+  { name = "dotfiles", text = "" },
+  { name = ".git", text = "" },
+  { name = ".github", text = "" },
+  { name = ".npm", text = "" },
+  { name = "Desktop", text = "" },
+  { name = "Documents", text = "" },
+  { name = "Downloads", text = "" },
+  { name = "Library", text = "" },
+  { name = "Movies", text = "" },
+  { name = "Music", text = "" },
+  { name = "Pictures", text = "" },
+  { name = "Public", text = "" },
+  { name = "Videos", text = "" },
 ]

@@ -64,6 +64,7 @@ rules = [
     "fallback"
   ] },
   { url = "*.{zip,rar,deb}", use = ["extract", "zathura", "fallback"] },
+  { mime = "image/svg+xml", use = ["swayimg", "inkscape", "fallback"] },
   { mime = "image/*", use = ["swayimg", "swaybg", "krita", "identity", "fallback"] },
   { mime = "video/*", use = ["play", "fallback"] },
   { mime = "audio/*", use = ["kid3", "play", "picard", "fallback"] },
@@ -86,6 +87,7 @@ dir2cbz    = [{ run = "fish -c 'dir2cbz $argv' %s", block = true, desc = " di
 identity   = [{ run = "identity -- %s", orphan = true, for = "linux", desc = "󰆊 compare images" }]
 kid3       = [{ run = "kid3 -- %s", orphan = true, for = "linux", desc = " kid3" }]
 krita      = [{ run = "krita %s", block = false, orphan = true, desc = " krita", for = "linux" }]
+inkscape   = [{ run = "inkscape %s", block = false, orphan = true, desc = "󰕞 inkscape", for = "linux" }]
 picard     = [{ run = "picard -- %s", orphan = true, for = "linux", desc = "󰫅 picard" }]
 rsync      = [
   { run = "rsync -Pha -- %s brick:/sdcard/Download/", block = false, desc = " Send to phone", for = "linux" }
