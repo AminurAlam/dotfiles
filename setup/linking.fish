@@ -67,6 +67,7 @@ printf "LINKING OTHER FILES...\n"
 ln -nfs ~/repos/dotfiles/applications ~/.local/share/applications
 ln -nfs ~/repos/dotfiles/scripts/bin/cbzcover ~/.local/bin/cbzcover
 ln -nfs ~/repos/dotfiles/scripts/bin/ctl ~/.local/bin/ctl
+ln -nfs ~/repos/dotfiles/scripts/bin/md2typ ~/.local/bin/md2typ
 ln -nfs ~/repos/yazi-plugins ~/repos/dotfiles/yazi/plugins
 
 rmdir --ignore-fail-on-non-empty ~/{backup,bin,.ssh}
