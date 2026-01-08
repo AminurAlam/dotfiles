@@ -1,11 +1,10 @@
 # vim:set ft=fzfrc cms=#\ %s:
-# TODO: fix oneonly
 
 ### Search mode
 --ignore-case
 --tiebreak chunk,begin,index
 --no-multi
---bind "tab:up,shift-tab:down,one:accept"
+--bind "tab:up,shift-tab:down"
 --scroll-off 4
 
 ### Layout

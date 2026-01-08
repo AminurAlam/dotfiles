@@ -26,6 +26,11 @@ set -gx FZF_DEFAULT_OPTS_FILE $HOME/repos/dotfiles/other/fzfrc
 set -gx WINEPREFIX $XDG_DATA_HOME/wineprefixes/default
 set -gx GRADLE_USER_HOME $XDG_DATA_HOME/gradle
 set -gx QT_QPA_PLATFORMTHEME qt6ct
+set -gx _ZO_EXCLUDE_DIRS '$HOME:$HOME/Downloads/*:$HOME/repos/*/*:$HOME/Music/albums/*:.git'
+set -gx _ZO_FZF_OPTS '--ignore-case --tiebreak chunk,begin,index --no-multi --scroll-off 4
+--height ~90% --layout default --border rounded --margin 0,0,0,0 --no-info --no-separator
+--prompt " " --preview ""'
+set -gx YAZI_ZOXIDE_OPTS $_ZO_FZF_OPTS
 
 # lang config
 set -gx _JAVA_OPTIONS -Djava.util.prefs.userRoot=$XDG_CONFIG_HOME/java
@@ -67,6 +72,10 @@ status is-interactive || exit
 command -vq starship && starship init fish | source || source $XDG_CONFIG_HOME/fish/functions/load_prompt.fish
 command -vq zoxide && zoxide init fish | source || alias z cd
 dircolors ~/repos/dotfiles/eza/dircolors -c | sed 's/^setenv /set -gx /' | source
+
+if set -q TERMUX_VERSION
+    pidof sshd || sshd
+end
 
 if command -vq tmux && not tmux has-session -t conf 2>/dev/null
     command -vq lazygit

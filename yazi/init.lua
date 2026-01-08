@@ -1,7 +1,5 @@
 ---@diagnostic disable: duplicate-set-field
 
-local trunc = ui.truncate and ui.truncate or ya.truncate
-
 ------------------ LAYOUT ---------------
 
 do -- [=[ shorter header cwd
@@ -13,14 +11,14 @@ do -- [=[ shorter header cwd
     end
 
     if #cx.tabs > 1 then
-      return ui.Span(trunc(self:flags(), { max = max, rtl = true })):style(th.mgr.cwd)
+      return ui.Span(ui.truncate(self:flags(), { max = max, rtl = true })):style(th.mgr.cwd)
     end
 
     local s = tostring(ya.readable_path(tostring(self._current.cwd))):gsub(
       '(%.?)([^/])[^/]+/',
       '%1%2/'
     ) .. self:flags()
-    return ui.Span(trunc(s, { max = max, rtl = true })):style(th.mgr.cwd)
+    return ui.Span(ui.truncate(s, { max = max, rtl = true })):style(th.mgr.cwd)
   end
   --]=]
 end
@@ -90,7 +88,7 @@ do -- [=[ put tabs in header
 
       spans[#spans + 1] = ui.Span(' ' .. i .. ' ')
         :style(i == cx.tabs.idx and th.tabs.active or th.tabs.inactive)
-      spans[#spans + 1] = ui.Span(' ' .. trunc(path, { max = 20, rtl = true }) .. ' ')
+      spans[#spans + 1] = ui.Span(' ' .. ui.truncate(path, { max = 20, rtl = true }) .. ' ')
         :style(i == cx.tabs.idx and active or inactive)
       spans[#spans + 1] = ' '
     end
@@ -220,6 +218,8 @@ th.git = {
 require('git'):setup {}
 
 require('topaste'):setup {}
+
+require('zoxide'):setup { update_db = false }
 
 require('sort-by-location'):setup {
   { pattern = '.*/Pictures/.*', sort = { by = 'mtime', reverse = true } },
