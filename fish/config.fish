@@ -2,6 +2,7 @@ set -gx EDITOR nvim
 set -gx SUDO_EDITOR nvim -u ~/repos/dotfiles/other/vimrc
 set -gx LESS --mouse
 set -gx MANPAGER "nvim +Man!"
+set -gx COLORTERM truecolor
 
 # xdg
 set -gx XDG_VIDEOS_DIR $HOME/Videos
