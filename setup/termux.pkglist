@@ -20,7 +20,6 @@ dos2unix
 dust
 ed
 eza
-fastfetch
 fd
 ffmpeg
 file
@@ -28,14 +27,12 @@ findutils
 fish
 fzf
 gawk
-gettext
 git
 git-delta
 gnupg
 gpgme
 grep
 gzip
-hexyl
 hyperfine
 iconv
 inetutils
@@ -81,13 +78,12 @@ libxml2
 lsof
 lua-language-server
 lua51-lpeg
-luajit
 luv
 mediainfo
 megatools
 mosh
 ncurses
-neovim-git
+neovim-nightly
 nerdfix
 net-tools
 newsraft
