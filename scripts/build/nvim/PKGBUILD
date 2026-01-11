@@ -1,6 +1,6 @@
 _pkgname=neovim
 pkgname="$_pkgname-git"
-pkgver=0.12.0.rfd239f8
+pkgver=0.12.0.r2d9a7dc
 pkgrel=1
 pkgdesc='Fork of Vim aiming to improve user experience, plugins, and GUIs'
 arch=(armv7h aarch64)
@@ -23,8 +23,9 @@ depends=(
 )
 makedepends=('cmake' 'git' 'ninja' 'unzip' 'bsdtar')
 optdepends=('python-pynvim: for Python plugin support (see :help python)')
-provides=("$_pkgname=${pkgver/\.r*/}" 'vim-plugin-runtime')
-conflicts=("$_pkgname")
+provides=("$_pkgname=${pkgver/\.r*/}")
+conflicts=("$_pkgname" "$_pkgname-nightly")
+replaces=("$_pkgname" "$_pkgname-nightly")
 # source=("git+https://github.com/AminurAlam/$_pkgname.git")
 source=("$_pkgname::git+file:///data/data/com.termux/files/home/repos/nvim-fork")
 sha512sums=('SKIP')
@@ -40,7 +41,7 @@ pkgver() {
 
 build() {
     cd "$_pkgname"
-    CFLAGS+=" -Wno-format-nonliteral"
+    CFLAGS+=" -Wno-format-nonliteral --no-warnings"
 
     cmake -S cmake.deps -B .deps -G Ninja -DUSE_BUNDLED=OFF
     cmake --build .deps

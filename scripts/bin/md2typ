@@ -1,4 +1,4 @@
-#!/usr/bin/env fish
+#!/usr/bin/fish --no-config
 
 wl-paste \
     | prettier --parser markdown \
