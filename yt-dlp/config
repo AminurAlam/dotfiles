@@ -20,7 +20,6 @@
 -o "%(channel&{} - |)s%(title)s.%(ext)s"
 --no-overwrites
 --continue
---cookies-from-browser "firefox:$HOME/.librewolf/"
 
 ### Verbosity and Simulation Options:
 --progress

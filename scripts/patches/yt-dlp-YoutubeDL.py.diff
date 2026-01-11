@@ -59,9 +59,9 @@
 -                format_field(f, 'tbr', '\t%dk', func=round),
 -                shorten_protocol_name(f.get('protocol', '')),
 +                (
-+                    format_field(f, 'filesize', ' %s', func=format_decimal_suffix)
-+                    or format_field(f, 'filesize_approx', ' ≈%s', func=format_decimal_suffix)
-+                    or format_field(filesize_from_tbr(f.get('tbr'), info_dict.get('duration')), None, ' ~%s', func=format_decimal_suffix)),
++                    format_field(f, 'filesize', ' %s', func=format_bytes)
++                    or format_field(f, 'filesize_approx', ' ≈%s', func=format_bytes)
++                    or format_field(filesize_from_tbr(f.get('tbr'), info_dict.get('duration')), None, ' ~%s', func=format_bytes)),
                  delim,
                  simplified_codec(f, 'vcodec'),
                  format_field(f, 'vbr', '\t%dk', func=round),

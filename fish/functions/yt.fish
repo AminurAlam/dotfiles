@@ -10,6 +10,10 @@ function yt -a url fmt -d "yt-dlp wrapper"
         return 1
     end
 
+    if [ -d "$HOME/.librewolf/" ]
+        set -f cookies --cookies-from-browser "firefox:$HOME/.librewolf/"
+    end
+
     # strip playlist params
     set url (printf "$url" | sed -r 's/&list=.*$//')
 
