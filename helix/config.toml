@@ -1,17 +1,20 @@
+# TODO: disable equal aligning
+
 theme = "custom"
 
 [editor]
-default-yank-register = "+"
-shell                 = ["fish", "-c"]
-continue-comments     = false
-completion-replace    = true
-true-color            = true
-bufferline            = "multiple"
-color-modes           = true
-text-width            = 85
-atomic-save           = true
-popup-border          = "all"
-jump-label-alphabet   = "fjdksla;ghcnvmwi"
+default-yank-register   = "+"
+shell                   = ["fish", "-c"]
+continue-comments       = false
+completion-replace      = true
+true-color              = true
+bufferline              = "multiple"
+color-modes             = true
+text-width              = 85
+atomic-save             = true
+popup-border            = "all"
+jump-label-alphabet     = "fjdksla;ghcnvmwi"
+end-of-line-diagnostics = "hint"
 
 [editor.gutters]
 layout                 = ["line-numbers", "diff"]
@@ -33,6 +36,9 @@ tab = "all"
 tab    = ">"
 tabpad = " "
 
+[editor.inline-diagnostics]
+cursor-line = "error"
+
 [keys.normal]
 q     = ":quit"
 0     = "extend_to_line_start"
@@ -44,6 +50,11 @@ esc   = ["collapse_selection", "keep_primary_selection"]
 r     = "redo"
 U     = ":reset-diff-change"
 "*"   = ["move_char_right", "move_prev_word_start", "move_next_word_end", "search_selection", "search_next"]
+"C-r" = ":config-reload"
 
 [keys.normal.space]
 w = ":w"
+
+[keys.normal.space.t]
+s = ":tree-sitter-scopes"
+h = ":tree-sitter-highlight-name"

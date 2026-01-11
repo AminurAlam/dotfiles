@@ -13,6 +13,8 @@ keyword                  = { fg = "purple" }
 "variable.parameter"     = { fg = "yellow" }
 "markup.italic"          = {  }
 "ui.text.inactive"       = { fg = "comment" }
+tag                      = { fg = "green" }
+"punctuation.bracket"    = { fg = "fg" }
 
 [palette]
 border           = "#1d202f"
