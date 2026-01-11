@@ -11,6 +11,7 @@ vim.lsp.enable(vim.tbl_filter(filter, {
   'clangd',
   'hyprls',
   'lua_ls',
+  'nushell',
   'ruff',
   -- 'rust_analyzer',
   'systemd',
