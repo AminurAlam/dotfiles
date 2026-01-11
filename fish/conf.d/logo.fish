@@ -1,4 +1,5 @@
 status is-interactive || exit
+set -q SSH_CONNECTION && exit
 
 set -l i (set_color brgreen)
 set -l o (set_color brcyan)

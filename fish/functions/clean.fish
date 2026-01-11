@@ -27,6 +27,7 @@ function clean -d "cleanup to free storage"
     [ -d ~/downloads -a (uname -o) = Android ] && fd -tfile -epng 'Screenshot_.*_Samsung capture.png' ~/downloads/ -x rm
 
     if command -vq sudo
+        count /var/cache/pacman/pkg/download-* &>/dev/null && sudo rm -frI /var/cache/pacman/pkg/download-*
         command -vq pacman && yes | sudo pacman -Scc
     else
         command -vq pacman && yes | pacman -Scc
