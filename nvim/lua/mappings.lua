@@ -92,10 +92,10 @@ nmap('-', '<plug>(dial-decrement)')
 nmap('z=', '1z=')
 
 -- visual
-nmap('v', 'm`v') -- TODO: handle with autocmd
-nmap('V', 'm`V')
-nmap('<c-v>', 'm`<c-v>')
-vmap('<esc>', '<esc><cmd>keepjumps norm ``<cr>') -- after umap '<esc>'
+-- nmap('v', 'm`v') -- TODO: handle with autocmd
+-- nmap('V', 'm`V')
+-- nmap('<c-v>', 'm`<c-v>')
+-- vmap('<esc>', '<esc><cmd>keepjumps norm ``<cr>') -- after umap '<esc>'
 nmap('gn', 'vin', 'select outer treesitter node')
 vmap('n', function()
   vim.lsp.buf.selection_range(vim.v.count1)

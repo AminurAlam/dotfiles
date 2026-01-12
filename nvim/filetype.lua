@@ -6,7 +6,7 @@ vim.filetype.add {
   },
   extension = {
     log = 'log',
-    kbd = 'keyboard',
+    kbd = 'kanata',
     service = 'systemd',
     cue = 'cuesheet',
     note = 'markdown',

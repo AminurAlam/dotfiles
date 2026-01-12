@@ -18,7 +18,7 @@
 (defsrc
   esc
   grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
-  tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
+  tab  q    w    e    r    t    y    u    i    o    p    [    ]    bksl
   caps a    s    d    f    g    h    j    k    l    ;    '    ret
   lsft z    x    c    v    b    n    m    ,    .    /    rsft
   lctl lmet lalt           spc            ralt rmet rctl)
@@ -60,7 +60,7 @@
     e  (tap-hold $tt $ht e (layer-while-held symbols))
     lb (tap-hold-release 100 150 [ S-[)
     rb (tap-hold-release 100 150 ] S-])
-    bs (tap-hold-release $tt $nht \ S-\ )
+    bs (tap-hold-release $tt $nht bksl S-bksl )
 )
 (defalias ;; mid row
     a  (tap-hold $tt $ht a lalt)

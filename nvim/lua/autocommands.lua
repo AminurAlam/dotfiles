@@ -39,18 +39,6 @@ autocmd('VimEnter', {
   end,
 })
 
-autocmd('BufWritePost', {
-  desc = 'typst & mermaid auto compile',
-  callback = function(details)
-    if vim.bo[details.buf].filetype == 'mermaid' then
-      vim.cmd('make')
-    end
-    -- if vim.bo[details.buf].filetype == 'typst' then
-    --   vim.cmd('make')
-    -- end
-  end,
-})
-
 autocmd('BufWritePre', {
   desc = 'automatically create missing directories when saving files',
   callback = function(details)

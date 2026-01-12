@@ -46,7 +46,7 @@ null_ls.setup {
     h.make_builtin {
       name = 'kanata',
       method = 'NULL_LS_DIAGNOSTICS_ON_SAVE',
-      filetypes = { 'keyboard' },
+      filetypes = { 'kanata' },
       factory = h.generator_factory,
       generator_opts = {
         command = 'kanata',
