@@ -5,7 +5,7 @@ name  = "AminurAlam"
 email = "64137875+AminurAlam@users.noreply.github.com"
 
 [git]
-colocate = true
+colocate = false
 
 [ui]
 editor          = "nvim"
@@ -16,12 +16,9 @@ log = "pretty"
 
 [template-aliases]
 # https://github.com/jj-vcs/jj/blob/main/cli/src/config/templates.toml
-# 'format_timestamp(timestamp)' = 'timestamp.local().format("%Y-%m-%d")'
-'format_timestamp(timestamp)' = "timestamp.ago()"
-'format_short_id(id)'         = "id.shortest()"
-description_placeholder       = 'label("description placeholder", "\"\"")'
-pretty                        = "pretty(self)"
-'pretty(commit)'              = '''
+description_placeholder = 'label("description placeholder", "\"\"")'
+pretty                  = "pretty(self)"
+'pretty(commit)'        = '''
 
 if(commit.root(),
   format_root_commit(commit),
@@ -33,14 +30,15 @@ if(commit.root(),
     ),
     concat(
       separate(" ",
-        format_short_change_id_with_hidden_and_divergent_info(commit),
+        if(false, commit.change_id().shortest()),
+        if(true, format_short_change_id_with_change_offset(commit)),
         if(false, format_short_commit_id(commit.commit_id())),
         if(!commit.mine(), commit.author().name()),
-        format_timestamp(commit_timestamp(commit)),
+        commit_timestamp(commit).ago(),
         commit.bookmarks(),
         commit.tags(),
         commit.working_copies(),
-        if(commit.git_head(), label("git_head", "HEAD")),
+        if(commit.contained_in('first_parent(@)'), label("git_head", "HEAD")),
         if(commit.conflict(), label("conflict", "conflict")),
         if(config("ui.show-cryptographic-signatures").as_boolean(),
           format_short_cryptographic_signature(commit.signature())),
