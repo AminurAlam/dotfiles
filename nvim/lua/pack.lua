@@ -11,7 +11,7 @@ vim.pack.add({
   'https://github.com/catgoose/nvim-colorizer.lua',
   'https://github.com/folke/tokyonight.nvim',
   'https://github.com/kylechui/nvim-surround',
-  'https://github.com/lewis6991/gitsigns.nvim',
+  'https://github.com/nvim-mini/mini.diff',
   'https://github.com/monaqa/dial.nvim',
   'https://github.com/nvim-telescope/telescope.nvim',
   'https://github.com/nvimtools/none-ls.nvim',

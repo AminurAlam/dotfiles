@@ -54,8 +54,15 @@ local fmap = function(key, method)
     silent = true,
   })
 end
-fmap('ff', 'find_files')
-fmap('fg', 'live_grep')
-fmap('fh', 'help_tags')
-fmap('fr', 'oldfiles')
+fmap('/', 'live_grep')
+fmap('g', 'live_grep')
+fmap('?', 'help_tags')
+fmap('h', 'help_tags')
+fmap('b', 'buffers')
+fmap('ls', 'lsp_document_symbols')
+fmap('r', 'oldfiles')
 fmap('go', 'loclist')
+
+vim.keymap.set('n', '<leader>f', function()
+  require('telescope.builtin').find_files { cwd = vim.fs.root(0, '.git') }
+end)
