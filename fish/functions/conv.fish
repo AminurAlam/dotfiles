@@ -5,22 +5,30 @@ function conv -d "reencode files to save some space"
         return 1
     end
 
-    # TODO: print saved storage
+    if [ (path basename $PWD) = compressed ]
+        printf 'you are in `compressed` dummy\n'
+        printf ' $ cd ..\n'
+        cd ..
+        return 1
+    end
+
+    command -vq pv || sudo pacman -S pv
+
     # TODO: add image formats
     mkdir -p compressed
     for i in $argv
-        [ -e "compressed/$i" ] && continue
-        # mediainfo --Output="General;%Duration/String%" $i
-        ffprobe -hide_banner "$i" 2>| rg --only-matching 'Duration: [0-9:.]+'
-        set start (date +%s)
-        if command -vq pv
-            # requies mov files
-            pv "$i" | ffmpeg -y -hide_banner -loglevel error -v warning -i pipe:0 -vcodec h264 -acodec copy -preset fast compressed/$i
-            and rm $i
-        else
-            ffmpeg -y -hide_banner -stats -loglevel error -i $i -vcodec h264 -acodec copy -preset fast compressed/$i
-            and rm $i
+        [ -e "compressed/$i" ] && begin
+            printf "already compressed: %s\n" $i
+            continue
         end
+
+        ffprobe -hide_banner "$i" 2>| rg --only-matching 'Duration: [0-9:.]+'
+        set size (du $i | kt 1)
+        set start (date +%s)
+        # NOTE: requies mov files
+        pv -i 0.2 "$i" | ffmpeg -y -hide_banner -loglevel error -v warning -i pipe:0 -vcodec h264 -acodec copy -preset fast compressed/$i
+        and rm $i
+        printf "saved:%s\n" (qalc $size kB - (du compressed/$i | kt 1) kB | kt = 2)
         [ "$i" = "$argv[-1]" ] || sleep (math "min 40, ( ($(date +%s)-$start) / 2 )")
     end
 end

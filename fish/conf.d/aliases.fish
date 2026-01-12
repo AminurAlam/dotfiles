@@ -1,6 +1,6 @@
 set ls "ls --group-directories-first -1AXNGshF"
 alias l "$ls"
-alias ll "$ls -l"
+alias ll "$ls -lg"
 alias tldr 'curl -qs cht.sh/$argv # '
 
 status is-interactive || exit # no need to source abbreviations
