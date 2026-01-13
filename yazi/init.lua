@@ -246,7 +246,7 @@ require('font-sample'):setup {
 require('fchar'):setup {
   insensitive = true,
   skip_symbols = true,
-  skip_prefix = { 'yazi-', 'spot-', 'preview-', 'dot-', 'WhatsApp ' },
+  skip_prefix = { 'yazi-', 'spot-', 'preview-', 'dot-', 'WhatsApp ', 'helix-' },
   search_location = 'start',
   aliases = {
     a = 'あア',

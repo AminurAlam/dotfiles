@@ -23,7 +23,7 @@ count_selected  = { fg = "black", bg = "blue" }
 border_symbol   = " "                                     # "│"
 border_style    = { fg = "gray" }
 # Highlighting
-syntect_theme   = ""                                      # TODO: what is this?
+syntect_theme   = "~/repos/dotfiles/yazi/tmtheme.xml"
 
 [tabs]
 active    = { bg = "red", fg = "black" }

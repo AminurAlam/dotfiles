@@ -52,13 +52,15 @@ spotters           = [
   # { url = "*", run = "file" },
 ]
 
-## # OPEN
+## OPEN
 [open]
 rules = [
   { url = "*/", use = ["reveal", "dir2cbz", "fallback"] },
   { mime = "application/pdf", use = ["zathura", "fallback"] },
   { url = "*.cb{z,r}", use = ["zathura", "extract", "fallback"] },
   { mime = "audio/mpegurl", use = ["edit", "fallback"] },
+  { mime = "application/android.package-archive", use = ["apkinstall", "fallback"] },
+  { url = "*.apk", use = ["apkinstall", "fallback"] },
   { mime = "application/{zip,rar,7z*,tar,gzip,xz,zstd,bzip*,lzma,compress,archive,cpio,arj,xar,ms-cab*}", use = [
     "extract",
     "fallback"
@@ -68,8 +70,6 @@ rules = [
   { mime = "image/*", use = ["swayimg", "swaybg", "krita", "identity", "fallback"] },
   { mime = "video/*", use = ["play", "fallback"] },
   { mime = "audio/*", use = ["kid3", "play", "picard", "fallback"] },
-  { mime = "application/android.package-archive", use = ["apkinstall", "fallback"] },
-  { url = "*.apk", use = ["apkinstall", "fallback"] },
   { url = "*.{ass,srt,ssa,sup,vtt}", use = ["add-sub", "edit", "fallback"] },
   # text
   { mime = "text/*", use = ["edit", "fallback"] },
@@ -82,7 +82,9 @@ rules = [
 
 [opener]
 add-sub    = [{ run = "echo sub-add %s | socat - /tmp/mpv.sock", desc = "󰨗 Add sub to MPV", for = "linux" }]
-apkinstall = [{ run = "adb install %s", block = true, orphan = false, desc = " apk installer", for = "linux" }]
+apkinstall = [
+  { run = "ANDROID_USER_HOME=/home/fisher/.local/share/.android HOME=/home/fisher/.local/share/ adb install %s", block = true, orphan = false, desc = " apk installer", for = "linux" }
+]
 dir2cbz    = [{ run = "fish -c 'dir2cbz $argv' %s", block = true, desc = " dir2cbz" }]
 identity   = [{ run = "identity -- %s", orphan = true, for = "linux", desc = "󰆊 compare images" }]
 kid3       = [{ run = "kid3 -- %s", orphan = true, for = "linux", desc = " kid3" }]
