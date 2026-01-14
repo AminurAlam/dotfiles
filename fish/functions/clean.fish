@@ -1,4 +1,5 @@
-function clean -d "cleanup to free storage"
+function clean -d "cleanup storage space"
+    # delete some directories
     set dirs (path filter -d -- \
         /sdcard/Android/media/com.whatsapp/WhatsApp/{.StickerThumbs,Media/WhatsApp Stickers}/ \
         /sdcard/TachiyomiSY/downloads/*/*/*_tmp/ \
@@ -13,26 +14,28 @@ function clean -d "cleanup to free storage"
         echo
     end
 
-    set files \
-        (fd -H -tf -d1 '_history$' ~) \
-        (fd -H -tf -d2 'log$' "$XDG_STATE_HOME")
+    # delete some files
+    set files (fd -H -tf -d1 '_history$' ~) (fd -H -tf -d2 'log$' "$XDG_STATE_HOME")
 
     if count $files &>/dev/null
-        command -vq eza
-        and l $files
-        or command du -h $files
+        command du -h $files
         command rm -fr -- $files
     end
 
+    # ocr leftovers
     [ -d ~/downloads -a (uname -o) = Android ] && fd -tfile -epng 'Screenshot_.*_Samsung capture.png' ~/downloads/ -x rm
 
+    # pacman/yay
     if command -vq sudo
         count /var/cache/pacman/pkg/download-* &>/dev/null && sudo rm -frI /var/cache/pacman/pkg/download-*
         command -vq pacman && yes | sudo pacman -Scc
     else
         command -vq pacman && yes | pacman -Scc
     end
+
     echo
+
+    # trash
     for i in (trash-list)
         string sub -s 34 $i | string split -f 1,2 / | string join /
     end | sort | uniq -c | sort -n
@@ -42,6 +45,13 @@ function clean -d "cleanup to free storage"
         [ (count (pacman -Qdtq)) -gt 20 ] && yay -Yc
     end
 
+    # remove deleted directories from zoxide
+    for d in (zoxide query -la)
+        [ -e "$d" ] && continue
+        zoxide remove $d
+    end
+
+    # misc
     command -vq pip && pip cache purge
     command -vq npm && npm cache clean --force
     command -vq ccache && ccache --clear
