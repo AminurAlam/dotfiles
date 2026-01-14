@@ -1,4 +1,4 @@
-# vim:ft=feed:noexpandtab:conceallevel=3:
+# vim:ft=feed:noexpandtab:conceallevel=3:cms=#\ %s:
 
 # title NOT LIKE '%Rust%'
 # persons LIKE '%PHARMACIST%' OR persons LIKE '%OFFL1NX%'
@@ -12,6 +12,8 @@ https://www.thatmangahunter.com/blog-feed.xml
 https://muspy.com/feed?id=mobwjpkr95u5p1b4f2w1bjt74qc8u3 "muspy New Releases" < item-rule "NOT (title LIKE 'Taylor Swift%' OR title REGEXP 'Remix|live|Live|LIVE')"
 https://noted.lol/rss "noted.lol (self-host)"
 https://pudding.cool/rss.xml
+https://www.quantamagazine.org/quanta/feed
+https://www.quantamagazine.org/feed
 # https://xkcd.com/atom.xml
 
 @ FORUMS & AGGREGATORS
@@ -92,7 +94,7 @@ https://robertheaton.com/feed.xml "Robert Heaton"
 https://pluralistic.net/feed/ "Cory Doctorow (Pluralistic)"
 https://ploum.net/atom_en.xml
 https://fireborn.mataroa.blog/rss/
-https://runxiyu.org/blog/index.xml
+# https://runxiyu.org/blog/index.xml # site updated and removed rss
 
 @ PERSONAL BLOGS 2
 https://ludic.mataroa.blog/rss
@@ -117,6 +119,7 @@ https://oppi.li/index.xml
 https://www.anildash.com/feed.xml
 https://maia.crimew.gay/feed.xml
 https://hazelweakly.me/atom.xml
+https://xeiaso.net/blog.json
 https://lorendb.dev/index.xml
 https://blog.vaxry.net/feed
 # https://daringfireball.net/feeds/main "John Gruber (Daring Fireball)" < item-rule "NOT title REGEXP '(Sponsor|Apple|iPad|iPhone|MacOS|iOS|Macintosh)'"
@@ -127,9 +130,11 @@ https://lukesmith.xyz/index.xml "Luke Smith"
 https://herecomesthemoon.net/posts/index.xml
 
 @ PERSONAL BLOGS 3
+https://maurycyz.com/index.xml
 https://neilzone.co.uk/index.xml
 https://thecodist.com/rss
 https://joelchrono.xyz/feed.xml
+https://blog.matthewbrunelle.com/rss
 https://mtwb.blog/index.xml
 https://abner.page/index.xml
 https://esham.io/atom.xml
@@ -158,7 +163,6 @@ https://1hiking.github.io/index.xml
 https://nobodyspecial.neocities.org/rss2.xml
 https://palone.blog/feed/atom/
 https://utcc.utoronto.ca/~cks/space/blog/?atom
-https://christine.website/blog.rss
 https://leafo.net/feed.xml
 http://pb.co.za/posts.atom
 https://gabrielsimmer.com/rss
