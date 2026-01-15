@@ -79,6 +79,7 @@ end, 'toggle statuscolumn')
 -- other
 nmap('<leader>d', vim.diagnostic.open_float, 'view line diagnostics')
 nmap('<leader>tt', '<cmd>split | term<cr><cmd>startinsert<cr>')
+nmap('<leader>lg', '<cmd>term lazygit<cr><cmd>startinsert<cr>')
 umap('<c-c>', 'g~iw', 'toggle word case')
 vmap('.', ':norm .<cr>', 'dot repeat on all selected lines')
 nmap(';', '@:', 'repeat the last command')
@@ -92,10 +93,6 @@ nmap('-', '<plug>(dial-decrement)')
 nmap('z=', '1z=')
 
 -- visual
--- nmap('v', 'm`v') -- TODO: handle with autocmd
--- nmap('V', 'm`V')
--- nmap('<c-v>', 'm`<c-v>')
--- vmap('<esc>', '<esc><cmd>keepjumps norm ``<cr>') -- after umap '<esc>'
 nmap('gn', 'vin', 'select outer treesitter node')
 vmap('n', function()
   vim.lsp.buf.selection_range(vim.v.count1)

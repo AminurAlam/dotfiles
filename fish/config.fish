@@ -47,6 +47,7 @@ set -gx R_HISTFILE $XDG_STATE_HOME/R/history
 set -gx R_HOME_USER $HOME/.config/R
 set -gx R_PROFILE_USER $HOME/.config/R/profile
 set -gx R_LIBS_USER $XDG_DATA_HOME/R/x86_64-pc-linux-gnu-library
+set -gx TYPST_FEATURES html
 
 if set -q TERMUX_VERSION
     set -gx XDG_RUNTIME_DIR $TMPDIR
@@ -81,7 +82,7 @@ end
 if command -vq tmux && not tmux has-session -t conf 2>/dev/null
     command -vq lazygit
     and set lazygit \-n lazygit lazygit \; new-window \-c ~/repos/dotfiles/
-    tmux new-session -c ~/repos/dotfiles/ -ds conf $lazygit
+    tmux new-session -c ~/repos/dotfiles/ -ds conf
 end
 
 function fish_title
