@@ -42,8 +42,8 @@ preview = { bold = true }
 [status]
 # TODO: change fg to black
 progress_label  = { bold = true }
-progress_normal = { fg = "green", bg = "black" }
-progress_error  = { fg = "yellow", bg = "red" }
+progress_normal = { fg = "black", bg = "green" }
+progress_error  = { fg = "black", bg = "red" }
 
 [input]
 # border   = { fg = "#24283b" }

@@ -107,26 +107,25 @@ do -- [=[ put progress in header
 
     return {
       ui.Line(left):area(self._area),
-      ui.Line(right):area(self._area):align(ui.Align.RIGHT),
+      ui.Line(right):align(ui.Align.RIGHT):area(self._area),
       table.unpack(ui.redraw(Progress:new(self._area, self._right_width))),
     }
   end
   --]=]
 end
 
-do -- [=[ smaller progress layout
+do --[=[ smaller progress layout
   function Progress:layout()
     self._area = ui.Rect {
       x = math.max(0, self._area.w - self._offset - 5),
       y = self._area.y,
       w = ya.clamp(0, self._area.w - self._offset, 4),
-      h = math.min(1, self._area.h),
+      h = 1,
     }
   end
 
   -- [[
   function Progress:redraw()
-    -- ya.dbg(cx.tasks.summary, cx.tasks.progress)
     local summary = cx.tasks.summary
     if summary.total == 0 then
       return {}
@@ -139,9 +138,9 @@ do -- [=[ smaller progress layout
       label = string.format('%3d', string.format('%d', summary.total))
     end
 
-    -- return gauge:percent(percent):label(ui.Span(label):style(th.status.progress_label))
-    return ui.Line(label):area(self._area):fg('white'):bg('blue')
-    -- :bg(th.status[progress.failed == 0 and 'progress_normal' or 'progress_error'].fg)
+    return ui.Line(label)
+      :style(th.status[summary.failed == 0 and 'progress_normal' or 'progress_error'])
+      :area(self._area)
   end
   --]]
 
@@ -201,7 +200,7 @@ else
 end
 
 -- git icon theming
-th.git = {
+th.git = { ---@diagnostic disable-line: inject-field
   modified = ui.Style():fg('red'),
   modified_sign = 'M',
   added = ui.Style():fg('green'),
@@ -246,7 +245,7 @@ require('font-sample'):setup {
 require('fchar'):setup {
   insensitive = true,
   skip_symbols = true,
-  skip_prefix = { 'yazi-', 'spot-', 'preview-', 'dot-', 'WhatsApp ', 'helix-' },
+  skip_prefix = { 'yazi-', 'spot-', 'preview-', 'dot-', 'WhatsApp ', 'helix-', 'tree-sitter-' },
   search_location = 'start',
   aliases = {
     a = 'あア',

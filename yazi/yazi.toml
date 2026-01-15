@@ -69,7 +69,7 @@ rules = [
   { mime = "image/svg+xml", use = ["swayimg", "inkscape", "fallback"] },
   { mime = "image/*", use = ["swayimg", "swaybg", "krita", "identity", "fallback"] },
   { mime = "video/*", use = ["play", "fallback"] },
-  { mime = "audio/*", use = ["kid3", "play", "picard", "fallback"] },
+  { mime = "audio/*", use = ["play", "kid3", "picard", "tenacity", "fallback"] },
   { url = "*.{ass,srt,ssa,sup,vtt}", use = ["add-sub", "edit", "fallback"] },
   # text
   { mime = "text/*", use = ["edit", "fallback"] },
@@ -97,10 +97,11 @@ rsync      = [
 swaybg     = [{ run = "swaybg -m fill -i %s1", block = false, orphan = true, desc = " swaybg", for = "linux" }]
 swayimg    = [{ run = "swayimg %s", block = false, orphan = true, desc = " swayimg", for = "linux" }]
 zathura    = [{ run = "zathura %s", block = false, orphan = true, desc = " zathura", for = "linux" }]
+tenacity   = [{ run = "tenacity %s", block = false, orphan = true, desc = "󰓀 tenacity", for = "linux" }]
 # defaults
 edit       = [
   { run = "nvim %s", desc = " nvim", block = true, for = "unix" },
-  { run = "helix %s", desc = "󰚄 helix", block = true, for = "unix" }
+  { run = "helix %s", desc = "󰚄 helix", block = true, for = "unix" },
 ]
 fallback   = [
   { run = "xdg-open %s1", orphan = true, desc = "󰏌 Open", for = "linux" },
