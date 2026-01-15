@@ -76,9 +76,6 @@
   margin-left: 60px;
 }
 
-#tray {
-}
-
 #tray menu {
   color: #c0caf5;
   background: #24283b;
@@ -90,6 +87,17 @@
 #network.disconnected,
 #network.disabled {
   min-width: 0;
+}
+
+#memory.warning {
+  color: #ff9e64;
+}
+#memory.critical {
+  color: #f7768e;
+}
+
+#cpu.high {
+  color: #f7768e;
 }
 
 #temperature.critical {
@@ -107,10 +115,6 @@
 }
 #battery.charging.full {
   color: #8db0ff;
-}
-
-#cpu.high {
-  color: #f7768e;
 }
 
 #power-profiles-daemon {
