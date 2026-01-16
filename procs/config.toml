@@ -13,30 +13,30 @@
 # align = "Right"
 
 [[columns]]
-kind              = "Pid"
-style             = "BrightYellow|Yellow"
-numeric_search    = true
+kind = "Pid"
+style = "BrightYellow|Yellow"
+numeric_search = true
 nonnumeric_search = false
-align             = "Right"
+align = "Right"
 
 [[columns]]
-kind              = "TreeSlot"
-style             = "BrightWhite|Black"
-numeric_search    = false
+kind = "TreeSlot"
+style = "BrightWhite|Black"
+numeric_search = false
 nonnumeric_search = true
-align             = "Left"
+align = "Left"
 
 [[columns]]
-kind              = "Command"
-style             = "BrightWhite|Black"
-numeric_search    = false
+kind = "Command"
+style = "BrightWhite|Black"
+numeric_search = false
 nonnumeric_search = true
-align             = "Left"
+align = "Left"
 
 [style]
 header = "BrightWhite|Black"
-unit   = "BrightWhite|Black"
-tree   = "BrightWhite|Black"
+unit = "BrightWhite|Black"
+tree = "BrightWhite|Black"
 
 [style.by_percentage]
 color_000 = "BrightCyan|Cyan"
@@ -65,40 +65,40 @@ color_p = "BrightRed|Red"
 color_x = "BrightBlue|Blue"
 
 [search]
-numeric_search    = "Exact"
+numeric_search = "Exact"
 nonnumeric_search = "Partial"
-logic             = "And"
-case              = "Smart"
+logic = "And"
+case = "Smart"
 
 [display]
-show_self             = true
-show_self_parents     = true
-show_thread           = false
-show_thread_in_tree   = false
-show_parent_in_tree   = true
+show_self = true
+show_self_parents = true
+show_thread = false
+show_thread_in_tree = false
+show_parent_in_tree = true
 show_children_in_tree = true
-show_header           = false
-show_footer           = false
-cut_to_terminal       = true
-cut_to_pager          = false
-cut_to_pipe           = false
-color_mode            = "Auto"
-separator             = "│"
-ascending             = "▲"
-descending            = "▼"
-tree_symbols          = ["│", "─", "┬", "├", "└"]
-abbr_sid              = true
-theme                 = "Auto"
-show_kthreads         = true
+show_header = false
+show_footer = false
+cut_to_terminal = true
+cut_to_pager = false
+cut_to_pipe = false
+color_mode = "Auto"
+separator = "│"
+ascending = "▲"
+descending = "▼"
+tree_symbols = ["│", "─", "┬", "├", "└"]
+abbr_sid = true
+theme = "Auto"
+show_kthreads = true
 
 [sort]
 column = 0
-order  = "Ascending"
+order = "Ascending"
 
 [docker]
 path = "unix:///var/run/docker.sock"
 
 [pager]
-mode         = "Disable"
+mode = "Disable"
 detect_width = false
-use_builtin  = false
+use_builtin = false

@@ -1,14 +1,14 @@
 #:schema https://jj-vcs.github.io/jj/latest/config-schema.json
 
 [user]
-name  = "AminurAlam"
+name = "AminurAlam"
 email = "64137875+AminurAlam@users.noreply.github.com"
 
 [git]
 colocate = false
 
 [ui]
-editor          = "nvim"
+editor = "nvim"
 default-command = "log"
 
 [templates]
@@ -17,8 +17,8 @@ log = "pretty"
 [template-aliases]
 # https://github.com/jj-vcs/jj/blob/main/cli/src/config/templates.toml
 description_placeholder = 'label("description placeholder", "\"\"")'
-pretty                  = "pretty(self)"
-'pretty(commit)'        = '''
+pretty = "pretty(self)"
+'pretty(commit)' = '''
 
 if(commit.root(),
   format_root_commit(commit),

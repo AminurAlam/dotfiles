@@ -41,7 +41,7 @@ function hentai -d "for managing literature"
     printf "working on args...\n"
     [ -e "$targetdir" ] || mkdir -p "$targetdir"
     cd "$targetdir"
-    set name (fd -tf -d1 -ecbz . | fzf) # TODO: use yazi instead of fzf
+    set name (fd -tf -d1 -ecbz . | fzf)
     cd "$mangadir/downloads/HentaiNexus (EN)/" || return 3
 
     if [ -n "$name" ]

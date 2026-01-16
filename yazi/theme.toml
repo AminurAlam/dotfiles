@@ -4,30 +4,30 @@
 [flavor]
 
 [mgr]
-cwd             = { fg = "blue" }
+cwd = { fg = "blue" }
 # Find
-find_keyword    = { fg = "#ff9e64", bold = true }
-find_position   = { bg = "#2e3c64", bold = true }
+find_keyword = { fg = "#ff9e64", bold = true }
+find_position = { bg = "#2e3c64", bold = true }
 # Symlink
-symlink_target  = { italic = true }
+symlink_target = { italic = true }
 # Marker
-marker_copied   = { fg = "green", bg = "green" }
-marker_cut      = { fg = "yellow", bg = "yellow" }
-marker_marked   = { fg = "lightblue", bg = "lightblue" }
+marker_copied = { fg = "green", bg = "green" }
+marker_cut = { fg = "yellow", bg = "yellow" }
+marker_marked = { fg = "lightblue", bg = "lightblue" }
 marker_selected = { fg = "blue", bg = "blue" }
 # Count
-count_copied    = { fg = "black", bg = "green" }
-count_cut       = { fg = "black", bg = "yellow" }
-count_selected  = { fg = "black", bg = "blue" }
+count_copied = { fg = "black", bg = "green" }
+count_cut = { fg = "black", bg = "yellow" }
+count_selected = { fg = "black", bg = "blue" }
 # Border
-border_symbol   = " "                                     # "│"
-border_style    = { fg = "gray" }
+border_symbol = " "            # "│"
+border_style = { fg = "gray" }
 # Highlighting
-syntect_theme   = "~/repos/dotfiles/yazi/tmtheme.xml"
+syntect_theme = "~/repos/dotfiles/yazi/tmtheme.xml"
 
 [tabs]
-active    = { bg = "red", fg = "black" }
-inactive  = { fg = "red", bg = "darkgray" }
+active = { bg = "red", fg = "black" }
+inactive = { fg = "red", bg = "darkgray" }
 sep_inner = { open = " ", close = " " }
 sep_outer = { open = " ", close = " " }
 
@@ -41,9 +41,9 @@ preview = { bold = true }
 
 [status]
 # TODO: change fg to black
-progress_label  = { bold = true }
+progress_label = { bold = true }
 progress_normal = { fg = "black", bg = "green" }
-progress_error  = { fg = "black", bg = "red" }
+progress_error = { fg = "black", bg = "red" }
 
 [input]
 # border   = { fg = "#24283b" }

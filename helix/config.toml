@@ -1,43 +1,41 @@
-# TODO: disable equal aligning
-
 theme = "custom"
 
 [editor]
-default-yank-register   = "+"
-shell                   = ["fish", "-c"]
-continue-comments       = false
-completion-replace      = true
-true-color              = true
-bufferline              = "multiple"
-color-modes             = true
-text-width              = 85
-atomic-save             = true
-popup-border            = "all"
-jump-label-alphabet     = "fjdksla;ghcnvmwi"
+default-yank-register = "+"
+shell = ["fish", "-c"]
+continue-comments = false
+completion-replace = true
+true-color = true
+bufferline = "multiple"
+color-modes = true
+text-width = 85
+atomic-save = true
+popup-border = "all"
+jump-label-alphabet = "fjdksla;ghcnvmwi"
 end-of-line-diagnostics = "hint"
-cursorline              = true
-gutters                 = { layout = ["line-numbers", "diff"], line-numbers.min-width = 1 }
-cursor-shape            = { insert = "bar" }
-file-picker             = { git-ignore = false }
-whitespace              = { render = { tab = "all" }, characters = { tab = ">", tabpad = " " } }
-inline-diagnostics      = { cursor-line = "error" }
+cursorline = true
+gutters = { layout = ["line-numbers", "diff"], line-numbers.min-width = 1 }
+cursor-shape = { insert = "bar" }
+file-picker = { git-ignore = false }
+whitespace = { render = { tab = "all" }, characters = { tab = ">", tabpad = " " } }
+inline-diagnostics = { cursor-line = "error" }
 
 [keys.normal]
-q     = ":quit"
-0     = "extend_to_line_start"
-"^"   = "extend_to_first_nonwhitespace"
-"$"   = "extend_to_line_end"
-G     = "goto_file_end"
+q = ":quit"
+0 = "extend_to_line_start"
+"^" = "extend_to_first_nonwhitespace"
+"$" = "extend_to_line_end"
+G = "goto_file_end"
 "ret" = ["move_char_right", "move_prev_word_start", "move_next_word_end"]
-esc   = ["collapse_selection", "keep_primary_selection"]
-r     = "redo"
-U     = ":reset-diff-change"
-"*"   = ["move_char_right", "move_prev_word_start", "move_next_word_end", "search_selection", "search_next"]
+esc = ["collapse_selection", "keep_primary_selection"]
+r = "redo"
+U = ":reset-diff-change"
+"*" = ["move_char_right", "move_prev_word_start", "move_next_word_end", "search_selection", "search_next"]
 "C-r" = ":config-reload"
 "C-j" = ":buffer-next"
 "C-k" = ":buffer-previous"
-V     = ["extend_line_below"]
-X     = ["extend_line_above"]
+V = ["extend_line_below"]
+X = ["extend_line_above"]
 
 [keys.normal.space]
 w = ":w"

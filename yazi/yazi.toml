@@ -2,7 +2,7 @@
 
 ## FETCH
 [plugin]
-prepend_fetchers   = [
+prepend_fetchers = [
   { id = "mime", url = "*.{!qB,part}", run = "noop", prio = "high" },
   { id = "mime", url = "/mnt/rclone/**", run = "noop", prio = "high" },
   { id = "git", url = "*", run = "git" },
@@ -38,7 +38,7 @@ prepend_preloaders = [
   { mime = "application/ms-opentype", run = "font-sample" },
   { url = "*.{otf,ttf,woff,woff2}", run = "font-sample" },
 ]
-spotters           = [
+spotters = [
   { url = "*/", run = "folder" },
   # Image
   { mime = "image/{avif,hei?,jxl}", run = "magick" },
@@ -61,10 +61,7 @@ rules = [
   { mime = "audio/mpegurl", use = ["edit", "fallback"] },
   { mime = "application/android.package-archive", use = ["apkinstall", "fallback"] },
   { url = "*.apk", use = ["apkinstall", "fallback"] },
-  { mime = "application/{zip,rar,7z*,tar,gzip,xz,zstd,bzip*,lzma,compress,archive,cpio,arj,xar,ms-cab*}", use = [
-    "extract",
-    "fallback"
-  ] },
+  { mime = "application/{zip,rar,7z*,tar,gzip,xz,zstd,bzip*,lzma,compress,archive,cpio,arj,xar,ms-cab*}", use = ["extract", "fallback"] },
   { url = "*.{zip,rar,deb}", use = ["extract", "zathura", "fallback"] },
   { mime = "image/svg+xml", use = ["swayimg", "inkscape", "fallback"] },
   { mime = "image/*", use = ["swayimg", "swaybg", "krita", "identity", "fallback"] },
@@ -81,101 +78,97 @@ rules = [
 ]
 
 [opener]
-add-sub    = [{ run = "echo sub-add %s | socat - /tmp/mpv.sock", desc = "󰨗 Add sub to MPV", for = "linux" }]
+add-sub = [{ run = "echo sub-add %s | socat - /tmp/mpv.sock", desc = "󰨗 Add sub to MPV", for = "linux" }]
 apkinstall = [
-  { run = "ANDROID_USER_HOME=/home/fisher/.local/share/.android HOME=/home/fisher/.local/share/ adb install %s", block = true, orphan = false, desc = " apk installer", for = "linux" }
+  { run = "ANDROID_USER_HOME=/home/fisher/.local/share/.android HOME=/home/fisher/.local/share/ adb install %s", block = true, orphan = false, desc = " apk installer", for = "linux" },
 ]
-dir2cbz    = [{ run = "fish -c 'dir2cbz $argv' %s", block = true, desc = " dir2cbz" }]
-identity   = [{ run = "identity -- %s", orphan = true, for = "linux", desc = "󰆊 compare images" }]
-kid3       = [{ run = "kid3 -- %s", orphan = true, for = "linux", desc = " kid3" }]
-krita      = [{ run = "krita %s", block = false, orphan = true, desc = " krita", for = "linux" }]
-inkscape   = [{ run = "inkscape %s", block = false, orphan = true, desc = "󰕞 inkscape", for = "linux" }]
-picard     = [{ run = "picard -- %s", orphan = true, for = "linux", desc = "󰫅 picard" }]
-rsync      = [
-  { run = "rsync -Pha -- %s brick:/sdcard/Download/", block = false, desc = " Send to phone", for = "linux" }
-]
-swaybg     = [{ run = "swaybg -m fill -i %s1", block = false, orphan = true, desc = " swaybg", for = "linux" }]
-swayimg    = [{ run = "swayimg %s", block = false, orphan = true, desc = " swayimg", for = "linux" }]
-zathura    = [{ run = "zathura %s", block = false, orphan = true, desc = " zathura", for = "linux" }]
-tenacity   = [{ run = "tenacity %s", block = false, orphan = true, desc = "󰓀 tenacity", for = "linux" }]
+dir2cbz = [{ run = "fish -c 'dir2cbz $argv' %s", block = true, desc = " dir2cbz" }]
+identity = [{ run = "identity -- %s", orphan = true, for = "linux", desc = "󰆊 compare images" }]
+kid3 = [{ run = "kid3 -- %s", orphan = true, for = "linux", desc = " kid3" }]
+krita = [{ run = "krita %s", block = false, orphan = true, desc = " krita", for = "linux" }]
+inkscape = [{ run = "inkscape %s", block = false, orphan = true, desc = "󰕞 inkscape", for = "linux" }]
+picard = [{ run = "picard -- %s", orphan = true, for = "linux", desc = "󰫅 picard" }]
+rsync = [{ run = "rsync -Pha -- %s brick:/sdcard/Download/", block = false, desc = " Send to phone", for = "linux" }]
+swaybg = [{ run = "swaybg -m fill -i %s1", block = false, orphan = true, desc = " swaybg", for = "linux" }]
+swayimg = [{ run = "swayimg %s", block = false, orphan = true, desc = " swayimg", for = "linux" }]
+zathura = [{ run = "zathura %s", block = false, orphan = true, desc = " zathura", for = "linux" }]
+tenacity = [{ run = "tenacity %s", block = false, orphan = true, desc = "󰓀 tenacity", for = "linux" }]
 # defaults
-edit       = [
+edit = [
   { run = "nvim %s", desc = " nvim", block = true, for = "unix" },
   { run = "helix %s", desc = "󰚄 helix", block = true, for = "unix" },
 ]
-fallback   = [
+fallback = [
   { run = "xdg-open %s1", orphan = true, desc = "󰏌 Open", for = "linux" },
   { run = "rsync -Pha -- %s brick:/sdcard/Download/", block = false, desc = " Send to phone", for = "linux" },
   { run = "termux-open %s1", orphan = true, desc = "󰏌 Open", for = "android" },
 ]
-play       = [{ run = "mpv --force-window %s1", orphan = true, for = "linux", desc = " mpv" }]
-reveal     = [
+play = [{ run = "mpv --force-window %s1", orphan = true, for = "linux", desc = " mpv" }]
+reveal = [
   { run = "xdg-open %d", desc = " Reveal", for = "linux" },
   { run = "opendir %d", desc = " Reveal", for = "android" },
   { run = "swayimg -g %s", orphan = true, desc = " gallery" },
 ]
-extract    = [
-  { run = 'ya pub extract --list %s""', desc = "󱉛 Extract here", for = "unix" },
-]
+extract = [{ run = 'ya pub extract --list %s""', desc = "󱉛 Extract here", for = "unix" }]
 
 [mgr]
-ratio          = [0, 1, 1]
-sort_by        = "extension"
+ratio = [0, 1, 1]
+sort_by = "extension"
 sort_sensitive = false
-sort_reverse   = false
+sort_reverse = false
 sort_dir_first = true
-sort_translit  = false
-linemode       = "size"
-show_hidden    = true
-show_symlink   = true
-scrolloff      = 10
-mouse_events   = ["click", "scroll"]
-title_format   = "Yazi: {cwd}"
+sort_translit = false
+linemode = "size"
+show_hidden = true
+show_symlink = true
+scrolloff = 10
+mouse_events = ["click", "scroll"]
+title_format = "Yazi: {cwd}"
 
 [preview]
-wrap            = "no"
-tab_size        = 2
-max_width       = 1500
-max_height      = 1007
-cache_dir       = ""
-image_delay     = 30
-image_filter    = "triangle"
-image_quality   = 75
-ueberzug_scale  = 1
+wrap = "no"
+tab_size = 2
+max_width = 1500
+max_height = 1007
+cache_dir = ""
+image_delay = 30
+image_filter = "triangle"
+image_quality = 75
+ueberzug_scale = 1
 ueberzug_offset = [0, 0.2, 0, 0]
 
 [input]
-cursor_blink  = false
+cursor_blink = false
 # TODO: no border
 # rename
-rename_title  = ""
+rename_title = ""
 rename_origin = "hovered"
 rename_offset = [2, -1, 77, 3]
 # cd
-cd_title      = "   "
-cd_origin     = "bottom-left"
-cd_offset     = [0, 0, 999, 3]
+cd_title = "   "
+cd_origin = "bottom-left"
+cd_offset = [0, 0, 999, 3]
 # create
 create_offset = [0, 0, 999, 3]
 # filter
-filter_title  = " 󰈲 "
+filter_title = " 󰈲 "
 filter_origin = "bottom-left"
 filter_offset = [0, 0, 999, 3]
 # find
-find_title    = [" / ", " ? "]
-find_origin   = "bottom-left"
-find_offset   = [0, 0, 999, 3]
+find_title = [" / ", " ? "]
+find_origin = "bottom-left"
+find_offset = [0, 0, 999, 3]
 # search
-search_title  = "  {n} "
+search_title = "  {n} "
 search_origin = "bottom-left"
 search_offset = [0, 0, 999, 3]
 # shell
-shell_title   = ["  ", "  block "]
-shell_origin  = "bottom-left"
-shell_offset  = [0, 0, 999, 3]
+shell_title = ["  ", "  block "]
+shell_origin = "bottom-left"
+shell_offset = [0, 0, 999, 3]
 
 [pick]
-open_title  = "Open with:"
+open_title = "Open with:"
 open_origin = "hovered"
 open_offset = [0, 1, 30, 30]
 

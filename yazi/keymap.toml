@@ -1,12 +1,12 @@
 #:schema https://yazi-rs.github.io/schemas/keymap.json
 # tombi: format.rules.table-keys-order.disabled = true
 
-help.prepend_keymap  = [{ on = "q", run = "close", desc = "Exit the process" }]
+help.prepend_keymap = [{ on = "q", run = "close", desc = "Exit the process" }]
 input.prepend_keymap = []
 tasks.prepend_keymap = [{ on = "q", run = "close", desc = "Close the spot" }]
-pick.prepend_keymap  = [{ on = "l", run = "close --submit" }, { on = "<right>", run = "close --submit" }]
-cmp.prepend_keymap   = []
-spot.prepend_keymap  = [{ on = "q", run = "close", desc = "Close the spot" }]
+pick.prepend_keymap = [{ on = "l", run = "close --submit" }, { on = "<right>", run = "close --submit" }]
+cmp.prepend_keymap = []
+spot.prepend_keymap = [{ on = "q", run = "close", desc = "Close the spot" }]
 
 [confirm]
 prepend_keymap = [
