@@ -1,5 +1,6 @@
 window-rule { // floatinng save as window
-    match title="^(Save File|Select Directory|Select File):$"
+    // match title="^(Save File|Select Directory|Select File):$"
+    match title="^file_chooser$"
 
     open-floating true
     open-focused true
