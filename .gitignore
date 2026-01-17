@@ -1,5 +1,6 @@
 /applications/*
 !/applications/games/
+!/applications/newsraft.desktop
 !/applications/org.keepassxc.KeePassXC.desktop
 
 # hide applications
