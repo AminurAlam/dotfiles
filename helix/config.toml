@@ -1,6 +1,7 @@
 theme = "custom"
 
 [editor]
+auto-format = true
 default-yank-register = "+"
 shell = ["fish", "-c"]
 continue-comments = false
@@ -15,7 +16,7 @@ jump-label-alphabet = "fjdksla;ghcnvmwi"
 end-of-line-diagnostics = "hint"
 cursorline = true
 gutters = { layout = ["line-numbers", "diff"], line-numbers.min-width = 1 }
-cursor-shape = { insert = "bar" }
+cursor-shape = { insert = "bar", select = "underline" }
 file-picker = { git-ignore = false }
 whitespace = { render = { tab = "all" }, characters = { tab = ">", tabpad = " " } }
 inline-diagnostics = { cursor-line = "error" }

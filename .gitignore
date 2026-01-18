@@ -45,6 +45,7 @@
 /fish/fish_variables
 
 /helix/runtime/grammars/sources
+/helix/runtime/grammars
 
 
 /mgba/qt.ini

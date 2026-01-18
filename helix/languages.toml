@@ -18,6 +18,7 @@ formatter = { command = "fish_indent", args = ["-"] }
 [[language]]
 name = "toml"
 auto-format = true
+formatter = { command = "taplo", args = ["format", "-"] }
 
 [[language]]
 name = "kanata"
@@ -28,4 +29,21 @@ comment-tokens = [";;"]
 
 [[grammar]]
 name = "kanata"
-source = { git = "https://github.com/AminurAlam/tree-sitter-kanata", rev = "96ab54c669433c90e1cb5bca950afbd32ebe148f" }
+source = { git = "https://github.com/AminurAlam/tree-sitter-kanata", rev = "5f37aa65c2573828a745b9c0edf65fe4d768f8c4" }
+
+### TYPST
+
+[[language]]
+name = "typst"
+scope = "source.typst"
+file-types = ["typst", "typ"]
+indent = { tab-width = 2, unit = "  " }
+comment-token = "//"
+injection-regex = "typ(st|c)?"
+
+[language.auto-pairs]
+'(' = ')'
+'{' = '}'
+'[' = ']'
+'$' = '$'
+'"' = '"'
