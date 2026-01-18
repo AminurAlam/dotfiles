@@ -51,7 +51,7 @@ abbr dud "dust -d 1"
 abbr df 'df --output=pcent,avail,target -h -x tmpfs -x efivarfs'
 set -q TERMUX_VERSION && abbr df 'df -h | awk \'/fuse/{print $3"/"$2,$5,$4}\''
 
-# pkg
+# pkg: https://wiki.archlinux.org/title/Pacman/Rosetta
 if command -vq pacstall
     abbr pi pacstall -I
     abbr pr pacstall -R
@@ -81,12 +81,6 @@ else if command -vq yay
     abbr puu sudo pacman -Syu
     abbr pf yay -Ss
     abbr pa yay -Si
-else if command -vq paru
-    abbr pi paru -S
-    abbr pr paru -Rs
-    abbr pu paru -Syu
-    abbr pf paru -Ss
-    abbr pa paru -Si
 else if command -vq pacman
     set sudo (command -v sudo | path basename)
 

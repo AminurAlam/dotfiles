@@ -102,7 +102,6 @@ gui:
       - blue
     selectedLineBgColor:
       - "#2e3c64"
-    # TODO: pr tokyonight
     inactiveViewSelectedLineBgColor:
       - underline
     cherryPickedCommitFgColor:

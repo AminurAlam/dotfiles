@@ -27,7 +27,7 @@ set -gx FZF_DEFAULT_OPTS_FILE $HOME/repos/dotfiles/other/fzfrc
 set -gx WINEPREFIX $XDG_DATA_HOME/wineprefixes/default
 set -gx GRADLE_USER_HOME $XDG_DATA_HOME/gradle
 set -gx QT_QPA_PLATFORMTHEME qt6ct
-set -gx _ZO_EXCLUDE_DIRS '$HOME:$XDG_DOWNLOAD_DIR/*:$HOME/repos/*/*:$XDG_MUSIC_DIR/albums/*:.git'
+set -gx _ZO_EXCLUDE_DIRS "$HOME:$HOME/repos/*/*:$XDG_DOWNLOAD_DIR/*:$XDG_MUSIC_DIR/albums/*:.git"
 set -gx _ZO_FZF_OPTS '--ignore-case --tiebreak chunk,begin,index --no-multi --scroll-off 4
 --height ~90% --layout default --border rounded --margin 0,0,0,0 --no-info --no-separator
 --prompt " " --preview ""'

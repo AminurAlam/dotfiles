@@ -20,8 +20,8 @@ count_copied = { fg = "black", bg = "green" }
 count_cut = { fg = "black", bg = "yellow" }
 count_selected = { fg = "black", bg = "blue" }
 # Border
-border_symbol = " "            # "│"
-border_style = { fg = "gray" }
+border_symbol = "│"
+border_style = { fg = "darkgray" }
 # Highlighting
 syntect_theme = "~/repos/dotfiles/yazi/tmtheme.xml"
 
