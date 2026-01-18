@@ -1,6 +1,6 @@
 {
   "extractor": {
-    "base-directory": "~/Pictures/gallery-dl/",
+    "base-directory": "~/pic/gallery-dl/",
     "#": "set global archive file for all extractors",
     "archive": "~/gallery-dl/archive.sqlite3",
     "archive-pragma": ["journal_mode=WAL", "synchronous=NORMAL"],
