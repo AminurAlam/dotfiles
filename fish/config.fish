@@ -5,12 +5,12 @@ set -gx MANPAGER "nvim +Man!"
 set -gx COLORTERM truecolor
 
 # xdg
-set -gx XDG_VIDEOS_DIR $HOME/Videos
-set -gx XDG_DOWNLOAD_DIR $HOME/Downloads
-set -gx XDG_DOCUMENTS_DIR $HOME/Documents
-set -gx XDG_MUSIC_DIR $HOME/Music
-set -gx XDG_PICTURES_DIR $HOME/Pictures
-set -gx XDG_VIDEOS_DIR $HOME/Videos
+set -gx XDG_VIDEOS_DIR $HOME/vid
+set -gx XDG_DOWNLOAD_DIR $HOME/dl
+set -gx XDG_DOCUMENTS_DIR $HOME/doc
+set -gx XDG_MUSIC_DIR $HOME/mu
+set -gx XDG_PICTURES_DIR $HOME/pic
+set -gx XDG_VIDEOS_DIR $HOME/vid
 set -gx XDG_CONFIG_HOME $HOME/.config
 set -gx XDG_CACHE_HOME $HOME/.local/cache
 set -gx XDG_DATA_HOME $HOME/.local/share
@@ -27,7 +27,7 @@ set -gx FZF_DEFAULT_OPTS_FILE $HOME/repos/dotfiles/other/fzfrc
 set -gx WINEPREFIX $XDG_DATA_HOME/wineprefixes/default
 set -gx GRADLE_USER_HOME $XDG_DATA_HOME/gradle
 set -gx QT_QPA_PLATFORMTHEME qt6ct
-set -gx _ZO_EXCLUDE_DIRS '$HOME:$HOME/Downloads/*:$HOME/repos/*/*:$HOME/Music/albums/*:.git'
+set -gx _ZO_EXCLUDE_DIRS '$HOME:$XDG_DOWNLOAD_DIR/*:$HOME/repos/*/*:$XDG_MUSIC_DIR/albums/*:.git'
 set -gx _ZO_FZF_OPTS '--ignore-case --tiebreak chunk,begin,index --no-multi --scroll-off 4
 --height ~90% --layout default --border rounded --margin 0,0,0,0 --no-info --no-separator
 --prompt " " --preview ""'

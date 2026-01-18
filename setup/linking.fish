@@ -42,6 +42,7 @@ ln -fs ~/repos/dotfiles/other/starship.toml ~/.config/starship.toml
 ln -fs ~/repos/dotfiles/other/stylua.toml ~/.config/stylua.toml
 ln -fs ~/repos/dotfiles/other/taplo.toml ~/.config/taplo.toml
 # ln -fs ~/repos/dotfiles/other/ssh_config ~/.ssh/config # NOTE: do this manually
+ln -fs ~/repos/dotfiles/other/user-dirs.dirs ~/.config/user-dirs.dirs
 printf "done\n"
 
 if set -q TERMUX_VERSION

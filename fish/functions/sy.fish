@@ -14,27 +14,27 @@ function sy -d "sync files between phone and pc"
         end
 
         printf "=== PICTURES ===\n"
-        rsync $comm ~/Pictures/ brick:/sdcard/Pictures/ --exclude={Camera,Komikku,WhatsApp Images} | rg -v '/$'
-        rsync $comm brick:/sdcard/Pictures/ ~/Pictures/ | rg -v '/$'
-        rsync $comm brick:/sdcard/{DCIM/Camera,Pictures/Komikku,Android/media/com.whatsapp/WhatsApp/Media/WhatsApp Images} ~/Pictures/ --delete | rg -v '/$'
+        rsync $comm $XDG_PICTURES_DIR/ brick:/sdcard/Pictures/ --exclude={Camera,Komikku,WhatsApp Images} | rg -v '/$'
+        rsync $comm brick:/sdcard/Pictures/ $XDG_PICTURES_DIR/ | rg -v '/$'
+        rsync $comm brick:/sdcard/{DCIM/Camera,Pictures/Komikku,Android/media/com.whatsapp/WhatsApp/Media/WhatsApp Images} $XDG_PICTURES_DIR/ --delete | rg -v '/$'
 
         printf "=== DOCUMENTS ===\n"
-        rsync $comm brick:/sdcard/Android/media/com.whatsapp/WhatsApp/Media/WhatsApp\ Documents/ ~/Documents/wa_docs/ --delete | rg -v '/$'
-        rsync $comm brick:/sdcard/Documents/ ~/Documents/ | rg -v '/$'
-        rsync $comm ~/Documents/ brick:/sdcard/Documents/ --exclude wa_docs | rg -v '/$'
+        rsync $comm brick:/sdcard/Android/media/com.whatsapp/WhatsApp/Media/WhatsApp\ Documents/ $XDG_DOCUMENTS_DIR/wa_docs/ --delete | rg -v '/$'
+        rsync $comm brick:/sdcard/Documents/ $XDG_DOCUMENTS_DIR/ | rg -v '/$'
+        rsync $comm $XDG_DOCUMENTS_DIR/ brick:/sdcard/Documents/ --exclude wa_docs | rg -v '/$'
 
         printf "=== MUSIC ===\n"
-        rsync $comm brick:/sdcard/Music/ ~/Music/ --delete | rg -v '/$'
+        rsync $comm brick:/sdcard/Music/ $XDG_MUSIC_DIR/ --delete | rg -v '/$'
 
         printf "=== MANGA ===\n"
-        rsync $comm brick:/sdcard/TachiyomiSY/local/\#lewd/ ~/Downloads/manga/\#lewd/ --exclude=@$artists --delete | rg -v '/$'
-        rsync $comm brick:/sdcard/TachiyomiSY/local/@$artists ~/Downloads/manga/\#lewd/ --delete | rg -v '/$'
+        rsync $comm brick:/sdcard/TachiyomiSY/local/\#lewd/ $XDG_DOWNLOAD_DIR/manga/\#lewd/ --exclude=@$artists --delete | rg -v '/$'
+        rsync $comm brick:/sdcard/TachiyomiSY/local/@$artists $XDG_DOWNLOAD_DIR/manga/\#lewd/ --delete | rg -v '/$'
 
         printf "=== MISC ===\n"
-        rsync $comm ~/Downloads/main/arch.kdbx brick:/sdcard/main/arch.kdbx
-        rsync $comm brick:/sdcard/main/android.kdbx ~/Downloads/main/android.kdbx
-        [ -e ~/.local/share/newsraft/newsraft.sqlite3-journal ]
-        or rsync $comm /home/fisher/.local/share/newsraft/newsraft.sqlite3 brick:~/.local/share/newsraft/newsraft.sqlite3
-        rsync $comm brick:/sdcard/main/backup/ ~/Downloads/main/backup/
+        rsync $comm $XDG_DOWNLOAD_DIR/main/arch.kdbx brick:/sdcard/main/arch.kdbx
+        rsync $comm brick:/sdcard/main/android.kdbx $XDG_DOWNLOAD_DIR/main/android.kdbx
+        [ -e $XDG_DATA_HOME/newsraft/newsraft.sqlite3-journal ]
+        or rsync $comm $XDG_DATA_HOME/newsraft/newsraft.sqlite3 brick:~/.local/share/newsraft/newsraft.sqlite3
+        rsync $comm brick:/sdcard/main/backup/ $XDG_DOWNLOAD_DIR/main/backup/
     end
 end
