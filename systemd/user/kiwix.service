@@ -6,8 +6,8 @@ After=network.target
 [Service]
 Environment=PATH=/usr/local/bin:/usr/local/sbin:/usr/bin:/bin
 Type=exec
-ExecStartPre=sh -c "kiwix-manage ~/Downloads/main/zim/library_zim.xml add ~/Downloads/main/zim/*.zim"
-ExecStart=/usr/bin/kiwix-serve -p 8101 --library Downloads/main/zim/library_zim.xml
+ExecStartPre=sh -c "kiwix-manage ~/dl/main/zim/library_zim.xml add ~/dl/main/zim/*.zim"
+ExecStart=/usr/bin/kiwix-serve -p 8101 --library dl/main/zim/library_zim.xml
 PrivateTmp=true
 PrivateDevices=true
 PrivateUsers=true

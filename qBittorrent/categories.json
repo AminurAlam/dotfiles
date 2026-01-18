@@ -1,8 +1,8 @@
 {
     "lit": {
-        "save_path": "/home/fisher/Downloads/manga"
+        "save_path": "/home/fisher/dl/manga"
     },
     "vid": {
-        "save_path": "/home/fisher/Videos"
+        "save_path": "/home/fisher/vid"
     }
 }

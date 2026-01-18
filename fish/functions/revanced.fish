@@ -88,7 +88,7 @@ function revanced -d "patch and install apks with revanced" -a apkid
         case tv.twitch.android.app
     end
 
-    cd ~/Downloads/main/revanced || return
+    cd ~/dl/main/revanced || return
 
     if not [ -e api.json ] || [ (math (date +%s) - (stat -c '%Y' -- api.json)) -gt 3600 ]
         curl -o api.json -#LH "Accept: application/vnd.github+json" \

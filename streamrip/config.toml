@@ -1,6 +1,6 @@
 [downloads]
 # Folder where tracks are downloaded to
-folder = "/home/fisher/Downloads/"
+folder = "/home/fisher/dl/"
 # Put Qobuz albums in a 'Qobuz' folder, Tidal albums in 'Tidal' etc.
 source_subdirectories = false
 # Put tracks in an album with 2 or more discs into a subfolder named `Disc N` 
@@ -83,7 +83,7 @@ quality = 0
 # Download the video along with the audio
 download_videos = false
 # The path to download the videos to
-video_downloads_folder = "/sdcard/Movies/yt/"
+video_downloads_folder = "/sdcard/vid/yt/"
 
 [database]
 # Create a database that contains all the track IDs downloaded so far
