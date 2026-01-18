@@ -1,3 +1,6 @@
+![file manager and terminal](https://github.com/user-attachments/assets/007e3799-90a0-4feb-844c-6b2696ac3832 "file manager and terminal")
+![lazygit and nvim](https://github.com/user-attachments/assets/63077fbf-21ee-4ab5-a2c9-bf441272ece8 "file manager and terminal")
+
 # configs found here
 
 - [alacritty](https://alacritty.org/) - terminal emulator
