@@ -35,7 +35,7 @@ window-rule { // unfocused
 
     draw-border-with-background false
     opacity 0.95
-    /-shadow {
+    shadow {
         on
         softness 40
         spread 5
@@ -51,7 +51,7 @@ window-rule { // *
     clip-to-geometry true
 }
 
-layer-rule {
+layer-rule { // backdrop
     match namespace="waybar|wallpaper"
     match at-startup=true
 
