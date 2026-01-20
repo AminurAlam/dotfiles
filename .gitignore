@@ -47,6 +47,10 @@
 /helix/runtime/grammars/sources
 /helix/runtime/grammars
 
+/librewolf/librewolf/*
+!/librewolf/librewolf/librewolf.overrides.cfg
+!/librewolf/librewolf/lvl02447.default-default/chrome/userChrome.css
+!/librewolf/librewolf/native-messaging-hosts/org.keepassxc.keepassxc_browser.json
 
 /mgba/qt.ini
 /mgba/*.sqlite3

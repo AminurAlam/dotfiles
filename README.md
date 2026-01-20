@@ -31,6 +31,7 @@
 - [keepassxc](https://keepassxc.org/) - password manager
 - [kitty](https://github.com/kovidgoyal/kitty) - terminal emulator
 - [lazygit](https://github.com/jesseduffield/lazygit) - ui for git
+- [librewolf](https://librewolf.net/) - Community-maintained fork of Firefox, focused on privacy, security and freedom
 - [ly](https://codeberg.org/fairyglade/ly) - TUI display manager
 - [mgba](http://mgba.io) - GBA emulator
 - [mpv](https://mpv.io) - media player
@@ -71,6 +72,8 @@
 - [zathura](https://pwmt.org/projects/zathura/) - document viewer
 - [zellij](https://zellij.dev/) - terminal workspace
 - [zoxide](https://github.com/ajeetdsouza/zoxide) - A smarter cd command for your terminal
+
+a more complete list of packages can be found in [setup/arch.pkglist](setup/arch.pkglist)
 
 # setup commands
 

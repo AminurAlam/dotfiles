@@ -1,0 +1,92 @@
+@-moz-document url(chrome://browser/content/browser.xhtml)
+{
+  #back-button,
+  #forward-button,
+  #home-button,
+  #reader-mode-button,
+  #sidebar-header,
+  #sidebar-splitter,
+  #star-button-box,
+  #stop-reload-button,
+  #TabsToolbar,
+  #undo-closed-tab {
+    display: none !important;
+  }
+
+  #contentAreaContextMenu {
+    > #context-add-engine,
+    > #context-bookmarklink,
+    > #context-copy,
+    > #context-cut,
+    > #context-delete,
+    > #context-inspect,
+    > #context-inspect-a11y,
+    > #context-leave-dom-fullscreen,
+    > #context-media-eme-separator,
+    > #context-media-pause,
+    > #context-media-play,
+    /* > #context-navigation, */
+    > #context-openlinkincurrent,
+    > #context-openlinkintab,
+    > #context-paste,
+    > #context-pdfjs-copy,
+    > #context-pdfjs-cut,
+    > #context-pdfjs-delete,
+    > #context-pdfjs-paste,
+    > #context-pdfjs-redo,
+    > #context-pdfjs-selectall,
+    > #context-pdfjs-undo,
+    > #context-print-selection,
+    > #context-redo,
+    > #context-savepage,
+    > #context-searchselect,
+    > #context-selectall,
+    > #context-sendaudio,
+    > #context-sendimage,
+    > #context-sendvideo,
+    > #context-sep-navigation,
+    > #context-sep-redo,
+    > #context-sep-selectall,
+    > #context-setDesktopBackground,
+    > #context-undo,
+    > #context-video-fullscreen,
+    /* > #context-viewsource, */
+    > #fill-login-generated-password,
+    > #frame-sep {
+      display: none !important;
+    }
+  }
+  /* #nav-bar { margin-top: -40px !important; } */
+  /* #nav-bar:focus-within { margin-top: 0 !important; } */
+  /* #navigator-toolbox { border-bottom: unset !important; } */
+}
+
+@-moz-document domain(example.com) {
+  div#header {
+    background-image: none !important;
+  }
+}
+
+/* add '[pdf]' next to links to PDF files */
+a[href$=".pdf"]:after {
+  font-size: smaller;
+  content: " [pdf]";
+}
+
+.button-box .button-icon {
+  display: none;
+}
+
+/* Tab bar */
+toolbarbutton#scrollbutton-up,
+toolbarbutton#scrollbutton-down {
+  display: none; /* Hide tab scroll buttons */
+}
+
+.browser-toolbar > * #alltabs-button {
+  display: none; /* Hide tab drop-down list */
+}
+
+.browser-toolbar > * #new-tab-button {
+  display: none; /* Hide new-tab button */
+}
