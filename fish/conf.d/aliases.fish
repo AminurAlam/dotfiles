@@ -15,6 +15,7 @@ abbr md "mkdir -pv"
 abbr vi nvim
 abbr h helix
 abbr adb ANDROID_USER_HOME="$XDG_DATA_HOME"/.android HOME="$XDG_DATA_HOME"/ adb
+abbr za _ZO_EXCLUDE_DIRS= zoxide add '$PWD'
 abbr cls clear
 abbr tar "tar xzf"
 abbr qmv "qmv -AXf do"
