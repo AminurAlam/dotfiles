@@ -19,7 +19,6 @@ set -gx XDG_STATE_HOME $HOME/.local/state
 # command config
 set -gx TERMCMD foot
 set -gx GDK_DEBUG portals
-set -gx GTK_USE_PORTAL 1
 set -gx MOZ_ENABLE_WAYLAND 1
 set -gx STARSHIP_CACHE $XDG_CACHE_HOME/starship
 set -gx ICEAUTHORITY $XDG_CACHE_HOME/ICEauthority
@@ -31,11 +30,23 @@ set -gx FZF_DEFAULT_OPTS_FILE $HOME/repos/dotfiles/other/fzfrc
 set -gx WINEPREFIX $XDG_DATA_HOME/wineprefixes/default
 set -gx GRADLE_USER_HOME $XDG_DATA_HOME/gradle
 set -gx QT_QPA_PLATFORMTHEME qt6ct
-set -gx _ZO_EXCLUDE_DIRS "$HOME:$HOME/repos/*/*:$XDG_DOWNLOAD_DIR/*:$XDG_MUSIC_DIR/albums/*:.git:$HOME/.local/*/*/**"
 set -gx _ZO_FZF_OPTS '--ignore-case --tiebreak chunk,begin,index --no-multi --scroll-off 4
 --height ~90% --layout default --border rounded --margin 0,0,0,0 --no-info --no-separator
 --prompt " " --preview ""'
 set -gx YAZI_ZOXIDE_OPTS $_ZO_FZF_OPTS
+set -gx _ZO_EXCLUDE_DIRS (string join : \
+    ".git" \
+    "/usr" \
+    "/usr/**" \
+    "/etc" \
+    "/etc/**" \
+    "$HOME" \
+    "$HOME/repos/*/*" \
+    "$HOME/.local/*/*/**" \
+    "$XDG_DOWNLOAD_DIR/*" \
+    "$XDG_CONFIG_HOME/*" \
+    "$XDG_MUSIC_DIR/albums/*" \
+)
 
 # lang config
 set -gx _JAVA_OPTIONS -Djava.util.prefs.userRoot=$XDG_CONFIG_HOME/java

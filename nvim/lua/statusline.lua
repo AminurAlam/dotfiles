@@ -109,6 +109,7 @@ vim.api.nvim_create_autocmd({ 'FileType' }, {
   command = 'setlocal statusline=%#Normal#',
 })
 
+-- TODO: bring back gitsigns_status to mini.diff
 vim.opt.stl = '%#stl_hl_a# %{ g:stl.mode() } %#stl_hl_b#' -- a to b
   .. ' %{ g:stl.bufcount() }%t '
   .. '%{ &modified ? "󰆓 " : "" }'
