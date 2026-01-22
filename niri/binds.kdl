@@ -21,6 +21,7 @@ binds {
     Mod+P       { screenshot; }
     Mod+Shift+P { screenshot-screen; }
     Mod+Alt+P   { screenshot-window; }
+    Mod+o       { spawn "ctl" "ssend"; }
 
     // FUNC
     XF86AudioMute repeat=false    { spawn "ctl" "vol";}
@@ -36,6 +37,7 @@ binds {
     // TODO: find better binds
     Mod+U       { spawn "ctl" "pow" "down"; }
     Mod+Shift+U { spawn "ctl" "pow" "up"; }
+    Mod+R       { spawn "ctl" "rec"; }
 
     // COL
     Mod+H { focus-column-left; }

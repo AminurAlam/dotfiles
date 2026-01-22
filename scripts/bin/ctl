@@ -8,15 +8,15 @@ switch $argv[1]
         else
             wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
             wpctl get-volume @DEFAULT_AUDIO_SINK@ | rg -q MUTED
-            and notify-send -h string:x-canonical-private-synchronous:mute -t 500 "MUTED 󰸈"
-            or notify-send -h string:x-canonical-private-synchronous:mute -t 500 "AUDIBLE 󰖀"
+            and notify-send -h string:x-canonical-private-synchronous:mute -t 500 "󰸈 MUTED"
+            or notify-send -h string:x-canonical-private-synchronous:mute -t 500 "󰖀 AUDIBLE"
         end
 
     case mic
         wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle
         wpctl get-volume @DEFAULT_AUDIO_SOURCE@ | rg -q MUTED
-        and notify-send -h string:x-canonical-private-synchronous:mic -t 500 "MUTED "
-        or notify-send -h string:x-canonical-private-synchronous:mic -t 500 "AUDIBLE "
+        and notify-send -h string:x-canonical-private-synchronous:mic -t 500 " MUTED"
+        or notify-send -h string:x-canonical-private-synchronous:mic -t 500 " AUDIBLE"
 
     case lum
         brightnessctl s (math 2 x (printf $argv[2] | wc -c))%$(string sub -l1 -- $argv[2])
@@ -25,16 +25,17 @@ switch $argv[1]
     case pow
         set current (powerprofilesctl get)
         if [ "$argv[2]" = up -a "$current" = balanced ]
-            notify-send -h string:x-canonical-private-synchronous:power -t 500 "PERFORMANCE  "
+            notify-send -h string:x-canonical-private-synchronous:power -t 500 " PERFORMANCE"
             powerprofilesctl set performance
         else if [ "$argv[2]" = up -a "$current" = power-saver ] \
                 || [ "$argv[2]" = down -a "$current" = performance ]
-            notify-send -h string:x-canonical-private-synchronous:power -t 500 "BALANCED  "
+            notify-send -h string:x-canonical-private-synchronous:power -t 500 " BALANCED"
             powerprofilesctl set balanced
         else if [ "$argv[2]" = down -a "$current" = balanced ]
-            notify-send -h string:x-canonical-private-synchronous:power -t 500 "POWER-SAVER  "
+            notify-send -h string:x-canonical-private-synchronous:power -t 500 " POWER-SAVER"
             powerprofilesctl set power-saver
         end
+
     case lim
         # TODO: https://github.com/laurento/gnome-shell-extension-ideapad#additional-required-settings
         set file /sys/bus/platform/drivers/ideapad_acpi/VPC2004:00/conservation_mode
@@ -43,4 +44,26 @@ switch $argv[1]
         [ "$(cat $file)" = 1 ]
         and notify-send -h string:x-canonical-private-synchronous:limit -t 500 " BATTERY LIMITED"
         or notify-send -h string:x-canonical-private-synchronous:limit -t 500 " BATTERY UNLOCKED"
+
+    case ss
+        set filename Screenshot_(date +'%Y%m%d_%H%M%S')_grim.png
+
+        if [ "$argv[2]" = full ]
+            grim $XDG_PICTURES_DIR/ss/$filename && notify-send "$filename taken"
+        else if [ "$argv[2]" = ocr ]
+            grim -g (slurp) - | wl-copy -t image/png
+        else
+            grim -g (slurp) $XDG_PICTURES_DIR/ss/$filename && notify-send "$filename taken"
+        end
+
+    case ssend
+        fd . $XDG_PICTURES_DIR/ss/ -a --changed-within 10min -X rsync -Pha '{}' brick:/sdcard/Pictures/ss/
+
+    case rec
+        if pidof wf-recorder
+            kill -s INT wf-recorder
+            notify-send -t 500 "󰨜 RECORDING SAVED"
+        else
+            wf-recorder -r 60 -p "br=5M" -f (date +'%Y-%m-%d_%H%M_%S').mp4
+        end
 end
