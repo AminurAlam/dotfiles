@@ -12,7 +12,8 @@ prepend_previewers = [
   { url = "*.{!qB,part}", run = "noop" },
   { url = "/mnt/rclone/**", run = "noop" },
   # custom
-  { mime = "application/epub+zip", run = "preview-ebook" },
+  { url = "*.typ", run = "preview-typst" },
+  { mime = "application/epub+zip", run = "preview-epub" },
   { url = "*.cb{z,r}", run = "preview-cbz" },
   { mime = "audio/mpegurl", run = "code" },
   { mime = "audio/*", run = "preview-audio" },
@@ -31,9 +32,10 @@ prepend_previewers = [
 prepend_preloaders = [
   { url = "*.{!qB,part}", run = "noop" },
   { url = "/mnt/rclone/**", run = "noop" },
-  { mime = "application/epub+zip", run = "preview-ebook" },
+  { url = "*.typ", run = "preview-typst" },
+  { mime = "application/epub+zip", run = "preview-epub" },
   { mime = "audio/*", run = "preview-audio" },
-  { url = "*.cb{z,r}", run = "preview-cbz" },
+  # { url = "*.cb{z,r}", run = "preview-cbz" },
   { mime = "font/*", run = "font-sample" },
   { mime = "application/ms-opentype", run = "font-sample" },
   { url = "*.{otf,ttf,woff,woff2}", run = "font-sample" },

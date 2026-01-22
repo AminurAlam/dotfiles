@@ -2,7 +2,7 @@
 
 ------------------ LAYOUT ---------------
 
-do -- [=[ shorter header cwd
+do -- [=[ shorter header cwd or tabs
   function Header:cwd()
     local max = self._area.w - self._right_width
 
@@ -14,10 +14,11 @@ do -- [=[ shorter header cwd
       return ui.Span(ui.truncate(self:flags(), { max = max, rtl = true })):style(th.mgr.cwd)
     end
 
-    local s = tostring(ya.readable_path(tostring(self._current.cwd))):gsub(
-      '(%.?)([^/])[^/]+/',
-      '%1%2/'
-    ) .. self:flags()
+    -- local s = tostring(ya.readable_path(tostring(self._current.cwd))):gsub(
+    --   '(%.?)([^/])[^/]+/',
+    --   '%1%2/'
+    -- ) .. self:flags()
+    local s = ya.readable_path(tostring(self._current.cwd))
     return ui.Span(ui.truncate(s, { max = max, rtl = true })):style(th.mgr.cwd)
   end
   --]=]
@@ -227,12 +228,20 @@ require('sort-by-location'):setup {
 }
 
 require('spot'):setup {
-  height = 25,
-  width = 70,
-  plugins_section = { enable = true },
   metadata_section = {
-    -- hash_cmd = 'md5sum', -- other hashing commands can be slower
+    hash_cmd = 'md5sum', -- other hashing commands can be slower
     hash_filesize_limit = 100, -- in MB, set 0 to disable
+    relative_time = true,
+  },
+  plugins_section = { enable = true },
+  style = {
+    section = 'green',
+    key = 'reset',
+    value = 'blue',
+    colorize_metadata = true,
+    height = 25,
+    width = 70,
+    key_length = 15,
   },
 }
 
