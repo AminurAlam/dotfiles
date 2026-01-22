@@ -15,7 +15,7 @@
 - [dunst](https://dunst-project.org/) - notification daemon
 - [eza](https://github.com/eza-community/eza) - replacement for ls
 - [fish](https://fishshell.com/) :star2: - shell
-- [foot](https://codeberg.org/dnkl/foot) - Fast, lightweight, and minimalistic Wayland terminal emulator
+- [foot](https://codeberg.org/dnkl/foot) :star2: - Fast, lightweight, and minimalistic Wayland terminal emulator
 - [fuzzel](https://codeberg.org/dnkl/fuzzel) - application launcher
 - [fzf](https://junegunn.github.io/fzf/) - fuzzy finder
 - [gallery-dl](https://github.com/mikf/gallery-dl) - program to download image-galleries
@@ -31,7 +31,7 @@
 - [keepassxc](https://keepassxc.org/) - password manager
 - [kitty](https://github.com/kovidgoyal/kitty) - terminal emulator
 - [lazygit](https://github.com/jesseduffield/lazygit) - ui for git
-- [librewolf](https://librewolf.net/) - Community-maintained fork of Firefox, focused on privacy, security and freedom
+- [librewolf](https://librewolf.net/) :star2: - Community-maintained fork of Firefox, focused on privacy, security and freedom
 - [ly](https://codeberg.org/fairyglade/ly) - TUI display manager
 - [mgba](http://mgba.io) - GBA emulator
 - [mpv](https://mpv.io) - media player
@@ -51,15 +51,15 @@
 - [ripgrep](https://github.com/BurntSushi/ripgrep) - grep alternative
 - [ruff](https://docs.astral.sh/ruff/) - python linter and formatter
 - [sqlite3](https://www.sqlite.org/) - SQL database
-- [ssh](https://www.openssh.com/portable.html) - secure shell
+- [ssh](https://www.openssh.com/portable.html) :star2: - secure shell
 - [starship](https://starship.rs/) :star2: - shell prompt
-- [streamrip](https://github.com/nathom/streamrip)
-- [stylua](https://github.com/JohnnyMorganz/StyLua) - lua formatter
+- [streamrip](https://github.com/nathom/streamrip) - A scriptable stream downloader for Qobuz, Tidal, Deezer and SoundCloud
+- [stylua](https://github.com/JohnnyMorganz/StyLua) - code formatter for Lua
 - [swayimg](https://github.com/artemsen/swayimg) - image viewer
 - [systemd](https://www.github.com/systemd/systemd) - system and service manager
 - [taplo](https://taplo.tamasfe.dev/) - lsp for toml
-- [termux](https://termux.dev/) - terminal emulator
-- [tmux](https://tmux.github.io/) :star2: - terminal multiplexer
+- [termux](https://termux.dev/) :star2: - terminal emulator
+- [tmux](https://tmux.github.io/) - terminal multiplexer
 - [tombi](https://tombi-toml.github.io/tombi/) - TOML Formatter / Linter / Language Server
 - [vim](https://www.vim.org) - text editor
 - [waybar](https://github.com/Alexays/Waybar) - status bar
