@@ -5,7 +5,11 @@
   // "height": 25,
   // "width": 1870,
   "spacing": 4, // Gaps between modules (4px)
-  "modules-left": ["niri/workspaces"],
+  "modules-left": [
+    //
+    "niri/workspaces",
+    "custom/colcount",
+  ],
   "modules-center": ["tray"],
   "modules-right": [
     // "mpd",
@@ -52,6 +56,13 @@
   "niri/window": {
     "format": "",
     "icon": true,
+  },
+  // https://git.ficd.sh/ficd/niri-scripts/src/branch/main/windows
+  "custom/colcount": {
+    "exec": ".config/waybar/niri-windows.py",
+    "return-type": "json",
+    "restart-interval": "never",
+    "format": "{} ",
   },
   "tray": {
     "icon-size": 25,
