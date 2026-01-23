@@ -41,10 +41,10 @@ prepend_preloaders = [
   { url = "*.{otf,ttf,woff,woff2}", run = "font-sample" },
 ]
 spotters = [
-  { url = "*/", run = "folder" },
+  { url = "*/", run = "spot" },
   # Image
   { mime = "image/{avif,hei?,jxl}", run = "magick" },
-  { mime = "image/svg+xml", run = "svg" },
+  { mime = "image/svg+xml", run = "spot" },
   { mime = "image/*", run = "image" },
   { url = "*.cb{z,r}", run = "spot-cbz" },
   { mime = "video/*", run = "spot-video" },
@@ -65,7 +65,7 @@ rules = [
   { url = "*.apk", use = ["apkinstall", "fallback"] },
   { mime = "application/{zip,rar,7z*,tar,gzip,xz,zstd,bzip*,lzma,compress,archive,cpio,arj,xar,ms-cab*}", use = ["extract", "fallback"] },
   { url = "*.{zip,rar,deb}", use = ["extract", "zathura", "fallback"] },
-  { mime = "image/svg+xml", use = ["swayimg", "inkscape", "fallback"] },
+  { mime = "image/svg+xml", use = ["swayimg", "inkscape", "edit", "fallback"] },
   { mime = "image/*", use = ["swayimg", "swaybg", "krita", "identity", "fallback"] },
   { mime = "video/*", use = ["play", "fallback"] },
   { mime = "audio/*", use = ["play", "kid3", "picard", "tenacity", "fallback"] },
