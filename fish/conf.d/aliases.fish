@@ -26,6 +26,7 @@ abbr lg lazygit
 abbr pst "ps -faxo 'pid,comm' | sed -E \"s:\$PREFIX/[a-z]+/::\""
 abbr --set-cursor ff "ffmpeg -y -hide_banner -stats -loglevel error -i % -vcodec copy -acodec copy -map 0:a"
 abbr --set-cursor --position anywhere awk "awk -F ' ' '{print \$%}'"
+abbr --set-cursor --position anywhere psub '(echo % | psub)'
 
 # navigating
 abbr ... "cd ../.."

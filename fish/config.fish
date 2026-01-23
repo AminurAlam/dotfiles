@@ -18,7 +18,6 @@ set -gx XDG_STATE_HOME $HOME/.local/state
 
 # command config
 set -gx TERMCMD foot
-set -gx GDK_DEBUG portals
 set -gx MOZ_ENABLE_WAYLAND 1
 set -gx STARSHIP_CACHE $XDG_CACHE_HOME/starship
 set -gx ICEAUTHORITY $XDG_CACHE_HOME/ICEauthority
