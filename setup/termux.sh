@@ -8,7 +8,7 @@ bootstrap-pacman() {
     printf "BOOTSTRAPPING PACMAN...\n"
 
     printf "downloading bootstrap...\n"
-    [ -e "$boot_path" ] || curl --create-dirs -#Lq -o "$boot_path" -- "$boot_url"
+    [ -e "$boot_path" ] || curl -#Lqo "$boot_path" -- "$boot_url"
 
     mkdir -p ~/../usr-n/
     cd ~/../usr-n/ || exit
@@ -28,19 +28,19 @@ bootstrap-pacman() {
 }
 
 printf "PROMPTING FOR STORAGE PERMISSION... "
-    yes | termux-setup-storage &>/dev/null
+yes | termux-setup-storage &>/dev/null
 printf "done\n"
 
 command -v pacman &>/dev/null || bootstrap-pacman
 
 printf "INSTALLING FISH...\n"
-    pacman -Syuq --noconfirm --needed -- fish || exit
+pacman -Syuq --noconfirm --needed -- fish || exit
 
 printf "CHANGING SHELL... "
-    chsh -s fish
+chsh -s fish
 printf "done\n"
 
 printf "RUNNING FISH SETUP...\n"
-    curl -#Lq -o "$HOME/termux.fish" "$setup_url"
-    fish=$(command -v fish)
-    "$fish" "$HOME/termux.fish"
+curl -#Lq -o "$HOME/termux.fish" "$setup_url"
+fish=$(command -v fish)
+"$fish" "$HOME/termux.fish"
