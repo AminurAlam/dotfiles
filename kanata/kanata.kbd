@@ -25,22 +25,22 @@
 (deflayer base
   @esc
   @grv @1   @2   @3   @4   @5   @6   @7   @8   @9   @0   @-   @=   _
-  _    _    @w   @e   _    _    _    _    _    _    _    @lb  @rb  @bs
+  _    _    _    @e   _    _    _    _    _    _    _    @[  @]  @bs
   @cap @a   @s   @d   @f   _    _    _    _    @l   @;   @'   _
-  _    _    _    _    _    _    _    _    _    _    @/    _
+  _    _    _    _    _    _    _    _    @,   @.   @/    _
   _    _    _              _              _    _    _)
 (deflayer symbols
   _
   _    _    _    _    _    _    _    _    _    _     _    _    _    _
-  _    @q   lsft lsft @-   @=   _    @7   @8   @9    @bs  _    _    _
-  _    _    _    _    @cf  @g   bspc @4^  @5   @6$   _    _    _
-  _    _    _    _    @v   @lb  @0   @1   @2   @3    _    _
-  _    _    _              _              _    _    _)
+  _    @q   @w   _    @-   @=   esc  @7   @8   @9    @[   _    _    _
+  _    _    _    _    @ff  @g   bspc @4^  @5   @6$   @]   _    _
+  _    _    _    _    @v   @bs  @0   @1   @2   @3    _    _
+  _    _    _             tab             _    _     _)
 
 (defalias ;; num row
     grv (tap-hold $tt $nht grv S-grv)
-    1   (tap-hold $tt $ht  1   S-1)
-    2   (tap-hold $tt $ht  2   S-2)
+    1   (tap-hold $tt $nht 1   S-1)
+    2   (tap-hold $tt $nht 2   S-2)
     3   (tap-hold $tt $nht 3   S-3)
     4   (tap-hold $tt $nht 4   S-4)
     5   (tap-hold $tt $nht 5   S-5)
@@ -55,11 +55,11 @@
     6$  (tap-hold $tt $nht 6   S-4)
 )
 (defalias ;; top row
-    q  (tap-hold $tt $nht ' S-')
-    w  (tap-hold 450 500 w (layer-while-held symbols))
+    q  (tap-hold $tt $ht ' S-')
+    w  (tap-hold $tt $ht / S-/)
     e  (tap-hold $tt $ht e (layer-while-held symbols))
-    lb (tap-hold-release 100 150 [ S-[)
-    rb (tap-hold-release 100 150 ] S-])
+    [ (tap-hold-release 100 150 [ S-[)
+    ] (tap-hold-release 100 150 ] S-])
     bs (tap-hold-release $tt $nht bksl S-bksl )
 )
 (defalias ;; mid row
@@ -67,8 +67,8 @@
     s  (tap-hold $tt $ht s lsft)
     d  (tap-hold $tt $ht d lmet)
     f  (tap-hold $tt $ht f lctl)
-    cf C-f
-    g  grv
+    ff (tap-hold $tt $ht C-f lctl)
+    g  (tap-hold-release $tt $ht grv S-grv)
 
     l  (tap-hold $tt $ht l rsft)
     ;  (tap-hold-release $tt $nht ; S-;)
@@ -79,4 +79,6 @@
     cap esc
     /   (tap-hold-release $tt $ht / bksl)
     v   C-S-v
+    ,   (tap-hold $tt $nht , S-,)
+    .   (tap-hold $tt $nht . S-.)
 )
