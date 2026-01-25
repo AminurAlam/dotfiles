@@ -18,6 +18,7 @@ set -gx XDG_STATE_HOME $HOME/.local/state
 
 # command config
 set -gx TERMCMD foot
+set -gx TERMILAL foot
 set -gx MOZ_ENABLE_WAYLAND 1
 set -gx STARSHIP_CACHE $XDG_CACHE_HOME/starship
 set -gx ICEAUTHORITY $XDG_CACHE_HOME/ICEauthority
@@ -34,21 +35,29 @@ set -gx _ZO_FZF_OPTS '--ignore-case --tiebreak chunk,begin,index --no-multi --sc
 --prompt " " --preview ""'
 set -gx YAZI_ZOXIDE_OPTS $_ZO_FZF_OPTS
 set -gx _ZO_EXCLUDE_DIRS (string join : \
-    ".git" \
+    "/" \
     "/usr" \
-    "/usr/**" \
     "/etc" \
+    "/lib" \
+    "/usr/**" \
     "/etc/**" \
+    "/lib/**" \
     "$HOME" \
-    "$HOME/repos/*/*" \
+    # "$HOME/repos/*/*" \
     "$HOME/.local/*/*/**" \
-    "$XDG_DOWNLOAD_DIR/*" \
+    # "$XDG_DOWNLOAD_DIR/*" \
+    "$XDG_DOWNLOAD_DIR/manga/*" \
     "$XDG_CONFIG_HOME/*" \
     "$XDG_MUSIC_DIR/albums/*" \
+    ".git" \
 )
 
 # lang config
+
+set -gx JAVA_HOME /usr/lib/jvm/default
 set -gx _JAVA_OPTIONS -Djava.util.prefs.userRoot=$XDG_CONFIG_HOME/java
+set -gx ANDROID_HOME /opt/android-sdk
+set -gx ANDROID_SDK_ROOT /opt/android-sdk
 set -gx PYTHONSTARTUP $XDG_CONFIG_HOME/python/startup.py
 set -gx NODE_REPL_HISTORY $XDG_STATE_HOME/node_repl_history
 set -gx NPM_CONFIG_USERCONFIG $XDG_CONFIG_HOME/npm/npmrc
@@ -79,9 +88,13 @@ if set -q TERMUX_VERSION
     set -gxp --path PATH ~/.local/bin # sometimes before
     set -gxp --path PATH ~/.local/share/npm/bin
 end
-set -gxp --path PATH "$CARGO_HOME/bin" # after declaring CARGO_HOME
-set -gxp --path PATH ~/.local/bin # sometimes before
-set -gxp --path PATH ~/.local/share/npm/bin
+
+fish_add_path --path "$CARGO_HOME/bin" # after declaring CARGO_HOME
+fish_add_path --path ~/.local/bin # sometimes before
+fish_add_path --path ~/.local/share/npm/bin
+fish_add_path --path $ANDROID_HOME/tools
+fish_add_path --path $ANDROID_HOME/tools/bin
+fish_add_path --path $JAVA_HOME/bin
 
 status is-interactive || exit
 
