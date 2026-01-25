@@ -1,0 +1,5 @@
+[Desktop Entry]
+NoDisplay=true
+Hidden=true
+MimeType=x-scheme-handler/chromium;
+Actions=new-window;new-private-window;

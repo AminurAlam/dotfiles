@@ -1,14 +1,15 @@
-/applications/*
+/applications/*.desktop
 !/applications/games/
 !/applications/newsraft.desktop
 !/applications/org.keepassxc.KeePassXC.desktop
 
-# hide applications
+# hide applications from launcher
 !/applications/assistant.desktop
 !/applications/avahi-discover.desktop
 !/applications/bssh.desktop
 !/applications/btop.desktop
 !/applications/bvnc.desktop
+!/applications/chromium.desktop
 !/applications/cmake-gui.desktop
 !/applications/designer.desktop
 !/applications/java-java-openjdk.desktop
@@ -87,3 +88,4 @@ rclone.conf
 /yazi/plugins
 /yazi/plugins/*
 /yazi/flavors/
+kanata/kanata_example.kbd
