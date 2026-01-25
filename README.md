@@ -56,6 +56,7 @@
 - [streamrip](https://github.com/nathom/streamrip) - A scriptable stream downloader for Qobuz, Tidal, Deezer and SoundCloud
 - [stylua](https://github.com/JohnnyMorganz/StyLua) - code formatter for Lua
 - [swayimg](https://github.com/artemsen/swayimg) - image viewer
+- [swaylock](https://github.com/swaywm/swaylock) - Screen locker for Wayland
 - [systemd](https://www.github.com/systemd/systemd) - system and service manager
 - [taplo](https://taplo.tamasfe.dev/) - lsp for toml
 - [termux](https://termux.dev/) :star2: - terminal emulator
