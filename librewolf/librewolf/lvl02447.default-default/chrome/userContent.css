@@ -1,0 +1,61 @@
+@-moz-document domain("lwn.net") {
+  body {
+    --color-scheme: dark;
+    --prefers-color-scheme: dark;
+
+    --MidColBG: #ffffff;
+    --HeadlineBG: #ffcc99;
+    --FormBG: #eeeeee;
+    --MidColBG: #000000;
+    --HeadlineBG: #443333;
+    --VLinkColor: #bbb;
+    --EQTextColor: #77ff77;
+    --OldCommentColor: #333333;
+    --LogoColor: lightgreen;
+    --ButtonColor: #775566;
+    --ButtonHoverColor: #997788;
+
+    --NewLeftColBG: #24283b;
+    --LinkColor: #a6da95;
+    --TextColor: #c0caf5;
+    --FormBG: #24283b;
+    --PageBG: #24283b;
+    --QTextBG: #414868;
+    --QTextColor: #c0caf5;
+  }
+
+  .topnav-container,
+  .ad,
+  center > p {
+    display: none;
+  }
+
+  .ArticleText {
+    text-align: justify;
+    text-justify: inter-word;
+    width: 70%;
+  }
+}
+
+/* https://github.com/MrOtherGuy/firefox-csshacks/tree/master/content/standalone_image_page_mods.css */
+@-moz-document media-document(image) {
+  @media not print {
+    :root {
+      background-color: #232325 !important; /* set solid color background */
+      background-image: none !important; /* remove default background texture */
+    }
+
+    /* img { margin: 0 !important; } */
+
+    /* Checkerboard pattern for transparent images, slight blue hue */
+    img.transparent {
+      background: conic-gradient(
+          #eef 0.25turn,
+          #bbc 0.25turn 0.5turn,
+          #eef 0.5turn 0.75turn,
+          #bbc 0.75turn
+        )
+        top left / 24px 24px repeat !important;
+    }
+  }
+}

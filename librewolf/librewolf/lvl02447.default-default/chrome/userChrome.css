@@ -1,4 +1,4 @@
-@-moz-document url(chrome://browser/content/browser.xhtml)
+@-moz-document url("chrome://browser/content/browser.xhtml")
 {
   #back-button,
   #forward-button,
@@ -18,14 +18,13 @@
     > #context-bookmarklink,
     > #context-copy,
     > #context-cut,
-    > #context-delete,
-    > #context-inspect,
+    > #context-delete, /* > #context-inspect, */
     > #context-inspect-a11y,
     > #context-leave-dom-fullscreen,
     > #context-media-eme-separator,
     > #context-media-pause,
     > #context-media-play,
-    /* > #context-navigation, */
+    > #context-navigation,
     > #context-openlinkincurrent,
     > #context-openlinkintab,
     > #context-paste,
@@ -49,8 +48,7 @@
     > #context-sep-selectall,
     > #context-setDesktopBackground,
     > #context-undo,
-    > #context-video-fullscreen,
-    /* > #context-viewsource, */
+    > #context-video-fullscreen, /* > #context-viewsource, */
     > #fill-login-generated-password,
     > #frame-sep {
       display: none !important;
@@ -61,10 +59,9 @@
   /* #navigator-toolbox { border-bottom: unset !important; } */
 }
 
-@-moz-document domain(example.com) {
-  div#header {
-    background-image: none !important;
-  }
+:root {
+  --color-scheme: dark;
+  --prefers-color-scheme: dark;
 }
 
 /* add '[pdf]' next to links to PDF files */
@@ -89,4 +86,181 @@ toolbarbutton#scrollbutton-down {
 
 .browser-toolbar > * #new-tab-button {
   display: none; /* Hide new-tab button */
+}
+
+/*
+toolbarbutton#back-button,
+toolbarbutton#forward-button,
+toolbarbutton#urlbar-searchmode-switcher {
+  display: none;
+}
+toolbarbutton#tracking-protection-icon-container,
+hbox.titlebar-buttonbox-container:nth-child(9) {
+  display: none;
+}
+
+.toolbaritem-combined-buttons {
+  margin-inline: 0px !important;
+}
+
+#urlbar {
+  margin-left: 7px;
+  padding-left: 2px;
+}
+*/
+
+/* https://github.com/MrOtherGuy/firefox-csshacks/tree/master/chrome/hide_urlbar_first_row.css
+ * Hides the first item in the urlbar dropdown if it is a "search with" or "visit" or "tab-to-search" item.  Does not hide "search in private window item", probably */
+#urlbar[usertyping]
+  .urlbarView-row:is(
+    [type="url"],
+    [type="autofill_origin"],
+    [type="search"]
+  ):first-child,
+.urlbarView-row[type="tabtosearch"] {
+  display: none !important;
+}
+
+/* https://github.com/MrOtherGuy/firefox-csshacks/tree/master/chrome/integrated_searchbar_popup.css
+ * This makes the searchbar popup look integrated into the searchbar,
+ * kinda like urlbar popup looks.
+ * Go to about:config and enable color-mix with layout.css.color-mix.enabled
+ * to make the popup border show properly, or make the border use other color. */
+#PopupSearchAutoComplete,
+#searchbar {
+  /* text input is clipped if this is too large compared to font-size. */
+  --uc-searchbar-border-radius: 6px;
+}
+
+#PopupSearchAutoComplete {
+  --uc-inner-margin: 6px;
+  --uc-searchbar-border-outer-radius: calc(
+    var(--uc-searchbar-border-radius) + var(--uc-inner-margin)
+  );
+  --arrowpanel-border-color: transparent !important;
+  margin-top: calc(1px - var(--uc-searchbar-border-radius));
+  outline: 2px solid var(--toolbar-field-focus-border-color) !important;
+  outline-offset: -8px;
+  -moz-window-shadow: none !important;
+  margin-inline: calc(0px - var(--uc-inner-margin));
+  padding-inline: var(--uc-inner-margin);
+  margin-bottom: -6px;
+  padding-bottom: 6px;
+  filter: drop-shadow(0 0 6px rgba(0, 0, 0, 0.2));
+  background: transparent !important;
+  border-radius: 0 0 var(--uc-searchbar-border-outer-radius)
+    var(--uc-searchbar-border-outer-radius) !important;
+}
+
+#searchbar:focus-within {
+  border-radius: var(--uc-searchbar-border-radius) !important;
+}
+
+slot {
+  border-radius: 0 0 var(--uc-searchbar-border-radius)
+    var(--uc-searchbar-border-radius) !important;
+}
+#PopupSearchAutoComplete::before {
+  height: 8px;
+  background: var(--toolbar-field-focus-background-color);
+  border-inline: 2px solid var(--toolbar-field-focus-border-color);
+  display: flex;
+  content: "";
+  position: relative;
+  z-index: 2;
+}
+
+/* https://github.com/MrOtherGuy/firefox-csshacks/tree/master/chrome/more_visible_tab_icon.css
+ * Makes black favicons more visible on dark background, contrast will be lowered though */
+.tab-icon-image {
+  filter: invert(40%) contrast(250%) saturate(250%) !important;
+}
+
+/* https://github.com/MrOtherGuy/firefox-csshacks/tree/master/chrome/numbered_tabs.css
+ * Show a number before tab text */
+/*
+.tabbrowser-tab:first-child {
+  counter-reset: nth-tab 0;
+}
+.tab-text::before {
+  content: counter(nth-tab) " ";
+  counter-increment: nth-tab;
+}
+*/
+
+/* https://github.com/MrOtherGuy/firefox-csshacks/tree/master/chrome/tab_separator_lines.css
+ * Bring back tab separator lines that were removed in Proton */
+.tabbrowser-tab {
+  background-image: linear-gradient(
+    transparent 20%,
+    color-mix(in srgb, currentColor 20%, transparent) 20%,
+    color-mix(in srgb, currentColor 20%, transparent) 80%,
+    transparent 80%
+  );
+  background-size: 1px 100%;
+  background-repeat: no-repeat;
+}
+.tab-group-label-container {
+  padding-inline-start: 2px;
+}
+
+#tabbrowser-tabs:not([movingtab])
+  .tabbrowser-tab:hover
+  + .tabbrowser-tab:not([first-visible-unpinned-tab]),
+.tabbrowser-tab:is(:hover, :first-child, [selected], [multiselected]),
+.tabbrowser-tab:is([selected], [multiselected])
+  + .tabbrowser-tab[hidden]
+  + .tabbrowser-tab,
+#tabbrowser-tabs:not([movingtab])
+  .tabbrowser-tab:is([multiselected], [selected])
+  + .tabbrowser-tab,
+tab-group[collapsed] + .tabbrowser-tab,
+tab-group > .tabbrowser-tab:first-of-type,
+tab-group:has(
+    > .tabbrowser-tab:last-child:is(:hover, [selected], [multiselected])
+  )
+  + .tabbrowser-tab {
+  background-image: none;
+}
+
+/* https://github.com/MrOtherGuy/firefox-csshacks/tree/master/chrome/urlbar_connection_type_background_colors.css
+ * Adds a colored overlay to urlbar based on the type of the connection */
+
+#identity-box::before {
+  position: absolute;
+  display: block;
+  content: "";
+  width: 100%;
+  height: var(--urlbar-height);
+  left: 0;
+  top: 0;
+  pointer-events: none;
+}
+:root[customizing] #identity-box::before,
+#urlbar[focused] #identity-box::before {
+  display: none;
+}
+
+/* https */
+/* #identity-box.verifiedDomain::before{ background-color: rgba(50,255,50,0.2) } */
+
+/* http: and potentially some other insecure connections like ftp: */
+#identity-box.certErrorPage::before,
+#identity-box.notSecure::before {
+  background-color: rgba(255, 50, 50, 0.3);
+}
+
+/* Mixed content including neterror */
+#identity-box.unknownIdentity::before {
+  background-color: rgba(255, 255, 50, 0.2);
+}
+
+/* Extension pages */
+#identity-box.extensionPage::before {
+  background-color: rgba(150, 50, 250, 0.2);
+}
+
+/* Internal about: and chrome:// urls (includes reader-view) */
+#identity-box.chromeUI::before {
+  background-color: rgba(50, 150, 250, 0.2);
 }
