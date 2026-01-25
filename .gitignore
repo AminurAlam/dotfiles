@@ -86,6 +86,10 @@ rclone.conf
 /systemd/user/default.target.wants
 /systemd/user/graphical-session.target.wants
 
+/vesktop/*
+!/vesktop/settings.json
+!/vesktop/settings
+
 /yazi/plugins
 /yazi/plugins/*
 /yazi/flavors/

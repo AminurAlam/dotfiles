@@ -1,0 +1,107 @@
+@import url("https://ukriu.github.io/cssCord/Other/blandProfile.css");
+@import url("https://ukriu.github.io/cssCord/Other/noDistractions.css");
+@import url('https://abbie.github.io/discord-css/import.css');
+
+:root {
+  --\\--compact-title-bar: true;
+  --\\--compact-input-box: true;
+  --\\--compact-context-menu: true;
+  --\\--compact-user-area: true;
+  --\\--compact-channel-categories: true;
+  --\\--compact-server-list: false;
+
+  --\\--hide-nameplates: true;
+  --\\--hide-guild-tags: true;
+  --\\--hide-profile-effects: true;
+  --\\--hide-avatar-decorations: true;
+  --\\--hide-gradient-glow-usernames: true;
+  --\\--hide-server-boost-goal: true;
+  --\\--hide-server-activity: true;
+  --\\--hide-user-activity: true;
+  --\\--hide-context-menu-quick-reactions: true;
+  --\\--hide-hover-quick-reactions: true;
+  --\\--hide-image-edit-button: true;
+  --\\--hide-gif-button: false;
+  --\\--hide-sticker-button: false;
+  --\\--hide-emoji-button: false;
+  --\\--hide-apps-button: true;
+  --\\--hide-gift-button: true;
+  --\\--hide-help-button: true;
+  --\\--hide-shop-button: true;
+  --\\--hide-nitro-button: true;
+  --\\--hide-nitro-upsells: true;
+  --\\--hide-vencord-desktop-platform-indicator: false;
+  --\\--hide-cluttery-badges: true;
+  /* ^ hides quest, hypesquad, active dev, and discriminator badges */
+  --\\--darker-scrollbar: false;
+  --\\--darker-hovered-message: true;
+  --\\--prevent-sidebar-resizing: false;
+  --\\--fix-minor-icon-misalignments: true;
+}
+
+/* Remove the Create Invite button from Channel Lists */
+[class^="iconVisibility_"] [aria-label="Create Invite"] {
+  display: none !important;
+}
+
+[class^="iconVisibility_"] [class^="channelInfo_"] {
+  display: flex !important;
+}
+
+/* Remove Nitro tenure tooltip bloat - no extra text, less laggy(?) */
+[class^="tooltipContainer_"]:has([class^="tooltipWordmarkContainer_"]) {
+  padding: initial;
+
+  & img,
+  h1,
+  h2,
+  [class^="tooltipWordmarkContainer_"] {
+    display: none;
+  }
+
+  & [class*="tooltipDescription_"] {
+    color: inherit !important;
+    font: inherit;
+    margin: inherit;
+  }
+}
+
+[id^=message-accessories]+[class^=buttonContainer]>[class^=buttons] {
+  display: none;
+}
+
+/* titlebar header */
+.title_c38106 {
+  display: none;
+}
+
+.title_f75fb0 {
+  padding: 0px !important;
+  /* scale: 0.9; */
+  padding-left: 12px !important;
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  background: transparent !important;
+  height: var(--custom-app-top-bar-height) !important;
+  min-height: 0px;
+  border: none !important;
+  width: calc(100vw);
+}
+
+.followButton_f75fb0,
+.topicClickTarget__6ec1a {
+  -webkit-app-region: no-drag !important;
+}
+
+.base_c48ade:has(.bar_c38106[data-windows="true"]) .title_f75fb0 {
+  width: calc(100vw - 240px) !important;
+}
+
+.children__9293f::after {
+  background: linear-gradient(to right, transparent 0, var(--bg-base-tertiary) 100%) !important;
+}
+
+.topic__6ec1a {
+  flex: none;
+}

@@ -63,6 +63,7 @@
 - [termux](https://termux.dev/) :star2: - terminal emulator
 - [tmux](https://tmux.github.io/) - terminal multiplexer
 - [tombi](https://tombi-toml.github.io/tombi/) - TOML Formatter / Linter / Language Server
+- [vesktop](https://aur.archlinux.org/packages/vesktop) - A standalone Electron-based Discord app with Vencord & improved Linux support
 - [vim](https://www.vim.org) - text editor
 - [waybar](https://github.com/Alexays/Waybar) - status bar
 - [wofi](https://hg.sr.ht/~scoopta/wofi) - launcher
