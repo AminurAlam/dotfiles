@@ -17,8 +17,9 @@ for config in alacritty aria2 \
     pacman paru powershell python \
     qalculate qBittorrent \
     ruff \
-    sqlite3 swayimg systemd \
-    termux tmux tombi \
+    sqlite3 swayidle swayimg swaylock systemd \
+    termux tmux tombi tree-sitter \
+    vesktop \
     waybar wofi \
     xdg-desktop-portal xdg-desktop-portal-termfilechooser \
     yay yazi yt-dlp \
@@ -55,15 +56,21 @@ if set -q TERMUX_VERSION
     printf "done\n"
 end
 
-printf "LINKING MORE CONFIG FILES...\n"
+printf "LINKING ETC CONFIG FILES... "
 [ -e /etc/pacman.conf -a (path resolve /etc/pacman.conf) != $HOME/repos/dotfiles/other/pacman.arch.conf ]
 and sudo ln -nfs ~/repos/dotfiles/other/pacman.arch.conf /etc/pacman.conf
 [ -e /etc/ly/config.ini -a (path resolve /etc/ly/config.ini) != $HOME/repos/dotfiles/ly/config.ini ]
 and sudo ln -nfs ~/repos/dotfiles/ly/config.ini /etc/ly/config.ini
+[ -e /etc/systemd/logind.conf -a (path resolve /etc/systemd/logind.conf) != $HOME/repos/dotfiles/systemd/logind.conf ]
+and sudo ln -nfs ~/repos/dotfiles/systemd/logind.conf /etc/systemd/logind.conf
+printf "done\n"
+
+printf "LINKING SOME DIRS... "
 ln -nTfs ~/repos/dotfiles/applications ~/.local/share/applications
 ln -nTfs ~/repos/yazi-plugins ~/repos/dotfiles/yazi/plugins
+printf "done\n"
 
-printf "LINKING... "
+printf "LINKING BIN... "
 ln -nfs ~/repos/dotfiles/scripts/bin/ctl ~/.local/bin/ctl
 ln -nfs ~/repos/dotfiles/scripts/bin/md2typ ~/.local/bin/md2typ
 printf "done\n"

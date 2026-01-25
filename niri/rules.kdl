@@ -1,3 +1,4 @@
+// TODO: PR https://github.com/boydaihungst/xdg-desktop-portal-termfilechooser
 window-rule { // floatinng save as window
     // match title="^(Save File|Select Directory|Select File):$"
     match title="^file_chooser$"

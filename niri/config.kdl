@@ -4,6 +4,7 @@ include "rules.kdl"
 include "binds.kdl"
 
 spawn-at-startup "swaybg" "-m" "fill" "-i" "pic/wp/126278795_p0.jpg"
+spawn-at-startup "swayidle" "-w"
 spawn-at-startup "rmdir" "-p" ".cache/fish"
 screenshot-path "pic/ss/Screenshot_%Y%m%d_%H%M%S_niri.png"
 prefer-no-csd

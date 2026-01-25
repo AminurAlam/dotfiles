@@ -55,6 +55,7 @@
 - [starship](https://starship.rs/) :star2: - shell prompt
 - [streamrip](https://github.com/nathom/streamrip) - A scriptable stream downloader for Qobuz, Tidal, Deezer and SoundCloud
 - [stylua](https://github.com/JohnnyMorganz/StyLua) - code formatter for Lua
+- [swayidle](https://github.com/swaywm/swayidle) - Idle management daemon for Wayland
 - [swayimg](https://github.com/artemsen/swayimg) - image viewer
 - [swaylock](https://github.com/swaywm/swaylock) - Screen locker for Wayland
 - [systemd](https://www.github.com/systemd/systemd) - system and service manager
