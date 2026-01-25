@@ -16,7 +16,7 @@ fish "$HOME/repos/dotfiles/setup/linking.fish" || exit
 [ -e "$HOME/repos/dotfiles/yazi/plugins" ] && ya pkg install || exit
 clear
 
-printf "CHANGING FONT... "
+printf "CHANGING FONT...\n"
 [ -e "$HOME/.termux/font.ttf" ]
 or curl -#Lqo "$HOME/.termux/font.ttf" \
     "https://github.com/ryanoasis/nerd-fonts/raw/refs/heads/master/patched-fonts/JetBrainsMono/Ligatures/Medium/JetBrainsMonoNerdFont-Medium.ttf"
@@ -28,7 +28,7 @@ clear
     clear
 end
 
-printf "CLEANUP..."
+printf "CLEANUP...\n"
 fd motd $PREFIX/etc/ -x truncate -s 0
 
 [ -d ~/storage/ ] && begin
@@ -41,5 +41,7 @@ fd -HI -tdirectory -x rmdir --ignore-fail-on-non-empty --parents
 rm -f "$HOME/bootstrap-aarch64.zip"
 
 clear
+
+termux-reload-settings
 
 : # making sure the script returns 0
