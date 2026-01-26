@@ -120,7 +120,7 @@ vim.opt.stl = '%#stl_hl_a# %{ g:stl.mode() } %#stl_hl_b#' -- a to b
   .. [[%{ search("^\\t\\+", "nwc") > 0 ? " " : "" }]]
   .. '%#stl_hl_to#%#Normal# ' -- b to c
   .. '%{% g:stl.diagnostics() %}'
-  .. '%{% get(b:, "gitsigns_status", "") %}'
+  .. '%{% get(b:, "minidiff_summary_string", "") %}'
   .. '%#Normal#%=%S ' -- middle seperator
   .. '%{ v:hlsearch ? g:stl.hlsearch() : "" } '
   .. '%{ reg_recording() != "" ? " " .. reg_recording() : "" } '
