@@ -32,6 +32,7 @@ prepend_previewers = [
 prepend_preloaders = [
   { url = "*.{!qB,part}", run = "noop" },
   { url = "/mnt/rclone/**", run = "noop" },
+  { mime = "image/*", run = "noop" },
   { url = "*.typ", run = "preview-typst" },
   { mime = "application/epub+zip", run = "preview-epub" },
   { mime = "audio/*", run = "preview-audio" },
@@ -42,60 +43,66 @@ prepend_preloaders = [
 ]
 spotters = [
   { url = "*/", run = "spot" },
-  # Image
-  { mime = "image/{avif,hei?,jxl}", run = "magick" },
-  { mime = "image/svg+xml", run = "spot" },
-  { mime = "image/*", run = "image" },
   { url = "*.cb{z,r}", run = "spot-cbz" },
-  { mime = "video/*", run = "spot-video" },
-  # { mime = "text/*", run = "spot-code" },
   { mime = "audio/*", run = "spot-audio" },
+  { mime = "image/*", run = "spot-image" },
+  { mime = "video/*", run = "spot-video" },
   { url = "*", run = "spot" },
-  # { url = "*", run = "file" },
 ]
 
 ## OPEN
 [open]
 rules = [
-  { url = "*/", use = ["reveal", "dir2cbz", "fallback"] },
+  { url = "*/", use = ["dir", "fallback"] },
   { mime = "application/pdf", use = ["zathura", "fallback"] },
-  { url = "*.cb{z,r}", use = ["zathura", "extract", "fallback"] },
-  { mime = "audio/mpegurl", use = ["edit", "fallback"] },
-  { mime = "application/android.package-archive", use = ["apkinstall", "fallback"] },
+  # archives
+  { url = "*.cb{z,r}", use = ["sioyek", "extract", "fallback"] },
+  { url = "*.{zip,rar}", use = ["extract", "sioyek", "fallback"] },
   { url = "*.apk", use = ["apkinstall", "fallback"] },
+  { url = "*.deb", use = ["extract", "fallback"] },
   { mime = "application/{zip,rar,7z*,tar,gzip,xz,zstd,bzip*,lzma,compress,archive,cpio,arj,xar,ms-cab*}", use = ["extract", "fallback"] },
-  { url = "*.{zip,rar,deb}", use = ["extract", "zathura", "fallback"] },
-  { mime = "image/svg+xml", use = ["swayimg", "inkscape", "edit", "fallback"] },
-  { mime = "image/*", use = ["swayimg", "swaybg", "krita", "identity", "fallback"] },
-  { mime = "video/*", use = ["play", "fallback"] },
-  { mime = "audio/*", use = ["play", "kid3", "picard", "tenacity", "fallback"] },
+  # multimedia
   { url = "*.{ass,srt,ssa,sup,vtt}", use = ["add-sub", "edit", "fallback"] },
+  { mime = "audio/mpegurl", use = ["edit", "fallback"] },
+  { mime = "image/svg+xml", use = ["swayimg", "inkscape", "edit", "fallback"] },
+  { mime = "image/*", use = ["swayimg", "raster_tools", "fallback"] },
+  { mime = "video/*", use = ["play", "fallback"] },
+  { mime = "audio/*", use = ["play", "audio_tools", "fallback"] },
   # text
+  { url = "*.patch", use = ["edit", "fallback"] },
   { mime = "text/*", use = ["edit", "fallback"] },
   { mime = "inode/empty", use = ["edit", "fallback"] },
   { mime = "application/{json,ndjson}", use = ["edit", "fallback"] },
   { mime = "*/javascript", use = ["edit", "fallback"] },
-  { url = "*.patch", use = ["edit", "fallback"] },
+
+  { mime = "vfs/{absent,stale}", use = "download" },
   { url = "*", use = ["fallback"] },
 ]
 
 [opener]
 add-sub = [{ run = "echo sub-add %s | socat - /tmp/mpv.sock", desc = "󰨗 Add sub to MPV", for = "linux" }]
 apkinstall = [
+  # TODO: make custom install script that pick between wired and wireless
   { run = "ANDROID_USER_HOME=/home/fisher/.local/share/.android HOME=/home/fisher/.local/share/ adb install %s", block = true, orphan = false, desc = " apk installer", for = "linux" },
 ]
-dir2cbz = [{ run = "fish -c 'dir2cbz $argv' %s", block = true, desc = " dir2cbz" }]
-identity = [{ run = "identity -- %s", orphan = true, for = "linux", desc = "󰆊 compare images" }]
-kid3 = [{ run = "kid3 -- %s", orphan = true, for = "linux", desc = " kid3" }]
-krita = [{ run = "krita %s", block = false, orphan = true, desc = " krita", for = "linux" }]
+extract = [{ run = 'ya pub extract --list %s""', desc = "󱉛 Extract here", for = "unix" }]
 inkscape = [{ run = "inkscape %s", block = false, orphan = true, desc = "󰕞 inkscape", for = "linux" }]
-picard = [{ run = "picard -- %s", orphan = true, for = "linux", desc = "󰫅 picard" }]
+play = [{ run = "mpv --force-window %s1", orphan = true, for = "linux", desc = " mpv" }]
 rsync = [{ run = "rsync -Pha -- %s brick:/sdcard/Download/", block = false, desc = " Send to phone", for = "linux" }]
-swaybg = [{ run = "swaybg -m fill -i %s1", block = false, orphan = true, desc = " swaybg", for = "linux" }]
+sioyek = [{ run = "sioyek %s", block = false, orphan = true, desc = "󰂺 sioyek", for = "linux" }]
 swayimg = [{ run = "swayimg %s", block = false, orphan = true, desc = " swayimg", for = "linux" }]
 zathura = [{ run = "zathura %s", block = false, orphan = true, desc = " zathura", for = "linux" }]
-tenacity = [{ run = "tenacity %s", block = false, orphan = true, desc = "󰓀 tenacity", for = "linux" }]
-# defaults
+# groups
+raster_tools = [
+  { run = "swaybg -m fill -i %s1", block = false, orphan = true, desc = " swaybg", for = "linux" },
+  { run = "krita %s", block = false, orphan = true, desc = " krita", for = "linux" },
+  { run = "identity -- %s", orphan = true, for = "linux", desc = "󰆊 compare images" },
+]
+audio_tools = [
+  { run = "kid3 -- %s", orphan = true, for = "linux", desc = " kid3" },
+  { run = "picard -- %s", orphan = true, for = "linux", desc = "󰫅 picard" },
+  { run = "tenacity %s", block = false, orphan = true, desc = "󰓀 tenacity", for = "linux" },
+]
 edit = [
   { run = "nvim %s", desc = " nvim", block = true, for = "unix" },
   { run = "helix %s", desc = "󰚄 helix", block = true, for = "unix" },
@@ -105,13 +112,15 @@ fallback = [
   { run = "rsync -Pha -- %s brick:/sdcard/Download/", block = false, desc = " Send to phone", for = "linux" },
   { run = "termux-open %s1", orphan = true, desc = "󰏌 Open", for = "android" },
 ]
-play = [{ run = "mpv --force-window %s1", orphan = true, for = "linux", desc = " mpv" }]
-reveal = [
+dir = [
   { run = "xdg-open %d", desc = " Reveal", for = "linux" },
-  { run = "opendir %d", desc = " Reveal", for = "android" },
   { run = "swayimg -g %s", orphan = true, desc = " gallery" },
+  { run = "fish -c 'dir2cbz $argv' %s", block = true, desc = " dir2cbz" },
 ]
-extract = [{ run = 'ya pub extract --list %s""', desc = "󱉛 Extract here", for = "unix" }]
+download = [
+  { run = "ya emit download --open %S", desc = " Download & 󰏌 Open" },
+  { run = "ya emit download %S", desc = " Download" },
+]
 
 [mgr]
 ratio = [0, 1, 1]

@@ -228,14 +228,10 @@ require('sort-by-location'):setup {
 }
 
 require('spot'):setup {
-  metadata_section = {
-    hash_cmd = 'md5sum', -- other hashing commands can be slower
-    hash_filesize_limit = 100, -- in MB, set 0 to disable
-    relative_time = true,
-  },
-  plugins_section = { enable = true },
+  metadata_section = { hash_filesize_limit = 100, relative_time = true },
+  plugins_section = { enable = false },
   style = {
-    section = 'green',
+    section = 'magenta',
     key = 'reset',
     value = 'blue',
     colorize_metadata = true,
