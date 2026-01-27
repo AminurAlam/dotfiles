@@ -70,38 +70,11 @@
   display: none;
 }
 
-/* titlebar header */
-.title_c38106 {
-  display: none;
-}
 
-.title_f75fb0 {
-  padding: 0px !important;
-  /* scale: 0.9; */
-  padding-left: 12px !important;
-  position: fixed;
-  left: 0px;
-  top: 0px;
-  background: transparent !important;
-  height: var(--custom-app-top-bar-height) !important;
-  min-height: 0px;
-  border: none !important;
-  width: calc(100vw);
-}
-
-.followButton_f75fb0,
-.topicClickTarget__6ec1a {
-  -webkit-app-region: no-drag !important;
-}
-
-.base_c48ade:has(.bar_c38106[data-windows="true"]) .title_f75fb0 {
-  width: calc(100vw - 240px) !important;
-}
-
-.children__9293f::after {
-  background: linear-gradient(to right, transparent 0, var(--bg-base-tertiary) 100%) !important;
-}
-
-.topic__6ec1a {
-  flex: none;
+/* banish titlebar (by alisa) */
+div[class^='base__'] {
+    grid-template-rows: [top] 0px [titleBarEnd] min-content [noticeEnd] 1fr [end];
+    > div[class^='bar_']:has([class^='title_']) {
+        display: none;
+    }
 }
