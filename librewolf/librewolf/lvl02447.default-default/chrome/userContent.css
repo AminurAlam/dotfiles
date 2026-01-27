@@ -37,6 +37,12 @@
   }
 }
 
+@-moz-document domain("aistudio.google.com") {
+  ms-drive-permission-nudge.ng-star-inserted {
+    display: none;
+  }
+}
+
 /* https://github.com/MrOtherGuy/firefox-csshacks/tree/master/content/standalone_image_page_mods.css */
 @-moz-document media-document(image) {
   @media not print {
