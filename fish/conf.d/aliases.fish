@@ -14,7 +14,7 @@ abbr rd "rmdir -pv"
 abbr md "mkdir -pv"
 abbr vi nvim
 abbr h helix
-abbr adb ANDROID_USER_HOME="$XDG_DATA_HOME"/.android HOME="$XDG_DATA_HOME"/ adb
+abbr adb ANDROID_USER_HOME="$XDG_DATA_HOME/.android" HOME="$XDG_DATA_HOME/" adb
 abbr za _ZO_EXCLUDE_DIRS= zoxide add '$PWD'
 abbr cls clear
 abbr tar "tar xzf"
@@ -26,7 +26,7 @@ abbr lg lazygit
 abbr pst "ps -faxo 'pid,comm' | sed -E \"s:\$PREFIX/[a-z]+/::\""
 abbr --set-cursor ff "ffmpeg -y -hide_banner -stats -loglevel error -i % -vcodec copy -acodec copy -map 0:a"
 abbr --set-cursor --position anywhere awk "awk -F ' ' '{print \$%}'"
-abbr --set-cursor --position anywhere psub '(echo % | psub)'
+abbr --set-cursor --position anywhere psub '(% | psub)'
 
 # navigating
 abbr ... "cd ../.."
