@@ -87,8 +87,7 @@ apkinstall = [
 ]
 extract = [{ run = 'ya pub extract --list %s""', desc = "󱉛 Extract here", for = "unix" }]
 inkscape = [{ run = "inkscape %s", block = false, orphan = true, desc = "󰕞 inkscape", for = "linux" }]
-play = [{ run = "mpv --force-window %s1", orphan = true, for = "linux", desc = " mpv" }]
-rsync = [{ run = "rsync -Pha -- %s brick:/sdcard/Download/", block = false, desc = " Send to phone", for = "linux" }]
+play = [{ run = "mpv --force-window %s", orphan = true, for = "linux", desc = " mpv" }]
 sioyek = [{ run = "sioyek %s", block = false, orphan = true, desc = "󰂺 sioyek", for = "linux" }]
 swayimg = [{ run = "swayimg %s", block = false, orphan = true, desc = " swayimg", for = "linux" }]
 zathura = [{ run = "zathura %s", block = false, orphan = true, desc = " zathura", for = "linux" }]
@@ -109,7 +108,7 @@ edit = [
 ]
 fallback = [
   { run = "xdg-open %s1", orphan = true, desc = "󰏌 Open", for = "linux" },
-  { run = "rsync -Pha -- %s brick:/sdcard/Download/", block = false, desc = " Send to phone", for = "linux" },
+  { run = "rsync -Pha --info PROGRESS2 -- %s brick:/sdcard/Download/", block = false, desc = " Send to phone", for = "linux" },
   { run = "termux-open %s1", orphan = true, desc = "󰏌 Open", for = "android" },
 ]
 dir = [
