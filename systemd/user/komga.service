@@ -5,7 +5,7 @@ After=network.target
 
 [Service]
 Environment=PATH=/usr/local/bin:/usr/local/sbin:/usr/bin:/bin
-Environment=SERVER_PORT=8102 KOMGA_CONFIGDIR=.local/share/komga
+Environment=SERVER_PORT=10003 KOMGA_CONFIGDIR=.local/share/komga
 Type=exec
 ExecStart=/usr/bin/komga -Xmx1G --spring.profiles.active=claim
 PrivateTmp=true
