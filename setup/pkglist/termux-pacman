@@ -55,6 +55,7 @@ libmpfr
 libnettle
 libnghttp2
 libnghttp3
+libngtcp2
 libnpth
 libsmartcols
 libsqlite
@@ -80,7 +81,6 @@ procps
 psmisc
 python
 qalc
-rclone
 readline
 resolv-conf
 ripgrep
@@ -99,7 +99,6 @@ termux-keyring
 termux-licenses
 termux-tools
 tmux
-typst
 unzip
 util-linux
 uv

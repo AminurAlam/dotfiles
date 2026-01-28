@@ -24,6 +24,7 @@ com.samsung.android.mcfds
 com.samsung.android.smartface.overlay
 com.samsung.android.knox.kpecore
 com.sec.android.autodoodle.service
+com.android.dreams.basic
 com.android.mms.service
 com.samsung.ecomm.global.in
 com.sec.android.app.parser
@@ -43,7 +44,6 @@ com.android.virtualmachine.res
 com.google.android.adservices.api
 com.samsung.android.spayfw
 com.samsung.android.accessibility.talkback
-com.samsung.android.themestore
 com.google.android.ondevicepersonalization.services
 com.sec.android.app.magnifier
 com.samsung.android.allshare.service.mediashare
@@ -56,7 +56,6 @@ com.mediatek.SettingsProviderResOverlay
 com.samsung.android.sdk.handwriting
 com.samsung.android.bixby.agent
 com.samsung.android.knox.attestation
-com.knox.vpn.proxyhandler
 com.mediatek.apmonitor
 com.samsung.android.smartcallprovider
 com.sec.bcservice
@@ -99,10 +98,12 @@ com.android.role.notes.enabled
 com.samsung.android.appseparation
 com.google.mainline.adservices
 com.samsung.android.video
+com.samsung.android.audiomirroring
 com.android.hotwordenrollment.okgoogle
 com.sec.android.app.factorykeystring
 com.wsomacp
 com.mygalaxy
+com.samsung.gpuwatchapp
 com.samsung.android.knox.pushmanager
 com.sec.android.app.bluetoothagent
 com.samsung.android.app.watchmanagerstub
@@ -113,7 +114,7 @@ com.samsung.memorysaver
 com.android.egg
 com.samsung.SMT
 com.samsung.android.aircommandmanager
-com.samsung.android.knox.app.networkfilter
+com.samsung.android.visual.cloudcore
 com.sec.android.app.volumemonitorprovider
 com.android.rkpdapp
 com.google.android.overlay.modules.modulemetadata.forframework
@@ -132,7 +133,7 @@ com.google.android.overlay.gmsconfig.searchselector
 com.samsung.android.alive.service
 com.sec.factory.camera
 com.aura.oobe.samsung
-com.sec.enterprise.knox.cloudmdm.smdms
+com.samsung.android.mydevice
 com.sec.android.app.hwmoduletest
 com.android.bips
 com.google.android.partnersetup
@@ -166,11 +167,12 @@ com.samsung.android.smartswitchassistant
 com.samsung.android.knox.analytics.uploader
 com.google.android.healthconnect.controller
 com.samsung.android.dqagent
-com.samsung.android.fmm
 com.microsoft.appmanager
 com.samsung.aasaservice
+com.samsung.android.motionphoto.app
 com.sec.mhs.smarttethering
 com.google.android.apps.restore
+com.samsung.android.globalpostprocmgr
 com.sec.android.app.chromecustomizations
 com.android.wallpaper.livepicker
 com.samsung.android.easysetup
@@ -216,6 +218,7 @@ com.samsung.android.ipsgeofence
 com.samsung.android.photoremasterservice
 com.sec.android.app.soundalive
 com.samsung.android.game.gos
+com.android.printspooler
 com.skms.android.agent
 com.samsung.android.service.peoplestripe
 com.sec.android.easyMover
@@ -234,4 +237,6 @@ com.samsung.android.da.daagent
 com.samsung.android.rubin.app
 com.sec.android.mimage.photoretouching
 com.google.android.youtube
+com.samsung.android.hwresourceshare.storage
+com.samsung.android.gru
 com.samsung.android.scpm
