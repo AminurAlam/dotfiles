@@ -1,13 +1,26 @@
-/* vim:set sw=2: */
+/* vim:set cc=37 sw=2: */
+/* https://jrgraphix.net/r/Unicode/ */
+
 @font-face {
   font-family: "kana";
-  src: url("_NotoSerifJP-Regular.ttf");
+  src: url("_noto-serif-jp.ttf");
   unicode-range: U+3040-309f, U+30a0-30ff;
+}
+
+@font-face {
+  font-family: "latin";
+  src: url("_jetbrainsmono.ttf");
+  unicode-range: U+0020-007F;
+}
+
+@font-face {
+  font-family: "kanji";
+  src: url("_noto-jp.ttf");
 }
 
 .card,
 .card.night_mode {
-  font-family: kana, sans-serif;
+  font-family: kana, latin, kanji;
   text-align: center;
   color: #c0caf5;
   background-color: #24283b;
