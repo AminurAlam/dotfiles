@@ -5,7 +5,8 @@
 
 (command
   name: (word) @_command (#eq? @_command "set")
-  .
+  argument: (word)* @_flag
+    (#match? @_flag "^-")
   argument: (word) @variable.member
     (#not-match? @variable.member "^-"))
 
