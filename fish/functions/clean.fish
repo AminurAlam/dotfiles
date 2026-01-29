@@ -2,7 +2,7 @@ function clean -d "cleanup storage space"
     # delete some directories
     set dirs (path filter -d -- \
         /sdcard/Android/media/com.whatsapp/WhatsApp/{.StickerThumbs,Media/WhatsApp Stickers}/ \
-        /sdcard/TachiyomiSY/downloads/*/*/*_tmp/ \
+        /sdcard/Tachi/downloads/*/*/*_tmp/ \
         ~/.cache/ \
         /sdcard/Download/SongSync \
         ~/.gradle/caches/)

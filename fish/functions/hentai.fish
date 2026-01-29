@@ -1,9 +1,5 @@
 function hentai -d "for managing literature"
-    : "USAGE:
-    hentai
-    hentai [dir [dir...]]
-    "
-    set mangadir /sdcard/TachiyomiSY
+    set mangadir /sdcard/Tachi
     set targetdir "$mangadir/local/#lewd"
     function getartist
         unzip -p $argv[1]/Chapter*.cbz ComicInfo.xml | rg --only-matching --replace '$1' '<Penciller>(.*)</Penciller>' || termux-clipboard-get
@@ -17,7 +13,8 @@ function hentai -d "for managing literature"
     and for i in @*
         # TODO: match for known artists
         printf " - $i\n"
-        mv -i --no-clobber $i/Chapter*.cbz $targetdir/$i.cbz
+        zip -qd $i/Chapter.cbz ComicInfo.xml
+        mv -i --no-clobber $i/Chapter.cbz $targetdir/$i.cbz
         rmdir $i &>/dev/null
     end
 

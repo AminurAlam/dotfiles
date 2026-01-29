@@ -1,6 +1,6 @@
 #!/usr/bin/env fish
 
-cd "/sdcard/TachiyomiSY/downloads/HentaiNexus (EN)/"
+cd "/sdcard/Tachi/downloads/HentaiNexus (EN)/"
 set chapter (path basename "$argv[1]")
 [ -e "$chapter" ] || exit
 

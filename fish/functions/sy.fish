@@ -24,11 +24,11 @@ function sy -d "sync files between phone and pc"
         rsync $comm $XDG_DOCUMENTS_DIR/ brick:/sdcard/Documents/ --exclude wa | rg -v '/$'
 
         printf "=== MUSIC ===\n"
-        rsync $comm brick:/sdcard/Music/ $XDG_MUSIC_DIR/ --delete | rg -v '/$'
+        # rsync $comm brick:/sdcard/Music/ $XDG_MUSIC_DIR/ --delete | rg -v '/$'
 
         printf "=== MANGA ===\n"
-        rsync $comm brick:/sdcard/TachiyomiSY/local/\#lewd/ $XDG_DOWNLOAD_DIR/manga/\#lewd/ --exclude=@$artists --delete | rg -v '/$'
-        rsync $comm brick:/sdcard/TachiyomiSY/local/@$artists $XDG_DOWNLOAD_DIR/manga/\#lewd/ --delete | rg -v '/$'
+        # rsync $comm brick:/sdcard/Tachi/local/\#lewd/ $XDG_DOWNLOAD_DIR/manga/\#lewd/ --exclude=@$artists --delete | rg -v '/$'
+        # rsync $comm brick:/sdcard/Tachi/local/@$artists $XDG_DOWNLOAD_DIR/manga/\#lewd/ --delete | rg -v '/$'
 
         printf "=== MISC ===\n"
         rsync $comm $XDG_DOWNLOAD_DIR/main/arch.kdbx brick:/sdcard/main/arch.kdbx
