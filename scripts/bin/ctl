@@ -1,7 +1,7 @@
 #!/usr/bin/fish --no-config
 
 switch $argv[1]
-    case vol
+    case vol # (\++|-+)?
         if [ -n "$argv[2]" ]
             wpctl set-volume @DEFAULT_AUDIO_SINK@ (math 2 x (printf $argv[2] | wc -c))%$(string sub -l1 -- $argv[2])
             notify-send -h string:x-canonical-private-synchronous:volume -t 500 "Volume: $(wpctl get-volume @DEFAULT_AUDIO_SINK@ | tr -dc [:digit:] | math)"
@@ -18,11 +18,13 @@ switch $argv[1]
         and notify-send -h string:x-canonical-private-synchronous:mic -t 500 " MUTED"
         or notify-send -h string:x-canonical-private-synchronous:mic -t 500 " AUDIBLE"
 
-    case lum
+    case lum # \++|-+
         brightnessctl s (math 2 x (printf $argv[2] | wc -c))%$(string sub -l1 -- $argv[2])
         notify-send -h string:x-canonical-private-synchronous:brightness -t 500 "Brightness: $(math -s0 (brightnessctl g) x 100 / (brightnessctl m))"
 
-    case pow
+    case pow # up|down
+        # TODO: rollback instead
+        # TODO: next|prev
         set current (powerprofilesctl get)
         if [ "$argv[2]" = up -a "$current" = balanced ]
             notify-send -h string:x-canonical-private-synchronous:power -t 500 " PERFORMANCE"
@@ -37,15 +39,18 @@ switch $argv[1]
         end
 
     case lim
-        # TODO: https://github.com/laurento/gnome-shell-extension-ideapad#additional-required-settings
         set file /sys/bus/platform/drivers/ideapad_acpi/VPC2004:00/conservation_mode
-        set toggle $(math bitxor 1,(cat $file))
-        echo $toggle >$file
+        set bit $(math bitxor 1,(cat $file))
+
+        [ -w "$file" ]
+        and echo $bit | tee $file
+        or echo $bit | sudo tee $file # TODO: sudo -> something that works in gui
+
         [ "$(cat $file)" = 1 ]
         and notify-send -h string:x-canonical-private-synchronous:limit -t 500 " BATTERY LIMITED"
         or notify-send -h string:x-canonical-private-synchronous:limit -t 500 " BATTERY UNLOCKED"
 
-    case ss
+    case ss # full|ocr
         set filename Screenshot_(date +'%Y%m%d_%H%M%S')_grim.png
 
         if [ "$argv[2]" = full ]
@@ -58,12 +63,28 @@ switch $argv[1]
 
     case ssend
         fd . $XDG_PICTURES_DIR/ss/ -a --changed-within 10min -X rsync -Pha '{}' brick:/sdcard/Pictures/ss/
+        fd . $XDG_PICTURES_DIR/ss/ -a --changed-within 10min -x notify-send -t 2000 -i '{}' 'sent {/}'
 
     case rec
-        if pidof wf-recorder
-            kill -s INT wf-recorder
-            notify-send -t 500 "󰨜 RECORDING SAVED"
+        set wfid (pidof wf-recorder)
+        if [ -n "$wfid" ]
+            set file (cat /proc/$wfid/cmdline | string split0)[-1]
+            kill -s INT "$wfid"
+            wait wf-recorder
+
+            set thumbnail (mktemp -t ctl-XXXXXX).png
+
+            ffmpeg -y -hide_banner -stats -loglevel error -i $file -an -sn -dn -vframes 1 $thumbnail
+
+            notify-send -t 1500 -i $thumbnail "󰨜 RECORDING SAVED in $file"
         else
             wf-recorder -r 60 -p "br=5M" -f (date +'%Y-%m-%d_%H%M_%S').mp4
         end
+
+    case picker
+        set hex (niri msg pick-color | string match -gr '(#[[:xdigit:]]+)')
+        set size 100
+        set svg '<svg viewBox="0 0 '$size' '$size'" width="'$size'pt" height="'$size'pt"> <path fill="'$hex'" fill-rule="nonzero" d="M 0 0v '$size' h '$size' v -'$size' Z " /> </svg>'
+        notify-send -t 1500 -i (echo $svg | psub) $hex
+        wl-copy -n $hex
 end

@@ -30,13 +30,14 @@ binds {
     XF86AudioMicMute repeat=false { spawn "ctl" "mic"; }
     XF86MonBrightnessDown         { spawn "ctl" "lum" "-"; }
     XF86MonBrightnessUp           { spawn "ctl" "lum" "+"; }
-    // Help                          { spawn "ctl" "lim"; } // TODO: run with sudo
+    Help                          { spawn "ctl" "lim"; } // TODO: run with sudo or chown it
 
     Mod+C       { spawn "ctl" "lum" "-"; }
     Mod+V       { spawn "ctl" "lum" "+"; }
     // TODO: find better binds
     Mod+U       { spawn "ctl" "pow" "down"; }
     Mod+Shift+U { spawn "ctl" "pow" "up"; }
+    Mod+I       { spawn "ctl" "picker"; }
     Mod+R       { spawn "ctl" "rec"; }
 
     // COL
