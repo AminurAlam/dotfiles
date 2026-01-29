@@ -35,8 +35,8 @@ prepend_keymap = [
   # Operation
   { on = "o", run = "open --interactive" },
   { on = "O", run = "create" },
-  { on = "d", run = "remove", desc = "Trash selected files", for = "linux" },
-  { on = "d", run = "remove --permanently", desc = "Delete selected files", for = "android" },
+  { on = "d", run = "remove", desc = "Trash selected files" },
+  { on = "d", run = "remove --permanently", desc = "Delete selected files" },
   { on = "D", run = '''shell --block --confirm -- fd -HI -td -d2 -x rmdir -p''', desc = "purge empty directories" },
   { on = ["y", "y"], run = "yank", desc = "yank file" },
   { on = ["y", "p"], run = "copy path", desc = "yank ENTIRE path" },
