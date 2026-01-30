@@ -72,7 +72,6 @@ printf "done\n"
 
 printf "LINKING BIN... "
 ln -nfs ~/repos/dotfiles/scripts/bin/ctl ~/.local/bin/ctl
-ln -nfs ~/repos/dotfiles/scripts/bin/md2typ ~/.local/bin/md2typ
 printf "done\n"
 
 rmdir --ignore-fail-on-non-empty ~/{backup,bin}
