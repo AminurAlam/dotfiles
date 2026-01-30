@@ -37,6 +37,41 @@
   }
 }
 
+@-moz-document domain("lobste.rs") {
+  .comment_form_container.comment {
+    display: none;
+  }
+  .links > .corner {
+    font-size: 0pt;
+  }
+}
+
+@-moz-document domain("news.ycombinator.com") {
+  tbody {
+    display: block;
+    margin: auto !important;
+    max-width: 40rem !important;
+    font-size: 1.5em !important;
+  }
+
+  #hnmain > tbody > tr:nth-of-type(1) > td > table > tbody {
+    display: none;
+  }
+
+  table.fatitem > tbody > tr:nth-of-type(5) {
+    display: none;
+  }
+
+  .age,
+  span.navs > a:not(.togg) {
+    display: none;
+  }
+
+  .clicky.togg {
+    font-size: 2em;
+  }
+}
+
 @-moz-document domain("aistudio.google.com") {
   ms-drive-permission-nudge.ng-star-inserted {
     display: none;
