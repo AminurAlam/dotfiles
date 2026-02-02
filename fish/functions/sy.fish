@@ -4,6 +4,7 @@ function sy -d "sync files between phone and pc"
     set comm --dry-run -ha --out-format "%o %n" --exclude={.thumbnails,.nomedia,.archive}
     set artists Alp Arakure Herio 'Hinahara Emi' Jury 'Morino Bambi' Nagayori 'Nikubou Maranoshin' 'Ouchi Kaeru' Sajipen 'Wantan Meo' Yuruyakatou
 
+    # TODO: skip transactions that have no changes
     for state in dry wet
         if [ $state = dry ] && [ "$argv[1]" = -y ]
             set -e comm[1]
@@ -20,15 +21,15 @@ function sy -d "sync files between phone and pc"
 
         printf "=== DOCUMENTS ===\n"
         rsync $comm brick:/sdcard/Android/media/com.whatsapp/WhatsApp/Media/WhatsApp\ Documents/ $XDG_DOCUMENTS_DIR/wa/ --delete | rg -v '/$'
-        rsync $comm brick:/sdcard/Documents/ $XDG_DOCUMENTS_DIR/ | rg -v '/$'
-        rsync $comm $XDG_DOCUMENTS_DIR/ brick:/sdcard/Documents/ --exclude wa | rg -v '/$'
+        rsync $comm brick:/sdcard/main/doc/ $XDG_DOCUMENTS_DIR/ --exclude wa | rg -v '/$'
+        rsync $comm $XDG_DOCUMENTS_DIR/ brick:/sdcard/main/doc/ --exclude wa | rg -v '/$'
 
         printf "=== MUSIC ===\n"
         # rsync $comm brick:/sdcard/Music/ $XDG_MUSIC_DIR/ --delete | rg -v '/$'
 
         printf "=== MANGA ===\n"
-        # rsync $comm brick:/sdcard/Tachi/local/\#lewd/ $XDG_DOWNLOAD_DIR/manga/\#lewd/ --exclude=@$artists --delete | rg -v '/$'
-        # rsync $comm brick:/sdcard/Tachi/local/@$artists $XDG_DOWNLOAD_DIR/manga/\#lewd/ --delete | rg -v '/$'
+        rsync $comm brick:/sdcard/Tachi/local/\#lewd/ $XDG_DOWNLOAD_DIR/manga/\#lewd/ --exclude=@$artists --delete | rg -v '/$'
+        rsync $comm brick:/sdcard/Tachi/local/@$artists $XDG_DOWNLOAD_DIR/manga/\#lewd/ --delete | rg -v '/$'
 
         printf "=== MISC ===\n"
         rsync $comm $XDG_DOWNLOAD_DIR/main/arch.kdbx brick:/sdcard/main/arch.kdbx
