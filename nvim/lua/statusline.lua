@@ -48,6 +48,7 @@ local mode_names = {
   ['S'] = 'S-LINE',
   ['\19'] = 'S-BLOCK',
   ['i'] = 'INSERT',
+  ['ic'] = 'INSERT',
   ['r'] = 'REPLACE',
   ['R'] = 'REPLACE',
   ['c'] = 'COMMAND',
@@ -62,7 +63,7 @@ local secondary = '#30354A'
 
 vim.g.stl = {
   mode = function()
-    return mode_names[vim.api.nvim_get_mode().mode] or '???'
+    return mode_names[vim.api.nvim_get_mode().mode] or vim.api.nvim_get_mode().mode
   end,
   bufcount = function()
     return buflogo[#vim.fn.getbufinfo { buflisted = 1 }] or '十 '
@@ -109,7 +110,6 @@ vim.api.nvim_create_autocmd({ 'FileType' }, {
   command = 'setlocal statusline=%#Normal#',
 })
 
--- TODO: bring back gitsigns_status to mini.diff
 vim.opt.stl = '%#stl_hl_a# %{ g:stl.mode() } %#stl_hl_b#' -- a to b
   .. ' %{ g:stl.bufcount() }%t '
   .. '%{ &modified ? "󰆓 " : "" }'

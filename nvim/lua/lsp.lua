@@ -6,7 +6,7 @@ local h = require 'null-ls.helpers'
 
 vim.lsp.enable(vim.tbl_filter(filter, {
   'basedpyright',
-  'bash_language_server',
+  -- 'bash_language_server',
   'ccls',
   'clangd',
   'hyprls',
