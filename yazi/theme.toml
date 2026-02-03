@@ -40,7 +40,6 @@ current = { bg = "#2e3c64", bold = true }
 preview = { bold = true }
 
 [status]
-# TODO: change fg to black
 progress_label = { bold = true }
 progress_normal = { fg = "black", bg = "green" }
 progress_error = { fg = "black", bg = "red" }
