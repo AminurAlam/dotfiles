@@ -75,3 +75,5 @@ autocmd('BufWinLeave', { pattern = '?*', command = 'silent! mkview 1' })
 -- autocmd('CmdlineEnter', { pattern = '[:/?]', command = 'set pumborder=rounded' })
 -- autocmd('CmdlineChanged', { pattern = '[:/?]', command = 'call wildtrigger()' })
 -- autocmd('CmdlineLeave', { pattern = '[:/?]', command = 'set pumborder&' })
+
+-- TODO: disable numbers when diffing

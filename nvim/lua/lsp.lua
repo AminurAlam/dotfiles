@@ -160,12 +160,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
       vim.lsp.on_type_formatting.enable(true, { client_id = client.id })
     end
 
-    vim.keymap.set('n', '<leader>lf', vim.lsp.buf.format, { buffer = args.buf })
     vim.keymap.set('n', 'grd', vim.lsp.buf.definition, { buffer = args.buf })
-    vim.keymap.set('n', '<leader>sh', function()
-      local ih = vim.lsp.inlay_hint
-      ih.enable(not ih.is_enabled({ bufnr = 0 }))
-    end, { buffer = args.buf })
   end,
 })
 

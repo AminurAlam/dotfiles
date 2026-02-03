@@ -58,21 +58,16 @@ vmap('<', '<gv')
 nmap('zM', '<nop>')
 
 -- toggles
-nmap('<leader>ss', '<cmd>setlocal spell!<cr>')
-nmap('<leader>sw', '<cmd>setlocal wrap!<cr>')
-nmap('<leader>st', '<cmd>set ts=4 sw=4 sts=4 si sta et sr<cr>')
-nmap('<leader>sf', '<cmd>let g:save_fmt=g:save_fmt?v:false:v:true<cr>', 'toggle formatting on save')
-nmap('<leader>sn', function()
+nmap('zs', '<cmd>setlocal spell!<cr>')
+nmap('zw', '<cmd>setlocal wrap!<cr>')
+nmap('<leader>s', '<cmd>let g:save_fmt=g:save_fmt?v:false:v:true<cr>', 'toggle formatting on save')
+nmap('zn', function()
   if vim.o.number then
     vim.o.number = false
-    vim.o.relativenumber = false
     vim.o.signcolumn = 'no'
-    vim.o.foldcolumn = '0'
   else
     vim.o.number = true
-    vim.o.relativenumber = true
-    vim.o.signcolumn = 'auto'
-    vim.o.foldcolumn = 'auto'
+    vim.o.signcolumn = 'auto:1'
   end
 end, 'toggle statuscolumn')
 
@@ -107,8 +102,8 @@ end, 'repeat v to change visual mode')
 -- cmdline & abbreviations
 vim.cmd 'cmap <c-j> <down>'
 vim.cmd 'cmap <c-k> <up>'
-vim.cmd('cnoremap <Left> <Space><BS><Left>')
-vim.cmd('cnoremap <Right> <Space><BS><Right>')
+vim.cmd 'cnoremap <Left> <Space><BS><Left>'
+vim.cmd 'cnoremap <Right> <Space><BS><Right>'
 
 if fn.has('termux') == 1 and fn.has('nvim-0.10.0') == 1 then
   map { 'ca' }('vq', 'wq') -- dvorak
