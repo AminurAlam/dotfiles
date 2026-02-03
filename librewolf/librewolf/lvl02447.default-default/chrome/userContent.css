@@ -37,6 +37,59 @@
   }
 }
 
+@-moz-document domain("www.phoronix.com") {
+  #sidebar,
+  #menuwrap,
+  #headerwrap,
+  #footer,
+  #sharebar,
+  .foot,
+  .after-article,
+  .article-box {
+    display: none;
+  }
+
+  a {
+    color: #9ece6a;
+    text-decoration: underline;
+  }
+
+  #content-bg {
+    background: #24283b;
+  }
+
+  #content {
+    background: #23283b;
+    color: #c0caf5;
+    border-left: none;
+    border-right: none;
+  }
+
+  #main {
+    border-right: none;
+  }
+
+  article,
+  article .details,
+  article .details a {
+    color: #c0caf5;
+  }
+
+  article.full .author {
+    color: #aaa;
+  }
+}
+
+@-moz-document domain("torrentfreak.com") {
+  .page__sidebar.col-4_md-12,
+  .header,
+  .bread_cr,
+  aside.page__widget,
+  .footer {
+    display: none;
+  }
+}
+
 @-moz-document domain("lobste.rs") {
   .comment_form_container.comment {
     display: none;
