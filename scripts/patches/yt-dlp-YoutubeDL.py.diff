@@ -1,4 +1,4 @@
---- /data/data/com.termux/files/home/YoutubeDL-orig.py	2024-07-17 18:58:26.900208165 +0530
+--- YoutubeDL.py	2024-07-17 18:58:26.900208165 +0530
 +++ YoutubeDL.py	2024-07-17 18:57:26.860208162 +0530
 @@ -3787,15 +3787,16 @@
          self.archive.add(vid_id)

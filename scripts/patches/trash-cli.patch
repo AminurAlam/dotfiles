@@ -1,0 +1,21 @@
+--- mount_points_listing.py	2026-02-03 09:58:43.644075820 +0530
++++ mount_points_listing.py	2026-02-03 09:58:31.596075819 +0530
+@@ -43,15 +43,9 @@
+         'fuse.gocryptfs',
+     ]
+ 
+-    # Append fstypes of physical devices to list
+-    fstypes += set([p.fstype for p in psutil.disk_partitions()])
+-
+-    partitions = Partitions(fstypes)
+-
+-    for p in psutil.disk_partitions(all=True):
+-        if os.path.isdir(p.mountpoint) and \
+-                partitions.should_used_by_trashcli(p):
+-            yield p.mountpoint
++    for p in ["/storage/emulated/0", "/data/data/com.termux"]:
++        if os.path.isdir(p):
++            yield p
+ 
+ 
+ class Partitions:
