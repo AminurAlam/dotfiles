@@ -1,0 +1,125 @@
+@-moz-document domain("lwn.net") {
+  body {
+    --color-scheme: dark;
+    --prefers-color-scheme: dark;
+
+    --MidColBG: #ffffff;
+    --HeadlineBG: #ffcc99;
+    --FormBG: #eeeeee;
+    --MidColBG: #000000;
+    --HeadlineBG: #443333;
+    --VLinkColor: #bbb;
+    --EQTextColor: #77ff77;
+    --OldCommentColor: #333333;
+    --LogoColor: lightgreen;
+    --ButtonColor: #775566;
+    --ButtonHoverColor: #997788;
+
+    --NewLeftColBG: #24283b;
+    --LinkColor: #a6da95;
+    --TextColor: #c0caf5;
+    --FormBG: #24283b;
+    --PageBG: #24283b;
+    --QTextBG: #414868;
+    --QTextColor: #c0caf5;
+  }
+
+  .navmenu-container,
+  .topnav-container,
+  .ad,
+  .ArticleText > form,
+  .CommentReplyButton,
+  center > p {
+    display: none !important;
+  }
+
+  .ArticleText {
+    text-align: justify;
+    text-justify: inter-word;
+    width: 70%;
+  }
+}
+
+@-moz-document domain("www.phoronix.com") {
+  #sidebar,
+  #menuwrap,
+  #headerwrap,
+  #footer,
+  #sharebar,
+  .foot,
+  .after-article,
+  .article-box {
+    display: none;
+  }
+
+  a {
+    color: #9ece6a;
+    text-decoration: underline;
+  }
+
+  #content-bg {
+    background: #24283b;
+  }
+
+  #content {
+    background: #23283b;
+    color: #c0caf5;
+    border-left: none;
+    border-right: none;
+  }
+
+  #main {
+    border-right: none;
+  }
+
+  article,
+  article .details,
+  article .details a {
+    color: #c0caf5;
+  }
+
+  article.full .author {
+    color: #aaa;
+  }
+}
+
+@-moz-document domain("www.404media.co") {
+  body {
+    --color-primary: #9fe044;
+    --color-primary-lighter: #9fe044;
+    --color-text: #c0caf5;
+    --color-text-reverse: #c0caf5;
+    --color-text-accent-1: #c0caf5;
+    --color-text-accent-2: #c0caf5;
+    --color-text-accent-3: #c0caf5;
+    --color-bg: #24283b;
+  }
+
+  .lazyload {
+    filter: blur(0px) !important;
+  }
+
+  .post-sneak-peek.fading::after {
+    background: none !important;
+  }
+
+  .header,
+  .members,
+  .paid,
+  .sign-in,
+  .post-author,
+  .comments__container,
+  .footer {
+    display: none !important;
+  }
+}
+
+@-moz-document domain("torrentfreak.com") {
+  .page__sidebar.col-4_md-12,
+  .header,
+  .bread_cr,
+  aside.page__widget,
+  .footer {
+    display: none;
+  }
+}
