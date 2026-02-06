@@ -50,6 +50,15 @@ autocmd('BufWritePre', {
 })
 
 autocmd('FileType', {
+  pattern = 'help',
+  callback = function()
+    if vim.api.nvim_win_get_width(0) > 160 then
+      vim.cmd('wincmd L')
+    end
+  end,
+})
+
+autocmd('FileType', {
   desc = 'use smaller indent lines',
   pattern = 'lua,toml,html,css,json',
   command = 'setl tabstop=2 shiftwidth=2 softtabstop=2 listchars+=leadmultispace:│\\ ',
@@ -63,10 +72,7 @@ autocmd('TextYankPost', {
 
 autocmd('FileType', { pattern = 'checkhealth', command = 'set bh=wipe nobl nonu nornu nowrap' })
 autocmd('FileType', { pattern = 'qf', command = 'nmap <buffer> <cr> <cr>' })
-autocmd('FileType', { pattern = 'help', command = 'wincmd L' })
-
 autocmd('UIEnter', { command = 'set clipboard=unnamedplus' })
-
 autocmd('BufEnter', { command = 'set cursorline formatoptions-=cro' })
 autocmd('BufLeave', { command = 'set nocursorline' })
 autocmd('BufWinEnter', { pattern = '?*', command = 'silent! loadview 1' })

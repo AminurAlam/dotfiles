@@ -9,8 +9,10 @@ iabbrev md mkdir -pv
 iabbrev vi nvim
 iabbrev cls clear
 iabbrev tar tar xzf
+iabbrev qmv qmv -AXf do
 iabbrev diff diff -Naur
 iabbrev py python3 -q
+iabbrev ru rip url
 iabbrev lg lazygit
 iabbrev ff ffmpeg -y -hide_banner -stats -loglevel error -i % -vcodec copy -acodec copy -map 0:a
 iabbrev gl git status -bs; git log --pretty=nice -n10
@@ -22,6 +24,7 @@ iabbrev rcp rclone copy -P --transfers 8 --
 iabbrev rls rclone lsf
 iabbrev du dust -Dn 25
 iabbrev dud dust -d 1
+iabbrev df df --output=pcent,avail,target -h -x tmpfs -x efivarfs
 iabbrev pi yay -S
 iabbrev pr yay -Rs
 iabbrev pu yay -Syu
