@@ -59,7 +59,11 @@ local mode_names = {
 }
 local buflogo = { [0] = '', '', '二 ', '三 ', '四 ', '五 ', '六 ', '七 ', '八 ', '九' }
 local hl = vim.api.nvim_set_hl
-local secondary = '#30354A'
+vim.cmd [[
+hi stl_hl_a  guibg=#98c379 guifg=#30354A gui=bold
+hi stl_hl_b  guifg=#98c379 guibg=#30354A
+hi stl_hl_to guifg=#30354A guibg=NONE
+]]
 
 vim.g.stl = {
   mode = function()
@@ -99,8 +103,8 @@ vim.api.nvim_create_autocmd({ 'ModeChanged' }, {
   callback = function(_)
     ---@diagnostic disable-next-line: undefined-field
     local mode_color = mode_colors[vim.v.event.new_mode]
-    hl(0, 'stl_hl_a', { bg = mode_color, fg = secondary, bold = true })
-    hl(0, 'stl_hl_b', { fg = mode_color, bg = secondary })
+    hl(0, 'stl_hl_a', { bg = mode_color, fg = '#30354A', bold = true })
+    hl(0, 'stl_hl_b', { fg = mode_color, bg = '#30354A' })
   end,
 })
 
