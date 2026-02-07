@@ -99,6 +99,7 @@ termux-keyring
 termux-licenses
 termux-tools
 tmux
+typst
 unzip
 util-linux
 uv
