@@ -15,7 +15,7 @@ ssh brick pacman -Qqe >"$pkglist/termux-pacman"
 
 pm list packages -i -3 | kt : 2 | kt 2 1 | sort >"$pkglist/android-3rd"
 
-pm list packages -d | kt : 2 >"$pkglist/android-disabled"
+pm list packages -d | kt : 2 | sort >"$pkglist/android-disabled"
 
 ### interactively disable apps
 # pm list packages -s | kt : 2 | fzf --bind 'enter:execute(pm disable-user --user 0 {} || sleep 1)'
