@@ -6,7 +6,7 @@ bind yy fish_clipboard_copy # TODO: only copy a line not entire block
 bind p fish_clipboard_paste
 
 bind q exit # shortcuts to quit
-bind -M insert ctrl-\; "history -n1 | fish -P"
+bind -M insert ctrl-\; "history -n1 | fish -P; commandline -f repaint"
 bind -M insert ctrl-z 'if jobs -q; fg; else; mux; end' # helpful for toggling between stuff
 bind -M insert ctrl-v backward-kill-bigword # delete from whitespace to cursor
 bind -M insert ctrl-backspace backward-kill-bigword

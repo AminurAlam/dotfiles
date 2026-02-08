@@ -4,4 +4,6 @@ cd "/sdcard/Tachi/downloads/HentaiNexus (EN)/"
 set chapter (path basename "$argv[1]")
 [ -e "$chapter" ] || exit
 
-mv -iv "$chapter" "@$(unzip -p "$chapter/Chapter.cbz" ComicInfo.xml | rg --only-matching --replace '$1' '<Penciller>(.*)</Penciller>') - $chapter"
+set artist (unzip -p $chapter/Chapter_*.cbz ComicInfo.xml | rg --only-matching --replace '$1' '<Penciller>(.*)</Penciller>')
+
+mv -iv "$chapter" "@$artist - $chapter"

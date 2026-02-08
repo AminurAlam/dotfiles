@@ -37,7 +37,11 @@ function clean -d "cleanup storage space"
 
     # trash
     for i in (trash-list)
-        string sub -s 34 $i | string split -f 1,2 / | string join /
+        echo $i \
+            | rg --replace '' '^\d{4}-\d\d-\d\d \d\d:\d\d:\d\d ' \
+            | sed "s#$HOME/##" \
+            | sed 's#/storage/emulated/0/##' \
+            | string split -f 1,2,3 / | string join /
     end | sort | uniq -c | sort -n
     command -vq trash-empty && trash-empty
     command -vq yay && begin

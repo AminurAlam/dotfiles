@@ -2,7 +2,7 @@ function sy -d "sync files between phone and pc"
     set -q TERMUX_VERSION && return 1
 
     set comm --dry-run -ha --out-format "%o %n" --exclude={.thumbnails,.nomedia,.archive}
-    set artists Alp Arakure Herio 'Hinahara Emi' Jury 'Morino Bambi' Nagayori 'Nikubou Maranoshin' 'Ouchi Kaeru' Sajipen 'Wantan Meo' Yuruyakatou
+    set artists Alp Arakure Esuke Herio 'Hinahara Emi' Jury 'Morino Bambi' Nagayori 'Nikubou Maranoshin' 'Ouchi Kaeru' Sajipen 'Wantan Meo' Yuruyakatou
 
     # TODO: skip transactions that have no changes
     for state in dry wet
@@ -25,7 +25,7 @@ function sy -d "sync files between phone and pc"
         rsync $comm $XDG_DOCUMENTS_DIR/ brick:/sdcard/main/doc/ --exclude wa | rg -v '/$'
 
         printf "=== MUSIC ===\n"
-        # rsync $comm brick:/sdcard/Music/ $XDG_MUSIC_DIR/ --delete | rg -v '/$'
+        rsync $comm brick:/sdcard/Music/ $XDG_MUSIC_DIR/ --delete | rg -v '/$'
 
         printf "=== MANGA ===\n"
         rsync $comm brick:/sdcard/Tachi/local/\#lewd/ $XDG_DOWNLOAD_DIR/manga/\#lewd/ --exclude=@$artists --delete | rg -v '/$'
