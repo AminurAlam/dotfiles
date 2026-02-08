@@ -172,7 +172,6 @@ com.samsung.android.knox.mpos
 com.samsung.android.knox.pushmanager
 com.samsung.android.knox.zt.framework
 com.samsung.android.location
-com.samsung.android.lool
 com.samsung.android.mapsagent
 com.samsung.android.mcfds
 com.samsung.android.mcfserver
@@ -251,7 +250,6 @@ com.samsung.SMT
 com.samsung.storyservice
 com.sec.android.app.billing
 com.sec.android.app.bluetoothagent
-com.sec.android.app.camera
 com.sec.android.app.chromecustomizations
 com.sec.android.app.factorykeystring
 com.sec.android.app.hwmoduletest
@@ -306,3 +304,4 @@ com.sec.vsim.ericssonnsds.webapp
 com.skms.android.agent
 com.snap.camerakit.plugin.v1
 com.wsomacp
+com.wssyncmldm
