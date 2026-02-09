@@ -69,7 +69,6 @@ do -- folding
 end
 
 do -- terminal, cursor & gui
-  set.belloff = termux and 'showmatch' or 'all'
   -- set.winborder = 'rounded' -- causes lot of unexpected behaviour
   set.pumheight = 15
   set.pumborder = 'rounded'
@@ -93,7 +92,6 @@ do -- others
   set.writebackup = false
   set.undofile = true
   set.confirm = true
-  -- set.clipboard = (termux and vim.env.SSH_CONNECTION) and '' or 'unnamedplus' -- moved to autocmd
   set.list = true
   set.listchars = dict2str {
     leadmultispace = '│   ',

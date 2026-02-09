@@ -1,6 +1,5 @@
 {
   "$schema": "https://raw.githubusercontent.com/LuaLS/vscode-lua/master/setting/schema.json",
-  "library": "",
   "completion": {
     "callSnippet": "Replace",
     "displayContext": 5
@@ -13,6 +12,7 @@
   },
   "format": { "enable": true },
   "hint": { "enable": true },
+  "library": "",
   "runtime": {
     "path": ["lua/?.lua", "lua/?/init.lua"],
     "version": "LuaJIT"
@@ -27,5 +27,8 @@
     }
   },
   "window": { "progressBar": true },
-  "workspace": { "checkThirdParty": "Disable" }
+  "workspace": {
+    "checkThirdParty": "Disable",
+    "library": ["lua", "$VIMRUNTIME", "${3rd}/luv/library"]
+  }
 }

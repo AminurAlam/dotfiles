@@ -12,10 +12,9 @@ return {
     '.git',
   },
   settings = {
-    python = {
+    basedpyright = {
       analysis = {
         autoSearchPaths = true,
-        useLibraryCodeForTypes = true,
         diagnosticMode = 'openFilesOnly',
       },
     },

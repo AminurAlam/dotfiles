@@ -1,10 +1,13 @@
 vim.api.nvim_create_autocmd('User', {
   pattern = 'TSUpdate',
   callback = function()
+    local path = os.getenv('HOME') .. '/repos/tree-sitter-kanata'
+    local exists = (vim.uv.fs_stat(path).type == 'directory')
+
     require('nvim-treesitter.parsers').kanata = {
       install_info = {
-        -- path = '~/repos/tree-sitter-kanata',
-        url = 'https://github.com/AminurAlam/tree-sitter-kanata',
+        path = exists and path or nil,
+        url = exists and nil or 'https://github.com/AminurAlam/tree-sitter-kanata',
         queries = 'queries/',
       },
       tier = 2,

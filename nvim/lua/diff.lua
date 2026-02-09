@@ -18,8 +18,8 @@ require('mini.diff').setup({
 vim.keymap.set('n', 'H', require('mini.diff').toggle_overlay, { desc = 'preview hunk' })
 vim.api.nvim_create_autocmd('User', {
   pattern = 'MiniDiffUpdated',
-  callback = function(data)
-    local summary = vim.b[data.buf].minidiff_summary
+  callback = function(args)
+    local summary = vim.b[args.buf].minidiff_summary
     local t = {}
 
     if summary.add > 0 then
@@ -31,6 +31,6 @@ vim.api.nvim_create_autocmd('User', {
     if summary.delete > 0 then
       table.insert(t, '%#GitSignsDelete#-' .. summary.delete)
     end
-    vim.b[data.buf].minidiff_summary_string = table.concat(t, ' ')
+    vim.b[args.buf].minidiff_summary_string = table.concat(t, ' ')
   end,
 })

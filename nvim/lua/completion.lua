@@ -1,7 +1,3 @@
-if vim.fn.has('termux') == 1 then
-  return
-end
-
 require('mini.completion').setup({
   delay = { completion = 30, info = 100, signature = 50 },
   window = {
