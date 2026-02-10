@@ -93,3 +93,5 @@ dirs = [
   { name = "vid", text = "" },
   { name = "repos", text = "󰳐" },
 ]
+
+conds = [{ if = "dir", text = "", fg = "blue" }]
