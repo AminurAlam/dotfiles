@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
+# pyright: basic
 
 import os
 import re
 import sys
 import json
-import requests
-import argparse
+import urllib.request
 
 mihon_dir = "/sdcard/Tachi/local/"
 research_art = lambda staff: re.search("art", staff["role"], flags=re.IGNORECASE)
@@ -36,9 +36,16 @@ query ($search: String) {
 
 
 def fetch(title: str, path: str) -> None:
-    response = requests.post("https://graphql.anilist.co", json={"query": graph_query, "variables": {"search": title}})
+    req = urllib.request.Request(
+        "https://graphql.anilist.co",
+        data=json.dumps({"query": graph_query, "variables": {"search": title}}).encode("utf-8"),
+        headers={"Content-Type": "application/json", "User-Agent": "Mozzila/5.0 (compatible)"},
+    )
 
-    results: list[dict] = json.loads(response.content.decode())["data"]["Page"]["media"]
+    with urllib.request.urlopen(req) as response:
+        response_body = response.read()
+
+    results: list[dict] = json.loads(response_body)["data"]["Page"]["media"]
 
     if not results:
         print(f"no results found for `{title}`")
