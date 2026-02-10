@@ -15,7 +15,7 @@ for config in alacritty aria2 \
     mgba mpv \
     newsboat newsraft niri npm nvim \
     pacman paru powershell python \
-    qalculate qBittorrent \
+    qalculate \
     ruff \
     sqlite3 swayidle swayimg swaylock systemd \
     termux tmux tombi tree-sitter \

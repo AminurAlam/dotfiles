@@ -1,18 +1,18 @@
 {
     "@1r0n": {
         "uid": "{d636b225-d487-415b-b35b-c87874a3ace6}",
-        "url": "https://nyaa.land/?page=rss&u=tsuna69"
+        "url": "https://nyaa.si/?page=rss&u=tsuna69"
     },
     "@Trite": {
         "uid": "{d7bd2d59-5af7-4b16-9077-d71a36e8913b}",
-        "url": "https://nyaa.land/?page=rss&u=Trite"
+        "url": "https://nyaa.si/?page=rss&u=Trite"
     },
     "Gannibal": {
         "uid": "{2f44bba7-567a-4bc3-bb5e-058c988cb52e}",
-        "url": "https://nyaa.land/?page=rss&q=Gannibal&c=3_0&f=0"
+        "url": "https://nyaa.si/?page=rss&q=Gannibal&c=3_0&f=0"
     },
     "pokemon": {
         "uid": "{1d8e2aa9-7ede-4e3e-af95-0b7034cb36c8}",
-        "url": "https://nyaa.land/?page=rss&q=pokemon&c=3_0&f=0"
+        "url": "https://nyaa.si/?page=rss&q=pokemon&c=3_0&f=0"
     }
 }
