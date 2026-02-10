@@ -32,6 +32,12 @@
   }
 }
 
+@-moz-document domain("en.wikipedia.org") {
+  .vector-sitenotice-container {
+    display: none;
+  }
+}
+
 @-moz-document domain("news.ycombinator.com") {
   tbody {
     display: block;
@@ -40,16 +46,11 @@
     font-size: 1.5em !important;
   }
 
-  #hnmain > tbody > tr:nth-of-type(1) > td > table > tbody {
-    display: none;
-  }
-
-  table.fatitem > tbody > tr:nth-of-type(5) {
-    display: none;
-  }
-
+  #hnmain > tbody > tr:nth-of-type(1) > td > table > tbody,
+  table.fatitem > tbody > tr:nth-of-type(5),
   .age,
-  span.navs > a:not(.togg) {
+  span.navs > a:not(.togg),
+  .reply {
     display: none;
   }
 
