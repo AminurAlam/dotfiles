@@ -69,29 +69,28 @@ https://crinacle.com/feed
 http://rachelbythebay.com/w/atom.xml "rachel by the bay"
 https://www.schneier.com/feed/atom "Bruce Schneier" < item-rule "title NOT LIKE 'Friday Squid Blogging: %'"
 https://thevaluable.dev/index.xml
+https://ploum.net/atom_en.xml
 https://strongly-typed-thoughts.net/blog/feed "strongly typed thoughts" < download-timeout 0
-https://mitchellh.com/feed.xml
 https://kevquirk.com/feed.xml
 https://cheapskatesguide.org/cheapskates-guide-rss-feed.xml "Cheapskates Guide"
 https://brainbaking.com/index.xml
-https://vkc.sh/feed/ "Veronica Explains"
+https://axlefublr.github.io/rss.xml "axlefublr"
+https://veronicaexplains.net/rss/ "Veronica Explains"
 https://soatok.blog/feed "Soatok (Dhole Moments)"
 https://vonheikemen.github.io/devlog/atom.xml "vonheikemen (nvim)"
 https://arjunyadav.xyz/rss.xml "Arjun Yadav"
 https://daniel.haxx.se/blog/feed/ "Daniel Stenberg (curl)"
 https://dylanbeattie.net/feed.xml "Dylan Beattie"
+https://mitchellh.com/feed.xml
 https://www.troyhunt.com/rss
 https://jvns.ca/atom.xml
 https://xn--gckvb8fzb.com/index.xml
-https://axlefublr.github.io/rss.xml "axlefublr"
 https://ficd.sh/rss.xml
 https://jdugan6240.dev/feed.xml
 https://www.amygoodchild.com/blog?format=rss "Amy Goodchild"
 https://dx13.co.uk/index.atom ~dx13
 https://tonsky.me/atom.xml "Nikita Prokopov (tonsky.me)"
-https://robertheaton.com/feed.xml "Robert Heaton"
 https://pluralistic.net/feed/ "Cory Doctorow (Pluralistic)"
-https://ploum.net/atom_en.xml
 https://fireborn.mataroa.blog/rss/
 
 @ PERSONAL BLOGS 2
@@ -105,6 +104,7 @@ https://daverupert.com/atom.xml
 https://zerokspot.com/index.xml
 https://buttondown.com/hillelwayne/rss
 https://www.devever.net/~hl/index.feed
+https://haskellforall.com/rss.xml
 https://alexwlchan.net/atom.xml
 https://chelseatroy.com/feed
 https://feeds.feedburner.com/avc
@@ -119,6 +119,7 @@ https://maia.crimew.gay/feed.xml
 https://lambdaland.org/index.xml
 https://hazelweakly.me/atom.xml
 https://xeiaso.net/blog.json
+https://robertheaton.com/feed.xml "Robert Heaton"
 https://lorendb.dev/index.xml
 https://blog.vaxry.net/feed
 # https://daringfireball.net/feeds/main "John Gruber (Daring Fireball)" < item-rule "NOT title REGEXP '(Sponsor|Apple|iPad|iPhone|MacOS|iOS|Macintosh)'"
@@ -184,5 +185,3 @@ https://vivekhaldar.com/index.xml
 https://emnudge.dev/reads.xml
 http://syndication.thedailywtf.com/TheDailyWtf
 https://loadingartist.com/index.xml
-https://www.smbc-comics.com/comic/rss
-https://theoatmeal.com/feed/rss
