@@ -1,9 +1,25 @@
-# $env:XDG_CONFIG_HOME = "$HOME/dotfiles"
+### ENV
 
-# https://wiki.archlinux.org/title/PowerShell#Telemetry
-# POWERSHELL_TELEMETRY_OPTOUT=1
+# https://gist.github.com/eabase/dc409e95c0c3bd3168711a914a1b4c02
+$env_dict = @{
+    "XDG_CONFIG_HOME"                           = "$HOME/dotfiles"
+    "POWERSHELL_TELEMETRY_OPTOUT"               = "1"
+    "DOTNET_CLI_TELEMETRY_OPTOUT"               = "1"
+    "VCPKG_DISABLE_METRICS"                     = "1"
+    "AZURE_CORE_COLLECT_TELEMETRY"              = "0"
+    "VSCODE_TELEMETRY_DISABLE"                  = "1"
+    "VSCODE_CRASH_REPORTER_DISABLE"             = "1"
+    "GH_NO_TELEMETRY"                           = "1"
+    "APPLICATIONINSIGHTS_NO_DIAGNOSTIC_CHANNEL" = "1"
+}
 
-Set-Alias -Name vi -Value nvim
+foreach ($key in $env_dict.Keys) {
+    $value = $env_dict[$key]
+    [Environment]::SetEnvironmentVariable($key, $value)
+    [Environment]::SetEnvironmentVariable($key, $value, "Machine")
+}
+
+### ALIASES
 
 function cmdchk {
     param($command)
@@ -19,6 +35,29 @@ function y {
     }
     Remove-Item -Path $tmp
 }
+
+function zz   { cd - }
+function ..   { cd .. }
+function ...  { cd ../.. }
+function .... { cd ../../.. }
+
+function vi { nvim }
+function l  { dir }
+function ll { dir }
+function lg { lazygit }
+
+function gl   { git status -bs; git log --pretty=nice -n10 }
+function gd   { git diff }
+function pull { git pull origin }
+function push { git push origin }
+
+function pi { scoop install }
+function pr { scoop uninstall }
+function pu { scoop update --all }
+function pf { scoop search }
+function pa { scoop info }
+
+### THEME
 
 $PSReadLineOptions = @{
     PredictionSource = 'History'
@@ -50,6 +89,7 @@ $PSReadLineOptions = @{
 }
 Set-PSReadLineOption @PSReadLineOptions
 
+### BINDINGS
 
 Set-PSReadLineKeyHandler -Key UpArrow -Function HistorySearchBackward
 Set-PSReadLineKeyHandler -Key DownArrow -Function HistorySearchForward
@@ -57,6 +97,8 @@ Set-PSReadLineKeyHandler -Key Tab -Function MenuComplete
 Set-PSReadLineKeyHandler -Chord 'Ctrl+w' -Function BackwardDeleteWord
 Set-PSReadLineKeyHandler -Chord 'Ctrl+LeftArrow' -Function BackwardWord
 Set-PSReadLineKeyHandler -Chord 'Ctrl+RightArrow' -Function ForwardWord
+
+### SETUP
 
 if (cmdchk zoxide) {
     Invoke-Expression (& { (zoxide init powershell | Out-String) })
