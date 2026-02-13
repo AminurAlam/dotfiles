@@ -167,7 +167,8 @@ vim.api.nvim_create_autocmd('LspAttach', {
 -- stylua: ignore
 vim.keymap.set('n', '<leader>li', function()
   print(table.concat(vim.tbl_map(function(client)
-    return string.format('\n%s (%s): %s',
+    return string.format('\n%d %s (%s): %s',
+      client.id,
       client.name,
       client.name == 'null-ls' and '*' or table.concat(client.config.filetypes or {}, ', '),
       client.workspace_folders and vim.fn.fnamemodify(client.workspace_folders[1].name, ':~') or 'single file mode'
