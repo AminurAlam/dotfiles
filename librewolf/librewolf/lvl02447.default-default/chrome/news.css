@@ -49,37 +49,37 @@
   .foot,
   .after-article,
   .article-box {
-    display: none;
+    display: none !important;
   }
 
   a {
-    color: #9ece6a;
-    text-decoration: underline;
+    color: #9ece6a !important;
+    text-decoration: underline !important;
   }
 
   #content-bg {
-    background: #24283b;
+    background: #24283b !important;
   }
 
   #content {
-    background: #23283b;
-    color: #c0caf5;
-    border-left: none;
-    border-right: none;
+    background: #23283b !important;
+    color: #c0caf5 !important;
+    border-left: none !important;
+    border-right: none !important;
   }
 
   #main {
-    border-right: none;
+    border-right: none !important;
   }
 
   article,
   article .details,
   article .details a {
-    color: #c0caf5;
+    color: #c0caf5 !important;
   }
 
   article.full .author {
-    color: #aaa;
+    color: #aaa !important;
   }
 }
 
