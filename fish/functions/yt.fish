@@ -1,6 +1,6 @@
 function yt -a url fmt -d "yt-dlp wrapper"
     for ver in 12 13 14 15
-        [ -d "$PREFIX/lib/python3.$ver/site-packages/yt_dlp/YoutubeDL.py" ] && set -f pyfile $PREFIX/lib/python3.$ver/site-packages/yt_dlp/YoutubeDL.py
+        [ -e "$PREFIX/lib/python3.$ver/site-packages/yt_dlp/YoutubeDL.py" ] && set pyfile "$PREFIX/lib/python3.$ver/site-packages/yt_dlp/YoutubeDL.py"
     end
     set patchfile ~/repos/dotfiles/scripts/patches/yt-dlp-YoutubeDL.py.diff
     if command -vq sudo
@@ -43,8 +43,13 @@ function yt -a url fmt -d "yt-dlp wrapper"
 
     # pick best audio for yt
     if echo $url | grep -Eq 'youtu.be|youtube.com'
-        if [ $fmt != 18 -a $fmt != 22 -a $fmt != best ] && echo $fmt | rg -vq '\d+-0'
-            set fmt $fmt+bestaudio
+        [ -z "$fmtfile" ] && return 3
+        if rg -q '^251-0' $fmtfile
+            set fmt "$fmt+251-0"
+        else if rg -q '^140-0' $fmtfile
+            set fmt "$fmt+140-0"
+        else if [ $fmt != 18 -a $fmt != 22 -a $fmt != best ]
+            set fmt "$fmt+bestaudio"
         end
     end
 
