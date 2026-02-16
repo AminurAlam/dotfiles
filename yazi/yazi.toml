@@ -3,8 +3,10 @@
 ## FETCH
 [plugin]
 prepend_fetchers = [
+  { id = "mime", url = "local://*", run = "mime-ext.local", prio = "high" },
+  { id = "mime", url = "remote://*", run = "mime-ext.remote", prio = "high" },
   { id = "mime", url = "*.{!qB,part}", run = "noop", prio = "high" },
-  { id = "mime", url = "/mnt/rclone/**", run = "noop", prio = "high" },
+  # { id = "mime", url = "/mnt/rclone/**", run = "noop", prio = "high" },
   { id = "git", url = "*", run = "git" },
   { id = "git", url = "*/", run = "git" },
 ]
@@ -108,8 +110,8 @@ typst = [
   { run = "typst c -fhtml %s", desc = " typ -> html", block = true, for = "unix" },
 ]
 edit = [
+  { run = "hx %s", desc = "󰚄 helix", block = true, for = "unix" },
   { run = "nvim %s", desc = " nvim", block = true, for = "unix" },
-  { run = "helix %s", desc = "󰚄 helix", block = true, for = "unix" },
 ]
 open = [
   { run = "xdg-open %s1", orphan = true, desc = "󰏌 Open", for = "linux" },

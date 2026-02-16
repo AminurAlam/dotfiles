@@ -227,9 +227,14 @@ require('sort-by-location'):setup {
   { pattern = '.*/DCIM/.*', sort = { by = 'mtime', reverse = true } },
 }
 
+require('mime-ext.local'):setup {
+  with_exts = { cbz = 'application/zip' },
+  fallback_file1 = false,
+}
+
 require('spot'):setup {
   metadata_section = { hash_filesize_limit = 100, relative_time = true },
-  plugins_section = { enable = false },
+  plugins_section = { enable = true },
   style = {
     section = 'magenta',
     key = 'reset',
