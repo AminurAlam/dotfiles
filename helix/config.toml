@@ -23,6 +23,9 @@ inline-diagnostics = { cursor-line = "error" }
 
 # TODO: mh/ml -> goto left/right match
 
+[keys.insert]
+"C-n" = "completion"
+
 [keys.normal]
 q = ":quit"
 0 = "extend_to_line_start"
@@ -49,8 +52,9 @@ m = ["select_mode", "match_brackets"]
 
 [keys.normal.space]
 ":" = "command_palette"
+h = 'command_palette'
 w = ":w"
-t = { s = ":tree-sitter-scopes", h = ":tree-sitter-highlight-name" }
+# t = { s = ":tree-sitter-scopes", h = ":tree-sitter-highlight-name" }
 
 [keys.select]
 "^" = "extend_to_first_nonwhitespace"

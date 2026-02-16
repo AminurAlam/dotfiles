@@ -32,7 +32,7 @@ gnome-epub-thumbnailer
 gst-libav
 gst-plugin-pipewire
 gstreamer-vaapi
-helix
+helix-git
 help2man
 hyperfine
 identity
@@ -103,6 +103,7 @@ prettier
 pv
 python-docutils
 python-gobject
+python-pandas
 qbittorrent
 qt5-wayland
 qt5ct

@@ -46,7 +46,7 @@ function clean -d "cleanup storage space"
     command -vq trash-empty && trash-empty
     command -vq yay && begin
         yay -Sc --noconfirm
-        [ (count (pacman -Qdtq)) -gt 20 ] && yay -Yc
+        [ (count (pacman -Qdtq)) -gt 10 ] && yay -Yc
     end
 
     # remove deleted directories from zoxide
