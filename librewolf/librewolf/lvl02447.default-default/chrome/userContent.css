@@ -24,7 +24,7 @@
 }
 
 @-moz-document domain("lobste.rs") {
-  .comment_form_container.comment {
+  .comment_form_container.comment, time {
     display: none;
   }
   .links > .corner {
