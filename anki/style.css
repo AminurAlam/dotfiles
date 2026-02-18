@@ -45,6 +45,7 @@ summary {
 }
 details { font-size: 16px; }
 details[open] {
+  summary { list-style-type: "-"; }
   .freq {
     padding: 0px 0px 0px 10px;
     ul {
