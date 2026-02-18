@@ -228,7 +228,10 @@ require('sort-by-location'):setup {
 }
 
 require('mime-ext.local'):setup {
-  with_exts = { cbz = 'application/zip' },
+  with_exts = {
+    cbz = 'application/zip',
+    service = 'text/plain',
+  },
   fallback_file1 = false,
 }
 
