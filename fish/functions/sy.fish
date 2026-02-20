@@ -16,7 +16,7 @@ function sy -d "sync files between phone and pc"
 
         printf "=== PICTURES ===\n"
         rsync $comm $XDG_PICTURES_DIR/ brick:/sdcard/Pictures/ --exclude={Camera,Komikku,WhatsApp Images} | rg -v '/$'
-        rsync $comm brick:/sdcard/Pictures/ $XDG_PICTURES_DIR/ | rg -v '/$'
+        rsync $comm brick:/sdcard/Pictures/ $XDG_PICTURES_DIR/ --exclude Komikku | rg -v '/$'
         rsync $comm brick:/sdcard/{DCIM/Camera,Pictures/Komikku,Android/media/com.whatsapp/WhatsApp/Media/WhatsApp Images} $XDG_PICTURES_DIR/ --delete | rg -v '/$'
 
         printf "=== DOCUMENTS ===\n"

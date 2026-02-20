@@ -44,12 +44,10 @@ function yt -a url fmt -d "yt-dlp wrapper"
     # pick best audio for yt
     if echo $url | grep -Eq 'youtu.be|youtube.com'
         [ -z "$fmtfile" ] && return 3
-        if rg -q '^251-0' $fmtfile
-            set fmt "$fmt+251-0"
-        else if rg -q '^140-0' $fmtfile
-            set fmt "$fmt+140-0"
-        else if [ $fmt != 18 -a $fmt != 22 -a $fmt != best ]
-            set fmt "$fmt+bestaudio"
+        if not echo "$fmt" | rg -q '\d+-0$'
+            echo $fmt
+            set fmt "$fmt+251-0/$fmt+250-0/$fmt+140-0/$fmt+bestaudio"
+            echo $fmt
         end
     end
 
