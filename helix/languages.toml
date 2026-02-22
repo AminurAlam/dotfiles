@@ -1,24 +1,13 @@
 # htps://github.com/helix-editor/helix/wiki/Language-Server-Configurations
 
 [[language]]
-name = "lua"
-auto-format = true
-formatter = { command = "stylua", args = ["-f", "$HOME/repos/dotfiles/other/stylua.toml", "-"] }
-
-[[language]]
-name = "python"
-auto-format = true
-language-servers = ["basedpyright", "ruff"]
-
-[[language]]
 name = "fish"
 auto-format = true
 formatter = { command = "fish_indent", args = ["-"] }
 
 [[language]]
-name = "toml"
-auto-format = true
-formatter = { command = "taplo", args = ["format", "-"] }
+name = "ini"
+file-types = ["conf"]
 
 [[language]]
 name = "kanata"
@@ -29,9 +18,22 @@ comment-tokens = [";;"]
 
 [[grammar]]
 name = "kanata"
-source = { git = "https://github.com/AminurAlam/tree-sitter-kanata", rev = "5f37aa65c2573828a745b9c0edf65fe4d768f8c4" }
+source = { git = "https://github.com/AminurAlam/tree-sitter-kanata", rev = "e8d56b0675824723aa283e84e441c6709b61b722" }
 
-### TYPST
+[[language]]
+name = "lua"
+auto-format = true
+formatter = { command = "stylua", args = ["-f", "$HOME/repos/dotfiles/other/stylua.toml", "-"] }
+
+[[language]]
+name = "python"
+auto-format = true
+language-servers = ["basedpyright", "ruff"]
+
+[[language]]
+name = "toml"
+auto-format = true
+formatter = { command = "taplo", args = ["format", "-"] }
 
 [[language]]
 name = "typst"
@@ -40,10 +42,4 @@ file-types = ["typst", "typ"]
 indent = { tab-width = 2, unit = "  " }
 comment-token = "//"
 injection-regex = "typ(st|c)?"
-
-[language.auto-pairs]
-'(' = ')'
-'{' = '}'
-'[' = ']'
-'$' = '$'
-'"' = '"'
+auto-pairs = { '(' = ')', '{' = '}', '[' = ']', '$' = '$', '"' = '"', '`' = '`' }

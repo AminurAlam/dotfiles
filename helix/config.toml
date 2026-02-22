@@ -15,11 +15,12 @@ popup-border = "all"
 jump-label-alphabet = "fjdksla;ghcnvmwi"
 end-of-line-diagnostics = "hint"
 cursorline = true
-gutters = { layout = ["line-numbers", "diff"], line-numbers.min-width = 1 }
+gutters = { layout = ["diff", "line-numbers", "spacer"], line-numbers.min-width = 1 }
 cursor-shape = { insert = "bar", select = "underline" }
 file-picker = { git-ignore = false }
 whitespace = { render = { tab = "all" }, characters = { tab = ">", tabpad = " " } }
-inline-diagnostics = { cursor-line = "error" }
+inline-diagnostics = { cursor-line = "disable", other-lines = "disable" }
+lsp = { display-progress-messages = true }
 
 # TODO: mh/ml -> goto left/right match
 
@@ -27,28 +28,30 @@ inline-diagnostics = { cursor-line = "error" }
 "C-n" = "completion"
 
 [keys.normal]
-q = ":quit"
-0 = "extend_to_line_start"
-"^" = "extend_to_first_nonwhitespace"
-"$" = "extend_to_line_end"
-G = "goto_file_end"
-"ret" = ["move_char_right", "move_prev_word_start", "move_next_word_end", "select_mode"]
-esc = ["collapse_selection", "keep_primary_selection"]
-r = "redo"
-U = ":reset-diff-change"
+"$" = ["extend_to_line_end"]
 "*" = ["move_char_right", "move_prev_word_start", "move_next_word_end", "search_selection", "search_next"]
-"C-r" = ":config-reload"
-"C-j" = ":buffer-next"
-"C-k" = ":buffer-previous"
+"^" = ["extend_to_first_nonwhitespace"]
+"C-j" = [":buffer-next"]
+"C-k" = [":buffer-previous"]
+"C-r" = [":config-reload"]
+"C-v" = ["copy_selection_on_next_line"]
+"esc" = ["collapse_selection", "keep_primary_selection"]
+"ret" = ["move_char_right", "move_prev_word_start", "move_next_word_end", "select_mode"]
+0 = ["extend_to_line_start"]
+D = ["extend_line_below", "delete_selection"]
+G = ["goto_file_end"]
+q = [":quit"]
+r = ["redo"]
+# s = ["select_all", "select_regex"]
+U = [":reset-diff-change"]
 V = ["extend_line_below"]
 X = ["extend_line_above"]
-D = ["extend_line_below", "delete_selection"]
 
 [keys.normal.g]
 j = "merge_selections"
 
 [keys.normal.m]
-m = ["select_mode", "match_brackets"]
+# m = ["select_mode", "match_brackets"]
 
 [keys.normal.space]
 ":" = "command_palette"
@@ -57,8 +60,8 @@ w = ":w"
 # t = { s = ":tree-sitter-scopes", h = ":tree-sitter-highlight-name" }
 
 [keys.select]
-"^" = "extend_to_first_nonwhitespace"
 "$" = "extend_to_line_end"
+"^" = "extend_to_first_nonwhitespace"
 "ret" = "select_line_below"
-o = "flip_selections"
 m = ["select_mode", "match_brackets"]
+o = "flip_selections"
