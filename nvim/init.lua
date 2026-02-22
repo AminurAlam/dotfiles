@@ -24,6 +24,7 @@ g.qf_disable_statusline = 1
 g.tex_flavor = 'latex'
 g.do_filetype_lua = 1
 g.ft_man_folding_enable = 1
+g.query_lint_on = { 'BufEnter', 'BufWrite' }
 
 -- [[ core ]]
 require 'pack'
