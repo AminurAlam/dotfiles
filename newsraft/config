@@ -20,6 +20,8 @@ bind , shift-reset
 bind m toggle-read;jump-to-next-unread
 bind f toggle-important
 bind SPACE toggle-read
+bind d select-next-page-half
+bind u select-prev-page-half
 
 notification-command "true"
 scrolloff 5000

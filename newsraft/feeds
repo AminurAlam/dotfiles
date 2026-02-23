@@ -52,6 +52,7 @@ https://haveibeenpwned.com/feed/breaches/ "Have I Been Pwned"
 https://www.phoronix.com/rss.php < item-rule "NOT (title REGEXP 'Intel|NVIDIA|driver|Mesa|Vulkan')"
 https://www.ghacks.net/feed/ "gHacks" < item-rule "NOT (title REGEXP '(^| )(Windows|Apple|Google|Microsoft|Amazon|Chrome|OpenAI|Meta|Spotify)')"
 https://lwn.net/headlines/rss < item-rule "NOT (title LIKE '[$] %' OR title LIKE 'Security updates for %')"
+https://gamersnexus.net/rss.xml
 # https://blog.opensource.org/feed/
 # https://www.bitdefender.com/nuxt/api/en-us/rss/hotforsecurity/
 # https://rss.slashdot.org/Slashdot/slashdotMain
@@ -71,7 +72,7 @@ https://www.schneier.com/feed/atom "Bruce Schneier" < item-rule "title NOT LIKE 
 https://thevaluable.dev/index.xml
 https://ploum.net/atom_en.xml
 https://strongly-typed-thoughts.net/blog/feed "strongly typed thoughts" < download-timeout 0
-https://kevquirk.com/feed.xml
+https://kevquirk.com/feed.php
 https://cheapskatesguide.org/cheapskates-guide-rss-feed.xml "Cheapskates Guide"
 https://brainbaking.com/index.xml
 https://axlefublr.github.io/rss.xml "axlefublr"
@@ -98,8 +99,8 @@ https://ludic.mataroa.blog/rss
 https://steveklabnik.com/feed.xml
 https://matklad.github.io/feed.xml
 https://jyn.dev/atom.xml
-https://aphyr.com/posts.atom
-https://www.roboleary.net/feed.xml
+https://aphyr.com/posts.atom "Aphyr"
+https://www.roboleary.net/feed.xml "Rob O'Leary"
 https://daverupert.com/atom.xml
 https://zerokspot.com/index.xml
 https://buttondown.com/hillelwayne/rss
@@ -107,7 +108,6 @@ https://www.devever.net/~hl/index.feed
 https://haskellforall.com/rss.xml
 https://alexwlchan.net/atom.xml
 https://chelseatroy.com/feed
-https://feeds.feedburner.com/avc
 https://ar.al/index.xml
 https://krebsonsecurity.com/feed
 https://danluu.com/atom.xml
@@ -119,6 +119,9 @@ https://maia.crimew.gay/feed.xml
 https://lambdaland.org/index.xml
 https://hazelweakly.me/atom.xml
 https://xeiaso.net/blog.json
+https://ewie.online/feed/feed.json
+https://rubenerd.com/feed/
+https://joelchrono.xyz/feed.xml
 https://robertheaton.com/feed.xml "Robert Heaton"
 https://lorendb.dev/index.xml
 https://blog.vaxry.net/feed
@@ -132,12 +135,15 @@ https://abhinavsarkar.net/notes/feed.atom
 https://ankursethi.com/feeds/index.xml
 
 @ PERSONAL BLOGS 3
+https://aredridel.dinhe.net/atom.xml
 https://maurycyz.com/index.xml
+https://www.justinmklam.com/index.xml
 https://neilzone.co.uk/index.xml
 https://thecodist.com/rss
-https://joelchrono.xyz/feed.xml
 https://blog.matthewbrunelle.com/rss
 https://mtwb.blog/index.xml
+https://thelinuxcast.org/index.xml
+https://www.himthe.dev/rss.xml
 https://abner.page/index.xml
 https://esham.io/atom.xml
 https://www.harihareswara.net/rss/
@@ -146,8 +152,8 @@ https://hasbrouck.org/blog/index.xml
 https://nadh.in/index.xml
 https://dotat.at/@/blog.atom
 https://cedwards.xyz/index.xml
+https://blog.avas.space/feed/
 https://vicki.substack.com/feed
-https://adlrocha.substack.com/feed
 https://alistairshepherd.uk/feed.xml
 https://austinhenley.com/blog/feed.rss
 https://benjamincongdon.me/blog/feed.xml
@@ -170,7 +176,6 @@ http://pb.co.za/posts.atom
 https://gabrielsimmer.com/rss
 https://www.supergoodcode.com/feed.xml
 https://ntietz.com/atom.xml
-https://rubenerd.com/feed/
 https://www.lopcode.com/feed.xml
 https://cendyne.dev/feed.xml "Cendyne's Posts"
 https://emnudge.dev/blog.xml
