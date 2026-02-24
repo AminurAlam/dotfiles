@@ -43,17 +43,20 @@ summary {
   padding-right: 20px;
   list-style-type: "+";
 }
-details { font-size: 16px; }
-details[open] {
-  summary { list-style-type: "-"; }
-  .freq {
-    padding: 0px 0px 0px 10px;
-    ul {
-      padding: 0px;
-      margin: 0px;
-      & li {
-        display: inline;
-        margin-right: 1ex;
+details {
+  font-size: 16px;
+  &[open] {
+    summary {
+      list-style-type: "-";
+    }
+    .freq {
+      padding: 0px 0px 0px 10px;
+      ul {
+        padding: 0px;
+        & li {
+          display: inline;
+          margin-right: 1ex;
+        }
       }
     }
   }
