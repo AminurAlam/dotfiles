@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Version=1.0
+Name=Pocket Monsters - White (Japan) (NDSi Enhanced)
+Comment=Pocket Monsters - White (Japan) (NDSi Enhanced)
+Icon=/home/fisher/.local/share/icons/hicolor/32x32/pkmnwht.png
+TryExec=melonDS
+Exec=melonDS "dl/main/ROMS/NDS/Pocket Monsters - White (Japan) (NDSi Enhanced).nds" 
+Categories=Game;
+Keywords=Pokemon;
