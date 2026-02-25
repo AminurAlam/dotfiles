@@ -5,6 +5,7 @@
 # attachments LIKE '%audio/mp3%' OR attachments LIKE '%video/mp4%'
 # CAST(strftime('%Y', publication_date, 'unixepoch') AS INTEGER) >= 2024
 # NOT (title REGEXP '.+:.+\".+\".+by' OR title LIKE '%(ultra slowed)%' OR title LIKE '%(1 hour version)%')
+# proxy "socks5://android.local:9050"
 
 @ MISC
 https://github.com/neovim/neovim/commits/master/runtime/doc/news.txt.atom "nvim news" < item-rule "title NOT LIKE 'docs: %'"
