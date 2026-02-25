@@ -193,13 +193,6 @@ end
 
 ------------------ STARTUP ---------------
 
--- start with zoxide if launching as fileManager
-if os.getenv('YAZI_START_PICKING') then
-  ya.emit('plugin', { 'zoxide' })
-else
-  require('session'):setup { sync_yanked = true }
-end
-
 -- git icon theming
 th.git = { ---@diagnostic disable-line: inject-field
   modified = ui.Style():fg('red'),
@@ -221,6 +214,8 @@ require('topaste'):setup {}
 
 require('zoxide'):setup { update_db = false }
 
+require('session'):setup { sync_yanked = true }
+
 require('sort-by-location'):setup {
   { pattern = '.*/Pictures/.*', sort = { by = 'mtime', reverse = true } },
   { pattern = '.*/pic/.*', sort = { by = 'mtime', reverse = true } },
@@ -231,6 +226,7 @@ require('mime-ext.local'):setup {
   with_exts = {
     cbz = 'application/zip',
     scm = 'text/plain',
+    mmd = 'text/plain',
   },
   fallback_file1 = true,
 }

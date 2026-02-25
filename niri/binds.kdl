@@ -2,7 +2,7 @@ binds {
     // KEEB
     Mod+Q repeat=false { close-window; }
     Mod+W repeat=false { spawn "fuzzel"; }
-    Mod+E repeat=false { spawn "footclient" "-e" "fish" "-C" "YAZI_START_PICKING=1 y"; }
+    Mod+E repeat=false { spawn "footclient" "-e" "fish" "-C" "y (zoxide query -i)"; }
     // Mod+U repeat=false { close-window; }
     // Mod+I repeat=false { spawn "fuzzel"; }
     // Mod+O repeat=false { spawn "alacritty" "-e" "fish" "-C" "y --client-id=48937"; }

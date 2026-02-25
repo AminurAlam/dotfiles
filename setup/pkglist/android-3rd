@@ -71,7 +71,6 @@ installer=com.looker.droidify org.ironfoxoss.ironfox
 installer=com.looker.droidify org.kde.kdeconnect_tp
 installer=com.looker.droidify org.proninyaroslav.libretorrent
 installer=com.looker.droidify org.torproject.android
-installer=com.looker.droidify org.torproject.torservices
 installer=com.looker.droidify pl.lambada.songsync
 installer=com.looker.droidify us.spotco.maps
 installer=com.samsung.android.goodlock com.samsung.android.app.galaxyregistry
