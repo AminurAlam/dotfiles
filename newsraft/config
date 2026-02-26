@@ -24,21 +24,23 @@ bind d select-next-page-half
 bind u select-prev-page-half
 
 notification-command "true"
-scrolloff 5000
+scrolloff 10
 # list-entry-date-format "%D"
 feeds-menu-paramount-explore false
 item-limit-unread true
 scrollwrap true
 pager-width 80
+global-section-hide false
 status-placeholder ""
 item-content-link-format "[%i] %l<br>"
+feeds-menu-paramount-explore true
 # database-clean-on-startup true
 download-max-connections 8
 download-max-host-connections 3
 
 menu-section-entry-format '%5u > %t'
 menu-feed-entry-format '%4u %t'
-menu-explore-item-entry-format '%d %-13O│%o'
+menu-explore-item-entry-format '%d %-16O│%o'
 menu-item-entry-format ' %d %o'
 item-content-format '%d|&nbsp;|%t<br>|%l<br>|<hr>%c<br>|<hr>%L'
 item-content-date-format '%Y-%m-%d'

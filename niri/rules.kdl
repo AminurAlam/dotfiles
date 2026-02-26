@@ -1,4 +1,5 @@
 // TODO: PR https://github.com/boydaihungst/xdg-desktop-portal-termfilechooser
+
 window-rule { // floatinng save as window
     // match title="^(Save File|Select Directory|Select File):$"
     match title="^file_chooser$"
@@ -16,7 +17,7 @@ window-rule { // focus on keepass
 }
 
 window-rule { // pseudo-fullscreen
-    match app-id="librewolf|vesktop"
+    match app-id="librewolf|vesktop|anki|newsraft"
     match app-id="(org|com)\\..*\\.(Picard|Identity|rnote|kdeconnect.app)$"
 
     default-column-width { proportion 1.0; }
