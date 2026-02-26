@@ -98,7 +98,7 @@ fish_add_path --path $JAVA_HOME/bin
 
 status is-interactive || exit
 
-command -vq starship && starship init fish | source || source $XDG_CONFIG_HOME/fish/functions/load_prompt.fish
+command -vq starship && starship init fish | source
 command -vq zoxide && zoxide init fish | source || alias z cd
 dircolors ~/repos/dotfiles/eza/dircolors -c | sed 's/^setenv /set -gx /' | source
 
