@@ -227,6 +227,7 @@ require('mime-ext.local'):setup {
     cbz = 'application/zip',
     scm = 'text/plain',
     mmd = 'text/plain',
+    xml = 'text/plain',
   },
   fallback_file1 = true,
 }

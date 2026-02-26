@@ -110,8 +110,8 @@ typst = [
   { run = "typst c -fhtml %s", desc = " typ -> html", block = true, for = "unix" },
 ]
 edit = [
-  { run = "hx %s", desc = "󰚄 helix", block = true, for = "unix" },
   { run = "nvim %s", desc = " nvim", block = true, for = "unix" },
+  { run = "hx %s", desc = "󰚄 helix", block = true, for = "unix" },
 ]
 open = [
   { run = "xdg-open %s1", orphan = true, desc = "󰏌 Open", for = "linux" },

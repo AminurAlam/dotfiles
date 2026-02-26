@@ -1,20 +1,20 @@
 # key = { fg = "#ffffff", bg = "#000000", underline = { color = "#ff0000", style = "curl"} }
+# TODO: add bg to diagnostics
 
-inherits = "tokyonight"
+"comment" = { fg = "comment" }
+"function" = { fg = "blue" }
+"inherits" = "tokyonight"
+"keyword" = { fg = "purple" }
+"keyword.control.return" = { fg = "purple" }
+"markup.italic" = {}
+"punctuation.bracket" = { fg = "fg" }
+"tag" = { fg = "green" }
+"ui.help" = { bg = "bg", fg = "fg" }
 "ui.linenr.selected" = { fg = "fg" }
 "ui.menu" = { bg = "bg-menu", fg = "fg" }
 "ui.popup" = { bg = "bg", fg = "border-highlight" }
-"ui.help" = { bg = "bg", fg = "fg" }
-# no italics
-comment = { fg = "comment" }
-function = { fg = "blue" }
-keyword = { fg = "purple" }
-"keyword.control.return" = { fg = "purple" }
-"variable.parameter" = { fg = "yellow" }
-"markup.italic" = {}
 "ui.text.inactive" = { fg = "comment" }
-tag = { fg = "green" }
-"punctuation.bracket" = { fg = "fg" }
+"variable.parameter" = { fg = "yellow" }
 
 [palette]
 border = "#1d202f"

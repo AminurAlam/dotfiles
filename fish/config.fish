@@ -1,4 +1,4 @@
-set -gx EDITOR hx
+set -gx EDITOR nvim
 set -gx SUDO_EDITOR nvim -u ~/repos/dotfiles/other/vimrc
 set -gx LESS --mouse
 set -gx MANPAGER "nvim +Man!"
