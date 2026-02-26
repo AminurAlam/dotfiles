@@ -1,5 +1,4 @@
 # vim:ft=feed:noexpandtab:conceallevel=3:cms=#\ %s:
-
 # title NOT LIKE '%Rust%'
 # persons LIKE '%PHARMACIST%' OR persons LIKE '%OFFL1NX%'
 # attachments LIKE '%audio/mp3%' OR attachments LIKE '%video/mp4%'
@@ -7,133 +6,113 @@
 # NOT (title REGEXP '.+:.+\".+\".+by' OR title LIKE '%(ultra slowed)%' OR title LIKE '%(1 hour version)%')
 # proxy "socks5://android.local:9050"
 
-@ MISC
-https://github.com/neovim/neovim/commits/master/runtime/doc/news.txt.atom "nvim news" < item-rule "title NOT LIKE 'docs: %'"
-https://www.thatmangahunter.com/blog-feed.xml
-https://muspy.com/feed?id=mobwjpkr95u5p1b4f2w1bjt74qc8u3 "muspy New Releases" < item-rule "NOT (title LIKE 'Taylor Swift%' OR title REGEXP 'Remix|live|Live|LIVE')"
-https://noted.lol/rss "noted.lol (self-host)"
-https://pudding.cool/rss.xml
-# https://xkcd.com/atom.xml
-
-@ FORUMS & AGGREGATORS
-https://waxy.org/feed/ < item-limit 40
-https://alecmuffett.com/feed "Alec Muffett"
+@ NEWS 1
 https://lobste.rs/rss < item-rule "title NOT LIKE 'What are you doing this week%'"
 https://hnrss.org/frontpage.atom "Hacker News" < item-rule "NOT (title REGEXP '^(Show|Tell|Ask|Launch) HN: ' OR title REGEXP '\(YC .*\)')"
-https://dotfyle.com/neovim/plugins/rss.xml  < item-rule "NOT (content REGEXP 'theme|colou?r ?scheme')"
-https://vi.stackexchange.com/feeds/week "StackExchange - vi"
-# https://reddit.com/r/neovim/hot.rss "r/neovim"
-# https://reddit.com/r/OtoMusic/new.rss "r/OtoMusic"
-# https://dotfyle.com/this-week-in-neovim/rss.xml "This Week in Neovim"
-
-@ NEWS & CORPO < item-limit 40
-https://archlinux.org/feeds/news/
-https://dolphin-emu.org/blog/feeds/ "Dolphin Emulator"
-https://melonds.kuribo64.net/rss.php
-https://f-droid.org/feed.xml "F-Droid"
-https://android.izzysoft.de/rss/en/articles
-https://fishshell.com/blog/feed.xml
-https://echasnovski.com/blog.xml
-https://newsboat.org/news.atom
-https://blog.thunderbird.net/feed/ "Thunderbird"
-https://blog.tangled.org/blog/feed.xml
-https://annas-archive.li/blog/rss.xml
-https://rue-lang.dev/blog/rss.xml
-# https://strato-emu.github.io/index.xml
-# https://hyprland.org/rss.xml
-# https://blog.ajay.app/rss.xml
-
 https://astral.sh/blog/rss.xml "astral.sh"
-https://www.404media.co/rss < item-rule "NOT (title REGEXP '^(Podcast|Behind the Blog):' OR persons LIKE '%Becky Ferreira%' OR content LIKE '%Listen to the weekly podcast on%')"
-# OR content REGEXP '(welcome back to the abstract|bexfiles|BeX Files)')"
-https://www.eff.org/rss/updates.xml "eff.org"
-https://torrentfreak.com/feed < item-rule "title NOT LIKE '%IPTV%'"
-https://www.bleepingcomputer.com/feed/ < item-rule "NOT (title REGEXP '(^| )(Microsoft|Windows)')"
-https://haveibeenpwned.com/feed/breaches/ "Have I Been Pwned"
-https://www.phoronix.com/rss.php < item-rule "NOT (title REGEXP 'Intel|NVIDIA|driver|Mesa|Vulkan')"
-https://www.ghacks.net/feed/ "gHacks" < item-rule "NOT (title REGEXP '(^| )(Windows|Apple|Google|Microsoft|Amazon|Chrome|OpenAI|Meta|Spotify)')"
-https://lwn.net/headlines/rss < item-rule "NOT (title LIKE '[$] %' OR title LIKE 'Security updates for %')"
-https://gamersnexus.net/rss.xml
-# https://blog.opensource.org/feed/
-# https://www.bitdefender.com/nuxt/api/en-us/rss/hotforsecurity/
-# https://rss.slashdot.org/Slashdot/slashdotMain
-
-https://mullvad.net/en/blog/feed/atom/
-https://blog.cloudflare.com/rss/
 https://blog.nightly.mozilla.org/feed
+https://gamersnexus.net/rss.xml
+https://haveibeenpwned.com/feed/breaches/ "Have I Been Pwned"
+https://lwn.net/headlines/rss < item-rule "NOT (title LIKE '[$] %' OR title LIKE 'Security updates for %')"
+https://pudding.cool/rss.xml
 https://security.googleblog.com/feeds/posts/default?alt=rss
-https://crinacle.com/feed
-# https://signal.org/blog/rss.xml
-# https://blog.archive.org/feed/
-# https://element.io/blog/rss/
+https://torrentfreak.com/feed < item-rule "title NOT LIKE '%IPTV%'"
+https://www.404media.co/rss < item-rule "NOT (title REGEXP '^(Podcast|Behind the Blog):' OR persons LIKE '%Becky Ferreira%' OR content LIKE '%Listen to the weekly podcast on%')"
+https://www.bleepingcomputer.com/feed/ < item-rule "NOT (title REGEXP '(^| )(Microsoft|Windows)')"
+https://www.eff.org/rss/updates.xml "eff.org"
+https://www.phoronix.com/rss.php < item-rule "NOT (title REGEXP 'Intel|NVIDIA|driver|Mesa|Vulkan')"
+# https://www.ghacks.net/feed/ "gHacks" < item-rule "NOT (title REGEXP '(^| )(Windows|Apple|Google|Microsoft|Amazon|Chrome|OpenAI|Meta|Spotify)')"
+
+@ NEWS 2
+https://android.izzysoft.de/rss/en/articles
+https://annas-archive.li/blog/rss.xml
+https://archlinux.org/feeds/news/
+https://blog.tangled.org/blog/feed.xml
+https://blog.thunderbird.net/feed/ "Thunderbird"
+https://dolphin-emu.org/blog/feeds/ "Dolphin Emulator"
+https://dotfyle.com/neovim/plugins/rss.xml  < item-rule "NOT (content REGEXP 'theme|colou?r ?scheme')"
+https://echasnovski.com/blog.xml
+https://f-droid.org/feed.xml "F-Droid"
+https://reddit.com/r/neovim/hot.rss "r/neovim"
+https://fishshell.com/blog/feed.xml
+https://github.com/neovim/neovim/commits/master/runtime/doc/news.txt.atom "nvim news" < item-rule "title NOT LIKE 'docs: %'"
+https://melonds.kuribo64.net/rss.php
+https://muspy.com/feed?id=mobwjpkr95u5p1b4f2w1bjt74qc8u3 "muspy New Releases" < item-rule "NOT (title LIKE 'Taylor Swift%' OR title REGEXP 'Remix|live|Live|LIVE')"
+https://newsboat.org/news.atom
+https://rue-lang.dev/blog/rss.xml
+# https://xkcd.com/atom.xml
 
 @ PERSONAL BLOGS 1
-http://rachelbythebay.com/w/atom.xml "rachel by the bay"
-https://www.schneier.com/feed/atom "Bruce Schneier" < item-rule "title NOT LIKE 'Friday Squid Blogging: %'"
-https://thevaluable.dev/index.xml
-https://ploum.net/atom_en.xml
-https://strongly-typed-thoughts.net/blog/feed "strongly typed thoughts" < download-timeout 0
-https://kevquirk.com/feed.php
-https://cheapskatesguide.org/cheapskates-guide-rss-feed.xml "Cheapskates Guide"
-https://brainbaking.com/index.xml
-https://axlefublr.github.io/rss.xml "axlefublr"
-https://veronicaexplains.net/rss/ "Veronica Explains"
-https://soatok.blog/feed "Soatok (Dhole Moments)"
-https://vonheikemen.github.io/devlog/atom.xml "vonheikemen (nvim)"
+https://alecmuffett.com/feed "Alec Muffett"
+https://alexwlchan.net/atom.xml
+https://amygoodchild.com/blog?format=rss "Amy Goodchild"
+https://anildash.com/feed.xml
+https://aphyr.com/posts.atom "Aphyr"
 https://arjunyadav.xyz/rss.xml "Arjun Yadav"
+https://axlefublr.github.io/rss.xml "axlefublr"
+https://blog.vaxry.net/feed
+https://brainbaking.com/index.xml
+https://cheapskatesguide.org/cheapskates-guide-rss-feed.xml "Cheapskates Guide"
 https://daniel.haxx.se/blog/feed/ "Daniel Stenberg (curl)"
-https://dylanbeattie.net/feed.xml "Dylan Beattie"
-https://mitchellh.com/feed.xml
-https://www.troyhunt.com/rss
-https://jvns.ca/atom.xml
-https://xn--gckvb8fzb.com/index.xml
-https://ficd.sh/rss.xml
-https://jdugan6240.dev/feed.xml
-https://www.amygoodchild.com/blog?format=rss "Amy Goodchild"
+https://daverupert.com/atom.xml
 https://dx13.co.uk/index.atom ~dx13
-https://tonsky.me/atom.xml "Nikita Prokopov (tonsky.me)"
-https://pluralistic.net/feed/ "Cory Doctorow (Pluralistic)"
+https://dylanbeattie.net/feed.xml "Dylan Beattie"
+https://ewie.online/feed/feed.json
+https://ficd.sh/rss.xml
 https://fireborn.mataroa.blog/rss/
+https://haskellforall.com/rss.xml
+https://jdugan6240.dev/feed.xml
+https://joelchrono.xyz/feed.xml
+https://jvns.ca/atom.xml
+https://jyn.dev/atom.xml
+https://kevquirk.com/feed.php
+https://krebsonsecurity.com/feed
+https://maia.crimew.gay/feed.xml
+https://xn--gckvb8fzb.com/index.xml
+https://matklad.github.io/feed.xml
+https://mitchellh.com/feed.xml
+https://ploum.net/atom_en.xml
+https://pluralistic.net/feed/ "Cory Doctorow (Pluralistic)"
+https://rachelbythebay.com/w/atom.xml "rachel by the bay"
+https://roboleary.net/feed.xml "Rob O'Leary"
+https://rubenerd.com/feed/
+https://schneier.com/feed/atom "Bruce Schneier" < item-rule "title NOT LIKE 'Friday Squid Blogging: %'"
+https://soatok.blog/feed "Soatok (Dhole Moments)"
+https://steveklabnik.com/feed.xml
+https://strongly-typed-thoughts.net/blog/feed "strongly typed thoughts" < download-timeout 0
+https://thatmangahunter.com/blog-feed.xml
+https://thevaluable.dev/index.xml
+https://tonsky.me/atom.xml "Nikita Prokopov (tonsky.me)"
+https://veronicaexplains.net/rss/ "Veronica Explains"
+https://vonheikemen.github.io/devlog/atom.xml "vonheikemen (nvim)"
+https://waxy.org/feed/ < item-limit 40
+https://xeiaso.net/blog.json
+https://zerokspot.com/index.xml
 
 @ PERSONAL BLOGS 2
-https://ludic.mataroa.blog/rss
-https://steveklabnik.com/feed.xml
-https://matklad.github.io/feed.xml
-https://jyn.dev/atom.xml
-https://aphyr.com/posts.atom "Aphyr"
-https://www.roboleary.net/feed.xml "Rob O'Leary"
-https://daverupert.com/atom.xml
-https://zerokspot.com/index.xml
-https://buttondown.com/hillelwayne/rss
-https://www.devever.net/~hl/index.feed
-https://haskellforall.com/rss.xml
-https://alexwlchan.net/atom.xml
-https://chelseatroy.com/feed
-https://ar.al/index.xml
-https://krebsonsecurity.com/feed
-https://danluu.com/atom.xml
-https://www.fromjason.xyz/p/notebook/feed/feed.xml
-https://100r.co/links/rss.xml
-https://oppi.li/index.xml
-https://www.anildash.com/feed.xml
-https://maia.crimew.gay/feed.xml
-https://lambdaland.org/index.xml
-https://hazelweakly.me/atom.xml
-https://xeiaso.net/blog.json
-https://ewie.online/feed/feed.json
-https://rubenerd.com/feed/
-https://joelchrono.xyz/feed.xml
-https://robertheaton.com/feed.xml "Robert Heaton"
-https://lorendb.dev/index.xml
-https://blog.vaxry.net/feed
-# https://daringfireball.net/feeds/main "John Gruber (Daring Fireball)" < item-rule "NOT title REGEXP '(Sponsor|Apple|iPad|iPhone|MacOS|iOS|Macintosh)'"
-https://drewdevault.com/blog/index.xml "Drew Devault"
-https://world.hey.com/dhh/feed.atom "David Heinemeier Hansson (DHH)"
-https://denshi.org/index.xml
-https://lukesmith.xyz/index.xml "Luke Smith"
-https://herecomesthemoon.net/posts/index.xml
 https://abhinavsarkar.net/notes/feed.atom
 https://ankursethi.com/feeds/index.xml
+https://ar.al/index.xml
+https://blog.avas.space/feed/
+https://buttondown.com/hillelwayne/rss
+https://chelseatroy.com/feed
+https://danluu.com/atom.xml
+https://denshi.org/index.xml
+https://devever.net/~hl/index.feed
+https://drewdevault.com/blog/index.xml "Drew Devault"
+https://fromjason.xyz/p/notebook/feed/feed.xml
+https://hazelweakly.me/atom.xml
+https://herecomesthemoon.net/posts/index.xml
+https://lambdaland.org/index.xml
+https://lorendb.dev/index.xml
+https://ludic.mataroa.blog/rss
+https://lukesmith.xyz/index.xml "Luke Smith"
+https://mtwb.blog/index.xml
+https://oppi.li/index.xml
+https://robertheaton.com/feed.xml "Robert Heaton"
+https://thelinuxcast.org/index.xml
+https://utcc.utoronto.ca/~cks/space/blog/?atom
+https://world.hey.com/dhh/feed.atom "David Heinemeier Hansson (DHH)"
 
 @ PERSONAL BLOGS 3
 https://aredridel.dinhe.net/atom.xml
@@ -142,8 +121,6 @@ https://www.justinmklam.com/index.xml
 https://neilzone.co.uk/index.xml
 https://thecodist.com/rss
 https://blog.matthewbrunelle.com/rss
-https://mtwb.blog/index.xml
-https://thelinuxcast.org/index.xml
 https://www.himthe.dev/rss.xml
 https://abner.page/index.xml
 https://esham.io/atom.xml
@@ -153,7 +130,6 @@ https://hasbrouck.org/blog/index.xml
 https://nadh.in/index.xml
 https://dotat.at/@/blog.atom
 https://cedwards.xyz/index.xml
-https://blog.avas.space/feed/
 https://vicki.substack.com/feed
 https://alistairshepherd.uk/feed.xml
 https://austinhenley.com/blog/feed.rss
@@ -171,7 +147,6 @@ https://seirdy.one/posts/atom.xml
 https://1hiking.github.io/index.xml
 https://nobodyspecial.neocities.org/rss2.xml
 https://palone.blog/feed/atom/
-https://utcc.utoronto.ca/~cks/space/blog/?atom
 https://leafo.net/feed.xml
 http://pb.co.za/posts.atom
 https://gabrielsimmer.com/rss
