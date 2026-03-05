@@ -17,6 +17,7 @@ prepend_previewers = [
   { url = "*.typ", run = "preview-typst" },
   { mime = "application/epub+zip", run = "preview-epub" },
   { url = "*.cb{z,r}", run = "preview-cbz" },
+  { url = "*.torrent", run = "preview-torrent" },
   { mime = "audio/mpegurl", run = "code" },
   { mime = "audio/*", run = "preview-audio" },
   { mime = "font/*", run = "font-sample" },
