@@ -16,7 +16,7 @@ function yt -a url fmt -d "yt-dlp wrapper"
         return 1
     end
 
-    if [ -d "$XDG_CONFIG_HOME/librewolf/librewolf/" ]
+    if not set -q TERMUX_VERSION && [ -d "$XDG_CONFIG_HOME/librewolf/librewolf/" ]
         set -f cookies --cookies-from-browser "firefox:$XDG_CONFIG_HOME/librewolf/librewolf/"
     end
 
@@ -45,7 +45,7 @@ function yt -a url fmt -d "yt-dlp wrapper"
     if echo $url | grep -Eq 'youtu.be|youtube.com'
         [ -e "$fmtfile" ] || return 3
         set afmt (rg 'original \(default\)' $fmtfile | tail -n1 | kt 1)
-        [ -z "$afmt" ] && set afmt "bestaudio"
+        [ -z "$afmt" ] && set afmt bestaudio
         set fmt "$fmt+$afmt"
     end
 

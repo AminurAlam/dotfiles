@@ -1,3 +1,4 @@
+# TODO: add online manpages
 function m -d "wrapper around manpages"
     if [ -n "$argv" ]
         if man -w $argv &>/dev/null
