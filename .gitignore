@@ -93,4 +93,7 @@ rclone.conf
 /yazi/plugins
 /yazi/plugins/*
 /yazi/flavors/
+
+/yt-dlp/plugins
+
 kanata/kanata_example.kbd

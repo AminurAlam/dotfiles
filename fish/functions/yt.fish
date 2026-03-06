@@ -29,7 +29,7 @@ function yt -a url fmt -d "yt-dlp wrapper"
         set fmtfile $XDG_VIDEOS_DIR/yt/fmtcache/(
             echo "$url" \
             | tr -dc \[:alnum:\]_- \
-            | sed -E 's/^https(wwwyoutubecomwatchv|youtube)(.{11}).*/\2/')
+            | sed -E 's/^https(wwwyoutubecomwatchv|youtubecomwatchv|youtube)(.{11}).*/\2/')
         [ -e "$fmtfile" ] || yt-dlp $cookies --quiet --no-sponsorblock -F "$url" >$fmtfile
 
         # rg '^\d+-0' $fmtfile

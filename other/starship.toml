@@ -18,7 +18,7 @@ basic = """$directory$git_branch $character"""
 [username]
 format = " [ $user](bright-yellow)"
 show_always = false
-aliases = { u0_a430 = "slab", u0_a326 = "brick", u0_a293 = "paper" }
+aliases = { u0_a430 = "slab", u0_a312 = "brick", u0_a293 = "paper" }
 
 [hostname]
 format = " [ $hostname](bright-yellow)"

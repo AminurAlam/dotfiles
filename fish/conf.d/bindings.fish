@@ -11,6 +11,7 @@ bind -M insert ctrl-z 'if jobs -q; fg; else; mux; end' # helpful for toggling be
 bind -M insert ctrl-v backward-kill-bigword # delete from whitespace to cursor
 bind -M insert ctrl-backspace backward-kill-bigword
 bind -M insert ctrl-d exit
+bind -M insert shift-enter execute
 
 # search current token in history
 bind -M insert ctrl-up history-token-search-backward
