@@ -74,15 +74,9 @@ function revanced -d "patch and install apks with revanced" -a apkid
 
     [ -e "revanced.keystore" ] || return
     set -e DISPLAY # DISPLAY breaks decoding resourses
-    begin
-        set -l ANDROID_USER_HOME "$XDG_DATA_HOME"/.android
-        set -l HOME "$XDG_DATA_HOME"
-
-        [ (count (adb devices)) -gt 2 ] && set adb -i
-    end
 
     revanced-cli patch -p "$patchname" {$apkid}_{$apkversion}.apk --keystore revanced.keystore \
-        --enable "Custom branding" --enable Theme -OdarkThemeBackgroundColor=#FF24283B --enable "Disable signature check" $adb
+        --enable "Custom branding" --enable Theme -OdarkThemeBackgroundColor=#FF24283B --enable "Disable signature check"
 
     rm -rf *-patched-temporary-files
 end

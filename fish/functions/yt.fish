@@ -30,9 +30,14 @@ function yt -a url fmt -d "yt-dlp wrapper"
             echo "$url" \
             | tr -dc \[:alnum:\]_- \
             | sed -E 's/^https(wwwyoutubecomwatchv|youtubecomwatchv|youtube)(.{11}).*/\2/')
-        [ -e "$fmtfile" ] || yt-dlp $cookies --quiet --no-sponsorblock -F "$url" >$fmtfile
+        [ -e "$fmtfile" ] || yt-dlp $cookies --quiet -F "$url" >$fmtfile
 
         # rg '^\d+-0' $fmtfile
+
+        if [ "$(du $fmtfile | kt 1)" = 0 ]
+            rm $fmtfile
+            return 2
+        end
 
         set -f fmt (
             cat $fmtfile \

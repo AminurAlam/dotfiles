@@ -19,8 +19,8 @@ function hentai -d "for managing literature"
     for i in "$mangadir/downloads/HentaiNexus (EN)/"@*
         set base (path basename $i)
         printf " - $base\n"
-        zip -qd $i/Chapter_*.cbz ComicInfo.xml
-        mv -i --no-clobber $i/Chapter_*.cbz (gettarget $base).cbz
+        zip -qd $i/Chapter.cbz ComicInfo.xml
+        mv -i --no-clobber $i/Chapter.cbz (gettarget $base).cbz
         rmdir $i &>/dev/null
     end
 
@@ -77,7 +77,7 @@ function hentai -d "for managing literature"
 
     # create archive
     set hdir (mktemp -dt hentai.XXXXXXXX)
-    for chz in $argv/Chapter_*.cbz
+    for chz in $argv/Chapter.cbz
         set count (math $count + 1)
         mkdir -p $hdir/$count
         unzip -qd $hdir/$count $chz
