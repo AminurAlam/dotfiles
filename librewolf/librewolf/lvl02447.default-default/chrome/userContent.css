@@ -12,13 +12,9 @@
 
     /* Checkerboard pattern for transparent images, slight blue hue */
     img.transparent {
-      background: conic-gradient(
-          #eef 0.25turn,
-          #bbc 0.25turn 0.5turn,
-          #eef 0.5turn 0.75turn,
-          #bbc 0.75turn
-        )
-        top left / 24px 24px repeat !important;
+      background:
+        conic-gradient(#eef 0.25turn, #bbc 0.25turn 0.5turn, #eef 0.5turn 0.75turn, #bbc 0.75turn) top left / 24px 24px
+        repeat !important;
     }
   }
 }
@@ -62,5 +58,34 @@
 @-moz-document domain("aistudio.google.com") {
   ms-drive-permission-nudge.ng-star-inserted {
     display: none;
+  }
+}
+
+@-moz-document domain("xn--gckvb8fzb.com") {
+  body {
+    --color-primary: #e6e2d6;
+    --color-accent: #e7a15a;
+    --color-base: #e6e2d6;
+    --color-light: #aaa;
+    --color-border: #333;
+    --color-bg: #0f1214;
+    --color-code: #e6e2d6;
+    --color-code-bg: #040505;
+    --color-code-border: #1a1f23;
+    --font-sans-serif: "TX-02", monospace;
+    --font-serif: serif;
+    --font-mono: "TX-02", monospace;
+    --font-light: 200;
+    --font-normal: 400;
+    --font-bold: 600;
+    --font-heavy: 700;
+    --xlarge: 1680px;
+    --large: 1280px;
+    --medium: 980px;
+    --small: 740px;
+    --xsmall: 480px;
+    --height: 4rem;
+    --margin: 2rem;
+    --radius: 0.5rem;
   }
 }
