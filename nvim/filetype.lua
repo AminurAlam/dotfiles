@@ -5,15 +5,14 @@ vim.filetype.add {
     ['qBittorrent.conf'] = 'ini',
   },
   extension = {
-    log = 'log',
-    kbd = 'kanata',
-    service = 'systemd',
-    cue = 'cuesheet',
-    note = 'markdown',
-    mdx = 'markdown',
     PKGBUILD = 'sh',
+    cue = 'cuesheet',
     handlebars = 'handlebars',
+    html = 'html',
+    kbd = 'kanata',
+    log = 'log',
+    mdx = 'markdown',
+    note = 'markdown',
+    service = 'systemd',
   },
 }
-
-vim.treesitter.language.register('scheme', 'keyboard')

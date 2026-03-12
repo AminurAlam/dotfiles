@@ -87,14 +87,28 @@ nmap('+', '<plug>(dial-increment)')
 nmap('-', '<plug>(dial-decrement)')
 nmap('z=', '1z=')
 
--- visual
-nmap('gn', 'vin', 'select outer treesitter node')
-vmap('n', function()
-  vim.lsp.buf.selection_range(vim.v.count1)
-end, 'select outer treesitter node')
-vmap('N', function()
-  vim.lsp.buf.selection_range(-vim.v.count1)
-end, 'select inner treesitter node')
+-- visual and nodes
+-- nmap('gn', 'van', 'select outer treesitter node')
+-- vmap('n', 'an', 'select outer treesitter node')
+-- vmap('N', 'in', 'select inner treesitter node')
+vmap('<c-k>', require 'vim.treesitter._select'.select_prev, 'Select previous treesitter node')
+vmap('<c-j>', require 'vim.treesitter._select'.select_next, 'Select next treesitter node')
+
+vim.keymap.set({ 'x', 'o' }, 'n', function()
+  if vim.treesitter.get_parser(nil, nil, { error = false }) then
+    require 'vim.treesitter._select'.select_parent(vim.v.count1)
+  else
+    vim.lsp.buf.selection_range(vim.v.count1)
+  end
+end, { desc = 'Select parent treesitter node or outer incremental lsp selections' })
+
+vim.keymap.set({ 'x', 'o' }, 'N', function()
+  if vim.treesitter.get_parser(nil, nil, { error = false }) then
+    require 'vim.treesitter._select'.select_child(vim.v.count1)
+  else
+    vim.lsp.buf.selection_range(-vim.v.count1)
+  end
+end, { desc = 'Select child treesitter node or inner incremental lsp selections' })
 vmap('v', function() --
   fn.feedkeys(({ v = 'V', V = '\22', ['\22'] = '' })[vim.api.nvim_get_mode().mode])
 end, 'repeat v to change visual mode')
