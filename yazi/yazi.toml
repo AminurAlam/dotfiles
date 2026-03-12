@@ -91,6 +91,7 @@ apkinstall = [
 ]
 extract = [{ run = 'ya pub extract --list %s""', desc = "󱉛 Extract here", for = "unix" }]
 inkscape = [{ run = "inkscape %s", block = false, orphan = true, desc = "󰕞 inkscape", for = "linux" }]
+open = [{ run = "xdg-open %s1", orphan = true, desc = "󰏌 Open", for = "linux" }]
 play = [{ run = "mpv --force-window %s", orphan = true, for = "linux", desc = " mpv" }]
 swayimg = [{ run = "swayimg %s", block = false, orphan = true, desc = " swayimg", for = "linux" }]
 zathura = [{ run = "zathura %s", block = false, orphan = true, desc = " zathura", for = "linux" }]
@@ -114,13 +115,13 @@ edit = [
   { run = "nvim %s", desc = " nvim", block = true, for = "unix" },
   { run = "hx %s", desc = "󰚄 helix", block = true, for = "unix" },
 ]
-open = [
-  { run = "xdg-open %s1", orphan = true, desc = "󰏌 Open", for = "linux" },
-  { run = "termux-open %s1", orphan = true, desc = "󰏌 Open", for = "android" },
-]
 common = [
   { run = "dragon-drop -x %s", orphan = true, desc = " Drag and Drop", for = "linux" },
-  { run = "rsync -Pha --info PROGRESS2 -- %s brick:/sdcard/Download/", block = false, desc = " Send to phone", for = "linux" },
+  { run = "rsync -Pha --info PROGRESS2 -- %s paper:/sdcard/Download/", block = false, desc = " Send to paper", for = "linux" },
+  { run = "rsync -Pha --info PROGRESS2 -- %s slab:/sdcard/Download/", block = false, desc = " Send to slab", for = "linux" },
+  { run = "rsync -Pha --info PROGRESS2 -- %s brick:/sdcard/Movies/yt/", block = false, desc = " Send to brick (yt)", for = "linux" },
+  { run = "rsync -Pha --info PROGRESS2 -- %s brick:/sdcard/Download/", block = false, desc = " Send to brick", for = "linux" },
+  { run = "termux-open %s1", orphan = true, desc = "󰏌 Open", for = "android" },
 ]
 dir = [
   { run = "xdg-open %d", desc = " Reveal", for = "linux" },
