@@ -7,6 +7,7 @@ local h = require 'null-ls.helpers'
 vim.lsp.enable(vim.tbl_filter(filter, {
   'basedpyright',
   -- 'bash_language_server',
+  -- 'biome',
   'ccls',
   'clangd',
   'hyprls',
@@ -14,7 +15,7 @@ vim.lsp.enable(vim.tbl_filter(filter, {
   'nushell',
   'ruff',
   -- 'rust_analyzer',
-  'systemd',
+  'systemd_lsp',
   'taplo',
   -- 'termux_language_server',
   'tinymist',
@@ -136,7 +137,11 @@ vim.api.nvim_create_autocmd('LspAttach', {
       end, { buffer = args.buf })
     end
 
-    if client:supports_method('textDocument/formatting') or client.name == 'tinymist' then
+    if
+      client:supports_method('textDocument/formatting')
+      or client.name == 'tinymist'
+      or client.name == 'biome'
+    then
       -- [[
       vim.api.nvim_create_autocmd('BufWritePre', {
         buffer = args.buf,
