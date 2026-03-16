@@ -34,7 +34,7 @@ require('tokyonight').setup {
     functions = { italic = false },
     variables = { italic = false },
     sidebars = 'normal',
-    floats = 'transparent',
+    floats = 'normal',
   },
   hide_inactive_statusline = true,
   dim_inactive = false,

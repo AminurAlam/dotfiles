@@ -1,35 +1,19 @@
----@param mode table
----@return function
-local map = function(mode)
-  ---@param lhs string
-  ---@param rhs string|function
-  ---@param desc string?
-  return function(lhs, rhs, desc)
-    vim.keymap.set(mode, lhs, rhs, {
-      noremap = true,
-      silent = true,
-      desc = desc,
-    })
-  end
-end
-
-local fn = vim.fn
 local macro = function(reg, expr)
   vim.cmd.let(string.format([[@%s = '%s']], reg, expr))
 end
-local nmap = map { 'n' }
-local vmap = map { 'x' }
-local umap = map { '', 'i' }
+local nmap = function(lhs, rhs)
+  vim.keymap.set('n', lhs, rhs)
+end
+local vmap = function(lhs, rhs)
+  vim.keymap.set('x', lhs, rhs)
+end
+local map = vim.keymap.set
 
 -- movement
-umap('<c-up>', '<cmd>bp<cr>')
-umap('<c-down>', '<cmd>bn<cr>')
-umap('<c-k>', '<cmd>bp<cr>')
-umap('<c-j>', '<cmd>bn<cr>')
-umap('<A-h>', '<C-o>h')
-umap('<A-j>', '<C-o>j')
-umap('<A-k>', '<C-o>k')
-umap('<A-l>', '<C-o>l')
+map({ '', 'i' }, '<c-up>', '<cmd>bp<cr>')
+map({ '', 'i' }, '<c-down>', '<cmd>bn<cr>')
+map({ '', 'i' }, '<c-k>', '<cmd>bp<cr>')
+map({ '', 'i' }, '<c-j>', '<cmd>bn<cr>')
 
 -- deleting & registers
 nmap('_', '"_')
@@ -38,16 +22,15 @@ nmap('x', '"_x')
 vmap('p', '"_dp')
 nmap('<del>', '"_x')
 nmap('y<esc>', function() end)
-nmap('cn', '*``"_cgn', 'search and replace') -- https://www.kevinli.co/posts/2017-01-19-multiple-cursors-in-500-bytes-of-vimscript/
+nmap('cn', '*``"_cgn') -- https://www.kevinli.co/posts/2017-01-19-multiple-cursors-in-500-bytes-of-vimscript/
 nmap('<bs>', 'X')
-nmap('<cr>', '"_ciw', 'delete word at cursor')
+nmap('<cr>', '"_ciw')
 nmap('r', '<cmd>silent redo<cr>')
 
 -- write & quit
 nmap('<leader>w', '<cmd>silent w <bar> redraw <cr>')
-nmap('<leader>W', '<cmd>silent w <bar> redraw <cr>')
 nmap('q', "<cmd>if len(getbufinfo({'buflisted': 1})) == 1|q|else|bd|endif<cr>")
-nmap('Q', 'q', 'record macro')
+nmap('Q', 'q')
 
 -- indent & fold
 nmap('=', '==')
@@ -60,7 +43,7 @@ nmap('zM', '<nop>')
 -- toggles
 nmap('zs', '<cmd>setlocal spell!<cr>')
 nmap('zw', '<cmd>setlocal wrap!<cr>')
-nmap('<leader>s', '<cmd>let g:save_fmt=g:save_fmt?v:false:v:true<cr>', 'toggle formatting on save')
+nmap('zf', '<cmd>let g:save_fmt=g:save_fmt?v:false:v:true<cr>')
 nmap('zn', function()
   if vim.o.number then
     vim.o.number = false
@@ -69,30 +52,26 @@ nmap('zn', function()
     vim.o.number = true
     vim.o.signcolumn = 'auto:1'
   end
-end, 'toggle statuscolumn')
+end)
 
 -- other
-nmap('<leader>d', vim.diagnostic.open_float, 'view line diagnostics')
-nmap('<leader>tt', '<cmd>split | term<cr><cmd>startinsert<cr>')
-nmap('<leader>lg', '<cmd>term lazygit<cr><cmd>startinsert<cr>')
-umap('<c-c>', 'g~iw', 'toggle word case')
-vmap('.', ':norm .<cr>', 'dot repeat on all selected lines')
-nmap(';', '@:', 'repeat the last command')
-umap('<esc>', '<cmd>nohlsearch<cr><esc>')
-nmap('gj', [[@='j^"_d0kgJ'<cr>]], 'join without leaving space')
-nmap('<leader>y', function()
-  fn.setreg('+', fn.getreg '0')
-end, 'put last yank in sys clipboard')
+nmap('<leader>d', vim.diagnostic.open_float)
+nmap('<leader>t', '<cmd>split | term<cr><cmd>startinsert<cr>')
+vmap('.', ':norm .<cr>')
+nmap(';', '@:')
+nmap('<esc>', '<cmd>nohlsearch<cr><esc>')
+nmap('gj', [[@='j^"_d0kgJ'<cr>]])
 nmap('+', '<plug>(dial-increment)')
 nmap('-', '<plug>(dial-decrement)')
 nmap('z=', '1z=')
 
 -- visual and nodes
--- nmap('gn', 'van', 'select outer treesitter node')
--- vmap('n', 'an', 'select outer treesitter node')
--- vmap('N', 'in', 'select inner treesitter node')
-vmap('<c-k>', require 'vim.treesitter._select'.select_prev, 'Select previous treesitter node')
-vmap('<c-j>', require 'vim.treesitter._select'.select_next, 'Select next treesitter node')
+vmap('v', function()
+  vim.fn.feedkeys(({ v = 'V', V = '\22', ['\22'] = '' })[vim.api.nvim_get_mode().mode])
+end)
+
+vmap('<c-k>', require 'vim.treesitter._select'.select_prev)
+vmap('<c-j>', require 'vim.treesitter._select'.select_next)
 
 vim.keymap.set({ 'x', 'o' }, 'n', function()
   if vim.treesitter.get_parser(nil, nil, { error = false }) then
@@ -109,20 +88,12 @@ vim.keymap.set({ 'x', 'o' }, 'N', function()
     vim.lsp.buf.selection_range(-vim.v.count1)
   end
 end, { desc = 'Select child treesitter node or inner incremental lsp selections' })
-vmap('v', function() --
-  fn.feedkeys(({ v = 'V', V = '\22', ['\22'] = '' })[vim.api.nvim_get_mode().mode])
-end, 'repeat v to change visual mode')
 
 -- cmdline & abbreviations
-vim.cmd 'cmap <c-j> <down>'
-vim.cmd 'cmap <c-k> <up>'
-vim.cmd 'cnoremap <Left> <Space><BS><Left>'
-vim.cmd 'cnoremap <Right> <Space><BS><Right>'
-
-if fn.has('termux') == 1 and fn.has('nvim-0.10.0') == 1 then
-  map { 'ca' }('vq', 'wq') -- dvorak
-end
-map { 'ca' }('msg', 'messages')
+map({ 'c' }, '<c-j>', '<down>')
+map({ 'c' }, '<c-k>', '<up>')
+map({ 'ca' }, 'msg', 'messages')
+map({ 'ca' }, 'pu', 'lua vim.pack.update()') -- https://github.com/neovim/neovim/issues/34764
 
 -- macros
 macro('m', [[mmA;`m]]) -- put ; at end of statements

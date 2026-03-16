@@ -41,11 +41,3 @@ require('lazydev').setup {
   library = { { path = '${3rd}/luv/library', words = { 'vim%.uv' } } },
   integrations = { cmp = false, lspconfig = false },
 }
-
-vim.keymap.set('n', '<leader>pu', vim.pack.update, { desc = 'update plugins' })
-vim.keymap.set('n', '<leader>pa', function()
-  -- stylua: ignore
-  vim.print(table.concat(vim.tbl_map(function(pack)
-    return string.format('\n%s %s (%s)', pack.active and '󰸞' or ' ', pack.spec.name, pack.spec.version)
-  end, vim.pack.get()), '') .. '\nTotal count: ' .. #vim.pack.get())
-end, { desc = 'plugins info' })

@@ -28,13 +28,13 @@ g.query_lint_on = { 'BufEnter', 'BufWrite' }
 
 -- [[ core ]]
 require 'pack'
+require 'mappings'
+require 'options'
 require 'autocommands'
 require 'colors'
 require 'completion'
 require 'diff'
 require 'lsp'
-require 'mappings'
-require 'options'
 require 'pairs'
 require 'statusline'
 require 'picker'

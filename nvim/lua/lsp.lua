@@ -1,3 +1,5 @@
+vim.lsp.log.set_level(vim.log.levels.ERROR)
+
 local filter = function(server)
   return vim.fn.executable(vim.lsp.config[server].cmd[1]) == 1
 end
