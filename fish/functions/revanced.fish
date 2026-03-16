@@ -57,13 +57,25 @@ function revanced -d "patch and install apks with revanced" -a apkid
         case tv.trakt.trakt
     end
 
-    cd ~/dl/main/revanced || return
+    cd ~/dl/main/revanced || return 1
 
     set patchname /usr/share/revanced/revanced-patches-bin.rvp
-    [ -e "$patchname" ] || return
-    set apkversion (revanced-cli list-patches -pvf "$apkid" "$patchname" | rg '^\t\tv?\d+\.\d+' | sort -g | tail -n1 | string trim)
+    [ -e "$patchname" ] || return 2
+    set apkversion (
+        revanced-cli list-versions -b --patches "$patchname" --filter-package-names "$apkid" \
+        | rg '^\t' \
+        | sort -rn \
+        | fzf --bind "one:accept" \
+        | kt 1 \
+        | string trim)
 
-    if not [ -e {$apkid}_{$apkversion}.apk ]
+    if [ "$apkversion" = Any ]
+        set apkfile (fd -1 -d1 -tf --glob {$apkid}_\*.apk)
+    else
+        set apkfile {$apkid}_{$apkversion}.apk
+    end
+
+    if not [ -e "$apkfile" ]
         set apkverdash (printf "$apkversion" | tr . -)
         printf "pls download the latest apk file and move it to `$apkid"_"$apkversion.apk`\n"
         [ -n "$update_url" ]
@@ -72,10 +84,10 @@ function revanced -d "patch and install apks with revanced" -a apkid
         return
     end
 
-    [ -e "revanced.keystore" ] || return
+    [ -e "revanced.keystore" ] || return 3
     set -e DISPLAY # DISPLAY breaks decoding resourses
 
-    revanced-cli patch -p "$patchname" {$apkid}_{$apkversion}.apk --keystore revanced.keystore \
+    revanced-cli patch -b --patches "$patchname" "$apkfile" --keystore revanced.keystore \
         --enable "Custom branding" --enable Theme -OdarkThemeBackgroundColor=#FF24283B --enable "Disable signature check"
 
     rm -rf *-patched-temporary-files
