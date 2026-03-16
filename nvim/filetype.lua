@@ -2,10 +2,10 @@ vim.filetype.add {
   filename = {
     ['mihon_update_errors.txt'] = 'markdown',
     ['PKGBUILD'] = 'sh',
-    ['qBittorrent.conf'] = 'ini',
   },
   extension = {
     PKGBUILD = 'sh',
+    conf = 'ini',
     cue = 'cuesheet',
     handlebars = 'handlebars',
     html = 'html',

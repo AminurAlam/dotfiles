@@ -1,5 +1,3 @@
-# vim:set ft=conf:
-
 color-status                green   default bold
 color-status-info           cyan    default bold
 color-status-fail           red     default bold

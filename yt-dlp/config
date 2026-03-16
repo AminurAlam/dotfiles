@@ -1,5 +1,3 @@
-# vim:ft=conf
-
 ### General Options:
 --default-search "ytsearch"
 --mark-watched
