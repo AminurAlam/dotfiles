@@ -1,5 +1,9 @@
 @import url("news.css");
 
+body {
+  color-scheme: dark;
+}
+
 /* https://github.com/MrOtherGuy/firefox-csshacks/tree/master/content/standalone_image_page_mods.css */
 @-moz-document media-document(image) {
   @media not print {
@@ -20,7 +24,8 @@
 }
 
 @-moz-document domain("lobste.rs") {
-  .comment_form_container.comment, time {
+  .comment_form_container.comment,
+  time {
     display: none;
   }
   .links > .corner {
