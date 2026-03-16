@@ -6,9 +6,9 @@ set save $argv[3]
 set path $argv[4]
 set out $argv[5]
 
-# https://fishshell.com/docs/current/cmds/trap.html
+# TODO: https://fishshell.com/docs/current/cmds/trap.html
 # function cleanup --on-signal EXIT -s HUP -s INT -s QUIT -s ABRT -s TERM
-#     notify-send TODO cleanup
+#     notify-send
 #     [ -f "$tmpfile" ]
 #     and /usr/bin/rm "$tmpfile"
 #     or :

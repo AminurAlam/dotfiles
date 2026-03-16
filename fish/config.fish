@@ -100,7 +100,7 @@ status is-interactive || exit
 
 command -vq starship && starship init fish | source
 command -vq zoxide && zoxide init fish | source || alias z cd
-dircolors ~/repos/dotfiles/eza/dircolors -c | sed 's/^setenv /set -gx /' | source
+dircolors ~/repos/dotfiles/other/dircolors -c | sed 's/^setenv /set -gx /' | source
 
 if set -q TERMUX_VERSION
     pidof sshd &>/dev/null || sshd

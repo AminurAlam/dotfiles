@@ -1,29 +1,29 @@
 mkdir -p ~/{backup,bin} ~/.local/{bin,share}
 
 printf "LINKING CONFIG DIRECTORIES... "
-for config in alacritty aria2 \
-    btop \
+for config in \
+    alacritty aria2 \
+    biome btop \
     clangd \
     dunst \
-    eza \
     fish foot fuzzel \
-    gallery-dl gdb ghostty git glow \
-    helix htop hypr \
+    ghostty git glow \
+    helix \
     jj \
-    kanata keepassxc kitty \
+    kanata keepassxc \
     lazygit librewolf \
     mgba mpv \
-    newsboat newsraft niri npm nvim \
-    pacman paru powershell python \
+    newsraft niri npm nvim \
+    pacman powershell python \
     qalculate \
     ruff \
     sqlite3 swayidle swayimg swaylock systemd \
     termux tmux tombi tree-sitter \
     vesktop \
-    waybar wofi \
+    waybar \
     xdg-desktop-portal xdg-desktop-portal-termfilechooser \
     yay yazi yt-dlp \
-    zathura zellij
+    zathura
 
     [ -e ~/repos/dotfiles/$config ] || continue
     [ -L ~/.config/$config ] && command unlink ~/.config/$config
@@ -40,7 +40,6 @@ ln -nfs ~/repos/dotfiles/other/curlrc ~/.config/.curlrc
 ln -nfs ~/repos/dotfiles/other/starship.toml ~/.config/starship.toml
 ln -nfs ~/repos/dotfiles/other/stylua.toml ~/.config/stylua.toml
 ln -nfs ~/repos/dotfiles/other/taplo.toml ~/.config/taplo.toml
-ln -nfs ~/repos/dotfiles/other/user-dirs.dirs ~/.config/user-dirs.dirs
 # ln -nfs ~/repos/dotfiles/other/ssh_config ~/.ssh/config # NOTE: do this manually
 printf "done\n"
 

@@ -18,9 +18,9 @@ https://pudding.cool/rss.xml
 https://security.googleblog.com/feeds/posts/default?alt=rss
 https://torrentfreak.com/feed < item-rule "title NOT LIKE '%IPTV%'"
 https://www.404media.co/rss < item-rule "NOT (title REGEXP '^(Podcast|Behind the Blog):' OR persons LIKE '%Becky Ferreira%' OR content LIKE '%Listen to the weekly podcast on%')"
-https://www.bleepingcomputer.com/feed/ < item-rule "NOT (title REGEXP '(^| )(Microsoft|Windows)')"
 https://www.eff.org/rss/updates.xml "eff.org"
 https://www.phoronix.com/rss.php < item-rule "NOT (title REGEXP 'Intel|NVIDIA|driver|Mesa|Vulkan')"
+# https://www.bleepingcomputer.com/feed/ < item-rule "NOT (title REGEXP '(^| )(Microsoft|Windows)')"
 # https://www.ghacks.net/feed/ "gHacks" < item-rule "NOT (title REGEXP '(^| )(Windows|Apple|Google|Microsoft|Amazon|Chrome|OpenAI|Meta|Spotify)')"
 
 @ NEWS 2
@@ -37,7 +37,6 @@ https://fishshell.com/blog/feed.xml
 https://github.com/neovim/neovim/commits/master/runtime/doc/news.txt.atom "nvim news" < item-rule "title NOT LIKE 'docs: %'"
 https://melonds.kuribo64.net/rss.php
 https://muspy.com/feed?id=mobwjpkr95u5p1b4f2w1bjt74qc8u3 "muspy New Releases" < item-rule "NOT (title LIKE 'Taylor Swift%' OR title REGEXP 'Remix|live|Live|LIVE')"
-https://newsboat.org/news.atom
 https://rue-lang.dev/blog/rss.xml
 # https://reddit.com/r/neovim/hot.rss "r/neovim"
 # https://xkcd.com/atom.xml
@@ -68,7 +67,6 @@ https://joelchrono.xyz/feed.xml
 https://jvns.ca/atom.xml
 https://jyn.dev/atom.xml "jyn's website"
 https://kevquirk.com/feed.php
-https://krebsonsecurity.com/feed
 https://maia.crimew.gay/feed.xml
 https://xn--gckvb8fzb.com/index.xml
 https://matklad.github.io/feed.xml
@@ -94,10 +92,12 @@ https://xeiaso.net/blog.json
 https://zerokspot.com/index.xml
 
 @ PERSONAL BLOGS 2
+https://aashvik.com/atom.xml
 https://ankursethi.com/feeds/index.xml
 https://ar.al/index.xml
 https://www.himthe.dev/rss.xml
 https://chelseatroy.com/feed
+https://crescentro.se/posts/atom.xml
 https://danluu.com/atom.xml
 https://devever.net/~hl/index.feed
 https://drewdevault.com/blog/index.xml "Drew Devault"
