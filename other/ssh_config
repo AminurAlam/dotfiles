@@ -13,12 +13,6 @@ Host brick slab paper tmux
 Host brick
     Hostname android.local
 
-Host tmux
-    Hostname android.local
-    RequestTTY yes
-    Compression yes
-    RemoteCommand tmux new -A -s ssh
-
 Host slab
     Hostname 192.168.0.0
 

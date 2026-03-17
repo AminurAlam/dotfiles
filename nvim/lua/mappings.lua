@@ -93,6 +93,8 @@ end, { desc = 'Select child treesitter node or inner incremental lsp selections'
 map({ 'c' }, '<c-j>', '<down>')
 map({ 'c' }, '<c-k>', '<up>')
 map({ 'ca' }, 'msg', 'messages')
+map({ 'ca' }, 'in', 'Inspect')
+map({ 'ca' }, 'it', 'InspectTree')
 map({ 'ca' }, 'pu', 'lua vim.pack.update()') -- https://github.com/neovim/neovim/issues/34764
 
 -- macros

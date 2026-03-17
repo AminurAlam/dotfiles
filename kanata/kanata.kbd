@@ -7,7 +7,14 @@
     concurrent-tap-hold yes
     log-layer-changes no
     rapid-event-delay 0
-    process-unmapped-keys yes)
+    process-unmapped-keys yes
+    linux-dev-names-include (
+        "AT Translated Set 2 keyboard"
+    )
+    linux-dev-names-exclude (
+        "Apple, Inc. USB-C to 3.5mm Headphone Jack Adapter"
+        "Ideapad extra buttons"
+    ))
 (defvar
     int 15
     dist 15

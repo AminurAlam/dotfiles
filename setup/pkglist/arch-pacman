@@ -3,13 +3,14 @@ alsa-utils
 amd-ucode
 android-ndk
 android-tools
-anki-bin
+anki
 aria2
 base
 base-devel
 basedpyright-bin
 bash-language-server
 bibata-cursor-theme-bin
+biome
 brightnessctl
 btop
 ccache
@@ -29,8 +30,8 @@ fzf
 git
 git-delta
 github-cli
-glow
 gnome-epub-thumbnailer
+gnumeric
 gst-libav
 gst-plugin-pipewire
 gst-plugin-va
@@ -59,6 +60,8 @@ libappindicator
 libmpeg2
 libnotify
 libqalculate
+libreoffice-fresh
+libresprite
 librewolf-bin
 libva-intel-driver
 linux
@@ -185,5 +188,6 @@ zathura-cb
 zathura-pdf-mupdf
 zim-tools
 zip
+zola
 zoxide
 zram-generator

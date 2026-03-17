@@ -20,9 +20,6 @@ set -gx XDG_STATE_HOME $HOME/.local/state
 set -gx TERMCMD foot
 set -gx TERMILAL foot
 set -gx MOZ_ENABLE_WAYLAND 1
-set -gx STARSHIP_CACHE $XDG_CACHE_HOME/starship
-set -gx ICEAUTHORITY $XDG_CACHE_HOME/ICEauthority
-set -gx XAUTHORITY $XDG_RUNTIME_DIR/Xauthority
 set -gx GNUPGHOME $XDG_DATA_HOME/gnupg
 set -gx TAPLO_CONFIG $HOME/repos/dotfiles/other/taplo.toml
 set -gx RIPGREP_CONFIG_PATH $HOME/repos/dotfiles/other/ripgreprc
@@ -44,6 +41,7 @@ set -gx _ZO_EXCLUDE_DIRS (string join : \
     "/lib/**" \
     "$HOME" \
     # "$HOME/repos/*/*" \
+    "$HOME/repos/dotfiles/*" \
     "$HOME/.local/*/*/**" \
     # "$XDG_DOWNLOAD_DIR/*" \
     "$XDG_DOWNLOAD_DIR/manga/*" \

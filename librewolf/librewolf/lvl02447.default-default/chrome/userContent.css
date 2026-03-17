@@ -16,9 +16,13 @@ body {
 
     /* Checkerboard pattern for transparent images, slight blue hue */
     img.transparent {
-      background:
-        conic-gradient(#eef 0.25turn, #bbc 0.25turn 0.5turn, #eef 0.5turn 0.75turn, #bbc 0.75turn) top left / 24px 24px
-        repeat !important;
+      background: conic-gradient(
+          #eef 0.25turn,
+          #bbc 0.25turn 0.5turn,
+          #eef 0.5turn 0.75turn,
+          #bbc 0.75turn
+        )
+        top left / 24px 24px repeat !important;
     }
   }
 }
@@ -92,5 +96,49 @@ body {
     --height: 4rem;
     --margin: 2rem;
     --radius: 0.5rem;
+  }
+}
+
+@-moz-document domain("rubenerd.com") {
+  * {
+    scrollbar-color: var(--dark-highlight) var(--dark-bg-primary) !important;
+  }
+  body {
+    background-color: var(--dark-bg-secondary) !important;
+    background-image: url("houndstooth_dark.png") !important;
+  }
+  body,
+  #sidebar h2 {
+    color: var(--dark-primary) !important;
+  }
+  img {
+    filter: brightness(0.8) contrast(1.2) !important;
+  }
+  a {
+    color: var(--dark-highlight) !important;
+  }
+  header,
+  article,
+  img {
+    box-shadow: var(--dark-shadow) !important;
+  }
+  article,
+  .secondary {
+    background-color: var(--dark-bg-primary) !important;
+  }
+  h2,
+  h2 a:hover,
+  article h3,
+  article dt,
+  article time,
+  article strong,
+  nav,
+  article .tags {
+    color: var(--dark-secondary) !important;
+  }
+  article pre,
+  article code {
+    background: var(--dark-tertiary) !important;
+    color: var(--dark-secondary) !important;
   }
 }

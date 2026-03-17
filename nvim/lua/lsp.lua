@@ -9,7 +9,7 @@ local h = require 'null-ls.helpers'
 vim.lsp.enable(vim.tbl_filter(filter, {
   'basedpyright',
   -- 'bash_language_server',
-  -- 'biome',
+  -- 'biome', -- TODO: enable on css
   'ccls',
   'clangd',
   'hyprls',

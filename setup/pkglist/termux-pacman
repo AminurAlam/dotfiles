@@ -77,6 +77,7 @@ poppler
 procps
 psmisc
 python
+python-psutil
 python-yt-dlp
 qalc
 readline
