@@ -62,7 +62,7 @@
   }
 
   #content {
-    background: #23283b !important;
+    background: #24283b !important;
     color: #c0caf5 !important;
     border-left: none !important;
     border-right: none !important;
@@ -80,6 +80,10 @@
 
   article.full .author {
     color: #aaa !important;
+  }
+
+  blockquote {
+    color: #ccc !important;
   }
 }
 
