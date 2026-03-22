@@ -87,4 +87,30 @@ switch $argv[1]
         set svg '<svg viewBox="0 0 '$size' '$size'" width="'$size'pt" height="'$size'pt"> <path fill="'$hex'" fill-rule="nonzero" d="M 0 0v '$size' h '$size' v -'$size' Z " /> </svg>'
         notify-send -t 1500 -i (echo $svg | psub) $hex
         wl-copy -n $hex
+
+    case scr #  TODO: dim and then turn off screen
+        set brightness (brightnessctl g)
+        brightnessctl s (math $brightness - 12952)
+        sleep 5
+        niri msg action power-off-monitors
+        brightnessctl s $brightness
+
+    case sys
+        systemctl --user status -l -n0 -ojson (path basename  ~/.config/systemd/user/*.service)
+
+    case '*'
+        printf 'USAGE:\n'
+        printf '  %s\n' \
+            'vol (+|-)?     toggle or change vol' \
+            'mic            toggle mic on/off' \
+            'lum (+|-)      change brightness' \
+            'pow (up|down)  change powerprofile' \
+            'lim            toggle battery limit' \
+            'ss (full|ocr)? take screenshot' \
+            'ssend          send screenshot to phone' \
+            'rec            screen record' \
+            'picker         color picker' \
+            'scr            screensaver' \
+            'sys            show status of user units'
+
 end
