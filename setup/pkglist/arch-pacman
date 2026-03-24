@@ -31,7 +31,6 @@ git
 git-delta
 github-cli
 gnome-epub-thumbnailer
-gnumeric
 gst-libav
 gst-plugin-pipewire
 gst-plugin-va
@@ -60,8 +59,6 @@ libappindicator
 libmpeg2
 libnotify
 libqalculate
-libreoffice-fresh
-libresprite
 librewolf-bin
 libva-intel-driver
 linux
@@ -87,7 +84,6 @@ noto-fonts
 noto-fonts-cjk
 npm
 nwg-look
-onlyoffice-bin
 openresolv
 openssh
 otf-ipafont
@@ -123,7 +119,6 @@ revanced-cli-bin
 ripgrep
 rsync
 ruff
-rust-analyzer
 shellcheck
 shfmt
 sof-firmware
@@ -171,7 +166,6 @@ wl-clipboard
 wpa_supplicant
 xbindkeys
 xdg-desktop-portal-termfilechooser-boydaihungst-git
-xdg-desktop-portal-wlr
 xdg-utils
 xf86-video-amdgpu
 xf86-video-ati
