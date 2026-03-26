@@ -43,7 +43,7 @@ abbr push "git push origin"
 abbr fr "git fetch upstream && git rebase upstream/(git symbolic-ref refs/remotes/origin/HEAD | sed s@^refs/remotes/origin/@@)"
 
 # rclone/rsync
-abbr rsy "rsync -Pha"
+abbr rsy "rsync -Pha --info PROGRESS2"
 abbr rcp "rclone copy -P --transfers 8 --"
 abbr rls "rclone lsf"
 
@@ -51,7 +51,7 @@ abbr rls "rclone lsf"
 abbr du "dust -Dn 25"
 abbr dud "dust -d 1"
 abbr df 'df --output=pcent,avail,target -h -x tmpfs -x efivarfs'
-set -q TERMUX_VERSION && abbr df 'df -h | awk \'/fuse/{print $3"/"$2,$5,$4}\''
+set -q TERMUX_VERSION && abbr df 'df -h | awk \'/dev.fuse|data.media/{print $3"/"$2,$5,$4}\''
 
 # pkg: https://wiki.archlinux.org/title/Pacman/Rosetta
 if command -vq pacstall
