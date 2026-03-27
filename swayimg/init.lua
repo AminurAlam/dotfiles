@@ -74,7 +74,22 @@ do -- Key and mouse bindings in viewer mode
   end
 
   swayimg.viewer.on_key('q', swayimg.exit)
-  swayimg.viewer.on_key('space', swayimg.exit)
+  -- swayimg.viewer.on_key('space', swayimg.viewer.animation_toggle)
+  swayimg.viewer.on_key(',', function()
+    swayimg.viewer.rotate(90)
+  end)
+  swayimg.viewer.on_key('.', function()
+    swayimg.viewer.rotate(270)
+  end)
+  swayimg.viewer.on_key('Shift+less', function()
+    swayimg.viewer.animation_stop()
+    swayimg.viewer.prev_frame()
+  end)
+  swayimg.viewer.on_key('Shift+greater', function()
+    swayimg.viewer.animation_stop()
+    swayimg.viewer.next_frame()
+  end)
+
   swayimg.viewer.on_key('s', function()
     swayimg.viewer.set_fix_scale('width')
   end)
