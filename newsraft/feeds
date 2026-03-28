@@ -6,16 +6,17 @@
 # NOT (title REGEXP '.+:.+\".+\".+by' OR title LIKE '%(ultra slowed)%' OR title LIKE '%(1 hour version)%')
 # proxy "socks5://android.local:9050"
 
-@ NEWS 1
+@ NEWS 1 < item-limit 1000
 https://lobste.rs/rss < item-rule "title NOT LIKE 'What are you doing this week%'"
 https://hnrss.org/frontpage.atom "Hacker News" < item-rule "NOT (title REGEXP '^(Show|Tell|Ask|Launch) HN: ' OR title REGEXP '\(YC .*\)')"
 https://astral.sh/blog/rss.xml "astral.sh"
 https://blog.nightly.mozilla.org/feed
 https://gamersnexus.net/rss.xml
 https://haveibeenpwned.com/feed/breaches/ "Have I Been Pwned"
-https://lwn.net/headlines/rss < item-rule "NOT (title LIKE '[$] %' OR title LIKE 'Security updates for %')"
+https://lwn.net/headlines/rss < item-rule "title NOT LIKE 'Security updates for %'"
 https://pudding.cool/rss.xml
 https://security.googleblog.com/feeds/posts/default?alt=rss
+http://syndication.thedailywtf.com/TheDailyWtf
 https://torrentfreak.com/feed < item-rule "title NOT LIKE '%IPTV%'"
 https://www.404media.co/rss < item-rule "NOT (title REGEXP '^(Podcast|Behind the Blog):' OR persons LIKE '%Becky Ferreira%' OR content LIKE '%Listen to the weekly podcast on%')"
 https://www.eff.org/rss/updates.xml "eff.org"
@@ -23,11 +24,11 @@ https://www.phoronix.com/rss.php < item-rule "NOT (title REGEXP 'Intel|NVIDIA|dr
 # https://www.bleepingcomputer.com/feed/ < item-rule "NOT (title REGEXP '(^| )(Microsoft|Windows)')"
 # https://www.ghacks.net/feed/ "gHacks" < item-rule "NOT (title REGEXP '(^| )(Windows|Apple|Google|Microsoft|Amazon|Chrome|OpenAI|Meta|Spotify)')"
 
-@ NEWS 2
+@ NEWS 2 < item-limit 100
 https://android.izzysoft.de/rss/en/articles
 https://annas-archive.gd/blog/rss.xml
 https://archlinux.org/feeds/news/
-https://blog.tangled.org/blog/feed.xml
+# https://blog.tangled.org/blog/feed.xml
 https://blog.thunderbird.net/feed/ "Thunderbird"
 https://dolphin-emu.org/blog/feeds/ "Dolphin Emulator"
 https://dotfyle.com/neovim/plugins/rss.xml  < item-rule "NOT (content REGEXP 'theme|colou?r ?scheme')"
@@ -35,8 +36,10 @@ https://echasnovski.com/blog.xml
 https://f-droid.org/feed.xml "F-Droid"
 https://fishshell.com/blog/feed.xml
 https://github.com/neovim/neovim/commits/master/runtime/doc/news.txt.atom "nvim news" < item-rule "title NOT LIKE 'docs: %'"
+https://hnkminimalcolor.tumblr.com/rss
 https://melonds.kuribo64.net/rss.php
 https://muspy.com/feed?id=mobwjpkr95u5p1b4f2w1bjt74qc8u3 "muspy New Releases" < item-rule "NOT (title LIKE 'Taylor Swift%' OR title REGEXP 'Remix|live|Live|LIVE')"
+https://ogiuemaniax.com/feed/
 https://rue-lang.dev/blog/rss.xml
 # https://reddit.com/r/neovim/hot.rss "r/neovim"
 # https://xkcd.com/atom.xml
@@ -101,8 +104,11 @@ https://crescentro.se/posts/atom.xml
 https://danluu.com/atom.xml
 https://devever.net/~hl/index.feed
 https://drewdevault.com/blog/index.xml "Drew Devault"
+https://eaton-works.com/feed.atom
+https://ersei.net/en/blog.atom
 https://fromjason.xyz/p/notebook/feed/feed.xml
 https://herecomesthemoon.net/posts/index.xml
+https://ingrids.space/index.xml
 https://lambdaland.org/index.xml
 https://lorendb.dev/index.xml
 https://ludic.mataroa.blog/rss
@@ -111,10 +117,12 @@ https://mtwb.blog/index.xml
 https://blog.matthewbrunelle.com/rss
 https://oppi.li/index.xml
 https://robertheaton.com/feed.xml "Robert Heaton"
+https://sethmlarson.dev/feed
 https://thatshubham.com/rss.xml
 https://thelinuxcast.org/index.xml
 https://utcc.utoronto.ca/~cks/space/blog/?atom
 https://world.hey.com/dhh/feed.atom "DHH"
+# TODO: wait for p4m.dev to add rss
 
 @ PERSONAL BLOGS 3
 https://7c0h.com/blog/rss.xml
@@ -126,6 +134,7 @@ https://borretti.me/feed.xml
 https://cedwards.xyz/index.xml
 https://cendyne.dev/feed.xml "Cendyne's Posts"
 https://ciechanow.ski/atom.xml
+https://sdomi.pl/weblog/atom/
 https://dotat.at/@/blog.atom
 https://drainerdomain.xyz/guides/index.xml
 https://drainerdomain.xyz/posts/index.xml
@@ -146,11 +155,9 @@ https://palone.blog/feed/atom/
 https://seirdy.one/posts/atom.xml
 https://tailscale.dev/feed.xml
 https://thecodist.com/rss
-http://syndication.thedailywtf.com/TheDailyWtf
 http://pb.co.za/posts.atom
 https://transitiontech.ca/feed.xml
 https://twi.github.io/blog/atom.xml
-https://vas.neocities.org/rss.xml
 https://vicki.substack.com/feed
 https://vivekhaldar.com/index.xml
 https://www.dannyvankooten.com/atom.xml "Danny van Kooten"
