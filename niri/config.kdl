@@ -9,6 +9,12 @@ spawn-at-startup "rmdir" "-p" ".cache/fish"
 screenshot-path "pic/ss/Screenshot_%Y%m%d_%H%M%S_niri.png"
 prefer-no-csd
 
+output "eDP-1" {
+    // mode "1680x1050@60.001"
+    variable-refresh-rate
+    backdrop-color "#181926"
+}
+
 environment {
     ELECTRON_OZONE_PLATFORM_HINT "auto"
     XCURSOR_SIZE "30"

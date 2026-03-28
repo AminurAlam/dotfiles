@@ -19,15 +19,7 @@ window-rule { // focus on keepass
 window-rule { // pseudo-fullscreen
     match app-id="librewolf|vesktop|anki|newsraft"
     match app-id="(org|com)\\..*\\.(Picard|Identity|rnote|kdeconnect.app)$"
-
-    default-column-width { proportion 1.0; }
-}
-
-window-rule { // fullscreen glut
-    match title="^2d$"
-    open-fullscreen false
-    open-floating true
-    open-focused false
+    match title="^Krita$"
 
     default-column-width { proportion 1.0; }
 }
