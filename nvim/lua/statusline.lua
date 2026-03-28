@@ -1,3 +1,4 @@
+-- [==[
 local mode_colors = {
   ['n'] = '#98c379',
   ['no'] = '#98c379',
@@ -57,51 +58,32 @@ local mode_names = {
   ['!'] = 'SHELL',
   ['t'] = 'TERMINAL',
 }
-local buflogo = { [0] = '', '', '二 ', '三 ', '四 ', '五 ', '六 ', '七 ', '八 ', '九' }
 local hl = vim.api.nvim_set_hl
-vim.cmd [[
-hi stl_hl_a  guibg=#98c379 guifg=#30354A gui=bold
-hi stl_hl_b  guifg=#98c379 guibg=#30354A
-hi stl_hl_to guifg=#30354A guibg=NONE
-]]
+hl(0, 'stl_hl_a', { fg = '#30354A', bg = '#98c379', bold = true })
+hl(0, 'stl_hl_b', { bg = '#30354A', fg = '#98c379', bold = false })
+hl(0, 'stl_hl_to', { fg = '#30354A', bg = 'NONE', bold = false })
 
 vim.g.stl = {
   mode = function()
-    return mode_names[vim.api.nvim_get_mode().mode] or vim.api.nvim_get_mode().mode
+    local mode = vim.api.nvim_get_mode().mode
+    return mode_names[mode] or mode
   end,
   bufcount = function()
-    return buflogo[#vim.fn.getbufinfo { buflisted = 1 }] or '十 '
+    local count = #vim.fn.getbufinfo { buflisted = 1 }
+    return count == 1 and '' or count .. ' '
   end,
   hlsearch = function() -- https://github.com/nvim-lualine/lualine.nvim/pull/1088
     local ok, sc = pcall(vim.fn.searchcount, { timeout = 20 })
-    if not ok or sc.current == nil then
+    if not ok or next(sc) == nil then
       return ''
     end
     return string.format('[%d/%d]', sc.current or 0, sc.total or 0)
-  end,
-  progress = function(current, total)
-    if current == 1 then
-      return 'Top'
-    elseif current == total then
-      return 'End'
-    end
-
-    return string.format('%2d%%', math.floor(current / total * 100))
-  end,
-  diagnostics = function()
-    local count = vim.diagnostic.count(0)
-
-    return (count[1] and '%#DiagnosticError# ' or '')
-      .. (count[2] and '%#DiagnosticWarn# ' or '')
-      .. (count[3] and '%#DiagnosticInfo# ' or '')
-      .. (count[4] and '%#DiagnosticHint# ' or '')
   end,
 }
 
 vim.api.nvim_create_autocmd({ 'ModeChanged' }, {
   pattern = '*',
   callback = function(_)
-    ---@diagnostic disable-next-line: undefined-field
     local mode_color = mode_colors[vim.v.event.new_mode]
     hl(0, 'stl_hl_a', { bg = mode_color, fg = '#30354A', bold = true })
     hl(0, 'stl_hl_b', { fg = mode_color, bg = '#30354A' })
@@ -114,8 +96,8 @@ vim.api.nvim_create_autocmd({ 'FileType' }, {
   command = 'setlocal statusline=%#Normal#',
 })
 
-vim.opt.stl = '%#stl_hl_a# %{ g:stl.mode() } %#stl_hl_b#' -- a to b
-  .. ' %{ g:stl.bufcount() }%t '
+vim.opt.stl = '%#stl_hl_a# %{ g:stl.mode() } %#stl_hl_b# ' -- a to b
+  .. '%{ g:stl.bufcount() }%t '
   .. '%{ &modified ? "󰆓 " : "" }'
   -- .. '%{ &cb == "unnamedplus" ? "󰆒 " : "" }'
   .. '%{ &spell ? "󰓆 " : "" }'
@@ -123,13 +105,15 @@ vim.opt.stl = '%#stl_hl_a# %{ g:stl.mode() } %#stl_hl_b#' -- a to b
   .. [[%{ search("\\s\\+$", "nwc") > 0 ? "󱁐 " : "" }]]
   .. [[%{ search("^\\t\\+", "nwc") > 0 ? " " : "" }]]
   .. '%#stl_hl_to#%#Normal# ' -- b to c
-  .. '%{% g:stl.diagnostics() %}'
   .. '%{% get(b:, "minidiff_summary_string", "") %}'
+  .. [[%{% luaeval('(package.loaded[''vim.diagnostic''] and next(vim.diagnostic.count()) and vim.diagnostic.status() .. '' '') or '''' ') %}]]
   .. '%#Normal#%=%S ' -- middle seperator
+  .. "%{% luaeval('(package.loaded[''vim.ui''] and vim.api.nvim_get_current_win() == tonumber(vim.g.actual_curwin or -1) and vim.ui.progress_status()) or '''' ')%}"
   .. '%{ v:hlsearch ? g:stl.hlsearch() : "" } '
   .. '%{ reg_recording() != "" ? " " .. reg_recording() : "" } '
   .. '%#stl_hl_to#%#stl_hl_b# ' -- c to b
-  .. '%{ g:stl.progress(line("."), line("$")) } '
+  .. '%P '
   .. '%#stl_hl_a#' -- b to a
+  .. "%{% &busy > 0 ? '◐ ' : '' %}"
   .. '%{ &fenc == "utf-8" ? "" : " " .. &fenc }'
   .. '%{ &fileformat == "dos" ? "  " : "" } %Y '

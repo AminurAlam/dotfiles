@@ -52,6 +52,8 @@ vim.diagnostic.config {
       'DiagnosticSignHint',
     },
   },
+
+  status = { format = { ' ', ' ', ' ', ' ' } },
   float = { border = 'rounded', header = '', prefix = '', suffix = '' },
   update_in_insert = true,
   severity_sort = true,

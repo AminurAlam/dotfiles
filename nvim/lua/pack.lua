@@ -3,10 +3,7 @@ vim.cmd('packadd nvim.undotree')
 ---@type vim.pack.Spec
 vim.pack.add({
   'https://github.com/nvim-lua/plenary.nvim',
-  {
-    src = 'https://github.com/nvim-treesitter/nvim-treesitter',
-    version = 'main',
-  },
+  { src = 'https://github.com/nvim-treesitter/nvim-treesitter', version = 'main' },
   'https://github.com/altermo/ultimate-autopair.nvim',
   'https://github.com/catgoose/nvim-colorizer.lua',
   'https://github.com/folke/tokyonight.nvim',
