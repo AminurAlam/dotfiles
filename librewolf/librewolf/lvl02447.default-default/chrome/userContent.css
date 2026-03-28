@@ -142,3 +142,16 @@ body {
     color: var(--dark-secondary) !important;
   }
 }
+
+@-moz-document domain("thedailywtf.com") {
+  body,
+  .content#article-page {
+    color: #c0caf5 !important;
+    background-color: #24283b !important;
+  }
+  #navigation,
+  #footer,
+  div.article-footer {
+    display: none;
+  }
+}
