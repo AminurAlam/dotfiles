@@ -97,7 +97,7 @@ swayimg = [{ run = "swayimg %s", block = false, orphan = true, desc = " swayi
 zathura = [{ run = "zathura %s", block = false, orphan = true, desc = " zathura", for = "linux" }]
 # groups
 raster_tools = [
-  { run = "swaybg -m fill -i %s1", block = false, orphan = true, desc = " swaybg", for = "linux" },
+  { run = "killall swaybg; swaybg -m fill -i %s1", block = false, orphan = true, desc = " swaybg", for = "linux" },
   { run = "krita %s", block = false, orphan = true, desc = " krita", for = "linux" },
   { run = "identity -- %s", orphan = true, for = "linux", desc = "󰆊 compare images" },
 ]
