@@ -58,6 +58,7 @@ require('tokyonight').setup {
     hl.WinSeparator = { link = 'TermCursorNC' }
     hl.Pmenu = { link = 'Normal' }
     hl.PmenuBorder = { link = 'FloatBorder' }
+    hl.MiniPickMatchCurrent = { link = 'Visual' }
     hl.PmenuMatch = { fg = '#2ac3de', bg = c.none }
     hl['@variable.fish'] = { link = 'Constant' }
     hl['@function.diff'] = { link = 'TabLineSel' }

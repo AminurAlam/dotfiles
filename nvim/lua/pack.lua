@@ -4,20 +4,25 @@ vim.cmd('packadd nvim.undotree')
 vim.pack.add({
   'https://github.com/nvim-lua/plenary.nvim',
   { src = 'https://github.com/nvim-treesitter/nvim-treesitter', version = 'main' },
+  'https://github.com/0xAdk/full_visual_line.nvim',
   'https://github.com/altermo/ultimate-autopair.nvim',
   'https://github.com/catgoose/nvim-colorizer.lua',
+  'https://github.com/folke/lazydev.nvim',
   'https://github.com/folke/tokyonight.nvim',
   'https://github.com/kylechui/nvim-surround',
-  'https://github.com/nvim-mini/mini.diff',
   'https://github.com/monaqa/dial.nvim',
-  'https://github.com/nvim-telescope/telescope.nvim',
-  'https://github.com/nvimtools/none-ls.nvim',
-  'https://github.com/folke/lazydev.nvim',
-  'https://github.com/0xAdk/full_visual_line.nvim',
   'https://github.com/nvim-mini/mini.completion',
+  'https://github.com/nvim-mini/mini.diff',
+  'https://github.com/nvim-mini/mini.pick',
+  'https://github.com/nvimtools/none-ls.nvim',
 })
 
 require('full_visual_line').setup {}
+
+require('lazydev').setup {
+  library = { { path = '${3rd}/luv/library', words = { 'vim%.uv' } } },
+  integrations = { cmp = false, lspconfig = false },
+}
 
 local augend = require('dial.augend')
 require('dial.config').augends:register_group {
@@ -32,9 +37,4 @@ require('dial.config').augends:register_group {
     augend.constant.new { elements = { '>', '<=' }, word = false, cyclic = true },
     augend.constant.new { elements = { '[ ]', '[x]' }, word = false, cyclic = true },
   },
-}
-
-require('lazydev').setup {
-  library = { { path = '${3rd}/luv/library', words = { 'vim%.uv' } } },
-  integrations = { cmp = false, lspconfig = false },
 }

@@ -89,12 +89,6 @@ vim.api.nvim_create_autocmd({ 'ModeChanged' }, {
   end,
 })
 
-vim.api.nvim_create_autocmd({ 'FileType' }, {
-  desc = 'turn off statusline',
-  pattern = { 'TelescopePrompt', 'alpha' },
-  command = 'setlocal statusline=%#Normal#',
-})
-
 vim.opt.stl = '%#stl_hl_a# %{ g:stl.mode() } %#stl_hl_b# ' -- a to b
   .. '%{ g:stl.bufcount() }%t '
   .. '%{ &modified ? "󰆓 " : "" }'
@@ -104,7 +98,7 @@ vim.opt.stl = '%#stl_hl_a# %{ g:stl.mode() } %#stl_hl_b# ' -- a to b
   .. [[%{ search("\\s\\+$", "nwc") > 0 ? "󱁐 " : "" }]]
   .. [[%{ search("^\\t\\+", "nwc") > 0 ? " " : "" }]]
   .. '%#stl_hl_to#%#Normal# ' -- b to c
-  .. '%{% get(b:, "minidiff_summary_string", "") %}'
+  .. '%{% get(b:, "minidiff_summary_string", "") %} '
   .. [[%{% luaeval('(package.loaded[''vim.diagnostic''] and next(vim.diagnostic.count()) and vim.diagnostic.status() .. '' '') or '''' ') %}]]
   .. '%#Normal#%=%S ' -- middle seperator
   .. "%{% luaeval('(package.loaded[''vim.ui''] and vim.api.nvim_get_current_win() == tonumber(vim.g.actual_curwin or -1) and vim.ui.progress_status()) or '''' ')%}"

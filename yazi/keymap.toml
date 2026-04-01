@@ -86,7 +86,7 @@ prepend_keymap = [
   # other
   # { on = ":", run = '''shell "fish -c " --block --interactive''' },
   { on = ";", run = "noop" },
-  { on = "<C-g>", run = '''shell --block --confirm -- nvim +Telescope\ live_grep''', desc = "rg search" },
+  { on = "<C-g>", run = '''shell --block --confirm -- nvim +Pick\ grep_live''', desc = "rg search" },
   { on = ".", run = "hidden toggle" },
   { on = "<Esc>", run = ["escape", "unyank"], desc = "Exit visual mode, clear selection, or cancel search" },
 ]

@@ -1,68 +1,53 @@
-require('telescope').setup {
-  defaults = {
-    layout_strategy = 'flex',
-    layout_config = {
-      vertical = {
-        height = 0.85,
-        width = 0.85,
-        prompt_position = 'bottom',
-        preview_cutoff = 38,
-        preview_height = 16,
-      },
-    },
-    prompt_prefix = '  ',
-    selection_caret = '» ',
-    entry_prefix = ' ',
-    dynamic_preview_title = false,
-    results_title = false,
-    prompt_title = false,
-    winblend = 0,
-    file_ignore_patterns = {
-      '.pdf',
-      'node_modules/',
-      '.git/',
-      '__pycache__',
-      'stylua.toml',
-      'Cargo.lock',
-      'target/',
-      -- 'build/',
-    },
-    path_display = vim.fn.has 'termux' == 1 and { shorten = { len = 1, exclude = { 1, -1 } } }
-      or {},
-    mappings = {
-      i = {
-        ['<esc>'] = 'close',
-        ['<c-Down>'] = 'cycle_history_next',
-        ['<c-Up>'] = 'cycle_history_prev',
-        ['<c-j>'] = 'move_selection_next',
-        ['<c-k>'] = 'move_selection_previous',
-        ['<s-Tab>'] = 'move_selection_next',
-        ['<tab>'] = 'move_selection_previous',
-      },
-      n = {
-        ['<c-q>'] = 'close',
-        ['<esc>'] = 'close',
-        ['<q>'] = 'close',
-      },
-    },
+require('mini.pick').setup({
+  delay = { async = 10, busy = 50 },
+  mappings = {
+    caret_left = '<Left>',
+    caret_right = '<Right>',
+    choose = '<CR>',
+    choose_marked = '<M-CR>',
+    delete_left = '<C-u>',
+    delete_word = '<C-w>',
+    move_down = '<C-j>',
+    move_start = '<C-g>',
+    move_up = '<C-k>',
+    paste = '<C-r>',
+    stop = '<Esc>',
+    toggle_preview = '<Tab>',
   },
-}
+  options = { content_from_bottom = true, use_cache = false },
+  window = {
+    config = function()
+      local height = math.floor(0.85 * vim.o.lines)
+      local width = math.floor(0.85 * vim.o.columns)
+      return {
+        border = 'rounded',
+        anchor = 'NW',
+        height = height,
+        width = width,
+        row = math.floor(0.5 * (vim.o.lines - height)),
+        col = math.floor(0.5 * (vim.o.columns - width)),
+      }
+    end,
+    prompt_caret = '_',
+    prompt_prefix = '  ',
+  },
+})
 
 local fmap = function(key, method)
-  vim.keymap.set('n', '<leader>' .. key, require('telescope.builtin')[method], {
+  vim.keymap.set('n', '<leader>' .. key, function()
+    require('mini.pick').builtin[method]({}, { source = { cwd = vim.fs.root(0, '.git') } })
+  end, {
     noremap = true,
     silent = true,
   })
 end
-fmap('/', 'live_grep')
-fmap('g', 'live_grep')
-fmap('?', 'help_tags')
-fmap('h', 'help_tags')
-fmap('b', 'buffers')
-fmap('ls', 'lsp_document_symbols')
-fmap('r', 'oldfiles')
-fmap('go', 'loclist')
 
-vim.keymap.set('n', '<leader>f', function()
-  require('telescope.builtin').find_files { cwd = vim.fs.root(0, '.git') }
-end)
+fmap('f', 'files')
+fmap('g', 'grep_live')
+fmap('h', 'help')
+
+vim.api.nvim_create_autocmd({ 'FileType' }, {
+  desc = 'make selected line pop more',
+  pattern = { 'minipick' },
+  command = 'hi link MiniFilesCursorLine Visual',
+})
