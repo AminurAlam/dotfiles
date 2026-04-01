@@ -9,6 +9,9 @@
         "en"
     ],
     "customTitleBar": false,
-    "enableSplashScreen": false,
-    "openLinksWithElectron": false
+    "enableSplashScreen": true,
+    "openLinksWithElectron": false,
+    "clickTrayToShowHide": true,
+    "disableSmoothScroll": false,
+    "enableTaskbarFlashing": true
 }

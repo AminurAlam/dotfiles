@@ -213,7 +213,8 @@
             "enabled": true
         },
         "FixImagesQuality": {
-            "enabled": true
+            "enabled": true,
+            "originalImagesInChat": false
         },
         "FixSpotifyEmbeds": {
             "enabled": false
@@ -310,7 +311,8 @@
             "enabled": true,
             "latency": 2,
             "detectDiscordKotlin": true,
-            "showMillis": false
+            "showMillis": false,
+            "ignoreSelf": false
         },
         "MessageLinkEmbeds": {
             "enabled": false
@@ -327,9 +329,6 @@
             "logEdits": true,
             "logDeletes": true,
             "inlineEdits": true
-        },
-        "MessageTags": {
-            "enabled": false
         },
         "MoreCommands": {
             "enabled": false
@@ -570,7 +569,8 @@
             "enabled": true,
             "displayNames": false,
             "inReplies": false,
-            "mode": "user-nick"
+            "mode": "user-nick",
+            "friendNicknames": "dms"
         },
         "ShowTimeoutDuration": {
             "enabled": true
@@ -726,6 +726,23 @@
         },
         "ExpressionCloner": {
             "enabled": false
+        },
+        "CustomCommands": {
+            "enabled": false,
+            "tagsList": {}
+        },
+        "CopyStickerLinks": {
+            "enabled": false
+        },
+        "ImageFilename": {
+            "enabled": true,
+            "showFullUrl": false
+        },
+        "MoreQuickReactions": {
+            "enabled": false
+        },
+        "NoDefaultHangStatus": {
+            "enabled": false
         }
     },
     "notifications": {
@@ -738,7 +755,11 @@
         "authenticated": true,
         "url": "https://api.vencord.dev/",
         "settingsSync": true,
-        "settingsSyncVersion": 1748701667070
+        "settingsSyncVersion": 1775029559960
     },
-    "eagerPatches": false
+    "eagerPatches": false,
+    "uiElements": {
+        "chatBarButtons": {},
+        "messagePopoverButtons": {}
+    }
 }
