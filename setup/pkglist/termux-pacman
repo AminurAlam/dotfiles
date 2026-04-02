@@ -3,7 +3,6 @@ attr
 bash
 bzip2
 ca-certificates
-chafa
 clang
 command-not-found
 coreutils
