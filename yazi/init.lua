@@ -220,6 +220,7 @@ require('sort-by-location'):setup {
   { pattern = '.*/Pictures/.*', sort = { by = 'mtime', reverse = true } },
   { pattern = '.*/pic/.*', sort = { by = 'mtime', reverse = true } },
   { pattern = '.*/DCIM/.*', sort = { by = 'mtime', reverse = true } },
+  { pattern = '.*/#lewd$', sort = { by = 'mtime', reverse = true } },
 }
 
 require('mime-ext.local'):setup {

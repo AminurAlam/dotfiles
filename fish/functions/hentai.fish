@@ -29,9 +29,9 @@ function hentai -d "for managing literature"
         printf " - $base\n"
         # NOTE: may need to be sorted manually
         for ch in $i/*.cbz
-            printf "   - %s\n" (path basename $ch | string replace -r -- '_[0-9a-f]{6}\.cbz$' '.cbz')
+            printf "   - %s\n" (path basename $ch)
             set -a artists (getartist $ch)
-            unzip -qd (string replace -r -- '_[0-9a-f]{6}\.cbz$' '' $ch) $ch
+            unzip -qd (path change-extension '' $ch) $ch
             rm $ch
         end
         set artist @(printf "%s\n" $artists | sort | uniq | string join +)
