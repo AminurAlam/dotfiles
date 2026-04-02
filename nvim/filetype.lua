@@ -1,6 +1,5 @@
 vim.filetype.add {
   filename = {
-    ['mihon_update_errors.txt'] = 'markdown',
     ['PKGBUILD'] = 'sh',
   },
   extension = {
@@ -12,7 +11,5 @@ vim.filetype.add {
     kbd = 'kanata',
     log = 'log',
     mdx = 'markdown',
-    note = 'markdown',
-    service = 'systemd',
   },
 }

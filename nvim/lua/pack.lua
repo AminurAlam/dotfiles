@@ -1,5 +1,3 @@
-vim.cmd('packadd nvim.undotree')
-
 ---@type vim.pack.Spec
 vim.pack.add({
   'https://github.com/nvim-lua/plenary.nvim',
@@ -7,7 +5,6 @@ vim.pack.add({
   'https://github.com/0xAdk/full_visual_line.nvim',
   'https://github.com/altermo/ultimate-autopair.nvim',
   'https://github.com/catgoose/nvim-colorizer.lua',
-  'https://github.com/folke/lazydev.nvim',
   'https://github.com/folke/tokyonight.nvim',
   'https://github.com/kylechui/nvim-surround',
   'https://github.com/monaqa/dial.nvim',
@@ -18,11 +15,6 @@ vim.pack.add({
 })
 
 require('full_visual_line').setup {}
-
-require('lazydev').setup {
-  library = { { path = '${3rd}/luv/library', words = { 'vim%.uv' } } },
-  integrations = { cmp = false, lspconfig = false },
-}
 
 local augend = require('dial.augend')
 require('dial.config').augends:register_group {
