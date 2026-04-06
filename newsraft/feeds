@@ -33,6 +33,7 @@ https://blog.thunderbird.net/feed/ "Thunderbird"
 https://dolphin-emu.org/blog/feeds/ "Dolphin Emulator"
 https://dotfyle.com/neovim/plugins/rss.xml  < item-rule "NOT (content REGEXP 'theme|colou?r ?scheme')"
 https://echasnovski.com/blog.xml
+https://nvim-mini.org/blog/index.xml
 https://f-droid.org/feed.xml "F-Droid"
 https://fishshell.com/blog/feed.xml
 https://github.com/neovim/neovim/commits/master/runtime/doc/news.txt.atom "nvim news" < item-rule "title NOT LIKE 'docs: %'"
@@ -41,6 +42,7 @@ https://melonds.kuribo64.net/rss.php
 https://muspy.com/feed?id=mobwjpkr95u5p1b4f2w1bjt74qc8u3 "muspy New Releases" < item-rule "NOT (title LIKE 'Taylor Swift%' OR title REGEXP 'Remix|live|Live|LIVE')"
 https://ogiuemaniax.com/feed/
 https://rue-lang.dev/blog/rss.xml
+https://ryelang.org/blog/index.xml
 # https://reddit.com/r/neovim/hot.rss "r/neovim"
 # https://xkcd.com/atom.xml
 
