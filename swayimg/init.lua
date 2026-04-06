@@ -90,6 +90,9 @@ do -- Key and mouse bindings in viewer mode
     swayimg.viewer.next_frame()
   end)
 
+  swayimg.viewer.on_key('i', function()
+    swayimg.text.show()
+  end)
   swayimg.viewer.on_key('s', function()
     swayimg.viewer.set_fix_scale('width')
   end)
