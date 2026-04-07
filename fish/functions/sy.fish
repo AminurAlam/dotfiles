@@ -14,6 +14,8 @@ function sy -d "sync files between phone and pc"
             set -e comm[1]
         end
 
+        # TODO: collect filenames to be transfered and only sync those
+
         printf "=== PICTURES ===\n"
         rsync $comm $XDG_PICTURES_DIR/ brick:/sdcard/Pictures/ --exclude={Camera,Komikku,WhatsApp Images} | rg -v '/$'
         rsync $comm brick:/sdcard/Pictures/ $XDG_PICTURES_DIR/ --exclude Komikku | rg -v '/$'
