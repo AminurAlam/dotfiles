@@ -120,6 +120,7 @@ revanced-cli-bin
 ripgrep
 rsync
 ruff
+scrcpy
 shellcheck
 shfmt
 sof-firmware

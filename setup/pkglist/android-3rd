@@ -43,7 +43,6 @@ installer=com.aurora.store com.piyush.music
 installer=com.aurora.store com.samsung.android.goodlock
 installer=com.aurora.store com.sec.android.app.voicenote
 installer=com.aurora.store com.whatsapp
-installer=com.aurora.store com.whereismytrain.android
 installer=com.aurora.store ginlemon.flowerfree
 installer=com.google.android.packageinstaller app.revanced.android.youtube
 installer=com.looker.droidify com.arn.scrobble
