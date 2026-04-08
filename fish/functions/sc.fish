@@ -1,10 +1,8 @@
 function sc -d "scrcpy wrapper"
+    set -f ANDROID_USER_HOME "$XDG_DATA_HOME"/.android
+    set -f HOME "$XDG_DATA_HOME"
+
     adb wait-for-device
-    if not adb devices | rg -q '^192\.168.*device$'
-        adb tcpip 5555
-        adb connect (route -n | awk '/^[0.]+/{print $2}' | rg -v '127\.0\.0\.1' | uniq | head -n1) || return
-        sleep 1
-    end
 
     switch "$argv[1]"
         case -
