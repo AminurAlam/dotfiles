@@ -1,5 +1,5 @@
 [Unit]
-Description=Private front-end for Reddit
+Description=[10004] Private front-end for Reddit
 Documentation=https://github.com/redlib-org/redlib
 After=network.target
 

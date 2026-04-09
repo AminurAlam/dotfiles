@@ -1,5 +1,5 @@
 [Unit]
-Description=Anki Sync Server
+Description=[10001] Anki Sync Server
 Documentation=https://docs.ankiweb.net/sync-server.html
 After=network.target
 

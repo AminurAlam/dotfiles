@@ -1,5 +1,5 @@
 [Unit]
-Description=Komga is a media server for your comics, mangas, BDs, magazines and eBooks.
+Description=[10003] Komga is a media server for your comics, mangas, BDs, magazines and eBooks.
 Documentation=https://komga.org/docs/introduction
 After=network.target
 
