@@ -1,7 +1,6 @@
 vim.o.termguicolors = true
 
 require('colorizer').setup {
-  filetypes = {},
   user_default_options = {
     names = false,
     names_custom = false,
