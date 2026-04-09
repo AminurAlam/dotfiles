@@ -96,7 +96,7 @@ switch $argv[1]
         brightnessctl s $brightness
 
     case sys
-        systemctl --user status -l -n0 -ojson (path basename  ~/.config/systemd/user/*.service)
+        systemctl --user status --full --no-pager -n0 (path basename  ~/.config/systemd/user/*.service)
 
     case '*'
         printf 'USAGE:\n'
