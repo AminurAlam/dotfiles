@@ -15,6 +15,7 @@ prepend_previewers = [
   { url = "/mnt/rclone/**", run = "noop" },
   # custom
   { url = "*.typ", run = "preview-typst" },
+  { url = "*.service", run = "preview-systemd" },
   { mime = "application/epub+zip", run = "preview-epub" },
   { url = "*.cb{z,r}", run = "preview-cbz" },
   { url = "*.torrent", run = "preview-torrent" },
