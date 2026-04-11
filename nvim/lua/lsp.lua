@@ -3,13 +3,11 @@ vim.lsp.log.set_level(vim.log.levels.ERROR)
 local filter = function(server)
   return vim.fn.executable(vim.lsp.config[server].cmd[1]) == 1
 end
-local null_ls = require 'null-ls'
-local h = require 'null-ls.helpers'
 
 vim.lsp.enable(vim.tbl_filter(filter, {
   'basedpyright',
   -- 'bash_language_server',
-  -- 'biome', -- TODO: enable on css
+  'biome',
   'ccls',
   'clangd',
   'hyprls',
@@ -31,21 +29,17 @@ vim.lsp.enable(vim.tbl_filter(filter, {
 }))
 
 -- https://github.com/nvimtools/none-ls.nvim/blob/main/doc/BUILTINS.md
+--[[
+local null_ls = require 'null-ls'
+local h = require 'null-ls.helpers'
 null_ls.setup {
   border = 'rounded',
   sources = {
-    null_ls.builtins.formatting.prettier,
-    null_ls.builtins.formatting.stylua,
-    null_ls.builtins.diagnostics.fish,
+    -- null_ls.builtins.formatting.prettier,
+    -- null_ls.builtins.formatting.stylua,
+    -- null_ls.builtins.diagnostics.fish,
     null_ls.builtins.formatting.fish_indent,
-    null_ls.builtins.formatting.clang_format.with { extra_filetypes = { 'glsl' } },
-    h.make_builtin {
-      name = 'taplo',
-      method = 'NULL_LS_FORMATTING',
-      filetypes = { 'toml' },
-      generator_opts = { command = { 'taplo', 'format', '-' }, to_stdin = true },
-      factory = h.formatter_factory,
-    },
+    -- null_ls.builtins.formatting.clang_format.with { extra_filetypes = { 'glsl' } },
     h.make_builtin {
       name = 'kanata',
       method = 'NULL_LS_DIAGNOSTICS_ON_SAVE',
@@ -95,6 +89,7 @@ null_ls.setup {
     },
   },
 }
+--]]
 
 vim.api.nvim_create_autocmd({ 'BufEnter' }, {
   desc = 'start termux lsp on opening specific files',
@@ -140,9 +135,9 @@ vim.api.nvim_create_autocmd('LspAttach', {
     end
 
     if
-      client:supports_method('textDocument/formatting')
-      or client.name == 'tinymist'
-      or client.name == 'biome'
+        client:supports_method('textDocument/formatting')
+        or client.name == 'tinymist'
+        or client.name == 'biome'
     then
       -- [[
       vim.api.nvim_create_autocmd('BufWritePre', {

@@ -90,23 +90,25 @@ vim.api.nvim_create_autocmd({ 'ModeChanged' }, {
 })
 
 vim.opt.stl = '%#stl_hl_a# %{ g:stl.mode() } %#stl_hl_b# ' -- a to b
-  .. '%{ g:stl.bufcount() }%t '
-  .. '%{ &modified ? "󰆓 " : "" }'
-  -- .. '%{ &cb == "unnamedplus" ? "󰆒 " : "" }'
-  .. '%{ &spell ? "󰓆 " : "" }'
-  .. '%{ &readonly ? "󰌾 " : "" }'
-  .. [[%{ search("\\s\\+$", "nwc") > 0 ? "󱁐 " : "" }]]
-  .. [[%{ search("^\\t\\+", "nwc") > 0 ? " " : "" }]]
-  .. '%#stl_hl_to#%#Normal# ' -- b to c
-  .. '%{% get(b:, "minidiff_summary_string", "") %} '
-  .. [[%{% luaeval('(package.loaded[''vim.diagnostic''] and next(vim.diagnostic.count()) and vim.diagnostic.status() .. '' '') or '''' ') %}]]
-  .. '%#Normal#%=%S ' -- middle seperator
-  .. "%{% luaeval('(package.loaded[''vim.ui''] and vim.api.nvim_get_current_win() == tonumber(vim.g.actual_curwin or -1) and vim.ui.progress_status()) or '''' ')%}"
-  .. '%{ v:hlsearch ? g:stl.hlsearch() : "" } '
-  .. '%{ reg_recording() != "" ? " " .. reg_recording() : "" } '
-  .. '%#stl_hl_to#%#stl_hl_b# ' -- c to b
-  .. '%P '
-  .. '%#stl_hl_a#' -- b to a
-  .. "%{% &busy > 0 ? '◐ ' : '' %}"
-  .. '%{ &fenc == "utf-8" ? "" : " " .. &fenc }'
-  .. '%{ &fileformat == "dos" ? "  " : "" } %Y '
+    .. '%{ g:stl.bufcount() }%t '
+    .. '%{ &modified ? "󰆓 " : "" }'
+    -- .. '%{ &cb == "unnamedplus" ? "󰆒 " : "" }'
+    .. '%{ &spell ? "󰓆 " : "" }'
+    .. '%{ &readonly ? "󰌾 " : "" }'
+    .. [[%{ search("\\s\\+$", "nwc") > 0 ? "󱁐 " : "" }]]
+    .. [[%{ search("^\\t\\+", "nwc") > 0 ? " " : "" }]]
+    .. '%#stl_hl_to#%#Normal# ' -- b to c
+    .. '%{% get(b:, "minidiff_summary_string", "") %} '
+    ..
+    [[%{% luaeval('(package.loaded[''vim.diagnostic''] and next(vim.diagnostic.count()) and vim.diagnostic.status() .. '' '') or '''' ') %}]]
+    .. '%#Normal#%=%S ' -- middle seperator
+    ..
+    "%{% luaeval('(package.loaded[''vim.ui''] and vim.api.nvim_get_current_win() == tonumber(vim.g.actual_curwin or -1) and vim.ui.progress_status()) or '''' ')%}"
+    .. '%{ v:hlsearch ? g:stl.hlsearch() : "" } '
+    .. '%{ reg_recording() != "" ? " " .. reg_recording() : "" } '
+    .. '%#stl_hl_to#%#stl_hl_b# ' -- c to b
+    .. '%P '
+    .. '%#stl_hl_a#' -- b to a
+    .. "%{% &busy > 0 ? '◐ ' : '' %}"
+    .. '%{ &fenc == "utf-8" ? "" : " " .. &fenc }'
+    .. '%{ &fileformat == "dos" ? "  " : "" } %Y '

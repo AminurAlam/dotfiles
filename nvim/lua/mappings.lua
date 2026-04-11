@@ -98,6 +98,6 @@ map({ 'ca' }, 'it', 'InspectTree')
 map({ 'ca' }, 'pu', 'lua vim.pack.update()') -- https://github.com/neovim/neovim/issues/34764
 
 -- macros
-macro('m', [[mmA;`m]]) -- put ; at end of statements
-macro('x', [[$T["_sx]]) -- mark todo as complete
+macro('m', [[mmA;`m]])   -- put ; at end of statements
+macro('x', [[$T["_sx]])  -- mark todo as complete
 macro('f', [[mmF"if`m]]) -- convert python string to format string

@@ -87,7 +87,7 @@ end
 
 do -- others
   set.concealcursor = 'n'
-  set.timeout = false -- remove for which-key
+  set.timeout = false
   set.swapfile = true
   set.writebackup = false
   set.undofile = true

@@ -1,3 +1,4 @@
+-- TODO: test if working
 function search_ancestors(startpath, func)
   vim.validate('func', func, 'function')
   if func(startpath) then
@@ -26,8 +27,7 @@ function root_pattern(...)
   return function(startpath)
     for _, pattern in ipairs(patterns) do
       local match = search_ancestors(startpath, function(path)
-        for _, p in
-          ipairs(vim.fn.glob(table.concat({ escape_wildcards(path), pattern }, '/'), true, true))
+        for _, p in ipairs(vim.fn.glob(table.concat({ escape_wildcards(path), pattern }, '/'), true, true))
         do
           if vim.uv.fs_stat(p) then
             return path

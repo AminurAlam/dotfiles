@@ -1,6 +1,6 @@
 ---@type vim.lsp.Config
 return {
-  cmd = { 'biome', 'lsp-proxy' },
+  cmd = { 'biome', 'lsp-proxy', },
   filetypes = {
     'astro',
     'css',
@@ -27,6 +27,6 @@ return {
     },
     { '.git' },
   },
-  -- TODO: track https://github.com/biomejs/biome/pull/9392
-  -- settings = { config_path = '/home/fisher/.config/biome/biome.jsonc' },
+  -- TODO: wait for https://gitlab.archlinux.org/archlinux/packaging/packages/biome to update pkg to 2.4.*
+  settings = { config_path = vim.fs.abspath('~/.config/biome/biome.jsonc') },
 }
