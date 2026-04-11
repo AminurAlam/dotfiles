@@ -6,6 +6,7 @@
 - [alacritty](https://alacritty.org/) - terminal emulator
 - [anki](https://apps.ankiweb.net/) - flashcards
 - [aria2](https://aria2.github.io/) - download manager
+- [biome](https://biomejs.dev/) - Formatter, linter, and more for Javascript, Typescript, JSON, and CSS
 - [btop](https://github.com/aristocratos/btop) - system resource monitor
 - [clang-format](https://clang.llvm.org/docs/ClangFormat.html) - c formatter
 - [clangd](https://clang.llvm.org/) - c++ lsp server
