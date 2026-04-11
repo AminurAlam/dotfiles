@@ -1,0 +1,3 @@
+#!/usr/bin/fish --no-config
+
+curl -s $argv[1] | sed -E $argv[2]

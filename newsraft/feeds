@@ -31,7 +31,8 @@ https://archlinux.org/feeds/news/
 # https://blog.tangled.org/blog/feed.xml
 https://blog.thunderbird.net/feed/ "Thunderbird"
 https://dolphin-emu.org/blog/feeds/ "Dolphin Emulator"
-https://dotfyle.com/neovim/plugins/rss.xml  < item-rule "NOT (content REGEXP 'theme|colou?r ?scheme')"
+# https://dotfyle.com/neovim/plugins/rss.xml  < item-rule "NOT (content REGEXP 'theme|colou?r ?scheme')"
+$(feedmod https://dotfyle.com/neovim/plugins/rss.xml 's#https://dotfyle.com/plugins/([^/]+/[^/]+)\?utm_source=plugins-rss#https://github.com/\1#; s#<img src="undefined" alt="">##') < item-rule "NOT (content REGEXP 'theme|colou?r ?scheme')"
 https://echasnovski.com/blog.xml
 https://nvim-mini.org/blog/index.xml
 https://f-droid.org/feed.xml "F-Droid"
@@ -39,7 +40,7 @@ https://fishshell.com/blog/feed.xml
 https://github.com/neovim/neovim/commits/master/runtime/doc/news.txt.atom "nvim news" < item-rule "title NOT LIKE 'docs: %'"
 https://hnkminimalcolor.tumblr.com/rss
 https://melonds.kuribo64.net/rss.php
-https://muspy.com/feed?id=mobwjpkr95u5p1b4f2w1bjt74qc8u3 "muspy New Releases" < item-rule "NOT (title LIKE 'Taylor Swift%' OR title REGEXP 'Remix|live|Live|LIVE')"
+$(feedmod https://muspy.com/feed?id=mobwjpkr95u5p1b4f2w1bjt74qc8u3 '/amazon.(ca|de|fr|co.uk|com)| for more information| a new release is available/d') "muspy New Releases" < item-rule "NOT (title LIKE 'Taylor Swift%' OR title REGEXP 'Remix|live|Live|LIVE')"
 https://ogiuemaniax.com/feed/
 https://rue-lang.dev/blog/rss.xml
 https://ryelang.org/blog/index.xml
@@ -49,7 +50,7 @@ https://ryelang.org/blog/index.xml
 @ PERSONAL BLOGS 1
 https://aminuralam.github.io/rss.xml
 https://abhinavsarkar.net/all.atom "Abhinav Sarkar"
-https://alecmuffett.com/feed "Alec Muffett"
+$(feedmod https://alecmuffett.com/feed 's#^<p><a class="a2a_button_copy_link".*</p>##') "Alec Muffett"
 https://alexwlchan.net/atom.xml
 https://amygoodchild.com/blog?format=rss "Amy Goodchild"
 https://anildash.com/feed.xml

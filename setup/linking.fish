@@ -71,7 +71,7 @@ printf "done\n"
 
 printf "LINKING BIN... "
 ln -nfs ~/repos/dotfiles/scripts/bin/ctl ~/.local/bin/ctl
-ln -nfs ~/repos/dotfiles/scripts/bin/torrent-list ~/.local/bin/torrent-list
+ln -nfs ~/repos/dotfiles/scripts/bin/feedmod ~/.local/bin/feedmod
 printf "done\n"
 
 rmdir --ignore-fail-on-non-empty ~/{backup,bin}

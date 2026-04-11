@@ -1,3 +1,0 @@
-#!/usr/bin/fish --no-config
-
-rg -a --only-matching ':path.*pieces\d+:' $argv[1] | string split : | rg --replace '' 'ee(d|e)(4|6)$' | sort -n
