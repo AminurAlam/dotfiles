@@ -87,8 +87,8 @@
 (defalias ;; other
     esc (tap-hold 500 500 caps lrld)
     cap esc
-    /   (tap-hold-release $tt $ht / bksl)
     v   C-S-v
-    ,   (tap-hold $tt $nht , S-,)
-    .   (tap-hold $tt $nht . S-.)
+    ,   (tap-hold $tt $ht , S-,)
+    .   (tap-hold $tt $ht . S-.)
+    /   (tap-hold-release $tt $ht / bksl)
 )
