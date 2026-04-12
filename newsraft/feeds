@@ -82,7 +82,7 @@ https://ploum.net/atom_en.xml
 https://pluralistic.net/feed/ "Pluralistic (Cory Doctorow)"
 https://rachelbythebay.com/w/atom.xml "rachel by the bay"
 https://roboleary.net/feed.xml "Rob O'Leary"
-https://rubenerd.com/feed/
+https://www.rubenerd.au/feed/
 https://schneier.com/feed/atom < item-rule "title NOT LIKE 'Friday Squid Blogging: %'"
 https://soatok.blog/feed "Soatok (Dhole Moments)"
 https://steveklabnik.com/feed.xml
