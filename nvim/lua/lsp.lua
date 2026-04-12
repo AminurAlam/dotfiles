@@ -29,6 +29,7 @@ vim.lsp.enable(vim.tbl_filter(filter, {
 }))
 
 -- https://github.com/nvimtools/none-ls.nvim/blob/main/doc/BUILTINS.md
+-- TODO: replace with https://github.com/stevearc/conform.nvim
 --[[
 local null_ls = require 'null-ls'
 local h = require 'null-ls.helpers'

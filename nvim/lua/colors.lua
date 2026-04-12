@@ -58,10 +58,12 @@ require('tokyonight').setup {
     hl.Pmenu = { link = 'Normal' }
     hl.PmenuBorder = { link = 'FloatBorder' }
     hl.MiniPickMatchCurrent = { link = 'Visual' }
+    hl.MiniPickMatchRanges = { link = 'Number' }
+    hl.MiniPickPrompt = { link = 'Normal' }
     hl.PmenuMatch = { fg = '#2ac3de', bg = c.none }
-    hl['@variable.fish'] = { link = 'Constant' }
     hl['@function.diff'] = { link = 'TabLineSel' }
     hl['@attribute.diff'] = { fg = '#7dcfff', bg = '#3b4261' }
+    hl['@variable.fish'] = { link = 'Constant' }
     hl['@constant.fish'] = { link = '@punctuation.special' }
     hl['@punctuation.bracket.fish'] = { link = '@punctuation.special' }
   end,
