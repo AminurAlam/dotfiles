@@ -4,6 +4,8 @@ function at -d "torrent download helper"
         set -f argv[1] $XDG_DOWNLOAD_DIR/main/torrents/(fd -d2 -tf --relative-path . | fzf)
         popd
     end
+    [ -z "$argv[1]" ] && return 1
+
     set -f files (aria2c $argv[1] -S | rg '\d+\|' | sed -E 's#\|.*/# #' | fzf --multi | kt 1 | string join ,)
 
     set -f outdir (pwd)
@@ -15,7 +17,7 @@ function at -d "torrent download helper"
         set -f outdir $XDG_DOWNLOAD_DIR
     end
 
-    printf "== %s ==\n" $argv[1] $outdir
+    printf "%s\n" "torrent: $argv[1]" "outdir: $outdir" "files: $files"
 
     [ -n "$files" ]
     and aria2c --select-file $files --dir $outdir $argv[1]
