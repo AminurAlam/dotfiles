@@ -21,6 +21,7 @@ do -- [=[ shorter header cwd or tabs
     local s = ya.readable_path(tostring(self._current.cwd))
     return ui.Span(ui.truncate(s, { max = max, rtl = true })):style(th.mgr.cwd)
   end
+
   --]=]
 end
 
@@ -42,6 +43,7 @@ do -- [=[ hide fchar regex
     end
     return #t == 0 and '' or ' (' .. table.concat(t, ', ') .. ')'
   end
+
   --]=]
 end
 
@@ -88,9 +90,9 @@ do -- [=[ put tabs in header
       local path = tostring(ya.readable_path(cx.tabs[i].name)):gsub('(%.?)([^/])[^/]+/', '%1%2/')
 
       spans[#spans + 1] = ui.Span(' ' .. i .. ' ')
-        :style(i == cx.tabs.idx and th.tabs.active or th.tabs.inactive)
+          :style(i == cx.tabs.idx and th.tabs.active or th.tabs.inactive)
       spans[#spans + 1] = ui.Span(' ' .. ui.truncate(path, { max = 20, rtl = true }) .. ' ')
-        :style(i == cx.tabs.idx and active or inactive)
+          :style(i == cx.tabs.idx and active or inactive)
       spans[#spans + 1] = ' '
     end
 
@@ -112,6 +114,7 @@ do -- [=[ put progress in header
       table.unpack(ui.redraw(Progress:new(self._area, self._right_width))),
     }
   end
+
   --]=]
 end
 
@@ -188,6 +191,7 @@ do -- [=[ turn off fancy rounded corners
   function Linemode:padding()
     return ' '
   end
+
   --]=]
 end
 
@@ -218,9 +222,9 @@ require('session'):setup { sync_yanked = true }
 
 require('sort-by-location'):setup {
   { pattern = '.*/Pictures/.*', sort = { by = 'mtime', reverse = true } },
-  { pattern = '.*/pic/.*', sort = { by = 'mtime', reverse = true } },
-  { pattern = '.*/DCIM/.*', sort = { by = 'mtime', reverse = true } },
-  { pattern = '.*/#lewd$', sort = { by = 'mtime', reverse = true } },
+  { pattern = '.*/pic/.*',      sort = { by = 'mtime', reverse = true } },
+  { pattern = '.*/DCIM/.*',     sort = { by = 'mtime', reverse = true } },
+  { pattern = '.*/#lewd$',      sort = { by = 'mtime', reverse = true } },
 }
 
 require('mime-ext.local'):setup {

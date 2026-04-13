@@ -74,7 +74,7 @@ do -- Key and mouse bindings in viewer mode
   end
 
   swayimg.viewer.on_key('q', swayimg.exit)
-  -- swayimg.viewer.on_key('space', swayimg.viewer.animation_toggle)
+  swayimg.viewer.on_key('space', swayimg.viewer.set_animation)
   swayimg.viewer.on_key(',', function()
     swayimg.viewer.rotate(90)
   end)
@@ -82,11 +82,11 @@ do -- Key and mouse bindings in viewer mode
     swayimg.viewer.rotate(270)
   end)
   swayimg.viewer.on_key('Shift+less', function()
-    swayimg.viewer.animation_stop()
+    swayimg.viewer.set_animation(false)
     swayimg.viewer.prev_frame()
   end)
   swayimg.viewer.on_key('Shift+greater', function()
-    swayimg.viewer.animation_stop()
+    swayimg.viewer.set_animation(false)
     swayimg.viewer.next_frame()
   end)
 
@@ -121,8 +121,8 @@ do -- Key and mouse bindings in viewer mode
   end)
   swayimg.viewer.on_key('r', swayimg.viewer.reset)
   swayimg.viewer.on_key('Escape', function()
-    if swayimg.get_window_size().width == 1920 then
-      swayimg.toggle_fullscreen()
+    if swayimg.get_fullscreen() then
+      swayimg.set_fullscreen(false)
     else
       swayimg.exit()
     end
@@ -165,3 +165,5 @@ do -- misc
   end)
   swayimg.on_initialized(function() end)
 end
+
+swayimg.viewer.set_pinch_factor(1)

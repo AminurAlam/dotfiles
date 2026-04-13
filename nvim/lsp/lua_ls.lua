@@ -22,7 +22,7 @@ return {
     Lua = {
       library = vim.api.nvim_get_runtime_file('', true),
       completion = { callSnippet = 'Replace', displayContext = 5 },
-      format = { enable = false },
+      format = { enable = true },
       semantic = { enable = false },
       telemetry = { enable = false },
       window = { progressBar = true },

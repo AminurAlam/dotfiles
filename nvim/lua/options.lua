@@ -93,6 +93,7 @@ do -- others
   set.undofile = true
   set.confirm = true
   set.list = true
+  set.nrformats = 'blank'
   set.listchars = dict2str {
     leadmultispace = '│   ',
     tab = '> ',
