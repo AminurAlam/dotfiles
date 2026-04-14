@@ -95,7 +95,7 @@ map({ 'c' }, '<c-k>', '<up>')
 map({ 'ca' }, 'msg', 'messages')
 map({ 'ca' }, 'in', 'Inspect')
 map({ 'ca' }, 'it', 'InspectTree')
-map({ 'ca' }, 'pu', 'lua vim.pack.update()') -- https://github.com/neovim/neovim/issues/34764
+map({ 'ca' }, 'pu', 'lua vim.pack.update' .. (os.getenv 'USER' == 'fisher' and '()' or '(nil, {target = "lockfile"})'))
 
 -- macros
 macro('m', [[mmA;`m]])   -- put ; at end of statements
