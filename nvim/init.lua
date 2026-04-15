@@ -26,6 +26,10 @@ g.do_filetype_lua = 1
 g.ft_man_folding_enable = 1
 g.query_lint_on = { 'BufEnter', 'BufWrite' }
 
+g.loaded_node_provider = 0
+g.loaded_perl_provider = 0
+g.loaded_python3_provider = 0
+
 -- [[ core ]]
 require 'pack'
 require 'mappings'
@@ -60,12 +64,8 @@ vim.diagnostic.config {
 }
 
 require('vim._core.ui2').enable({
-  enable = true, -- Whether to enable or disable the UI.
-  msg = {        -- Options related to the message module.
-    ---@type 'cmd'|'msg' Default message target, either in the
-    ---cmdline or in a separate ephemeral message window.
-    ---@type string|table<string, 'cmd'|'msg'|'pager'> Default message target
-    ---or table mapping |ui-messages| kinds and triggers to a target.
+  enable = true,      -- Whether to enable or disable the UI.
+  msg = {             -- Options related to the message module.
     targets = { 'cmd', 'msg', 'pager' },
     cmd = {           -- Options related to messages in the cmdline window.
       height = 0.5    -- Maximum height while expanded for messages beyond 'cmdheight'.

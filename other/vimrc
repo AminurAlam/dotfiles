@@ -61,7 +61,7 @@ set nowritebackup
 set confirm
 "set clipboard+=unnamed,unnamedplus
 set list
-"set listchars="leadmultispace:│   ,tab:> ,trail: ,precedes:…,conceal:●,nbsp:␣"
+"set listchars="leadmultispace:│   ,tab:> ,trail: ,precedes:…,conceal:●"
 "set fillchars="stl: ,fold: ,foldclose:,msgsep:─,eob: ,lastline:.,diff:╱"
 
 "colorscheme habamax

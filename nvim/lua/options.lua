@@ -101,7 +101,6 @@ do -- others
     extends = '…',
     precedes = '…',
     conceal = '●',
-    nbsp = '␣',
   }
   set.fillchars = dict2str {
     stl = ' ',
