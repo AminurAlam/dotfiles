@@ -63,22 +63,15 @@ vim.diagnostic.config {
   severity_sort = true,
 }
 
-require('vim._core.ui2').enable({
-  enable = true,      -- Whether to enable or disable the UI.
-  msg = {             -- Options related to the message module.
-    targets = { 'cmd', 'msg', 'pager' },
-    cmd = {           -- Options related to messages in the cmdline window.
-      height = 0.5    -- Maximum height while expanded for messages beyond 'cmdheight'.
+if vim.fn.has('nvim-0.12') then
+  require('vim._core.ui2').enable({
+    enable = true,
+    msg = {
+      targets = { 'cmd', 'msg', 'pager' },
+      cmd = { height = 0.5 },
+      dialog = { height = 0.5, },
+      msg = { height = 0.5, timeout = 4000, },
+      pager = { height = 1, },
     },
-    dialog = {        -- Options related to dialog window.
-      height = 0.5,   -- Maximum height.
-    },
-    msg = {           -- Options related to msg window.
-      height = 0.5,   -- Maximum height.
-      timeout = 4000, -- Time a message is visible in the message window.
-    },
-    pager = {         -- Options related to message window.
-      height = 1,     -- Maximum height.
-    },
-  },
-})
+  })
+end

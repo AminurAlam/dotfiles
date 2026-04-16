@@ -9,7 +9,7 @@
       "src": "https://github.com/0xAdk/full_visual_line.nvim"
     },
     "mini.completion": {
-      "rev": "09884c629cac1a8c999ffb6c57dc8424450aea5e",
+      "rev": "ffbdb06d2fa6a3fcef3891108bb38e33223b27a7",
       "src": "https://github.com/nvim-mini/mini.completion"
     },
     "mini.diff": {

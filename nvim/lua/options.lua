@@ -64,7 +64,7 @@ do -- folding
   set.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
   set.foldlevel = 6
   set.foldnestmax = set.foldlevel + 1
-  set.foldtext = ''
+  set.foldtext = '' -- 'v:lua.vim.lsp.foldtext()'
   set.viewoptions = 'cursor,folds'
 end
 

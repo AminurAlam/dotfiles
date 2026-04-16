@@ -7,7 +7,6 @@ anki
 aria2
 base
 base-devel
-basedpyright-bin
 bash-language-server
 bibata-cursor-theme-bin
 biome
@@ -147,6 +146,7 @@ ttf-ibm-plex
 ttf-liberation
 ttf-opensans
 ttf-twemoji-color
+ty
 typst
 unrar
 unzip

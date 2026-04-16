@@ -70,24 +70,26 @@ vmap('v', function()
   vim.fn.feedkeys(({ v = 'V', V = '\22', ['\22'] = '' })[vim.api.nvim_get_mode().mode])
 end)
 
-vmap('<c-k>', require 'vim.treesitter._select'.select_prev)
-vmap('<c-j>', require 'vim.treesitter._select'.select_next)
+if vim.fn.has('nvim-0.12') then
+  vmap('<c-k>', require 'vim.treesitter._select'.select_prev)
+  vmap('<c-j>', require 'vim.treesitter._select'.select_next)
 
-vim.keymap.set({ 'x', 'o' }, 'n', function()
-  if vim.treesitter.get_parser(nil, nil, { error = false }) then
-    require 'vim.treesitter._select'.select_parent(vim.v.count1)
-  else
-    vim.lsp.buf.selection_range(vim.v.count1)
-  end
-end, { desc = 'Select parent treesitter node or outer incremental lsp selections' })
+  vim.keymap.set({ 'x', 'o' }, 'n', function()
+    if vim.treesitter.get_parser(nil, nil, { error = false }) then
+      require 'vim.treesitter._select'.select_parent(vim.v.count1)
+    else
+      vim.lsp.buf.selection_range(vim.v.count1)
+    end
+  end, { desc = 'Select parent treesitter node or outer incremental lsp selections' })
 
-vim.keymap.set({ 'x', 'o' }, 'N', function()
-  if vim.treesitter.get_parser(nil, nil, { error = false }) then
-    require 'vim.treesitter._select'.select_child(vim.v.count1)
-  else
-    vim.lsp.buf.selection_range(-vim.v.count1)
-  end
-end, { desc = 'Select child treesitter node or inner incremental lsp selections' })
+  vim.keymap.set({ 'x', 'o' }, 'N', function()
+    if vim.treesitter.get_parser(nil, nil, { error = false }) then
+      require 'vim.treesitter._select'.select_child(vim.v.count1)
+    else
+      vim.lsp.buf.selection_range(-vim.v.count1)
+    end
+  end, { desc = 'Select child treesitter node or inner incremental lsp selections' })
+end
 
 -- cmdline & abbreviations
 map({ 'c' }, '<c-j>', '<down>')
