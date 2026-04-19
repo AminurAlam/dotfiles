@@ -47,7 +47,6 @@ installer=com.google.android.packageinstaller pl.lambada.songsync
 installer=com.looker.droidify com.arn.scrobble
 installer=com.looker.droidify com.aurora.store
 installer=com.looker.droidify com.beemdevelopment.aegis
-installer=com.looker.droidify com.best.deskclock
 installer=com.looker.droidify com.ichi2.anki
 installer=com.looker.droidify com.kamwithk.ankiconnectandroid
 installer=com.looker.droidify com.kunzisoft.keepass.libre

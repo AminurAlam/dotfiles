@@ -9,7 +9,6 @@ base
 base-devel
 bash-language-server
 bibata-cursor-theme-bin
-biome
 brightnessctl
 btop
 ccache
@@ -45,6 +44,7 @@ iperf3
 iw
 iwd
 jdk17-openjdk
+jpegoptim
 jq
 jre8-openjdk-headless
 kanata
@@ -86,6 +86,7 @@ npm
 nwg-look
 openresolv
 openssh
+optipng
 otf-ipafont
 pacman-contrib
 pandoc-cli
@@ -133,7 +134,6 @@ swayimg
 swaylock
 systemd-lsp
 taplo-cli
-tenacity
 testdisk
 tinymist
 tmux
