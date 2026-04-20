@@ -60,7 +60,6 @@ local mode_names = {
 local hl = vim.api.nvim_set_hl
 hl(0, 'stl_hl_a', { fg = '#30354A', bg = '#98c379', bold = true })
 hl(0, 'stl_hl_b', { bg = '#30354A', fg = '#98c379', bold = false })
-hl(0, 'stl_hl_to', { fg = '#30354A', bg = 'NONE', bold = false })
 
 vim.g.stl = {
   mode = function()
@@ -78,18 +77,23 @@ vim.g.stl = {
     end
     return string.format('[%d/%d]', sc.current or 0, sc.total or 0)
   end,
+  diagnostics = function() return vim.diagnostic.status() or '' end,
+  progress = function()
+    return (package.loaded['vim.ui'] and vim.api.nvim_get_current_win() == tonumber(vim.g.actual_curwin or -1) and vim.ui.progress_status()) or
+        ''
+  end,
 }
 
 vim.api.nvim_create_autocmd({ 'ModeChanged' }, {
   pattern = '*',
   callback = function(_)
-    local mode_color = mode_colors[vim.v.event.new_mode]
+    local mode_color = mode_colors[vim.fn.mode()]
     hl(0, 'stl_hl_a', { bg = mode_color, fg = '#30354A', bold = true })
     hl(0, 'stl_hl_b', { fg = mode_color, bg = '#30354A' })
   end,
 })
 
-vim.opt.stl = '%#stl_hl_a# %{ g:stl.mode() } %#stl_hl_b# ' -- a to b
+vim.opt.stl = '%#stl_hl_a# %{ g:stl.mode() } %#stl_hl_b# ' -- a to b
     .. '%{ g:stl.bufcount() }%t '
     .. '%{ &modified ? "󰆓 " : "" }'
     -- .. '%{ &cb == "unnamedplus" ? "󰆒 " : "" }'
@@ -97,18 +101,16 @@ vim.opt.stl = '%#stl_hl_a# %{ g:stl.mode() } %#stl_hl_b# ' -- a to b
     .. '%{ &readonly ? "󰌾 " : "" }'
     .. [[%{ search("\\s\\+$", "nwc") > 0 ? "󱁐 " : "" }]]
     .. [[%{ search("^\\t\\+", "nwc") > 0 ? " " : "" }]]
-    .. '%#stl_hl_to#%#Normal# ' -- b to c
+    .. '%#Normal# ' -- b to c
     .. '%{% get(b:, "minidiff_summary_string", "") %} '
-    ..
-    [[%{% luaeval('(package.loaded[''vim.diagnostic''] and next(vim.diagnostic.count()) and vim.diagnostic.status() .. '' '') or '''' ') %}]]
+    .. '%{% g:stl.diagnostics() %} '
     .. '%#Normal#%=%S ' -- middle seperator
-    ..
-    "%{% luaeval('(package.loaded[''vim.ui''] and vim.api.nvim_get_current_win() == tonumber(vim.g.actual_curwin or -1) and vim.ui.progress_status()) or '''' ')%}"
+    .. '%{ g:stl.progress() } '
     .. '%{ v:hlsearch ? g:stl.hlsearch() : "" } '
     .. '%{ reg_recording() != "" ? " " .. reg_recording() : "" } '
-    .. '%#stl_hl_to#%#stl_hl_b# ' -- c to b
+    .. '%#stl_hl_b# ' -- c to b
     .. '%P '
-    .. '%#stl_hl_a#' -- b to a
+    .. '%#stl_hl_a#'  -- b to a
     .. "%{% &busy > 0 ? '◐ ' : '' %}"
     .. '%{ &fenc == "utf-8" ? "" : " " .. &fenc }'
     .. '%{ &fileformat == "dos" ? "  " : "" } %Y '
