@@ -69,7 +69,7 @@ rules = [
   { url = "*.{ass,srt,ssa,sup,vtt}", use = ["add-sub", "edit", "common"] },
   { mime = "audio/mpegurl", use = ["edit", "common"] },
   { mime = "image/svg+xml", use = ["swayimg", "inkscape", "edit", "common"] },
-  { mime = "image/*", use = ["swayimg", "raster_tools", "common"] },
+  { mime = "image/*", use = ["swayimg", "raster_tools", "png2jpg", "common"] },
   { mime = "video/*", use = ["play", "common"] },
   { mime = "audio/*", use = ["play", "audio_tools", "common"] },
   # text
@@ -85,7 +85,9 @@ rules = [
 ]
 
 [opener]
-add-sub = [{ run = "echo sub-add %s | socat - /tmp/mpv.sock", desc = "󰨗 Add sub to MPV", for = "linux" }]
+add-sub = [
+  { run = ''' printf "sub-add '%%s'\n" %s1 | socat - /tmp/mpv.sock ''', desc = "󰨗 Add sub to MPV", for = "linux" },
+]
 apkinstall = [
   { run = "ANDROID_USER_HOME=/home/fisher/.local/share/.android HOME=/home/fisher/.local/share/ adb install %s", block = true, orphan = false, desc = " apk installer", for = "linux" },
 ]
@@ -93,6 +95,7 @@ extract = [{ run = 'ya pub extract --list %s""', desc = "󱉛 Extract here", for
 inkscape = [{ run = "inkscape %s", block = false, orphan = true, desc = "󰕞 inkscape", for = "linux" }]
 open = [{ run = "xdg-open %s1", orphan = true, desc = "󰏌 Open", for = "linux" }]
 play = [{ run = "mpv --force-window %s", orphan = true, for = "linux", desc = " mpv" }]
+png2jpg = [{ run = "magick %s1 JPG:- | wl-copy", desc = "󰧸 png -> jpg", for = "linux" }]
 swayimg = [{ run = "swayimg %s", block = false, orphan = true, desc = " swayimg", for = "linux" }]
 zathura = [{ run = "zathura %s", block = false, orphan = true, desc = " zathura", for = "linux" }]
 # groups
