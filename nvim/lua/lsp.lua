@@ -29,83 +29,20 @@ vim.lsp.enable(vim.tbl_filter(filter, {
   'zathura',
 }))
 
--- https://github.com/nvimtools/none-ls.nvim/blob/main/doc/BUILTINS.md
--- TODO: replace with https://github.com/stevearc/conform.nvim
---[[
-local null_ls = require 'null-ls'
-local h = require 'null-ls.helpers'
-null_ls.setup {
-  border = 'rounded',
-  sources = {
-    -- null_ls.builtins.formatting.prettier,
-    -- null_ls.builtins.formatting.stylua,
-    -- null_ls.builtins.diagnostics.fish,
-    null_ls.builtins.formatting.fish_indent,
-    -- null_ls.builtins.formatting.clang_format.with { extra_filetypes = { 'glsl' } },
-    h.make_builtin {
-      name = 'kanata',
-      method = 'NULL_LS_DIAGNOSTICS_ON_SAVE',
-      filetypes = { 'kanata' },
-      factory = h.generator_factory,
-      generator_opts = {
-        command = 'kanata',
-        args = { '-q', '--check', '--cfg-stdin' },
-        from_stderr = true,
-        to_stdin = true,
-        ignore_stderr = false,
-        multiple_files = false,
-        format = 'raw',
-        check_exit_code = function(c)
-          return c <= 1
-        end,
-        on_output = function(params, done)
-          local efm = '%-G%.%# [ERROR] %.%#,%E %.%#╭─[%f:%l:%c],%Z  help: %m,%-C%.%#'
-          local source = 'kanata'
-          local output = params.output
-          if not output then
-            return done()
-          end
-
-          local diagnostics = {}
-          local lines = require('null-ls.utils').split_at_newline(params.bufnr, output)
-
-          local qflist = vim.fn.getqflist({ efm = efm, lines = lines })
-          local severities = { e = 1, w = 2, i = 3, n = 4 }
-
-          for _, item in pairs(qflist.items) do
-            if item.valid == 1 then
-              local col = item.col > 0 and item.col - 1 or 0
-              table.insert(diagnostics, {
-                row = item.lnum + 1,
-                col = col,
-                source = source,
-                message = item.text,
-                severity = severities[item.type],
-              })
-            end
-          end
-
-          return done(diagnostics)
-        end,
-      },
-    },
+-- https://github.com/stevearc/conform.nvim#formatters
+require('conform').setup({
+  formatters_by_ft = {
+    lua = { 'stylua' },
+    toml = { 'taplo' },
+    fish = { 'fish_indent' },
   },
-}
---]]
+  format_on_save = { timeout_ms = 500, lsp_format = 'fallback' },
+  notify_no_formatters = true,
+})
 
 vim.api.nvim_create_autocmd({ 'BufEnter' }, {
   desc = 'start termux lsp on opening specific files',
-  pattern = {
-    'build.sh',
-    '*.subpackage.sh',
-    'PKGBUILD',
-    '*.install',
-    'makepkg.conf',
-    '*.ebuild',
-    '*.eclass',
-    'color.map',
-    'make.conf',
-  },
+  pattern = { 'build.sh', '*.subpackage.sh' },
   callback = function()
     if vim.fn.executable 'termux-language-server' == 0 then
       return
@@ -134,22 +71,6 @@ vim.api.nvim_create_autocmd('LspAttach', {
       vim.keymap.set('n', 'K', function() --
         vim.lsp.buf.hover { border = 'rounded' }
       end, { buffer = args.buf })
-    end
-
-    if
-        client:supports_method('textDocument/formatting')
-        or client.name == 'tinymist'
-        or client.name == 'biome'
-    then
-      -- [[
-      vim.api.nvim_create_autocmd('BufWritePre', {
-        buffer = args.buf,
-        callback = function()
-          if vim.g.save_fmt then
-            vim.lsp.buf.format()
-          end
-        end,
-      }) --]]
     end
 
     if client:supports_method('textDocument/documentColor') then

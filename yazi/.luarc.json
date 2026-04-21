@@ -4,6 +4,6 @@
   "workspace.library": [
     "~/.config/yazi/plugins/types.yazi/",
     "~/repos/yazi-fork/yazi-plugin/preset/components/",
-    "~/repos/yazi-fork/yazi-plugin/preset/ya.lua"
-  ]
+    "~/repos/yazi-fork/yazi-plugin/preset/ya.lua",
+  ],
 }

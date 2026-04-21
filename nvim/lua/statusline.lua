@@ -77,10 +77,15 @@ vim.g.stl = {
     end
     return string.format('[%d/%d]', sc.current or 0, sc.total or 0)
   end,
-  diagnostics = function() return vim.diagnostic.status() or '' end,
+  diagnostics = function()
+    return vim.diagnostic.status() or ''
+  end,
   progress = function()
-    return (package.loaded['vim.ui'] and vim.api.nvim_get_current_win() == tonumber(vim.g.actual_curwin or -1) and vim.ui.progress_status()) or
-        ''
+    return (
+      package.loaded['vim.ui']
+      and vim.api.nvim_get_current_win() == tonumber(vim.g.actual_curwin or -1)
+      and vim.ui.progress_status()
+    ) or ''
   end,
 }
 
@@ -93,24 +98,24 @@ vim.api.nvim_create_autocmd({ 'ModeChanged' }, {
   end,
 })
 
-vim.opt.stl = '%#stl_hl_a# %{ g:stl.mode() } %#stl_hl_b# ' -- a to b
-    .. '%{ g:stl.bufcount() }%t '
-    .. '%{ &modified ? "󰆓 " : "" }'
-    -- .. '%{ &cb == "unnamedplus" ? "󰆒 " : "" }'
-    .. '%{ &spell ? "󰓆 " : "" }'
-    .. '%{ &readonly ? "󰌾 " : "" }'
-    .. [[%{ search("\\s\\+$", "nwc") > 0 ? "󱁐 " : "" }]]
-    .. [[%{ search("^\\t\\+", "nwc") > 0 ? " " : "" }]]
-    .. '%#Normal# ' -- b to c
-    .. '%{% get(b:, "minidiff_summary_string", "") %} '
-    .. '%{% g:stl.diagnostics() %} '
-    .. '%#Normal#%=%S ' -- middle seperator
-    .. '%{ g:stl.progress() } '
-    .. '%{ v:hlsearch ? g:stl.hlsearch() : "" } '
-    .. '%{ reg_recording() != "" ? " " .. reg_recording() : "" } '
-    .. '%#stl_hl_b# ' -- c to b
-    .. '%P '
-    .. '%#stl_hl_a#'  -- b to a
-    .. "%{% &busy > 0 ? '◐ ' : '' %}"
-    .. '%{ &fenc == "utf-8" ? "" : " " .. &fenc }'
-    .. '%{ &fileformat == "dos" ? "  " : "" } %Y '
+vim.opt.stl = '%#stl_hl_a# %{ g:stl.mode() } %#stl_hl_b# ' -- a to b
+  .. '%{ g:stl.bufcount() }%t '
+  .. '%{ &modified ? "󰆓 " : "" }'
+  -- .. '%{ &cb == "unnamedplus" ? "󰆒 " : "" }'
+  .. '%{ &spell ? "󰓆 " : "" }'
+  .. '%{ &readonly ? "󰌾 " : "" }'
+  .. [[%{ search("\\s\\+$", "nwc") > 0 ? "󱁐 " : "" }]]
+  .. [[%{ search("^\\t\\+", "nwc") > 0 ? " " : "" }]]
+  .. '%#Normal# ' -- b to c
+  .. '%{% get(b:, "minidiff_summary_string", "") %} '
+  .. '%{% g:stl.diagnostics() %} '
+  .. '%#Normal#%=%S ' -- middle seperator
+  .. '%{ g:stl.progress() } '
+  .. '%{ v:hlsearch ? g:stl.hlsearch() : "" } '
+  .. '%{ reg_recording() != "" ? " " .. reg_recording() : "" } '
+  .. '%#stl_hl_b# ' -- c to b
+  .. '%P '
+  .. '%#stl_hl_a#' -- b to a
+  .. "%{% &busy > 0 ? '◐ ' : '' %}"
+  .. '%{ &fenc == "utf-8" ? "" : " " .. &fenc }'
+  .. '%{ &fileformat == "dos" ? "  " : "" } %Y '

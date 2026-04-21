@@ -69,9 +69,9 @@ if vim.fn.has('nvim-0.12') then
     msg = {
       targets = { 'cmd', 'msg', 'pager' },
       cmd = { height = 0.5 },
-      dialog = { height = 0.5, },
-      msg = { height = 0.5, timeout = 4000, },
-      pager = { height = 1, },
+      dialog = { height = 0.5 },
+      msg = { height = 0.5, timeout = 4000 },
+      pager = { height = 1 },
     },
   })
 end

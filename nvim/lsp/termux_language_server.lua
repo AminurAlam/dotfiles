@@ -27,7 +27,8 @@ function root_pattern(...)
   return function(startpath)
     for _, pattern in ipairs(patterns) do
       local match = search_ancestors(startpath, function(path)
-        for _, p in ipairs(vim.fn.glob(table.concat({ escape_wildcards(path), pattern }, '/'), true, true))
+        for _, p in
+          ipairs(vim.fn.glob(table.concat({ escape_wildcards(path), pattern }, '/'), true, true))
         do
           if vim.uv.fs_stat(p) then
             return path
@@ -46,26 +47,25 @@ end
 ---@type vim.lsp.Config
 return {
   cmd = { 'termux-language-server' },
-  -- root_dir = function(bufnr, on_dir)
-  --   local patterns = {
-  --     -- Termux
-  --     'build.sh',
-  --     '*.subpackage.sh',
-  --     -- Arch/MSYS2
-  --     'PKGBUILD',
-  --     'makepkg.conf',
-  --     '*.install',
-  --     -- Gentoo
-  --     'make.conf',
-  --     'color.map',
-  --     '*.ebuild',
-  --     '*.eclass',
-  --   }
-  --   local fname = vim.api.nvim_buf_get_name(bufnr)
-  --   local match = root_pattern(patterns)(fname)
-  --   if match then
-  --     on_dir(vim.fs.root(match, '.git') or match)
-  --   end
-  -- end,
-  root_markers = { '.git' },
+  root_dir = function(bufnr, on_dir)
+    local patterns = {
+      -- Termux
+      'build.sh',
+      '*.subpackage.sh',
+      -- Arch/MSYS2
+      -- 'PKGBUILD',
+      -- 'makepkg.conf',
+      -- '*.install',
+      -- Gentoo
+      -- 'make.conf',
+      -- 'color.map',
+      -- '*.ebuild',
+      -- '*.eclass',
+    }
+    local fname = vim.api.nvim_buf_get_name(bufnr)
+    local match = root_pattern(patterns)(fname)
+    if match then
+      on_dir(vim.fs.root(match, '.git') or match)
+    end
+  end,
 }
