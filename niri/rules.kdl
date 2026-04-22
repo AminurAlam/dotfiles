@@ -40,6 +40,13 @@ window-rule { // unfocused
     }
 }
 
+window-rule { // game fullscreen
+    match title="^osu!$"
+    match app-id="^osu!$"
+
+    open-maximized true
+}
+
 window-rule { // *
     geometry-corner-radius 12
     clip-to-geometry true

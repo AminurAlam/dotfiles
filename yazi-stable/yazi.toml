@@ -3,12 +3,12 @@
 ## FETCH
 [plugin]
 prepend_fetchers = [
-  { group = "mime", url = "local://*", run = "mime-ext.local", prio = "high" },
-  { group = "mime", url = "remote://*", run = "mime-ext.remote", prio = "high" },
-  { group = "mime", url = "*.{!qB,part}", run = "noop", prio = "high" },
-  # { group = "mime", url = "/mnt/rclone/**", run = "noop", prio = "high" },
-  { group = "git", url = "*", run = "git" },
-  { group = "git", url = "*/", run = "git" },
+  { id = "mime", url = "local://*", run = "mime-ext.local", prio = "high" },
+  { id = "mime", url = "remote://*", run = "mime-ext.remote", prio = "high" },
+  { id = "mime", url = "*.{!qB,part}", run = "noop", prio = "high" },
+  # { id = "mime", url = "/mnt/rclone/**", run = "noop", prio = "high" },
+  { id = "git", url = "*", run = "git" },
+  { id = "git", url = "*/", run = "git" },
 ]
 prepend_previewers = [
   { url = "*.{!qB,part}", run = "noop" },
@@ -46,7 +46,6 @@ prepend_preloaders = [
   { url = "*.{otf,ttf,woff,woff2}", run = "font-sample" },
 ]
 spotters = [
-  { mime = "multi/*", run = "multi" },
   { url = "*/", run = "spot" },
   { url = "*.cb{z,r}", run = "spot-cbz" },
   { mime = "audio/*", run = "spot-audio" },
@@ -135,7 +134,6 @@ download = [
 [mgr]
 ratio = [0, 1, 1]
 sort_by = "extension"
-sort_fallback = "natural"
 sort_sensitive = false
 sort_reverse = false
 sort_dir_first = true

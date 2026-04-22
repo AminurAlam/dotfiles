@@ -2,7 +2,7 @@ function sy -d "sync files between phone and pc"
     set -q TERMUX_VERSION && return 1
 
     set comm --dry-run -ha --out-format "%o %n" --exclude={.thumbnails,.nomedia,.archive}
-    set artists Alp Arakure Esuke Herio 'Hinahara Emi' Jury 'Morino Bambi' Nagayori 'Nikubou Maranoshin' 'Ouchi Kaeru' Sajipen 'Wantan Meo' Yuruyakatou
+    set artists Alp Arakure Esuke Herio 'Hinahara Emi' Jury Momoko 'Morino Bambi' Nagayori 'Nikubou Maranoshin' 'Ouchi Kaeru' Sajipen 'Wantan Meo' Yuruyakatou
 
     # TODO: skip transactions that have no changes
     for state in dry wet

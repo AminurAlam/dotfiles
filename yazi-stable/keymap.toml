@@ -53,8 +53,7 @@ prepend_keymap = [
   { on = ["y", "u"], run = "shell --confirm -- wl-copy -t text/uri-list file://$(realpath \"$0\")", desc = "yank uri" },
   { on = "p", run = ["paste", "unyank"], desc = "Paste yanked files" },
   # Tabs
-  { on = "t", run = ["tab_create --current", "tab_rename ''", "plugin zoxide"], desc = "Create a new tab with CWD" },
-  { on = "T", run = "tab_rename --interactive", desc = "Rename current tab" },
+  { on = "t", run = ["tab_create --current", "plugin zoxide"], desc = "Create a new tab with CWD" },
   { on = "<C-Left>", run = "tab_switch -1 --relative", desc = "Switch to the previous tab" },
   { on = "<C-Right>", run = "tab_switch 1 --relative", desc = "Switch to the next tab" },
   # Help
