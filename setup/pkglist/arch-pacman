@@ -12,8 +12,6 @@ bibata-cursor-theme-bin
 brightnessctl
 btop
 ccache
-ccls
-clang
 dragon-drop
 dunst
 dust
@@ -87,6 +85,7 @@ nwg-look
 openresolv
 openssh
 optipng
+osu-lazer-bin
 otf-ipafont
 pacman-contrib
 pandoc-cli
@@ -100,7 +99,6 @@ pipewire-pulse
 pkgfile
 poppler
 power-profiles-daemon
-prettier
 pv
 python-docutils
 python-gobject
@@ -176,7 +174,7 @@ xmlto
 xwayland-satellite
 yaml-language-server
 yay
-yazi
+yazi-nightly-bin
 yt-dlp
 yt-dlp-ejs
 zathura

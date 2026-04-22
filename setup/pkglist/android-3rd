@@ -65,7 +65,6 @@ installer=com.looker.droidify org.fossify.gallery
 installer=com.looker.droidify org.fossify.messages
 installer=com.looker.droidify org.ironfoxoss.ironfox
 installer=com.looker.droidify org.kde.kdeconnect_tp
-installer=com.looker.droidify org.proninyaroslav.libretorrent
 installer=com.looker.droidify us.spotco.maps
 installer=com.samsung.android.goodlock com.samsung.android.app.galaxyregistry
 installer=com.samsung.android.goodlock com.samsung.android.soundassistant
