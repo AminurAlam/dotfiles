@@ -1,31 +1,18 @@
 function update -d "system update with just one command"
 
-    printf "========== PACMAN ==========\n"
+    printf "=============== PACMAN ===============\n"
 
     command -vq yay
     and yay -Syu
     or pacman -Syu
 
-    printf "========== NVIM ==========\n"
+    printf "=============== NVIM ===============\n"
 
     [ $USER = fisher ]
     and nvim +'lua vim.pack.update()'
     or nvim +'lua vim.pack.update(nil, {target = "lockfile"})'
 
-    printf "========== YAZI ==========\n"
-
-    if set -q TERMUX_VERSION
-        set name yazi-(uname -m)-(uname -p)-linux-musl
-        cd $HOME/.local/cache/temp/
-        and rm -fr $name $name.zip
-
-        aria2c https://github.com/sxyazi/yazi/releases/download/nightly/$name.zip
-        unzip $name.zip
-        mv $name/yazi ~/.local/bin/yazi
-        mv $name/ya ~/.local/bin/ya
-    end
-
-    printf "========== BIOME ==========\n"
+    printf "=============== BIOME ===============\n"
 
     if [ $USER = fisher ]
         cd $HOME/.local/cache/temp/
@@ -40,32 +27,31 @@ function update -d "system update with just one command"
             | rg --replace '$1' '^Biome CLI v(.*)$')
 
         if [ "$local_version" != "$latest_version" ]
-            aria2c -o biome \
+            cd ~/.local/bin/
+            and aria2c -o biome \
                 https://github.com/biomejs/biome/releases/download/@biomejs/biome@$latest_version/biome-linux-x64
             chmod +x biome
-            mv biome ~/.local/bin/biome
         else
-            printf "BiomeJS is already at the latest version %s\n" $latest_version
+            printf "BiomeJS is already up-to-date: %s\n" $latest_version
         end
     end
 
-    printf "========== YAZI PKGS ==========\n"
-
+    printf "=============== YAZI PKGS ===============\n"
     set -q TERMUX_VERSION
     and ya pkg install --discard
     or ya pkg upgrade --discard
 
-    printf "========== MANPAGES ==========\n"
-
+    printf "=============== MANPAGES ===============\n"
     command -vq sudo
     and sudo makewhatis
     or makewhatis
 
-    printf "========== FISH COMPLETIONS ==========\n"
-
+    printf "=============== FISH COMPLETIONS ===============\n"
     fish_update_completions
 
-    printf "========== GIT REPOS ==========\n"
-
+    printf "=============== GIT REPOS ===============\n"
     # TODO: add stuff
+
+    printf "=============== NEWSRAFT ===============\n"
+    newsraft -e purge-abandoned
 end

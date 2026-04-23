@@ -10,7 +10,9 @@ function y -d "yazi wrapper to change directories"
         zoxide add "$resolved"
     end
 
-    yazi --cwd-file="$tmp" $argv
+    set -q TERMUX_VERSION
+    and YAZI_CONFIG_HOME=$HOME/repos/dotfiles/yazi-stable yazi --cwd-file="$tmp" $argv
+    or yazi --cwd-file="$tmp" $argv
 
     if set cwd (command cat -- "$tmp")
         and [ -n "$cwd" ]

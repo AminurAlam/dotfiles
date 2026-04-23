@@ -67,6 +67,7 @@ printf "done\n"
 printf "LINKING SOME DIRS... "
 ln -nTfs ~/repos/dotfiles/applications ~/.local/share/applications
 ln -nTfs ~/repos/yazi-plugins ~/repos/dotfiles/yazi/plugins
+ln -nTfs ~/repos/yazi-plugins ~/repos/dotfiles/yazi-stable/plugins
 printf "done\n"
 
 printf "LINKING BIN... "
