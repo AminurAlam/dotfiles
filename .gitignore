@@ -92,5 +92,8 @@ rclone.conf
 /yazi/plugins
 /yazi/plugins/*
 /yazi/flavors/
+/yazi-stable/plugins
+/yazi-stable/plugins/*
+/yazi-stable/flavors/
 
 /yt-dlp/plugins

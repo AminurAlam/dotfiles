@@ -65,31 +65,10 @@ nmap('+', '<plug>(dial-increment)')
 nmap('-', '<plug>(dial-decrement)')
 nmap('z=', '1z=')
 
--- visual and nodes
+-- visual
 vmap('v', function()
   vim.fn.feedkeys(({ v = 'V', V = '\22', ['\22'] = '' })[vim.api.nvim_get_mode().mode])
 end)
-
-if vim.fn.has('nvim-0.12') then
-  vmap('<c-k>', require 'vim.treesitter._select'.select_prev)
-  vmap('<c-j>', require 'vim.treesitter._select'.select_next)
-
-  vim.keymap.set({ 'x', 'o' }, 'n', function()
-    if vim.treesitter.get_parser(nil, nil, { error = false }) then
-      require 'vim.treesitter._select'.select_parent(vim.v.count1)
-    else
-      vim.lsp.buf.selection_range(vim.v.count1)
-    end
-  end, { desc = 'Select parent treesitter node or outer incremental lsp selections' })
-
-  vim.keymap.set({ 'x', 'o' }, 'N', function()
-    if vim.treesitter.get_parser(nil, nil, { error = false }) then
-      require 'vim.treesitter._select'.select_child(vim.v.count1)
-    else
-      vim.lsp.buf.selection_range(-vim.v.count1)
-    end
-  end, { desc = 'Select child treesitter node or inner incremental lsp selections' })
-end
 
 -- cmdline & abbreviations
 map({ 'c' }, '<c-j>', '<down>')
@@ -97,9 +76,13 @@ map({ 'c' }, '<c-k>', '<up>')
 map({ 'ca' }, 'msg', 'messages')
 map({ 'ca' }, 'in', 'Inspect')
 map({ 'ca' }, 'it', 'InspectTree')
-map({ 'ca' }, 'pu', 'lua vim.pack.update' .. (os.getenv 'USER' == 'fisher' and '()' or '(nil, {target = "lockfile"})'))
+map(
+  { 'ca' },
+  'pu',
+  'lua vim.pack.update' .. (os.getenv 'USER' == 'fisher' and '()' or '(nil, {target = "lockfile"})')
+)
 
 -- macros
-macro('m', [[mmA;`m]])   -- put ; at end of statements
-macro('x', [[$T["_sx]])  -- mark todo as complete
+macro('m', [[mmA;`m]]) -- put ; at end of statements
+macro('x', [[$T["_sx]]) -- mark todo as complete
 macro('f', [[mmF"if`m]]) -- convert python string to format string

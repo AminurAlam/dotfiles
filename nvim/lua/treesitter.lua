@@ -46,3 +46,24 @@ vim.api.nvim_create_autocmd({ 'PackChanged' }, {
     end
   end,
 })
+
+if vim.fn.has('nvim-0.12') then
+  vim.keymap.set({ 'x' }, '<c-k>', require 'vim.treesitter._select'.select_grow_prev)
+  vim.keymap.set({ 'x' }, '<c-j>', require 'vim.treesitter._select'.select_grow_next)
+
+  vim.keymap.set({ 'x', 'o' }, 'n', function()
+    if vim.treesitter.get_parser(nil, nil, { error = false }) then
+      require 'vim.treesitter._select'.select_parent(vim.v.count1)
+    else
+      vim.lsp.buf.selection_range(vim.v.count1)
+    end
+  end)
+
+  vim.keymap.set({ 'x', 'o' }, 'N', function()
+    if vim.treesitter.get_parser(nil, nil, { error = false }) then
+      require 'vim.treesitter._select'.select_child(vim.v.count1)
+    else
+      vim.lsp.buf.selection_range(-vim.v.count1)
+    end
+  end)
+end
