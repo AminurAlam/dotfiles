@@ -1,11 +1,10 @@
 #!/usr/bin/env fish
 
-cd "/sdcard/Tachi/downloads/HentaiNexus (EN)/"
 set chapter (path basename "$argv[1]")
 [ -e "$chapter" ] || exit 1
 
 set artist (
-    unzip -p $chapter/Chapter.cbz ComicInfo.xml \
+    unzip -p (fd -tf -d1 -1 '(doujinshi_)?Chapter\.cbz' $argv[1]) ComicInfo.xml \
     | rg --only-matching --replace '$2' '<(Penciller|Writer)>(.*)</(Penciller|Writer)>'
 )
 

@@ -3,7 +3,7 @@ function hentai -d "for managing literature"
 
     # TODO: join artists from multiple files
     function getartist # .../file.cbz -> artist?
-        unzip -p $argv[1] ComicInfo.xml | rg --only-matching --replace '$1' '<Penciller>(.*)</Penciller>' || termux-clipboard-get
+        unzip -p $argv[1] ComicInfo.xml | rg --only-matching --replace '$2' '<(Penciller|Writer)>(.*)</(Penciller|Writer)>' || termux-clipboard-get
     end
 
     function gettarget # "@artist - chapter" -> ".../#lewd/@artist - chapter" | ".../@artist/chapter"
@@ -23,6 +23,8 @@ function hentai -d "for managing literature"
         mv -i --no-clobber $i/Chapter.cbz (gettarget $base).cbz
         rmdir $i &>/dev/null
     end
+
+    # TODO: add hitomi support
 
     for i in "$mangadir/downloads/Doujin.io - J18 (EN)/"*
         set base (path basename $i)
@@ -77,10 +79,10 @@ function hentai -d "for managing literature"
 
     # create archive
     set hdir (mktemp -dt hentai.XXXXXXXX)
-    for chz in $argv/Chapter.cbz
+    for dir in $argv
         set count (math $count + 1)
         mkdir -p $hdir/$count
-        unzip -qd $hdir/$count $chz
+        unzip -qd $hdir/$count (fd -tf -d1 -1 '(doujinshi_)?Chapter\.cbz' $dir)
         pushd "$hdir"
         zip -0rq "$target" "$count"
         rm -rf "$count"
