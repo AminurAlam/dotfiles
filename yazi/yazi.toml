@@ -93,7 +93,10 @@ add-sub = [
 apkinstall = [
   { run = "ANDROID_USER_HOME=/home/fisher/.local/share/.android HOME=/home/fisher/.local/share/ adb install %s", block = true, orphan = false, desc = " apk installer", for = "linux" },
 ]
-bulk-rename = [{ block = true, run = 'nvim %s; ya exec bulk_exit %s --accept' }]
+bulk-rename = [
+  { block = true, run = 'nvim %s; ya exec bulk_exit %s --accept' },
+  { block = true, run = 'nvim %s', for = "android" },
+]
 extract = [{ run = 'ya pub extract --list %s""', desc = "󱉛 Extract here", for = "unix" }]
 inkscape = [{ run = "inkscape %s", block = false, orphan = true, desc = "󰕞 inkscape", for = "linux" }]
 open = [{ run = "xdg-open %s1", orphan = true, desc = "󰏌 Open", for = "linux" }]
