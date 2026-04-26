@@ -1,5 +1,8 @@
 // TODO: PR https://github.com/boydaihungst/xdg-desktop-portal-termfilechooser
 
+
+// SIZING
+
 window-rule { // floatinng save as window
     // match title="^(Save File|Select Directory|Select File):$"
     match title="^file_chooser$"
@@ -24,22 +27,6 @@ window-rule { // pseudo-fullscreen
     default-column-width { proportion 1.0; }
 }
 
-window-rule { // unfocused
-    match is-focused=false
-
-    draw-border-with-background false
-    opacity 0.95
-    shadow {
-        on
-        softness 40
-        spread 5
-        offset x=0 y=5
-        draw-behind-window true
-        color "#00000064"
-        inactive-color "#00000064"
-    }
-}
-
 window-rule { // game fullscreen
     match title="^osu!$"
     match app-id="^osu!$"
@@ -47,9 +34,42 @@ window-rule { // game fullscreen
     open-maximized true
 }
 
+// WINDOW BLUR
+
 window-rule { // *
     geometry-corner-radius 12
     clip-to-geometry true
+    background-effect { blur true; }
+}
+
+window-rule { // unfocused
+    match is-focused=false
+
+    opacity 0.9
+    draw-border-with-background false
+}
+
+// LAYER BLUR
+
+layer-rule { // notifications
+    match namespace="^notifications$"
+
+    opacity 0.9
+    background-effect { blur true; xray false; }
+}
+
+layer-rule { // launcher
+    match namespace="^launcher$"
+
+    opacity 0.9
+    background-effect { blur true; xray false; }
+}
+
+layer-rule { // waybar
+    match namespace="^waybar$"
+
+    opacity 0.9
+    background-effect { blur true; }
 }
 
 layer-rule { // backdrop

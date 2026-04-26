@@ -35,7 +35,7 @@
     separator_color = "#263238"
     geometry = "0x6-25+25"
     offset = (5, 5)
-    transparency = 50
+    transparency = 0
     separator_height = 1
     padding = 8
     horizontal_padding = 10

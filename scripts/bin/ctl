@@ -66,6 +66,7 @@ switch $argv[1]
         fd . $XDG_PICTURES_DIR/ss/ -a --changed-within 10min -x notify-send -t 2000 -i '{}' 'sent {/}'
 
     case rec
+        # niri msg -j casts
         set wfid (pidof wf-recorder)
         if [ -n "$wfid" ]
             set file (cat /proc/$wfid/cmdline | string split0)[-1]

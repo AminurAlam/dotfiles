@@ -32,8 +32,8 @@ require('tokyonight').setup {
     keywords = { italic = false, bold = true },
     functions = { italic = false },
     variables = { italic = false },
-    sidebars = 'normal',
-    floats = 'normal',
+    sidebars = 'transparent',
+    floats = 'transparent',
   },
   hide_inactive_statusline = true,
   dim_inactive = false,
@@ -56,6 +56,7 @@ require('tokyonight').setup {
     hl.MsgSeparator = { link = 'TermCursorNC' }
     hl.WinSeparator = { link = 'TermCursorNC' }
     hl.Pmenu = { link = 'Normal' }
+    hl.FloatBorder = { fg = '#29a4bd' }
     hl.PmenuBorder = { link = 'FloatBorder' }
     hl.MiniPickMatchCurrent = { link = 'Visual' }
     hl.MiniPickMatchRanges = { link = 'Number' }
