@@ -30,6 +30,7 @@ vim.lsp.enable(vim.tbl_filter(filter, {
 }))
 
 -- https://github.com/stevearc/conform.nvim#formatters
+-- TODO: keybind to turn off format on save
 require('conform').setup({
   formatters_by_ft = {
     lua = { 'stylua' },
