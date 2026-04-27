@@ -26,6 +26,7 @@ gnupg
 gpgme
 grep
 gzip
+imagemagick
 inetutils
 lazygit
 less
@@ -87,6 +88,7 @@ rsync
 ruff
 sed
 starship
+stylua
 tar
 termux-am
 termux-am-socket
