@@ -13,6 +13,7 @@
     )
     linux-dev-names-exclude (
         "Apple, Inc. USB-C to 3.5mm Headphone Jack Adapter"
+        "KTMicro KT02H20 HIFI Audio"
         "Ideapad extra buttons"
     ))
 (defvar
