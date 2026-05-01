@@ -16,12 +16,12 @@ https://haveibeenpwned.com/feed/breaches/ "Have I Been Pwned"
 https://lwn.net/headlines/rss < item-rule "title NOT LIKE 'Security updates for %'"
 https://pudding.cool/rss.xml
 https://security.googleblog.com/feeds/posts/default?alt=rss
-http://syndication.thedailywtf.com/TheDailyWtf
 https://torrentfreak.com/feed < item-rule "title NOT LIKE '%IPTV%'"
-https://www.404media.co/rss < item-rule "NOT (title REGEXP '^(Podcast|Behind the Blog):' OR persons LIKE '%Becky Ferreira%' OR content LIKE '%Listen to the weekly podcast on%')"
-https://www.eff.org/rss/updates.xml "eff.org"
 https://www.phoronix.com/rss.php < item-rule "NOT (title REGEXP 'Intel|NVIDIA|driver|Mesa|Vulkan')"
+# http://syndication.thedailywtf.com/TheDailyWtf
+# https://www.404media.co/rss < item-rule "NOT (title REGEXP '^(Podcast|Behind the Blog):' OR persons LIKE '%Becky Ferreira%' OR content LIKE '%Listen to the weekly podcast on%')"
 # https://www.bleepingcomputer.com/feed/ < item-rule "NOT (title REGEXP '(^| )(Microsoft|Windows)')"
+# https://www.eff.org/rss/updates.xml "eff.org"
 # https://www.ghacks.net/feed/ "gHacks" < item-rule "NOT (title REGEXP '(^| )(Windows|Apple|Google|Microsoft|Amazon|Chrome|OpenAI|Meta|Spotify)')"
 
 @ NEWS 2 < item-limit 100
@@ -52,7 +52,7 @@ https://aminuralam.github.io/rss.xml
 https://abhinavsarkar.net/all.atom "Abhinav Sarkar"
 $(feedmod https://alecmuffett.com/feed 's#^<p><a class="a2a_button_copy_link".*</p>##') "Alec Muffett"
 https://alexwlchan.net/atom.xml
-https://amygoodchild.com/blog?format=rss "Amy Goodchild"
+https://amygoodchild.com/blog?format=rss "Amy Goodchild" < download-timeout 0
 https://anildash.com/feed.xml
 https://aphyr.com/posts.atom "Aphyr"
 https://arjunyadav.xyz/rss.xml "Arjun Yadav"
@@ -60,6 +60,7 @@ https://blog.avas.space/feed/
 https://axlefublr.github.io/rss.xml "axlefublr"
 https://brainbaking.com/index.xml
 https://cheapskatesguide.org/cheapskates-guide-rss-feed.xml "Cheapskates Guide"
+https://utcc.utoronto.ca/~cks/space/blog/?atom
 https://daniel.haxx.se/blog/feed/ "Daniel Stenberg (curl)"
 https://daverupert.com/atom.xml
 https://dx13.co.uk/index.atom ~dx13
@@ -109,6 +110,8 @@ https://devever.net/~hl/index.feed
 https://drewdevault.com/blog/index.xml "Drew Devault"
 https://eaton-works.com/feed.atom
 https://ersei.net/en/blog.atom
+https://blog.frost.kiwi/feed.xml
+https://riki.house/feed/all.atom
 https://fromjason.xyz/p/notebook/feed/feed.xml
 https://herecomesthemoon.net/posts/index.xml
 https://ingrids.space/index.xml
@@ -123,7 +126,6 @@ https://robertheaton.com/feed.xml "Robert Heaton"
 https://sethmlarson.dev/feed
 https://thatshubham.com/rss.xml
 https://thelinuxcast.org/index.xml
-https://utcc.utoronto.ca/~cks/space/blog/?atom
 https://world.hey.com/dhh/feed.atom "DHH"
 # TODO: wait for p4m.dev to add rss
 

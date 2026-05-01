@@ -30,7 +30,7 @@ pager-width 80
 global-section-hide false
 status-placeholder ""
 item-content-link-format "[%i] %l<br>"
-feeds-menu-paramount-explore true
+feeds-menu-paramount-explore false
 # database-clean-on-startup true
 download-max-connections 8
 download-max-host-connections 3
