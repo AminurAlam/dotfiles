@@ -225,13 +225,15 @@ require('sort-by-location'):setup {
   { pattern = '.*/pic/.*', sort = { by = 'mtime', reverse = true } },
   { pattern = '.*/DCIM/.*', sort = { by = 'mtime', reverse = true } },
   { pattern = '.*/#lewd$', sort = { by = 'mtime', reverse = true } },
+  { pattern = '.*/typst.*', sort = { by = 'natural', reverse = true } },
 }
 
 require('mime-ext.local'):setup {
   with_exts = {
     cbz = 'application/zip',
-    scm = 'text/plain',
     mmd = 'text/plain',
+    scm = 'text/plain',
+    tex = 'text/plain',
     xml = 'text/plain',
   },
   fallback_file1 = true,
