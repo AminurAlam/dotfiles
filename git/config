@@ -65,7 +65,7 @@
 ### looks
 
 [pretty]
-    nice = %C(yellow)%>(8)%h%C(reset) %<(54,trunc)%-s %C(green)%cd
+    nice = %C(yellow)%>(8)%h%C(reset) %<(70,trunc)%-s %C(green)%cr
     gh = %<(68,trunc)%-s %C(yellow)%h%C(reset)%n      %C(blue)@%an%C(reset) commited %C(green)%cr%C(reset) %(describe:match=HEAD)
 
 [log]
