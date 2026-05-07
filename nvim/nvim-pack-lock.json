@@ -17,7 +17,7 @@
       "src": "https://github.com/nvim-mini/mini.completion"
     },
     "mini.diff": {
-      "rev": "ab11575a6c147ecfba894d676d0c93e855021d34",
+      "rev": "0ee0459152b141c0e1b0931eb6949105be4850a9",
       "src": "https://github.com/nvim-mini/mini.diff"
     },
     "mini.pick": {
@@ -29,7 +29,7 @@
       "src": "https://github.com/catgoose/nvim-colorizer.lua"
     },
     "nvim-surround": {
-      "rev": "9291040de8cd8a4439eb64c441e8d5d2bf884a5a",
+      "rev": "2e93e154de9ff326def6480a4358bfc149d5da2c",
       "src": "https://github.com/kylechui/nvim-surround"
     },
     "nvim-treesitter": {

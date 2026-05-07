@@ -7,7 +7,7 @@ function md2typ -d 'convert markdown to typst'
             s/^---$//' \
         | pandoc -f markdown -t typst -i - -o - --columns 85 \
         | sed -E '
-            /^<[a-zA-Z-]+>$/d;
+            s/^<[.a-zA-Z-]+>$//;
             s|^- |/ |;
             s|’|\'|;
             s/^===/==/'

@@ -31,6 +31,7 @@ function update -d "system update with just one command"
             and aria2c -o biome \
                 https://github.com/biomejs/biome/releases/download/@biomejs/biome@$latest_version/biome-linux-x64
             chmod +x biome
+            printf '\n'
         else
             printf "BiomeJS is already up-to-date: %s\n" $latest_version
         end

@@ -40,30 +40,12 @@ require 'completion'
 require 'diff'
 require 'lsp'
 require 'pairs'
+require 'diagnostic'
 require 'statusline'
 require 'picker'
 require 'treesitter'
 
-vim.diagnostic.config {
-  underline = { severity = vim.diagnostic.severity.ERROR },
-  virtual_text = true,
-  signs = {
-    text = { '', '', '', '' }, -- { ' ', ' ', ' ', ' ' },
-    numhl = {
-      'DiagnosticSignError',
-      'DiagnosticSignWarn',
-      'DiagnosticSignInfo',
-      'DiagnosticSignHint',
-    },
-  },
-
-  status = { format = { ' ', ' ', ' ', ' ' } },
-  float = { border = 'rounded', header = '', prefix = '', suffix = '' },
-  update_in_insert = true,
-  severity_sort = true,
-}
-
-if vim.fn.has('nvim-0.12') then
+if vim.fn.has('nvim-0.12') == 1 then
   require('vim._core.ui2').enable({
     enable = true,
     msg = {

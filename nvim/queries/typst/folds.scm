@@ -3,4 +3,5 @@
 [
   (content)
   (term)
+  (math)
 ] @fold

@@ -55,7 +55,6 @@ nmap('zn', function()
 end)
 
 -- other
-nmap('<leader>d', vim.diagnostic.open_float)
 nmap('<leader>t', '<cmd>split | term<cr><cmd>startinsert<cr>')
 vmap('.', ':norm .<cr>')
 nmap(';', '@:')
