@@ -49,7 +49,7 @@ do -- cmdline, statusline & statuscolumn
   set.laststatus = 3
   set.cmdheight = 0
   set.numberwidth = 1
-  set.shortmess = 'acCoOsSWF'
+  set.shortmess = 'acCoOsSWFu'
   set.number = true
   set.signcolumn = termux and 'number' or 'auto:1'
 

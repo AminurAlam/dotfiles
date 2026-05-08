@@ -4,4 +4,5 @@
   (content)
   (term)
   (math)
+  (comment)
 ] @fold
