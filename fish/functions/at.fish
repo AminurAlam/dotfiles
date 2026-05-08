@@ -20,6 +20,6 @@ function at -d "torrent download helper"
     printf "%s\n" "torrent: $argv[1]" "outdir: $outdir" "files: $files"
 
     [ -n "$files" ]
-    and aria2c --select-file $files --dir $outdir $argv[1]
+    and aria2c --check-integrity --select-file $files --dir $outdir $argv[1]
     or return 1
 end

@@ -16,12 +16,15 @@ function pong -d "mass ping multiple hosts to check connection"
     end
 
     for address in $addresses
-        ping -q -c 5 -i 0.2 -- "$address" | awk '
-        /^--- / { printf("%s: ", $2) }
-        /^[0-9]+ packets/ {
-            printf("\033[%dm%d\033[0m/%d in %.2fs\n", ($4<2)?"31":($4<4)?"33":"32", $4, $1, $10/1000)
-        }' &
-    end
-
-    wait ping
+        ping -q -c 5 -i 0.5 -- "$address" &
+    end | awk '
+        /^--- / {
+            printf("%14s: ", $2)
+        }
+        /^[0-5] packets/ {
+            printf("\033[%dm%d\033[0m/%d\n", ($4<2)?"31":($4<4)?"33":"32", $4, $1)
+        }
+        /^送信パケット数 [0-5]/ {
+            printf("\033[%dm%d\033[0m/%d\n", ($4<2)?"31":($4<4)?"33":"32", $4, $2)
+        }'
 end
