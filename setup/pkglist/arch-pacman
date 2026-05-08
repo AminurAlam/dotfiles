@@ -80,7 +80,6 @@ newsraft
 niri
 noto-fonts
 noto-fonts-cjk
-npm
 nwg-look
 openresolv
 openssh
@@ -99,6 +98,7 @@ pipewire-pulse
 pkgfile
 poppler
 power-profiles-daemon
+prettier
 pv
 python-docutils
 python-gobject
