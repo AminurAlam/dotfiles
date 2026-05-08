@@ -214,8 +214,6 @@ th.git = { ---@diagnostic disable-line: inject-field
 
 require('git'):setup {}
 
-require('topaste'):setup {}
-
 require('zoxide'):setup { update_db = false }
 
 require('session'):setup { sync_yanked = true }
@@ -233,6 +231,7 @@ require('mime-ext.local'):setup {
     cbz = 'application/zip',
     mmd = 'text/plain',
     scm = 'text/plain',
+    sql = 'text/plain',
     tex = 'text/plain',
     xml = 'text/plain',
   },
@@ -241,7 +240,7 @@ require('mime-ext.local'):setup {
 
 require('spot'):setup {
   metadata_section = { hash_filesize_limit = 100, relative_time = true },
-  plugins_section = { enable = false },
+  plugins_section = { enable = true },
   style = {
     section = 'magenta',
     key = 'reset',
