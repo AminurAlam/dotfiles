@@ -47,9 +47,11 @@ vim.api.nvim_create_autocmd({ 'PackChanged' }, {
   end,
 })
 
+local sel = require('vim.treesitter._select')
 if vim.fn.has('nvim-0.12') then
-  vim.keymap.set({ 'x' }, '<c-k>', require 'vim.treesitter._select'.select_grow_prev)
-  vim.keymap.set({ 'x' }, '<c-j>', require 'vim.treesitter._select'.select_grow_next)
+  -- TODO: remove empty function after nvim is updated
+  vim.keymap.set({ 'x' }, '<c-k>', sel.select_grow_prev or function() end)
+  vim.keymap.set({ 'x' }, '<c-j>', sel.select_grow_next or function() end)
 
   vim.keymap.set({ 'x', 'o' }, 'n', function()
     if vim.treesitter.get_parser(nil, nil, { error = false }) then

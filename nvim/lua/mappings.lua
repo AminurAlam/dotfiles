@@ -62,6 +62,7 @@ nmap('<esc>', '<cmd>nohlsearch<cr><esc>')
 nmap('gj', [[@='j^"_d0kgJ'<cr>]])
 nmap('+', '<plug>(dial-increment)')
 nmap('-', '<plug>(dial-decrement)')
+nmap('gl', 'zo')
 
 -- visual
 vmap('v', function()
