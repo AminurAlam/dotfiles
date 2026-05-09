@@ -1,5 +1,5 @@
-![file manager and terminal](https://github.com/user-attachments/assets/007e3799-90a0-4feb-844c-6b2696ac3832 "file manager and terminal")
-![lazygit and nvim](https://github.com/user-attachments/assets/63077fbf-21ee-4ab5-a2c9-bf441272ece8 "file manager and terminal")
+![file manager and terminal](https://github.com/user-attachments/assets/13e6a2a5-2444-483f-a61a-f305f6eb5154 "file manager and terminal")
+![lazygit and nvim](https://github.com/user-attachments/assets/6a0cd96c-dcd7-47b1-9d70-623aa3f7748a "lazygit and nvim")
 
 # configs found here
 
