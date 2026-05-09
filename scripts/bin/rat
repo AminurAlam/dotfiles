@@ -5,8 +5,14 @@ set chapter (path basename "$argv[1]")
 
 set artist (
     unzip -p (fd -tf -d1 -1 '(doujinshi_)?Chapter\.cbz' $argv[1]) ComicInfo.xml \
-    | rg --only-matching --replace '$2' '<(Penciller|Writer)>(.*)</(Penciller|Writer)>'
+    | rg --only-matching --replace '$1' '<Penciller>(.*)</Penciller>'
 )
+if [ -z "$artist" ]
+    set artist (
+        unzip -p (fd -tf -d1 -1 '(doujinshi_)?Chapter\.cbz' $argv[1]) ComicInfo.xml \
+        | rg --only-matching --replace '$1' '<Writer>(.*)</Writer>'
+    )
+end
 
 [ -z "$artist" ] && exit 2
 
