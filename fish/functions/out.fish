@@ -19,7 +19,7 @@ function out -d "compile and run some code"
             open (path change-extension pdf "$argv[1]")
         case .l
             printf "\r\n"
-            cc -oout (lex -t -- $argv[1] | psub -s .c)
+            cc -oout (flex -t -- $argv[1] | psub -s .c)
             and ./out <(path change-extension txt $argv[1])
             rm -f out
         case "*"

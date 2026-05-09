@@ -24,7 +24,13 @@ function hentai -d "for managing literature"
         rmdir $i &>/dev/null
     end
 
-    # TODO: add hitomi support
+    for i in "$mangadir/downloads/Hitomi ("{EN,JA,ALL}")/"@*
+        set base (path basename $i)
+        printf " - $base\n"
+        zip -qd $i/doujinshi_Chapter.cbz ComicInfo.xml
+        mv -i --no-clobber $i/doujinshi_Chapter.cbz (gettarget $base).cbz
+        rmdir $i &>/dev/null
+    end
 
     for i in "$mangadir/downloads/Doujin.io - J18 (EN)/"*
         set base (path basename $i)

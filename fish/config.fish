@@ -1,3 +1,4 @@
+set -gx LANG ja_JP.UTF-8
 set -gx EDITOR nvim
 set -gx SUDO_EDITOR nvim -u ~/repos/dotfiles/other/vimrc
 set -gx LESS --mouse
