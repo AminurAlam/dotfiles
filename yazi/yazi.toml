@@ -1,4 +1,5 @@
-#:schema https://yazi-rs.github.io/schemas/yazi.json
+#:schema /home/fisher/repos/yazi-schemas/schemas/yazi.json
+# :schema https://yazi-rs.github.io/schemas/yazi.json
 
 ## FETCH
 [plugin]
@@ -94,7 +95,7 @@ apkinstall = [
   { run = "ANDROID_USER_HOME=/home/fisher/.local/share/.android HOME=/home/fisher/.local/share/ adb install %s", block = true, orphan = false, desc = " apk installer", for = "linux" },
 ]
 bulk-rename = [
-  { block = true, run = 'nvim %s; ya exec bulk_exit %s --accept' },
+  { block = true, run = 'nvim %s; ya exec bulk_exit %s --accept', for = "linux" },
   { block = true, run = 'nvim %s', for = "android" },
 ]
 extract = [{ run = 'ya pub extract --list %s""', desc = "󱉛 Extract here", for = "unix" }]
