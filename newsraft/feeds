@@ -111,6 +111,8 @@ https://drewdevault.com/blog/index.xml "Drew Devault"
 https://eaton-works.com/feed.atom
 https://ersei.net/en/blog.atom
 https://blog.frost.kiwi/feed.xml
+https://blog.feld.me/feeds/all.atom.xml
+https://p4m.dev/atom.xml
 https://riki.house/feed/all.atom
 https://fromjason.xyz/p/notebook/feed/feed.xml
 https://herecomesthemoon.net/posts/index.xml
@@ -127,7 +129,6 @@ https://sethmlarson.dev/feed
 https://thatshubham.com/rss.xml
 https://thelinuxcast.org/index.xml
 https://world.hey.com/dhh/feed.atom "DHH"
-# TODO: wait for p4m.dev to add rss
 
 @ PERSONAL BLOGS 3
 https://7c0h.com/blog/rss.xml
