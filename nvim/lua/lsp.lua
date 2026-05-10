@@ -15,6 +15,7 @@ vim.lsp.enable(vim.tbl_filter(filter, {
   'nushell',
   'ruff',
   -- 'rust_analyzer',
+  'stylua',
   'systemd_lsp',
   'taplo',
   -- 'termux_language_server',
@@ -33,7 +34,6 @@ vim.lsp.enable(vim.tbl_filter(filter, {
 -- TODO: keybind to turn off format on save
 require('conform').setup({
   formatters_by_ft = {
-    lua = { 'stylua' },
     toml = { 'taplo' },
     fish = { 'fish_indent' },
   },

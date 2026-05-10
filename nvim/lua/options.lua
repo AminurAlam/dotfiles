@@ -51,6 +51,7 @@ do -- cmdline, statusline & statuscolumn
   set.numberwidth = 1
   set.shortmess = 'acCoOsSWFu'
   set.number = true
+  set.relativenumber = true
   set.signcolumn = termux and 'number' or 'auto:1'
 
   set.wildmode = 'noselect:lastused,full'
