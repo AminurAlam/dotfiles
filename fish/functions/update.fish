@@ -28,9 +28,12 @@ function update -d "system update with just one command"
 
         if [ "$local_version" != "$latest_version" ]
             cd ~/.local/bin/
-            and aria2c -o biome \
-                https://github.com/biomejs/biome/releases/download/@biomejs/biome@$latest_version/biome-linux-x64
-            chmod +x biome
+            and begin
+                rm biome
+                aria2c -o biome \
+                    https://github.com/biomejs/biome/releases/download/%40biomejs%2Fbiome%40$latest_version/biome-linux-x64
+                chmod +x biome
+            end
             printf '\n'
         else
             printf "BiomeJS is already up-to-date: %s\n" $latest_version
