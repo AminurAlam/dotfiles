@@ -135,6 +135,7 @@ taplo-cli
 testdisk
 tinymist
 tmux
+tombi
 trash-cli
 tree-sitter
 tree-sitter-cli
@@ -174,7 +175,7 @@ xmlto
 xwayland-satellite
 yaml-language-server
 yay
-yazi-nightly-bin
+yazi
 yt-dlp
 yt-dlp-ejs
 zathura

@@ -13,6 +13,7 @@ dialog
 diffutils
 dos2unix
 dust
+exiv2
 fd
 ffmpeg
 file
@@ -65,7 +66,7 @@ libunbound
 libunistring
 libxml2
 ncurses
-neovim-nightly
+neovim-git
 net-tools
 newsraft
 openssh
@@ -105,7 +106,6 @@ unzip
 util-linux
 uv
 xz-utils
-yazi
 yt-dlp-ejs
 zip
 zlib
