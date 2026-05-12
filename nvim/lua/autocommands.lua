@@ -49,10 +49,9 @@ autocmd('BufWritePre', {
   end,
 })
 
-autocmd('FileType', {
-  pattern = 'help',
-  callback = function()
-    if vim.api.nvim_win_get_width(0) > 160 then
+autocmd('BufWinEnter', {
+  callback = function(args)
+    if vim.bo[args.buf].ft == 'help' and vim.api.nvim_win_get_width(0) > 160 then
       vim.cmd('wincmd L')
     end
   end,
@@ -77,9 +76,5 @@ autocmd('BufEnter', { command = 'set cursorline formatoptions-=cro' })
 autocmd('BufLeave', { command = 'set nocursorline' })
 autocmd('BufWinEnter', { pattern = '?*', command = 'silent! loadview 1' })
 autocmd('BufWinLeave', { pattern = '?*', command = 'silent! mkview 1' })
-
--- autocmd('CmdlineEnter', { pattern = '[:/?]', command = 'set pumborder=rounded' })
--- autocmd('CmdlineChanged', { pattern = '[:/?]', command = 'call wildtrigger()' })
--- autocmd('CmdlineLeave', { pattern = '[:/?]', command = 'set pumborder&' })
 
 -- TODO: disable numbers when diffing

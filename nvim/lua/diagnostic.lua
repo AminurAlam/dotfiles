@@ -1,9 +1,9 @@
 local sign_map = { ' ', ' ', ' ', ' ' }
 local hl_map = {
-  'DiagnosticSignError',
-  'DiagnosticSignWarn',
-  'DiagnosticSignInfo',
-  'DiagnosticSignHint',
+  'DiagnosticError',
+  'DiagnosticWarn',
+  'DiagnosticInfo',
+  'DiagnosticHint',
 }
 
 local df = function(counts)

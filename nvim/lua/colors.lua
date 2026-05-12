@@ -43,14 +43,6 @@ require('tokyonight').setup {
     c.bg_statusline = c.none
   end,
   on_highlights = function(hl, c)
-    hl.DiagnosticError = { fg = c.error, bg = c.none }
-    hl.DiagnosticWarn = { fg = c.warning, bg = c.none }
-    hl.DiagnosticInfo = { fg = c.info, bg = c.none }
-    hl.DiagnosticHint = { fg = c.hint, bg = c.none }
-    hl.DiagnosticFloatingError = { bg = c.bg }
-    hl.DiagnosticFloatingWarn = { bg = c.bg }
-    hl.DiagnosticFloatingInfo = { bg = c.bg }
-    hl.DiagnosticFloatingHint = { bg = c.bg }
     -- hl('Whitespace', { bg = '#364a82' })
     -- hl.CursorLineNr = {}
     hl.MsgSeparator = { link = 'TermCursorNC' }

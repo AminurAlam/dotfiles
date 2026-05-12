@@ -47,10 +47,10 @@ nmap('zf', '<cmd>let g:save_fmt=g:save_fmt?v:false:v:true<cr>')
 nmap('zn', function()
   if vim.o.number then
     vim.o.number = false
-    vim.o.signcolumn = 'no'
+    vim.o.relativenumber = false
   else
     vim.o.number = true
-    vim.o.signcolumn = 'auto:1'
+    vim.o.relativenumber = true
   end
 end)
 

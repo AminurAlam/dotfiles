@@ -23,6 +23,7 @@ local imap_expr = function(lhs, rhs)
 end
 imap_expr('<Tab>', [[pumvisible() ? "\<C-n>" : "\<Tab>"]])
 imap_expr('<S-Tab>', [[pumvisible() ? "\<C-p>" : "\<S-Tab>"]])
+vim.keymap.set('i', '<C-f>', '<C-x><C-f>') -- path completion
 
 lsp_icons = {
   Array = '',
