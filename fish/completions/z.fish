@@ -1,7 +1,13 @@
-# make zoxide completions actually useful
-function __better_z_complete
+function __path_complete
+    complete --do-complete "'' "(builtin commandline --cut-at-cursor --current-token) | string match --regex -- '.*'
+    complete --do-complete "'' ."(builtin commandline --cut-at-cursor --current-token) | string match -v --regex '^\.\.?/$'
+end
+
+function __zoxide_complete
     set -l token (commandline -t)
+    command -vq zoxide || return
     set -q token && zoxide query --exclude (pwd -L) -l -- "$token" | string replace "$HOME" '~'
 end
 
-complete --command __zoxide_z -fka '(__better_z_complete)/'
+complete z -a '(__path_complete)'
+complete z -a '(__zoxide_complete)/'
