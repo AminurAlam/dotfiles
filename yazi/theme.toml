@@ -48,6 +48,17 @@ progress_error = { fg = "black", bg = "red" }
 # border   = { fg = "#24283b" }
 selected = { bg = "#2e3c64" }
 
+[git]
+modified = { fg = 'red' }
+modified_sign = 'M'
+added = { fg = 'green' }
+added_sign = 'A'
+untracked = { fg = 'red' }
+untracked_sign = '?'
+ignored_sign = 'I'
+deleted_sign = 'D'
+updated_sign = 'U'
+
 [filetype]
 rules = [
   # Images

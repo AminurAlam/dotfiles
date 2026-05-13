@@ -195,21 +195,6 @@ do -- [=[ turn off fancy rounded corners
   --]=]
 end
 
------------------- STARTUP ---------------
-
--- git icon theming
-th.git = { ---@diagnostic disable-line: inject-field
-  modified = ui.Style():fg('red'),
-  modified_sign = 'M',
-  added = ui.Style():fg('green'),
-  added_sign = 'A',
-  untracked = ui.Style():fg('red'),
-  untracked_sign = '?',
-  ignored_sign = 'I',
-  deleted_sign = 'D',
-  updated_sign = 'U',
-}
-
 ------------------ PLUGIN ---------------
 
 if rt.args.chooser_file then
