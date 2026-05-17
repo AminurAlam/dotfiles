@@ -1,4 +1,4 @@
-function md2typ -d 'convert markdown to typst'
+function md2typ -d "convert markdown to typst"
     sed -E 's/\*\*//g;' \
         | prettier --parser markdown \
         | sed -E '
