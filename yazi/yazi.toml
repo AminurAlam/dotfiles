@@ -109,7 +109,7 @@ zathura = [{ run = "zathura %s", block = false, orphan = true, desc = " zathu
 raster_tools = [
   { run = "killall swaybg; swaybg -m fill -i %s1", block = false, orphan = true, desc = " swaybg", for = "linux" },
   { run = "krita %s", block = false, orphan = true, desc = " krita", for = "linux" },
-  { run = "identity -- %s", orphan = true, for = "linux", desc = "󰆊 compare images" },
+  { run = "identity -d row -- %s", orphan = true, for = "linux", desc = "󰆊 compare images" },
 ]
 audio_tools = [
   { run = "kid3 -- %s", orphan = true, for = "linux", desc = " kid3" },
