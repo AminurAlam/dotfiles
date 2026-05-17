@@ -3,7 +3,7 @@
 include "rules.kdl"
 include "binds.kdl"
 
-spawn-at-startup "swaybg" "-m" "fill" "-i" "pic/wp/126278795_p0.jpg"
+spawn-at-startup "swaybg" "-m" "fill" "-i" "pic/wp/144655387_p0.jpg"
 spawn-at-startup "swayidle" "-w"
 spawn-at-startup "rmdir" "-p" ".cache/fish"
 screenshot-path "pic/ss/Screenshot_%Y%m%d_%H%M%S_niri.png"
@@ -72,7 +72,7 @@ input {
 }
 
 layout {
-    gaps 3
+    gaps 4
     center-focused-column "never"
     default-column-width { proportion 0.5; }
     preset-window-heights { }
@@ -84,6 +84,7 @@ layout {
     }
 
     focus-ring {
+        off
         width 3
         active-color "#7fc8ff"
         inactive-color "#505050"
@@ -92,10 +93,6 @@ layout {
 
     border {
         off
-        width 4
-        active-color "#ffc87f"
-        inactive-color "#505050"
-        urgent-color "#9b0000"
     }
 
     shadow {

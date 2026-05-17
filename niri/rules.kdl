@@ -1,5 +1,8 @@
-// TODO: PR https://github.com/boydaihungst/xdg-desktop-portal-termfilechooser
+window-rule { // floatinng save as window
+    match title="^file_chooser$"
 
+    open-focused true
+}
 
 // SIZING
 
@@ -20,6 +23,7 @@ window-rule { // pseudo-fullscreen
 window-rule { // game fullscreen
     match title="^osu!$"
     match app-id="^osu!$"
+    match app-id="org.gnome.gitlab.YaLTeR.Identity"
 
     open-maximized true
 }
