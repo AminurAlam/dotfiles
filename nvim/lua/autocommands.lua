@@ -63,9 +63,11 @@ autocmd('FileType', {
   command = 'setl tabstop=2 shiftwidth=2 softtabstop=2 listchars+=leadmultispace:│\\ ',
 })
 
-autocmd('TextYankPost', {
+autocmd({ 'TextYankPost', 'TextPutPost' }, {
   callback = function()
-    vim.hl.on_yank { higroup = 'IncSearch', timeout = 250 }
+    if vim.hl.hl_op then
+      vim.hl.hl_op { higroup = 'IncSearch', timeout = 250 }
+    end
   end,
 })
 
