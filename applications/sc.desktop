@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Version=1.0
+Name=ScrCpy (custom)
+# Icon=/home/fisher/.local/share/icons/hicolor/256x256/eden-0100D1C00C700000.png
+TryExec=fish -c sc
+Exec=fish -c sc
+Categories=Emulator;
+Keywords=Android;ScrCpy;ScreenCopy

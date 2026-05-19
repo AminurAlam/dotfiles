@@ -16,7 +16,7 @@ function sc -d "scrcpy wrapper"
             sudo modprobe v4l2loopback
             scrcpy -e --video-source camera --camera-id 0 --camera-ar sensor --v4l2-sink /dev/video2 -N & disown
         case "*"
-            scrcpy -eS -b 15M --max-fps 30 & disown
+            scrcpy -eS -b 15M --max-fps 30 --background-color=#24283b & disown
             # set app (scrcpy -e --list-apps 2>/dev/null | rg --replace '' '^ (\*|-) ' | fzf -q "$argv[1]" | awk '{print $NF}')
             # [ -z "$app" ]
             # and scrcpy -eS -b 15M --max-fps 30 & disown

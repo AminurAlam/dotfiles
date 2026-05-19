@@ -20,6 +20,12 @@ window-rule { // pseudo-fullscreen
     default-column-width { proportion 1.0; }
 }
 
+window-rule { // scrcpy
+    match app-id="scrcpy"
+
+    default-column-width { proportion 0.25; }
+}
+
 window-rule { // game fullscreen
     match title="^osu!$"
     match app-id="^osu!$"
