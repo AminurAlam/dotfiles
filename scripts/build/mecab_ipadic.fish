@@ -29,20 +29,21 @@ function pre_build
 end
 
 function build
-    cd mecab || exit
+    cd mecab-ipadic || exit
     pwd
     # curl -Lo config.guess 'http://git.savannah.gnu.org/gitweb/?p=config.git;a=blob_plain;f=config.guess;hb=HEAD'
     # curl -Lo config.sub 'http://git.savannah.gnu.org/gitweb/?p=config.git;a=blob_plain;f=config.sub;hb=HEAD'
 
-    ./configure --build aarch64-unknown-linux --prefix $PREFIX
-    patch src/dictionary.cpp <~/repos/dotfiles/scripts/patches/mecab-src-dictionary.cpp.diff
-    make CXXFLAGS='-Wno-register -mno-outline-atomics'
+    sed -i "s|^MECAB_DICT_INDEX=.*|MECAB_DICT_INDEX=$PREFIX/libexec/mecab/mecab-dict-index|g" configure configure.in
+    ./configure --build aarch64-unknown-linux --prefix $PREFIX --libexec /data/data/com.termux/files/usr/libexec/mecab --with-charset utf-8
+    make
     make check || exit
     make install prefix=$PREFIX
 end
 
 function post_build
     mecab --version || return 1
+    mecab -Ochasen (echo 'MeCabは 京都大学情報学研究科−日本電信電話株式会社コミュニケーション科学基礎研究所共同研究ユニットプロジェクトを通じて開発されたオープンソース形態素解析エンジンです。' | psub)
 end
 
 pre_build

@@ -4,6 +4,7 @@ attr
 bash
 bzip2
 ca-certificates
+chafa
 clang
 command-not-found
 coreutils
@@ -29,6 +30,7 @@ grep
 gzip
 imagemagick
 inetutils
+jq
 lazygit
 less
 libacl
