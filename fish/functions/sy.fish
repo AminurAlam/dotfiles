@@ -4,6 +4,12 @@ function sy -d "sync files between phone and pc"
     set comm --dry-run -ha --out-format "%o %n" --exclude={.thumbnails,.nomedia,.archive}
     set tags books exib femboys flat lewd NTR
     set artists Alp Arakure Esuke Herio 'Hinahara Emi' Jury 'Minami Fumika' Momoko 'Morino Bambi' Nagayori 'Nikubou Maranoshin' 'Ouchi Kaeru' Sajipen 'Wantan Meo' Yuruyakatou
+    set hdd fb4fbd41-31b1-4260-8d5c-551dd752fbab
+
+    # mount HDD if present
+    if lsblk -f | rg -q $hdd && [ -z "$(lsblk -f | rg $hdd | kt 7)" ]
+        sudo mount /dev/(lsblk -f | rg $hdd | kt 1) /mnt/hdd/
+    end
 
     # TODO: skip transactions that have no changes
     for state in dry wet
@@ -16,6 +22,7 @@ function sy -d "sync files between phone and pc"
         end
 
         # TODO: collect filenames to be transfered and only sync those
+        # TODO: check connection before running
 
         printf "=== PICTURES ===\n"
         rsync $comm $XDG_PICTURES_DIR/ brick:/sdcard/Pictures/ --exclude={Camera,Komikku,WhatsApp Images} | rg -v '/$'
@@ -39,5 +46,18 @@ function sy -d "sync files between phone and pc"
         [ -e $XDG_DATA_HOME/newsraft/newsraft.sqlite3-journal ]
         or rsync $comm $XDG_DATA_HOME/newsraft/newsraft.sqlite3 brick:~/.local/share/newsraft/newsraft.sqlite3
         rsync $comm brick:/sdcard/main/backup/ $XDG_DOWNLOAD_DIR/main/backup/
+
+        if [ "$(lsblk -f | rg $hdd | kt 7)" = /mnt/hdd ]
+            printf "=== HDD: pic ===\n"
+            rsync $comm $XDG_PICTURES_DIR /mnt/hdd/
+            printf "=== HDD: doc ===\n"
+            rsync $comm $XDG_DOCUMENTS_DIR /mnt/hdd/
+            printf "=== HDD: mu ===\n"
+            rsync $comm $XDG_MUSIC_DIR /mnt/hdd/
+            printf "=== HDD: misc ===\n"
+            rsync $comm $XDG_DOWNLOAD_DIR/manga/{#,@}* /mnt/hdd/manga/
+            rsync $comm $XDG_DOWNLOAD_DIR/main/*.kdbx /mnt/hdd/main/
+            rsync $comm $XDG_DOWNLOAD_DIR/main/{backup,torrents,ROMS} /mnt/hdd/main/
+        end
     end
 end
