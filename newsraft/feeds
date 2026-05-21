@@ -103,7 +103,6 @@ https://aashvik.com/atom.xml
 https://ankursethi.com/feeds/index.xml
 https://ar.al/index.xml
 https://www.himthe.dev/rss.xml
-https://chelseatroy.com/feed
 https://crescentro.se/posts/atom.xml
 https://danluu.com/atom.xml
 https://devever.net/~hl/index.feed
@@ -123,11 +122,13 @@ https://ludic.mataroa.blog/rss
 https://lukesmith.xyz/index.xml "Luke Smith"
 https://mtwb.blog/index.xml
 https://blog.matthewbrunelle.com/rss
-https://oppi.li/index.xml
+https://oppi.li/posts/index.rss
+https://oppi.li/weeklies/index.rss
 https://robertheaton.com/feed.xml "Robert Heaton"
 https://sethmlarson.dev/feed
 https://thatshubham.com/rss.xml
 https://thelinuxcast.org/index.xml
+https://www.marginalia.nu/log/index.xml
 https://world.hey.com/dhh/feed.atom "DHH"
 
 @ PERSONAL BLOGS 3
