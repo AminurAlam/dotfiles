@@ -1,5 +1,5 @@
-#:schema /home/fisher/repos/yazi-schemas/schemas/yazi.json
-# :schema https://yazi-rs.github.io/schemas/yazi.json
+# :schema /home/fisher/repos/yazi-schemas/schemas/yazi.json
+#:schema https://yazi-rs.github.io/schemas/yazi.json
 
 ## FETCH
 [plugin]
@@ -61,7 +61,6 @@ spotters = [
 rules = [
   { url = "*/", use = ["dir", "common"] },
   { url = "bulk-rename.txt", use = "bulk-rename" },
-  { mime = "application/pdf", use = ["zathura", "common"] },
   # archives
   { url = "*.cb{z,r}", use = ["zathura", "extract", "common"] },
   { url = "*.{zip,rar}", use = ["extract", "zathura", "common"] },
@@ -69,6 +68,7 @@ rules = [
   { url = "*.deb", use = ["extract", "common"] },
   { mime = "application/{zip,rar,7z*,tar,gzip,xz,zstd,bzip*,lzma,compress,archive,cpio,arj,xar,ms-cab*}", use = ["extract", "common"] },
   # multimedia
+  { mime = "application/pdf", use = ["zathura", "common"] },
   { url = "*.{ass,srt,ssa,sup,vtt}", use = ["add-sub", "edit", "common"] },
   { mime = "audio/mpegurl", use = ["edit", "common"] },
   { mime = "image/svg+xml", use = ["swayimg", "inkscape", "edit", "common"] },
@@ -77,13 +77,11 @@ rules = [
   { mime = "audio/*", use = ["play", "audio_tools", "common"] },
   # text
   { url = "*.patch", use = ["edit", "common"] },
-  { url = "*.typ", use = ["edit", "typst", "common"] },
   { mime = "text/*", use = ["edit", "common"] },
   { mime = "inode/empty", use = ["edit", "common"] },
   { mime = "application/{json,ndjson}", use = ["edit", "common"] },
   { mime = "*/javascript", use = ["edit", "common"] },
-
-  { mime = "vfs/{absent,stale}", use = "download" },
+  # fallback
   { url = "*", use = ["open", "common"] },
 ]
 
@@ -116,7 +114,6 @@ audio_tools = [
   { run = "picard -- %s", orphan = true, for = "linux", desc = "󰫅 picard" },
   { run = "tenacity %s", block = false, orphan = true, desc = "󰓀 tenacity", for = "linux" },
 ]
-typst = [{ run = "typst c -fpdf %s", desc = " typ -> pdf", block = true, for = "unix" }]
 edit = [{ run = "nvim %s", desc = " nvim", block = true, for = "unix" }]
 common = [
   { run = "dragon-drop -x %s", orphan = true, desc = " Drag and Drop", for = "linux" },
@@ -128,72 +125,29 @@ dir = [
   { run = "swayimg -g %s", orphan = true, desc = " gallery" },
   { run = "fish -c 'dir2cbz $argv' %s", block = true, desc = " dir2cbz" },
 ]
-download = [
-  { run = "ya emit download --open %S", desc = " Download & 󰏌 Open" },
-  { run = "ya emit download %S", desc = " Download" },
-]
 
 [mgr]
 ratio = [0, 1, 1]
 sort_by = "extension"
 sort_fallback = "natural"
-sort_sensitive = false
-sort_reverse = false
-sort_dir_first = true
-sort_translit = false
 linemode = "size"
 show_hidden = true
-show_symlink = true
 scrolloff = 10
-mouse_events = ["click", "scroll"]
-title_format = "Yazi: {cwd}"
 
 [preview]
-wrap = "no"
-tab_size = 2
 max_width = 1500
 max_height = 1007
-cache_dir = ""
-image_delay = 30
-image_filter = "triangle"
-image_quality = 75
-ueberzug_scale = 1
-ueberzug_offset = [0, 0.2, 0, 0]
 
 [input]
-cursor_blink = false
 # TODO: no border
 # rename
 rename_title = ""
 rename_origin = "hovered"
 rename_offset = [2, -1, 77, 3]
-# cd
-cd_title = "   "
-cd_origin = "bottom-left"
-cd_offset = [0, 0, 999, 3]
-# create
-create_offset = [0, 0, 999, 3]
-# filter
-filter_title = " 󰈲 "
-filter_origin = "bottom-left"
-filter_offset = [0, 0, 999, 3]
+
 # find
 find_title = [" / ", " ? "]
 find_origin = "bottom-left"
-find_offset = [0, 0, 999, 3]
-# search
-search_title = "  {n} "
-search_origin = "bottom-left"
-search_offset = [0, 0, 999, 3]
-# shell
-shell_title = ["  ", "  block "]
-shell_origin = "bottom-left"
-shell_offset = [0, 0, 999, 3]
-
-[pick]
-open_title = "Open with:"
-open_origin = "hovered"
-open_offset = [0, 1, 30, 30]
 
 [tasks]
 image_bound = [20000, 20000]
