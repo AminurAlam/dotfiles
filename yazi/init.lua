@@ -208,11 +208,12 @@ require('zoxide'):setup { update_db = false }
 require('session'):setup { sync_yanked = true }
 
 require('sort-by-location'):setup {
+  default = { by = 'extension', reverse = false },
   { pattern = '.*/Pictures/.*', sort = { by = 'mtime', reverse = true } },
   { pattern = '.*/pic/.*', sort = { by = 'mtime', reverse = true } },
   { pattern = '.*/DCIM/.*', sort = { by = 'mtime', reverse = true } },
   { pattern = '.*/#lewd$', sort = { by = 'mtime', reverse = true } },
-  { pattern = '.*/typst.*', sort = { by = 'natural', reverse = true } },
+  { pattern = '.*/yt$', sort = { by = 'natural' } },
 }
 
 require('mime-ext.local'):setup {
