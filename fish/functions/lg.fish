@@ -7,7 +7,7 @@ function lg -d "lazygit wrapper"
         and set -f new_size (niri msg -j focused-window | jq .layout.window_size[0])
     end
 
-    lazygit
+    LANG=en_US.UTF-8 lazygit
 
     [ "$old_size" != "$new_size" ] && niri msg action set-column-width 50%
 end

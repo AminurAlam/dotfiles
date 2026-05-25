@@ -2,8 +2,7 @@ function sc -d "scrcpy wrapper"
     # https://redlib.catsarch.com/r/scrcpy/comments/1pgfurr/quick_guide_to_running_desktop_mode_in_scrcpy_see/
     set -f ANDROID_USER_HOME "$XDG_DATA_HOME"/.android
     set -f HOME "$XDG_DATA_HOME"
-
-    adb wait-for-device
+    adb connect android.local
 
     switch "$argv[1]"
         case -

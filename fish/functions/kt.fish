@@ -6,9 +6,19 @@ function kt -d "cut columns with simple syntax"
     end
 
     # TODO: try sed 's/([^$delim]+)/\\cols/g'
+    # TODO: split on multiple delimins
 
     # https://github.com/fish-shell/fish-shell/issues/3339
     set cols \$(string join ',$' $argv)
 
     awk -F "$delim" "{print $cols}"
+
+    if false
+        # tests
+        test (echo "1 2 3 4" | kt   4 2) = "4 2"
+        test (echo "1,2,3,4" | kt   4 2) = ""
+        test (echo "1,2,3,4" | kt   1  ) = "1,2,3,4"
+        test (echo "1,2,3,4" | kt   1 2) = "1,2,3,4"
+        test (echo "1,2,3,4" | kt , 4 2) = "4 2"
+    end
 end

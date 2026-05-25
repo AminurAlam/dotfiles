@@ -3,7 +3,7 @@ function sy -d "sync files between phone and pc"
 
     set comm --dry-run -ha --out-format "%o %n" --exclude={.thumbnails,.nomedia,.archive}
     set tags books exib femboys flat lewd NTR
-    set artists Alp Arakure Esuke Herio 'Hinahara Emi' Jury 'Minami Fumika' Momoko 'Morino Bambi' Nagayori 'Nikubou Maranoshin' 'Ouchi Kaeru' Sajipen 'Wantan Meo' Yuruyakatou
+    set artists Alp Arakure Cleanendme Esuke Herio 'Hinahara Emi' Jury 'Minami Fumika' Momoko 'Morino Bambi' Nagayori 'Nikubou Maranoshin' 'Ouchi Kaeru' Sajipen 'Wantan Meo' Yuruyakatou
     set hdd fb4fbd41-31b1-4260-8d5c-551dd752fbab
 
     # mount HDD if present
