@@ -9,7 +9,7 @@
         "en"
     ],
     "customTitleBar": false,
-    "enableSplashScreen": true,
+    "enableSplashScreen": false,
     "openLinksWithElectron": false,
     "clickTrayToShowHide": true,
     "disableSmoothScroll": false,
