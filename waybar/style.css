@@ -2,13 +2,12 @@
 
 * {
   font-size: 17px;
-  min-height: 0;
   /* opacity: 0.99; */
   min-height: 24px;
 }
 
 #waybar {
-  font-family: "SauceCodePro Nerd Font";
+  font-family: "JetBrainsMono Nerd Font", "IBM Plex Mono", Arial, Helvetica, sans-serif;
   background: rgb(30, 32, 48);
   color: #c0caf5;
   margin: 0px 0px;
