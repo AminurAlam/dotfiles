@@ -35,6 +35,13 @@ overview {
     zoom 0.48
 }
 
+blur {
+    passes 2
+    offset 3
+    noise 0.02
+    saturation 1.5
+}
+
 hotkey-overlay {
     skip-at-startup
 }

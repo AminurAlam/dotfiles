@@ -13,7 +13,7 @@ window-rule { // focus on keepass
 }
 
 window-rule { // pseudo-fullscreen
-    match app-id="librewolf|vesktop|anki|newsraft" is-floating=false
+    match app-id="librewolf|vesktop|newsraft" is-floating=false
     match app-id="(org|com)\\..*\\.(Picard|Identity|kdeconnect.app)$" is-floating=false
     match title="^Krita$" is-floating=false
 
