@@ -1,9 +1,9 @@
 #:schema https://starship.rs/config-schema.json
 
 format = """
-$username$directory$git_branch$git_commit$git_state$python${custom.jj}${env_var.TMUX} \
+$username$directory$git_branch$git_commit$git_state$python \
 $fill \
-$status$git_status$git_metrics$cmd_duration$jobs$shlvl 
+$status$git_status$cmd_duration$jobs 
  $character"""
 continuation_prompt = "[>](bright-black) "
 scan_timeout = 50
@@ -39,10 +39,6 @@ use_logical_path = true
 
 # substitutions = { "/data/data/com.termux/files/usr" = "prefix" }
 
-[custom.jj]
-format = " [󰊢 jj](blue)"
-detect_folders = [".jj"]
-
 [git_branch]
 format = " [ ($remote_name/)$branch](bold purple)"
 # only_attached = true
@@ -63,9 +59,6 @@ bisect = "󱦒 bisect"
 format = " [ $virtualenv](yellow)"
 detect_files = []
 detect_extensions = []
-
-[env_var.TMUX]
-format = " [ tmux](green)"
 
 # RIGHT PROMPT
 
@@ -90,11 +83,6 @@ untracked = '\[[$count](bright-white)\]'
 stashed = '\[[ $count](bright-yellow)\]'
 staged = '\[[ $count](green)\]'
 
-[git_metrics]
-format = '(\[[+$added]($added_style)\])(\[[-$deleted]($deleted_style)\])'
-disabled = true
-ignore_submodules = true
-
 [cmd_duration]
 format = '\[[$duration](cyan)\]'
 min_time = 50
@@ -107,12 +95,6 @@ format = '\[[$symbol$number](blue)\]'
 symbol_threshold = 1
 number_threshold = 2
 symbol = "✦"
-
-[shlvl]
-format = '\[[$symbol$shlvl](green)\]'
-symbol = ""
-threshold = 4
-disabled = false
 
 # SPECIAL
 
