@@ -44,7 +44,7 @@ gui:
   # a branch that is checked out in that worktree
   skipSwitchWorktreeOnCheckoutWarning: false
   # Fraction of the total screen width to use for the left side section. You may
-  # want to pick a small number (e.g. 0.2) if you're using a narrow screen, so#
+  # want to pick a small number (e.g. 0.2) if you're using a narrow screen, so
   # that you can see more of the main section.
   # Number from 0 to 1.0.
   sidePanelWidth: 0.3
@@ -131,6 +131,11 @@ gui:
   # repository. It is only added when necessary, i.e. when there is more than one
   # item at top level.
   showRootItemInFileTree: false
+  # How to sort files and directories in the file tree.
+  # One of: 'mixed' (default) | 'filesFirst' | 'foldersFirst'
+  fileTreeSortOrder: mixed
+  # If true (default), sort the file tree case-sensitively.
+  fileTreeSortCaseSensitive: false
   # If true, show the number of lines changed per file in the Files view
   showNumstatInFilesView: true
   # If true, show a random tip in the command log when Lazygit starts
@@ -182,6 +187,14 @@ gui:
   # Whether to stack UI components on top of each other.
   # One of 'auto' (default) | 'always' | 'never'
   portraitMode: auto
+  # In 'auto' mode, portrait mode will be used if the window width is less than or
+  # equal to portraitModeAutoMaxWidth and the window height is greater than or
+  # equal to portraitModeAutoMinHeight. Unused when portraitMode is not 'auto'.
+  portraitModeAutoMaxWidth: 84
+  # In 'auto' mode, portrait mode will be used if the window width is less than or
+  # equal to portraitModeAutoMaxWidth and the window height is greater than or
+  # equal to portraitModeAutoMinHeight. Unused when portraitMode is not 'auto'.
+  portraitModeAutoMinHeight: 46
   # How things are filtered when typing '/'.
   # One of 'substring' (default) | 'fuzzy'
   filterMode: substring
@@ -214,16 +227,10 @@ git:
   # See https://github.com/jesseduffield/lazygit/blob/master/docs/Custom_Pagers.md
   # for more information.
   pagers:
-    - # Value of the --color arg in the git diff command. Some pagers want this to be set to 'always' and some want it set to 'never'
+    -
       colorArg: always
-      # e.g.
-      # diff-so-fancy
-      # delta --dark --paging=never
-      # ydiff -p cat -s --wrap --width={{columnWidth}}
       pager: "delta --dark --paging=never"
-      # e.g. 'difft --color=always'
       externalDiffCommand: ""
-      # If true, Lazygit will use git's `diff.external` config for paging. The advantage over `externalDiffCommand` is that this can be configured per file type in .gitattributes; see https://git-scm.com/docs/gitattributes#_defining_an_external_diff_driver.
       useExternalDiffGitConfig: false
   # Config relating to committing
   commit:
@@ -276,7 +283,8 @@ git:
   allBranchesLogCmds:
     - git log --graph --all --color=always --abbrev-commit --decorate --date=relative  --pretty=medium
   # If true, git diffs are rendered with the `--ignore-all-space` flag, which
-  # ignores whitespace changes. Can be toggled from within Lazygit with `<c-w>`.
+  # ignores whitespace changes. Can be toggled from within Lazygit with
+  # `<ctrl+w>`.
   ignoreWhitespaceInDiffView: false
   # The number of lines of context to show around each diff hunk. Can be changed
   # from within Lazygit with the `{` and `}` keys.
@@ -304,13 +312,13 @@ git:
     # appear chronologically. See https://git-scm.com/docs/
     #
     # Can be changed from within Lazygit with `Log menu -> Commit sort order`
-    # (`<c-l>` in the commits window by default).
+    # (`<ctrl+l>` in the commits window by default).
     order: topo-order
     # This determines whether the git graph is rendered in the commits panel
     # One of 'always' | 'never' | 'when-maximised'
     #
-    # Can be toggled from within lazygit with `Log menu -> Show git graph` (`<c-l>`
-    # in the commits window by default).
+    # Can be toggled from within lazygit with `Log menu -> Show git graph`
+    # (`<ctrl+l>` in the commits window by default).
     showGraph: never
     # displays the whole git graph by default in the commits view (equivalent to
     # passing the `--all` argument to `git log`)
@@ -367,7 +375,7 @@ os:
   editPreset: "nvim"
   # Command for opening a file, as if the file is double-clicked. Should contain
   # "{{filename}}", but doesn't support "{{line}}".
-  open: "footclient -e yazi {{filename}}"
+  open: "footclient -e yazi {{filename}} &"
   # Command for opening a link. Should contain "{{link}}".
   openLink: ""
   # CopyToClipboardCmd is the command for copying to clipboard.
@@ -398,103 +406,100 @@ notARepository: skip
 # If true, display a confirmation when subprocess terminates. This allows you to
 # view the output of the subprocess before returning to Lazygit.
 promptToReturnFromSubprocess: false
-# Keybindings
+# Keybindings.
+# Each binding can be a single key or a list of keys; see
+# https://github.com/jesseduffield/lazygit/blob/master/docs/keybindings/Custom_Keybindings.md
+# for the syntax.
 keybinding:
   universal:
-    quit: q
-    quit-alt1: <c-c>
-    suspendApp: <c-z>
+    quit: [q, <ctrl+c>]
+    suspendApp: <ctrl+z>
     return: <esc>
     quitWithoutChangingDirectory: Q
     togglePanel: <tab>
-    prevItem: <up>
-    nextItem: <down>
-    prevItem-alt: k
-    nextItem-alt: j
-    prevPage: ","
+    prevItem: [<up>, k]
+    nextItem: [<down>, j]
+    prevPage: ','
     nextPage: .
     scrollLeft: H
     scrollRight: L
-    gotoTop: g
-    gotoBottom: G
-    gotoTop-alt: <home>
-    gotoBottom-alt: <end>
+    gotoTop: [g, <, <home>]
+    gotoBottom: [G, '>', <end>]
     toggleRangeSelect: v
-    rangeSelectDown: <s-down>
-    rangeSelectUp: <s-up>
-    prevBlock: <left>
-    nextBlock: <right>
-    # prevBlock-alt: h
-    # nextBlock-alt: l
-    nextBlock-alt2: <tab>
-    prevBlock-alt2: <backtab>
+    rangeSelectDown: <shift+down>
+    rangeSelectUp: <shift+up>
+    prevBlock: [<left>, h, <backtab>]
+    nextBlock: [<right>, l, <tab>]
     jumpToBlock:
+      - <disabled>
       - "1"
       - "2"
       - "3"
-      - "4"
-      - "5"
+      - <disabled>
     focusMainView: "0"
     nextMatch: "n"
     prevMatch: "N"
     startSearch: /
-    optionMenu: <disabled>
-    optionMenu-alt1: "?"
+    # <alt+left> on Mac
+    moveWordLeft: <ctrl+left>
+    # <alt+right> on Mac
+    moveWordRight: <ctrl+right>
+    # <alt+backspace> on Mac
+    backspaceWord: <ctrl+backspace>
+    # <alt+delete> on Mac
+    forwardDeleteWord: <ctrl+delete>
+    optionMenu: '?'
     select: <space>
     goInto: <enter>
     confirm: <enter>
     confirmMenu: <enter>
     confirmSuggestion: <enter>
-    confirmInEditor: <a-enter>
-    confirmInEditor-alt: <c-s>
+    # <meta+enter> on Mac
+    confirmInEditor: [<ctrl+enter>, <ctrl+s>]
     remove: d
     new: "n"
-    edit: l
+    edit: e
     openFile: o
-    scrollUpMain: <pgup>
-    scrollDownMain: <pgdown>
-    scrollUpMain-alt1: K
-    scrollDownMain-alt1: J
-    scrollUpMain-alt2: <c-u>
-    scrollDownMain-alt2: <c-d>
-    executeShellCommand: ":"
+    scrollUpMain: [<pgup>, K, <ctrl+u>]
+    scrollDownMain: [<pgdown>, J, <ctrl+d>]
+    executeShellCommand: ':'
     createRebaseOptionsMenu: m
     # 'Files' appended for legacy reasons
     pushFiles: P
     # 'Files' appended for legacy reasons
     pullFiles: p
     refresh: R
-    createPatchOptionsMenu: <c-p>
-    nextTab: "]"
-    prevTab: "["
+    createPatchOptionsMenu: <ctrl+p>
+    nextTab: ']'
+    prevTab: '['
     nextScreenMode: +
     prevScreenMode: _
-    cyclePagers: "|"
+    cyclePagers: '|'
     undo: z
-    redo: <c-z>
-    filteringMenu: <c-s>
-    diffingMenu: W
-    diffingMenu-alt: <c-e>
-    copyToClipboard: <c-o>
-    openRecentRepos: <c-r>
+    redo: Z
+    filteringMenu: <ctrl+s>
+    diffingMenu: [W, <ctrl+e>]
+    copyToClipboard: <ctrl+o>
+    openRecentRepos: <ctrl+r>
     submitEditorText: <enter>
-    extrasMenu: "@"
-    toggleWhitespaceInDiffView: <c-w>
-    increaseContextInDiffView: "}"
-    decreaseContextInDiffView: "{"
+    extrasMenu: '@'
+    toggleWhitespaceInDiffView: <ctrl+w>
+    increaseContextInDiffView: '}'
+    decreaseContextInDiffView: '{'
     increaseRenameSimilarityThreshold: )
     decreaseRenameSimilarityThreshold: (
-    openDiffTool: <c-t>
+    openDiffTool: <ctrl+t>
   status:
     checkForUpdate: u
     recentRepos: <enter>
     allBranchesLogGraph: a
+    allBranchesLogGraphReverse: A
   files:
     commitChanges: C
     commitChangesWithoutHook: w
     amendLastCommit: A
     commitChangesWithEditor: c
-    findBaseCommitForFixup: <c-f>
+    findBaseCommitForFixup: <ctrl+f>
     confirmDiscard: x
     ignoreFile: i
     refreshFiles: r
@@ -503,19 +508,20 @@ keybinding:
     toggleStagedAll: a
     viewResetOptions: D
     fetch: f
-    toggleTreeView: "`"
+    toggleTreeView: '`'
     openMergeOptions: M
-    openStatusFilter: <c-b>
+    openStatusFilter: <ctrl+b>
     copyFileInfoToClipboard: "y"
-    collapseAll: "-"
+    collapseAll: '-'
     expandAll: =
   branches:
     createPullRequest: o
     viewPullRequestOptions: O
-    copyPullRequestURL: <c-y>
+    openPullRequestInBrowser: <disabled>
+    copyPullRequestURL: <ctrl+y>
     checkoutBranchByName: c
     forceCheckoutBranch: F
-    checkoutPreviousBranch: "-"
+    checkoutPreviousBranch: '-'
     rebaseBranch: r
     renameBranch: R
     mergeIntoCurrentBranch: M
@@ -532,14 +538,15 @@ keybinding:
     viewWorktreeOptions: w
   commits:
     squashDown: s
-    renameCommit: i
-    renameCommitWithEditor: R
+    renameCommit: r
+    renameCommitWithEditor: i
     viewResetOptions: g
     markCommitAsFixup: f
+    setFixupMessage: c
     createFixupCommit: F
     squashAboveCommits: S
-    moveDownCommit: <c-j>
-    moveUpCommit: <c-k>
+    moveDownCommit: [<ctrl+j>, <alt-down>]
+    moveUpCommit: [<ctrl+k>, <alt-up>]
     amendToCommit: A
     resetCommitAuthor: a
     pickCommit: p
@@ -549,13 +556,14 @@ keybinding:
     markCommitAsBaseForRebase: B
     tagCommit: T
     checkoutCommit: <space>
-    resetCherryPick: <c-R>
+    resetCherryPick: <ctrl+r>
     copyCommitAttributeToClipboard: "y"
-    openLogMenu: <c-l>
+    openLogMenu: <ctrl+l>
     openInBrowser: o
+    openPullRequestInBrowser: <disabled>
     viewBisectOptions: b
     startInteractiveRebase: <disabled>
-    selectCommitsOfCurrentBranch: "*"
+    selectCommitsOfCurrentBranch: '*'
   amendAttribute:
     resetAuthor: a
     setAuthor: A
@@ -566,6 +574,8 @@ keybinding:
   commitFiles:
     checkoutCommitFile: c
   main:
+    prevHunk: [<left>, h]
+    nextHunk: [<right>, l]
     toggleSelectHunk: a
     pickBothHunks: b
     editSelectHunk: E
@@ -574,4 +584,4 @@ keybinding:
     update: u
     bulkMenu: b
   commitMessage:
-    commitMenu: <c-o>
+    commitMenu: <ctrl+o>
