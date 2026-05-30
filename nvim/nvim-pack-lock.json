@@ -1,7 +1,7 @@
 {
   "plugins": {
     "conform.nvim": {
-      "rev": "18aeab3d63d350dcf44d64c462cc489a3412af40",
+      "rev": "619363c30309d29ffa631e67c8183f2a72caa373",
       "src": "https://github.com/stevearc/conform.nvim"
     },
     "dial.nvim": {
@@ -13,15 +13,15 @@
       "src": "https://github.com/0xAdk/full_visual_line.nvim"
     },
     "mini.completion": {
-      "rev": "6937ff1d7bf47ab58046c6685cc9057aa481ecb2",
+      "rev": "04abe6fc7860858785ba63c435d76bf5b8b64b5f",
       "src": "https://github.com/nvim-mini/mini.completion"
     },
     "mini.diff": {
-      "rev": "117c301374ab8546891e2b34f63885ea83527432",
+      "rev": "5af2b6be4a4beb673f3196a414f6fd932bbedd48",
       "src": "https://github.com/nvim-mini/mini.diff"
     },
     "mini.pick": {
-      "rev": "975e398570dd15696575c5374f94e78fd29a7a69",
+      "rev": "26f94e9c84f529d713de00b900c0a307ca260f35",
       "src": "https://github.com/nvim-mini/mini.pick"
     },
     "nvim-colorizer.lua": {
