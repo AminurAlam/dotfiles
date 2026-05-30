@@ -93,8 +93,8 @@ apkinstall = [
   { run = "ANDROID_USER_HOME=/home/fisher/.local/share/.android HOME=/home/fisher/.local/share/ adb install %s", block = true, orphan = false, desc = " apk installer", for = "linux" },
 ]
 bulk-rename = [
-  { block = true, run = 'nvim %s; ya exec bulk_exit %s --accept', for = "linux" },
-  { block = true, run = 'nvim %s', for = "android" },
+  { block = true, run = "nvim %s; ya exec bulk_exit %s --accept", for = "linux" },
+  { block = true, run = "nvim %s", for = "android" },
 ]
 extract = [{ run = 'ya pub extract --list %s""', desc = "󱉛 Extract here", for = "unix" }]
 inkscape = [{ run = "inkscape %s", block = false, orphan = true, desc = "󰕞 inkscape", for = "linux" }]
@@ -148,6 +148,9 @@ rename_offset = [2, -1, 77, 3]
 # find
 find_title = [" / ", " ? "]
 find_origin = "bottom-left"
+
+[pick]
+open_offset = [0, 1, 50, 999]
 
 [tasks]
 image_bound = [20000, 20000]
