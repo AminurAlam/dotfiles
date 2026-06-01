@@ -6,6 +6,7 @@ function kt -d "cut columns with simple syntax"
     end
 
     # TODO: try sed 's/([^$delim]+)/\\cols/g'
+    # TODO: try string split -f (string join ',' $argv) $delim
     # TODO: split on multiple delimins
 
     # https://github.com/fish-shell/fish-shell/issues/3339

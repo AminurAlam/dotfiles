@@ -11,10 +11,6 @@ function pong -d "mass ping multiple hosts to check connection"
 
     [ -n "$argv" ] && set addresses $argv
 
-    function killorphans -s SIGINT
-        pkill ping
-    end
-
     for address in $addresses
         ping -q -c 5 -i 0.5 -- "$address" &
     end | awk '

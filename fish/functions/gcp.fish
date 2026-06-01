@@ -19,7 +19,7 @@ function gcp -a url path branch -d "git clone wrapper"
         end
     end
 
-    # normalize url
+    # normalize url: user/repo/foo/bar/baz -> user/repo
     set url (string replace -r -- 'https://([^/]+)/([^/]+)/([^/]+).*' 'https://$1/$2/$3' "$url")
 
     if string match -qr -- "^https://github.com/" "$url"

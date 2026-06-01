@@ -7,7 +7,7 @@ function hentai -d "for managing literature"
     end
 
     function gettarget # "@artist - chapter" -> ".../#lewd/@artist - chapter" | ".../@artist/chapter"
-        set parts (string split ' - ' $argv[1])
+        set parts (string split -m1 ' - ' $argv[1])
         [ -e "/sdcard/Tachi/local/$parts[1]" -a -n "$parts[2]" ]
         and printf "/sdcard/Tachi/local/%s/%s" $parts[1] $parts[2]
         or printf "/sdcard/Tachi/local/#lewd/%s" $argv[1]
