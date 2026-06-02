@@ -1,6 +1,6 @@
 _pkgname=neovim
 pkgname="$_pkgname-git"
-pkgver=0.13.0.r543.g16d17c50bb
+pkgver=0.13.0.r621.ga9ef076817
 pkgrel=1
 pkgdesc='Fork of Vim aiming to improve user experience, plugins, and GUIs'
 arch=(armv7h aarch64)

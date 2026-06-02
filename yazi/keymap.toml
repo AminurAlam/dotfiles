@@ -16,7 +16,7 @@ prepend_keymap = [
 prepend_keymap = [
   { on = "g", run = "arrow top", desc = "Move cursor to the top" },
   # plugins
-  { on = ["s", "t"], run = "plugin panes" },
+  { on = ["s", "t"], run = "plugin max-pane" },
   { on = "f", run = "plugin fchar start", desc = "Jump to first char in filename" },
   { on = "F", run = "plugin fzf", desc = "fzf search" },
   { on = "z", run = "plugin zoxide", desc = "Jump to a directory using zoxide" },

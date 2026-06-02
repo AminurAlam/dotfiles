@@ -7,3 +7,5 @@ mp.register_event('start-file', function()
     mp.set_property('speed', 1.4)
   end
 end)
+
+-- TODO: start songs from beginning: *.{mp3,flac}, ~/vid/mv/*, ~/mu/*
