@@ -99,6 +99,30 @@ switch $argv[1]
     case sys
         systemctl --user status --full --no-pager -n0 (path basename  ~/.config/systemd/user/*.service)
 
+    case toggle-width
+        set json (niri msg -j focused-window)
+        if [ (printf "%s" "$json" | jq .is_floating) = false ]
+            # use this if you have goofy sizes
+            # niri msg -j focused-output | jq .logical
+
+            # if max-width
+            [ (printf "%s" "$json" | jq '.layout.window_size[0]') = 1920 ]
+            and niri msg action set-column-width 50%
+            or niri msg action maximize-window-to-edges
+
+            # if fullscreen
+            test (niri msg -j focused-window | jq '.layout.window_size[1]') = 1080
+            and niri msg action fullscreen-window
+
+            true
+        else
+            niri msg action set-window-width (
+                math -s0 (
+                    printf "%s" "$json" | jq .layout.window_size[1]
+                ) x 16 / 9
+            )
+        end
+
     case '*'
         printf 'USAGE:\n'
         printf '  %s\n' \

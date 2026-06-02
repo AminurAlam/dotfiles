@@ -10,7 +10,7 @@ binds {
     Mod+A repeat=false { spawn "footclient"; }
     Mod+S repeat=false { spawn "librewolf"; }
     Mod+D repeat=false { toggle-window-floating; }
-    Mod+F repeat=false { switch-preset-column-width; }
+    Mod+F repeat=false { spawn "ctl" "toggle-width"; }
     Mod+Shift+F repeat=false { fullscreen-window; }
 
     // TURNING OFF

@@ -1,10 +1,10 @@
-window-rule { // floatinng save as window
+// MISC
+
+window-rule {  // focus save as window
     match title="^file_chooser$"
 
     open-focused true
 }
-
-// SIZING
 
 window-rule { // focus on keepass
     match title="^KeePassXC - Browser Access Request$"
@@ -12,41 +12,57 @@ window-rule { // focus on keepass
     open-focused true
 }
 
-window-rule { // pseudo-fullscreen
+window-rule { // floating shadow
+    match is-floating=true
+
+    shadow {
+        on
+        // draw-behind-window true
+        softness 30
+        spread 5
+        offset x=0 y=5
+        color "#0007"
+    }
+
+}
+
+// SIZING
+
+window-rule { // maximized
     match app-id="librewolf|vesktop|newsraft" is-floating=false
-    match app-id="(org|com)\\..*\\.(Picard|Identity|kdeconnect.app)$" is-floating=false
+    match app-id="^(org|com)\\..*\\.(Picard|kdeconnect.app)$" is-floating=false
     match title="^Krita$" is-floating=false
 
-    default-column-width { proportion 1.0; }
+    open-maximized-to-edges true
+}
+
+window-rule { // fullscreen
+    match app-id="^org.gnome.gitlab.YaLTeR.Identity$"
+
+    open-fullscreen true
 }
 
 window-rule { // scrcpy
     match app-id="scrcpy"
 
-    default-column-width { proportion 0.25; }
+    default-column-width { fixed 475;  }
 }
 
-window-rule { // game fullscreen
-    match title="^osu!$"
-    match app-id="^osu!$"
-    match app-id="org.gnome.gitlab.YaLTeR.Identity"
-
-    open-maximized true
-}
-
-// WINDOW BLUR
+// WINDOW FOCUS
 
 window-rule { // *
+
     geometry-corner-radius 12
     clip-to-geometry true
     background-effect { blur true; }
+    opacity 0.9
 }
 
-window-rule { // unfocused
-    match is-focused=false
+window-rule { // focused
+    match is-focused=true
 
-    opacity 0.9
-    draw-border-with-background false
+    opacity 1.0
+    border
 }
 
 // LAYER BLUR

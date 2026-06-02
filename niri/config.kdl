@@ -81,14 +81,12 @@ input {
 layout {
     gaps 4
     center-focused-column "never"
+    // always-center-single-column
+    preset-column-widths { proportion 0.5; proportion 1.0; }
     default-column-width { proportion 0.5; }
     preset-window-heights { }
     background-color "transparent"
 
-    preset-column-widths {
-        proportion 0.5
-        proportion 1.0
-    }
 
     focus-ring {
         off
@@ -103,26 +101,19 @@ layout {
     }
 
     shadow {
-        // on
+        on
         // draw-behind-window true
         softness 30
         spread 5
         offset x=0 y=5
         color "#0007"
     }
-
-    struts {
-        // left 64
-        // right 64
-        // top 64
-        // bottom 64
-    }
 }
 
 animations {
     // off
     slowdown 0.7
-    // window-open { spring damping-ratio=0.4 stiffness=1000 epsilon=0.0001; }
+    window-open { spring damping-ratio=0.5 stiffness=1000 epsilon=0.0001; }
     // workspace-switch { spring damping-ratio=0.4 stiffness=1000 epsilon=0.0001; }
     // window-movement { spring damping-ratio=0.4 stiffness=400 epsilon=0.0001; }
 }
