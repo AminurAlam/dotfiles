@@ -1,7 +1,7 @@
 #!/usr/bin/fish --no-config
 
 switch $argv[1]
-    case vol # (\++|-+)?
+    case vol # (+|-)?     toggle or change vol
         if [ -n "$argv[2]" ]
             wpctl set-volume @DEFAULT_AUDIO_SINK@ (math 2 x (printf $argv[2] | wc -c))%$(string sub -l1 -- $argv[2])
             notify-send -h string:x-canonical-private-synchronous:volume -t 500 "Volume: $(wpctl get-volume @DEFAULT_AUDIO_SINK@ | tr -dc [:digit:] | math)"
@@ -12,17 +12,17 @@ switch $argv[1]
             or notify-send -h string:x-canonical-private-synchronous:mute -t 500 "󰖀 AUDIBLE"
         end
 
-    case mic
+    case mic #            toggle mic on/off
         wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle
         wpctl get-volume @DEFAULT_AUDIO_SOURCE@ | rg -q MUTED
         and notify-send -h string:x-canonical-private-synchronous:mic -t 500 " MUTED"
         or notify-send -h string:x-canonical-private-synchronous:mic -t 500 " AUDIBLE"
 
-    case lum # \++|-+
+    case lum # (+|-)      change brightness
         brightnessctl s (math 2 x (printf $argv[2] | wc -c))%$(string sub -l1 -- $argv[2])
         notify-send -h string:x-canonical-private-synchronous:brightness -t 500 "Brightness: $(math -s0 (brightnessctl g) x 100 / (brightnessctl m))"
 
-    case pow # up|down
+    case pow # (up|down)  change powerprofile
         # TODO: rollback instead
         # TODO: next|prev
         set current (powerprofilesctl get)
@@ -38,7 +38,7 @@ switch $argv[1]
             powerprofilesctl set power-saver
         end
 
-    case lim
+    case lim #            toggle battery limit
         set file /sys/bus/platform/drivers/ideapad_acpi/VPC2004:00/conservation_mode
         set bit $(math bitxor 1,(cat $file))
 
@@ -50,7 +50,7 @@ switch $argv[1]
         and notify-send -h string:x-canonical-private-synchronous:limit -t 500 " BATTERY LIMITED"
         or notify-send -h string:x-canonical-private-synchronous:limit -t 500 " BATTERY UNLOCKED"
 
-    case ss # full|ocr
+    case ss # (full|ocr)? take screenshot
         set filename Screenshot_(date +'%Y%m%d_%H%M%S')_grim.png
 
         if [ "$argv[2]" = full ]
@@ -61,11 +61,11 @@ switch $argv[1]
             grim -g (slurp) $XDG_PICTURES_DIR/ss/$filename && notify-send "$filename taken"
         end
 
-    case ssend
+    case ssend #          send screenshot to phone
         fd . $XDG_PICTURES_DIR/ss/ -a --changed-within 10min -X rsync -Pha '{}' brick:/sdcard/Pictures/ss/
         fd . $XDG_PICTURES_DIR/ss/ -a --changed-within 10min -x notify-send -t 2000 -i '{}' 'sent {/}'
 
-    case rec
+    case rec #            screen record
         # niri msg -j casts
         set wfid (pidof wf-recorder)
         if [ -n "$wfid" ]
@@ -79,27 +79,29 @@ switch $argv[1]
 
             notify-send -t 1500 -i $thumbnail "󰨜 RECORDING SAVED in $file"
         else
-            wf-recorder -r 60 -p "br=5M" -f (date +'%Y-%m-%d_%H%M_%S').mp4
+            # TODO: fix audio
+            wf-recorder -a -r 30 -p "br=5M" -f (date +'%Y-%m-%d_%H%M_%S').mp4
         end
 
-    case picker
+    case picker #         color picker
         set hex (niri msg pick-color | string match -gr '(#[[:xdigit:]]+)')
         set size 100
         set svg '<svg viewBox="0 0 '$size' '$size'" width="'$size'pt" height="'$size'pt"> <path fill="'$hex'" fill-rule="nonzero" d="M 0 0v '$size' h '$size' v -'$size' Z " /> </svg>'
         notify-send -t 1500 -i (echo $svg | psub) $hex
         wl-copy -n $hex
 
-    case scr #  TODO: dim and then turn off screen
+    case scr #            screensaver
+        #  TODO: dim and then turn off screen
         set brightness (brightnessctl g)
         brightnessctl s (math $brightness - 12952)
         sleep 5
         niri msg action power-off-monitors
         brightnessctl s $brightness
 
-    case sys
+    case sys #            show status of user units
         systemctl --user status --full --no-pager -n0 (path basename  ~/.config/systemd/user/*.service)
 
-    case toggle-width
+    case toggle-width #   toggle between 50% width and maximize-window-to-edges
         set json (niri msg -j focused-window)
         if [ (printf "%s" "$json" | jq .is_floating) = false ]
             # use this if you have goofy sizes
@@ -122,20 +124,18 @@ switch $argv[1]
                 ) x 16 / 9
             )
         end
+    case browser #        focus to existing browser instance or spawn it
+        set id (niri msg -j windows | jq '.[] | select(.app_id == "librewolf") | .id')
+        [ -n "$id" ]
+        and niri msg action focus-window --id $id
+        or librewolf
 
-    case '*'
+    case launcher #       lauch or close launcher
+        pidof fuzzel
+        and pkill fuzzel
+        or fuzzel
+
+    case '*' #            print help
         printf 'USAGE:\n'
-        printf '  %s\n' \
-            'vol (+|-)?     toggle or change vol' \
-            'mic            toggle mic on/off' \
-            'lum (+|-)      change brightness' \
-            'pow (up|down)  change powerprofile' \
-            'lim            toggle battery limit' \
-            'ss (full|ocr)? take screenshot' \
-            'ssend          send screenshot to phone' \
-            'rec            screen record' \
-            'picker         color picker' \
-            'scr            screensaver' \
-            'sys            show status of user units'
-
+        rg --replace '$1' '^    case ([^\s]+) #' (status filename)
 end
