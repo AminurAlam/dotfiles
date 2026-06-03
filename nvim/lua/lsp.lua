@@ -7,7 +7,7 @@ end
 vim.lsp.enable(vim.tbl_filter(filter, {
   'basedpyright',
   -- 'bash_language_server',
-  'biome',
+  -- 'biome',
   'ccls',
   'clangd',
   'hyprls',
@@ -36,8 +36,30 @@ require('conform').setup({
   formatters_by_ft = {
     toml = { 'taplo' },
     fish = { 'fish_indent' },
+    typescript = { 'prettier' },
+    css = { 'prettier' },
+    scss = { 'prettier' },
+    json = { 'prettier' },
+    json5 = { 'prettier' },
+    jsonc = { 'prettier' },
+    markdown = { 'prettier' },
+    mdx = { 'prettier' },
+    yaml = { 'prettier' },
+    html = { 'prettier' },
   },
-  format_on_save = { timeout_ms = 500, lsp_format = 'fallback' },
+  format_on_save = function(bufnr)
+    if not vim.g.save_fmt then
+      return
+    end
+
+    -- Disable autoformat for files in a certain path
+    local bufname = vim.api.nvim_buf_get_name(bufnr)
+    if bufname:match('/node_modules/') then
+      return
+    end
+
+    return { timeout_ms = 500, lsp_format = 'fallback' }
+  end,
   notify_no_formatters = true,
 })
 
