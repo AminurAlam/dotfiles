@@ -27,7 +27,6 @@ com.android.providers.downloads.ui
 com.android.providers.partnerbookmarks
 com.android.providers.telephony.auto_generated_characteristics_rro
 com.android.providers.userdictionary
-com.android.rkpdapp
 com.android.role.notes.enabled
 com.android.sharedstoragebackup
 com.android.stk
@@ -41,7 +40,6 @@ com.android.wallpaper.livepicker
 com.android.wallpaperbackup
 com.android.wallpapercropper
 com.aura.oobe.samsung
-com.diotek.sec.lookup.dictionary
 com.facebook.appmanager
 com.facebook.services
 com.facebook.system
@@ -82,6 +80,7 @@ com.google.android.overlay.modules.permissioncontroller.forframework
 com.google.android.partnersetup
 com.google.android.printservice.recommendation
 com.google.android.projection.gearhead
+com.google.android.rkpdapp
 com.google.android.safetycenter.resources
 com.google.android.server.deviceconfig.resources
 com.google.android.setupwizard
@@ -95,11 +94,9 @@ com.google.mainline.telemetry
 com.hiya.star
 com.mediatek.MtkSettingsResOverlay
 com.mediatek.SettingsProviderResOverlay
-com.mediatek.apmonitor
 com.mediatek.atmwifimeta
 com.mediatek.cellbroadcastuiresoverlay
 com.mediatek.gbaservice
-com.mediatek.magtapp
 com.mediatek.mdmconfig
 com.mediatek.mdmlsample
 com.mediatek.systemuiresoverlay
@@ -233,11 +230,9 @@ com.samsung.android.wifi.p2paware.resources
 com.samsung.app.newtrim
 com.samsung.attribution
 com.samsung.cmh
-com.samsung.crane
 com.samsung.ecomm.global.in
 com.samsung.faceservice
 com.samsung.gpuwatchapp
-com.samsung.ims.smk
 com.samsung.ipservice
 com.samsung.knox.securefolder
 com.samsung.logwriter
