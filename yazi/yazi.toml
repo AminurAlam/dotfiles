@@ -19,6 +19,7 @@ prepend_previewers = [
   { url = "*.service", run = "preview-systemd" },
   { mime = "application/epub+zip", run = "preview-epub" },
   { url = "*.cb{z,r}", run = "preview-cbz" },
+  { url = "*.{zip,rar}", run = "preview-cbz" },
   { url = "*.torrent", run = "preview-torrent" },
   { mime = "audio/mpegurl", run = "code" },
   { mime = "audio/*", run = "preview-audio" },
@@ -105,8 +106,8 @@ swayimg = [{ run = "swayimg %s", block = false, orphan = true, desc = " swayi
 zathura = [{ run = "zathura %s", block = false, orphan = true, desc = " zathura", for = "linux" }]
 # groups
 raster_tools = [
-  { run = "killall swaybg; swaybg -m fill -i %s1", block = false, orphan = true, desc = " swaybg", for = "linux" },
-  { run = "krita %s", block = false, orphan = true, desc = " krita", for = "linux" },
+  { run = "ctl wp %s1", block = false, orphan = true, desc = " swaybg", for = "linux" },
+  { run = "LANG=en_US.utf-8 krita --fullscreen %s", block = false, orphan = true, desc = " krita", for = "linux" },
   { run = "identity -d row -- %s", orphan = true, for = "linux", desc = "󰆊 compare images" },
 ]
 audio_tools = [

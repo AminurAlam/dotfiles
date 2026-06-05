@@ -135,6 +135,18 @@ switch $argv[1]
         and pkill fuzzel
         or fuzzel
 
+    case wp # <filepath>  set wallpaper
+        # TODO: auto tile small images
+        # TODO: pick if no filename given
+        if [ -e "$argv[2]" ]
+            killall swaybg
+            if [ (math (mediainfo --Output=JSON --Output="Image;%Width% + %Height%" $argv[2])) -le 3000 ]
+                swaybg -m tile -i $argv[2] & disown
+            else
+                swaybg -m fill -i $argv[2] & disown
+            end
+        end
+
     case '*' #            print help
         printf 'USAGE:\n'
         rg --replace '$1' '^    case ([^\s]+) #' (status filename)

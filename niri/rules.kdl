@@ -31,7 +31,6 @@ window-rule { // floating shadow
 window-rule { // maximized
     match app-id="librewolf|vesktop|newsraft" is-floating=false
     match app-id="^(org|com)\\..*\\.(Picard|kdeconnect.app)$" is-floating=false
-    match title="^Krita$" is-floating=false
 
     open-maximized-to-edges true
 }
