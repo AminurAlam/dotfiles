@@ -8,8 +8,8 @@ do -- General config
 end
 
 do -- Image list configuration
-  swayimg.imagelist.set_order('alpha')
-  swayimg.imagelist.enable_reverse(false)
+  swayimg.imagelist.set_order('mtime')
+  swayimg.imagelist.enable_reverse(true)
   swayimg.imagelist.enable_recursive(false)
   swayimg.imagelist.enable_adjacent(false)
   swayimg.imagelist.enable_fsmon(true)
@@ -44,9 +44,10 @@ do -- Image viewer mode
   })
   swayimg.viewer.set_text('topright', {})
   swayimg.viewer.set_text('bottomleft', {})
+  swayimg.viewer.set_pinch_factor(1)
 end
 
-do -- Key and mouse bindings in viewer mode
+do -- Key bindings
   local zoom = function(n)
     local pos = swayimg.get_mouse_pos()
     local scale = swayimg.viewer.get_scale()
@@ -58,12 +59,8 @@ do -- Key and mouse bindings in viewer mode
 
     swayimg.viewer.set_abs_scale(scale, pos.x, pos.y)
   end
-  local zoomin = function()
-    zoom(10)
-  end
-  local zoomout = function()
-    zoom(-10)
-  end
+  local zoomin = function() zoom(10) end
+  local zoomout = function() zoom(-10) end
   local mov = function(x, y)
     local wnd = swayimg.get_window_size()
     local pos = swayimg.viewer.get_position()
@@ -73,15 +70,13 @@ do -- Key and mouse bindings in viewer mode
     )
   end
   local vmap = swayimg.viewer.on_key
+  local gmap = swayimg.gallery.on_key
+  local mmap = swayimg.viewer.on_mouse
 
   vmap('q', swayimg.exit)
   vmap('space', swayimg.viewer.set_animation)
-  vmap(',', function()
-    swayimg.viewer.rotate(90)
-  end)
-  vmap('.', function()
-    swayimg.viewer.rotate(270)
-  end)
+  vmap(',', function() swayimg.viewer.rotate(90) end)
+  vmap('.', function() swayimg.viewer.rotate(270) end)
   vmap('Shift+less', function()
     swayimg.viewer.set_animation(false)
     swayimg.viewer.prev_frame()
@@ -98,43 +93,20 @@ do -- Key and mouse bindings in viewer mode
       swayimg.text.show()
     end
   end)
-  vmap('s', function()
-    swayimg.viewer.set_fix_scale('width')
-  end)
-  vmap('d', function()
-    swayimg.viewer.set_fix_scale('height')
-  end)
+  vmap('s', function() swayimg.viewer.set_fix_scale('width') end)
+  vmap('d', function() swayimg.viewer.set_fix_scale('height') end)
   vmap('KP_Add', zoomin)
   vmap('KP_Subtract', zoomout)
-  vmap('h', function()
-    mov(10, 0)
-  end)
-  vmap('j', function()
-    mov(0, -10)
-  end)
-  vmap('k', function()
-    mov(0, 10)
-  end)
-  vmap('l', function()
-    mov(-10, 0)
-  end)
-  -- TODO: fix up/down scroll
-  swayimg.viewer.on_mouse('ScrollUp', function()
-    local pos = swayimg.viewer.get_position()
-    swayimg.viewer.set_abs_position(pos.x, pos.y + 10)
-    -- mov(0, -10)
-  end)
-  swayimg.viewer.on_mouse('ScrollDown', function()
-    local pos = swayimg.viewer.get_position()
-    swayimg.viewer.set_abs_position(pos.x, pos.y - 10)
-    -- mov(0, 10)
-  end)
-  vmap('Shift+j', function()
-    swayimg.viewer.switch_image('next')
-  end)
-  vmap('Shift+k', function()
-    swayimg.viewer.switch_image('prev')
-  end)
+  vmap('h', function() mov(10, 0) end)
+  vmap('j', function() mov(0, -10) end)
+  vmap('k', function() mov(0, 10) end)
+  vmap('l', function() mov(-10, 0) end)
+  mmap('ScrollUp', function() mov(0, 100) end)
+  mmap('ScrollDown', function() mov(0, -100) end)
+  mmap('ScrollLeft', function() mov(100, 0) end)
+  mmap('ScrollRight', function() mov(-100, 0) end)
+  vmap('Shift+j', function() swayimg.viewer.switch_image('next') end)
+  vmap('Shift+k', function() swayimg.viewer.switch_image('prev') end)
   vmap('r', swayimg.viewer.reset)
   vmap('Escape', function()
     if swayimg.get_fullscreen() then
@@ -143,12 +115,17 @@ do -- Key and mouse bindings in viewer mode
       swayimg.exit()
     end
   end)
-  vmap('y', function()
-    os.execute(string.format('wl-copy %q', swayimg.viewer.get_image().path))
-  end)
-  vmap('d', function()
-    os.execute(string.format('trash-put %q', swayimg.gallery.get_image().path))
-  end)
+  vmap('y', function() os.execute(string.format('wl-copy %q', swayimg.viewer.get_image().path)) end)
+  vmap(
+    'd',
+    function() os.execute(string.format('trash-put %q', swayimg.gallery.get_image().path)) end
+  )
+  gmap('q', swayimg.exit)
+
+  -- TODO: gallery bindings for: sort change, size change, hjkl
+  local gsize = function(px) swayimg.gallery.set_thumb_size(swayimg.gallery.get_thumb_size() + px) end
+  gmap('KP_Add', function() gsize(50) end)
+  gmap('KP_Subtract', function() gsize(-50) end)
 end
 
 do -- Gallery mode
@@ -166,7 +143,6 @@ do -- Gallery mode
   swayimg.gallery.enable_pstore(false)
   swayimg.gallery.set_text('topleft', { 'File: {name}' })
   swayimg.gallery.set_text('topright', { '{list.index} of {list.total}' })
-  -- TODO: gallery bindings for: quit, sort change, size change, hjkl
 end
 
 do -- misc
@@ -174,9 +150,7 @@ do -- misc
 
   swayimg.viewer.on_image_change(function()
     local i = swayimg.viewer.get_image()
-    if i.width < 500 then
-      swayimg.enable_antialiasing(false)
-    end
+    if i.width < 500 then swayimg.enable_antialiasing(false) end
   end)
 
   local scaled = false
@@ -188,5 +162,3 @@ do -- misc
   end)
   swayimg.on_initialized(function() end)
 end
-
-swayimg.viewer.set_pinch_factor(1)
