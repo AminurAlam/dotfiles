@@ -50,6 +50,7 @@ https://ryelang.org/blog/index.xml
 @ PERSONAL BLOGS 1
 https://aminuralam.github.io/rss.xml
 https://abhinavsarkar.net/all.atom "Abhinav Sarkar"
+https://abyss.fish/thoughts.atom
 $(feedmod https://alecmuffett.com/feed 's#^<p><a class="a2a_button_copy_link".*</p>##') "Alec Muffett"
 https://alexwlchan.net/atom.xml
 https://amygoodchild.com/blog?format=rss "Amy Goodchild" < download-timeout 0
@@ -111,6 +112,7 @@ https://eaton-works.com/feed.atom
 https://ersei.net/en/blog.atom
 https://blog.frost.kiwi/feed.xml
 https://blog.feld.me/feeds/all.atom.xml
+https://hacktivis.me/feed.atom
 https://p4m.dev/atom.xml
 https://riki.house/feed/all.atom
 https://fromjason.xyz/p/notebook/feed/feed.xml
@@ -119,13 +121,13 @@ https://ingrids.space/index.xml
 https://lambdaland.org/index.xml
 https://lorendb.dev/index.xml
 https://ludic.mataroa.blog/rss
-https://lukesmith.xyz/index.xml "Luke Smith"
-https://mtwb.blog/index.xml
 https://blog.matthewbrunelle.com/rss
 https://oppi.li/posts/index.rss
 https://oppi.li/weeklies/index.rss
 https://robertheaton.com/feed.xml "Robert Heaton"
 https://sethmlarson.dev/feed
+https://www.0xsid.com/blog/rss.xml
+https://susam.net/feed.xml
 https://thatshubham.com/rss.xml
 https://thelinuxcast.org/index.xml
 https://www.marginalia.nu/log/index.xml
@@ -159,6 +161,7 @@ https://neilzone.co.uk/index.xml
 https://nobodyspecial.neocities.org/rss2.xml
 https://ntietz.com/atom.xml
 https://palone.blog/feed/atom/
+https://redvice.org/feed.xml
 https://seirdy.one/posts/atom.xml
 https://tailscale.dev/feed.xml
 https://thecodist.com/rss
