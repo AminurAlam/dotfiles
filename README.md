@@ -1,6 +1,3 @@
-![file manager and terminal](https://github.com/user-attachments/assets/13e6a2a5-2444-483f-a61a-f305f6eb5154 "file manager and terminal")
-![lazygit and nvim](https://github.com/user-attachments/assets/6a0cd96c-dcd7-47b1-9d70-623aa3f7748a "lazygit and nvim")
-
 # configs found here
 
 - [alacritty](https://alacritty.org/) - terminal emulator
@@ -97,16 +94,10 @@ irm "https://github.com/AminurAlam/dotfiles/raw/main/setup/windows.ps1" -OutFile
 
 # mirrors
 
-[codeberg](https://codeberg.org/AminurAlam/dotfiles)
+[codeberg](https://codeberg.org/AminurAlam/dotfiles) :star2:
 
 ```sh
 git clone https://codeberg.org/AminurAlam/dotfiles.git
-```
-
-[gitlab](https://gitlab.com/AminurAlam/dotfiles)
-
-```sh
-git clone https://gitlab.com/AminurAlam/dotfiles.git
 ```
 
 [github](https://github.com/AminurAlam/dotfiles)
