@@ -72,11 +72,7 @@ map({ 'c' }, '<c-k>', '<up>')
 map({ 'ca' }, 'msg', 'messages')
 map({ 'ca' }, 'in', 'Inspect')
 map({ 'ca' }, 'it', 'InspectTree')
-map(
-  { 'ca' },
-  'pu',
-  'lua vim.pack.update' .. (os.getenv 'USER' == 'fisher' and '()' or '(nil, {target = "lockfile"})')
-)
+map({ 'ca' }, 'pu', 'packupdate ' .. (os.getenv 'USER' == 'fisher' and '' or ' ++lockfile'))
 
 -- macros
 macro('m', [[mmA;`m]]) -- put ; at end of statements

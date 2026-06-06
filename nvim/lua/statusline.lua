@@ -60,6 +60,7 @@ local mode_names = {
 local hl = vim.api.nvim_set_hl
 hl(0, 'stl_hl_a', { fg = '#30354A', bg = '#98c379', bold = true })
 hl(0, 'stl_hl_b', { bg = '#30354A', fg = '#98c379', bold = false })
+hl(0, 'stl_hl_to', { fg = '#30354A', bg = 'NONE', bold = false })
 
 vim.g.stl = {
   mode = function()
@@ -106,14 +107,14 @@ vim.opt.stl = '%#stl_hl_a# %{ g:stl.mode() } %#stl_hl_b# ' -- a to b
   .. '%{ &readonly ? "󰌾 " : "" }'
   .. [[%{ search("\\s\\+$", "nwc") > 0 ? "󱁐 " : "" }]]
   .. [[%{ search("^\\t\\+", "nwc") > 0 ? " " : "" }]]
-  .. '%#Normal# ' -- b to c
+  .. '%#stl_hl_to#%#Normal# ' -- b to c
   .. '%{% get(b:, "minidiff_summary_string", "") %} '
   .. '%{% g:stl.diagnostics() %} '
   .. '%#Normal#%=%S ' -- middle seperator
   .. '%{ g:stl.progress() } '
   .. '%{ v:hlsearch ? g:stl.hlsearch() : "" } '
   .. '%{ reg_recording() != "" ? " " .. reg_recording() : "" } '
-  .. '%#stl_hl_b# ' -- c to b
+  .. '%#stl_hl_to#%#stl_hl_b# ' -- c to b
   .. '%P '
   .. '%#stl_hl_a#' -- b to a
   .. "%{% &busy > 0 ? '◐ ' : '' %}"
