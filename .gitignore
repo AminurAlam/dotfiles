@@ -80,6 +80,9 @@ rclone.conf
 /scripts/bin/rish_shizuku.dex
 /scripts/build/*/*
 !/scripts/build/*/PKGBUILD
+!/scripts/build/mecab/config.guess
+!/scripts/build/mecab/config.sub
+!/scripts/build/mecab/src-dictionary.cpp.patch
 
 /streamrip/*downloads.db
 

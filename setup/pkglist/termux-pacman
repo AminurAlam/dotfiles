@@ -32,6 +32,7 @@ imagemagick
 inetutils
 jq
 lazygit
+ldd
 less
 libacl
 libandroid-glob
@@ -67,6 +68,7 @@ libtirpc
 libunbound
 libunistring
 libxml2
+mecab-git
 ncurses
 neovim-git
 net-tools
@@ -81,7 +83,11 @@ poppler
 procps
 psmisc
 python
+python-numpy
+python-pillow
 python-psutil
+python-torch
+python-torchvision
 python-yt-dlp
 qalc
 readline
@@ -89,6 +95,7 @@ resolv-conf
 ripgrep
 rsync
 ruff
+rust
 sed
 starship
 stylua
@@ -108,6 +115,7 @@ unzip
 util-linux
 uv
 xz-utils
+yazi
 yt-dlp-ejs
 zip
 zlib

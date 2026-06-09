@@ -3,21 +3,10 @@ set REPO_PATH "$HOME/repos/$REPO_NAME"
 set REPO_URL "https://github.com/taku910/mecab.git"
 set DEPENDENCIES binutils make cmake
 # NOTE: manga_ocr deps
-# pacman -S python-numpy python-pillow python-torch
+# pacman -S python-numpy python-pillow python-torch python-torchvision
 
 function pre_build
-    if command -vq apt
-        set -f pm apt install
-    else if command -vq pacman
-        set -f pm pacman -S --noconfirm --needed
-    else if command -vq dnf
-        set -f pm dnf install
-    else
-        printf "cannot determine package manager\n"
-        exit
-    end
-
-    $pm -- $DEPENDENCIES
+    pacman -S --noconfirm --needed -- $DEPENDENCIES
 
     if [ -d "$REPO_PATH" ]
         cd "$REPO_PATH"
