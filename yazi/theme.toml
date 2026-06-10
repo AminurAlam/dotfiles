@@ -109,6 +109,7 @@ dirs = [
 
 exts = [
   { name = "cbz", text = "󰂺", fg = "#ffffff" },
+  { name = "cbr", text = "󰂺", fg = "#ffffff" },
   { name = "3gp", text = "", fg = "#fd971f" },
   { name = "3mf", text = "󰆧", fg = "#888888" },
   { name = "7z", text = "", fg = "#eca517" },
