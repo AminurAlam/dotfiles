@@ -12,22 +12,15 @@ function gcp -a url path branch -d "git clone wrapper"
     else if string match -rq -- '/tree/[^/]+$' "$url"
         # set branch from url
         set -f branch --branch (string match -r -- '/tree/[^/]+$' "$url" | cut -d/ -f 3)
-
-        if string match -rq -- AminurAlam/termux-packages/tree/ "$url"
-            # set path for commonly forked project
-            set -f path "tpkg-$branch[2]"
-        end
     end
 
     # normalize url: user/repo/foo/bar/baz -> user/repo
     set url (string replace -r -- 'https://([^/]+)/([^/]+)/([^/]+).*' 'https://$1/$2/$3' "$url")
 
-    if string match -qr -- "^https://github.com/" "$url"
-        [ -e ~/.ssh/github_ed25519 ]
-        and set url (string replace -r -- 'https://github.com/([^/]+)/([^/]+)' 'git@github.com:$1/$2.git' "$url")
-    else if string match -qr -- "^https://codeberg.org/" "$url"
-        [ -e ~/.ssh/codeberg_ed25519 ]
-        and set url (string replace -r -- 'https://codeberg.org/([^/]+)/([^/]+)' 'ssh://git@codeberg.org/$1/$2.git' "$url")
+    # convert to ssh url
+    set -f known '(codeberg.org|github.com|gitlab.com)'
+    if [ -e ~/.ssh/git_ed25519 ] && string match -qr -- "^https://$known/" "$url"
+        and set url (string replace -r -- "https://$known/([^/]+)/([^/]+)" 'git@$1:$2/$3.git' "$url")
     end
 
     cd "$HOME/repos"

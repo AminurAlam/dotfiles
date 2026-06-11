@@ -19,14 +19,6 @@ Host slab
 Host paper
     Hostname 192.168.0.0
 
-Host github.com
+Host github.com gitlab.com codeberg.org
     User git
-    IdentityFile ${HOME}/.ssh/github_ed25519
-
-Host gitlab.com
-    User git
-    IdentityFile ${HOME}/.ssh/gitlab_ed25519
-
-Host codeberg.org
-    User git
-    IdentityFile ${HOME}/.ssh/codeberg_ed25519
+    IdentityFile ${HOME}/.ssh/git_ed25519
