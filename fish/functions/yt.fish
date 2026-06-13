@@ -21,7 +21,7 @@ function yt -a url fmt -d "yt-dlp wrapper"
     end
 
     # strip playlist params
-    set url (printf "$url" | sed -r 's/&list=.*$//')
+    set url (printf '%s' "$url" | sed -r 's/&list=.*$//')
 
     # pick and choose if no fmt given
     if [ -z "$fmt" ]

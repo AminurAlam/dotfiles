@@ -28,11 +28,8 @@ gnupg
 gpgme
 grep
 gzip
-imagemagick
-inetutils
 jq
 lazygit
-ldd
 less
 libacl
 libandroid-glob
@@ -71,7 +68,6 @@ libxml2
 mecab-git
 ncurses
 neovim-git
-net-tools
 newsraft
 openssh
 openssl
@@ -95,10 +91,7 @@ resolv-conf
 ripgrep
 rsync
 ruff
-rust
 sed
-starship
-stylua
 tar
 termux-am
 termux-am-socket
@@ -110,7 +103,6 @@ termux-keyring
 termux-licenses
 termux-tools
 tmux
-typst
 unzip
 util-linux
 uv

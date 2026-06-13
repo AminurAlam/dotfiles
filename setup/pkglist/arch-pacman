@@ -11,6 +11,7 @@ bash-language-server
 bibata-cursor-theme-bin
 brightnessctl
 btop
+dos2unix
 dunst
 dust
 eden-bin
@@ -114,7 +115,6 @@ scrcpy
 shellcheck
 shfmt
 sof-firmware
-starship
 strace
 stylua
 swaybg
@@ -142,7 +142,6 @@ unzip
 uv
 v4l2loopback-dkms
 v4l2loopback-utils
-vesktop-bin
 vscode-css-languageserver
 vscode-html-languageserver
 vulkan-intel

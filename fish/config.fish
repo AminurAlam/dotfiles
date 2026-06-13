@@ -101,7 +101,7 @@ fish_add_path --path $JAVA_HOME/bin
 
 status is-interactive || exit
 
-command -vq starship && starship init fish | source
+# command -vq starship && starship init fish | source
 command -vq zoxide && zoxide init fish | sed 's/^complete --erase --command z$//' | source || alias z cd
 dircolors ~/repos/dotfiles/other/dircolors -c | sed 's/^setenv /set -gx /' | source
 
@@ -113,6 +113,9 @@ if command -vq tmux && not tmux has-session -t conf 2>/dev/null
     command -vq lazygit
     and set lazygit \-n lazygit lazygit \; new-window \-c ~/repos/dotfiles/
     tmux new-session -c ~/repos/dotfiles/ -ds conf
+end
+
+function fish_mode_prompt
 end
 
 function fish_title
