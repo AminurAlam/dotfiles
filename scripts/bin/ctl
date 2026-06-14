@@ -18,9 +18,32 @@ switch $argv[1]
         and notify-send -h string:x-canonical-private-synchronous:mic -t 500 " MUTED"
         or notify-send -h string:x-canonical-private-synchronous:mic -t 500 " AUDIBLE"
 
-    case lum # (+|-)      change brightness
-        brightnessctl s (math 2 x (printf $argv[2] | wc -c))%$(string sub -l1 -- $argv[2])
-        notify-send -h string:x-canonical-private-synchronous:brightness -t 500 "Brightness: $(math -s0 (brightnessctl g) x 100 / (brightnessctl m))"
+    case lum # <+|-> [n]  change brightness
+        set a 1
+        [ -z "$argv[3]" ]
+        and set argv[3] 2
+        if false # command -v brightnessctl
+            notify-send -h string:x-canonical-private-synchronous:brightness -t 500 \
+                "Brightness: $(
+                brightnessctl set $argv[3]%$argv[2] \
+                | rg --replace '$1' '^\tCurrent brightness: \d+ \((\d+%)\)$'
+            )"
+        else
+            set device /sys/class/backlight/amdgpu_bl1
+            set max (cat $device/max_brightness)
+            set cur (cat $device/brightness)
+            [ -z "$argv[3]" ]
+            and set argv[3] 1
+
+            set new (math -s0 -m ceiling "$cur $argv[2] ($max x $argv[3] / 100)")
+            [ $new -lt 0 ] && set new 0
+            [ $new -gt $max ] && set new $max
+
+            echo $new >$device/brightness
+
+            notify-send -h string:x-canonical-private-synchronous:brightness -t 500 \
+                "Brightness: $(math -s0 "100 x ($new / $max)")%"
+        end
 
     case pow # (up|down)  change powerprofile
         # TODO: rollback instead
