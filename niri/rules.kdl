@@ -35,7 +35,7 @@ window-rule { // maximized
     open-maximized-to-edges true
 }
 
-window-rule { // fullscreen
+window-rule { // identity
     match app-id="^org.gnome.gitlab.YaLTeR.Identity$"
 
     open-fullscreen true
@@ -83,7 +83,7 @@ layer-rule { // launcher
 layer-rule { // waybar
     match namespace="^waybar$"
 
-    opacity 0.9
+    opacity 0.95
     background-effect { blur true; }
 }
 

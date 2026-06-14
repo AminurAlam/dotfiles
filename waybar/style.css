@@ -7,8 +7,9 @@
 }
 
 #waybar {
-  font-family: "JetBrainsMono Nerd Font", "IBM Plex Mono", Arial, Helvetica, sans-serif;
-  background: rgb(30, 32, 48);
+  font-family:
+    "JetBrainsMono Nerd Font", "IBM Plex Mono", Arial, Helvetica, sans-serif;
+  background: #24283b;
   color: #c0caf5;
   margin: 0px 0px;
   transition-property: background-color;
