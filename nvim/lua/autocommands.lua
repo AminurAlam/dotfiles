@@ -59,7 +59,7 @@ autocmd('BufWinEnter', {
 
 autocmd('FileType', {
   desc = 'use smaller indent lines',
-  pattern = 'lua,toml,html,css,json',
+  pattern = 'lua,toml,html,css,json,query',
   command = 'setl tabstop=2 shiftwidth=2 softtabstop=2 listchars+=leadmultispace:│\\ ',
 })
 

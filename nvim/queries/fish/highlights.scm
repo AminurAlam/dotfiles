@@ -7,11 +7,13 @@
   name: (word) @_command (#eq? @_command "set")
   argument: (word)* @_flag
     (#match? @_flag "^-")
-  argument: (word) @variable.member
-    (#not-match? @variable.member "^-"))
-
+  argument: [(word) (concatenation (word) (integer))] @variable.member
+    (#not-match? @variable.member "^-")
+)
 
 ; spellcheck strings
-((single_quote_string) @spell)
-((double_quote_string) @spell)
-((variable_name) @nospell)
+[
+  (single_quote_string)
+  (double_quote_string)
+] @spell
+(variable_name) @nospell
