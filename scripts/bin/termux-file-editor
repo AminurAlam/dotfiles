@@ -1,10 +1,26 @@
 #!/data/data/com.termux/files/usr/bin/fish
 
 if echo "$argv" | rg -q '.*\.(png|jpg)'
-    ps -xo cmd | rg -q [m]anga_ocr
-    and am start -n "org.ironfoxoss.ironfox/org.mozilla.gecko.BrowserApp"
-    or echo "manga_ocr is not running"
-    # TODO: check suspend
+    if command -vq tmux && not tmux has-session -t ocr 2>/dev/null
+        tmux new-session -c ~ -ds ocr
+        tmux send-keys -t ocr:1.1 ocr Enter
+        termux-notification -c "manga_ocr was just started, try again"
+    end
+
+    set id (pgrep -f manga_ocr)[1]
+    [ -n "$id" ]
+    and set state (ps -o s= $id)[1]
+
+    if [ -z "$state" ]
+        termux-notification -c "manga_ocr is not running"
+    else if [ $state = T ]
+        tmux send-keys -t ocr:1.1 C-z
+    else if [ $state = S ]
+        # all good
+    end
+    am start -n "org.ironfoxoss.ironfox/org.mozilla.gecko.BrowserApp"
+    sleep 15
+    tmux send-keys -t ocr:1.1 C-z
 else
     nvim $argv
 end

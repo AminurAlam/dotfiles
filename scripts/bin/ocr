@@ -1,0 +1,8 @@
+#!/usr/bin/fish --no-config
+
+if set -q TERMUX_VERSION
+    env LD_PRELOAD="$LD_PRELOAD $PREFIX/lib/libiconv.so" \
+        manga_ocr -r ~/downloads/ -w clipboard -p ~/.local/share/manga-ocr-base/
+else
+    manga_ocr -b
+end
