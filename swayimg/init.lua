@@ -109,7 +109,10 @@ do -- Key bindings
   vmap('Shift+k', function() swayimg.viewer.switch_image('prev') end)
   vmap('r', swayimg.viewer.reset)
   vmap('Escape', function()
-    if swayimg.get_fullscreen() then
+    print()
+    if swayimg.imagelist.size() > 1 then
+      swayimg.set_mode('gallery')
+    elseif swayimg.get_fullscreen() then
       swayimg.set_fullscreen(false)
     else
       swayimg.exit()
@@ -120,12 +123,20 @@ do -- Key bindings
     'd',
     function() os.execute(string.format('trash-put %q', swayimg.gallery.get_image().path)) end
   )
-  gmap('q', swayimg.exit)
-
-  -- TODO: gallery bindings for: sort change, size change, hjkl
   local gsize = function(px) swayimg.gallery.set_thumb_size(swayimg.gallery.get_thumb_size() + px) end
   gmap('KP_Add', function() gsize(50) end)
   gmap('KP_Subtract', function() gsize(-50) end)
+  gmap('q', swayimg.exit)
+  gmap('h', function() swayimg.gallery.switch_image('left') end)
+  gmap('j', function() swayimg.gallery.switch_image('down') end)
+  gmap('k', function() swayimg.gallery.switch_image('up') end)
+  gmap('l', function() swayimg.gallery.switch_image('right') end)
+  gmap('g', function() swayimg.gallery.switch_image('first') end)
+  gmap('G', function() swayimg.gallery.switch_image('last') end)
+  gmap('u', function() swayimg.gallery.switch_image('pgup') end)
+  gmap('d', function() swayimg.gallery.switch_image('pgdown') end)
+
+  -- TODO: gallery bindings for: sort change, size change, hjkl
 end
 
 do -- Gallery mode
@@ -153,12 +164,14 @@ do -- misc
     if i.width < 500 then swayimg.enable_antialiasing(false) end
   end)
 
+  -- fit to screen on opening
   local scaled = false
   swayimg.on_window_resize(function()
-    if not scaled then
+    if false and swayimg.get_mode() == 'viewer' and not scaled then
       swayimg.viewer.set_fix_scale('fit')
       scaled = true
     end
   end)
+
   swayimg.on_initialized(function() end)
 end
