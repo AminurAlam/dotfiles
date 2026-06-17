@@ -54,6 +54,12 @@ window-rule { // *
     geometry-corner-radius 12
     clip-to-geometry true
     background-effect { blur true; }
+}
+
+window-rule { // unfocused
+    match is-focused=false
+    exclude app-id="^mpv$"
+
     opacity 0.9
 }
 
