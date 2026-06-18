@@ -167,7 +167,7 @@ do -- misc
   -- fit to screen on opening
   local scaled = false
   swayimg.on_window_resize(function()
-    if false and swayimg.get_mode() == 'viewer' and not scaled then
+    if swayimg.get_mode() == 'viewer' and not scaled then
       swayimg.viewer.set_fix_scale('fit')
       scaled = true
     end
