@@ -18,6 +18,7 @@ function gcp -a url path branch -d "git clone wrapper"
     set url (string replace -r -- 'https://([^/]+)/([^/]+)/([^/]+).*' 'https://$1/$2/$3' "$url")
 
     # convert to ssh url
+    # TODO: fix gitlab.archlinux.org getting matched
     set -f known '(codeberg.org|github.com|gitlab.com)'
     if [ -e ~/.ssh/git_ed25519 ] && string match -qr -- "^https://$known/" "$url"
         and set url (string replace -r -- "https://$known/([^/]+)/([^/]+)" 'git@$1:$2/$3.git' "$url")
@@ -28,6 +29,7 @@ function gcp -a url path branch -d "git clone wrapper"
     echo -- " \$ $(set_color $fish_color_command)git $(set_color $fish_color_param)clone $(set_color $fish_color_option)$branch[1] $(set_color $fish_color_param)$branch[2] $(set_color $fish_color_option)-- $(set_color $fish_color_param)$url $path$(set_color normal)"
 
     # TODO: set path to name-repo if repo already exists
+    # TODO: save URLS in a file
     git clone --depth 1 $branch -- $url $path
     and begin
         if [ -n "$path" ]

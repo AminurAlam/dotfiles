@@ -1,4 +1,5 @@
 function yt -a url fmt -d "yt-dlp wrapper"
+    # TODO: auto create tmux session
     for ver in 12 13 14 15
         [ -e "$PREFIX/lib/python3.$ver/site-packages/yt_dlp/YoutubeDL.py" ] && set pyfile "$PREFIX/lib/python3.$ver/site-packages/yt_dlp/YoutubeDL.py"
     end

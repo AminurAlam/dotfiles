@@ -1,4 +1,5 @@
 function at -d "torrent download helper"
+    # TODO: auto create tmux session
     if [ -z "$argv[1]" ]
         pushd $XDG_DOWNLOAD_DIR/main/torrents/
         set -f argv[1] $XDG_DOWNLOAD_DIR/main/torrents/(fd -d2 -tf --relative-path . | fzf)
@@ -8,6 +9,7 @@ function at -d "torrent download helper"
 
     set -f files (aria2c $argv[1] -S | rg '\d+\|' | sed -E 's#\|.*/# #' | fzf --multi | kt 1 | string join ,)
 
+    # TODO: termux specif outdir
     set -f outdir (pwd)
     if [ (path dirname $argv[1] | path basename) = anime ]
         set -f outdir $XDG_VIDEOS_DIR

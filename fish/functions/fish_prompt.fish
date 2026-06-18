@@ -28,9 +28,10 @@ function fish_prompt --description 'commandline prompt'
     set branch (command git rev-parse --abbrev-ref HEAD 2>/dev/null)
     if [ -n "$branch" ]
         set git (set_color --bold purple)  $branch
-        set pushcount (git rev-list --count "origin/$branch..$branch")
-        if [ "$pushcount" -gt 0 ]
-            set push (set_color brcyan) ' ' $pushcount
+        if [ -n "$(git remote get-url origin 2>/dev/null)" ]
+            set pushcount (git rev-list --count "origin/$branch..$branch")
+            [ "$pushcount" != 0 ]
+            and set push (set_color brcyan) ' ' $pushcount
         end
     end
 
