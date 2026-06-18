@@ -37,6 +37,7 @@
     > #context-print-selection,
     > #context-redo,
     > #context-savepage,
+    > #context-screenshot,
     > #context-searchselect,
     > #context-selectall,
     > #context-sendaudio,
@@ -46,8 +47,10 @@
     > #context-sep-redo,
     > #context-sep-selectall,
     > #context-setDesktopBackground,
+    > #context-translate-selection,
     > #context-undo,
-    > #context-video-fullscreen, /* > #context-viewsource, */
+    > #context-video-fullscreen,
+    > #context-viewsource,
     > #fill-login-generated-password,
     > #frame-sep {
       display: none !important;

@@ -16,9 +16,13 @@ body {
 
     /* Checkerboard pattern for transparent images, slight blue hue */
     img.transparent {
-      background:
-        conic-gradient(#eef 0.25turn, #bbc 0.25turn 0.5turn, #eef 0.5turn 0.75turn, #bbc 0.75turn) top left / 24px 24px
-        repeat !important;
+      background: conic-gradient(
+          #eef 0.25turn,
+          #bbc 0.25turn 0.5turn,
+          #eef 0.5turn 0.75turn,
+          #bbc 0.75turn
+        )
+        top left / 24px 24px repeat !important;
     }
   }
 }
@@ -148,6 +152,43 @@ body {
   #navigation,
   #footer,
   div.article-footer {
+    display: none;
+  }
+}
+
+@-moz-document regexp("https://(askubuntu.com|stackoverflow.com)/.*")
+{
+  header,
+  form,
+  div.ml12,
+  #announcement-banner,
+  #left-sidebar,
+  #sidebar,
+  #answer-55244539
+    > .post-layout
+    > .post-layout--right.answercell
+    > .mt24
+    > .gsy.gs8.jc-end.ai-start.fw-wrap.d-flex
+    > .mr16.flex--item
+    > .pt2.js-post-menu,
+  .c-pointer.g8.ai-center.d-flex.mb8,
+  .disabled-link.comments-link.js-add-link,
+  .iconHistory.svg-icon.mr0.mln2,
+  .js-top-bar.l0.t0.ps-fixed.s-topbar,
+  .js-top-bar.l0.t0.ps-fixed.s-topbar,
+  .mb12,
+  .mb16.pt4.ai-start.jc-end.fw-wrap.gsy.gs8.d-flex.mt16,
+  .mt24,
+  .mx-auto.py6.c-pointer.s-btn__unset.s-btn.flex--item.js-post-issue,
+  .post-layout--right.postcell > .js-post-body.s-prose > div,
+  .post-layout--right.postcell > .mb0,
+  .ps-relative.js-pinned-left-sidebar.left-sidebar,
+  .pt2.js-post-menu,
+  .py4.c-pointer.s-btn__unset.s-btn.js-saves-btn,
+  .s-topbar--container,
+  .show-votes,
+  .site-header,
+  .site-footer--container {
     display: none;
   }
 }
