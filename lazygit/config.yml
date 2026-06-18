@@ -227,8 +227,7 @@ git:
   # See https://github.com/jesseduffield/lazygit/blob/master/docs/Custom_Pagers.md
   # for more information.
   pagers:
-    -
-      colorArg: always
+    - colorArg: always
       pager: "delta --dark --paging=never"
       externalDiffCommand: ""
       useExternalDiffGitConfig: false
@@ -393,7 +392,12 @@ os:
 disableStartupPopups: false
 # User-configured commands that can be invoked from within Lazygit
 # See https://github.com/jesseduffield/lazygit/blob/master/docs/Custom_Command_Keybindings.md
-customCommands: []
+customCommands:
+  - key: A
+    context: files
+    command: "git commit --amend --no-edit"
+    description: "Ammend last commit"
+    output: terminal
 # See https://github.com/jesseduffield/lazygit/blob/master/docs/Config.md#custom-pull-request-urls
 services: {}
 # What to do when opening Lazygit outside of a git repo.
@@ -419,12 +423,12 @@ keybinding:
     togglePanel: <tab>
     prevItem: [<up>, k]
     nextItem: [<down>, j]
-    prevPage: ','
+    prevPage: ","
     nextPage: .
     scrollLeft: H
     scrollRight: L
     gotoTop: [g, <, <home>]
-    gotoBottom: [G, '>', <end>]
+    gotoBottom: [G, ">", <end>]
     toggleRangeSelect: v
     rangeSelectDown: <shift+down>
     rangeSelectUp: <shift+up>
@@ -448,7 +452,7 @@ keybinding:
     backspaceWord: <ctrl+backspace>
     # <alt+delete> on Mac
     forwardDeleteWord: <ctrl+delete>
-    optionMenu: '?'
+    optionMenu: "?"
     select: <space>
     goInto: <enter>
     confirm: <enter>
@@ -462,7 +466,7 @@ keybinding:
     openFile: o
     scrollUpMain: [<pgup>, K, <ctrl+u>]
     scrollDownMain: [<pgdown>, J, <ctrl+d>]
-    executeShellCommand: ':'
+    executeShellCommand: ":"
     createRebaseOptionsMenu: m
     # 'Files' appended for legacy reasons
     pushFiles: P
@@ -470,11 +474,11 @@ keybinding:
     pullFiles: p
     refresh: R
     createPatchOptionsMenu: <ctrl+p>
-    nextTab: ']'
-    prevTab: '['
+    nextTab: "]"
+    prevTab: "["
     nextScreenMode: +
     prevScreenMode: _
-    cyclePagers: '|'
+    cyclePagers: "|"
     undo: z
     redo: Z
     filteringMenu: <ctrl+s>
@@ -482,10 +486,10 @@ keybinding:
     copyToClipboard: <ctrl+o>
     openRecentRepos: <ctrl+r>
     submitEditorText: <enter>
-    extrasMenu: '@'
+    extrasMenu: "@"
     toggleWhitespaceInDiffView: <ctrl+w>
-    increaseContextInDiffView: '}'
-    decreaseContextInDiffView: '{'
+    increaseContextInDiffView: "}"
+    decreaseContextInDiffView: "{"
     increaseRenameSimilarityThreshold: )
     decreaseRenameSimilarityThreshold: (
     openDiffTool: <ctrl+t>
@@ -497,7 +501,7 @@ keybinding:
   files:
     commitChanges: C
     commitChangesWithoutHook: w
-    amendLastCommit: A
+    amendLastCommit: <disabled>
     commitChangesWithEditor: c
     findBaseCommitForFixup: <ctrl+f>
     confirmDiscard: x
@@ -508,11 +512,11 @@ keybinding:
     toggleStagedAll: a
     viewResetOptions: D
     fetch: f
-    toggleTreeView: '`'
+    toggleTreeView: "`"
     openMergeOptions: M
     openStatusFilter: <ctrl+b>
     copyFileInfoToClipboard: "y"
-    collapseAll: '-'
+    collapseAll: "-"
     expandAll: =
   branches:
     createPullRequest: o
@@ -521,7 +525,7 @@ keybinding:
     copyPullRequestURL: <ctrl+y>
     checkoutBranchByName: c
     forceCheckoutBranch: F
-    checkoutPreviousBranch: '-'
+    checkoutPreviousBranch: "-"
     rebaseBranch: r
     renameBranch: R
     mergeIntoCurrentBranch: M
@@ -563,7 +567,7 @@ keybinding:
     openPullRequestInBrowser: <disabled>
     viewBisectOptions: b
     startInteractiveRebase: <disabled>
-    selectCommitsOfCurrentBranch: '*'
+    selectCommitsOfCurrentBranch: "*"
   amendAttribute:
     resetAuthor: a
     setAuthor: A
