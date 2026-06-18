@@ -3,7 +3,6 @@
 ### Search mode
 --ignore-case
 --tiebreak chunk,begin,index
---bind "tab:toggle+up,shift-tab:toggle+down"
 --scroll-off 4
 
 ### Layout
@@ -21,13 +20,14 @@
 # --select-1
 
 ### Interface
+--bind tab:toggle+up
+--bind shift-tab:toggle+down
+--bind ctrl-a:select-all
 --bind ctrl-u:half-page-up
 --bind ctrl-d:half-page-down
 --bind ctrl-x:jump
 --bind ctrl-f:preview-page-down
 --bind ctrl-b:preview-page-up
---bind ctrl-a:beginning-of-line
---bind ctrl-e:end-of-line
 --bind ctrl-j:down
 --bind ctrl-k:up
 
