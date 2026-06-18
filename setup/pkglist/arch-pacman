@@ -1,7 +1,6 @@
 7zip
 alsa-utils
 amd-ucode
-android-ndk
 android-tools
 anki
 aria2
@@ -9,7 +8,6 @@ base
 base-devel
 bash-language-server
 bibata-cursor-theme-bin
-brightnessctl
 btop
 dos2unix
 dunst
@@ -61,9 +59,7 @@ ly
 lzip
 mandoc
 mecab-git
-mecab-ipadic
 mediainfo
-megatools
 melonds-bin
 mpv
 neovim-git
@@ -78,7 +74,6 @@ noto-fonts-cjk
 nwg-look
 openresolv
 openssh
-osu-lazer-bin
 otf-ipafont
 pacman-contrib
 pandoc-cli
@@ -103,7 +98,6 @@ qt6-wayland
 qt6ct
 rclone
 re2c
-redlib-git
 reflector
 renameutils
 resvg
@@ -111,6 +105,8 @@ revanced-cli-bin
 ripgrep
 rsync
 ruff
+rust
+rust-analyzer
 scrcpy
 shellcheck
 shfmt
@@ -134,7 +130,7 @@ ttf-dejavu
 ttf-ibm-plex
 ttf-liberation
 ttf-opensans
-ttf-twemoji-color
+ttf-twemoji
 ty
 typst
 unrar

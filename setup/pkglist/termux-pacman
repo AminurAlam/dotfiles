@@ -67,7 +67,7 @@ libunistring
 libxml2
 mecab-git
 ncurses
-neovim-git
+neovim-nightly
 newsraft
 openssh
 openssl
