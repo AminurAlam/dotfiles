@@ -14,7 +14,7 @@ function update -d "system update with just one command"
 
     printf "=============== BIOME ===============\n"
 
-    if [ $USER = fisher ]
+    if false && [ $USER = fisher ]
         cd $HOME/.local/cache/temp/
 
         set local_version (biome -V | rg --replace '$1' '^Version: (.*)$')
