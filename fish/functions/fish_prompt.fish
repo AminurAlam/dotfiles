@@ -28,10 +28,26 @@ function fish_prompt --description 'commandline prompt'
     set branch (command git rev-parse --abbrev-ref HEAD 2>/dev/null)
     if [ -n "$branch" ]
         set git (set_color --bold purple)  $branch
-        if [ -n "$(git remote get-url origin 2>/dev/null)" ]
-            set pushcount (git rev-list --count "origin/$branch..$branch")
-            [ "$pushcount" != 0 ]
-            and set push (set_color brcyan) ' ' $pushcount
+        for r in (git remote)
+            [ $r = upstream ] && continue
+
+            set pushcount (git rev-list --count "$r..$branch")
+            [ "$pushcount" = 0 ]
+            and continue
+
+            set icon 
+            switch (git remote get-url $r | rg --only-matching --replace '$2' '(https://|git@)([^:/]+)')
+                case github.com
+                    set icon 
+                case codeberg.org
+                    set icon 
+                case gitlab.archlinux.org
+                    set icon 
+                case brick
+                    set icon 
+            end
+
+            set -a push (set_color brcyan) "$icon" "$pushcount"
         end
     end
 
