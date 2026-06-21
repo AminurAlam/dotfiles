@@ -195,6 +195,37 @@ do -- [=[ turn off fancy rounded corners
   --]=]
 end
 
+do -- [=[ fix drag making hidden pannel reappear
+  function Rail:drag(event)
+    if event.type ~= 'legacy' then
+      return
+    end
+
+    local c, x, parent, current, preview = self._chunks, 0, 0, 0, 0
+    if self._id == 'rail-left' then
+      x = math.min(event.x, c[2].right - 2)
+      parent = math.max(1, x - c[1].x)
+      current = math.max(1, c[1].w + c[2].w - parent)
+      -- preview = math.max(1, c[3].w)
+      preview = c[3].w > 0 and math.max(1, c[3].w) or 0
+    else
+      x = math.max(event.x, c[2].x + 2)
+      preview = math.max(1, c[3].right - x)
+      current = math.max(1, c[2].w + c[3].w - preview)
+      -- parent = math.max(1, c[1].w)
+      parent = c[1].w > 0 and math.max(1, c[1].w) or 0
+    end
+
+    local r = rt.mgr.ratio
+    if r.parent ~= parent or r.current ~= current or r.preview ~= preview then
+      rt.mgr.ratio = { parent, current, preview }
+      ui.render()
+    end
+  end
+
+  -- ]=]
+end
+
 ------------------ PLUGIN ---------------
 
 if rt.args.chooser_file then

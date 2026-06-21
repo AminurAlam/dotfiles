@@ -87,7 +87,12 @@ rules = [
 ]
 
 [icon]
-conds = [{ if = "dir", text = "", fg = "blue" }]
+conds = [
+  { if = "dir & hovered", text = "", fg = "#03a9f4" },
+  { if = "dir", text = "", fg = "blue" },
+  { if = "exec", text = "", fg = "green" },
+  { if = "!dir", text = "", fg = "#ffffff" },
+]
 
 dirs = [
   { name = ".config", text = "" },
@@ -104,12 +109,12 @@ dirs = [
   { name = "pic", text = "" },
   { name = "Public", text = "" },
   { name = "vid", text = "" },
-  { name = "repos", text = "󰳐" },
+  { name = "repos", text = "" },
 ]
 
 exts = [
-  { name = "cbz", text = "󰂺", fg = "#ffffff" },
-  { name = "cbr", text = "󰂺", fg = "#ffffff" },
+  { name = "cbz", text = "󰂺", fg = "#f7768e" },
+  { name = "cbr", text = "󰂺", fg = "#f7768e" },
   { name = "3gp", text = "", fg = "#fd971f" },
   { name = "3mf", text = "󰆧", fg = "#888888" },
   { name = "7z", text = "", fg = "#eca517" },
@@ -207,6 +212,8 @@ exts = [
   { name = "gz", text = "", fg = "#eca517" },
   { name = "h", text = "", fg = "#a074c4" },
   { name = "hbs", text = "", fg = "#f0772b" },
+  { name = "heic", text = "", fg = "#a074c4" },
+  { name = "heif", text = "", fg = "#a074c4" },
   { name = "hh", text = "", fg = "#a074c4" },
   { name = "hpp", text = "", fg = "#a074c4" },
   { name = "hs", text = "", fg = "#a074c4" },
