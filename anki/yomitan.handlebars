@@ -92,29 +92,18 @@
                 {{~/if~}}
             {{~/unless~}}
         {{~else if (op "||" (op "===" definition.type "termGrouped") (op "===" definition.type "termMerged"))~}}
-            {{~#if (op ">" definition.definitions.length 1)~}}
-                <ol>
-                    {{~#each definition.definitions~}}
-                        {{~#unless (op "&&" ../selectedDictionary (op "!=" ../selectedDictionary dictionary))~}}
-                            <li data-dictionary="{{dictionary}}">
-                                {{~> glossary-single . brief=../brief noDictionaryTag=../noDictionaryTag ~}}
-                            </li>
-                            {{~#if dictScopedStyles~}}
-                                <style>{{{dictScopedStyles}}}</style>
-                            {{~/if~}}
-                        {{~/unless~}}
-                    {{~/each~}}
-                </ol>
-            {{~else~}}
+            <ol>
                 {{~#each definition.definitions~}}
                     {{~#unless (op "&&" ../selectedDictionary (op "!=" ../selectedDictionary dictionary))~}}
-                        {{~> glossary-single . brief=../brief noDictionaryTag=../noDictionaryTag ~}}
-                        {{~#if glossaryScopedStyles~}}
-                            <style>{{{glossaryScopedStyles}}}</style>
+                        <li data-dictionary="{{dictionary}}">
+                            {{~> glossary-single . brief=../brief noDictionaryTag=../noDictionaryTag ~}}
+                        </li>
+                        {{~#if dictScopedStyles~}}
+                            <style>{{{dictScopedStyles}}}</style>
                         {{~/if~}}
                     {{~/unless~}}
                 {{~/each~}}
-            {{~/if~}}
+            </ol>
         {{~else if (op "===" definition.type "kanji")~}}
             {{~#if (op ">" definition.glossary.length 1)~}}
                 <ol>{{#each definition.glossary}}<li>{{.}}</li>{{/each}}</ol>
@@ -136,15 +125,23 @@
 
 {{~#*inline "glossary-plain"~}}
     {{~#scope~}}
-        {{~#each definition.definitions~}}
-            {{~#unless (op "&&" ../selectedDictionary (op "!=" ../selectedDictionary dictionary))~}}
-                {{~#unless ../noDictionaryTag~}}
-                    ({{dictionaryAlias}})<br>
+        {{~#if (op "||" (op "===" definition.type "termGrouped") (op "===" definition.type "termMerged"))~}}
+            {{~#each definition.definitions~}}
+                {{~#unless (op "&&" ../selectedDictionary (op "!=" ../selectedDictionary dictionary))~}}
+                    {{~#unless ../noDictionaryTag~}}
+                        ({{dictionaryAlias}})<br>
+                    {{~/unless~}}
+                    {{#each glossary}}{{{formatGlossaryPlain ../dictionary .}}}{{#unless @last}}, {{/unless}}{{/each}}{{#unless @last}}<br>{{/unless}}
                 {{~/unless~}}
-                {{#each glossary}}{{{formatGlossaryPlain ../dictionary .}}}{{#unless @last}}, {{/unless}}{{/each}}{{#unless @last}}
-                {{/unless}}
+            {{~/each~}}
+        {{~else~}}
+            {{~#unless (op "&&" selectedDictionary (op "!=" selectedDictionary definition.dictionary))~}}
+                {{~#unless noDictionaryTag~}}
+                    ({{definition.dictionaryAlias}})<br>
+                {{~/unless~}}
+                {{#each definition.glossary}}{{{formatGlossaryPlain ../definition.dictionary .}}}{{/each}}
             {{~/unless~}}
-        {{~/each~}}
+        {{~/if~}}
     {{~/scope~}}
 {{~/inline~}}
 
@@ -153,7 +150,7 @@
 {{/inline}}
 
 {{~#*inline "glossary-first"~}}
-    <div class="yomitan-glossary">
+    <div style="text-align: left;" class="yomitan-glossary">
     {{~#scope~}}
         {{~#if (op "===" definition.type "term")~}}
             {{~> glossary-single definition brief=brief noDictionaryTag=noDictionaryTag ~}}
@@ -238,6 +235,10 @@
 
 {{~#*inline "url"~}}
     <a href="{{definition.url}}">{{definition.url}}</a>
+{{~/inline~}}
+
+{{~#*inline "url-plain"~}}
+    {{definition.url}}
 {{~/inline~}}
 
 {{#*inline "screenshot"}}
@@ -385,34 +386,34 @@
 {{/inline}}
 
 {{#*inline "frequency-harmonic-rank"}}
-    {{~#if (op "===" definition.frequencyHarmonic -1) ~}}
+    {{~#if (op "===" definition.frequencyHarmonicRank -1) ~}}
         9999999
     {{~else ~}}
-        {{definition.frequencyHarmonic}}
+        {{definition.frequencyHarmonicRank}}
     {{~/if~}}
 {{/inline}}
 
 {{#*inline "frequency-harmonic-occurrence"}}
-    {{~#if (op "===" definition.frequencyHarmonic -1) ~}}
+    {{~#if (op "===" definition.frequencyHarmonicOccurrence -1) ~}}
         0
     {{~else ~}}
-        {{definition.frequencyHarmonic}}
+        {{definition.frequencyHarmonicOccurrence}}
     {{~/if~}}
 {{/inline}}
 
 {{#*inline "frequency-average-rank"}}
-    {{~#if (op "===" definition.frequencyAverage -1) ~}}
+    {{~#if (op "===" definition.frequencyAverageRank -1) ~}}
         9999999
     {{~else ~}}
-        {{definition.frequencyAverage}}
+        {{definition.frequencyAverageRank}}
     {{~/if~}}
 {{/inline}}
 
 {{#*inline "frequency-average-occurrence"}}
-    {{~#if (op "===" definition.frequencyAverage -1) ~}}
+    {{~#if (op "===" definition.frequencyAverageOccurrence -1) ~}}
         0
     {{~else ~}}
-        {{definition.frequencyAverage}}
+        {{definition.frequencyAverageOccurrence}}
     {{~/if~}}
 {{/inline}}
 
