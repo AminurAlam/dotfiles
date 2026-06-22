@@ -42,6 +42,7 @@
 # allow completions manully
 /fish/completions/*
 !/fish/completions/mux.fish
+!/fish/completions/gcp.fish
 !/fish/completions/y.fish
 !/fish/completions/z.fish
 /fish/fish_variables

@@ -29,9 +29,11 @@ function gcp -a url path branch -d "git clone wrapper"
     echo -- " \$ $(set_color $fish_color_command)git $(set_color $fish_color_param)clone $(set_color $fish_color_option)$branch[1] $(set_color $fish_color_param)$branch[2] $(set_color $fish_color_option)-- $(set_color $fish_color_param)$url $path$(set_color normal)"
 
     # TODO: set path to name-repo if repo already exists
-    # TODO: save URLS in a file
+
     git clone --depth 1 $branch -- $url $path
     and begin
+        echo $url >>$XDG_STATE_HOME/gcp.urls
+
         if [ -n "$path" ]
             cd "$path"
         else
