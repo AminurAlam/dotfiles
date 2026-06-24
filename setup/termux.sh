@@ -1,6 +1,6 @@
 #!/data/data/com.termux/files/usr/bin/bash
 
-setup_url="https://raw.githubusercontent.com/AminurAlam/dotfiles/main/setup/termux.fish"
+setup_url="https://codeberg.org/AminurAlam/dotfiles/raw/branch/main/setup/termux.fish"
 boot_url="https://github.com/termux-pacman/termux-packages/releases/latest/download/bootstrap-aarch64.zip"
 boot_path="$HOME/bootstrap-aarch64.zip"
 

@@ -33,8 +33,12 @@ setup_dotfiles() {
         pushd ~/repos/dotfiles || return
         git pull -q origin
         popd || return
-    else
-        git clone -q --depth 1 "https://github.com/AminurAlam/dotfiles.git" ~/repos/dotfiles
+    elif [ -e ~/.ssh/git_ed25519 ]; then
+        mkdir ~/repos
+        git clone -q --depth 1 "git@codeberg.org:AminurAlam/dotfiles.git" ~/repos/dotfiles
+    else; then
+        mkdir ~/repos
+        git clone -q --depth 1 "https://codeberg.org/AminurAlam/dotfiles.git" ~/repos/dotfiles
     fi
     printf "done\n"
     [ -e ~/repos/dotfiles/setup/linking.fish ] && fish ~/repos/dotfiles/setup/linking.fish

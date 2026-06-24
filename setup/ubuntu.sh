@@ -15,9 +15,12 @@ clear
 printf "CLONING DOTFILES...\n"
 if [ -e ~/repos/dotfiles ]; then
     git -C ~/repos/dotfiles/ pull
-else
+elif [ -e ~/.ssh/git_ed25519 ]; then
     mkdir ~/repos
-    git clone --depth 1 "https://github.com/AminurAlam/dotfiles.git" ~/repos/dotfiles
+    git clone -q --depth 1 "git@codeberg.org:AminurAlam/dotfiles.git" ~/repos/dotfiles
+else; then
+    mkdir ~/repos
+    git clone -q --depth 1 "https://codeberg.org/AminurAlam/dotfiles.git" ~/repos/dotfiles
 fi
 if ! [ -e ~/repos/dotfiles ]; then
     printf "DOTFILES NOT CLONED PROPERLY\n"

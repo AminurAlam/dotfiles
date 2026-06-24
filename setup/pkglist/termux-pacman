@@ -14,6 +14,7 @@ dialog
 diffutils
 dos2unix
 dust
+exiftool
 exiv2
 fd
 ffmpeg
@@ -68,6 +69,7 @@ libxml2
 mecab-git
 ncurses
 neovim-nightly
+net-tools
 newsraft
 openssh
 openssl
@@ -91,6 +93,7 @@ resolv-conf
 ripgrep
 rsync
 ruff
+rust
 sed
 tar
 termux-am

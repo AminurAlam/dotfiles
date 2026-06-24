@@ -40,7 +40,7 @@ jre8-openjdk-headless
 kanata
 kdeconnect
 keepassxc
-kid3
+kid3-qt
 kiwix-tools
 komga
 krita
@@ -79,6 +79,7 @@ pacman-contrib
 pandoc-cli
 papirus-icon-theme
 pavucontrol
+perl-image-exiftool
 picard
 pipewire
 pipewire-alsa

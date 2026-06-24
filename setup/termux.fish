@@ -7,12 +7,14 @@ pacman -Syu --noconfirm --needed fd git ripgrep termux-api termux-auth yazi || e
 clear
 
 printf "DOWNLOADING DOTFILES...\n"
-for name in dotfiles yazi-plugins
-    [ -d "$HOME/repos/$name" ]
-    or git clone --depth 1 https://github.com/AminurAlam/$name.git $HOME/repos/$name || exit
-end
+[ -d "$HOME/repos/dotfiles" ]
+or git clone --depth 1 https://codeberg.org/AminurAlam/dotfiles ~/repos/dotfiles || exit
+
+[ -d "$HOME/repos/yazi-plugins" ]
+or git clone --depth 1 https://github.com/AminurAlam/yazi-plugins.git ~/repos/yazi-plugins || exit
 
 fish "$HOME/repos/dotfiles/setup/linking.fish" || exit
+
 [ -e "$HOME/repos/dotfiles/yazi/plugins" ] && ya pkg install || exit
 clear
 
