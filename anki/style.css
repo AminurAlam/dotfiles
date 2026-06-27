@@ -4,7 +4,8 @@
 @font-face {
   font-family: "kana";
   src: url("_noto-serif-jp.ttf");
-  unicode-range: U+3040-309f, U+30a0-30ff;
+  unicode-range:
+    U+3040-309f, U+30a0-30ff;
 }
 
 @font-face {
@@ -27,58 +28,83 @@
   margin: 10px 0px 0px 0px;
 }
 
-b { color: #5586cd; }
 .word {
   font-size: 44px;
   padding-top: 20px;
 }
-.word-meaning { font-size: 25px; }
+.word-meaning {
+  font-size: 25px;
+}
+.hidden {
+  color: #24283b;
+}
 .sentence {
   font-size: 25px;
   padding-top: 36px;
+}
+.nsfw {
+  filter: blur(8px);
+  &:hover {
+    filter: blur(0px);
+  }
 }
 
 summary {
   text-align: right;
   padding-right: 20px;
   list-style-type: "+";
+  font-size: 2em;
 }
 details {
   font-size: 16px;
   &[open] {
     summary {
-      list-style-type: "-";
+      display: none;
     }
     .freq {
       padding: 0px 0px 0px 10px;
-      ul {
-        padding: 0px;
-        & li {
-          display: inline;
-          margin-right: 1ex;
-        }
-      }
     }
+    margin: 30px 10px;
   }
 }
 
-.note { font-size: 16px; }
+.note {
+  font-size: 16px;
+}
 .pic {
   bottom: 0px;
   left: 0px;
-  max-height: 50%;
-  img { max-height: 300px; max-width: 30%; }
-  img:first-child:nth-last-child(2),
-  img:first-child:nth-last-child(2) ~ img {
-    max-width: 50%;
-  }
   @media (orientation: landscape) {
-    img { max-width: 60%; max-height: 60%; }
-    img { max-width: 400px; max-height: 400px; }
+    img {
+      max-width: 60%;
+      max-height: 400px;
+    }
   }
   @media (orientation: portrait) {
-    img { max-width: 90%; max-height: 40%; }
-    img { max-width: 350px; max-height: 350px; }
+    img {
+      max-width: 90%;
+      max-height: 350px;
+    }
+  }
+}
+.manga {
+  img:first-child:nth-last-child(2),
+  img:first-child:nth-last-child(2)
+    ~ img {
+    max-width: 50%;
+  }
+}
+.anime {
+  @media (orientation: landscape) {
+    img {
+      max-width: 640px;
+      max-height: 360px;
+    }
+  }
+  @media (orientation: portrait) {
+    img {
+      max-width: 100%;
+    }
   }
 }
 

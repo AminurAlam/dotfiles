@@ -2,8 +2,7 @@
 <div class="word">{{furigana:Word Furigana}}</div>
 <div class="word-meaning">{{Word Meaning}}</div>
 <div class="sentence">
-  {{furigana:Sentence}}
-  <br />
+  {{furigana:Sentence}}<br />
   {{Sentence Meaning}}
 </div>
 
@@ -16,7 +15,7 @@
 
 <div class="note">{{#Notes}}({{Notes}}){{/Notes}}</div>
 
-<div class="pic" id="pic">{{#Picture}}{{Picture}}{{/Picture}}</div>
+<div class="pic {{Tags}}">{{#Picture}}{{Picture}}{{/Picture}}</div>
 
 <div class="utils">
   {{#Audio}}{{Audio}}{{/Audio}}
@@ -25,9 +24,4 @@
 
 <script>
   freq.innerHTML = freq.innerHTML.replace(/^(\d\d+|[6-9])\d{3}$/, "$1k");
-
-  if ("{{Tags}}".match("nsfw")) pic.style.filter = "blur(9px)";
-  pic.addEventListener("click", () => {
-    pic.style.filter = "";
-  });
 </script>
