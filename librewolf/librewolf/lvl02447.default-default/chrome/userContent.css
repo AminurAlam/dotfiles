@@ -143,6 +143,49 @@ body {
   }
 }
 
+/* https://danbooru.donmai.us/wiki_pages/help%3Acustom_css */
+@-moz-document domain("danbooru.donmai.us") {
+  body {
+    --grey-0: #f6f6f6;
+    --grey-1: #e8e8e8;
+    --grey-2: #d1d1d1;
+    --grey-3: #ababab;
+    --grey-4: #919191;
+    --grey-5: #777777;
+    --grey-6: #5b5b5b;
+    --grey-7: #3f3f3f;
+    --grey-8: #2c2c2c;
+    --grey-9: #191919;
+
+    --text-color: #c0caf5;
+    --body-background-color: #24283b;
+    --link-color: #7aa2f7;
+    --link-hover-color: #7aa2c4;
+
+    --collection-pool-color: var(--link-color);
+    --collection-pool-hover-color: var(--link-hover-color);
+
+    --header-color: var(--grey-2);
+
+    --post-resized-notice-background: #1e2030;
+    --post-parent-notice-background: #1e2030;
+    --post-artist-commentary-container-background: #1e2030;
+    --notice-info-background: #1e2030;
+    --post-child-notice-background: #1e2030;
+    --post-search-notice-background: #1e2030;
+    --subnav-menu-background-color: #1e2030;
+
+    --notice-info-border-color: var(--grey-5);
+
+    --form-input-background: var(--grey-8);
+    --form-input-text-color: var(--grey-3);
+    --form-input-border-color: var(--grey-6);
+
+    --form-button-background: var(--grey-3);
+    --form-button-border-color: var(--grey-5);
+  }
+}
+
 @-moz-document domain("thedailywtf.com") {
   body,
   .content#article-page {
