@@ -1,4 +1,8 @@
 function yt -a url fmt -d "yt-dlp wrapper"
+    function tname
+        [ -n "$TMUX" ] && tmux rename-window -t $TMUX_PANE $argv[1]
+    end
+
     # TODO: auto create tmux session
     for ver in 12 13 14 15
         [ -e "$PREFIX/lib/python3.$ver/site-packages/yt_dlp/YoutubeDL.py" ] && set pyfile "$PREFIX/lib/python3.$ver/site-packages/yt_dlp/YoutubeDL.py"
@@ -11,11 +15,7 @@ function yt -a url fmt -d "yt-dlp wrapper"
         patch $pyfile --input ~/repos/dotfiles/scripts/patches/yt-dlp-YoutubeDL.py.diff --silent -f --reject-file - &>/dev/null
     end
 
-    if [ -z "$url" ]
-        # TODO: enter loop mode instead!
-        printf "no url given!\n"
-        return 1
-    end
+    [ -z "$url" ] && set url (wl-paste)
 
     if not set -q TERMUX_VERSION && [ -d "$XDG_CONFIG_HOME/librewolf/librewolf/" ]
         set -f cookies --cookies-from-browser "firefox:$XDG_CONFIG_HOME/librewolf/librewolf/"
@@ -27,52 +27,49 @@ function yt -a url fmt -d "yt-dlp wrapper"
     # pick and choose if no fmt given
     if [ -z "$fmt" ]
         mkdir -p $XDG_VIDEOS_DIR/yt/fmtcache/
+
         set fmtfile $XDG_VIDEOS_DIR/yt/fmtcache/(
             echo "$url" \
             | tr -dc \[:alnum:\]_- \
-            | sed -E 's/^https(wwwyoutubecomwatchv|youtubecomwatchv|youtube)(.{11}).*/\2/')
-        [ -e "$fmtfile" ] || yt-dlp $cookies --quiet -F "$url" >$fmtfile
+            | sed -E 's/^https(wwwyoutubecomwatchv|youtubecomwatchv|youtube)(.{11}).*/\2/').json
 
-        # rg '^\d+-0' $fmtfile
+        tname fetching
+        [ -e "$fmtfile" ] || yt-dlp $cookies -js "$url" >$fmtfile
 
         if [ "$(du $fmtfile | kt 1)" = 0 ]
             rm $fmtfile
             return 2
         end
 
+        set -f title (jq -r '.filename' $fmtfile | path basename)
+
+        tname pick
         set -f fmt (
             cat $fmtfile \
-            | fzf --tac \
-            | kt 1)
+            | jq -rf ~/repos/dotfiles/scripts/yt.jq \
+            | column -ts\t \
+            | fzf --tac --header "$title" \
+            | kt 1
+        )
+
         [ -z "$fmt" ] && return 2
     end
 
-    # pick best audio for yt
-    if echo $url | grep -Eq 'youtu.be|youtube.com'
-        [ -e "$fmtfile" ] || return 3
-        set afmt (rg 'original \(default\)' $fmtfile | tail -n1 | kt 1)
+    if [ "$(jq -r .extractor $fmtfile)" = youtube ]
+        set afmt (
+            jq -r '.formats[] \
+            | select(.format_note and (.format_note | contains("original"))) \
+            | .format_id' $fmtfile \
+            | head -n1
+        )
         [ -z "$afmt" ] && set afmt bestaudio
         set fmt "$fmt+$afmt"
     end
 
+    tname downloading
+    clear
     yt-dlp $cookies -f "$fmt" -- "$url"
+    and tname done
+    or tname error
 
-    # helper function
-    # function ymux
-    #     set stem (path change-extension '' $argv[1])
-    #     [ -e "$stem.webm" ] || return 2
-    #     if [ -e "$stem.mkv" ]
-    #         set -f in mkv
-    #     else if [ -e "$stem.mp4" ]
-    #         set -f in mp4
-    #     else
-    #         return 1
-    #     end
-    #     ffmpeg -y -hide_banner -stats -loglevel error \
-    #         -i "$stem.$in" -i "$stem.webm" \
-    #         -vcodec copy -acodec copy -map 0:v -map 1:a out.$in
-    #     and mv -iv out.$in "$stem.$in"
-    #     rm -rfI -- "$stem.webm" "$stem.png" "$stem.webp" "$stem.jpg"
-    # end
-    # ymux "$(ls -1A $XDG_VIDEOS_DIR/yt/*.webm --sort time | head -n1 | path basename)"
 end
