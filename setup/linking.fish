@@ -70,9 +70,9 @@ ln -nTfs ~/repos/yazi-plugins ~/repos/dotfiles/yazi/plugins
 printf "done\n"
 
 printf "LINKING BIN... "
-ln -nfs ~/repos/dotfiles/scripts/bin/ctl ~/.local/bin/ctl
-ln -nfs ~/repos/dotfiles/scripts/bin/feedmod ~/.local/bin/feedmod
-ln -nfs ~/repos/dotfiles/scripts/bin/ocr ~/.local/bin/ocr
+for cmd in ctl feedmod notif-bt ocr
+    ln -nfs ~/repos/dotfiles/scripts/bin/$cmd ~/.local/bin/$cmd
+end
 printf "done\n"
 
 rmdir --ignore-fail-on-non-empty ~/{backup,bin}

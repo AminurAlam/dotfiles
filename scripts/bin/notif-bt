@@ -1,0 +1,5 @@
+#!/usr/bin/fish --no-config
+
+set -q TERMUX_VERSION
+and termux-notification -c "aria2c: finished"
+or notify-send "aria2c: finished" (path basename $argv[3])
