@@ -41,6 +41,7 @@
 
 # allow completions manully
 /fish/completions/*
+!/fish/completions/ctl.fish
 !/fish/completions/mux.fish
 !/fish/completions/gcp.fish
 !/fish/completions/y.fish
