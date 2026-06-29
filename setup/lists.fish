@@ -17,6 +17,8 @@ uv tool list >"$pkglist/arch-uv"
 
 ssh brick pacman -Qqe >"$pkglist/termux-pacman"
 
+ls $CARGO_HOME/bin/ >"$pkglist/arch-cargo"
+
 pm list packages -i -3 | kt : 2 | kt 2 1 | sort >"$pkglist/android-3rd"
 
 pm list packages -d | kt : 2 | sort >"$pkglist/android-disabled"

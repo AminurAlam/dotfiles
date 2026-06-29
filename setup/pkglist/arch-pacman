@@ -44,7 +44,7 @@ kid3-qt
 kiwix-tools
 komga
 krita
-lazygit
+lazygit-git
 libappindicator
 libmpeg2
 libnotify
@@ -72,6 +72,7 @@ niri
 noto-fonts
 noto-fonts-cjk
 nwg-look
+openbsd-netcat
 openresolv
 openssh
 otf-ipafont

@@ -2,23 +2,12 @@
 # pyright: basic
 
 import json
-import logging
 import os
 import socket
 import sys
 from typing import override
 
-# Logging setup
-log = logging.getLogger()
-log.setLevel(logging.DEBUG)
-handler = logging.StreamHandler(sys.stdout)
-handler.setLevel(logging.DEBUG if "NIRILOG" in os.environ else logging.ERROR)
-log.addHandler(handler)
-
 SOCKET = os.environ["NIRI_SOCKET"]
-
-
-# Models
 
 
 class Window:
@@ -50,16 +39,17 @@ class Workspace:
         self.id = id
         self.output = output
         self.windows: dict[int, Window] = {}
-        self.columns: set[int] = set()
+        self.columns: list[dict[str, int]] = []
         self.focused_column: int | None = None
 
     def update_columns(self):
         """Computes the active column and total columns in this workspace."""
-        new_cols = set()
+        new_cols = []
         for w in self.windows.values():
             pos = w.layout and w.layout.get("pos_in_scrolling_layout")
-            if pos:
-                new_cols.add(pos[0])
+            size = w.layout and w.layout.get("window_size")
+            if pos and size:
+                new_cols.append({"pos": pos[0], "width": size[0]})
         self.columns = new_cols
 
     def add_window(self, w: Window):
@@ -75,7 +65,6 @@ class Workspace:
         return str(list(self.windows))
 
 
-# State Management
 class State:
     """Overall Niri state. Tracks workspaces."""
 
@@ -144,78 +133,54 @@ class State:
 state = State()
 
 
-# Rendering
-def generate_tooltip(output=None) -> str:
-    """Generates tooltip for Waybar in JSON format."""
-    ws = state.get_workspace(output)
-    if not ws:
-        return ""
-    return "\r\n".join(map(str, ws.get_windows()))
-
-
-def generate_text(output=None) -> str:
+def gen_json(output=None) -> dict:
     """Generates display text for Waybar in JSON format."""
     ws = state.get_workspace(output)
     if not ws:
-        return ""
+        return {"text": ""}
+
     ws.update_columns()
-    icons = [
-        "" if ws.focused_column == col else ""  # 
-        for col in sorted(ws.columns)
-    ]
-    if log.isEnabledFor(logging.DEBUG):
-        log.debug(state)
-    return " ".join(icons)
+
+    icons = ""
+    for col in sorted(ws.columns, key=lambda x: x["pos"]):
+        char = "█" if ws.focused_column == col["pos"] else "🮘"
+        content = char * round(col["width"] / 480)
+        icons += f"{content} "
+
+    return {"text": icons, "class": "win"}
 
 
-def display():
-    """Prints the final JSON payload for Waybar."""
-    print(
-        json.dumps(
-            {"text": generate_text(), "tooltip": generate_tooltip()},
-            ensure_ascii=False,
-        ),
-        flush=True,
-    )
-
-
-# Event Handling
 def handle_message(event: dict) -> bool:
     """Handle events from Niri stream."""
     if not event:
         return False
     event_type = next(iter(event))
     payload = event[event_type]
-    should_display = False
+    should_display = True
 
     match event_type:
         case "WorkspacesChanged":
             state.update_workspaces(payload["workspaces"])
-            should_display = True
 
         case "WindowsChanged":
             for win in payload["windows"]:
                 state.update_window(win)
             state.refresh_layout_state()
-            should_display = True
 
         case "WorkspaceActivated":
             if payload.get("focused"):
                 state.focused_workspace = payload["id"]
             state.active_workspaces[state.workspaces[payload["id"]].output] = payload["id"]
-            should_display = True
 
         case "WindowOpenedOrChanged":
             win = payload["window"]
             state.remove_window(win["id"])
             state.update_window(win)
             state.refresh_layout_state()
-            should_display = True
 
         case "WindowClosed":
             state.remove_window(payload["id"])
             state.refresh_layout_state()
-            should_display = True
 
         case "WindowFocusChanged":
             focused_id = payload["id"]
@@ -223,7 +188,6 @@ def handle_message(event: dict) -> bool:
                 for w in ws.windows.values():
                     w.is_focused = w.id == focused_id
             state.update_focused_column()
-            should_display = True
 
         case "WindowLayoutsChanged":
             for win_id, layout in payload["changes"]:
@@ -231,24 +195,19 @@ def handle_message(event: dict) -> bool:
                     if win_id in ws.windows:
                         ws.windows[win_id].layout = layout
             state.refresh_layout_state()
-            should_display = True
 
         case _:
-            log.debug(f"Ignoring unknown event: {event_type}")
+            should_display = False
 
     return should_display
 
 
-# Socket Loop
-def server():
-    """Connect to Niri socket and begin loop of reading events."""
-    log.info(f"Connecting to Niri socket @ {SOCKET}")
+def main():
     with socket.socket(socket.AF_UNIX, socket.SOCK_STREAM) as client:
         client.connect(SOCKET)
         client.sendall(b'"EventStream"\n')
         client.shutdown(socket.SHUT_WR)
 
-        log.info("Connected; listening for events.")
         while True:
             data = client.recv(4096)
             if not data:
@@ -256,23 +215,9 @@ def server():
             for line in data.split(b"\n"):
                 if not line.strip():
                     continue
-                try:
-                    event = json.loads(line)
-                    if handle_message(event):
-                        display()
-                except json.JSONDecodeError:
-                    log.error(
-                        "Malformed JSON: %s",
-                        line.decode(errors="replace"),
-                    )
-
-
-def main():
-    try:
-        server()
-    except Exception as e:
-        log.error("Fatal error: %s", e)
-        print(e, flush=True)
+                event = json.loads(line)
+                handle_message(event)
+                print(json.dumps(gen_json(), ensure_ascii=False), flush=True)
 
 
 if __name__ == "__main__":

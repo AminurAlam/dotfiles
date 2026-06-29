@@ -37,10 +37,9 @@
     "format": "",
     "icon": true,
   },
-  // https://git.ficd.sh/ficd/niri-scripts/src/branch/main/windows
   "custom/colcount": {
-    "exec": ".config/waybar/niri-windows.py",
-    "return-type": "json",
+    "exec": ".config/waybar/niri-windows.fish",
+    "return-type": "string",
     "restart-interval": "never",
     "format": "{} ",
   },

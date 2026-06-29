@@ -80,6 +80,7 @@ pinentry
 poppler
 procps
 psmisc
+pv
 python
 python-numpy
 python-pillow
