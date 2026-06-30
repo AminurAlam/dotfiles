@@ -23,6 +23,7 @@ abbr qmv "qmv -AXf do"
 abbr diff "diff -Naur"
 abbr py "python3 -q"
 abbr ru "rip url"
+abbr en LANG=en_US.UTF-8
 # abbr lg lazygit
 abbr pst "ps -faxo 'pid,comm' | sed -E \"s:\$PREFIX/[a-z]+/::\""
 abbr --set-cursor ff "ffmpeg -y -hide_banner -stats -loglevel error -i % -vcodec copy -acodec copy -map 0:a"
