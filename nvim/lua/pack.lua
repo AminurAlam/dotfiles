@@ -1,6 +1,5 @@
 ---@type vim.pack.Spec
 vim.pack.add({
-  { src = 'https://github.com/nvim-treesitter/nvim-treesitter', version = 'main' },
   'https://github.com/0xAdk/full_visual_line.nvim',
   'https://github.com/altermo/ultimate-autopair.nvim',
   'https://github.com/catgoose/nvim-colorizer.lua',
@@ -10,6 +9,7 @@ vim.pack.add({
   'https://github.com/nvim-mini/mini.completion',
   'https://github.com/nvim-mini/mini.diff',
   'https://github.com/nvim-mini/mini.pick',
+  'https://github.com/romus204/tree-sitter-manager.nvim',
   'https://github.com/stevearc/conform.nvim',
 })
 

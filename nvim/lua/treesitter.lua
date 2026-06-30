@@ -1,3 +1,52 @@
+local path = os.getenv('HOME') .. '/repos/tree-sitter-kanata'
+local exists = vim.uv.fs_stat(path)
+
+require('tree-sitter-manager').setup {
+  ensure_installed = {
+    'c',
+    'lua',
+    'luadoc',
+    'markdown',
+    'query',
+    'vim',
+    'vimdoc',
+  },
+  nohighlight = { 'glimmer' },
+  languages = {
+    kanata = {
+      install_info = {
+        url = 'https://github.com/AminurAlam/tree-sitter-kanata',
+        queries = 'queries',
+        use_repo_queries = true,
+      },
+    },
+  }, -- override or add new parser sources
+}
+
+local sel = require('vim.treesitter._select')
+if vim.fn.has('nvim-0.12') then
+  -- TODO: remove empty function after nvim is updated
+  vim.keymap.set({ 'x' }, '<c-k>', sel.select_grow_prev or function() end)
+  vim.keymap.set({ 'x' }, '<c-j>', sel.select_grow_next or function() end)
+
+  vim.keymap.set({ 'x', 'o' }, 'n', function()
+    if vim.treesitter.get_parser(nil, nil, { error = false }) then
+      require 'vim.treesitter._select'.select_parent(vim.v.count1)
+    else
+      vim.lsp.buf.selection_range(vim.v.count1)
+    end
+  end)
+
+  vim.keymap.set({ 'x', 'o' }, 'N', function()
+    if vim.treesitter.get_parser(nil, nil, { error = false }) then
+      require 'vim.treesitter._select'.select_child(vim.v.count1)
+    else
+      vim.lsp.buf.selection_range(-vim.v.count1)
+    end
+  end)
+end
+
+--[[
 vim.api.nvim_create_autocmd('User', {
   pattern = 'TSUpdate',
   callback = function()
@@ -21,6 +70,9 @@ vim.api.nvim_create_autocmd('FileType', {
     -- https://github.com/MeanderingProgrammer/treesitter-modules.nvim#implementing-yourself
     local buf = args.buf
     local filetype = args.match
+    if filetype == 'handlebars' then
+      return -- TODO: remove when its fixed
+    end
 
     local language = vim.treesitter.language.get_lang(filetype) or filetype
     if not vim.treesitter.language.add(language) then
@@ -46,26 +98,4 @@ vim.api.nvim_create_autocmd({ 'PackChanged' }, {
     end
   end,
 })
-
-local sel = require('vim.treesitter._select')
-if vim.fn.has('nvim-0.12') then
-  -- TODO: remove empty function after nvim is updated
-  vim.keymap.set({ 'x' }, '<c-k>', sel.select_grow_prev or function() end)
-  vim.keymap.set({ 'x' }, '<c-j>', sel.select_grow_next or function() end)
-
-  vim.keymap.set({ 'x', 'o' }, 'n', function()
-    if vim.treesitter.get_parser(nil, nil, { error = false }) then
-      require 'vim.treesitter._select'.select_parent(vim.v.count1)
-    else
-      vim.lsp.buf.selection_range(vim.v.count1)
-    end
-  end)
-
-  vim.keymap.set({ 'x', 'o' }, 'N', function()
-    if vim.treesitter.get_parser(nil, nil, { error = false }) then
-      require 'vim.treesitter._select'.select_child(vim.v.count1)
-    else
-      vim.lsp.buf.selection_range(-vim.v.count1)
-    end
-  end)
-end
+--]]
