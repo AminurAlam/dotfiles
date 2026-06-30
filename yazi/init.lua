@@ -262,15 +262,6 @@ require('mime-ext.local'):setup {
 require('spot'):setup {
   metadata_section = { hash_filesize_limit = 100, relative_time = true },
   plugins_section = { enable = true },
-  style = {
-    section = 'magenta',
-    key = 'reset',
-    value = 'blue',
-    colorize_metadata = true,
-    height = 25,
-    width = 70,
-    key_length = 15,
-  },
 }
 
 require('font-sample'):setup {

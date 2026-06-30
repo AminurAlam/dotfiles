@@ -93,26 +93,23 @@ add-sub = [
 apkinstall = [
   { run = "ANDROID_USER_HOME=/home/fisher/.local/share/.android HOME=/home/fisher/.local/share/ adb install %s", block = true, orphan = false, desc = " apk installer", for = "linux" },
 ]
-bulk-rename = [
-  { block = true, run = "nvim %s; ya exec bulk_exit %s --accept", for = "linux" },
-  { block = true, run = "nvim %s", for = "android" },
-]
+bulk-rename = [{ block = true, run = "nvim %s; ya exec bulk_exit %s --accept" }]
 extract = [{ run = 'ya pub extract --list %s""', desc = "󱉛 Extract here", for = "unix" }]
 inkscape = [{ run = "inkscape %s", block = false, orphan = true, desc = "󰕞 inkscape", for = "linux" }]
 open = [{ run = "xdg-open %s1", orphan = true, desc = "󰏌 Open", for = "linux" }]
-play = [{ run = "mpv --force-window %s", orphan = true, for = "linux", desc = " mpv" }]
-png2jpg = [{ run = "magick %s1 JPG:- | wl-copy", desc = "󰧸 png -> jpg", for = "linux" }]
+play = [{ run = "mpv --force-window %s", orphan = true, desc = " mpv", for = "linux" }]
+png2jpg = [{ run = "magick %s1 JPG:%s1.jpg", desc = "󰧸 png -> jpg", for = "linux" }]
 swayimg = [{ run = "swayimg %s", block = false, orphan = true, desc = " swayimg", for = "linux" }]
 zathura = [{ run = "zathura %s", block = false, orphan = true, desc = " zathura", for = "linux" }]
 # groups
 raster_tools = [
   { run = "ctl wp %s1", block = false, orphan = true, desc = " swaybg", for = "linux" },
   { run = "LANG=en_US.utf-8 krita --fullscreen %s", block = false, orphan = true, desc = " krita", for = "linux" },
-  { run = "identity -d row -- %s", orphan = true, for = "linux", desc = "󰆊 compare images" },
+  { run = "identity -d row -- %s", orphan = true, desc = "󰆊 compare images", for = "linux" },
 ]
 audio_tools = [
-  { run = "kid3 -- %s", orphan = true, for = "linux", desc = " kid3" },
-  { run = "picard -- %s", orphan = true, for = "linux", desc = "󰫅 picard" },
+  { run = "kid3-qt -- %s", orphan = true, desc = " kid3", for = "linux" },
+  { run = "picard -- %s", orphan = true, desc = "󰫅 picard", for = "linux" },
   { run = "tenacity %s", block = false, orphan = true, desc = "󰓀 tenacity", for = "linux" },
 ]
 edit = [{ run = "nvim %s", desc = " nvim", block = true, for = "unix" }]
@@ -123,7 +120,7 @@ common = [
 ]
 dir = [
   { run = "xdg-open %d", desc = " Reveal", for = "linux" },
-  { run = "swayimg -g %s", orphan = true, desc = " gallery" },
+  { run = "swayimg -g %s", orphan = true, desc = " gallery", for = "linux" },
   { run = "fish -c 'dir2cbz $argv' %s", block = true, desc = " dir2cbz" },
 ]
 
