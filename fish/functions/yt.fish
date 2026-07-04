@@ -4,17 +4,6 @@ function yt -a url fmt -d "yt-dlp wrapper"
         [ -n "$TMUX" ] && tmux rename-window -t $TMUX_PANE $argv[1]
     end
 
-    for ver in 12 13 14 15
-        [ -e "$PREFIX/lib/python3.$ver/site-packages/yt_dlp/YoutubeDL.py" ] && set pyfile "$PREFIX/lib/python3.$ver/site-packages/yt_dlp/YoutubeDL.py"
-    end
-    set patchfile ~/repos/dotfiles/scripts/patches/yt-dlp-YoutubeDL.py.diff
-    if command -vq sudo
-        patch $pyfile --input $patchfile --silent -f --reject-file - --dry-run &>/dev/null
-        and sudo patch $pyfile --input $patchfile --silent -f --reject-file -
-    else
-        patch $pyfile --input ~/repos/dotfiles/scripts/patches/yt-dlp-YoutubeDL.py.diff --silent -f --reject-file - &>/dev/null
-    end
-
     [ -z "$url" ] && set url (wl-paste)
 
     if not set -q TERMUX_VERSION && [ -d "$XDG_CONFIG_HOME/librewolf/librewolf/" ]
@@ -66,23 +55,10 @@ function yt -a url fmt -d "yt-dlp wrapper"
         set fmt "$fmt+$afmt"
     end
 
-    while fd -q -tf -d1 'yt\d\.lock' $XDG_VIDEOS_DIR/yt/
-        clear
-        echo busy
-        timeout 1 fish --no-config -c 'test y = (read)'
-        and break
-    end
-    set -l slot 1
-    while [ -e "yt$slot.lock" ]
-        set slot (math $slot +1)
-    end
-    touch "$XDG_VIDEOS_DIR/yt/yt$slot.lock"
-
     tname downloading
     clear
+    echo "$title"
     yt-dlp $cookies -f "$fmt" -- "$url"
     and tname done
     or tname error
-
-    rm "$XDG_VIDEOS_DIR/yt/yt$slot.lock"
 end
