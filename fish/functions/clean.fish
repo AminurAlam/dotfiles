@@ -1,71 +1,58 @@
 function clean -d "cleanup storage space"
-    # delete some directories
-    set dirs (path filter -d -- \
-        /sdcard/Android/media/com.whatsapp/WhatsApp/{.StickerThumbs,Media/WhatsApp Stickers}/ \
-        /sdcard/Tachi/downloads/*/*/*_tmp/ \
-        ~/.cache/ \
-        /sdcard/Download/SongSync \
-        ~/.gradle/caches/)
+    command df -h | awk '/fuse|home/{print $3"/"$2,$5,$4}'
 
-    if count $dirs &>/dev/null
-        dust -PDd0 -- $dirs 2>/dev/null
-        [ "$(read -P 'delete these directories? [y/N] ')" = y ]
-        and command rm -fr -- $dirs &>/dev/null
-        echo
-    end
+    # remove deleted directories from zoxide
+    zoxide remove (path filter -vd (zoxide query -la))
 
-    # delete some files
-    set files (fd -H -tf -d1 '_history$' ~) (fd -H -tf -d2 'log$' "$XDG_STATE_HOME")
+    string pad -C -c= -w$COLUMNS " TEMP FILES "
+    set files \
+        (fd -H -tf -d1 '_history$' "$HOME/") \
+        (fd -H -tf -d3 'log$'     "$XDG_STATE_HOME/") \
+        (fd -H -tf -d1 -epng .    "$HOME/downloads/" 2>/dev/null) \
+        (path filter -d -- \
+            /sdcard/Android/media/com.whatsapp/WhatsApp/{.StickerThumbs,Media/WhatsApp Stickers}/ \
+            /sdcard/Tachi/downloads/*/*/*_tmp/ ~/.cache/ /sdcard/Download/SongSync ~/.gradle/caches/)
 
     if count $files &>/dev/null
-        command du -h $files
-        command rm -fr -- $files
+        command dust -d1 $files
+        command rm -frI -- $files
     end
 
-    # ocr leftovers
-    [ -d ~/downloads -a (uname -o) = Android ] && fd -tfile -epng 'Screenshot_.*_Samsung capture.png' ~/downloads/ -x rm
-
-    # pacman/yay
+    string pad -C -c= -w$COLUMNS " PKG FILES "
     if command -vq sudo
-        count /var/cache/pacman/pkg/download-* &>/dev/null && sudo rm -frI /var/cache/pacman/pkg/download-*
+        fd -H -td -d1 -q '^download-.*' /var/cache/pacman/pkg/
+        and sudo rm -frI (fd -H -td -d1 '^download-.*' /var/cache/pacman/pkg/)
+
         command -vq pacman && yes | sudo pacman -Scc
-    else
-        command -vq pacman && yes | pacman -Scc
+    else if set -q TERMUX_VERSION
+        yes | pacman -Scc
+    end
+
+    command -vq yay && begin
+        yay -Sc --noconfirm
+        [ (count (pacman -Qdtq)) -gt 5 ] && yay -Yc
     end
 
     echo
 
-    # trash
-    for i in (trash-list)
-        echo $i \
-            | rg --replace '' '^\d{4}-\d\d-\d\d \d\d:\d\d:\d\d ' \
-            | sed "s#$HOME/##" \
-            | sed 's#/storage/emulated/0/##' \
-            | string split -f 1,2,3 / | string join /
-    end | sort | uniq -c | sort -n
+    string pad -C -c= -w$COLUMNS " TRASH "
+    command -vq trash-list
+    and trash-list \
+        | sed -E "s/^.{20}//; s#$HOME/##; s#/storage/emulated/0/##" \
+        | kt / 1 2 3 \
+        | sort \
+        | uniq -c \
+        | sort -n
     command -vq trash-empty && trash-empty
-    command -vq yay && begin
-        yay -Sc --noconfirm
-        [ (count (pacman -Qdtq)) -gt 10 ] && yay -Yc
-    end
 
-    # remove deleted directories from zoxide
-    for d in (zoxide query -la)
-        [ -e "$d" ] && continue
-        zoxide remove $d
-    end
-
-    # misc
+    string pad -C -c= -w$COLUMNS " MISC "
     command -vq pip && pip cache purge
     command -vq npm && npm cache clean --force
     command -vq ccache && ccache --clear
-    command -vq journalctl && sudo journalctl --vacuum-time 7d
+    command -vq journalctl && journalctl --vacuum-time 7d
+    command -vq newsraft && newsraft -e purge-abandoned
+    command -vq cargo && fd -H -tf -d1 -F 'Cargo.toml' $HOME/repos/* -x cargo clean --manifest-path
 
     echo
-    echo (count (ls -1NA ~)) files in HOME
-    echo (count (pacman -Qe)) packages installed
-    echo
     command df -h | awk '/fuse|home/{print $3"/"$2,$5,$4}'
-    echo
-    dust -PDd1 -n6 --skip-total $HOME/repos/ 2>/dev/null
 end
