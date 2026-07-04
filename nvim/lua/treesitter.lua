@@ -11,7 +11,7 @@ require('tree-sitter-manager').setup {
     'vim',
     'vimdoc',
   },
-  nohighlight = { 'glimmer' },
+  nohighlight = { 'glimmer', 'latex' },
   languages = {
     kanata = {
       install_info = {

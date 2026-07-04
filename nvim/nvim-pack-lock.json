@@ -13,15 +13,15 @@
       "src": "https://github.com/0xAdk/full_visual_line.nvim"
     },
     "mini.completion": {
-      "rev": "e152473392ab943dad9842ed5a02934f51953fe9",
+      "rev": "7c486f877f25bb44d5f6c058c9f4582acc8520e3",
       "src": "https://github.com/nvim-mini/mini.completion"
     },
     "mini.diff": {
-      "rev": "05be51814a718e74244829754a2a900a430a8d8b",
+      "rev": "0743d26bd858ebe32efcf5c86a91a422a000f273",
       "src": "https://github.com/nvim-mini/mini.diff"
     },
     "mini.pick": {
-      "rev": "0b3599e6df730f3ced3359d33c674288de0d186d",
+      "rev": "8c1f75f8ddd8c9f75d07ed2ab5718d2c3cb65a66",
       "src": "https://github.com/nvim-mini/mini.pick"
     },
     "nvim-colorizer.lua": {
@@ -37,7 +37,7 @@
       "src": "https://github.com/folke/tokyonight.nvim"
     },
     "tree-sitter-manager.nvim": {
-      "rev": "ae305699da5e97b6cffdd5cc6f6045b1b0bd26ea",
+      "rev": "966c28dbc68fc99c82c51a64b6ec37f420aab880",
       "src": "https://github.com/romus204/tree-sitter-manager.nvim"
     },
     "ultimate-autopair.nvim": {

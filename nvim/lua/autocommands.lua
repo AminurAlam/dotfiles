@@ -26,19 +26,6 @@ autocmd('BufNewFile', {
   end,
 })
 
-autocmd('VimEnter', {
-  desc = 'open directory in picker',
-  once = true,
-  callback = function(details)
-    if vim.fn.isdirectory(details.file) == 1 then
-      vim.bo.buftype = 'nofile'
-      vim.bo.bufhidden = 'delete'
-      vim.cmd.cd(details.file)
-      vim.cmd 'Pick files'
-    end
-  end,
-})
-
 autocmd('BufWritePre', {
   desc = 'automatically create missing directories when saving files',
   callback = function(details)
