@@ -1,3 +1,10 @@
 #!/usr/bin/fish --no-config
 
-curl -s $argv[1] | sed -E $argv[2]
+if [ -n "$argv[2]" ]
+    curl -s $argv[1] | sed -E "$argv[2]"
+else
+    curl -s $argv[1] | sed -E '
+    /amazon.(ca|de|fr|co.uk|com)| for more information| a new release is available/d;
+    s#^<p><a class="a2a_button_copy_link".*</p>##
+    '
+end
