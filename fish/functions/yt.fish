@@ -46,8 +46,8 @@ function yt -a url fmt -d "yt-dlp wrapper"
 
     if [ "$(jq -r .extractor $fmtfile)" = youtube ]
         set afmt (
-            jq -r '.formats[] \
-            | select(.format_note and (.format_note | contains("original"))) \
+            jq -r '.formats[]
+            | select(.format_note and (.format_note | contains("original")))
             | .format_id' $fmtfile \
             | head -n1
         )
