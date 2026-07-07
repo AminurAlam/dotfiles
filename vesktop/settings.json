@@ -13,5 +13,6 @@
     "openLinksWithElectron": false,
     "clickTrayToShowHide": true,
     "disableSmoothScroll": false,
-    "enableTaskbarFlashing": true
+    "enableTaskbarFlashing": true,
+    "hardwareVideoAcceleration": false
 }
