@@ -32,8 +32,12 @@ switch $argv[1]
             set device /sys/class/backlight/amdgpu_bl1
             set max (cat $device/max_brightness)
             set cur (cat $device/brightness)
+
             [ -z "$argv[3]" ]
             and set argv[3] 1
+
+            [ -w "$device/brightness" ]
+            or foot -- sudo chown -R $USER "$device/brightness"
 
             set new (math -s0 -m ceiling "$cur $argv[2] ($max x $argv[3] / 100)")
             [ $new -lt 0 ] && set new 0
@@ -103,7 +107,7 @@ switch $argv[1]
             notify-send -t 1500 -i $thumbnail "󰨜 RECORDING SAVED in $file"
         else
             # TODO: fix audio
-            wf-recorder -a -r 30 -p "br=5M" -f (date +'%Y-%m-%d_%H%M_%S').mp4
+            wf-recorder -r 30 -p "br=5M" -f (date +'%Y-%m-%d_%H%M_%S').mp4
         end
 
     case picker #         color picker
