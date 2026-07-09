@@ -44,7 +44,7 @@ kid3-qt
 kiwix-tools
 komga
 krita
-lazygit-git
+lazygit
 libappindicator
 libmpeg2
 libnotify
@@ -140,6 +140,7 @@ unzip
 uv
 v4l2loopback-dkms
 v4l2loopback-utils
+vesktop-bin
 vscode-css-languageserver
 vscode-html-languageserver
 vulkan-intel

@@ -84,9 +84,9 @@ pv
 python
 python-numpy
 python-pillow
-python-psutil
 python-torch
 python-torchvision
+python-trash-cli
 python-yt-dlp
 qalc
 readline
@@ -107,6 +107,7 @@ termux-keyring
 termux-licenses
 termux-tools
 tmux
+typst
 unzip
 util-linux
 uv
