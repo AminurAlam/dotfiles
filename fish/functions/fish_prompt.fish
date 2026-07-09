@@ -23,6 +23,32 @@ function fish_prompt --description 'commandline prompt'
         set job (set_color blue)  $jobcount
     end
 
+    set -l bat
+    if [ -z "$WAYLAND_DISPLAY" ]
+        set capacity (cat /sys/class/power_supply/BAT0/capacity)
+        set bat_status (cat /sys/class/power_supply/BAT0/status)
+
+        if [ -z "$capacity" ]
+        else if [ "$bat_status" = Charging ]
+            set bat (set_color blue)  $capacity
+        else if [ "$bat_status" = "Not charging" ]
+            set bat (set_color blue)  $capacity
+        else if [ "$bat_status" = Discharging ]
+            if [ "$capacity" -gt 75 ]
+                set bat (set_color blue)  $capacity
+            else if [ "$capacity" -gt 40 ]
+                set bat (set_color green)  $capacity
+            else if [ "$capacity" -gt 20 ]
+                set bat (set_color yellow)  $capacity
+            else
+                set bat (set_color red)  $capacity
+            end
+        end
+    end
+
+    # TODO: network stuff
+    # env LANG=en_US.UTF-8 nmcli general | tail -n1 | kt 4
+
     set -l git
     set -l push
     set branch (command git rev-parse --abbrev-ref HEAD 2>/dev/null)
@@ -71,6 +97,7 @@ function fish_prompt --description 'commandline prompt'
         $pwd \
         $git \
         $push \
+        $bat \
         $job \
         $stat \
         $char
