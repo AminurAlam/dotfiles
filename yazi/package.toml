@@ -1,21 +1,21 @@
 [[plugin.deps]]
 use = "yazi-rs/plugins:smart-enter"
-rev = "5d461d8"
+rev = "8cd50c6"
 hash = "187cc58ba7ac3befd49c342129e6f1b6"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:types"
-rev = "5d461d8"
+rev = "8cd50c6"
 hash = "9105494e98299f392aee95340066da9f"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:git"
-rev = "5d461d8"
+rev = "8cd50c6"
 hash = "88e56a64b7ce7c4314427452343fef17"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:mime-ext"
-rev = "5d461d8"
+rev = "8cd50c6"
 hash = "2678c84a0b3a0b22504e918ccaf99011"
 
 [flavor]

@@ -1,5 +1,13 @@
 function update -d "system update with just one command"
 
+    string pad -C -c= -w$COLUMNS " REFLECTOR "
+    [ "$(read -P "run reflector? [y/N] ")" = y ]
+    and sudo reflector \
+        --sort rate \
+        --country India,China,Bangladesh \
+        --save /etc/pacman.d/mirrorlist \
+        -p http,https
+
     string pad -C -c= -w$COLUMNS " PACMAN "
     command -vq yay
     and yay -Syu
@@ -17,8 +25,8 @@ function update -d "system update with just one command"
     set -q TERMUX_VERSION
     and cargo install --locked --git https://codeberg.org/AminurAlam/kt
 
-    cargo install --profile opt --config 'build.rustflags="-C target-cpu=native"' --locked \
-        --git https://github.com/helix-editor/helix helix-term
+    # cargo install --profile opt --config 'build.rustflags="-C target-cpu=native"' --locked \
+    #     --git https://github.com/helix-editor/helix helix-term
 
     string pad -C -c= -w$COLUMNS " YAZI PKGS "
     set -q TERMUX_VERSION
