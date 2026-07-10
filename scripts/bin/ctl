@@ -37,7 +37,7 @@ switch $argv[1]
             and set argv[3] 1
 
             [ -w "$device/brightness" ]
-            or foot -- sudo chown -R $USER "$device/brightness"
+            or foot -T float -- sudo chown -R $USER "$device/brightness"
 
             set new (math -s0 -m ceiling "$cur $argv[2] ($max x $argv[3] / 100)")
             [ $new -lt 0 ] && set new 0
