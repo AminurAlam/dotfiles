@@ -98,6 +98,8 @@ fish_add_path --path $ANDROID_HOME/tools
 fish_add_path --path $ANDROID_HOME/tools/bin
 fish_add_path --path $JAVA_HOME/bin
 
+[ -d ~/.cache/fish/generated_completions ] && rmdir -p ~/.cache/fish/generated_completions 2>/dev/null
+
 status is-interactive || exit
 
 # command -vq starship && starship init fish | source
