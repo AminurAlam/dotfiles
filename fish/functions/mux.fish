@@ -1,4 +1,11 @@
 function mux -d "tmux wrapper"
+
+    if command -vq tmux && not tmux has-session -t conf 2>/dev/null
+        command -vq lazygit
+        and set lazygit \-n lazygit lazygit \; new-window \-c ~/repos/dotfiles/
+        tmux new-session -c ~/repos/dotfiles/ -ds conf
+    end
+
     if [ -n "$argv[2]" ]
         if [ -d "$argv[2]" ]
             builtin cd "$argv[2]"

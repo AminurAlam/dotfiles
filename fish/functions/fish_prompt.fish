@@ -24,7 +24,7 @@ function fish_prompt --description 'commandline prompt'
     end
 
     set -l bat
-    if [ -z "$WAYLAND_DISPLAY" ]
+    if not set -q TERMUX_VERSION && [ -z "$WAYLAND_DISPLAY" ]
         set capacity (cat /sys/class/power_supply/BAT0/capacity)
         set bat_status (cat /sys/class/power_supply/BAT0/status)
 
