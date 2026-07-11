@@ -30,8 +30,6 @@
   "niri/workspaces": {
     "disable-click": true,
     "disable-markup": true,
-    "format": "{icon}",
-    "format-icons": {},
   },
   "niri/window": {
     "format": "",

@@ -47,7 +47,7 @@
 
 #workspaces {
   /* font-family: "Noto Sans CJK JP"; */
-  margin: 0px 0px 0px 30px;
+  margin: 0px 20px;
 }
 
 #workspaces button {
@@ -68,7 +68,7 @@
   color: #000000;
   background: #db4b4b;
   border-radius: 10px;
-  padding: 5px 10px 0px 10px;
+  padding: 5px 10px 5px 10px;
   margin: 3px 5px 3px 5px;
 }
 
