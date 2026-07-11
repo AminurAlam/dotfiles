@@ -35,8 +35,8 @@ sep_outer = { open = " ", close = " " }
 # title = { fg = "green" }
 
 [indicator]
-current = { bg = "#2e3c64", bold = true }
-# current = { reversed = true }
+# current = { bg = "#2e3c64", bold = true }
+current = { reversed = true }
 preview = { bold = true }
 
 [status]

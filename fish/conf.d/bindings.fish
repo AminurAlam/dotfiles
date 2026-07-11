@@ -2,9 +2,6 @@ status is-interactive || exit
 
 fish_vi_key_bindings
 
-bind yy fish_clipboard_copy # TODO: only copy a line not entire block
-bind p fish_clipboard_paste
-
 bind q exit # shortcuts to quit
 bind -M insert ctrl-\; "history -n1 | fish -P; echo; echo; commandline -f repaint"
 bind -M insert ctrl-z 'if jobs -q; fg; else; mux; commandline -f repaint; end'
