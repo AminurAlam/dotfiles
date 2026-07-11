@@ -65,5 +65,3 @@ autocmd('BufEnter', { command = 'set cursorline formatoptions-=cro' })
 autocmd('BufLeave', { command = 'set nocursorline' })
 autocmd('BufWinEnter', { pattern = '?*', command = 'silent! loadview 1' })
 autocmd('BufWinLeave', { pattern = '?*', command = 'silent! mkview 1' })
-
--- TODO: disable numbers when diffing

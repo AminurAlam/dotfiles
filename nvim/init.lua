@@ -45,15 +45,20 @@ require 'statusline'
 require 'picker'
 require 'treesitter'
 
-if vim.fn.has('nvim-0.12') == 1 then
-  require('vim._core.ui2').enable({
-    enable = true,
-    msg = {
-      targets = { 'cmd', 'msg', 'pager' },
-      cmd = { height = 0.5 },
-      dialog = { height = 0.5 },
-      msg = { height = 0.5, timeout = 4000 },
-      pager = { height = 1 },
-    },
-  })
-end
+require('vim._core.ui2').enable({
+  enable = true,
+  msg = {
+    targets = { 'cmd', 'msg', 'pager' },
+    cmd = { height = 0.5 },
+    dialog = { height = 0.5 },
+    msg = { height = 0.5, timeout = 4000 },
+    pager = { height = 1 },
+  },
+})
+
+vim.cmd [[
+if &diff
+  set nonumber
+  set norelativenumber
+endif
+]]

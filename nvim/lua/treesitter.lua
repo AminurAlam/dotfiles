@@ -11,7 +11,7 @@ require('tree-sitter-manager').setup {
     'vim',
     'vimdoc',
   },
-  nohighlight = { 'glimmer', 'latex' },
+  nohighlight = { 'glimmer', 'latex' }, -- TODO: remove when handlebars is fixed
   languages = {
     kanata = {
       install_info = {
@@ -24,27 +24,24 @@ require('tree-sitter-manager').setup {
 }
 
 local sel = require('vim.treesitter._select')
-if vim.fn.has('nvim-0.12') then
-  -- TODO: remove empty function after nvim is updated
-  vim.keymap.set({ 'x' }, '<c-k>', sel.select_grow_prev or function() end)
-  vim.keymap.set({ 'x' }, '<c-j>', sel.select_grow_next or function() end)
+vim.keymap.set({ 'x' }, '<c-k>', sel.select_grow_prev)
+vim.keymap.set({ 'x' }, '<c-j>', sel.select_grow_next)
 
-  vim.keymap.set({ 'x', 'o' }, 'n', function()
-    if vim.treesitter.get_parser(nil, nil, { error = false }) then
-      require 'vim.treesitter._select'.select_parent(vim.v.count1)
-    else
-      vim.lsp.buf.selection_range(vim.v.count1)
-    end
-  end)
+vim.keymap.set({ 'x', 'o' }, 'n', function()
+  if vim.treesitter.get_parser(nil, nil, { error = false }) then
+    require 'vim.treesitter._select'.select_parent(vim.v.count1)
+  else
+    vim.lsp.buf.selection_range(vim.v.count1)
+  end
+end)
 
-  vim.keymap.set({ 'x', 'o' }, 'N', function()
-    if vim.treesitter.get_parser(nil, nil, { error = false }) then
-      require 'vim.treesitter._select'.select_child(vim.v.count1)
-    else
-      vim.lsp.buf.selection_range(-vim.v.count1)
-    end
-  end)
-end
+vim.keymap.set({ 'x', 'o' }, 'N', function()
+  if vim.treesitter.get_parser(nil, nil, { error = false }) then
+    require 'vim.treesitter._select'.select_child(vim.v.count1)
+  else
+    vim.lsp.buf.selection_range(-vim.v.count1)
+  end
+end)
 
 --[[
 vim.api.nvim_create_autocmd('User', {
@@ -71,7 +68,7 @@ vim.api.nvim_create_autocmd('FileType', {
     local buf = args.buf
     local filetype = args.match
     if filetype == 'handlebars' then
-      return -- TODO: remove when its fixed
+      return
     end
 
     local language = vim.treesitter.language.get_lang(filetype) or filetype

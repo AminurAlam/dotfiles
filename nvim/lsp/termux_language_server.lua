@@ -1,4 +1,3 @@
--- TODO: test if working
 function search_ancestors(startpath, func)
   vim.validate('func', func, 'function')
   if func(startpath) then
