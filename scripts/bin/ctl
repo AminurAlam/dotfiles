@@ -49,18 +49,15 @@ switch $argv[1]
                 "Brightness: $(math -s0 "100 x ($new / $max)")%"
         end
 
-    case pow # (up|down)  change powerprofile
-        # TODO: rollback instead
-        # TODO: next|prev
+    case pow #            change powerprofile
         set current (powerprofilesctl get)
-        if [ "$argv[2]" = up -a "$current" = balanced ]
+        if [ "$current" = balanced ]
             notify-send -h string:x-canonical-private-synchronous:power -t 500 " PERFORMANCE"
             powerprofilesctl set performance
-        else if [ "$argv[2]" = up -a "$current" = power-saver ] \
-                || [ "$argv[2]" = down -a "$current" = performance ]
+        else if [ "$current" = power-saver ]
             notify-send -h string:x-canonical-private-synchronous:power -t 500 " BALANCED"
             powerprofilesctl set balanced
-        else if [ "$argv[2]" = down -a "$current" = balanced ]
+        else if [ "$current" = performance ]
             notify-send -h string:x-canonical-private-synchronous:power -t 500 " POWER-SAVER"
             powerprofilesctl set power-saver
         end
@@ -71,7 +68,7 @@ switch $argv[1]
 
         [ -w "$file" ]
         and echo $bit | tee $file
-        or echo $bit | sudo tee $file # TODO: sudo -> something that works in gui
+        or echo $bit | sudo tee $file
 
         [ "$(cat $file)" = 1 ]
         and notify-send -h string:x-canonical-private-synchronous:limit -t 500 " BATTERY LIMITED"
@@ -155,8 +152,6 @@ switch $argv[1]
         or fuzzel
 
     case wp # <filepath>  set wallpaper
-        # TODO: auto tile small images
-        # TODO: pick if no filename given
         if [ -e "$argv[2]" ]
             killall swaybg
             if [ (math (mediainfo --Output=JSON --Output="Image;%Width% + %Height%" $argv[2])) -le 3000 ]

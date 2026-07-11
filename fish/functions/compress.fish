@@ -1,4 +1,4 @@
-function conv -d "reencode files to save some space"
+function compress -d "reencode files to save some space"
     count $argv &>/dev/null || set argv *.mp4
     if not count $argv &>/dev/null
         printf "no input files supplied and failed to find *.flac\n"

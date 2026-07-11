@@ -6,18 +6,6 @@ set save $argv[3]
 set path $argv[4]
 set out $argv[5]
 
-# TODO: https://fishshell.com/docs/current/cmds/trap.html
-# function cleanup --on-signal EXIT -s HUP -s INT -s QUIT -s ABRT -s TERM
-#     notify-send
-#     [ -f "$tmpfile" ]
-#     and /usr/bin/rm "$tmpfile"
-#     or :
-#
-#     if [ "$save" = 1 ] && [ ! -s "$out" ]
-#         /usr/bin/rm "$path" || :
-#     end
-# end
-
 if [ "$save" = 1 ]
     set tmpfile (/usr/bin/mktemp)
     /usr/bin/printf '%s' '=== xdg-desktop-portal-termfilechooser file ===' >"$path"

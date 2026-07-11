@@ -6,11 +6,11 @@ function sy -d "sync files between phone and pc"
     set artists Alp Arakure Cleanendme Esuke Herio 'Hinahara Emi' Jury 'Minami Fumika' \
         Momoko 'Morino Bambi' Nagayori Namboku 'Nikubou Maranoshin' 'Ouchi Kaeru' Sajipen \
         'Wantan Meo' Yuruyakatou
-    set hdd fb4fbd41-31b1-4260-8d5c-551dd752fbab
 
-    # mount HDD if present
-    if lsblk -f | rg -q $hdd && [ -z "$(lsblk -f | rg $hdd | kt 7)" ]
-        sudo mount /dev/(lsblk -f | rg $hdd | kt 1) /mnt/hdd/
+    # exit if network is unreachable
+    if not nc -w3 -q3 -z (ssh -G brick | rg --replace '' '^(hostname|port) ') 2>/dev/null
+        echo 'couldnt connect to brick'
+        return 1
     end
 
     # TODO: skip transactions that have no changes
@@ -24,7 +24,6 @@ function sy -d "sync files between phone and pc"
         end
 
         # TODO: collect filenames to be transfered and only sync those
-        # TODO: check connection before running
 
         printf "=== PICTURES ===\n"
         rsync $comm $XDG_PICTURES_DIR/ brick:/sdcard/Pictures/ --exclude={Camera,Komikku,WhatsApp Images} | rg -v '/$'
@@ -48,18 +47,5 @@ function sy -d "sync files between phone and pc"
         [ -e $XDG_DATA_HOME/newsraft/newsraft.sqlite3-journal ]
         or rsync $comm $XDG_DATA_HOME/newsraft/newsraft.sqlite3 brick:~/.local/share/newsraft/newsraft.sqlite3
         rsync $comm brick:/sdcard/main/backup/ $XDG_DOWNLOAD_DIR/main/backup/
-
-        if [ "$(lsblk -f | rg $hdd | kt 7)" = /mnt/hdd ]
-            printf "=== HDD: pic ===\n"
-            rsync $comm $XDG_PICTURES_DIR /mnt/hdd/
-            printf "=== HDD: doc ===\n"
-            rsync $comm $XDG_DOCUMENTS_DIR /mnt/hdd/
-            printf "=== HDD: mu ===\n"
-            rsync $comm $XDG_MUSIC_DIR /mnt/hdd/
-            printf "=== HDD: misc ===\n"
-            rsync $comm $XDG_DOWNLOAD_DIR/manga/{#,@}* /mnt/hdd/manga/
-            rsync $comm $XDG_DOWNLOAD_DIR/main/*.kdbx /mnt/hdd/main/
-            rsync $comm $XDG_DOWNLOAD_DIR/main/{backup,torrents,ROMS} /mnt/hdd/main/
-        end
     end
 end
