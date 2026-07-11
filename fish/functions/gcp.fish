@@ -15,10 +15,10 @@ function gcp -a url path branch -d "git clone wrapper"
     end
 
     # normalize url: user/repo/foo/bar/baz -> user/repo
-    set url (string replace -r -- 'https://([^/]+)/([^/]+)/([^/]+).*' 'https://$1/$2/$3' "$url")
+    string match -q 'https://gitlab.*' "$url"
+    or set url (string replace -r -- 'https://([^/]+)/([^/]+)/([^/]+).*' 'https://$1/$2/$3' "$url")
 
     # convert to ssh url
-    # TODO: fix gitlab.archlinux.org getting matched
     set -f known '(codeberg.org|github.com|gitlab.com)'
     if [ -e ~/.ssh/git_ed25519 ] && string match -qr -- "^https://$known/" "$url"
         and set url (string replace -r -- "https://$known/([^/]+)/([^/]+)" 'git@$1:$2/$3.git' "$url")
@@ -26,9 +26,12 @@ function gcp -a url path branch -d "git clone wrapper"
 
     cd "$HOME/repos"
 
-    echo -- " \$ $(set_color $fish_color_command)git $(set_color $fish_color_param)clone $(set_color $fish_color_option)$branch[1] $(set_color $fish_color_param)$branch[2] $(set_color $fish_color_option)-- $(set_color $fish_color_param)$url $path$(set_color normal)"
+    [ -z "$path" ]
+    and set path (echo (string split / "$url")[-1] | rg --passthru --replace '' '.git$')
+    [ -e "$path" ]
+    and set path $path-(random)
 
-    # TODO: set path to name-repo if repo already exists
+    echo -- " \$ $(set_color $fish_color_command)git $(set_color $fish_color_param)clone $(set_color $fish_color_option)$branch[1] $(set_color $fish_color_param)$branch[2] $(set_color $fish_color_option)-- $(set_color $fish_color_param)$url $path$(set_color normal)"
 
     git clone --depth 1 $branch -- $url $path
     and begin
