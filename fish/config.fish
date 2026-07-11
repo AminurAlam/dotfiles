@@ -35,24 +35,6 @@ set -gx QT_QPA_PLATFORMTHEME qt6ct
 set -gx QT_QPA_PLATFORM wayland
 set -gx _ZO_FZF_OPTS '--ignore-case --tiebreak chunk,begin,index --no-multi --scroll-off 4 --height ~90% --layout default --border rounded --margin 0,0,0,0 --no-info --no-separator --prompt " " --preview ""'
 set -gx YAZI_ZOXIDE_OPTS $_ZO_FZF_OPTS
-set -gx _ZO_EXCLUDE_DIRS (string join : \
-    "/" \
-    "/usr" \
-    "/etc" \
-    "/lib" \
-    "/usr/**" \
-    "/etc/**" \
-    "/lib/**" \
-    "$HOME" \
-    # "$HOME/repos/*/*" \
-    "$HOME/repos/dotfiles/*" \
-    "$HOME/.local/*/*/**" \
-    # "$XDG_DOWNLOAD_DIR/*" \
-    "$XDG_DOWNLOAD_DIR/manga/*" \
-    "$XDG_CONFIG_HOME/*" \
-    "$XDG_MUSIC_DIR/albums/*" \
-    ".git" \
-)
 
 # lang config
 
@@ -100,7 +82,7 @@ fish_add_path --path $JAVA_HOME/bin
 
 status is-interactive || exit
 
-dircolors ~/repos/dotfiles/other/dircolors -c | sed 's/^setenv /set -gx /' | source
+# dircolors ~/repos/dotfiles/other/dircolors -c | sed 's/^setenv /set -gx /' | source
 
 if set -q TERMUX_VERSION
     pidof sshd &>/dev/null || sshd
@@ -113,10 +95,32 @@ function fish_title
     prompt_pwd
 end
 
-# TODO: find root dir before adding
 function __zoxide_hook --on-variable PWD
-    test -z "$fish_private_mode"
-    and command zoxide add -- (builtin pwd -L)
+    set -f dirname (builtin pwd -L)
+
+    string match -q "$HOME*" "$dirname" || return
+    [ -z "$fish_private_mode" ] || return
+
+    set root (string match -r -- (string join '|' \
+        ~/repos/*/ \
+        $XDG_VIDEOS_DIR/{.*,*}/ \
+        $XDG_DOWNLOAD_DIR/main/torrents \
+        $XDG_DOWNLOAD_DIR/{art,lrc,main,manga} \
+        $XDG_CACHE_HOME/yay \
+        $XDG_CACHE_HOME \
+        $XDG_CONFIG_HOME \
+        $XDG_MUSIC_DIR/albums \
+        $XDG_PICTURES_DIR/{.archive,WhatsApp Images,clothes} \
+        $XDG_DOCUMENTS_DIR
+    ) "$dirname")
+    if [ -n "$root" ]
+        echo $dirname | rg -F --color always $root >>~/.local/cache/temp/root
+        set dirname "$root"
+    else
+        echo $dirname >>~/.local/cache/temp/root
+    end
+
+    command zoxide add -- "$dirname"
 end
 
 fish_config theme choose tokyo-night
