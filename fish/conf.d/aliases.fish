@@ -32,7 +32,7 @@ abbr ... "cd ../.."
 abbr .... "cd ../../.."
 abbr --set-cursor zd 'z $HOME/repos/dotfiles/%'
 abbr --set-cursor zdl 'z $XDG_DOWNLOAD_DIR/%'
-abbr zz "z -"
+abbr zz "cd -"
 
 # git
 abbr gl "git status -bs; git log --pretty=nice -n10"

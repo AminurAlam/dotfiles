@@ -100,8 +100,6 @@ fish_add_path --path $JAVA_HOME/bin
 
 status is-interactive || exit
 
-# command -vq starship && starship init fish | source
-command -vq zoxide && zoxide init fish | sed 's/^complete --erase --command z$//' | source || alias z cd
 dircolors ~/repos/dotfiles/other/dircolors -c | sed 's/^setenv /set -gx /' | source
 
 if set -q TERMUX_VERSION
@@ -113,6 +111,12 @@ end
 
 function fish_title
     prompt_pwd
+end
+
+# TODO: find root dir before adding
+function __zoxide_hook --on-variable PWD
+    test -z "$fish_private_mode"
+    and command zoxide add -- (builtin pwd -L)
 end
 
 fish_config theme choose tokyo-night

@@ -1,4 +1,4 @@
-function fish_prompt --description 'commandline prompt'
+function fish_prompt -d 'commandline prompt'
     set last_status $pipestatus
     set -l stat
     if [ (math (string join + $last_status)) -gt 0 ]

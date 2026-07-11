@@ -1,13 +1,12 @@
-function __path_complete
-    complete --do-complete "'' "(builtin commandline --cut-at-cursor --current-token) | string match --regex -- '.*'
-    complete --do-complete "'' ."(builtin commandline --cut-at-cursor --current-token) | string match -v --regex '^\.\.?/$'
-end
-
-function __zoxide_complete
+function __zoxide_z_complete
     set -l token (commandline -t)
-    command -vq zoxide || return
-    set -q token && zoxide query --exclude (pwd -L) -l -- "$token" | string replace "$HOME" '~'
-end
 
-complete z -a '(__path_complete)'
-complete z -a '(__zoxide_complete)/'
+    # PATH
+    # complete --do-complete "'' "(builtin commandline --cut-at-cursor --current-token) | string match --regex -- '.*'
+    complete --do-complete "'' "(builtin commandline --cut-at-cursor --current-token) | string match --regex -- '.*/$'
+    complete --do-complete "'' ."(builtin commandline --cut-at-cursor --current-token) | string match --regex -- '.*/$' | string match -v --regex '^\.\.?/$'
+
+    # ZOXIDE
+    [ -n "$token" ] && zoxide query --exclude (pwd -L) -l -- "$token" | string replace "$HOME" '~'
+end
+complete --command z --no-files --arguments '(__zoxide_z_complete)'
