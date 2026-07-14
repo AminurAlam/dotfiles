@@ -88,8 +88,7 @@ rclone.conf
 
 /streamrip/*downloads.db
 
-/systemd/user/default.target.wants
-/systemd/user/graphical-session.target.wants
+/systemd/user/*.target.wants
 
 /vesktop/*
 !/vesktop/settings.json
