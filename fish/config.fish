@@ -102,16 +102,15 @@ function __zoxide_hook --on-variable PWD
     [ -z "$fish_private_mode" ] || return
 
     set root (string match -r -- (string join '|' \
-        ~/repos/*/ \
-        $XDG_VIDEOS_DIR/{.*,*}/ \
+        {$HOME/repos,$XDG_VIDEOS_DIR,$XDG_STATE_HOME,$XDG_DATA_HOME}"/[^/]+/" \
         $XDG_DOWNLOAD_DIR/main/torrents \
         $XDG_DOWNLOAD_DIR/{art,lrc,main,manga} \
         $XDG_CACHE_HOME/yay \
         $XDG_CACHE_HOME \
         $XDG_CONFIG_HOME \
+        $XDG_DOCUMENTS_DIR \
         $XDG_MUSIC_DIR/albums \
-        $XDG_PICTURES_DIR/{.archive,WhatsApp Images,clothes} \
-        $XDG_DOCUMENTS_DIR
+        $XDG_PICTURES_DIR/{.archive,WhatsApp Images,clothes}
     ) "$dirname")
     if [ -n "$root" ]
         echo $dirname | rg -F --color always $root >>~/.local/cache/temp/root
