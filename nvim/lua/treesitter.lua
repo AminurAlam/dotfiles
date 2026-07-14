@@ -1,5 +1,15 @@
-local path = os.getenv('HOME') .. '/repos/tree-sitter-kanata'
-local exists = vim.uv.fs_stat(path)
+local langs = {}
+local prefix = 'file://' .. os.getenv('HOME') .. '/repos/tree-sitter/'
+
+for _, name in ipairs({ 'kanata', 'newsraft' }) do
+  langs[name] = {
+    install_info = {
+      url = prefix .. name,
+      queries = 'queries',
+      use_repo_queries = true,
+    },
+  }
+end
 
 require('tree-sitter-manager').setup {
   ensure_installed = {
@@ -12,15 +22,7 @@ require('tree-sitter-manager').setup {
     'vimdoc',
   },
   nohighlight = { 'glimmer', 'latex' }, -- TODO: remove when handlebars is fixed
-  languages = {
-    kanata = {
-      install_info = {
-        url = 'https://github.com/AminurAlam/tree-sitter-kanata',
-        queries = 'queries',
-        use_repo_queries = true,
-      },
-    },
-  }, -- override or add new parser sources
+  languages = langs, -- override or add new parser sources
 }
 
 local sel = require('vim.treesitter._select')

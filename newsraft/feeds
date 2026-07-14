@@ -1,4 +1,4 @@
-# vim:ft=feed:noexpandtab:conceallevel=3:cms=#\ %s:
+# vim:ft=newsraft:noexpandtab:conceallevel=3:cms=#\ %s:
 # title NOT LIKE '%Rust%'
 # persons LIKE '%PHARMACIST%' OR persons LIKE '%OFFL1NX%'
 # attachments LIKE '%audio/mp3%' OR attachments LIKE '%video/mp4%'
@@ -68,7 +68,7 @@ https://cheapskatesguide.org/cheapskates-guide-rss-feed.xml "Cheapskates Guide"
 https://utcc.utoronto.ca/~cks/space/blog/?atom
 https://daniel.haxx.se/blog/feed/ "Daniel Stenberg (curl)"
 https://daverupert.com/atom.xml
-https://dx13.co.uk/index.atom ~dx13
+https://dx13.co.uk/index.atom "~dx13"
 https://dylanbeattie.net/feed.xml "Dylan Beattie"
 https://ewie.online/feed/feed.json
 https://ficd.sh/rss.xml
