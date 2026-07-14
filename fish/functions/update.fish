@@ -18,12 +18,31 @@ function update -d "system update with just one command"
     and nvim +'lua vim.pack.update()'
     or nvim +'lua vim.pack.update(nil, {target = "lockfile"})'
 
+    string pad -C -c= -w$COLUMNS " GIT REPOS "
+    if set -q TERMUX_VERSION
+        cd ~/repos/dotfiles/
+        and git pull origin
+
+        cd ~/repos/yazi-plugins/
+        and git pull origin end
+    end
+
     string pad -C -c= -w$COLUMNS " CARGO "
 
     cargo install --locked --git https://git.gay/stella/niri-ipc-windowlayout
 
     set -q TERMUX_VERSION
     and cargo install --locked --git https://codeberg.org/AminurAlam/kt
+
+    set -q TERMUX_VERSION
+    and cargo install --force --git https://github.com/sxyazi/yazi.git yazi-build
+    or begin
+        cd ~/repos/yazi-fork/
+        git fetch upstream
+        git rebase upstream/main
+        cargo build --release --locked
+        mv target/release/yazi target/release/ya $CARGO_HOME/bin/
+    end
 
     # cargo install --profile opt --config 'build.rustflags="-C target-cpu=native"' --locked \
     #     --git https://github.com/helix-editor/helix helix-term
@@ -40,15 +59,6 @@ function update -d "system update with just one command"
 
     string pad -C -c= -w$COLUMNS " FISH COMPLETIONS "
     fish_update_completions
-
-    string pad -C -c= -w$COLUMNS " GIT REPOS "
-    if set -q TERMUX_VERSION
-        cd ~/repos/dotfiles/
-        and git pull origin
-
-        cd ~/repos/yazi-plugins/
-        and git pull origin end
-    end
 
     # string pad -C -c= -w$COLUMNS " BIOME "
     if false && [ $USER = fisher ]

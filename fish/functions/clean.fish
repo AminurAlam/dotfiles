@@ -51,7 +51,7 @@ function clean -d "cleanup storage space"
     command -vq ccache && ccache --clear
     command -vq journalctl && journalctl --vacuum-time 7d
     command -vq newsraft && newsraft -e purge-abandoned
-    command -vq cargo && fd -H -tf -d1 -F 'Cargo.toml' $HOME/repos/* -x cargo clean --manifest-path
+    # command -vq cargo && fd -H -tf -d1 -F 'Cargo.toml' $HOME/repos/* -x cargo clean --manifest-path
 
     echo
     command df -h | awk '/fuse|home/{print $3"/"$2,$5,$4}'

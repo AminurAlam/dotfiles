@@ -57,8 +57,10 @@ function fish_prompt -d 'commandline prompt'
         for r in (git remote)
             [ $r = upstream ] && continue
 
-            set pushcount (git rev-list --count "$r..$branch")
+            set pushcount (git rev-list --count "$r..$branch" 2>/dev/null)
             [ "$pushcount" = 0 ]
+            and continue
+            [ -z "$pushcount" ]
             and continue
 
             set icon 
