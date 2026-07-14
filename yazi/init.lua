@@ -226,6 +226,84 @@ do -- [=[ fix drag making hidden pannel reappear
   -- ]=]
 end
 
+------------------ KEYBINDS ---------------
+
+if km then
+  ---@param key string|string[]
+  ---@param action string|string[]
+  ---@param desc string?
+  local map = function(key, action, desc)
+    km.mgr.rules:insert(1, { on = key, run = action, desc = desc })
+  end
+
+  km.help.rules:insert(1, { on = 'q', run = 'close' })
+  km.tasks.rules:insert(1, { on = 'q', run = 'close' })
+  km.spot.rules:insert(1, { on = 'q', run = 'close' })
+  km.input.rules:insert(1, { on = '<C-k>', run = 'recall -1' })
+  km.input.rules:insert(1, { on = '<C-j>', run = 'recall 1' })
+
+  -- pick
+  km.pick.rules:insert(1, { on = 'l', run = 'close --submit' })
+  km.pick.rules:insert(1, { on = '<right>', run = 'close --submit' })
+  km.pick.rules:insert(1, { on = '<C-m>', run = 'close --submit' })
+
+  map('g', 'arrow top', 'Move cursor to the top')
+  -- # plugins
+  -- map('mgr',{ 's', 't' , 'plugin max-pane' })
+  -- map('mgr','f', 'plugin fchar start' )
+  map('F', 'plugin fzf')
+  map('z', 'plugin zoxide')
+  map('l', 'plugin smart-enter')
+  map('{', 'plugin nextension bwd')
+  map('}', 'plugin nextension fwd')
+  map('<right>', 'plugin smart-enter')
+  -- # Selection
+  map('%', 'toggle_all --state=true')
+  -- # Operation
+  map('o', 'open --interactive')
+  map('O', 'create')
+  map('d', 'remove')
+  map('D', 'shell --block --confirm -- fd -HI -td -d2 -x rmdir -p')
+  map({ 'y', 'y' }, 'yank', 'yank file')
+  map({ 'y', 'p' }, 'copy path', 'yank ENTIRE path')
+  map({ 'y', 'f' }, 'copy filename', 'yank filename')
+  map(
+    { 'y', 'u' },
+    'shell --confirm -- wl-copy -t text/uri-list file://$(realpath "$0")',
+    'yank uri'
+  )
+  map('p', { 'paste', 'unyank' })
+  -- # Tabs
+  map('t', { 'tab_create --current', "tab_rename ''", 'plugin zoxide' })
+  map('T', 'tab_rename --interactive')
+  map('<C-Left>', 'tab_switch -1 --relative')
+  map('<C-Right>', 'tab_switch 1 --relative')
+  -- # Help
+  map('?', 'help')
+  -- # rename
+  if ya.target_family() == 'android' then
+    map('@', 'shell --block --confirm -- rat "$0"')
+  end
+  map('I', 'rename --cursor=start --hovered')
+  map('i', 'rename --cursor=before_ext --hovered')
+  map('a', 'rename --cursor=end --hovered')
+  map('r', 'rename --cursor=before_ext')
+  map('R', { 'toggle_all', 'rename', 'escape' })
+  map({ 'c', 'c' }, 'rename --empty=all')
+  map({ 'c', '0' }, 'rename --empty=stem --cursor=start')
+  map({ 'c', 'o' }, 'rename --empty=stem --cursor=start')
+  map({ 'c', '^' }, 'rename --empty=stem --cursor=start')
+  map({ 'c', '$' }, 'rename --empty=ext --cursor=end')
+  -- # sorting
+  map({ 's', 'm' }, 'plugin sort-by-location mtime')
+  map({ 's', 's' }, { 'plugin sort-by-location size', 'linemode size' })
+  map({ 's', 'e' }, 'plugin sort-by-location extension')
+  map({ 's', 'n' }, 'plugin sort-by-location natural')
+  -- # other
+  map('<C-g>', [[shell --block --confirm -- nvim +Pick\ grep_live]])
+  map('<Esc>', { 'escape', 'unyank' }, 'Exit visual mode, clear selection, or cancel search')
+end
+
 ------------------ PLUGIN ---------------
 
 if rt.args.chooser_file then
@@ -237,6 +315,8 @@ require('git'):setup {}
 require('zoxide'):setup { update_db = false }
 
 require('session'):setup { sync_yanked = true }
+
+require('nextension'):setup { fwd = '}', bwd = '{' }
 
 require('sort-by-location'):setup {
   default = { by = 'extension', reverse = false },
@@ -275,7 +355,7 @@ require('fchar'):setup {
   insensitive = true,
   skip_symbols = true,
   skip_prefix = { 'yazi-', 'spot-', 'preview-', 'dot-', 'WhatsApp ', 'helix-', 'tree-sitter-' },
-  search_location = 'start',
+  keys = { start = 'f' },
   aliases = {
     a = 'あア',
     b = 'ばびぶべぼバビブベボ',
