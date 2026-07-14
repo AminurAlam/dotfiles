@@ -24,6 +24,7 @@ set -gx MOZ_ENABLE_WAYLAND 1
 set -gx STARSHIP_CACHE $XDG_CACHE_HOME/starship
 set -gx ICEAUTHORITY $XDG_CACHE_HOME/ICEauthority
 set -gx XAUTHORITY $XDG_RUNTIME_DIR/Xauthority
+set -gx SSH_AUTH_SOCK $XDG_RUNTIME_DIR/ssh-agent.socket
 set -gx GNUPGHOME $XDG_DATA_HOME/gnupg
 set -gx TAPLO_CONFIG $HOME/repos/dotfiles/other/taplo.toml
 set -gx RIPGREP_CONFIG_PATH $HOME/repos/dotfiles/other/ripgreprc
