@@ -1,4 +1,4 @@
-Host brick slab paper tmux
+Host brick slab paper
     User user
     Port 8022
     IdentityFile ${HOME}/.ssh/ssh_ed25519
@@ -22,3 +22,4 @@ Host paper
 Host github.com gitlab.com codeberg.org
     User git
     IdentityFile ${HOME}/.ssh/git_ed25519
+    AddKeysToAgent yes
