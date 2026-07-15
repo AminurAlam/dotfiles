@@ -15,7 +15,9 @@
         "Apple, Inc. USB-C to 3.5mm Headphone Jack Adapter"
         "KTMicro KT02H20 HIFI Audio"
         "Ideapad extra buttons"
-    ))
+    )
+)
+
 (defvar
     int 15
     dist 15
@@ -71,19 +73,19 @@
     bs (tap-hold-release $tt $nht bksl S-bksl )
 )
 (defalias ;; mid row
-    a  (tap-hold $tt $ht a lalt)
-    s  (tap-hold $tt $ht s lsft)
-    d  (tap-hold $tt $ht d lmet)
-    f  (tap-hold $tt $ht f lctl)
+    a   (tap-hold $tt $ht a lalt)
+    s   (tap-hold $tt $ht s lsft)
+    d   (tap-hold $tt $ht d lmet)
+    f   (tap-hold $tt $ht f lctl)
     A-a (tap-hold $tt $ht A-a lctl)
     S-s (tap-hold $tt $ht S-s lctl)
     M-d (tap-hold $tt $ht M-d lctl)
     C-f (tap-hold $tt $ht C-f lctl)
-    g  (tap-hold-release $tt $ht grv S-grv)
+    g   (tap-hold-release $tt $ht grv S-grv)
 
-    l  (tap-hold $tt $ht l rsft)
-    ;  (tap-hold-release $tt $nht ; S-;)
-    '  (tap-hold-release $tt $ht ' S-')
+    l   (tap-hold $tt $ht l rsft)
+    ;   (tap-hold-release $tt $nht ; S-;)
+    '   (tap-hold-release $tt $ht ' S-')
 )
 (defalias ;; other
     esc (tap-hold 500 500 caps lrld)
