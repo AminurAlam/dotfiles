@@ -48,8 +48,10 @@
 !/fish/completions/z.fish
 /fish/fish_variables
 
-/helix/runtime/grammars/sources
-/helix/runtime/grammars
+/helix/runtime/*
+/helix/themes/tokyonight.toml
+
+/jj/repos/*
 
 /librewolf/librewolf/*
 !/librewolf/librewolf/librewolf.overrides.cfg

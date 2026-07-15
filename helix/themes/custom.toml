@@ -1,9 +1,9 @@
 # key = { fg = "#ffffff", bg = "#000000", underline = { color = "#ff0000", style = "curl"} }
 # TODO: add bg to diagnostics
 
+"inherits" = "tokyonight"
 "comment" = { fg = "comment" }
 "function" = { fg = "blue" }
-"inherits" = "tokyonight"
 "keyword" = { fg = "purple" }
 "keyword.control.return" = { fg = "purple" }
 "markup.italic" = {}

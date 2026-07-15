@@ -11,14 +11,13 @@ file-types = ["conf"]
 
 [[language]]
 name = "kanata"
-grammar = "kanata"
 scope = "source.kanata"
 file-types = ["kbd"]
 comment-tokens = [";;"]
 
 [[grammar]]
 name = "kanata"
-source = { git = "https://github.com/AminurAlam/tree-sitter-kanata", rev = "e8d56b0675824723aa283e84e441c6709b61b722" }
+source = { git = "https://codeberg.org/AminurAlam/tree-sitter-kanata", rev = "92d9d38611546de4a903e445a1eb6c2238fa9af9" }
 
 [[language]]
 name = "lua"
