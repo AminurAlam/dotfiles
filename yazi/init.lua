@@ -267,11 +267,7 @@ if km then
   map({ 'y', 'y' }, 'yank', 'yank file')
   map({ 'y', 'p' }, 'copy path', 'yank ENTIRE path')
   map({ 'y', 'f' }, 'copy filename', 'yank filename')
-  map(
-    { 'y', 'u' },
-    'shell --confirm -- wl-copy -t text/uri-list file://$(realpath "$0")',
-    'yank uri'
-  )
+  map({ 'y', 'u' }, 'shell --confirm -- wl-copy -t text/uri-list file://%h', 'yank uri')
   map('p', { 'paste', 'unyank' })
   -- # Tabs
   map('t', { 'tab_create --current', "tab_rename ''", 'plugin zoxide' })
