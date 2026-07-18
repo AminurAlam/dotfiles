@@ -1,6 +1,4 @@
 function out -d "compile and run some code"
-    clear
-
     switch (path extension $argv[1])
         case .c .cpp
             cc -lm -lGL -lGLU -lglut -oout -Wno-all $argv[1]

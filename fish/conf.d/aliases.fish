@@ -40,7 +40,7 @@ abbr gl "git status -bs; git log --pretty=nice -n10"
 abbr gd "git diff"
 abbr pull "git pull origin"
 abbr push "git push origin"
-abbr fr "git fetch upstream && git rebase upstream/(git symbolic-ref refs/remotes/origin/HEAD | sed s@^refs/remotes/origin/@@)"
+abbr fr "git fetch upstream && git rebase upstream/(git rev-parse --abbrev-ref HEAD)"
 
 # rclone/rsync
 abbr rsy "rsync -Pha --info PROGRESS2"
