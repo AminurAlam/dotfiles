@@ -18,7 +18,7 @@ binds {
     Mod+N repeat=false { power-off-monitors; }
 
     // PRINT
-    Mod+P       { screenshot; }
+    Mod+P       { screenshot show-pointer=false; }
     Mod+Shift+P { screenshot-screen; }
     Mod+Alt+P   { screenshot-window; }
     Mod+o       { spawn "ctl" "ssend"; }

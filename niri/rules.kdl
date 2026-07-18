@@ -66,6 +66,7 @@ window-rule { // unfocused
     match is-focused=false
     exclude app-id="^mpv$"
 
+    // TODO: draw border
     opacity 0.9
 }
 
