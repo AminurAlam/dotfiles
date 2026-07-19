@@ -21,6 +21,7 @@
     "memory",
     "cpu",
     "temperature",
+    "custom/brick",
     "battery",
     "power-profiles-daemon",
     // "idle_inhibitor",
@@ -118,6 +119,14 @@
     "format": "{icon} {temperatureC}°",
     "format-icons": ["", "", "", "", ""],
     "tooltip": false,
+  },
+  "custom/brick": {
+    "exec": ".config/waybar/brick.fish",
+    "return-type": "json",
+    "restart-interval": "never",
+    "hide-empty-text": true,
+    "format": " {percentage}%",
+    "states": { "critical": 20, "warning": 40, "good": 75, "full": 100 },
   },
   "battery": {
     "format": "{icon} {capacity}%",
