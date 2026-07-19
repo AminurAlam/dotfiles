@@ -1,5 +1,5 @@
 [Unit]
-Description=Kanata keyboard remapper
+Description=[10002] Kanata keyboard remapper
 Documentation=https://github.com/jtroo/kanata
 
 [Service]
@@ -14,7 +14,7 @@ Environment=PATH=/usr/local/bin:/usr/local/sbin:/usr/bin:/bin
 # IOSchedulingClass=realtime
 # Nice=-20
 Type=simple
-ExecStart=/usr/bin/kanata -n
+ExecStart=/usr/bin/kanata -n -p 10002
 Restart=no
 PrivateTmp=true
 PrivateDevices=false

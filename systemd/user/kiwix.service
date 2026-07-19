@@ -1,5 +1,5 @@
 [Unit]
-Description=[10002] Kiwix is an offline reader for online content like Wikipedia, Project Gutenberg, or TED Talks.
+Description=[10003] Kiwix is an offline reader for online content like Wikipedia, Project Gutenberg, or TED Talks.
 Documentation=https://kiwix.org/
 After=network.target
 
@@ -7,7 +7,7 @@ After=network.target
 Environment=PATH=/usr/local/bin:/usr/local/sbin:/usr/bin:/bin
 Type=exec
 ExecStartPre=sh -c "kiwix-manage ~/dl/main/zim/library_zim.xml add ~/dl/main/zim/*.zim"
-ExecStart=/usr/bin/kiwix-serve -p 10002 --library dl/main/zim/library_zim.xml
+ExecStart=/usr/bin/kiwix-serve -p 10003 --library dl/main/zim/library_zim.xml
 PrivateTmp=true
 PrivateDevices=true
 PrivateUsers=true

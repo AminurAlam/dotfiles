@@ -23,7 +23,9 @@
     dist 15
     tt 200
     ht 250
-    nht 150)
+    nht 150
+    td 1000
+)
 
 (defsrc
   esc
@@ -35,15 +37,15 @@
 (deflayer base
   @esc
   @grv @1   @2   @3   @4   @5   @6   @7   @8   @9   @0   @-   @=   _
-  _    _    _    @e   _    _    _    _    _    _    _    @[   @]   @bs
+  _    _    _    @e   _    _    _    _    @i   _    _    @[   @]   @bs
   @cap @a   @s   @d   @f   _    _    _    _    @l   @;   @'   _
   _    _    _    _    _    _    _    _    @,   @.   @/   _
   _    _    _              _              _    _    _)
 (deflayer symbols
   _
   _    _    _    _    _    _    _    _    _    _    _    _    _    _
-  _    @q   @w   _    @-   @=   esc  @7   @8   @9   @[   _    _    _
-  _    @A-a @S-s @M-d @C-f @g   bspc @4^  @5   @6$  @]   _    _
+  _    @q   @w   _    @-   @=   _    @7   @8   @9   _    _    _    _
+  _    @[   @[   @]   @]   @g   bspc @4^  @5   @6$  _    _    _
   _    _    _    _    @v   @bs  @0   @1   @2   @3   _    _
   _    _    _             tab             _    _    _)
 
@@ -68,19 +70,16 @@
     q  (tap-hold $tt $ht ' S-')
     w  (tap-hold $tt $ht / S-/)
     e  (tap-hold $tt $ht e (layer-while-held symbols))
-    [ (tap-hold-release 100 150 [ S-[)
-    ] (tap-hold-release 100 150 ] S-])
+    i  (tap-hold $tt $ht i (layer-while-held symbols))
+    [  (tap-hold-release 100 150 [ S-[)
+    ]  (tap-hold-release 100 150 ] S-])
     bs (tap-hold-release $tt $nht bksl S-bksl )
 )
 (defalias ;; mid row
-    a   (tap-hold $tt $ht a lalt)
-    s   (tap-hold $tt $ht s lsft)
-    d   (tap-hold $tt $ht d lmet)
-    f   (tap-hold $tt $ht f lctl)
-    A-a (tap-hold $tt $ht A-a lctl)
-    S-s (tap-hold $tt $ht S-s lctl)
-    M-d (tap-hold $tt $ht M-d lctl)
-    C-f (tap-hold $tt $ht C-f lctl)
+    a   (tap-hold $tt $ht a (tap-dance $td (lalt A-a)))
+    s   (tap-hold $tt $ht s (tap-dance $td (lsft S-s)))
+    d   (tap-hold $tt $ht d (tap-dance $td (lmet M-d)))
+    f   (tap-hold $tt $ht f (tap-dance $td (lctl C-f)))
     g   (tap-hold-release $tt $ht grv S-grv)
 
     l   (tap-hold $tt $ht l rsft)
