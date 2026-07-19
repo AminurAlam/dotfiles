@@ -9,11 +9,13 @@ base-devel
 bash-language-server
 bibata-cursor-theme-bin
 btop
+clang
 dos2unix
 dunst
 dust
 eden-bin
 efibootmgr
+faad2
 fd
 fish
 foot
@@ -37,6 +39,7 @@ iwd
 jdk17-openjdk
 jq
 jre8-openjdk-headless
+jujutsu
 kanata
 kdeconnect
 keepassxc
@@ -75,6 +78,7 @@ nwg-look
 openbsd-netcat
 openresolv
 openssh
+osu-lazer-bin
 otf-ipafont
 pacman-contrib
 pandoc-cli
@@ -161,7 +165,6 @@ xf86-video-nouveau
 xmlto
 xwayland-satellite
 yay
-yazi
 yt-dlp
 yt-dlp-ejs
 zathura

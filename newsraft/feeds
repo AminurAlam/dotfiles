@@ -8,11 +8,11 @@
 
 @ NEWS 1 < item-limit 1000
 https://lobste.rs/rss < item-rule "title NOT LIKE 'What are you doing this week%'"
-https://hnrss.org/frontpage.atom "Hacker News" < item-rule "NOT (title REGEXP '^(Show|Tell|Ask|Launch) HN: ' OR title REGEXP '\(YC .*\)' OR title REGEXP '(OpenAI|Anthropic|[Cc]laude|[Oo]pus|[Gg]emini|[Gg]rok|GPT|AI|LLM|[Aa]gent)')"
+https://hnrss.org/frontpage.atom "Hacker News" < item-rule "NOT (title REGEXP '^(Show|Tell|Ask|Launch) HN: ' OR title REGEXP '\(YC .*\)' OR title REGEXP '(OpenAI|Anthropic|[Cc]laude|[Oo]pus|[Gg]emini|[Gg]rok|[Kk]imi|GPT|AI|LLM|[Aa]gent)')"
 https://www.phoronix.com/rss.php < item-rule "NOT (title REGEXP 'Intel|NVIDIA|driver|Mesa|Vulkan')"
 https://astral.sh/blog/rss.xml "astral.sh"
 https://blog.nightly.mozilla.org/feed
-https://lwn.net/headlines/rss < item-rule "NOT (title LIKE 'Security updates for %' OR title LIKE '% stable kernels for %')"
+https://lwn.net/headlines/rss < item-rule "NOT (title LIKE 'Security updates for %' OR title LIKE '% stable kernel%')"
 https://pudding.cool/rss.xml
 https://security.googleblog.com/feeds/posts/default?alt=rss
 https://torrentfreak.com/feed < item-rule "title NOT LIKE '%IPTV%'"
@@ -110,6 +110,7 @@ https://crescentro.se/posts/atom.xml
 https://danluu.com/atom.xml
 https://devever.net/~hl/index.feed
 https://drewdevault.com/blog/index.xml "Drew Devault"
+https://dustycloud.org/blog/index.xml
 https://eaton-works.com/feed.atom
 https://ersei.net/en/blog.atom
 https://blog.frost.kiwi/feed.xml

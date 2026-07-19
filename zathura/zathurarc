@@ -10,6 +10,8 @@ map u scroll half-up
 map d scroll half-down
 map K scroll half-up
 map J scroll half-down
+map k feedkeys "8<Up>"
+map j feedkeys "8<Down>"
 map f toggle_fullscreen
 map D toggle_page_mode
 map gO toggle_index
@@ -36,7 +38,8 @@ set statusbar-v-padding 0
 set page-h-padding 5
 set page-v-padding 5
 set page-cache-size 20
-set scroll-step 40
+set scroll-hstep -10
+set scroll-step 5
 set scroll-page-aware true
 set statusbar-home-tilde true
 set vertical-center true

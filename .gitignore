@@ -53,11 +53,16 @@
 
 /jj/repos/*
 
-/librewolf/librewolf/*
-!/librewolf/librewolf/librewolf.overrides.cfg
+/librewolf/librewolf/*.ini
+/librewolf/librewolf/Profile Groups/
+/librewolf/librewolf/dz4v337n.default/
+/librewolf/librewolf/lvl02447.default-default/*
+/librewolf/librewolf/native-messaging-hosts/
+/librewolf/librewolf/lvl02447.default-default/chrome/font.woff2
+
+!/librewolf/librewolf/lvl02447.default-default/chrome/
 !/librewolf/librewolf/lvl02447.default-default/chrome/userChrome.css
 !/librewolf/librewolf/lvl02447.default-default/chrome/userContent.css
-!/librewolf/librewolf/native-messaging-hosts/org.keepassxc.keepassxc_browser.json
 
 /mgba/qt.ini
 /mgba/*.sqlite3

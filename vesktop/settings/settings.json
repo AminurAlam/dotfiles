@@ -276,20 +276,6 @@
         "KeepCurrentChannel": {
             "enabled": false
         },
-        "LastFMRichPresence": {
-            "enabled": true,
-            "hideWithSpotify": false,
-            "shareUsername": false,
-            "shareSong": false,
-            "statusName": "last.fm",
-            "nameFormat": "status-name",
-            "useListeningStatus": true,
-            "missingArt": "lastfmLogo",
-            "showLastFmLogo": true,
-            "username": "AminurAlam",
-            "apiKey": "e4d241e8515ed22b3b680f721bc45610",
-            "hideWithActivity": false
-        },
         "LoadingQuotes": {
             "enabled": false
         },
@@ -753,6 +739,20 @@
         },
         "ConcatenatedComponentExtractor": {
             "enabled": true
+        },
+        "MusicRichPresence": {
+            "enabled": true,
+            "hideWithSpotify": false,
+            "shareUsername": false,
+            "shareSong": false,
+            "statusName": "last.fm",
+            "nameFormat": "status-name",
+            "useListeningStatus": true,
+            "missingArt": "lastfmLogo",
+            "username": "AminurAlam",
+            "apiKey": "e4d241e8515ed22b3b680f721bc45610",
+            "hideWithActivity": false,
+            "showLogo": true
         }
     },
     "notifications": {
@@ -765,7 +765,7 @@
         "authenticated": true,
         "url": "https://api.vencord.dev/",
         "settingsSync": true,
-        "settingsSyncVersion": 1783321946336
+        "settingsSyncVersion": 1784377802986
     },
     "eagerPatches": false,
     "uiElements": {
