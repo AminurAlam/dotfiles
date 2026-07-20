@@ -8,7 +8,7 @@
 
 @ NEWS 1 < item-limit 1000
 https://lobste.rs/rss < item-rule "title NOT LIKE 'What are you doing this week%'"
-https://hnrss.org/frontpage.atom "Hacker News" < item-rule "NOT (title REGEXP '^(Show|Tell|Ask|Launch) HN: ' OR title REGEXP '\(YC .*\)' OR title REGEXP '(OpenAI|Anthropic|[Cc]laude|[Oo]pus|[Gg]emini|[Gg]rok|[Kk]imi|GPT|AI|LLM|[Aa]gent)')"
+https://hnrss.org/frontpage.atom "Hacker News" < item-rule "NOT (title REGEXP '^(Show|Tell|Ask|Launch) HN: ' OR title REGEXP '\(YC .*\)' OR title REGEXP '(OpenAI|Anthropic|[Cc]laude|[Oo]pus|[Gg]emini|[Gg]rok|[Kk]imi|[Qq]wen|GPT|AI|LLM|[Aa]gent)')"
 https://www.phoronix.com/rss.php < item-rule "NOT (title REGEXP 'Intel|NVIDIA|driver|Mesa|Vulkan')"
 https://astral.sh/blog/rss.xml "astral.sh"
 https://blog.nightly.mozilla.org/feed
@@ -70,7 +70,7 @@ https://daniel.haxx.se/blog/feed/ "Daniel Stenberg (curl)"
 https://daverupert.com/atom.xml
 https://dx13.co.uk/index.atom "~dx13"
 https://dylanbeattie.net/feed.xml "Dylan Beattie"
-https://ewie.online/feed/feed.json
+https://ewie.online/feed/feed.json "evie on->line"
 https://ficd.sh/rss.xml
 https://etc.ficd.sh/rss.xml
 https://fireborn.mataroa.blog/rss/
