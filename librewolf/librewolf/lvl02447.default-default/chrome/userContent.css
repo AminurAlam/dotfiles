@@ -157,20 +157,25 @@
     --body-background-color: #24283b;
     --link-color: #7aa2f7;
     --link-hover-color: #7aa2c4;
+    --darker: #1e2030;
 
     --collection-pool-color: var(--link-color);
     --collection-pool-hover-color: var(--link-hover-color);
 
     --header-color: var(--grey-2);
 
-    --post-resized-notice-background: #1e2030;
-    --post-parent-notice-background: #1e2030;
-    --post-artist-commentary-container-background: #1e2030;
-    --notice-info-background: #1e2030;
-    --post-child-notice-background: #1e2030;
-    --post-search-notice-background: #1e2030;
-    --subnav-menu-background-color: #1e2030;
+    --post-resized-notice-background: var(--darker);
+    --post-parent-notice-background: var(--darker);
+    --post-artist-commentary-container-background: var(--darker);
+    --notice-info-background: var(--darker);
+    --post-child-notice-background: var(--darker);
+    --post-search-notice-background: var(--darker);
+    --subnav-menu-background-color: var(--darker);
+    --table-even-row-background: var(--darker);
+    --chip-primary-background-color: var(--darker);
 
+    --table-row-border-color: var(--grey-5);
+    --default-border-color: var(--grey-5);
     --notice-info-border-color: var(--grey-5);
 
     --form-input-background: var(--grey-8);
