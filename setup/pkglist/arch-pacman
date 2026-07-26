@@ -116,6 +116,7 @@ rust-analyzer
 scrcpy
 shellcheck
 shfmt
+socat
 sof-firmware
 strace
 stylua

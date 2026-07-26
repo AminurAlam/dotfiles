@@ -86,6 +86,7 @@ com.google.android.server.deviceconfig.resources
 com.google.android.setupwizard
 com.google.android.syncadapters.calendar
 com.google.android.tts
+com.google.android.verifier
 com.google.android.youtube
 com.google.ar.core
 com.google.audio.hearing.visualization.accessibility.scribe
@@ -94,12 +95,6 @@ com.google.mainline.telemetry
 com.hiya.star
 com.mediatek.MtkSettingsResOverlay
 com.mediatek.SettingsProviderResOverlay
-com.mediatek.atmwifimeta
-com.mediatek.cellbroadcastuiresoverlay
-com.mediatek.gbaservice
-com.mediatek.mdmconfig
-com.mediatek.mdmlsample
-com.mediatek.systemuiresoverlay
 com.microsoft.appmanager
 com.microsoft.skydrive
 com.monotype.android.font.foundation
@@ -154,7 +149,6 @@ com.samsung.android.game.gos
 com.samsung.android.globalpostprocmgr
 com.samsung.android.gru
 com.samsung.android.hdmapp
-com.samsung.android.honeyboard
 com.samsung.android.hwresourceshare.storage
 com.samsung.android.incall.contentprovider
 com.samsung.android.inputshare
@@ -221,7 +215,6 @@ com.samsung.android.uds
 com.samsung.android.video
 com.samsung.android.visionintelligence
 com.samsung.android.visual.cloudcore
-com.samsung.android.visualars
 com.samsung.android.vtcamerasettings
 com.samsung.android.wallpaper.res
 com.samsung.android.widget.pictureframe
@@ -266,12 +259,12 @@ com.sec.android.app.ve.vebgm
 com.sec.android.app.vepreload
 com.sec.android.app.volumemonitorprovider
 com.sec.android.app.wlantest
-com.sec.android.autodoodle.service
 com.sec.android.daemonapp
 com.sec.android.diagmonagent
 com.sec.android.easyMover
 com.sec.android.easyMover.Agent
 com.sec.android.easyonehand
+com.sec.android.emergencylauncher
 com.sec.android.gallery3d
 com.sec.android.iaft
 com.sec.android.mimage.photoretouching
