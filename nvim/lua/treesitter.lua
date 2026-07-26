@@ -1,7 +1,7 @@
 local langs = {}
 local prefix = 'file://' .. os.getenv('HOME') .. '/repos/tree-sitter/'
 
-for _, name in ipairs({ 'kanata', 'newsraft' }) do
+for _, name in ipairs({ 'kanata', 'newsraft', 'zathurarc' }) do
   langs[name] = {
     install_info = {
       url = prefix .. name,
