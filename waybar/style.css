@@ -109,21 +109,7 @@
   color: #5af79e;
 }
 
-#custom-brick.DISCHARGING,
-#custom-brick.warning {
-  color: #ff9e64;
-}
-#custom-brick.DISCHARGING,
-#custom-brick.critical {
-  color: #f7768e;
-}
-#custom-brick.DISCHARGING,
-#custom-brick.good {
-  color: #5af79e;
-}
-#custom-brick.DISCHARGING,
-#custom-brick.full {
-  color: #8db0ff;
+#custom-brick.DISCHARGING {
 }
 
 #custom-brick.NOT_CHARGING {
