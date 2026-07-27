@@ -2,6 +2,7 @@ function pong -d "mass ping multiple hosts to check connection"
     set addresses \
         discord.com \
         github.com \
+        codeberg.org \
         google.com \
         mangadex.org \
         reddit.com \
