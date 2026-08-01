@@ -1,1 +1,1 @@
-complete --command mux -fka '(tmux ls -F#S)'
+complete --command mux -fka '(zmx list --short)'

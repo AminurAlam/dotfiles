@@ -23,6 +23,11 @@ function fish_prompt -d 'commandline prompt'
         set job (set_color blue)  $jobcount
     end
 
+    set -l zmx
+    if set -q ZMX_SESSION
+        set zmx (set_color yellow)  $ZMX_SESSION
+    end
+
     set -l bat
     if not set -q TERMUX_VERSION && [ -z "$WAYLAND_DISPLAY" ]
         set capacity (cat /sys/class/power_supply/BAT0/capacity)
@@ -101,6 +106,7 @@ function fish_prompt -d 'commandline prompt'
         $push \
         $bat \
         $job \
+        $zmx \
         $stat \
         $char
 end

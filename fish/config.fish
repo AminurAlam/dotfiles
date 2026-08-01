@@ -36,6 +36,7 @@ set -gx QT_QPA_PLATFORMTHEME qt6ct
 set -gx QT_QPA_PLATFORM wayland
 set -gx _ZO_FZF_OPTS '--ignore-case --tiebreak chunk,begin,index --no-multi --scroll-off 4 --height ~90% --layout default --border rounded --margin 0,0,0,0 --no-info --no-separator --prompt " " --preview ""'
 set -gx YAZI_ZOXIDE_OPTS $_ZO_FZF_OPTS
+set -gx ZMX_SESSION_PREFIX "$USER."
 
 # lang config
 
@@ -61,6 +62,7 @@ if set -q TERMUX_VERSION
     set -gx XDG_RUNTIME_DIR $TMPDIR
     set -gx TERMINFO $PREFIX/share/terminfo
     set -gx MANPATH $PREFIX/share/fish/man $PREFIX/share/man
+    set -gx ZMX_SESSION_PREFIX "brick."
     # set -gx VIMRUNTIME $PREFIX/share/nvim/runtime
 
     set -gx XDG_VIDEOS_DIR /sdcard/Movies
@@ -72,6 +74,8 @@ if set -q TERMUX_VERSION
 
     set -gxp --path PATH ~/.local/bin # sometimes before
     set -gxp --path PATH ~/.local/share/npm/bin
+
+    pidof sshd &>/dev/null || sshd
 end
 
 fish_add_path --path "$CARGO_HOME/bin" # after declaring CARGO_HOME
@@ -82,12 +86,6 @@ fish_add_path --path $ANDROID_HOME/tools/bin
 fish_add_path --path $JAVA_HOME/bin
 
 status is-interactive || exit
-
-# dircolors ~/repos/dotfiles/other/dircolors -c | sed 's/^setenv /set -gx /' | source
-
-if set -q TERMUX_VERSION
-    pidof sshd &>/dev/null || sshd
-end
 
 function fish_mode_prompt
 end

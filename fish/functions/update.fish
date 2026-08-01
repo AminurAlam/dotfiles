@@ -1,12 +1,13 @@
 function update -d "system update with just one command"
 
     string pad -C -c= -w$COLUMNS " REFLECTOR "
-    [ "$(read -P "run reflector? [y/N] ")" = y ]
-    and sudo reflector \
-        --sort rate \
-        --country India,China,Bangladesh \
-        --save /etc/pacman.d/mirrorlist \
-        -p http,https
+    if not set -q TERMUX_VERSION && [ "$(read -P "run reflector? [y/N] ")" = y ]
+        sudo reflector \
+            --sort rate \
+            --country India,China,Bangladesh \
+            --save /etc/pacman.d/mirrorlist \
+            -p http,https
+    end
 
     string pad -C -c= -w$COLUMNS " PACMAN "
     command -vq yay
