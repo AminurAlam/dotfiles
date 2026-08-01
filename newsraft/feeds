@@ -8,6 +8,8 @@
 
 @ NEWS 1 < item-limit 1000
 https://lobste.rs/rss < item-rule "title NOT LIKE 'What are you doing this week%'"
+https://bearblog.dev/discover/feed/
+https://feeds.pinboard.in/rss/popular/
 https://hnrss.org/frontpage.atom "Hacker News" < item-rule "NOT (title REGEXP '^(Show|Tell|Ask|Launch) HN: ' OR title REGEXP '\(YC .*\)' OR title REGEXP '(OpenAI|Anthropic|[Cc]laude|[Oo]pus|[Gg]emini|[Gg]rok|[Kk]imi|[Qq]wen|GPT|AI|LLM|[Aa]gent)')"
 https://www.phoronix.com/rss.php < item-rule "NOT (title REGEXP 'Intel|NVIDIA|driver|Mesa|Vulkan')"
 https://astral.sh/blog/rss.xml "astral.sh"
@@ -48,6 +50,15 @@ https://blog.thunderbird.net/feed/ "Thunderbird"
 # https://reddit.com/r/neovim/hot.rss "r/neovim"
 # https://xkcd.com/atom.xml
 
+@ NEWS 3
+https://feeds.feedburner.com/ScrollinArticles.rss             < item-limit 100
+https://www.thehindu.com/news/national/feeder/default.rss     < item-limit 50
+https://www.thehindu.com/news/states/feeder/default.rss       < item-limit 50
+https://www.thehindu.com/opinion/cartoon/feeder/default.rss   < item-limit 50
+https://www.thehindu.com/opinion/columns/feeder/default.rss   < item-limit 50
+https://www.thehindu.com/opinion/op-ed/feeder/default.rss     < item-limit 50
+https://www.thehindu.com/opinion/editorial/feeder/default.rss < item-limit 50
+
 @ PERSONAL BLOGS 1
 https://aminuralam.github.io/atom.xml
 https://aashvik.com/atom.xml
@@ -68,6 +79,7 @@ https://cheapskatesguide.org/cheapskates-guide-rss-feed.xml "Cheapskates Guide"
 https://utcc.utoronto.ca/~cks/space/blog/?atom
 https://daniel.haxx.se/blog/feed/ "Daniel Stenberg (curl)"
 https://daverupert.com/atom.xml
+https://drewdevault.com/blog/index.xml "Drew Devault"
 https://dx13.co.uk/index.atom "~dx13"
 https://dylanbeattie.net/feed.xml "Dylan Beattie"
 https://ewie.online/feed/feed.json "evie on->line"
@@ -93,7 +105,7 @@ https://www.rubenerd.au/feed/
 https://schneier.com/feed/atom < item-rule "title NOT LIKE 'Friday Squid Blogging: %'"
 https://soatok.blog/feed "Soatok (Dhole Moments)"
 https://steveklabnik.com/feed.xml
-https://strongly-typed-thoughts.net/blog/feed "strongly typed thoughts" < download-timeout 0
+https://strongly-typed-thoughts.net/feed.xml
 https://thatmangahunter.com/blog-feed.xml
 https://thevaluable.dev/index.xml
 https://tonsky.me/atom.xml "tonsky (Nikita Prokopov)"
@@ -105,17 +117,18 @@ https://xeiaso.net/blog.json
 https://zerokspot.com/index.xml
 
 @ PERSONAL BLOGS 2
+https://absurdpirate.bearblog.dev/feed/
 https://ar.al/index.xml
 https://crescentro.se/posts/atom.xml
 https://danluu.com/atom.xml
 https://devever.net/~hl/index.feed
-https://drewdevault.com/blog/index.xml "Drew Devault"
 https://dustycloud.org/blog/index.xml
 https://eaton-works.com/feed.atom
 https://ersei.net/en/blog.atom
 https://blog.frost.kiwi/feed.xml
 https://blog.feld.me/feeds/all.atom.xml
 https://hacktivis.me/feed.atom
+https://havn.blog/categories/english/feed.xml "Havn"
 https://p4m.dev/atom.xml
 https://riki.house/feed/all.atom
 https://fromjason.xyz/p/notebook/feed/feed.xml
@@ -125,56 +138,10 @@ https://lambdaland.org/index.xml
 https://lorendb.dev/index.xml
 https://ludic.mataroa.blog/rss
 https://blog.matthewbrunelle.com/rss
+https://micahkepe.com/blog/atom.xml
 https://oppi.li/posts/index.rss
 https://oppi.li/weeklies/index.rss
 https://sethmlarson.dev/feed
 https://www.0xsid.com/blog/rss.xml
 https://susam.net/feed.xml
 https://www.marginalia.nu/log/index.xml
-
-@ PERSONAL BLOGS 3
-https://7c0h.com/blog/rss.xml
-https://alistairshepherd.uk/feed.xml
-https://aredridel.dinhe.net/atom.xml
-https://austinhenley.com/blog/feed.rss
-https://benjamincongdon.me/blog/feed.xml
-https://borretti.me/feed.xml
-https://cedwards.xyz/index.xml
-https://cendyne.dev/feed.xml "Cendyne's Posts"
-https://ciechanow.ski/atom.xml
-https://sdomi.pl/weblog/atom/
-https://dotat.at/@/blog.atom
-https://drainerdomain.xyz/guides/index.xml
-https://drainerdomain.xyz/posts/index.xml
-https://emnudge.dev/blog.xml
-https://emnudge.dev/reads.xml
-https://esham.io/atom.xml
-https://fasterthanli.me/index.xml
-https://arch.dog/bark/rss
-https://hasbrouck.org/blog/index.xml
-http://www.jonandnic.com/feed
-https://leafo.net/feed.xml
-https://loadingartist.com/index.xml
-https://nadh.in/index.xml
-https://neilzone.co.uk/index.xml
-https://nobodyspecial.neocities.org/rss2.xml
-https://ntietz.com/atom.xml
-https://palone.blog/feed/atom/
-https://redvice.org/feed.xml
-https://seirdy.one/posts/atom.xml
-https://tailscale.dev/feed.xml
-https://thecodist.com/rss
-http://pb.co.za/posts.atom
-https://transitiontech.ca/feed.xml
-https://twi.github.io/blog/atom.xml
-https://vicki.substack.com/feed
-https://vivekhaldar.com/index.xml
-https://www.dannyvankooten.com/atom.xml "Danny van Kooten"
-https://www.fosskers.ca/en/rss
-https://www.harihareswara.net/rss/
-https://www.jefftk.com/news.rss
-https://www.justinmklam.com/index.xml
-https://www.lopcode.com/feed.xml
-https://www.masteringemacs.org/feed
-https://www.supergoodcode.com/feed.xml
-https://www.tbray.org/ongoing/ongoing.atom
