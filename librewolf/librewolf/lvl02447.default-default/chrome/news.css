@@ -3,9 +3,6 @@
     --color-scheme: dark;
     --prefers-color-scheme: dark;
 
-    --MidColBG: #ffffff;
-    --HeadlineBG: #ffcc99;
-    --FormBG: #eeeeee;
     --MidColBG: #000000;
     --HeadlineBG: #443333;
     --VLinkColor: #bbb;
@@ -124,6 +121,31 @@
   .bread_cr,
   aside.page__widget,
   .footer {
-    display: none;
+    display: none !important;
+  }
+}
+
+@-moz-document domain("thehindu.com") {
+  #artmeterpv,
+  footer,
+  .header-outer,
+  .print-hide.flex.share-page.comments-shares,
+  .print-hide.comment-btn.comments.btn,
+  .print-hide.related-topics,
+  #arthardpv {
+    display: none !important;
+  }
+}
+
+@-moz-document domain("scroll.in") {
+  #main_navigation,
+  #bottomStickyCarousel,
+  #recommendedArticlesBar,
+  .mail-us-section,
+  .article-tags-list,
+  .no-comment.below-article-share-block,
+  .below-article-scroll-app-upsell.hideOnApp.scroll-app-upsell,
+  .below-meta-app-upsell.hideOnApp.scroll-app-upsell {
+    display: none !important;
   }
 }

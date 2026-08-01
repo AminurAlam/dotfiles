@@ -93,6 +93,9 @@
     --margin: 2rem;
     --radius: 0.5rem;
   }
+  ::selection {
+    color: var(--color-bg);
+  }
 }
 
 @-moz-document domain("rubenerd.au") {
