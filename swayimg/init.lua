@@ -1,56 +1,56 @@
 do -- General config
-  swayimg.set_mode('viewer')
-  swayimg.enable_antialiasing(true)
-  swayimg.enable_decoration(true)
-  swayimg.enable_overlay(true)
-  swayimg.enable_exif_orientation(true)
-  swayimg.set_dnd_button('MouseRight')
+  swayimg.mode = 'viewer'
+  swayimg.enable_antialiasing = true
+  swayimg.enable_decoration = true
+  swayimg.enable_overlay = true
+  swayimg.enable_exif_orientation = true
+  swayimg.dnd_button = 'MouseRight'
 end
 
 do -- Image list configuration
-  swayimg.imagelist.set_order('mtime')
-  swayimg.imagelist.enable_reverse(true)
-  swayimg.imagelist.enable_recursive(false)
-  swayimg.imagelist.enable_adjacent(false)
-  swayimg.imagelist.enable_fsmon(true)
+  swayimg.imagelist.order = 'mtime'
+  swayimg.imagelist.enable_reverse = true
+  swayimg.imagelist.enable_recursive = false
+  swayimg.imagelist.enable_adjacent = false
+  swayimg.imagelist.enable_fsmon = true
 end
 
 do -- Text overlay configuration
-  swayimg.text.set_font('monospace')
-  swayimg.text.set_size(20)
-  swayimg.text.set_spacing(0)
-  swayimg.text.set_padding(10)
-  swayimg.text.set_foreground(0xffc0caf5)
-  swayimg.text.set_background(0x00000000)
-  swayimg.text.set_shadow(0x0d000000)
-  swayimg.text.set_timeout(5)
-  swayimg.text.set_status_timeout(3)
+  swayimg.text.font = 'monospace'
+  swayimg.text.size = 20
+  swayimg.text.spacing = 0
+  swayimg.text.padding = 10
+  swayimg.text.color = 0xffc0caf5
+  swayimg.text.background = 0x00000000
+  swayimg.text.shadow = 0x0d000000
+  swayimg.text.timeout = 5
+  swayimg.text.status_timeout = 3
 end
 
 do -- Image viewer mode
-  swayimg.viewer.set_default_scale('fit')
-  swayimg.viewer.set_default_position('center')
-  swayimg.viewer.set_drag_button('MouseLeft')
+  swayimg.viewer.default_scale = 'fit'
+  swayimg.viewer.default_position = 'center'
+  swayimg.viewer.drag_button = 'MouseLeft'
   swayimg.viewer.set_window_background(0x33000000)
   swayimg.viewer.set_image_chessboard(20, 0xff333333, 0xff4c4c4c)
-  swayimg.viewer.enable_centering(true)
-  swayimg.viewer.enable_loop(true)
-  swayimg.viewer.limit_preload(1)
-  swayimg.viewer.limit_history(1)
-  swayimg.viewer.set_mark_color(0xff808080)
+  swayimg.viewer.enable_centering = true
+  swayimg.viewer.enable_loop = true
+  swayimg.viewer.limit_preload = 1
+  swayimg.viewer.limit_history = 1
+  swayimg.viewer.mark_color = 0xff808080
   swayimg.viewer.set_text('topleft', {
     'scale: {scale}',
     'size: {frame.width}x{frame.height} {sizehr}',
   })
   swayimg.viewer.set_text('topright', {})
   swayimg.viewer.set_text('bottomleft', {})
-  swayimg.viewer.set_pinch_factor(1)
+  swayimg.viewer.pinch_factor = 1
 end
 
 do -- Key bindings
   local zoom = function(n)
     local pos = swayimg.get_mouse_pos()
-    local scale = swayimg.viewer.get_scale()
+    local scale = swayimg.viewer.scale()
 
     -- local aa = swayimg.is_antialiasing_on()
     -- swayimg.enable_antialiasing(false)
@@ -74,23 +74,26 @@ do -- Key bindings
   local mmap = swayimg.viewer.on_mouse
 
   vmap('q', swayimg.exit)
-  vmap('space', swayimg.viewer.set_animation)
+  vmap('space', function () swayimg.viewer.set_animation = not swayimg.viewer.set_animation end)
   vmap(',', function() swayimg.viewer.rotate(90) end)
   vmap('.', function() swayimg.viewer.rotate(270) end)
+  -- TODO: fix frame step
   vmap('Shift+less', function()
-    swayimg.viewer.set_animation(false)
-    swayimg.viewer.prev_frame()
+    swayimg.viewer.animation = false
+    local f = swayimg.viewer.frame
+    f = f - 5
   end)
   vmap('Shift+greater', function()
-    swayimg.viewer.set_animation(false)
-    swayimg.viewer.next_frame()
+    swayimg.viewer.animation = false
+    local f = swayimg.viewer.frame
+    f = f + 5
   end)
 
   vmap('i', function()
-    if swayimg.text.visible() then
-      swayimg.text.hide()
+    if swayimg.text.visible then
+      swayimg.text.visible = false
     else
-      swayimg.text.show()
+      swayimg.text.visible = true
     end
   end)
   vmap('s', function() swayimg.viewer.set_fix_scale('width') end)
@@ -105,15 +108,15 @@ do -- Key bindings
   mmap('ScrollDown', function() mov(0, -100) end)
   mmap('ScrollLeft', function() mov(100, 0) end)
   mmap('ScrollRight', function() mov(-100, 0) end)
-  vmap('Shift+j', function() swayimg.viewer.switch_image('next') end)
-  vmap('Shift+k', function() swayimg.viewer.switch_image('prev') end)
+  vmap('Shift+j', function() swayimg.viewer.open('next') end)
+  vmap('Shift+k', function() swayimg.viewer.open('prev') end)
   vmap('r', swayimg.viewer.reset)
   vmap('Escape', function()
     print()
     if swayimg.imagelist.size() > 1 then
-      swayimg.set_mode('gallery')
-    elseif swayimg.get_fullscreen() then
-      swayimg.set_fullscreen(false)
+      swayimg.mode = 'gallery'
+    elseif swayimg.fullscreen then
+      swayimg.fullscreen = false
     else
       swayimg.exit()
     end
@@ -123,51 +126,51 @@ do -- Key bindings
     'd',
     function() os.execute(string.format('trash-put %q', swayimg.gallery.get_image().path)) end
   )
-  local gsize = function(px) swayimg.gallery.set_thumb_size(swayimg.gallery.get_thumb_size() + px) end
+  local gsize = function(px) swayimg.gallery.thumb_size = swayimg.gallery.thumb_size() + px end
   gmap('KP_Add', function() gsize(50) end)
   gmap('KP_Subtract', function() gsize(-50) end)
   gmap('q', swayimg.exit)
-  gmap('h', function() swayimg.gallery.switch_image('left') end)
-  gmap('j', function() swayimg.gallery.switch_image('down') end)
-  gmap('k', function() swayimg.gallery.switch_image('up') end)
-  gmap('l', function() swayimg.gallery.switch_image('right') end)
-  gmap('g', function() swayimg.gallery.switch_image('first') end)
-  gmap('G', function() swayimg.gallery.switch_image('last') end)
-  gmap('u', function() swayimg.gallery.switch_image('pgup') end)
-  gmap('d', function() swayimg.gallery.switch_image('pgdown') end)
+  gmap('h', function() swayimg.gallery.select('left') end)
+  gmap('j', function() swayimg.gallery.select('down') end)
+  gmap('k', function() swayimg.gallery.select('up') end)
+  gmap('l', function() swayimg.gallery.select('right') end)
+  gmap('g', function() swayimg.gallery.select('first') end)
+  gmap('G', function() swayimg.gallery.select('last') end)
+  gmap('u', function() swayimg.gallery.select('pgup') end)
+  gmap('d', function() swayimg.gallery.select('pgdown') end)
 
   -- TODO: gallery bindings for: sort change, size change, hjkl
 end
 
 do -- Gallery mode
-  swayimg.gallery.set_aspect('fill')
-  swayimg.gallery.set_thumb_size(350)
-  swayimg.gallery.set_padding_size(5)
-  swayimg.gallery.set_border_size(5)
-  swayimg.gallery.set_border_color(0xffaaaaaa)
-  swayimg.gallery.set_selected_scale(1.15)
-  swayimg.gallery.set_selected_color(0xff404040)
-  swayimg.gallery.set_unselected_color(0xff202020)
-  swayimg.gallery.set_window_color(0xff000000)
-  swayimg.gallery.limit_cache(100)
-  swayimg.gallery.enable_preload(false)
-  swayimg.gallery.enable_pstore(false)
+  swayimg.gallery.aspect = 'fill'
+  swayimg.gallery.thumb_size = 350
+  swayimg.gallery.padding_size = 5
+  swayimg.gallery.border_size = 5
+  swayimg.gallery.border_color = 0xffaaaaaa
+  swayimg.gallery.selected_scale = 1.15
+  swayimg.gallery.selected_color = 0xff404040
+  swayimg.gallery.unselected_color = 0xff202020
+  swayimg.gallery.window_color = 0xff000000
+  swayimg.gallery.cache = 100
+  swayimg.gallery.preload = false
+  swayimg.gallery.pstore = false
   swayimg.gallery.set_text('topleft', { 'File: {name}' })
   swayimg.gallery.set_text('topright', { '{list.index} of {list.total}' })
 end
 
 do -- misc
-  swayimg.set_fullscreen(true)
+  swayimg.fullscreen = true
 
   swayimg.viewer.on_image_change(function()
     local i = swayimg.viewer.get_image()
-    if i.width < 500 then swayimg.enable_antialiasing(false) end
+    if i and i.width < 500 then swayimg.antialiasing = false end
   end)
 
   -- fit to screen on opening
   local scaled = false
   swayimg.on_window_resize(function()
-    if swayimg.get_mode() == 'viewer' and not scaled then
+    if swayimg.mode == 'viewer' and not scaled then
       swayimg.viewer.set_fix_scale('fit')
       scaled = true
     end
