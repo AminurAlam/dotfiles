@@ -74,19 +74,18 @@ do -- Key bindings
   local mmap = swayimg.viewer.on_mouse
 
   vmap('q', swayimg.exit)
-  vmap('space', function () swayimg.viewer.set_animation = not swayimg.viewer.set_animation end)
+  vmap('space', function() swayimg.viewer.animation = not swayimg.viewer.animation end)
   vmap(',', function() swayimg.viewer.rotate(90) end)
   vmap('.', function() swayimg.viewer.rotate(270) end)
-  -- TODO: fix frame step
   vmap('Shift+less', function()
     swayimg.viewer.animation = false
-    local f = swayimg.viewer.frame
-    f = f - 5
+    local f = swayimg.viewer.frame - 1
+    swayimg.viewer.frame = (f < 0) and (swayimg.viewer.get_image().frames - 1) or f
   end)
   vmap('Shift+greater', function()
     swayimg.viewer.animation = false
-    local f = swayimg.viewer.frame
-    f = f + 5
+    local f = swayimg.viewer.frame + 1
+    swayimg.viewer.frame = (f >= swayimg.viewer.get_image().frames) and 0 or f
   end)
 
   vmap('i', function()
