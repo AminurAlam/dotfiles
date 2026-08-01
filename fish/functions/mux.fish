@@ -9,12 +9,20 @@ function mux -d "zmx wrapper"
 
     if [ -z "$argv[1]" ]
         set argv (zmx list --short | fzf)
+        # if nc -w3 -q3 -z (ssh -G brick | rg --replace '' '^(hostname|port) ') 2>/dev/null
+        #     ssh brick zmx list --short
+        # end
     end
 
     if [ -z "$argv[1]" ]
         return 1
     end
 
-    zmx attach "$argv[1]"
+    if [ "$(zmx get "$argv[1]" ssh)" = true ]
+        ssh $argv
+    else
+        zmx attach (string replace "$ZMX_SESSION_PREFIX" "" "$argv[1]")
+    end
+
     popd 2>/dev/null
 end
