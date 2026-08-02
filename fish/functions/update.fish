@@ -35,9 +35,7 @@ function update -d "system update with just one command"
     set -q TERMUX_VERSION
     and cargo install --locked --git https://codeberg.org/AminurAlam/kt
 
-    set -q TERMUX_VERSION
-    and cargo install --force --git https://github.com/sxyazi/yazi.git yazi-build
-    or begin
+    if not set -q TERMUX_VERSION && [ "$(read -P "update yazi? [y/N] ")" = y ]
         cd ~/repos/yazi-fork/
         git fetch upstream
         git rebase upstream/main

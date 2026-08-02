@@ -1,3 +1,5 @@
+@namespace url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul");
+
 @-moz-document url("chrome://browser/content/browser.xhtml")
 {
   #back-button,
@@ -59,11 +61,6 @@
   /* #nav-bar { margin-top: -40px !important; } */
   /* #nav-bar:focus-within { margin-top: 0 !important; } */
   /* #navigator-toolbox { border-bottom: unset !important; } */
-}
-
-:root {
-  --color-scheme: dark;
-  --prefers-color-scheme: dark;
 }
 
 /* add '[pdf]' next to links to PDF files */

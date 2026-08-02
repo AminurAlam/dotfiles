@@ -19,9 +19,9 @@ prepend_previewers = [
   { url = "*.service", run = "preview-systemd" },
   { mime = "application/epub+zip", run = "preview-epub" },
   { url = "*.cb{z,r}", run = "preview-cbz" },
-  { url = "*.{zip,rar}", run = "preview-cbz" },
+  # { url = "*.{zip,rar}", run = "preview-cbz" },
   { url = "*.torrent", run = "preview-torrent" },
-  { mime = "audio/mpegurl", run = "code" },
+  { url = "*.m3u{8,}", run = "code" },
   { mime = "audio/*", run = "preview-audio" },
   { mime = "font/*", run = "font-sample" },
   { mime = "application/ms-opentype", run = "font-sample" },
@@ -70,8 +70,9 @@ rules = [
   { mime = "application/{zip,rar,7z*,tar,gzip,xz,zstd,bzip*,lzma,compress,archive,cpio,arj,xar,ms-cab*}", use = ["extract", "common"] },
   # multimedia
   { mime = "application/pdf", use = ["zathura", "common"] },
+  { mime = "application/bittorrent", use = ["torrent", "common"] },
   { url = "*.{ass,srt,ssa,sup,vtt}", use = ["add-sub", "edit", "common"] },
-  { mime = "audio/mpegurl", use = ["edit", "common"] },
+  { url = "*.m3u{8,}", use = ["edit", "common"] },
   { mime = "image/svg+xml", use = ["swayimg", "inkscape", "edit", "common"] },
   { mime = "image/*", use = ["swayimg", "raster_tools", "png2jpg", "common"] },
   { mime = "video/*", use = ["play", "common"] },
@@ -93,7 +94,8 @@ add-sub = [
 apkinstall = [
   { run = "ANDROID_USER_HOME=/home/fisher/.local/share/.android HOME=/home/fisher/.local/share/ adb install %s", block = true, orphan = false, desc = " apk installer", for = "linux" },
 ]
-bulk-rename = [{ block = true, run = "nvim %s; ya exec bulk_exit %s --accept" }]
+torrent = [{ run = ''' foot -- fish -c "at %s" ''', block = false, orphan = true, desc = " aria2c torrent" }]
+bulk-rename = [{ run = "nvim %s; ya exec bulk_exit %s --accept", block = true }]
 extract = [{ run = 'ya pub extract --list %s""', desc = "󱉛 Extract here", for = "unix" }]
 inkscape = [{ run = "inkscape %s", block = false, orphan = true, desc = "󰕞 inkscape", for = "linux" }]
 open = [{ run = "xdg-open %s1", orphan = true, desc = "󰏌 Open", for = "linux" }]
