@@ -1,0 +1,24 @@
+pkgname=zmx
+pkgdesc="Session persistence for terminal processes"
+pkgver=0.7.0 # TODO: https://github.com/neurosnap/zmx/releases/latest
+pkgrel=1
+arch=(aarch64)
+url="https://github.com/neurosnap/${pkgname}"
+license=('MIT')
+options=(!strip)
+source_aarch64=("https://zmx.sh/a/${pkgname}-${pkgver}-linux-aarch64.tar.gz")
+sha256sums_aarch64=('77599f66124694fae80bbb1d2fa0eafdb8c648b427a048cad90513ecf6136fc9')
+makedepends=('binutils' 'bsdtar')
+
+
+build() {
+    cd "${srcdir}/" || exit
+    ./${pkgname} completions fish > ${pkgname}.fish
+}
+
+package() {
+    cd "${srcdir}/" || exit
+
+    install -Dm755 "${pkgname}" "${pkgdir}${prefix}/bin/${pkgname}"
+    install -D -m644 "${pkgname}.fish" "${pkgdir}${prefix}/share/fish/vendor_completions.d/${pkgname}.fish"
+}
