@@ -30,7 +30,8 @@ function update -d "system update with just one command"
 
     string pad -C -c= -w$COLUMNS " CARGO "
 
-    cargo install --locked --git https://git.gay/stella/niri-ipc-windowlayout
+    set -q TERMUX_VERSION
+    or cargo install --locked --git https://git.gay/stella/niri-ipc-windowlayout
 
     set -q TERMUX_VERSION
     and cargo install --locked --git https://codeberg.org/AminurAlam/kt
