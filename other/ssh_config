@@ -1,4 +1,4 @@
-Host brick slab paper
+Host brick brick.* slab paper
     User user
     Port 8022
     IdentityFile ${HOME}/.ssh/ssh_ed25519
@@ -13,6 +13,14 @@ Host brick slab paper
 Host brick
     Hostname android.local
 
+Host brick.*
+    Hostname android.local
+    RemoteCommand zmx attach (string replace 'brick.' '' %k)
+    RequestTTY yes
+    ControlPath ~/.ssh/cm-%r@%h:%p
+    ControlMaster auto
+    ControlPersist 10m
+
 Host slab
     Hostname 192.168.0.0
 
@@ -21,5 +29,6 @@ Host paper
 
 Host github.com gitlab.com codeberg.org
     User git
+    RequestTTY no
     IdentityFile ${HOME}/.ssh/git_ed25519
     AddKeysToAgent yes
