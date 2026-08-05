@@ -1,3 +1,8 @@
+@font-face {
+  font-family: "my-font";
+  src: url("/font.woff2");
+}
+
 @-moz-document domain("lwn.net") {
   body {
     --color-scheme: dark;
@@ -126,6 +131,50 @@
 }
 
 @-moz-document domain("thehindu.com") {
+  :root {
+    color-scheme: dark;
+    --fg: light-dark(#1a1a1a, #c0caf5);
+    --bg: light-dark(#cce, #24283b);
+    --accent: light-dark(#0050b3, #7aa2f7);
+    --accent2: light-dark(#de640b, #ff9e64);
+    --selection: light-dark(#7aa2f7, #2e3c64);
+    --width: 80%;
+    --button-size: 1.7em;
+  }
+
+  body {
+    background: var(--bg) !important;
+    color: var(--fg) !important;
+    font-size: 1.2em !important;
+    line-height: 1.4em !important;
+    max-width: var(--width) !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    padding: 0 10px 0 10px !important;
+    font-family: my-font !important;
+  }
+
+  img {
+    max-width: var(--width) !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  h1 {
+    color: var(--accent);
+  }
+
+  blockquote {
+    border-left: 0.2em solid var(--accent);
+    p {
+      padding: 5px 5px 5px 30px;
+    }
+  }
+
+  *::selection {
+    background: var(--selection);
+  }
+
   #artmeterpv,
   footer,
   .header-outer,
