@@ -9,15 +9,14 @@
 @ NEWS 1 < item-limit 1000
 https://lobste.rs/rss < item-rule "title NOT LIKE 'What are you doing this week%'"
 https://bearblog.dev/discover/feed/
-https://feeds.pinboard.in/rss/popular/
 https://hnrss.org/frontpage.atom "Hacker News" < item-rule "NOT (title REGEXP '^(Show|Tell|Ask|Launch) HN: ' OR title REGEXP '\(YC .*\)' OR title REGEXP '(OpenAI|Anthropic|[Cc]laude|[Oo]pus|[Gg]emini|[Gg]rok|[Kk]imi|[Qq]wen|GPT|AI|LLM|[Aa]gent)')"
 https://www.phoronix.com/rss.php < item-rule "NOT (title REGEXP 'Intel|NVIDIA|driver|Mesa|Vulkan')"
+https://lwn.net/headlines/rss < item-rule "NOT (title LIKE 'Security updates for %' OR title LIKE '% stable kernel%')"
+https://torrentfreak.com/feed < item-rule "title NOT LIKE '%IPTV%'"
 https://astral.sh/blog/rss.xml "astral.sh"
 https://blog.nightly.mozilla.org/feed
-https://lwn.net/headlines/rss < item-rule "NOT (title LIKE 'Security updates for %' OR title LIKE '% stable kernel%')"
 https://pudding.cool/rss.xml
 https://security.googleblog.com/feeds/posts/default?alt=rss
-https://torrentfreak.com/feed < item-rule "title NOT LIKE '%IPTV%'"
 # https://gamersnexus.net/rss.xml
 # https://haveibeenpwned.com/feed/breaches/ "Have I Been Pwned"
 # http://syndication.thedailywtf.com/TheDailyWtf
@@ -52,7 +51,7 @@ https://blog.thunderbird.net/feed/ "Thunderbird"
 
 @ NEWS 3
 https://feeds.feedburner.com/ScrollinArticles.rss             < item-limit 100
-https://www.thehindu.com/news/national/feeder/default.rss     < item-limit 50
+https://www.thehindu.com/news/national/feeder/default.rss     < item-rule "NOT (link REGEXP 'https://www.thehindu.com/news/national/(andhra-pradesh|arunachal-pradesh|chhattisgarh|goa|gujarat|himachal-pradesh|jharkhand|karnataka|kerala|madhya-pradesh|maharashtra|manipur|meghalaya|mizoram|nagaland|odisha|rajasthan|sikkim|tamil-nadu|telangana|tripura|uttarakhand)/.*')"
 https://www.thehindu.com/news/states/feeder/default.rss       < item-limit 50
 https://www.thehindu.com/opinion/cartoon/feeder/default.rss   < item-limit 50
 https://www.thehindu.com/opinion/columns/feeder/default.rss   < item-limit 50
@@ -63,6 +62,7 @@ https://www.thehindu.com/opinion/editorial/feeder/default.rss < item-limit 50
 https://aminuralam.github.io/atom.xml
 https://aashvik.com/atom.xml
 https://abhinavsarkar.net/all.atom "Abhinav Sarkar"
+https://absurdpirate.bearblog.dev/feed/
 https://abyss.fish/thoughts.atom
 $(feedmod https://alecmuffett.com/feed) "Alec Muffett"
 https://alexwlchan.net/atom.xml
@@ -83,6 +83,8 @@ https://drewdevault.com/blog/index.xml "Drew Devault"
 https://dx13.co.uk/index.atom "~dx13"
 https://dylanbeattie.net/feed.xml "Dylan Beattie"
 https://ewie.online/feed/feed.json "evie on->line"
+https://p4m.dev/atom.xml
+# TODO: https://howthefu.cc/
 https://ficd.sh/rss.xml
 https://etc.ficd.sh/rss.xml
 https://fireborn.mataroa.blog/rss/
@@ -97,8 +99,11 @@ https://xn--gckvb8fzb.com/index.xml
 https://matklad.github.io/feed.xml
 https://maurycyz.com/index.xml
 https://mitchellh.com/feed.xml
+https://oppi.li/posts/index.rss
+https://oppi.li/weeklies/index.rss
 https://ploum.net/atom_en.xml
 https://pluralistic.net/feed/ "Pluralistic (Cory Doctorow)"
+https://quietism.art/blog.xml "Polyamorous Computers (ivelieu)"
 https://rachelbythebay.com/w/atom.xml "rachel by the bay"
 https://roboleary.net/feed.xml "Rob O'Leary"
 https://www.rubenerd.au/feed/
@@ -117,7 +122,6 @@ https://xeiaso.net/blog.json
 https://zerokspot.com/index.xml
 
 @ PERSONAL BLOGS 2
-https://absurdpirate.bearblog.dev/feed/
 https://ar.al/index.xml
 https://crescentro.se/posts/atom.xml
 https://danluu.com/atom.xml
@@ -129,7 +133,6 @@ https://blog.frost.kiwi/feed.xml
 https://blog.feld.me/feeds/all.atom.xml
 https://hacktivis.me/feed.atom
 https://havn.blog/categories/english/feed.xml "Havn"
-https://p4m.dev/atom.xml
 https://riki.house/feed/all.atom
 https://fromjason.xyz/p/notebook/feed/feed.xml
 https://herecomesthemoon.net/posts/index.xml
@@ -139,8 +142,6 @@ https://lorendb.dev/index.xml
 https://ludic.mataroa.blog/rss
 https://blog.matthewbrunelle.com/rss
 https://micahkepe.com/blog/atom.xml
-https://oppi.li/posts/index.rss
-https://oppi.li/weeklies/index.rss
 https://sethmlarson.dev/feed
 https://www.0xsid.com/blog/rss.xml
 https://susam.net/feed.xml
