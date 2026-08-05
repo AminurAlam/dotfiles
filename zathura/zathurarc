@@ -35,7 +35,7 @@ set statusbar-h-padding 0
 set statusbar-v-padding 0
 set page-cache-size 20
 set scroll-hstep -10
-set scroll-step 5
+set scroll-step 40
 set scroll-page-aware true
 set statusbar-home-tilde true
 set vertical-center true
