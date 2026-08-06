@@ -112,7 +112,7 @@ do -- Key bindings
   vmap('r', swayimg.viewer.reset)
   vmap('Escape', function()
     print()
-    if swayimg.imagelist.size() > 1 then
+    if swayimg.imagelist.size > 1 then
       swayimg.mode = 'gallery'
     elseif swayimg.fullscreen then
       swayimg.fullscreen = false
