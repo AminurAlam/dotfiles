@@ -22,6 +22,7 @@
 - [jujustu](https://github.com/jj-vcs/jj) - vcs
 - [kanata](https://github.com/jtroo/kanata) :star2: - keyboard customizer
 - [keepassxc](https://keepassxc.org/) - password manager
+- [krita](https://krita.org) - Edit and paint images
 - [lazygit](https://github.com/jesseduffield/lazygit) - ui for git
 - [librewolf](https://librewolf.net/) :star2: - Community-maintained fork of Firefox, focused on privacy, security and freedom
 - [ly](https://codeberg.org/fairyglade/ly) - TUI display manager

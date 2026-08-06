@@ -33,10 +33,11 @@ for config in \
 end
 printf "done\n"
 
-printf "LINKING CONFIG FILES... "
+printf "LINKING OTHER CONFIG FILES... "
 ln -nfs ~/repos/dotfiles/other/clang-format ~/repos/.clang-format
 ln -nfs ~/repos/dotfiles/other/clang-format ~/.local/.clang-format
 ln -nfs ~/repos/dotfiles/other/curlrc ~/.config/.curlrc
+ln -nfs ~/repos/dotfiles/other/kritashortcutsrc ~/.config/kritashortcutsrc
 ln -nfs ~/repos/dotfiles/other/starship.toml ~/.config/starship.toml
 ln -nfs ~/repos/dotfiles/other/stylua.toml ~/.config/stylua.toml
 ln -nfs ~/repos/dotfiles/other/taplo.toml ~/.config/taplo.toml
