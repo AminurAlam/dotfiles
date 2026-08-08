@@ -63,6 +63,7 @@ if set -q TERMUX_VERSION
     set -gx TERMINFO $PREFIX/share/terminfo
     set -gx MANPATH $PREFIX/share/fish/man $PREFIX/share/man
     set -gx ZMX_SESSION_PREFIX "brick."
+    set -gx ZMX_DIR $XDG_DATA_HOME/zmx
     # set -gx VIMRUNTIME $PREFIX/share/nvim/runtime
 
     set -gx XDG_VIDEOS_DIR /sdcard/Movies
