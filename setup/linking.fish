@@ -71,7 +71,7 @@ ln -nTfs ~/repos/yazi-plugins ~/repos/dotfiles/yazi/plugins
 printf "done\n"
 
 printf "LINKING BIN... "
-for cmd in ctl feedmod mux notif-bt ocr
+for cmd in ctl feedmod notif-bt ocr
     ln -nfs ~/repos/dotfiles/scripts/bin/$cmd ~/.local/bin/$cmd
 end
 printf "done\n"
