@@ -69,6 +69,7 @@ installer=com.looker.droidify org.fossify.messages
 installer=com.looker.droidify org.ironfoxoss.ironfox
 installer=com.looker.droidify org.kde.kdeconnect_tp
 installer=com.samsung.android.goodlock com.samsung.android.app.galaxyregistry
+installer=com.samsung.android.goodlock com.samsung.android.qstuner
 installer=com.samsung.android.goodlock com.samsung.android.soundassistant
 installer=null app.morphe.manager
 installer=null app.revanced.android.gms

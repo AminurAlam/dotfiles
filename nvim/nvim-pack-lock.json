@@ -9,7 +9,7 @@
       "src": "https://github.com/monaqa/dial.nvim"
     },
     "full_visual_line.nvim": {
-      "rev": "4cf9977388e09d876ae59ae32b303cdd3e100ae4",
+      "rev": "4b54267be7aeea9013a5c0795377eaa3f3a1c322",
       "src": "https://github.com/0xAdk/full_visual_line.nvim"
     },
     "mini.completion": {
