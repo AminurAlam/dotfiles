@@ -239,3 +239,107 @@
     display: none;
   }
 }
+
+@-moz-document domain("sakubi.neocities.org") {
+  :root {
+    color-scheme: dark;
+
+    --fg: light-dark(#1a1a1a, #c0caf5);
+    --bg: light-dark(#cce, #24283b);
+    --accent: light-dark(#0050b3, #7aa2f7);
+    --accent2: light-dark(#de640b, #ff9e64);
+    --selection: light-dark(#7aa2f7, #2e3c64);
+
+    --round: 1em;
+    --width: 45rem;
+    --button-size: 1.7em;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--fg);
+    font-family: my-font, sans-serif;
+    font-size: 1.2em;
+    line-height: 1.4em;
+    max-width: var(--width);
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 10px 0 10px;
+  }
+
+  a {
+    color: var(--accent);
+    &:hover {
+      color: var(--bg);
+      background: var(--accent);
+      text-decoration-color: var(--accent);
+      text-decoration-skip-ink: none;
+    }
+  }
+
+  ul {
+    list-style-type: "- ";
+  }
+
+  li {
+    &::marker {
+      color: var(--accent2);
+    }
+    &.article-item {
+      div {
+        display: flex;
+        flex-direction: row;
+        gap: 1rem;
+        padding-bottom: 15px;
+      }
+    }
+  }
+
+  h1 {
+    font-size: 1.8em;
+    &::before {
+      content: "# ";
+    }
+  }
+
+  h2 {
+    font-size: 1.4em;
+    &::before {
+      content: "## ";
+    }
+  }
+
+  h3 {
+    font-size: 1.2em;
+    &::before {
+      content: "### ";
+    }
+  }
+
+  h1,
+  h2,
+  h3 {
+    &::before {
+      color: var(--accent2);
+    }
+    a {
+      color: var(--fg);
+    }
+  }
+
+  *::selection {
+    background: var(--selection);
+  }
+}
+
+/* https://guidetojapanese.org/learn/complete/topic_particles */
+@-moz-document domain("guidetojapanese.org") {
+  .spoiler {
+    color: rgb(189, 181, 170) !important;
+    background-color: rgb(189, 181, 170) !important;
+    &:hover {
+      color: rgb(199, 192, 181) !important;
+      background-color: transparent !important;
+    }
+  }
+}

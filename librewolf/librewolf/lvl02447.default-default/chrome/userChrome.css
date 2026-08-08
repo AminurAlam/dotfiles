@@ -87,139 +87,98 @@ toolbarbutton#scrollbutton-down {
   display: none; /* Hide new-tab button */
 }
 
-/*
-toolbarbutton#back-button,
-toolbarbutton#forward-button,
-toolbarbutton#urlbar-searchmode-switcher {
-  display: none;
-}
-toolbarbutton#tracking-protection-icon-container,
-hbox.titlebar-buttonbox-container:nth-child(9) {
-  display: none;
-}
-
-.toolbaritem-combined-buttons {
-  margin-inline: 0px !important;
-}
-
-#urlbar {
-  margin-left: 7px;
-  padding-left: 2px;
-}
-*/
-
-/* https://github.com/MrOtherGuy/firefox-csshacks/tree/master/chrome/hide_urlbar_first_row.css
- * Hides the first item in the urlbar dropdown if it is a "search with" or "visit" or "tab-to-search" item.  Does not hide "search in private window item", probably */
-#urlbar[usertyping]
-  .urlbarView-row:is(
-    [type="url"],
-    [type="autofill_origin"],
-    [type="search"]
-  ):first-child,
-.urlbarView-row[type="tabtosearch"] {
-  display: none !important;
-}
-
-/* https://github.com/MrOtherGuy/firefox-csshacks/tree/master/chrome/integrated_searchbar_popup.css
- * This makes the searchbar popup look integrated into the searchbar,
- * kinda like urlbar popup looks.
- * Go to about:config and enable color-mix with layout.css.color-mix.enabled
- * to make the popup border show properly, or make the border use other color. */
-#PopupSearchAutoComplete,
-#searchbar {
-  /* text input is clipped if this is too large compared to font-size. */
-  --uc-searchbar-border-radius: 6px;
-}
-
-#PopupSearchAutoComplete {
-  --uc-inner-margin: 6px;
-  --uc-searchbar-border-outer-radius: calc(
-    var(--uc-searchbar-border-radius) + var(--uc-inner-margin)
-  );
-  --arrowpanel-border-color: transparent !important;
-  margin-top: calc(1px - var(--uc-searchbar-border-radius));
-  outline: 2px solid var(--toolbar-field-focus-border-color) !important;
-  outline-offset: -8px;
-  -moz-window-shadow: none !important;
-  margin-inline: calc(0px - var(--uc-inner-margin));
-  padding-inline: var(--uc-inner-margin);
-  margin-bottom: -6px;
-  padding-bottom: 6px;
-  filter: drop-shadow(0 0 6px rgba(0, 0, 0, 0.2));
-  background: transparent !important;
-  border-radius: 0 0 var(--uc-searchbar-border-outer-radius)
-    var(--uc-searchbar-border-outer-radius) !important;
-}
-
-#searchbar:focus-within {
-  border-radius: var(--uc-searchbar-border-radius) !important;
-}
-
-slot {
-  border-radius: 0 0 var(--uc-searchbar-border-radius)
-    var(--uc-searchbar-border-radius) !important;
-}
-#PopupSearchAutoComplete::before {
-  height: 8px;
-  background: var(--toolbar-field-focus-background-color);
-  border-inline: 2px solid var(--toolbar-field-focus-border-color);
-  display: flex;
-  content: "";
-  position: relative;
-  z-index: 2;
-}
-
-/* https://github.com/MrOtherGuy/firefox-csshacks/tree/master/chrome/more_visible_tab_icon.css
- * Makes black favicons more visible on dark background, contrast will be lowered though */
-.tab-icon-image {
-  filter: invert(40%) contrast(250%) saturate(250%) !important;
-}
-
-/* https://github.com/MrOtherGuy/firefox-csshacks/tree/master/chrome/numbered_tabs.css
- * Show a number before tab text */
-/*
-.tabbrowser-tab:first-child {
-  counter-reset: nth-tab 0;
-}
-.tab-text::before {
-  content: counter(nth-tab) " ";
-  counter-increment: nth-tab;
-}
-*/
-
 /* https://github.com/MrOtherGuy/firefox-csshacks/tree/master/chrome/tab_separator_lines.css
  * Bring back tab separator lines that were removed in Proton */
-.tabbrowser-tab {
+:where(.tabbrowser-tab) {
   background-image: linear-gradient(
     transparent 20%,
     color-mix(in srgb, currentColor 20%, transparent) 20%,
     color-mix(in srgb, currentColor 20%, transparent) 80%,
     transparent 80%
   );
-  background-size: 1px 100%;
   background-repeat: no-repeat;
+  background-size: 1px 100%;
 }
-.tab-group-label-container {
-  padding-inline-start: 2px;
+tab-split-view-wrapper {
+  background-size: 1px 100%;
 }
-
-#tabbrowser-tabs:not([movingtab])
-  .tabbrowser-tab:hover
-  + .tabbrowser-tab:not([first-visible-unpinned-tab]),
-.tabbrowser-tab:is(:hover, :first-child, [selected], [multiselected]),
-.tabbrowser-tab:is([selected], [multiselected])
-  + .tabbrowser-tab[hidden]
-  + .tabbrowser-tab,
-#tabbrowser-tabs:not([movingtab])
-  .tabbrowser-tab:is([multiselected], [selected])
-  + .tabbrowser-tab,
-tab-group[collapsed] + .tabbrowser-tab,
-tab-group > .tabbrowser-tab:first-of-type,
-tab-group:has(
-    > .tabbrowser-tab:last-child:is(:hover, [selected], [multiselected])
-  )
-  + .tabbrowser-tab {
+@media -moz-pref("sidebar.verticalTabs") {
+  #tabbrowser-tabs {
+    --uc-vertical-tabs-expanded-separator: linear-gradient(
+      to right,
+      transparent 10cqw,
+      color-mix(in srgb, currentColor 20%, transparent) 10cqw,
+      color-mix(in srgb, currentColor 20%, transparent) 90cqw,
+      transparent 90cqw
+    );
+  }
+  :where(.tabbrowser-tab) {
+    background-image: linear-gradient(
+      color-mix(in srgb, currentColor 20%, transparent)
+    );
+    background-size: 60% 1px;
+    background-position-x: center;
+  }
+  :where(#tabbrowser-tabs[expanded] .tabbrowser-tab) {
+    background-image: var(--uc-vertical-tabs-expanded-separator);
+    background-size: 90cqw 1px;
+  }
+  #tabbrowser-tabs[expanded] > #pinned-tabs-container > .tabbrowser-tab {
+    background-image: none;
+  }
+  tab-split-view-wrapper {
+    background-size: 90cqw 1px;
+  }
+  #tabbrowser-tabs[expanded]
+    tab-split-view-wrapper
+    > .tabbrowser-tab:last-child {
+    background-size: 90cqw 1px;
+    background-image: var(--uc-vertical-tabs-expanded-separator);
+    @container vertical-tabs-container (min-width: 210px) {
+      background-size: inherit;
+    }
+  }
+}
+tab-split-view-wrapper > .tabbrowser-tab {
+  background-size: inherit;
+}
+tab-split-view-wrapper > .tabbrowser-tab:last-child {
   background-image: none;
+}
+tab-group > slot + :is(tab-split-view-wrapper, .tabbrowser-tab),
+tab-group[collapsed] + :is(tab-split-view-wrapper, .tabbrowser-tab),
+:is(tab-split-view-wrapper, .tabbrowser-tab):is(
+  [selected],
+  [multiselected],
+  [hasactivetab],
+  :hover
+),
+:is(tab-split-view-wrapper, .tabbrowser-tab):is(
+    [selected],
+    tab[multiselected],
+    [hasactivetab],
+    :hover
+  )
+  + :is(tab-split-view-wrapper, .tabbrowser-tab),
+tab-split-view-wrapper:has(> [multiselected]:last-child)
+  + :is(tab-split-view-wrapper, .tabbrowser-tab),
+tab-group:has(
+    > :last-of-type:is(:hover, [selected], [multiselected], [hasactivetab])
+      + vbox
+  )
+  + :is(tab-split-view-wrapper, .tabbrowser-tab),
+#pinned-tabs-container > :first-child,
+#pinned-tabs-container:empty ~ arrowscrollbox > :first-child,
+#tabbrowser-arrowscrollbox[overflowing] > :first-child,
+#pinned-tabs-container:has(
+    > :last-child:is(:hover, [selected], [multiselected])
+  )
+  ~ arrowscrollbox
+  > :first-child,
+#vertical-pinned-tabs-splitter:not([hidden])
+  ~ arrowscrollbox[orient="vertical"]
+  > :first-child {
+  background-size: 0 0;
 }
 
 /* https://github.com/MrOtherGuy/firefox-csshacks/tree/master/chrome/urlbar_connection_type_background_colors.css
