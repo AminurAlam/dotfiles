@@ -1,14 +1,6 @@
 function mux -d "zmx wrapper"
-    if [ -n "$argv[2]" ]
-        if [ -d "$argv[2]" ]
-            pushd "$argv[2]"
-        else if command -vq zoxide
-            pushd (zoxide query "$argv[2]" 2>/dev/null) 2>/dev/null
-        end
-    end
-
     if [ -z "$argv[1]" ]
-        set argv (zmx list --short | fzf)
+        set argv (zmx list --short | fzf --print-query)[-1]
         # if nc -w3 -q3 -z (ssh -G brick | rg --replace '' '^(hostname|port) ') 2>/dev/null
         #     ssh brick zmx list --short
         # end
@@ -16,6 +8,26 @@ function mux -d "zmx wrapper"
 
     if [ -z "$argv[1]" ]
         return 1
+    end
+
+    # set directory
+    if [ -n "$argv[2]" ]
+        [ -d "$argv[2]" ]
+        and pushd "$argv[2]"
+        or pushd (zoxide query "$argv[2]" 2>/dev/null) 2>/dev/null
+    else
+        switch "$argv[1]"
+            case conf
+                pushd ~/repos/dotfiles/
+            case yt
+                pushd ~/vid/yt
+            case site
+                pushd ~/repos/aminuralam.github.io
+            case lewd
+                pushd "/sdcard/Tachi/downloads/HentaiNexus (EN)/"
+            case tachi
+                pushd /sdcard/Tachi/local
+        end
     end
 
     if [ "$(zmx get "$argv[1]" ssh)" = true ]
