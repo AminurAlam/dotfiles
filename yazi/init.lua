@@ -10,16 +10,18 @@ do -- [=[ shorter header cwd or tabs
       return ''
     end
 
+    local dir
     if #cx.tabs > 1 then
-      return ui.Span(ui.truncate(self:flags(), { max = max, rtl = true })):style(th.mgr.cwd)
+      dir = self:flags()
+    else
+      -- local dir = tostring(ya.readable_path(tostring(self._current.cwd))):gsub(
+      --   '(%.?)([^/])[^/]+/',
+      --   '%1%2/'
+      -- ) .. self:flags()
+      dir = ya.readable_path(tostring(self._current.cwd))
     end
 
-    -- local s = tostring(ya.readable_path(tostring(self._current.cwd))):gsub(
-    --   '(%.?)([^/])[^/]+/',
-    --   '%1%2/'
-    -- ) .. self:flags()
-    local s = ya.readable_path(tostring(self._current.cwd))
-    return ui.Span(ui.truncate(s, { max = max, rtl = true })):style(th.mgr.cwd)
+    return ui.Span(ui.truncate(dir, { max = max, rtl = true })):style(th.mgr.cwd)
   end
 
   --]=]
@@ -44,6 +46,17 @@ do -- [=[ hide fchar regex
     return #t == 0 and '' or ' (' .. table.concat(t, ', ') .. ')'
   end
 
+  --]=]
+end
+
+do -- [=[ show current zmx session
+  Header:children_add(function()
+    local sesh = os.getenv('ZMX_SESSION') or ''
+    if sesh ~= '' then
+      sesh = sesh .. ' '
+    end
+    return ui.Span(sesh):style(ui.Style():fg('yellow'))
+  end, 500, Header.LEFT)
   --]=]
 end
 
