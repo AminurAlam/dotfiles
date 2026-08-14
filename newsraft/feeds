@@ -38,6 +38,7 @@ https://github.com/keiyoushi/extensions-source/commits/main/src/en/hentainexus.a
 https://github.com/neovim/neovim/commits/master/runtime/doc/news.txt.atom           "github: nvim news" < item-rule "title NOT LIKE 'docs: %'"
 https://nvim-mini.org/blog/index.xml
 $(feedmod https://muspy.com/feed?id=mobwjpkr95u5p1b4f2w1bjt74qc8u3) "muspy New Releases" < item-rule "NOT (title LIKE 'Taylor Swift%' OR title REGEXP 'Remix|live|Live|LIVE')"
+https://nyaa.si/?page=rss&c=3_1&f=0 "nyaa: english literature" < item-rule "NOT (title REGEXP '(\] \[|Villain|Otome|Reincarnat|Reborn|Another World|Isekai|Knight|Banished|Party|Dungeon|Adventure|Strongest|Guild|Oak-JXL|Audiobook)')"
 https://nyaa.si/?page=rss&q=weekly+chapter+update&c=3_1&f=0 "nyaa: weekly chapter updates" < item-limit 30
 https://blog.thunderbird.net/feed/ "Thunderbird"
 # $(feedmod https://dotfyle.com/neovim/plugins/rss.xml 's#https://dotfyle.com/plugins/([^/]+/[^/]+)\?utm_source=plugins-rss#https://github.com/\1#; s#<img src="undefined" alt="">##') < item-rule "NOT (content REGEXP 'theme|colou?r ?scheme')"
@@ -126,6 +127,7 @@ https://ar.al/index.xml
 https://crescentro.se/posts/atom.xml
 https://danluu.com/atom.xml
 https://devever.net/~hl/index.feed
+https://drmollytov.smol.pub/atom.xml
 https://dustycloud.org/blog/index.xml
 https://eaton-works.com/feed.atom
 https://ersei.net/en/blog.atom
@@ -142,6 +144,7 @@ https://lorendb.dev/index.xml
 https://ludic.mataroa.blog/rss
 https://blog.matthewbrunelle.com/rss
 https://micahkepe.com/blog/atom.xml
+https://rnotte.art/feed/
 https://sethmlarson.dev/feed
 https://www.0xsid.com/blog/rss.xml
 https://susam.net/feed.xml
