@@ -75,6 +75,7 @@ niri
 noto-fonts
 noto-fonts-cjk
 nwg-look
+okular
 openbsd-netcat
 openresolv
 openssh
@@ -168,9 +169,6 @@ xwayland-satellite
 yay
 yt-dlp
 yt-dlp-ejs
-zathura
-zathura-cb
-zathura-pdf-mupdf
 zim-tools
 zip
 zmx-bin

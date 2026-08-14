@@ -63,13 +63,13 @@ rules = [
   { url = "*/", use = ["dir", "common"] },
   { url = "bulk-rename.txt", use = "bulk-rename" },
   # archives
-  { url = "*.cb{z,r}", use = ["zathura", "extract", "common"] },
-  { url = "*.{zip,rar}", use = ["extract", "zathura", "common"] },
+  { url = "*.cb{z,r}", use = ["okular", "extract", "common"] },
+  { url = "*.{zip,rar}", use = ["extract", "okular", "common"] },
   { url = "*.apk", use = ["apkinstall", "extract", "common"] },
   { url = "*.deb", use = ["extract", "common"] },
   { mime = "application/{zip,rar,7z*,tar,gzip,xz,zstd,bzip*,lzma,compress,archive,cpio,arj,xar,ms-cab*}", use = ["extract", "common"] },
   # multimedia
-  { mime = "application/pdf", use = ["zathura", "common"] },
+  { mime = "application/pdf", use = ["okular", "common"] },
   { mime = "application/bittorrent", use = ["torrent", "open", "common"] },
   { url = "*.{ass,srt,ssa,sup,vtt}", use = ["add-sub", "edit", "common"] },
   { url = "*.m3u{8,}", use = ["edit", "common"] },
@@ -98,6 +98,7 @@ torrent = [{ run = ''' foot -- fish -c "at %s" ''', block = false, orphan = true
 bulk-rename = [{ run = "nvim %s; ya exec bulk_exit %s --accept", block = true }]
 extract = [{ run = 'ya pub extract --list %s""', desc = "󱉛 Extract here", for = "unix" }]
 inkscape = [{ run = "inkscape %s", block = false, orphan = true, desc = "󰕞 inkscape", for = "linux" }]
+okular = [{ run = "LANG=en_US.utf-8 okular %s", block = false, orphan = true, desc = " okular", for = "linux" }]
 open = [{ run = "xdg-open %s1", orphan = true, desc = "󰏌 Open", for = "linux" }]
 play = [{ run = "mpv --force-window %s", orphan = true, desc = " mpv", for = "linux" }]
 png2jpg = [{ run = "magick %s1 JPG:%s1.jpg", desc = "󰧸 png -> jpg", for = "linux" }]
