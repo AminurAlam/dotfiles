@@ -8,6 +8,7 @@
   "modules-left": [
     //
     "niri/workspaces",
+    // "niri/language",
     "custom/colcount",
   ],
   "modules-center": ["tray"],
@@ -41,6 +42,9 @@
     "return-type": "string",
     "restart-interval": "never",
     "format": "{} ",
+  },
+  "niri/language": {
+    "format": "{short}",
   },
   "tray": {
     "icon-size": 25,

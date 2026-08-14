@@ -6,6 +6,7 @@ include "binds.kdl"
 spawn-at-startup "swaybg" "-m" "fill" "-i" "pic/wp/126278795_p0.jpg"
 spawn-at-startup "swayidle" "-w"
 spawn-at-startup "rmdir" "-p" ".cache/fish"
+spawn-at-startup "fcitx5"
 screenshot-path "pic/ss/Screenshot_%Y%m%d_%H%M%S_niri.png"
 prefer-no-csd
 
@@ -50,7 +51,12 @@ input {
     keyboard {
         repeat-delay 350
         repeat-rate 40
-        xkb { options "numpad:mac,grp_led:num"; }
+        xkb {
+            // layout "us"
+            // model ",apple"
+            // variant ",kana"; // kana, OADG109A, mac, dvorak
+            options "numpad:mac,grp_led:num"
+        }
     }
 
     touchpad {
