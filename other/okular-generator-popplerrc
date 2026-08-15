@@ -1,0 +1,4 @@
+[Signatures]
+DBCertificatePath=file:///home/fisher/.local/share/pki/nssdb
+SignatureBackend=NSS
+UseDefaultCertDB=false

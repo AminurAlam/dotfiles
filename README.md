@@ -32,6 +32,7 @@
 - [niri](https://github.com/YaLTeR/niri) :star2: - scrollable-tiling wayland compositor
 - [npm](https://npmjs.com/) - javascript runtime
 - [nvim](https://neovim.io/) :star2: - text editor
+- [okular](https://apps.kde.org/okular/) - Document Viewer
 - [pacman](https://archlinux.org/pacman/) - package manager
 - [powershell](https://github.com/PowerShell/PowerShell) - windows shell
 - [prettier](https://prettier.io/) - code formatter

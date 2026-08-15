@@ -1,6 +1,3 @@
-# TODO: fix gaps in cbz
-# TODO: export images as attachments
-
 # keymaps
 # map <Button1> toggle_statusbar
 map <Button3> scroll half-down
