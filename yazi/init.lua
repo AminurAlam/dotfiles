@@ -241,7 +241,7 @@ end
 
 ------------------ KEYBINDS ---------------
 
-if km then
+do
   ---@param key string|string[]
   ---@param action string|string[]
   ---@param desc string?
@@ -267,11 +267,8 @@ if km then
   map('F', 'plugin fzf')
   map('z', 'plugin zoxide')
   map('l', 'plugin smart-enter')
-  map('{', 'plugin nextension bwd')
-  map('}', 'plugin nextension fwd')
   map('<right>', 'plugin smart-enter')
-  -- # Selection
-  map('%', 'toggle_all --state=true')
+  map({ 's', 's' }, { 'plugin sort-by-location size', 'linemode size' })
   -- # Operation
   map('o', 'open --interactive')
   map('O', 'create')
@@ -303,18 +300,15 @@ if km then
   map({ 'c', 'o' }, 'rename --empty=stem --cursor=start')
   map({ 'c', '^' }, 'rename --empty=stem --cursor=start')
   map({ 'c', '$' }, 'rename --empty=ext --cursor=end')
-  -- # sorting
-  map({ 's', 'm' }, 'plugin sort-by-location mtime')
-  map({ 's', 's' }, { 'plugin sort-by-location size', 'linemode size' })
-  map({ 's', 'e' }, 'plugin sort-by-location extension')
-  map({ 's', 'n' }, 'plugin sort-by-location natural')
   -- # other
+  map('%', 'toggle_all --state=true')
   map('<C-g>', [[shell --block --confirm -- nvim +Pick\ grep_live]])
   map('<Esc>', { 'escape', 'unyank' }, 'Exit visual mode, clear selection, or cancel search')
 end
 
 ------------------ PLUGIN ---------------
 
+---@diagnostic disable-next-line: undefined-field
 if rt.args.chooser_file then
   ya.emit('yank', { cut = true })
 end
@@ -325,10 +319,13 @@ require('zoxide'):setup { update_db = false }
 
 require('session'):setup { sync_yanked = true }
 
-require('nextension'):setup { fwd = '}', bwd = '{' }
-
 require('sort-by-location'):setup {
   default = { by = 'extension', reverse = false },
+  keys = {
+    mtime = { 's', 'm' },
+    extension = { 's', 'e' },
+    natural = { 's', 'n' },
+  },
   { pattern = '.*/Pictures/.*', sort = { by = 'mtime', reverse = true } },
   { pattern = '.*/pic/.*', sort = { by = 'mtime', reverse = true } },
   { pattern = '.*/DCIM/.*', sort = { by = 'mtime', reverse = true } },
@@ -341,6 +338,7 @@ require('mime-ext.local'):setup {
     cbz = 'application/zip',
     mmd = 'text/plain',
     scm = 'text/plain',
+    service = 'text/plain',
     sql = 'text/plain',
     tex = 'text/plain',
     xml = 'text/plain',

@@ -18,7 +18,6 @@ exiftool
 exiv2
 fd
 ffmpeg
-file
 findutils
 fish
 fzf
@@ -53,6 +52,7 @@ libicu
 libidn2
 libksba
 liblzma
+libmagic
 libmpfr
 libnettle
 libnghttp2
