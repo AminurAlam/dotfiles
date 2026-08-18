@@ -25,7 +25,7 @@ function update -d "system update with just one command"
         and git pull origin
 
         cd ~/repos/yazi-plugins/
-        and git pull origin end
+        and git pull origin
     end
 
     string pad -C -c= -w$COLUMNS " CARGO "

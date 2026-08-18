@@ -1,5 +1,4 @@
 function yt -a url fmt -d "yt-dlp wrapper"
-    # TODO: auto create tmux session
     function tname
         [ -n "$TMUX" ] && tmux rename-window -t $TMUX_PANE $argv[1]
     end
