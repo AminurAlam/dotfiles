@@ -1,7 +1,7 @@
 function at -d "torrent download helper"
     if [ -z "$argv[1]" ]
         pushd $XDG_DOWNLOAD_DIR/main/torrents/
-        set -f argv[1] $XDG_DOWNLOAD_DIR/main/torrents/(fd -d2 -tf --relative-path . | fzf)
+        set -f argv[1] $XDG_DOWNLOAD_DIR/main/torrents/(fd -d2 -tf --relative-path . | fzf   --preview 'aria2c -S {}')
         popd
     else if string match -q -- 'magnet:*' "$argv[1]"
         aria2c --bt-save-metadata --bt-metadata-only "$argv[1]"
@@ -12,7 +12,7 @@ function at -d "torrent download helper"
     end
     [ -z "$argv[1]" ] && return 1
 
-    set -f files (aria2c $argv[1] -S | rg '\d+\|' | sed -E 's#\|.*/# #' | fzf --preview 'aria2c -S {}' --multi | kt 1 | string join ,)
+    set -f files (aria2c $argv[1] -S | rg '\d+\|' | sed -E 's#\|.*/# #' | fzf --multi | kt 1 | string join ,)
 
     # TODO: termux specif outdir
     set -f outdir (pwd)
