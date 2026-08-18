@@ -319,6 +319,8 @@ require('zoxide'):setup { update_db = false }
 
 require('session'):setup { sync_yanked = true }
 
+require('nextension'):setup {}
+
 require('sort-by-location'):setup {
   default = { by = 'extension', reverse = false },
   keys = {
@@ -338,7 +340,6 @@ require('mime-ext.local'):setup {
     cbz = 'application/zip',
     mmd = 'text/plain',
     scm = 'text/plain',
-    service = 'text/plain',
     sql = 'text/plain',
     tex = 'text/plain',
     xml = 'text/plain',

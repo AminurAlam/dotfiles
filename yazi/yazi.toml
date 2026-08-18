@@ -3,11 +3,13 @@
 
 ## FETCH
 [plugin]
-prepend_fetchers = [
-  { group = "mime", url = "local://*", run = "mime-ext.local", prio = "high" },
-  { group = "mime", url = "remote://*", run = "mime-ext.remote", prio = "high" },
-  { group = "mime", url = "*.{!qB,part}", run = "noop", prio = "high" },
-  # { group = "mime", url = "/mnt/rclone/**", run = "noop", prio = "high" },
+fetchers = [
+  { group = "mime", prio = "high", url = "*/", run = "mime.dir" },
+  { group = "mime", prio = "high", url = "local://*", run = "mime.local" },
+  { group = "mime", prio = "high", url = "remote://*", run = "mime.remote" },
+  { group = "mime", prio = "high", url = "trash://*", run = "mime.trash" },
+  { group = "mime", prio = "high", url = "*.{!qB,part}", run = "noop" },
+  { group = "mime", prio = "high", url = "/mnt/rclone/**", run = "noop" },
   { group = "git", url = "*", run = "git" },
   { group = "git", url = "*/", run = "git" },
 ]
@@ -34,6 +36,9 @@ prepend_previewers = [
   # misc
   { mime = "application/subrip", run = "code" },
   { url = "*.{zip,rar}", run = "archive" },
+  { mime = "inode/empty", run = "empty" },
+  { mime = "trash/**", run = "trash" },
+  { mime = "null/*", run = "null" },
 ]
 prepend_preloaders = [
   { url = "*.{!qB,part}", run = "noop" },
@@ -54,6 +59,7 @@ spotters = [
   { mime = "audio/*", run = "spot-audio" },
   { mime = "image/*", run = "spot-image" },
   { mime = "video/*", run = "spot-video" },
+  { mime = "null/*", run = "null" },
   { url = "*", run = "spot" },
 ]
 
@@ -83,7 +89,8 @@ rules = [
   { mime = "inode/empty", use = ["edit", "common"] },
   { mime = "application/{json,ndjson}", use = ["edit", "common"] },
   { mime = "*/javascript", use = ["edit", "common"] },
-  # fallback
+  # other
+  { mime = "trash/**", use = ["open", "trash"] },
   { url = "*", use = ["open", "common"] },
 ]
 
@@ -94,7 +101,6 @@ add-sub = [
 apkinstall = [
   { run = "ANDROID_USER_HOME=/home/fisher/.local/share/.android HOME=/home/fisher/.local/share/ adb install %s", block = true, orphan = false, desc = " apk installer", for = "linux" },
 ]
-torrent = [{ run = ''' foot -- fish -c "at %s" ''', block = false, orphan = true, desc = " aria2c torrent" }]
 bulk-rename = [{ run = "nvim %s; ya exec bulk_exit %s --accept", block = true }]
 extract = [{ run = 'ya pub extract --list %s""', desc = "󱉛 Extract here", for = "unix" }]
 inkscape = [{ run = "inkscape %s", block = false, orphan = true, desc = "󰕞 inkscape", for = "linux" }]
@@ -103,6 +109,11 @@ open = [{ run = "xdg-open %s1", orphan = true, desc = "󰏌 Open", for = "linux"
 play = [{ run = "mpv --force-window %s", orphan = true, desc = " mpv", for = "linux" }]
 png2jpg = [{ run = "magick %s1 JPG:%s1.jpg", desc = "󰧸 png -> jpg", for = "linux" }]
 swayimg = [{ run = "swayimg %s", block = false, orphan = true, desc = " swayimg", for = "linux" }]
+torrent = [{ run = ''' foot -- fish -c "at %s" ''', block = false, orphan = true, desc = " aria2c torrent" }]
+trash = [
+  { run = "ya pub trash-restore --list %S", desc = "Restore selected files" },
+  { run = "ya pub trash-empty --list %S", desc = "Empty trash bin" },
+]
 zathura = [{ run = "zathura %s", block = false, orphan = true, desc = " zathura", for = "linux" }]
 # groups
 raster_tools = [
