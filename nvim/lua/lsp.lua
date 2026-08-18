@@ -103,7 +103,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
       vim.lsp.linked_editing_range.enable(true, { client_id = client.id })
     end
 
-    if client:supports_method('textDocument/onTypeFormatting') then
+    if client:supports_method('textDocument/onTypeFormatting') and client.name ~= 'lua_ls' then
       vim.lsp.on_type_formatting.enable(true, { client_id = client.id })
     end
 
