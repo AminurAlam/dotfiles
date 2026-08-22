@@ -8,7 +8,7 @@
 
 @ NEWS 1 < item-limit 1000
 https://lobste.rs/rss < item-rule "title NOT LIKE 'What are you doing this week%'"
-https://bearblog.dev/discover/feed/
+https://bearblog.dev/discover/feed/ < item-rule "NOT (link REGEXP 'blog.avas.space|blog.absurdpirate.com')"
 https://hnrss.org/frontpage.atom "Hacker News" < item-rule "NOT (title REGEXP '^(Show|Tell|Ask|Launch) HN: ' OR title REGEXP '\(YC .*\)' OR title REGEXP '(OpenAI|Anthropic|[Cc]laude|[Oo]pus|[Gg]emini|[Gg]rok|[Kk]imi|[Qq]wen|GPT|AI|LLM|[Aa]gent)')"
 https://www.phoronix.com/rss.php < item-rule "NOT (title REGEXP 'Intel|NVIDIA|driver|Mesa|Vulkan')"
 https://lwn.net/headlines/rss < item-rule "NOT (title LIKE 'Security updates for %' OR title LIKE '% stable kernel%')"
@@ -36,10 +36,13 @@ https://android.izzysoft.de/rss/en/articles "fdroid: izzysoft"
 https://fishshell.com/blog/feed.xml
 https://github.com/keiyoushi/extensions-source/commits/main/src/en/hentainexus.atom "github: HentaiNexus commits"
 https://github.com/neovim/neovim/commits/master/runtime/doc/news.txt.atom           "github: nvim news" < item-rule "title NOT LIKE 'docs: %'"
+https://browse.library.kiwix.org/catalog/v2/entries?count=-1&lang=eng "kiwix zims"
+https://blog.metabrainz.org/feed/
 https://nvim-mini.org/blog/index.xml
 $(feedmod https://muspy.com/feed?id=mobwjpkr95u5p1b4f2w1bjt74qc8u3) "muspy New Releases" < item-rule "NOT (title LIKE 'Taylor Swift%' OR title REGEXP 'Remix|live|Live|LIVE')"
 https://nyaa.si/?page=rss&c=3_1&f=0 "nyaa: english literature" < item-rule "NOT (title REGEXP '(\] \[|Villain|Otome|Reincarnat|Reborn|Another World|Isekai|Knight|Banished|Party|Dungeon|Adventure|Strongest|Guild|Oak-JXL|Audiobook)')"
 https://nyaa.si/?page=rss&q=weekly+chapter+update&c=3_1&f=0 "nyaa: weekly chapter updates" < item-limit 30
+https://sukebei.nyaa.si/?page=rss&q=%E3%81%82%E3%82%89%E3%81%8F%E3%82%8C%E3%81%9F%E8%80%85%E3%81%9F%E3%81%A1&c=1_2&f=0 "nyaa: あらくれ"
 https://blog.thunderbird.net/feed/ "Thunderbird"
 # $(feedmod https://dotfyle.com/neovim/plugins/rss.xml 's#https://dotfyle.com/plugins/([^/]+/[^/]+)\?utm_source=plugins-rss#https://github.com/\1#; s#<img src="undefined" alt="">##') < item-rule "NOT (content REGEXP 'theme|colou?r ?scheme')"
 # https://ogiuemaniax.com/feed/
@@ -135,6 +138,7 @@ https://blog.frost.kiwi/feed.xml
 https://blog.feld.me/feeds/all.atom.xml
 https://hacktivis.me/feed.atom
 https://havn.blog/categories/english/feed.xml "Havn"
+https://householderkarl.com/feed/
 https://riki.house/feed/all.atom
 https://fromjason.xyz/p/notebook/feed/feed.xml
 https://herecomesthemoon.net/posts/index.xml

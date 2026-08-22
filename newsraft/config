@@ -16,6 +16,7 @@ color-list-section-failed   red     default
 
 bind , shift-reset
 bind m toggle-read;jump-to-next-unread
+bind M toggle-read;jump-to-prev-unread
 bind f toggle-important
 bind SPACE toggle-read
 bind d select-next-page-half
@@ -30,6 +31,7 @@ pager-width 80
 global-section-hide false
 status-placeholder ""
 item-content-link-format "[%i] %l<br>"
+sections-ignore-toggle-read true
 feeds-menu-paramount-explore false
 # database-clean-on-startup true
 download-max-connections 8
