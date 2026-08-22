@@ -103,7 +103,7 @@ apkinstall = [
 ]
 bulk-rename = [{ run = "nvim %s; ya exec bulk_exit %s --accept", block = true }]
 extract = [{ run = 'ya pub extract --list %s""', desc = "󱉛 Extract here", for = "unix" }]
-inkscape = [{ run = "inkscape %s", block = false, orphan = true, desc = "󰕞 inkscape", for = "linux" }]
+inkscape = [{ run = "LANG=en_US.utf-8 inkscape %s", block = false, orphan = true, desc = "󰕞 inkscape", for = "linux" }]
 okular = [{ run = "LANG=en_US.utf-8 okular %s", block = false, orphan = true, desc = " okular", for = "linux" }]
 open = [{ run = "xdg-open %s1", orphan = true, desc = "󰏌 Open", for = "linux" }]
 play = [{ run = "mpv --force-window %s", orphan = true, desc = " mpv", for = "linux" }]
