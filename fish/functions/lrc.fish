@@ -1,15 +1,24 @@
-function lrc -d "download lrc files form links in json" -a album_json
+function lrc -d "download lrc files form links in json" -a query
     # TODO: get region data
     # TODO: move ttml to destination
-    # TODO: search album and open it in browser
+    # TODO: copy single ttml download to clipboard
     cd "$XDG_DOWNLOAD_DIR/lrc/" || return
-    [ -z "$album_json" ] && set album_json (ls *.json | fzf --height 100% --preview 'jq -r . {}')
-    [ -e "$album_json" ] || return
 
-    set album (jq -r '.album' $album_json)
+    [ -n "$query" ]
+    and open "https://music.apple.com/us/search?term=$query"
+
+    printf "waiting for `album.json`..."
+    while not [ -e "album.json" ]
+        sleep 0.5
+    end
+    [ "$(read -P 'edit? [y/N] ')" = y ]
+    and $EDITOR album.json
+    clear
+
+    set album (jq -r '.album' album.json)
     mkdir -p "cache/$album" "$album"
 
-    for track_json in (jq -rc '.tracks[]' $album_json)
+    for track_json in (jq -rc '.tracks[]' album.json)
         set data (printf "%s" "$track_json" | jq -r '(.track_num, .name, .url)')
         set path "$album/$data[1..2]"
         set url "$data[3]"
@@ -27,5 +36,5 @@ function lrc -d "download lrc files form links in json" -a album_json
         echo
     end
 
-    mv $album_json "cache/$album/"
+    mv album.json "cache/$album/"
 end
