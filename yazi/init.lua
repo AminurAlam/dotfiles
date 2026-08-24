@@ -287,8 +287,8 @@ do
   -- # Help
   map('?', 'help')
   -- # rename
-  if ya.target_family() == 'android' then
-    map('@', 'shell --block --confirm -- rat "$0"')
+  if ya.target_os() == 'android' then
+    map('@', 'shell --block --confirm -- rat %h')
   end
   map('I', 'rename --cursor=start --hovered')
   map('i', 'rename --cursor=before_ext --hovered')
