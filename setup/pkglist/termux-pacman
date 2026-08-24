@@ -18,6 +18,7 @@ exiftool
 exiv2
 fd
 ffmpeg
+file
 findutils
 fish
 fzf
@@ -28,6 +29,7 @@ gnupg
 gpgme
 grep
 gzip
+imagemagick
 jq
 lazygit
 less

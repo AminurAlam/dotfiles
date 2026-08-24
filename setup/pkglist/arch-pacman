@@ -29,6 +29,7 @@ gst-libav
 gst-plugin-pipewire
 gst-plugin-va
 help2man
+hex
 hyperfine
 identity
 imagemagick
@@ -110,7 +111,6 @@ re2c
 reflector
 renameutils
 resvg
-revanced-cli-bin
 ripgrep
 rsync
 ruff
