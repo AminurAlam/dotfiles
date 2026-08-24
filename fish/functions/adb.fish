@@ -10,6 +10,20 @@ function adb -d "adb wrapper"
             or command adb connect (route -n | awk '/^[0.]+/{print $2}' | uniq | head -n1)
         end
 
+        if [ (command adb devices | count) -ge 3 ] \
+                && not command adb devices | rg -q android.local
+
+            if command adb connect android.local
+                set old_ip (command adb devices | rg 5555 | rg -v android.local)
+                [ -n "$old_ip" ]
+                and command adb disconnect
+            end
+        end
+
+        for n in 1 3 4 6
+            adb reverse tcp:1000$n tcp:1000$n
+        end
+
         set -f shizuku_lib (command adb -e shell pm path moe.shizuku.privileged.api | sed -E 's#^package:(.*)/base.apk$#\1/lib/arm64/libshizuku.so#')
         [ -n "$shizuku_lib" ] && command adb -e shell $shizuku_lib
         command adb -e shell settings put secure icon_blacklist rotate,headset,fuseboxon,rotate,headset,ims_volte,ims_volte2,volume,mute
