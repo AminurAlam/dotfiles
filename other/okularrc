@@ -7,5 +7,8 @@ shouldShowToolBarComingFromFullScreen=false
 LockSidebar=true
 ShowSidebar=false
 
+[MainWindow]
+MenuBar=Disabled
+
 [UiSettings]
 ColorScheme=KritaDark
