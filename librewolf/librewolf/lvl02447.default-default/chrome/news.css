@@ -171,6 +171,10 @@
     }
   }
 
+  a {
+    text-decoration: underline !important;
+  }
+
   *::selection {
     background: var(--selection);
   }
