@@ -1,3 +1,8 @@
+local grid_side = {
+  [true] = 5, -- fullscreen
+  [false] = 3, -- windowed
+}
+
 do -- General config
   swayimg.mode = 'viewer'
   swayimg.enable_antialiasing = true
@@ -9,10 +14,10 @@ end
 
 do -- Image list configuration
   swayimg.imagelist.order = 'mtime'
-  swayimg.imagelist.enable_reverse = true
-  swayimg.imagelist.enable_recursive = false
-  swayimg.imagelist.enable_adjacent = false
-  swayimg.imagelist.enable_fsmon = true
+  swayimg.imagelist.reverse = true
+  swayimg.imagelist.recursive = false
+  swayimg.imagelist.adjacent = false
+  swayimg.imagelist.fsmon = true
 end
 
 do -- Text overlay configuration
@@ -125,16 +130,26 @@ do -- Key bindings
     'd',
     function() os.execute(string.format('trash-put %q', swayimg.gallery.get_image().path)) end
   )
-  local gsize = function(px) swayimg.gallery.thumb_size = swayimg.gallery.thumb_size() + px end
-  gmap('KP_Add', function() gsize(50) end)
-  gmap('KP_Subtract', function() gsize(-50) end)
+  local gsize = function(n)
+    local fs = swayimg.fullscreen
+    if not fs then fs = false end
+    if grid_side[fs] == nil then return end
+    grid_side[fs] = grid_side[fs] + n
+    if grid_side[fs] < 2 then grid_side[fs] = 2 end
+    swayimg.gallery.thumb_size = math.floor(swayimg.get_window_size().width / grid_side[fs])
+  end
+  gmap('KP_Add', function() gsize(-1) end)
+  gmap('KP_Subtract', function() gsize(1) end)
+  gmap('plus', function() gsize(-1) end)
+  gmap('equal', function() gsize(-1) end)
+  gmap('minus', function() gsize(1) end)
   gmap('q', swayimg.exit)
   gmap('h', function() swayimg.gallery.select('left') end)
   gmap('j', function() swayimg.gallery.select('down') end)
   gmap('k', function() swayimg.gallery.select('up') end)
   gmap('l', function() swayimg.gallery.select('right') end)
   gmap('g', function() swayimg.gallery.select('first') end)
-  gmap('G', function() swayimg.gallery.select('last') end)
+  gmap('Shift+g', function() swayimg.gallery.select('last') end)
   gmap('u', function() swayimg.gallery.select('pgup') end)
   gmap('d', function() swayimg.gallery.select('pgdown') end)
 
@@ -143,11 +158,11 @@ end
 
 do -- Gallery mode
   swayimg.gallery.aspect = 'fill'
-  swayimg.gallery.thumb_size = 350
-  swayimg.gallery.padding_size = 5
+  -- swayimg.gallery.thumb_size = 350 -- set grid_side instead
+  swayimg.gallery.padding_size = 0
   swayimg.gallery.border_size = 5
-  swayimg.gallery.border_color = 0xffaaaaaa
-  swayimg.gallery.selected_scale = 1.15
+  swayimg.gallery.border_color = 0xff29a4bd
+  swayimg.gallery.selected_scale = 1
   swayimg.gallery.selected_color = 0xff404040
   swayimg.gallery.unselected_color = 0xff202020
   swayimg.gallery.window_color = 0xff000000
@@ -166,14 +181,21 @@ do -- misc
     if i and i.width < 500 then swayimg.antialiasing = false end
   end)
 
-  -- fit to screen on opening
+  -- fit to screen on resize
   local scaled = false
   swayimg.on_window_resize(function()
+    swayimg.gallery.thumb_size =
+      math.floor(swayimg.get_window_size().width / grid_side[swayimg.fullscreen])
     if swayimg.mode == 'viewer' and not scaled then
       swayimg.viewer.set_fix_scale('fit')
       scaled = true
     end
   end)
 
-  swayimg.on_initialized(function() end)
+  swayimg.on_initialized(
+    function()
+      swayimg.gallery.thumb_size =
+        math.floor(swayimg.get_window_size().width / grid_side[swayimg.fullscreen])
+    end
+  )
 end
