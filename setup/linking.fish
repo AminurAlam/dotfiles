@@ -44,7 +44,7 @@ ln -nfs ~/repos/dotfiles/other/okularrc ~/.config/okularrc
 ln -nfs ~/repos/dotfiles/other/starship.toml ~/.config/starship.toml
 ln -nfs ~/repos/dotfiles/other/stylua.toml ~/.config/stylua.toml
 ln -nfs ~/repos/dotfiles/other/taplo.toml ~/.config/taplo.toml
-# ln -nfs ~/repos/dotfiles/other/ssh_config ~/.ssh/config # NOTE: do this manually
+ln -nfs ~/repos/dotfiles/other/ssh_config ~/.ssh/config
 printf "done\n"
 
 if set -q TERMUX_VERSION

@@ -1,4 +1,4 @@
-Host brick brick.* slab paper
+Host brick brick/* slab paper
     User user
     Port 8022
     IdentityFile ${HOME}/.ssh/ssh_ed25519
@@ -13,9 +13,9 @@ Host brick brick.* slab paper
 Host brick
     Hostname android.local
 
-Host brick.*
+Host brick/*
     Hostname android.local
-    RemoteCommand zmx attach (string replace 'brick.' '' %k)
+    RemoteCommand mux (string replace 'brick/' '' %k)
     RequestTTY yes
     ControlPath ~/.ssh/cm-%r@%h:%p
     ControlMaster auto
