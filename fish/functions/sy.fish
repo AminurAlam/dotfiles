@@ -5,7 +5,7 @@ function sy -d "sync files between phone and pc"
     set tags books exib femboys flat lewd NTR
     set artists Alp Arakure Cleanendme Esuke Herio 'Hinahara Emi' Jury 'Minami Fumika' \
         Momoko 'Morino Bambi' Nagayori Namboku 'Nikubou Maranoshin' 'Ouchi Kaeru' Sajipen \
-        'Wantan Meo' Yuruyakatou
+        Souseki 'Wantan Meo' Yuruyakatou
 
     # exit if network is unreachable
     if not nc -w3 -q3 -z (ssh -G brick | rg --replace '' '^(hostname|port) ') 2>/dev/null
