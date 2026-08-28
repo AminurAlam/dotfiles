@@ -56,6 +56,7 @@ do -- cmdline, statusline & statuscolumn
 
   set.wildmode = 'noselect:lastused,full'
   set.wildoptions = 'pum'
+  set.messagesopt = 'hit-enter,history:500,progress:c,maxheight:60'
 end
 
 do -- folding

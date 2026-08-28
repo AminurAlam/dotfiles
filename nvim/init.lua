@@ -45,16 +45,8 @@ require 'statusline'
 require 'picker'
 require 'treesitter'
 
-require('vim._core.ui2').enable({
-  enable = true,
-  msg = {
-    targets = { 'cmd', 'msg', 'pager' },
-    cmd = { height = 0.5 },
-    dialog = { height = 0.5 },
-    msg = { height = 0.5, timeout = 4000 },
-    pager = { height = 1 },
-  },
-})
+-- [[ misc ]]
+require('vim._core.ui2').enable {}
 
 vim.cmd [[
 if &diff
