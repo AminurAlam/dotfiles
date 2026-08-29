@@ -85,6 +85,9 @@ function fish_prompt -d 'commandline prompt'
     end
 
     set -l char '' '' \n' ❯'
+    if [ "$USER" = root ]
+        set char (set_color red) '' \n' '
+    end
     if [ "$fish_bind_mode" != insert ]
         set char (switch $fish_bind_mode
             case default f F t T
