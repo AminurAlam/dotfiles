@@ -262,15 +262,13 @@ do
 
   map('g', 'arrow top', 'Move cursor to the top')
   -- # plugins
-  -- map('mgr',{ 's', 't' , 'plugin max-pane' })
-  -- map('mgr','f', 'plugin fchar start' )
   map('F', 'plugin fzf')
   map('z', 'plugin zoxide')
   map('l', 'plugin smart-enter')
   map('<right>', 'plugin smart-enter')
   map({ 's', 's' }, { 'plugin sort-by-location size', 'linemode size' })
   -- # Operation
-  map('o', 'open --interactive')
+  map('o', 'plugin pivot-or-open')
   map('O', 'create')
   map('d', 'remove')
   map('D', 'shell --block --confirm -- fd -HI -td -d2 -x rmdir -p')
@@ -319,6 +317,8 @@ require('zoxide'):setup { update_db = false }
 
 require('session'):setup { sync_yanked = true }
 
+require('max-pane'):setup { 's', 't' }
+
 require('nextension'):setup {}
 
 require('sort-by-location'):setup {
@@ -337,9 +337,9 @@ require('sort-by-location'):setup {
 
 require('mime-ext.local'):setup {
   with_exts = {
-    cbz = 'application/zip',
     mmd = 'text/plain',
     scm = 'text/plain',
+    srt = 'text/plain',
     sql = 'text/plain',
     tex = 'text/plain',
     xml = 'text/plain',

@@ -49,15 +49,21 @@ progress_error = { fg = "black", bg = "red" }
 selected = { bg = "#2e3c64" }
 
 [git]
-modified = { fg = 'red' }
-modified_sign = 'M'
-added = { fg = 'green' }
-added_sign = 'A'
-untracked = { fg = 'red' }
-untracked_sign = '?'
-ignored_sign = 'I'
-deleted_sign = 'D'
-updated_sign = 'U'
+added = { fg = "green" }
+modified = { fg = "blue" }
+unstaged = { fg = "red" }
+untracked = { fg = "red" }
+
+added_sign = "A"
+clean_sign = ""
+deleted_sign = "D"
+ignored_sign = "I"
+modified_sign = "M"
+staged_sign = "M"
+unknown_sign = ""
+unstaged_sign = "M"
+untracked_sign = "?"
+updated_sign = "U"
 
 [filetype]
 rules = [
