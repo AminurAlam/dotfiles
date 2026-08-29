@@ -488,8 +488,8 @@ keybinding:
     toggleRangeSelect: v
     rangeSelectDown: <shift+down>
     rangeSelectUp: <shift+up>
-    prevBlock: [<left>, h, <backtab>]
-    nextBlock: [<right>, l, <tab>]
+    prevBlock: [<left>, <backtab>]
+    nextBlock: [<right>, <tab>]
     jumpToBlock:
       - "1"
       - "2"
@@ -510,7 +510,7 @@ keybinding:
     forwardDeleteWord: <ctrl+delete>
     optionMenu: "?"
     select: <space>
-    goInto: <enter>
+    goInto: [l, <enter>]
     confirm: <enter>
     confirmMenu: <enter>
     confirmSuggestion: <enter>
@@ -635,8 +635,8 @@ keybinding:
   commitFiles:
     checkoutCommitFile: c
   main:
-    prevHunk: [<left>, h]
-    nextHunk: [<right>, l]
+    prevHunk: [<left>]
+    nextHunk: [<right>]
     toggleSelectHunk: a
     pickBothHunks: b
     editSelectHunk: E
