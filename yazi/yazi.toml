@@ -5,8 +5,8 @@
 [plugin]
 fetchers = [
   { group = "mime", prio = "high", url = "*/", run = "mime.dir" },
-  { group = "mime", prio = "high", url = "local://*", run = "mime.local" },
-  { group = "mime", prio = "high", url = "remote://*", run = "mime.remote" },
+  { group = "mime", prio = "high", url = "local://*", run = "mime-ext.local" },
+  { group = "mime", prio = "high", url = "remote://*", run = "mime-ext.remote" },
   { group = "mime", prio = "high", url = "trash://*", run = "mime.trash" },
   { group = "mime", prio = "high", url = "*.{!qB,part}", run = "noop" },
   { group = "mime", prio = "high", url = "/mnt/rclone/**", run = "noop" },
@@ -14,77 +14,64 @@ fetchers = [
   { group = "git", url = "*/", run = "git" },
 ]
 prepend_previewers = [
+  # partial downloads
   { url = "*.{!qB,part}", run = "noop" },
   { url = "/mnt/rclone/**", run = "noop" },
-  # custom
+  # custom plugins
+  { url = "**/.git/", run = "preview-git" },
   { url = "*.typ", run = "preview-typst" },
   { url = "*.service", run = "preview-systemd" },
+  { mime = "application/apple.mpegurl", run = "code" },
+  { mime = "application/bittorrent", run = "preview-torrent" },
+  { mime = "application/cbr", run = "preview-cbz" },
   { mime = "application/epub+zip", run = "preview-epub" },
-  { url = "*.cb{z,r}", run = "preview-cbz" },
-  # { url = "*.{zip,rar}", run = "preview-cbz" },
-  { url = "*.torrent", run = "preview-torrent" },
-  { url = "*.m3u{8,}", run = "code" },
+  { mime = "application/sqlite3", run = "preview-sqlite" },
+  { mime = "audio/mpegurl", run = "code" },
   { mime = "audio/*", run = "preview-audio" },
   { mime = "font/*", run = "font-sample" },
-  { mime = "application/ms-opentype", run = "font-sample" },
-  { url = "*.{otf,ttf,woff,woff2}", run = "font-sample" },
-  { url = "**/.git/", run = "preview-git" },
-  # plugins
-  { url = "*.sqlite3", run = "preview-sqlite" },
-  { mime = "application/sqlite3", run = "preview-sqlite" },
-  # { mime = 'application/octet-stream', run = 'piper -- hexyl -n1000 -PC --panels 1 --border none "$1"' },
-  # misc
-  { mime = "application/subrip", run = "code" },
-  { url = "*.{zip,rar}", run = "archive" },
-  { mime = "inode/empty", run = "empty" },
-  { mime = "trash/**", run = "trash" },
-  { mime = "null/*", run = "null" },
 ]
 prepend_preloaders = [
+  # partial downloads
   { url = "*.{!qB,part}", run = "noop" },
   { url = "/mnt/rclone/**", run = "noop" },
-  { mime = "image/*", run = "noop" },
+  # custom plugins
+  # { mime = "image/*", run = "noop" },
   { url = "*.typ", run = "preview-typst" },
-  # { mime = "application/epub+zip", run = "preview-epub" },
+  { mime = "application/cbr", run = "preview-cbz" },
+  { mime = "application/epub+zip", run = "preview-epub" },
   { mime = "audio/*", run = "preview-audio" },
-  # { url = "*.cb{z,r}", run = "preview-cbz" },
   { mime = "font/*", run = "font-sample" },
-  { mime = "application/ms-opentype", run = "font-sample" },
-  { url = "*.{otf,ttf,woff,woff2}", run = "font-sample" },
 ]
 spotters = [
   { mime = "multi/*", run = "multi" },
-  { url = "*/", run = "spot" },
-  { url = "*.cb{z,r}", run = "spot-cbz" },
+  { mime = "folder/*", run = "spot" },
+  { mime = "application/cbr", run = "spot-cbz" },
   { mime = "audio/*", run = "spot-audio" },
   { mime = "image/*", run = "spot-image" },
   { mime = "video/*", run = "spot-video" },
-  { mime = "null/*", run = "null" },
   { url = "*", run = "spot" },
 ]
 
 ## OPEN
 [open]
 rules = [
-  { url = "*/", use = ["dir", "common"] },
+  { mime = "folder/*", use = ["dir", "common"] },
   { url = "bulk-rename.txt", use = "bulk-rename" },
   # archives
-  { url = "*.cb{z,r}", use = ["okular", "extract", "common"] },
-  { url = "*.{zip,rar}", use = ["extract", "okular", "common"] },
-  { url = "*.apk", use = ["apkinstall", "extract", "common"] },
-  { url = "*.deb", use = ["extract", "common"] },
-  { mime = "application/{zip,rar,7z*,tar,gzip,xz,zstd,bzip*,lzma,compress,archive,cpio,arj,xar,ms-cab*}", use = ["extract", "common"] },
+  { mime = "application/cbr", use = ["okular", "extract", "common"] },
+  { mime = "application/android.package-archive", use = ["apkinstall", "extract", "common"] },
+  { mime = "application/{zip,rar}", use = ["extract", "okular", "common"] },
+  { mime = "application/{7z*,tar,gzip,xz,zstd,bzip*,lzma,debian-package,compress,archive,cpio,arj,xar,ms-cab*}", use = ["extract", "common"] },
   # multimedia
+  { url = "*.{ass,srt,ssa,sup,vtt}", use = ["add-sub", "edit", "common"] },
   { mime = "application/pdf", use = ["okular", "common"] },
   { mime = "application/bittorrent", use = ["torrent", "open", "common"] },
-  { url = "*.{ass,srt,ssa,sup,vtt}", use = ["add-sub", "edit", "common"] },
-  { url = "*.m3u{8,}", use = ["edit", "common"] },
+  { mime = "audio/mpegurl", use = ["edit", "common"] },
   { mime = "image/svg+xml", use = ["swayimg", "inkscape", "edit", "common"] },
   { mime = "image/*", use = ["swayimg", "raster_tools", "png2jpg", "common"] },
   { mime = "video/*", use = ["play", "common"] },
   { mime = "audio/*", use = ["play", "audio_tools", "common"] },
   # text
-  { url = "*.patch", use = ["edit", "common"] },
   { mime = "text/*", use = ["edit", "common"] },
   { mime = "inode/empty", use = ["edit", "common"] },
   { mime = "application/{json,ndjson}", use = ["edit", "common"] },
@@ -133,7 +120,7 @@ common = [
   { run = "termux-open %s1", orphan = true, desc = "󰏌 Open", for = "android" },
 ]
 dir = [
-  { run = "xdg-open %d", desc = " Reveal", for = "linux" },
+  # { run = "xdg-open %d", desc = " Reveal", for = "linux" },
   { run = "swayimg -g %s", orphan = true, desc = " gallery", for = "linux" },
   { run = "fish -c 'dir2cbz $argv' %s", block = true, desc = " dir2cbz" },
 ]

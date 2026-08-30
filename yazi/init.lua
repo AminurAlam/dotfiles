@@ -267,6 +267,7 @@ do
   map('l', 'plugin smart-enter')
   map('<right>', 'plugin smart-enter')
   map({ 's', 's' }, { 'plugin sort-by-location size', 'linemode size' })
+  map('T', 'plugin trash')
   -- # Operation
   map('o', 'plugin pivot-or-open')
   map('O', 'create')
@@ -279,7 +280,6 @@ do
   map('p', { 'paste', 'unyank' })
   -- # Tabs
   map('t', { 'tab_create --current', "tab_rename ''", 'plugin zoxide' })
-  map('T', 'tab_rename --interactive')
   map('<C-Left>', 'tab_switch -1 --relative')
   map('<C-Right>', 'tab_switch 1 --relative')
   -- # Help
