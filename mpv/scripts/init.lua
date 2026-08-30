@@ -92,5 +92,25 @@ local yank_jp_text = function()
   print(text)
 end
 
+-- [[ screenshot ]]
+
+local ss = function()
+  mp.set_property('screenshot-format', 'png')
+  mp.commandv('screenshot')
+
+  mp.set_property('screenshot-format', 'jpg')
+  local file = '/tmp/mpv-screenshot.jpeg'
+  mp.commandv('screenshot-to-file', file)
+  mp.command_native_async(
+    { 'run', 'sh', '-c', ('wl-copy -t image/jpg < %q'):format(file) },
+    function(_, _, err)
+      if err then
+        mp.osd_message(err, 1)
+      end
+    end
+  )
+end
+
 mp.add_key_binding('a', 'swap-subtitles', swap_subtitles)
 mp.add_key_binding('d', 'yank-jp-text', yank_jp_text)
+mp.add_key_binding('s', 'clipshot-subs', ss)
