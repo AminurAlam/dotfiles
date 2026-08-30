@@ -1,6 +1,6 @@
 function mux -d "zmx wrapper"
     if [ -z "$argv[1]" ]
-        set argv (zmx list --short | fzf --print-query)[-1]
+        set argv (printf "%s\n" (zmx list --short) "$ZMX_SESSION_PREFIX"conf | sort -u | fzf --print-query)[-1]
         # if nc -w3 -q3 -z (ssh -G brick | rg --replace '' '^(hostname|port) ') 2>/dev/null
         #     ssh brick zmx list --short
         # end
