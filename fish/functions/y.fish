@@ -14,7 +14,9 @@ function y -d "yazi wrapper to change directories"
 
     if set cwd (command cat -- "$tmp")
         and [ -n "$cwd" ]
+        and [ -d "$cwd" ]
         and [ "$cwd" != "$PWD" ]
+        and string match -vq 'trash:*' "$cwd"
         cd -- "$cwd"
     end
     rm -f -- "$tmp"
