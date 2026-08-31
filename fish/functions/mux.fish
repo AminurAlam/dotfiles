@@ -17,15 +17,15 @@ function mux -d "zmx wrapper"
         or pushd (zoxide query "$argv[2]" 2>/dev/null) 2>/dev/null
     else
         switch "$argv[1]"
-            case conf
+            case {$ZMX_SESSION_PREFIX,}conf
                 pushd ~/repos/dotfiles/
-            case yt
+            case {$ZMX_SESSION_PREFIX,}yt
                 pushd ~/vid/yt
-            case site
+            case {$ZMX_SESSION_PREFIX,}site
                 pushd ~/repos/aminuralam.github.io
-            case lewd
+            case {$ZMX_SESSION_PREFIX,}lewd
                 pushd "/sdcard/Tachi/downloads/HentaiNexus (EN)/"
-            case tachi
+            case {$ZMX_SESSION_PREFIX,}tachi
                 pushd /sdcard/Tachi/local
         end
     end
