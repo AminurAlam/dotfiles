@@ -1,30 +1,3 @@
-local langs = {}
-local prefix = 'file://' .. os.getenv('HOME') .. '/repos/tree-sitter/'
-
-for _, name in ipairs({ 'kanata', 'newsraft', 'zathurarc' }) do
-  langs[name] = {
-    install_info = {
-      url = prefix .. name,
-      queries = 'queries',
-      use_repo_queries = true,
-    },
-  }
-end
-
-require('tree-sitter-manager').setup {
-  ensure_installed = {
-    'c',
-    'lua',
-    'luadoc',
-    'markdown',
-    'query',
-    'vim',
-    'vimdoc',
-  },
-  nohighlight = { 'glimmer', 'latex' }, -- TODO: remove when handlebars is fixed
-  languages = langs, -- override or add new parser sources
-}
-
 local sel = require('vim.treesitter._select')
 vim.keymap.set({ 'x' }, '<c-k>', sel.select_grow_prev)
 vim.keymap.set({ 'x' }, '<c-j>', sel.select_grow_next)
@@ -45,21 +18,21 @@ vim.keymap.set({ 'x', 'o' }, 'N', function()
   end
 end)
 
---[[
 vim.api.nvim_create_autocmd('User', {
   pattern = 'TSUpdate',
   callback = function()
-    local path = os.getenv('HOME') .. '/repos/tree-sitter-kanata'
-    local exists = vim.uv.fs_stat(path)
-
-    require('nvim-treesitter.parsers').kanata = {
-      install_info = {
-        path = exists and path or nil,
-        url = exists and nil or 'https://github.com/AminurAlam/tree-sitter-kanata',
-        queries = 'queries/',
-      },
-      tier = 2,
-    }
+    for _, name in ipairs({ 'kanata', 'newsraft', 'zathurarc' }) do
+      local path = '~/repos/tree-sitter/' .. 'kanata'
+      -- local exists = vim.uv.fs_stat(path)
+      require('nvim-treesitter.parsers')[name] = {
+        install_info = {
+          path = path,
+          url = 'https://codeberg.org/AminurAlam/tree-sitter-' .. name,
+          queries = 'queries/',
+        },
+        tier = 2,
+      }
+    end
   end,
 })
 
@@ -97,4 +70,19 @@ vim.api.nvim_create_autocmd({ 'PackChanged' }, {
     end
   end,
 })
---]]
+
+--[[
+require('tree-sitter-manager').setup {
+  ensure_installed = {
+    'c',
+    'lua',
+    'luadoc',
+    'markdown',
+    'query',
+    'vim',
+    'vimdoc',
+  },
+  nohighlight = { 'glimmer', 'latex' }, -- TODO: remove when handlebars is fixed
+  languages = langs, -- override or add new parser sources
+}
+]]

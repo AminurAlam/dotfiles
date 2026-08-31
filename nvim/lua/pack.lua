@@ -9,7 +9,7 @@ vim.pack.add({
   'https://github.com/nvim-mini/mini.completion',
   'https://github.com/nvim-mini/mini.diff',
   'https://github.com/nvim-mini/mini.pick',
-  'https://github.com/romus204/tree-sitter-manager.nvim',
+  'https://github.com/nvim-treesitter/nvim-treesitter',
   'https://github.com/stevearc/conform.nvim',
 })
 
