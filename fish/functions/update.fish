@@ -36,12 +36,20 @@ function update -d "system update with just one command"
     set -q TERMUX_VERSION
     and cargo install --locked --git https://codeberg.org/AminurAlam/kt
 
-    if not set -q TERMUX_VERSION && [ "$(read -P "update yazi? [y/N] ")" = y ]
+    string pad -C -c= -w$COLUMNS " YAZI "
+    if not set -q TERMUX_VERSION
         cd ~/repos/yazi-fork/
         git fetch upstream
         git rebase upstream/main
-        cargo build --release --locked
-        mv target/release/yazi target/release/ya $CARGO_HOME/bin/
+        set changes (git rev-list --count "upstream..main")
+
+        printf "%d new changes\n" "$changes"
+
+        if [ "$changes" -gt 0 ] \
+                && [ "$(read -P "update yazi? [y/N] ")" = y ]
+            cargo build --release --locked
+            mv target/release/yazi target/release/ya $CARGO_HOME/bin/
+        end
     end
 
     # cargo install --profile opt --config 'build.rustflags="-C target-cpu=native"' --locked \
