@@ -90,8 +90,25 @@ vim.api.nvim_create_autocmd('LspAttach', {
     end
 
     if client:supports_method('textDocument/hover') then
-      vim.keymap.set('n', 'K', function() --
-        vim.lsp.buf.hover { border = 'rounded' }
+      vim.keymap.set('n', 'K', function()
+        ---@diagnostic disable-next-line:param-type-mismatch
+        if client:supports_method('experimental/externalDocs') then
+          client:request(
+            'experimental/externalDocs', ---@diagnostic disable-line:param-type-mismatch
+            vim.lsp.util.make_position_params(0, client.offset_encoding or 'utf-8'),
+            ---@param _ lsp.ResponseError
+            ---@param response { web: string, local: string}|string
+            function(_, response)
+              if response and type(response) == 'string' then
+                vim.ui.open(response)
+              else
+                vim.lsp.buf.hover { border = 'rounded' }
+              end
+            end
+          )
+        else
+          vim.lsp.buf.hover { border = 'rounded' }
+        end
       end, { buffer = args.buf })
     end
 
