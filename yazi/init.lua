@@ -249,6 +249,12 @@ do
     km.mgr.rules:insert(1, { on = key, run = action, desc = desc })
   end
 
+  ---@param cmd string
+  ---@return string
+  local sh = function(cmd)
+    return 'shell --block --confirm -- ' .. cmd
+  end
+
   km.help.rules:insert(1, { on = 'q', run = 'close' })
   km.tasks.rules:insert(1, { on = 'q', run = 'close' })
   km.spot.rules:insert(1, { on = 'q', run = 'close' })
@@ -272,11 +278,11 @@ do
   map('o', 'plugin pivot-or-open')
   map('O', 'create')
   map('d', 'remove')
-  map('D', 'shell --block --confirm -- fd -HI -td -d2 -x rmdir -p')
+  map('D', sh 'fd -HI -td -d2 -x rmdir -p')
   map({ 'y', 'y' }, 'yank', 'yank file')
   map({ 'y', 'p' }, 'copy path', 'yank ENTIRE path')
   map({ 'y', 'f' }, 'copy filename', 'yank filename')
-  map({ 'y', 'u' }, 'shell --confirm -- wl-copy -t text/uri-list file://%h', 'yank uri')
+  map({ 'y', 'u' }, sh 'printf "file://%%s\n" %s | wl-copy -t text/uri-list', 'yank uri')
   map('p', { 'paste', 'unyank' })
   -- # Tabs
   map('t', { 'tab_create --current', "tab_rename ''", 'plugin zoxide' })
@@ -286,7 +292,7 @@ do
   map('?', 'help')
   -- # rename
   if ya.target_os() == 'android' then
-    map('@', 'shell --block --confirm -- rat %h')
+    map('@', sh 'rat %h')
   end
   map('I', 'rename --cursor=start --hovered')
   map('i', 'rename --cursor=before_ext --hovered')
@@ -300,7 +306,7 @@ do
   map({ 'c', '$' }, 'rename --empty=ext --cursor=end')
   -- # other
   map('%', 'toggle_all --state=true')
-  map('<C-g>', [[shell --block --confirm -- nvim +Pick\ grep_live]])
+  map('<C-g>', sh [[nvim +Pick\ grep_live]])
   map('<Esc>', { 'escape', 'unyank' }, 'Exit visual mode, clear selection, or cancel search')
 end
 
@@ -313,26 +319,24 @@ end
 
 require('git'):setup {}
 
+require('nextension'):setup {}
+
+require('max-pane'):setup { 's', 't' }
+
 require('zoxide'):setup { update_db = false }
 
 require('session'):setup { sync_yanked = true }
 
-require('max-pane'):setup { 's', 't' }
+require('spot'):setup {
+  metadata_section = { hash_filesize_limit = 100, relative_time = true },
+  plugins_section = { enable = true },
+}
 
-require('nextension'):setup {}
-
-require('sort-by-location'):setup {
-  default = { by = 'extension', reverse = false },
-  keys = {
-    mtime = { 's', 'm' },
-    extension = { 's', 'e' },
-    natural = { 's', 'n' },
-  },
-  { pattern = '.*/Pictures/.*', sort = { by = 'mtime', reverse = true } },
-  { pattern = '.*/pic/.*', sort = { by = 'mtime', reverse = true } },
-  { pattern = '.*/DCIM/.*', sort = { by = 'mtime', reverse = true } },
-  { pattern = '.*/#lewd$', sort = { by = 'mtime', reverse = true } },
-  { pattern = '.*/yt$', sort = { by = 'natural' } },
+require('font-sample'):setup {
+  canvas_size = '750x800',
+  font_size = 60,
+  bg = 'white',
+  fg = 'black',
 }
 
 require('mime-ext.local'):setup {
@@ -347,16 +351,18 @@ require('mime-ext.local'):setup {
   fallback_file1 = true,
 }
 
-require('spot'):setup {
-  metadata_section = { hash_filesize_limit = 100, relative_time = true },
-  plugins_section = { enable = true },
-}
-
-require('font-sample'):setup {
-  canvas_size = '750x800',
-  font_size = 60,
-  bg = 'white',
-  fg = 'black',
+require('sort-by-location'):setup {
+  default = { by = 'extension', reverse = false },
+  keys = {
+    mtime = { 's', 'm' },
+    extension = { 's', 'e' },
+    natural = { 's', 'n' },
+  },
+  { pattern = '.*/Pictures/.*', sort = { by = 'mtime', reverse = true } },
+  { pattern = '.*/pic/.*', sort = { by = 'mtime', reverse = true } },
+  { pattern = '.*/DCIM/.*', sort = { by = 'mtime', reverse = true } },
+  { pattern = '.*/#lewd$', sort = { by = 'mtime', reverse = true } },
+  { pattern = '.*/yt$', sort = { by = 'natural' } },
 }
 
 require('fchar'):setup {

@@ -15,6 +15,14 @@
   (#eq? @_command "command")
   (#set! injection.language "vim"))
 
+;; used in yazi/init.lua
+(function_call
+  name: (identifier) @func_name
+  arguments: (arguments
+    (string content: (string_content) @injection.content))
+  (#eq? @func_name "sh")
+  (#set! injection.language "sh")
+)
 
 (function_call
   name: (_) @_map
