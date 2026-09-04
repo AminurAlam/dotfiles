@@ -70,7 +70,8 @@ gui:
   # 'commits' must always be included; they can't be hidden.
   sidePanels:
     - [files]
-    - [commits, branches]
+    - [commits]
+    - [branches]
   # Sometimes the main window is split in two (e.g. when the selected file has
   # both staged and unstaged changes). This setting controls how the two sections
   # are split.
@@ -427,7 +428,7 @@ os:
   openDirInEditor: "footclient -e yazi {{filename}}"
   # A built-in preset that sets all of the above settings. Supported presets are
   # defined in the getPreset function in editor_presets.go.
-  editPreset: "nvim"
+  editPreset: "helix (hx)"
   # Command for opening a file, as if the file is double-clicked. Should contain
   # "{{filename}}", but doesn't support "{{line}}".
   open: "footclient -e yazi {{filename}} &"

@@ -1,6 +1,6 @@
 set -gx LANG ja_JP.UTF-8
 set -gx EDITOR nvim
-set -gx SUDO_EDITOR nvim -u ~/repos/dotfiles/other/vimrc
+set -gx SUDO_EDITOR (command -v "$EDITOR")
 set -gx LESS --mouse
 set -gx MANPAGER "nvim +Man!"
 set -gx COLORTERM truecolor
@@ -31,7 +31,7 @@ set -gx RIPGREP_CONFIG_PATH $HOME/repos/dotfiles/other/ripgreprc
 set -gx FZF_DEFAULT_OPTS_FILE $HOME/repos/dotfiles/other/fzfrc
 set -gx WINEPREFIX $XDG_DATA_HOME/wineprefixes/default
 set -gx GRADLE_USER_HOME $XDG_DATA_HOME/gradle
-set -gx HELIX_RUNTIME $HOME/repos/helix/runtime
+set -gx HELIX_RUNTIME $HOME/repos/helix-fork/runtime
 set -gx QT_QPA_PLATFORMTHEME qt6ct
 set -gx QT_QPA_PLATFORM wayland
 set -gx _ZO_FZF_OPTS '--ignore-case --tiebreak chunk,begin,index --no-multi --scroll-off 4 --height ~90% --layout default --border rounded --margin 0,0,0,0 --no-info --no-separator --prompt " " --preview ""'
@@ -39,7 +39,6 @@ set -gx YAZI_ZOXIDE_OPTS $_ZO_FZF_OPTS
 set -gx ZMX_SESSION_PREFIX "$USER."
 
 # lang config
-
 set -gx JAVA_HOME /usr/lib/jvm/default
 set -gx _JAVA_OPTIONS -Djava.util.prefs.userRoot=$XDG_CONFIG_HOME/java
 set -gx ANDROID_HOME /opt/android-sdk

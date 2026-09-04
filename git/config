@@ -3,7 +3,7 @@
 [core]
     fsmonitor = true
     untrackedCache = true
-    editor = nvim +'setlocal spell noundofile noswapfile'
+    editor = $EDITOR
     # pager = nvim +'setlocal ft=diff buftype=nofile bufhidden=hide noswapfile'
     pager = delta
 

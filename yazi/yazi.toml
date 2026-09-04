@@ -89,7 +89,7 @@ add-sub = [
 apkinstall = [
   { run = "ANDROID_USER_HOME=/home/fisher/.local/share/.android HOME=/home/fisher/.local/share/ adb install %s", block = true, orphan = false, desc = " apk installer", for = "linux" },
 ]
-bulk-rename = [{ run = "nvim %s; ya exec bulk_exit %s --accept", block = true }]
+bulk-rename = [{ run = "$EDITOR %s; ya exec bulk_exit %s --accept", block = true }]
 extract = [{ run = 'ya pub extract --list %s""', desc = "󱉛 Extract here", for = "unix" }]
 inkscape = [{ run = "LANG=en_US.utf-8 inkscape %s", block = false, orphan = true, desc = "󰕞 inkscape", for = "linux" }]
 okular = [{ run = "LANG=en_US.utf-8 okular %s", block = false, orphan = true, desc = " okular", for = "linux" }]
@@ -114,7 +114,10 @@ audio_tools = [
   { run = "picard -- %s", orphan = true, desc = "󰫅 picard", for = "linux" },
   { run = "tenacity %s", block = false, orphan = true, desc = "󰓀 tenacity", for = "linux" },
 ]
-edit = [{ run = "nvim %s", desc = " nvim", block = true, for = "unix" }]
+edit = [
+  { run = "hx %s", desc = "󰚄 hx", block = true, for = "unix" },
+  { run = "nvim %s", desc = " nvim", block = true, for = "unix" },
+]
 common = [
   # { run = "dragon-drop -x %s", orphan = true, desc = " Drag and Drop", for = "linux" },
   { run = "rsync -Pha --info PROGRESS2 -- %s brick:/sdcard/Download/", block = false, desc = " Send to brick", for = "linux" },

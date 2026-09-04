@@ -8,7 +8,6 @@ email = "oscorp2004@gmail.com"
 colocate = false
 
 [ui]
-editor = "nvim"
 default-command = "log"
 
 [templates]
