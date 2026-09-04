@@ -1,10 +1,13 @@
 theme = "custom"
 
+# TODO: search all columns by default
 [editor]
-auto-format = true
+middle-click-paste = false
 default-yank-register = "+"
-shell = ["fish", "-c"]
+shell = ["fish", "--no-config", "-c"]
+cursorline = true
 continue-comments = false
+auto-format = true
 completion-replace = true
 true-color = true
 bufferline = "multiple"
@@ -14,49 +17,68 @@ atomic-save = true
 popup-border = "all"
 jump-label-alphabet = "fjdksla;ghcnvmwi"
 end-of-line-diagnostics = "hint"
-cursorline = true
+smart-tab.enable = false
+indent-guides = { render = true, skip-levels = 1 }
 gutters = { layout = ["diff", "line-numbers", "spacer"], line-numbers.min-width = 1 }
 cursor-shape = { insert = "bar", select = "underline" }
-file-picker = { git-ignore = false }
-whitespace = { render = { tab = "all" }, characters = { tab = ">", tabpad = " " } }
+whitespace = { render = { tab = "all", newline = "all" }, characters = { tab = ">", tabpad = " " } }
 inline-diagnostics = { cursor-line = "disable", other-lines = "disable" }
 lsp = { display-progress-messages = true }
+file-picker = { follow-symlinks = false, git-ignore = true, max-depth = 5 }
 
-# TODO: mh/ml -> goto left/right match
+[editor.statusline]
+left = ["mode", "spinner", "file-name", "read-only-indicator", "file-modification-indicator", "diagnostics"]
+right = ["selections", "register", "position-percentage", "file-encoding", "spacer"]
+separator = " "
+
+# TODO: C/D
+# TODO: +/- toggle text
+# TODO: q -> save line:col info
+# TODO: q -> :buffer-close when #buf > 1
+# TODO: load line:col info from wrapper
+# TODO: repeat last thing on ;
+# TODO: C-n to select node
 
 [keys.insert]
 "C-n" = "completion"
 
 [keys.normal]
 "$" = ["extend_to_line_end"]
-"*" = ["move_char_right", "move_prev_word_start", "move_next_word_end", "search_selection", "search_next"]
+# "*" = ["move_char_right", "move_prev_word_start", "move_next_word_end", "search_selection", "search_next"]
 "^" = ["extend_to_first_nonwhitespace"]
+"{" = ["goto_prev_paragraph"]
+"}" = ["goto_next_paragraph"]
+"]".h = ["goto_next_change"]
+"[".h = ["goto_prev_change"]
 "C-j" = [":buffer-next"]
 "C-k" = [":buffer-previous"]
 "C-r" = [":config-reload"]
 "C-v" = ["copy_selection_on_next_line"]
+"C-c" = [":buffer-close"]
 "esc" = ["collapse_selection", "keep_primary_selection"]
 "ret" = ["move_char_right", "move_prev_word_start", "move_next_word_end", "select_mode"]
 0 = ["extend_to_line_start"]
-D = ["extend_line_below", "delete_selection"]
-G = ["goto_file_end"]
+D = ["extend_to_line_end", "delete_selection"]
+C = ["extend_to_line_end", "change_selection"]
+Y = ["collapse_selection", "extend_to_line_end", "yank", "flip_selections"]
+Q = ["copy_selection_on_next_line"]
+# G = ["goto_file_end"]
 q = [":quit"]
 r = ["redo"]
-# s = ["select_all", "select_regex"]
+M = ["select_textobject_around"]
 U = [":reset-diff-change"]
 V = ["extend_line_below"]
 X = ["extend_line_above"]
 
-[keys.normal.g]
-j = "merge_selections"
-
 [keys.normal.m]
+# '"' = ["select_textobject_inner", '"']
 # m = ["select_mode", "match_brackets"]
 
 [keys.normal.space]
 ":" = "command_palette"
-h = 'command_palette'
+h = "command_palette"
 w = ":w"
+d = ":toggle-option inline-diagnostics.other-lines warning disable"
 # t = { s = ":tree-sitter-scopes", h = ":tree-sitter-highlight-name" }
 
 [keys.select]
