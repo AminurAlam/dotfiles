@@ -455,6 +455,16 @@ customCommands:
     command: "git commit --amend --no-edit"
     description: "Ammend last commit"
     output: terminal
+  # - key: x # TODO: select and move down
+  #   context: files
+  #   command: "git commit --amend --no-edit"
+  #   description: "Ammend last commit"
+  #   output: terminal
+  - key: P # TODO: ask remote name
+    context: files
+    command: "git remote | sed /upstream/d | fzf --multi --header (git rev-parse --abbrev-ref HEAD) | xargs -I% -- git push %"
+    description: "push a branch"
+    output: terminal
 # See https://github.com/jesseduffield/lazygit/blob/master/docs/Config.md#custom-pull-request-urls
 services: {}
 # What to do when opening Lazygit outside of a git repo.
@@ -510,7 +520,7 @@ keybinding:
     # <alt+delete> on Mac
     forwardDeleteWord: <ctrl+delete>
     optionMenu: "?"
-    select: <space>
+    select: [<space>, x]
     goInto: [l, <enter>]
     confirm: <enter>
     confirmMenu: <enter>
