@@ -1,41 +1,41 @@
 # htps://github.com/helix-editor/helix/wiki/Language-Server-Configurations
-# TODO: ini
 
-[[grammar]]
-name = "kanata"
-source = { git = "https://codeberg.org/AminurAlam/tree-sitter-kanata", rev = "04a75edb2cb446d5863dadfac3dacceb2aa07de0" }
+language = [
+  { name = "fish", auto-format = true, formatter = { command = "fish_indent" } },
+  { name = "kanata", scope = "source.kanata", file-types = ["kbd"], comment-tokens = [";;"] },
+  { name = "lua", auto-format = true, formatter = { command = "stylua", args = ["-f", "repos/dotfiles/other/stylua.toml", "-"] } },
+  { name = "python", auto-format = true },
+  # TODO: turn off tombi key alignment so i can get rid of taplo
+  { name = "toml", auto-format = true, language-servers = ["tombi"], formatter = { command = "taplo", args = ["format", "-"] } },
+  { name = "typst", injection-regex = "typ(st|c)?" },
+  { name = "pkgbuild", file-types = [{ glob = "build.sh" }] },
+]
 
-[[language]]
-name = "fish"
-auto-format = true
-formatter = { command = "fish_indent" }
+grammar = [
+  { name = "kanata", source = { git = "https://codeberg.org/AminurAlam/tree-sitter-kanata", rev = "04a75edb2cb446d5863dadfac3dacceb2aa07de0" } },
+]
 
-[[language]]
-name = "kanata"
-scope = "source.kanata"
-file-types = ["kbd"]
-comment-tokens = [";;"]
+[Language-server.tinymist.config]
+exportPdf = 'onType'
+formatterMode = 'typstyle'
+formatterPrintWidth = 85
+formatterProseWrap = true
+lint = { enabled = true }
+syntaxOnly = 'disable'
 
-[[language]]
-name = "lua"
-auto-format = true
-formatter = { command = "stylua", args = ["-f", "repos/dotfiles/other/stylua.toml", "-"] }
+[Language-server.rust-analyzer.config.rust-analyzer]
+linkedProjects = []
 
-[[language]]
-name = "python"
-auto-format = true
-language-servers = ["ruff", "ty"]
+[language-server.ruff.config.init_options]
+settings = { configuration = ".config/ruff/ruff.toml" }
 
-[[language]]
-name = "toml"
-auto-format = true
-formatter = { command = "taplo", args = ["format", "-"] }
-
-[[language]]
-name = "typst"
-scope = "source.typst"
-file-types = ["typst", "typ"]
-indent = { tab-width = 2, unit = "  " }
-comment-token = "//"
-injection-regex = "typ(st|c)?"
-auto-pairs = { '(' = ')', '{' = '}', '[' = ']', '$' = '$', '"' = '"', '`' = '`' }
+[language-server.lua-language-server.config.Lua]
+format.enable = false
+semantic.enable = false
+telemetry.enable = false
+window.progressBar = true
+workspace.checkThirdParty = false
+codeLens.enable = true
+completion = { callSnippet = "Replace", displayContext = 5 }
+diagnostics = { disable = ["lowercase-global"], globals = ["_G", "vim"], libraryFiles = "disable", unusedLocalExclude = ["_*"] }
+hint = { enable = true, semicolon = "Disable", arrayIndex = "Enable", setType = true, paramName = "All", paramType = true, await = true }
