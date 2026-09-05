@@ -1,26 +1,35 @@
 # key = { fg = "#ffffff", bg = "#000000", underline = { color = "#ff0000", style = "curl"} }
-# TODO: add bg to diagnostics
 
 "inherits" = "tokyonight"
 "comment" = { fg = "comment" }
+"diagnostic.hint" = { underline = { style = "none", color = "hint" } }
+"diagnostic.info" = { underline = { style = "none", color = "info" } }
+"diagnostic.warning" = { underline = { style = "none", color = "yellow" } }
 "function" = { fg = "blue" }
 "keyword" = { fg = "purple" }
 "keyword.control.return" = { fg = "purple" }
 "markup.italic" = {}
 "punctuation.bracket" = { fg = "fg" }
 "tag" = { fg = "green" }
+"ui.cursorline.primary" = { bg = "bg-darker" }
 "ui.help" = { bg = "bg", fg = "fg" }
 "ui.linenr.selected" = { fg = "fg" }
-"ui.menu" = { bg = "bg-menu", fg = "fg" }
 "ui.popup" = { bg = "bg", fg = "border-highlight" }
 "ui.text.inactive" = { fg = "comment" }
 "variable.parameter" = { fg = "yellow" }
+
+# TODO: add bg to diagnostics
+# error = { fg = "error", bg = "#362c3d" }
+# warning = { fg = "yellow", bg = "#373640" }
+# info = { fg = "info", bg = "#22374b" }
+# hint = { fg = "hint", bg = "#233745" }
 
 [palette]
 border = "#1d202f"
 bg = "#24283b"
 bg-inlay = "#233745"
 bg-selection = "#2e3c64"
-bg-menu = "#1f2335"
+bg-menu = "#24283b"
+bg-darker = "#1f2335"
 bg-focus = "#2e3c64"
 border-highlight = "#29a4bd"
