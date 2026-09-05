@@ -28,7 +28,8 @@ nmap('r', '<cmd>silent redo<cr>')
 -- write & quit
 nmap('<leader>w', '<cmd>silent w <bar> redraw <cr>')
 nmap('q', "<cmd>if len(getbufinfo({'buflisted': 1})) == 1|q|else|bd|endif<cr>")
-nmap('Q', 'q')
+nmap('<c-q>', 'q')
+nmap('Q', 'Qj')
 
 -- indent & fold
 nmap('=', '==')

@@ -33,7 +33,7 @@
       "src": "https://github.com/kylechui/nvim-surround"
     },
     "nvim-treesitter": {
-      "rev": "857651fce37eba032ebe28f3a206283cdc65c45a",
+      "rev": "41416e81a6c7f4af4984395bfe0cd8d174e70976",
       "src": "https://github.com/nvim-treesitter/nvim-treesitter"
     },
     "tokyonight.nvim": {

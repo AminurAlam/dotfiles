@@ -1,3 +1,5 @@
+-- if vim.uv.os_uname().sysname  == "something" then end
+
 local sel = require('vim.treesitter._select')
 vim.keymap.set({ 'x' }, '<c-k>', sel.select_grow_prev)
 vim.keymap.set({ 'x' }, '<c-j>', sel.select_grow_next)
@@ -17,24 +19,6 @@ vim.keymap.set({ 'x', 'o' }, 'N', function()
     vim.lsp.buf.selection_range(-vim.v.count1)
   end
 end)
-
-vim.api.nvim_create_autocmd('User', {
-  pattern = 'TSUpdate',
-  callback = function()
-    for _, name in ipairs({ 'kanata', 'newsraft', 'zathurarc' }) do
-      local path = '~/repos/tree-sitter/' .. 'kanata'
-      -- local exists = vim.uv.fs_stat(path)
-      require('nvim-treesitter.parsers')[name] = {
-        install_info = {
-          path = path,
-          url = 'https://codeberg.org/AminurAlam/tree-sitter-' .. name,
-          queries = 'queries/',
-        },
-        tier = 2,
-      }
-    end
-  end,
-})
 
 vim.api.nvim_create_autocmd('FileType', {
   desc = 'automatically start treesitter',
@@ -61,9 +45,22 @@ vim.api.nvim_create_autocmd('FileType', {
 })
 
 vim.api.nvim_create_autocmd({ 'PackChanged' }, {
+  desc = 'treesitter parser update',
   callback = function(args)
     local spec = args.data.spec
     if spec and spec.name == 'nvim-treesitter' and args.data.kind == 'update' then
+      for _, name in ipairs({ 'kanata', 'newsraft', 'zathurarc' }) do
+        local path = '~/repos/tree-sitter/' .. 'kanata'
+        -- local exists = vim.uv.fs_stat(path)
+        require('nvim-treesitter.parsers')[name] = {
+          install_info = {
+            path = path,
+            url = 'https://codeberg.org/AminurAlam/tree-sitter-' .. name,
+            queries = 'queries/',
+          },
+          tier = 2,
+        }
+      end
       vim.schedule(function()
         vim.cmd('TSUpdate')
       end)
