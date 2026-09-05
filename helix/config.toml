@@ -1,10 +1,12 @@
 theme = "custom"
 
-# TODO: search all columns by default
+# TODO: search all columns in picker by default
+# TODO: c-j/c-k/c-m
+
 [editor]
 middle-click-paste = false
 default-yank-register = "+"
-shell = ["fish", "--no-config", "-c"]
+shell = ["fish", "-c"]
 cursorline = true
 continue-comments = false
 auto-format = true
@@ -31,12 +33,10 @@ left = ["mode", "spinner", "file-name", "read-only-indicator", "file-modificatio
 right = ["selections", "register", "position-percentage", "file-encoding", "spacer"]
 separator = " "
 
-# TODO: C/D
 # TODO: +/- toggle text
 # TODO: q -> save line:col info
 # TODO: q -> :buffer-close when #buf > 1
 # TODO: load line:col info from wrapper
-# TODO: repeat last thing on ;
 # TODO: C-n to select node
 
 [keys.insert]
@@ -47,8 +47,10 @@ separator = " "
 [keys.normal]
 # "*" = ["move_char_right", "move_prev_word_start", "move_next_word_end", "search_selection", "search_next"]
 # "%" = "@mam"
-"$" = ["extend_to_line_end"]
 "^" = ["extend_to_first_nonwhitespace"]
+"$" = ["extend_to_line_end"]
+"@" = ["replay_macro"]
+";" = "@:<ret>"
 "{" = ["goto_prev_paragraph"]
 "}" = ["goto_next_paragraph"]
 "]".h = ["goto_next_change"]
@@ -59,24 +61,24 @@ separator = " "
 "C-v" = ["copy_selection_on_next_line"]
 "C-c" = [":buffer-close"]
 "C-n" = ["split_selection_on_newline"]
+"C-ret" = "@miW"
 "esc" = ["collapse_selection", "keep_primary_selection"]
 "ret" = "@miw"
-"C-ret" = "@miW"
 "S-ret" = "@miW"
 0 = ["extend_to_line_start"]
-D = ["extend_to_line_end", "delete_selection"]
 C = ["extend_to_line_end", "change_selection"]
-Y = ["collapse_selection", "extend_to_line_end", "yank", "flip_selections"]
-Q = ["copy_selection_on_next_line"]
+D = ["extend_to_line_end", "delete_selection"]
 G = ["goto_file_end"]
-g.x = ["goto_file"]
-q = [":quit"]
-# q = [":sh hx-state save %{cursor_line}:%{cursor_column}", ":quit"]
-r = ["redo"]
 M = ["select_textobject_around"]
 U = [":reset-diff-change"]
-# V = ["extend_line_below"]
 X = ["extend_line_above"]
+Y = ["collapse_selection", "extend_to_line_end", "yank", "flip_selections"]
+g.x = ["goto_file"]
+q = [":quit"]
+r = ["redo"]
+# Q = ["copy_selection_on_next_line"]
+# q = [":sh hx-state save %{cursor_line}:%{cursor_column}", ":quit"]
+# V = ["extend_line_below"]
 
 [keys.normal.m]
 # TODO: html tag stuff
@@ -92,17 +94,35 @@ M = "@mam"
 "{" = "@mi{"
 "}" = "@mi}"
 
+[keys.normal.z]
+d = [":toggle-option inline-diagnostics.other-lines warning disable"]
+f = [":toggle-option auto-format"]
+w = [":toggle-option soft-wrap.enable"]
+o = [":sh out %{buffer_name}"]
+
 [keys.normal.space]
-":" = "command_palette"
-h = "command_palette"
-w = ":w"
+F = ["file_picker_in_current_buffer_directory"]
 d = ":toggle-option inline-diagnostics.other-lines warning disable"
+g = ["global_search"]
+h = ["command_palette"]
+w = [":w"]
 # t = { s = ":tree-sitter-scopes", h = ":tree-sitter-highlight-name" }
 
 [keys.select]
-"$" = "extend_to_line_end"
-"^" = "extend_to_first_nonwhitespace"
+"^" = ["extend_to_first_nonwhitespace"]
+"$" = ["extend_to_line_end"]
+"{" = ["goto_prev_paragraph"]
+"}" = ["goto_next_paragraph"]
+"]".h = ["goto_next_change"]
+"[".h = ["goto_prev_change"]
 "C-n" = ["split_selection_on_newline"]
-"ret" = "select_line_below"
-m = ["select_mode", "match_brackets"]
-o = "flip_selections"
+"ret" = ["select_line_below"]
+"S-ret" = ["select_line_above"]
+0 = ["extend_to_line_start"]
+G = ["extend_to_file_end"]
+U = [":reset-diff-change"]
+X = ["extend_line_above"]
+# TODO: add same `m` stuff as normal mode
+# m = ["select_mode", "match_brackets"]
+g.x = ["goto_file"]
+o = ["flip_selections"]
