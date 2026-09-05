@@ -3,6 +3,8 @@
 # https://gist.github.com/eabase/dc409e95c0c3bd3168711a914a1b4c02
 $env_dict = @{
     "XDG_CONFIG_HOME"                           = "$HOME/dotfiles"
+    "YAZI_CONFIG_HOME"                          = "$HOME/dotfiles/yazi"
+    "YAZI_FILE_ONE"                             = "C:\Users\$env:USERNAME\scoop\apps\git\current\usr\bin\file.exe"
     "POWERSHELL_TELEMETRY_OPTOUT"               = "1"
     "DOTNET_CLI_TELEMETRY_OPTOUT"               = "1"
     "VCPKG_DISABLE_METRICS"                     = "1"
@@ -16,7 +18,6 @@ $env_dict = @{
 foreach ($key in $env_dict.Keys) {
     $value = $env_dict[$key]
     [Environment]::SetEnvironmentVariable($key, $value)
-    [Environment]::SetEnvironmentVariable($key, $value, "Machine")
 }
 
 ### ALIASES
@@ -28,7 +29,7 @@ function cmdchk {
 }
 function y {
     $tmp = (New-TemporaryFile).FullName
-    yazi $PWD $args --cwd-file="$tmp"
+    yazi @args --cwd-file "$tmp"
     $cwd = Get-Content -Path $tmp -Encoding UTF8
     if (-not [String]::IsNullOrEmpty($cwd) -and $cwd -ne $PWD.Path) {
         Set-Location -LiteralPath (Resolve-Path -LiteralPath $cwd).Path
@@ -36,19 +37,18 @@ function y {
     Remove-Item -Path $tmp
 }
 
+function vi {
+    nvim @args
+}
+
 function zz   { cd - }
 function ..   { cd .. }
 function ...  { cd ../.. }
 function .... { cd ../../.. }
 
-function vi { nvim }
-function l  { dir }
-function ll { dir }
-function lg { lazygit }
-
 function gl   { git status -bs; git log --pretty=nice -n10 }
 function gd   { git diff }
-function pull { git pull origin }
+function pull { git pull --autostash origin }
 function push { git push origin }
 
 function pi { scoop install }
