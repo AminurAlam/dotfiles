@@ -40,11 +40,14 @@ separator = " "
 # TODO: C-n to select node
 
 [keys.insert]
-"C-n" = "completion"
+"C-n" = ["completion"]
+"C-left" = ["move_prev_word_start"]
+"C-right" = ["move_next_word_start"]
 
 [keys.normal]
-"$" = ["extend_to_line_end"]
 # "*" = ["move_char_right", "move_prev_word_start", "move_next_word_end", "search_selection", "search_next"]
+# "%" = "@mam"
+"$" = ["extend_to_line_end"]
 "^" = ["extend_to_first_nonwhitespace"]
 "{" = ["goto_prev_paragraph"]
 "}" = ["goto_next_paragraph"]
@@ -55,24 +58,39 @@ separator = " "
 "C-r" = [":config-reload"]
 "C-v" = ["copy_selection_on_next_line"]
 "C-c" = [":buffer-close"]
+"C-n" = ["split_selection_on_newline"]
 "esc" = ["collapse_selection", "keep_primary_selection"]
-"ret" = ["move_char_right", "move_prev_word_start", "move_next_word_end", "select_mode"]
+"ret" = "@miw"
+"C-ret" = "@miW"
+"S-ret" = "@miW"
 0 = ["extend_to_line_start"]
 D = ["extend_to_line_end", "delete_selection"]
 C = ["extend_to_line_end", "change_selection"]
 Y = ["collapse_selection", "extend_to_line_end", "yank", "flip_selections"]
 Q = ["copy_selection_on_next_line"]
-# G = ["goto_file_end"]
+G = ["goto_file_end"]
+g.x = ["goto_file"]
 q = [":quit"]
+# q = [":sh hx-state save %{cursor_line}:%{cursor_column}", ":quit"]
 r = ["redo"]
 M = ["select_textobject_around"]
 U = [":reset-diff-change"]
-V = ["extend_line_below"]
+# V = ["extend_line_below"]
 X = ["extend_line_above"]
 
 [keys.normal.m]
-# '"' = ["select_textobject_inner", '"']
-# m = ["select_mode", "match_brackets"]
+# TODO: html tag stuff
+m = "@mim"
+M = "@mam"
+'"' = '@mi"'
+"'" = "@mi'"
+"`" = "@mi`"
+"[" = "@mi["
+"]" = "@mi]"
+"(" = "@mi("
+")" = "@mi)"
+"{" = "@mi{"
+"}" = "@mi}"
 
 [keys.normal.space]
 ":" = "command_palette"
@@ -84,6 +102,7 @@ d = ":toggle-option inline-diagnostics.other-lines warning disable"
 [keys.select]
 "$" = "extend_to_line_end"
 "^" = "extend_to_first_nonwhitespace"
+"C-n" = ["split_selection_on_newline"]
 "ret" = "select_line_below"
 m = ["select_mode", "match_brackets"]
 o = "flip_selections"

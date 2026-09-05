@@ -8,11 +8,7 @@ source = { git = "https://codeberg.org/AminurAlam/tree-sitter-kanata", rev = "04
 [[language]]
 name = "fish"
 auto-format = true
-formatter = { command = "fish_indent", args = ["-"] }
-
-[[language]]
-name = "ini"
-file-types = ["conf"]
+formatter = { command = "fish_indent" }
 
 [[language]]
 name = "kanata"
@@ -23,7 +19,7 @@ comment-tokens = [";;"]
 [[language]]
 name = "lua"
 auto-format = true
-formatter = { command = "stylua", args = ["-f", "$HOME/repos/dotfiles/other/stylua.toml", "-"] }
+formatter = { command = "stylua", args = ["-f", "repos/dotfiles/other/stylua.toml", "-"] }
 
 [[language]]
 name = "python"
