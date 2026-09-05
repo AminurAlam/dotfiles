@@ -29,7 +29,6 @@ gst-libav
 gst-plugin-pipewire
 gst-plugin-va
 help2man
-hex
 hyperfine
 identity
 imagemagick

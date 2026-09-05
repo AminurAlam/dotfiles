@@ -29,7 +29,6 @@ gnupg
 gpgme
 grep
 gzip
-imagemagick
 jq
 lazygit
 less
@@ -68,6 +67,7 @@ libtirpc
 libunbound
 libunistring
 libxml2
+make
 mecab-git
 ncurses
 neovim-nightly
