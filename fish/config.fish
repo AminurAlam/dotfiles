@@ -1,5 +1,5 @@
 set -gx LANG ja_JP.UTF-8
-set -gx EDITOR nvim
+set -gx EDITOR hx
 set -gx SUDO_EDITOR (command -v "$EDITOR")
 set -gx LESS --mouse
 set -gx MANPAGER "nvim +Man!"

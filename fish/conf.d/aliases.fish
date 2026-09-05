@@ -38,7 +38,7 @@ abbr zz "cd -"
 abbr gl "git status -bs; git log --pretty=nice -n10"
 abbr gd "git diff"
 abbr pull "git pull origin"
-abbr push "git push origin"
+abbr push "git remote | sed /upstream/d | fzf --multi --header (git rev-parse --abbrev-ref HEAD) | xargs -I% -- echo %"
 abbr fr "git fetch upstream && git rebase upstream/(git rev-parse --abbrev-ref HEAD)"
 
 # rclone/rsync
