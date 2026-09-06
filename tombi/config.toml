@@ -1,6 +1,6 @@
 # schema https://www.schemastore.org/tombi.json
 
-toml-version = "v1.0.0"
+toml-version = "v1.1.0"
 
 [files]
 include = ["**/*.toml"]
@@ -17,7 +17,7 @@ indent-table-key-value-pairs = false
 indent-width = 2
 inline-table-brace-space-width = 1
 inline-table-comma-space-width = 1
-key-value-equals-sign-alignment = true
+key-value-equals-sign-alignment = false
 key-value-equals-sign-space-width = 1
 line-ending = "lf"
 line-width = 120
@@ -46,4 +46,6 @@ workspace-diagnostic.enabled = true
 [schema]
 enabled = true
 strict = true
-catalog = { paths = ["tombi://www.schemastore.org/api/json/catalog.json", "https://www.schemastore.org/api/json/catalog.json"] }
+catalog = {
+  paths = ["tombi://www.schemastore.org/api/json/catalog.json", "https://www.schemastore.org/api/json/catalog.json"]
+}

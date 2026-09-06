@@ -17,7 +17,7 @@ log = "pretty"
 # https://github.com/jj-vcs/jj/blob/main/cli/src/config/templates.toml
 description_placeholder = 'label("description placeholder", "\"\"")'
 pretty = "pretty(self)"
-'pretty(commit)' = '''
+"pretty(commit)" = '''
 
 if(commit.root(),
   format_root_commit(commit),

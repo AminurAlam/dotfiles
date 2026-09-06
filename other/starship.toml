@@ -48,7 +48,7 @@ format = "( [ $hash](yellow))( [ $tag](bright-yellow))"
 only_detached = true
 
 [git_state]
-format = " [$state](bright-red)" # (\[[$progress_current](red)/[$progress_total](red)\])'
+format = " [$state](bright-red)"  # (\[[$progress_current](red)/[$progress_total](red)\])'
 rebase = " rebase"
 merge = " merge"
 revert = " revert"

@@ -31,7 +31,7 @@ indent-width = 4
 # target-version = "py38" # Assume Python 3.8
 
 [lint]
-dummy-variable-rgx = "^_$" # Allow unused variables when underscore-prefixed.
+dummy-variable-rgx = "^_$"  # Allow unused variables when underscore-prefixed.
 # Enable Pyflakes (`F`) and a subset of the pycodestyle (`E`)  codes by default.
 # Unlike Flake8, Ruff doesn't enable pycodestyle warnings (`W`) or McCabe complexity (`C901`) by default.
 select = []
