@@ -2,26 +2,37 @@
 
 language = [
   { name = "fish", auto-format = true, formatter = { command = "fish_indent" } },
+  { name = "ini", file-types = ["ini", "conf"] },
   { name = "kanata", scope = "source.kanata", file-types = ["kbd"], comment-tokens = [";;"] },
-  { name = "lua", auto-format = true, formatter = { command = "stylua", args = ["-f", "repos/dotfiles/other/stylua.toml", "-"] } },
-  { name = "python", auto-format = true },
-  # TODO: turn off tombi key alignment so i can get rid of taplo
-  { name = "toml", auto-format = true, language-servers = ["tombi"], formatter = { command = "taplo", args = ["format", "-"] } },
-  { name = "typst", injection-regex = "typ(st|c)?" },
+  {
+    name = "lua",
+    auto-format = true,
+    formatter = { command = "stylua", args = ["-f", "repos/dotfiles/other/stylua.toml", "-"] }
+  },
   { name = "pkgbuild", file-types = [{ glob = "build.sh" }] },
+  { name = "python", auto-format = true },
+  # { name = "rust", language-servers = [] },
+  { name = "toml", auto-format = true },
+  { name = "typst", injection-regex = "typ(st|c)?" },
 ]
 
 grammar = [
-  { name = "kanata", source = { git = "https://codeberg.org/AminurAlam/tree-sitter-kanata", rev = "04a75edb2cb446d5863dadfac3dacceb2aa07de0" } },
+  {
+    name = "kanata",
+    source = {
+      git = "https://codeberg.org/AminurAlam/tree-sitter-kanata",
+      rev = "04a75edb2cb446d5863dadfac3dacceb2aa07de0"
+    }
+  },
 ]
 
 [Language-server.tinymist.config]
-exportPdf = 'onType'
-formatterMode = 'typstyle'
+exportPdf = "onType"
+formatterMode = "typstyle"
 formatterPrintWidth = 85
 formatterProseWrap = true
 lint = { enabled = true }
-syntaxOnly = 'disable'
+syntaxOnly = "disable"
 
 [Language-server.rust-analyzer.config.rust-analyzer]
 linkedProjects = []
@@ -37,5 +48,18 @@ window.progressBar = true
 workspace.checkThirdParty = false
 codeLens.enable = true
 completion = { callSnippet = "Replace", displayContext = 5 }
-diagnostics = { disable = ["lowercase-global"], globals = ["_G", "vim"], libraryFiles = "disable", unusedLocalExclude = ["_*"] }
-hint = { enable = true, semicolon = "Disable", arrayIndex = "Enable", setType = true, paramName = "All", paramType = true, await = true }
+diagnostics = {
+  disable = ["lowercase-global"],
+  globals = ["_G", "vim"],
+  libraryFiles = "disable",
+  unusedLocalExclude = ["_*"]
+}
+hint = {
+  enable = true,
+  semicolon = "Disable",
+  arrayIndex = "Enable",
+  setType = true,
+  paramName = "All",
+  paramType = true,
+  await = true
+}

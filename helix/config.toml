@@ -30,7 +30,7 @@ file-picker = { follow-symlinks = false, git-ignore = true, max-depth = 5 }
 
 [editor.statusline]
 left = ["mode", "spinner", "file-name", "read-only-indicator", "file-modification-indicator", "diagnostics"]
-right = ["selections", "register", "position-percentage", "file-encoding", "spacer"]
+right = ["file-type", "selections", "register", "position-percentage", "file-encoding", "spacer"]
 separator = " "
 
 # TODO: +/- toggle text
@@ -41,6 +41,8 @@ separator = " "
 
 [keys.insert]
 "C-n" = ["completion"]
+"C-j" = [":buffer-next"]
+"C-k" = [":buffer-previous"]
 "C-left" = ["move_prev_word_start"]
 "C-right" = ["move_next_word_start"]
 
