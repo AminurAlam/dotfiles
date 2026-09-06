@@ -18,12 +18,6 @@
 "ui.text.inactive" = { fg = "comment" }
 "variable.parameter" = { fg = "yellow" }
 
-# TODO: add bg to diagnostics
-# error = { fg = "error", bg = "#362c3d" }
-# warning = { fg = "yellow", bg = "#373640" }
-# info = { fg = "info", bg = "#22374b" }
-# hint = { fg = "hint", bg = "#233745" }
-
 [palette]
 border = "#1d202f"
 bg = "#24283b"
