@@ -43,29 +43,29 @@ do -- Image viewer mode
   swayimg.viewer.limit_preload = 1
   swayimg.viewer.limit_history = 1
   swayimg.viewer.mark_color = 0xff808080
-  swayimg.viewer.set_text('topleft', {
-    'scale: {scale}',
-    'size: {frame.width}x{frame.height} {sizehr}',
-  })
-  swayimg.viewer.set_text('topright', {})
-  swayimg.viewer.set_text('bottomleft', {})
+  swayimg.viewer.text = {
+    topleft = {
+      'scale: {scale}',
+      'size: {frame.width}x{frame.height} {sizehr}',
+      'format: {format}',
+    },
+    topright = {},
+    bottomleft = {},
+    bottomright = {},
+  }
   swayimg.viewer.pinch_factor = 1
 end
 
 do -- Key bindings
   local zoom = function(n)
-    local pos = swayimg.get_mouse_pos()
-    local scale = swayimg.viewer.scale()
-
+    -- local pos = swayimg.get_mouse_pos()
     -- local aa = swayimg.is_antialiasing_on()
     -- swayimg.enable_antialiasing(false)
-    scale = scale + (scale / n)
     -- swayimg.enable_antialiasing(aa)
-
-    swayimg.viewer.set_abs_scale(scale, pos.x, pos.y)
+    local scale = swayimg.viewer.scale
+    scale = scale + (scale / n)
+    swayimg.viewer.scale = scale -- , pos.x, pos.y)
   end
-  local zoomin = function() zoom(10) end
-  local zoomout = function() zoom(-10) end
   local mov = function(x, y)
     local wnd = swayimg.get_window_size()
     local pos = swayimg.viewer.get_position()
@@ -74,6 +74,16 @@ do -- Key bindings
       y == 0 and pos.y or math.floor(pos.y + wnd.width / y)
     )
   end
+  local gsize = function(n)
+    local fs = swayimg.fullscreen
+    if not fs then fs = false end
+    if grid_side[fs] == nil then return end
+    grid_side[fs] = grid_side[fs] + n ---@diagnostic disable-line: need-check-nil
+    if grid_side[fs] < 2 then grid_side[fs] = 2 end ---@diagnostic disable-line: need-check-nil
+    swayimg.gallery.thumb_size = math.floor(swayimg.get_window_size().width / grid_side[fs])
+  end
+
+  --- modewise keybind
   local vmap = swayimg.viewer.on_key
   local gmap = swayimg.gallery.on_key
   local mmap = swayimg.viewer.on_mouse
@@ -102,8 +112,8 @@ do -- Key bindings
   end)
   vmap('s', function() swayimg.viewer.set_fix_scale('width') end)
   vmap('d', function() swayimg.viewer.set_fix_scale('height') end)
-  vmap('KP_Add', zoomin)
-  vmap('KP_Subtract', zoomout)
+  vmap({ 'Ctrl+KP_Add', 'KP_Add', 'plus', 'equal' }, function() zoom(10) end)
+  vmap({ 'Ctrl+KP_Subtract', 'KP_Subtract', 'Shift+underscore', 'minus' }, function() zoom(-10) end)
   vmap('h', function() mov(10, 0) end)
   vmap('j', function() mov(0, -10) end)
   vmap('k', function() mov(0, 10) end)
@@ -130,19 +140,8 @@ do -- Key bindings
     'd',
     function() os.execute(string.format('trash-put %q', swayimg.gallery.get_image().path)) end
   )
-  local gsize = function(n)
-    local fs = swayimg.fullscreen
-    if not fs then fs = false end
-    if grid_side[fs] == nil then return end
-    grid_side[fs] = grid_side[fs] + n
-    if grid_side[fs] < 2 then grid_side[fs] = 2 end
-    swayimg.gallery.thumb_size = math.floor(swayimg.get_window_size().width / grid_side[fs])
-  end
-  gmap('KP_Add', function() gsize(-1) end)
-  gmap('KP_Subtract', function() gsize(1) end)
-  gmap('plus', function() gsize(-1) end)
-  gmap('equal', function() gsize(-1) end)
-  gmap('minus', function() gsize(1) end)
+  gmap({ 'Ctrl+KP_Add', 'KP_Add', 'plus', 'equal' }, function() gsize(-1) end)
+  gmap({ 'Ctrl+KP_Subtract', 'KP_Subtract', 'Shift+underscore', 'minus' }, function() gsize(1) end)
   gmap('q', swayimg.exit)
   gmap('h', function() swayimg.gallery.select('left') end)
   gmap('j', function() swayimg.gallery.select('down') end)
@@ -169,8 +168,12 @@ do -- Gallery mode
   swayimg.gallery.cache = 100
   swayimg.gallery.preload = false
   swayimg.gallery.pstore = false
-  swayimg.gallery.set_text('topleft', { 'File: {name}' })
-  swayimg.gallery.set_text('topright', { '{list.index} of {list.total}' })
+  swayimg.gallery.text = {
+    topleft = { '[{list.index}/{list.total}] {name}' },
+    topright = {},
+    bottomleft = {},
+    bottomright = {},
+  }
 end
 
 do -- misc
