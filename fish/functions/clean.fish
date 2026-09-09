@@ -7,7 +7,7 @@ function clean -d "cleanup storage space"
     string pad -C -c= -w$COLUMNS " TEMP FILES "
     set files \
         (fd -H -tf -d1 '_history$' "$HOME/") \
-        (fd -H -tf -d3 'log$'     "$XDG_STATE_HOME/") \
+        (fd -H -tf -d3 'log$'     "$XDG_STATE_HOME/" "$XDG_CACHE_HOME/") \
         (fd -H -tf -d1 -epng .    "$HOME/downloads/" 2>/dev/null) \
         (path filter -d -- \
             /sdcard/Android/media/com.whatsapp/WhatsApp/{.StickerThumbs,Media/WhatsApp Stickers}/ \
@@ -49,7 +49,7 @@ function clean -d "cleanup storage space"
     command -vq pip && pip cache purge
     command -vq npm && npm cache clean --force
     command -vq ccache && ccache --clear
-    command -vq journalctl && journalctl --vacuum-time 7d
+    command -vq journalctl && sudo journalctl --vacuum-time 7d
     command -vq newsraft && newsraft -e purge-abandoned
     # command -vq cargo && fd -H -tf -d1 -F 'Cargo.toml' $HOME/repos/* -x cargo clean --manifest-path
 

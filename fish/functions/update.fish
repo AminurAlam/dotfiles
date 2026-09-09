@@ -36,13 +36,22 @@ function update -d "system update with just one command"
     set -q TERMUX_VERSION
     and cargo install --locked --git https://codeberg.org/AminurAlam/kt
 
-   string pad -C -c= -w$COLUMNS " HELIX "
+    string pad -C -c= -w$COLUMNS " HELIX "
     if [ "$(read -P "update helix? [y/N] ")" = y ]
-        HELIX_DISABLE_AUTO_GRAMMAR_BUILD=1 cargo install \
-            --profile opt \
-            --config 'build.rustflags="-C target-cpu=native"' \
-            --path helix-term \
-            --locked
+        if set -q TERMUX_VERSION
+            HELIX_DISABLE_AUTO_GRAMMAR_BUILD=1 cargo install \
+                --profile opt \
+                --config 'build.rustflags="-C target-cpu=native"' \
+                --git https://github.com/AminurAlam/helix helix-term \
+                --locked
+        else
+            cd ~/repos/helix-fork
+            HELIX_DISABLE_AUTO_GRAMMAR_BUILD=1 cargo install \
+                --profile opt \
+                --config 'build.rustflags="-C target-cpu=native"' \
+                --path helix-term \
+                --locked
+        end
     end
     { hx -g fetch; hx -g build } | rg -v '(Fetch|Build)ing grammars '
 

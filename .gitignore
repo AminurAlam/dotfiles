@@ -49,7 +49,7 @@
 !/fish/completions/z.fish
 /fish/fish_variables
 
-/helix/runtime/*
+/helix/runtime/grammars/*
 
 /jj/repos/*
 

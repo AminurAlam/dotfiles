@@ -462,7 +462,7 @@ customCommands:
   #   output: terminal
   - key: P # TODO: ask remote name
     context: files
-    command: "git remote | sed /upstream/d | fzf --multi --header (git rev-parse --abbrev-ref HEAD) | xargs -I% -- git push %"
+    command: "git remote | sed /upstream/d | fzf --multi --header (git rev-parse --abbrev-ref HEAD) | xargs -I% -- git push --force-with-lease %"
     description: "push a branch"
     output: terminal
 # See https://github.com/jesseduffield/lazygit/blob/master/docs/Config.md#custom-pull-request-urls

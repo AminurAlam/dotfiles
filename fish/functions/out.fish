@@ -14,7 +14,11 @@ function out -d "compile and run some code"
             latexmk -c
         case .typ
             typst c $argv[1]
-            open (path change-extension pdf "$argv[1]")
+            # open (path change-extension pdf "$argv[1]")
+        case .py
+            uv run "$argv[1]"
+        case .kbd
+            echo '{"Reload":{}}' | nc -w 1 127.0.0.1 10002
         case .l
             printf "\r\n"
             cc -oout (flex -t -- $argv[1] | psub -s .c)

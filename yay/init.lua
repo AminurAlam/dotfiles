@@ -55,6 +55,8 @@ yay.opt.debug = false -- Enable debug logging and local init.lua lookup convenie
 yay.opt.rpc = true -- Use AUR RPC for dependency/query operations.
 yay.opt.double_confirm = true -- Ask for confirmation before and after builds during upgrades.
 
+-- TODO: add bells before prompts
+
 -- Hooks
 -- Run Lua before yay prints the upgrade exclusion menu. Return package names
 -- from event.data.upgrades to pre-exclude them. Set skip_menu = false, or omit

@@ -8,7 +8,7 @@
 
 @ NEWS 1 < item-limit 1000
 https://lobste.rs/rss < item-rule "title NOT LIKE 'What are you doing this week%'"
-https://bearblog.dev/discover/feed/ < item-rule "NOT (link REGEXP 'blog.avas.space|blog.absurdpirate.com')"
+https://bearblog.dev/discover/feed/ < item-rule "NOT (link REGEXP 'blog.avas.space|blog.absurdpirate.com|rnotte.art|householderkarl.com')"
 https://hnrss.org/frontpage.atom "Hacker News" < item-rule "NOT (title REGEXP '^(Show|Tell|Ask|Launch) HN: ' OR title REGEXP '\(YC .*\)' OR title REGEXP '(OpenAI|Anthropic|[Cc]laude|[Oo]pus|[Gg]emini|[Gg]rok|[Kk]imi|[Qq]wen|GPT|AI|LLM|[Aa]gent)')"
 https://www.phoronix.com/rss.php < item-rule "NOT (title REGEXP 'Intel|NVIDIA|driver|Mesa|Vulkan')"
 https://lwn.net/headlines/rss < item-rule "NOT (title LIKE 'Security updates for %' OR title LIKE '% stable kernel%')"
@@ -40,7 +40,7 @@ https://browse.library.kiwix.org/catalog/v2/entries?count=-1&lang=eng "kiwix zim
 https://blog.metabrainz.org/feed/
 https://nvim-mini.org/blog/index.xml
 $(feedmod https://muspy.com/feed?id=mobwjpkr95u5p1b4f2w1bjt74qc8u3) "muspy New Releases" < item-rule "NOT (title LIKE 'Taylor Swift%' OR title REGEXP 'Remix|live|Live|LIVE')"
-https://nyaa.si/?page=rss&c=3_1&f=0 "nyaa: english literature" < item-rule "NOT (title REGEXP '(\] \[|Villain|Otome|Reincarnat|Reborn|Another World|Isekai|Knight|Banished|Party|Dungeon|Adventure|Strongest|Guild|Oak-JXL|Audiobook)')"
+https://nyaa.si/?page=rss&c=3_1&f=0 "nyaa: english literature" < item-rule "NOT (title REGEXP '(\] \[|Villain|Otome|Reincarnat|Rank|Tamer|Taming|Reborn|Another World|Isekai|Knight|Banished|Party|Dungeon|Adventure|Strongest|Guild|Oak-JXL|Audiobook)')"
 https://nyaa.si/?page=rss&q=weekly+chapter+update&c=3_1&f=0 "nyaa: weekly chapter updates" < item-limit 30
 https://sukebei.nyaa.si/?page=rss&q=%E3%81%82%E3%82%89%E3%81%8F%E3%82%8C%E3%81%9F%E8%80%85%E3%81%9F%E3%81%A1&c=1_2&f=0 "nyaa: あらくれ"
 https://blog.thunderbird.net/feed/ "Thunderbird"

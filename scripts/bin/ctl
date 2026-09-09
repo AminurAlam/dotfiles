@@ -15,7 +15,7 @@ switch $argv[1]
     case mic #            toggle mic on/off
         wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle
         wpctl get-volume @DEFAULT_AUDIO_SOURCE@ | rg -q MUTED
-        and notify-send -h string:x-canonical-private-synchronous:mic -t 500 " MUTED"
+        and notify-send -h string:x-canonical-private-synchronous:mic -t 500 "  MUTED"
         or notify-send -h string:x-canonical-private-synchronous:mic -t 500 " AUDIBLE"
 
     case lum # <+|-> [n]  change brightness

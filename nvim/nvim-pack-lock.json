@@ -21,7 +21,7 @@
       "src": "https://github.com/nvim-mini/mini.diff"
     },
     "mini.pick": {
-      "rev": "b27dc13b3d6dafc10e868b6ddc682cc4f047f4d1",
+      "rev": "360c1bb33610e030698d07ed15969ab4762dbcd6",
       "src": "https://github.com/nvim-mini/mini.pick"
     },
     "nvim-colorizer.lua": {
@@ -33,7 +33,7 @@
       "src": "https://github.com/kylechui/nvim-surround"
     },
     "nvim-treesitter": {
-      "rev": "41416e81a6c7f4af4984395bfe0cd8d174e70976",
+      "rev": "5cb0114e6242625db56dd6440e945ed1ece10bc7",
       "src": "https://github.com/nvim-treesitter/nvim-treesitter"
     },
     "tokyonight.nvim": {
