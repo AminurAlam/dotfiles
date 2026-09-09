@@ -1,11 +1,12 @@
 [Desktop Entry]
 Name=KeePassXC
+GenericName=Password Manager
 Comment=Community-driven port of the Windows application “KeePass Password Safe”
 Exec=env QT_QPA_PLATFORMTHEME= keepassxc %f
-TryExec=env QT_QPA_PLATFORMTHEME= keepassxc
+TryExec=keepassxc
 Icon=keepassxc
 StartupWMClass=keepassxc
-StartupNotify=true
+StartupNotify=false
 Terminal=false
 Type=Application
 Version=1.5
