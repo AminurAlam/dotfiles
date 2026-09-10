@@ -2,18 +2,50 @@
 
 language = [
   { name = "fish", auto-format = true, formatter = { command = "fish_indent" } },
+  {
+    name = "git-config",
+    file-types = [
+      "gitconfig",
+      { glob = ".gitmodules" },
+      { glob = "gitconfig" },
+      { glob = ".gitconfig" },
+      { glob = ".git/config" },
+      { glob = ".config/git/config" },
+      { glob = ".git/modules/*/config" },
+      { glob = "config.worktree" },
+      { glob = ".lfsconfig" },
+      { glob = "git/config" },
+      { glob = "git/delta.conf" },
+    ]
+  },
   { name = "ini", file-types = ["ini", "conf"] },
   { name = "kanata", scope = "source.kanata", file-types = ["kbd"], comment-tokens = [";;"] },
   {
     name = "lua",
+    # workspace-lsp-roots = [".luarc.json"],
+    roots = [
+      ".luarc.json",
+      ".luacheckrc",
+      ".stylua.toml",
+      "selene.toml",
+    ],
     auto-format = true,
-    formatter = { command = "stylua", args = ["-f", "repos/dotfiles/other/stylua.toml", "-"] }
+    # TODO: fix stylua giving os err 2
+    formatter = {
+      command = "stylua",
+      args = ["-f", "%sh{printenv HOME}/repos/dotfiles/other/stylua.toml", "-"],
+    }
   },
   { name = "pkgbuild", file-types = [{ glob = "build.sh" }] },
   { name = "python", auto-format = true },
   # { name = "rust", language-servers = [] },
   { name = "toml", auto-format = true },
-  { name = "typst", injection-regex = "typ(st|c)?" },
+  {
+    name = "typst",
+    auto-format = true,
+    injection-regex = "typ(st|c)?",
+    # code-actions-on-save = ['tinymist.exportPdf "%sh{realpath %{buffer_name}}"']
+  },
 ]
 
 grammar = [
@@ -26,13 +58,17 @@ grammar = [
   },
 ]
 
+# TODO: fix pdf export and preview
 [Language-server.tinymist.config]
-exportPdf = "onType"
+# :lsp-workspace-command tinymist.exportPdf "%sh{realpath %{buffer_name}}"
+exportPdf = "onSave"
 formatterMode = "typstyle"
 formatterPrintWidth = 85
 formatterProseWrap = true
 lint = { enabled = true }
 syntaxOnly = "disable"
+# preview.background.enabled = true
+# preview.background.args = ["--data-plane-host=127.0.0.1:23635", "--invert-colors=never", "--open"]
 
 [Language-server.rust-analyzer.config.rust-analyzer]
 linkedProjects = []

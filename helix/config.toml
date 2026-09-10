@@ -1,44 +1,36 @@
 theme = "custom"
 
 # TODO: search all columns in picker by default
-# TODO: c-j/c-k/c-m
-
+# TODO: :make like command
+# TODO:  https://github.com/Axlefublr/helix#scratch-buffers
+# TODO: toggle picker column: https://github.com/Axlefublr/helix#pickers
+# TODO: m. repeats last matching thing you did
+# TODO: steal chars: https://github.com/Axlefublr/helix#steal_char_above-steal_char_below
+# TODO: extend selction to node: https://github.com/Axlefublr/helix#extend_prevnext_sibling
+# TODO: ignore single char d/c
+# TODO: extend to next sibling: https://github.com/Axlefublr/helix#extend_prevnext_sibling
+# TODO: surround with tag name: https://github.com/Axlefublr/helix#surround_add_tag
+# TODO: retain column (kt?!??): https://github.com/Axlefublr/helix#retain_column
+# TODO: change completion kind
+# TODO: C-{n,p} in prompt mode
+# TODO: shebang like vim: ft=*
 [editor]
-middle-click-paste = false
 default-yank-register = "+"
-shell = ["fish", "-c"]
-cursorline = true
-continue-comments = false
 auto-format = true
 completion-replace = true
-true-color = true
-bufferline = "multiple"
-color-modes = true
 text-width = 85
 atomic-save = true
-popup-border = "all"
 jump-label-alphabet = "fjdksla;ghcnvmwi"
-end-of-line-diagnostics = "hint"
-smart-tab.enable = false
-indent-guides = { render = true, skip-levels = 1 }
-gutters = { layout = ["diff", "line-numbers", "spacer"], line-numbers.min-width = 1 }
 cursor-shape = { insert = "bar", select = "underline" }
-whitespace = { render = { tab = "all", newline = "all" }, characters = { tab = ">", tabpad = " " } }
+whitespace = { render = { tab = "all", newline = "all" } }
 inline-diagnostics = { cursor-line = "disable", other-lines = "disable" }
-lsp = { display-progress-messages = true }
-file-picker = { follow-symlinks = false, git-ignore = true, max-depth = 5 }
-
-[editor.statusline]
-left = ["mode", "spinner", "file-name", "read-only-indicator", "file-modification-indicator", "diagnostics"]
-right = ["file-type", "selections", "register", "position-percentage", "file-encoding", "spacer"]
-separator = " "
+file-picker = { git-ignore = true, max-depth = 5 }
 
 # TODO: +/- toggle text
 # TODO: q -> save line:col info
 # TODO: q -> :buffer-close when #buf > 1
 # TODO: load line:col info from wrapper
 # TODO: C-n to select node
-
 [keys.insert]
 "C-n" = ["completion"]
 "C-j" = [":buffer-next"]
@@ -46,41 +38,73 @@ separator = " "
 "C-left" = ["move_prev_word_start"]
 "C-right" = ["move_next_word_start"]
 
+[keys.select]
+"^" = ["extend_to_first_nonwhitespace"]
+"$" = ["extend_to_line_end"]
+"{" = ["goto_prev_paragraph"]
+"}" = ["goto_next_paragraph"]
+"]".h = ["goto_next_change"]
+"[".h = ["goto_prev_change"]
+"C-v" = ["split_selection_on_newline"]
+"ret" = ["select_line_below"]
+"S-ret" = ["select_line_above"]
+0 = ["extend_to_line_start"]
+G = ["extend_to_file_end"]
+U = [":reset-diff-change"]
+V = ["extend_to_line_bounds"]
+X = ["extend_line_above"]
+# TODO: add same `m` stuff as normal mode
+# m = ["select_mode", "match_brackets"]
+v = ["extend_to_line_bounds"]
+g.x = ["goto_file"]
+o = ["flip_selections"]
+
 [keys.normal]
 # "*" = ["move_char_right", "move_prev_word_start", "move_next_word_end", "search_selection", "search_next"]
 # "%" = "@mam"
+# "@" = ["replay_macro"]
 "^" = ["extend_to_first_nonwhitespace"]
 "$" = ["extend_to_line_end"]
-"@" = ["replay_macro"]
 ";" = "@:<ret>"
 "{" = ["goto_prev_paragraph"]
 "}" = ["goto_next_paragraph"]
 "]".h = ["goto_next_change"]
 "[".h = ["goto_prev_change"]
+"C-n" = ["expand_selection"]
+"C-p" = ["shrink_selection"]
+"C-S-n" = ["select_next_sibling"]
+"C-S-p" = ["select_prev_sibling"]
 "C-j" = [":buffer-next"]
 "C-k" = [":buffer-previous"]
 "C-r" = [":config-reload"]
 "C-v" = ["copy_selection_on_next_line"]
-"C-c" = [":buffer-close"]
-"C-n" = ["split_selection_on_newline"]
 "C-ret" = "@miW"
 "esc" = ["collapse_selection", "keep_primary_selection"]
 "ret" = "@miw"
 "S-ret" = "@miW"
 0 = ["extend_to_line_start"]
-C = ["extend_to_line_end", "change_selection"]
-D = ["extend_to_line_end", "delete_selection"]
+C = ["kill_to_line_end", "insert_mode"]                                                    # TODO: clear from head not end of selection
+D = ["kill_to_line_end"]                                                                   # TODO: fix copy on delete
 G = ["goto_file_end"]
 M = ["select_textobject_around"]
 U = [":reset-diff-change"]
+V = ["extend_to_line_bounds"]
 X = ["extend_line_above"]
 Y = ["collapse_selection", "extend_to_line_end", "yank", "flip_selections"]
-g.x = ["goto_file"]
-q = [":quit"]
+q = [
+  ":noop %sh{~/.local/bin/hx-state save %{buffer_name} %{cursor_line} %{cursor_column}}",
+  # ":sh echo %{cursor_line} %{cursor_column} | tee ~/.local/cache/temp/(printf '%%s' %{buffer_name} | sha256sum - | kt 1)",
+  # ":sh cat ~/.local/cache/temp/(printf '%%s' %{buffer_name} | sha256sum - | kt 1)",
+  ":bc",
+]
 r = ["redo"]
 # Q = ["copy_selection_on_next_line"]
-# q = [":sh hx-state save %{cursor_line}:%{cursor_column}", ":quit"]
 # V = ["extend_line_below"]
+
+[keys.normal.g]
+x = ["goto_file"]
+h = ["extend_to_line_start"]
+l = ["extend_to_line_end"]
 
 [keys.normal.m]
 # TODO: html tag stuff
@@ -97,34 +121,24 @@ M = "@mam"
 "}" = "@mi}"
 
 [keys.normal.z]
-d = [":toggle-option inline-diagnostics.other-lines warning disable"]
+d = [
+  # """:toggle-option inline-diagnostics "{'cursor-line': 'disable', 'other-line': 'disable'}" "{'cursor-line': 'warning', 'other-line': 'warning'}" """,
+  ":toggle-option inline-diagnostics.cursor-line warning disable",
+  ":toggle-option inline-diagnostics.other-lines warning disable",
+]
+x = [":goto %sh{hx-state load %{buffer_name} 1} %sh{hx-state load %{buffer_name} 2}"]
 f = [":toggle-option auto-format"]
 w = [":toggle-option soft-wrap.enable"]
-o = [":sh out %{buffer_name}"]
+
+# TODO: add macros
+[keys.normal."@"]
+"@" = ["replay_macro"]
+# "m" = ["save_selection", ""]
 
 [keys.normal.space]
 F = ["file_picker_in_current_buffer_directory"]
-d = ":toggle-option inline-diagnostics.other-lines warning disable"
 g = ["global_search"]
 h = ["command_palette"]
 w = [":w"]
+e = [":w", ":sh out %{buffer_name}"]
 # t = { s = ":tree-sitter-scopes", h = ":tree-sitter-highlight-name" }
-
-[keys.select]
-"^" = ["extend_to_first_nonwhitespace"]
-"$" = ["extend_to_line_end"]
-"{" = ["goto_prev_paragraph"]
-"}" = ["goto_next_paragraph"]
-"]".h = ["goto_next_change"]
-"[".h = ["goto_prev_change"]
-"C-n" = ["split_selection_on_newline"]
-"ret" = ["select_line_below"]
-"S-ret" = ["select_line_above"]
-0 = ["extend_to_line_start"]
-G = ["extend_to_file_end"]
-U = [":reset-diff-change"]
-X = ["extend_line_above"]
-# TODO: add same `m` stuff as normal mode
-# m = ["select_mode", "match_brackets"]
-g.x = ["goto_file"]
-o = ["flip_selections"]
