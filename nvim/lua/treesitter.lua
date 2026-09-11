@@ -1,4 +1,6 @@
--- if vim.uv.os_uname().sysname  == "something" then end
+if vim.uv.os_uname().sysname == 'Windows_NT' then
+  return
+end
 
 local sel = require('vim.treesitter._select')
 vim.keymap.set({ 'x' }, '<c-k>', sel.select_grow_prev)
@@ -44,13 +46,31 @@ vim.api.nvim_create_autocmd('FileType', {
   end,
 })
 
+vim.api.nvim_create_autocmd('User', {
+  pattern = 'TSUpdate',
+  callback = function()
+    for _, name in ipairs({ 'kanata', 'newsraft', 'zathurarc' }) do
+      local path = '~/repos/tree-sitter/' .. name
+      -- local exists = vim.uv.fs_stat(path)
+      require('nvim-treesitter.parsers')[name] = {
+        install_info = {
+          path = path,
+          url = 'https://codeberg.org/AminurAlam/tree-sitter-' .. name,
+          queries = 'queries/',
+        },
+        tier = 2,
+      }
+    end
+  end,
+})
+
 vim.api.nvim_create_autocmd({ 'PackChanged' }, {
   desc = 'treesitter parser update',
   callback = function(args)
     local spec = args.data.spec
     if spec and spec.name == 'nvim-treesitter' and args.data.kind == 'update' then
       for _, name in ipairs({ 'kanata', 'newsraft', 'zathurarc' }) do
-        local path = '~/repos/tree-sitter/' .. 'kanata'
+        local path = '~/repos/tree-sitter/' .. name
         -- local exists = vim.uv.fs_stat(path)
         require('nvim-treesitter.parsers')[name] = {
           install_info = {
@@ -67,19 +87,3 @@ vim.api.nvim_create_autocmd({ 'PackChanged' }, {
     end
   end,
 })
-
---[[
-require('tree-sitter-manager').setup {
-  ensure_installed = {
-    'c',
-    'lua',
-    'luadoc',
-    'markdown',
-    'query',
-    'vim',
-    'vimdoc',
-  },
-  nohighlight = { 'glimmer', 'latex' }, -- TODO: remove when handlebars is fixed
-  languages = langs, -- override or add new parser sources
-}
-]]

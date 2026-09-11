@@ -36,6 +36,7 @@ language = [
       args = ["-f", "%sh{printenv HOME}/repos/dotfiles/other/stylua.toml", "-"],
     }
   },
+  { name = "newsraft", scope = "source.newsraft", file-types = [{ glob = "newsraft/feeds" }] },
   { name = "pkgbuild", file-types = [{ glob = "build.sh" }] },
   { name = "python", auto-format = true },
   # { name = "rust", language-servers = [] },
@@ -46,16 +47,13 @@ language = [
     injection-regex = "typ(st|c)?",
     # code-actions-on-save = ['tinymist.exportPdf "%sh{realpath %{buffer_name}}"']
   },
+  { name = "zathurarc", scope = "source.zathura", file-types = [{ glob = "zathurarc" }] }
 ]
 
 grammar = [
-  {
-    name = "kanata",
-    source = {
-      git = "https://codeberg.org/AminurAlam/tree-sitter-kanata",
-      rev = "04a75edb2cb446d5863dadfac3dacceb2aa07de0"
-    }
-  },
+  { name = "kanata", source.path = "/home/fisher/repos/tree-sitter/kanata" },
+  { name = "newsraft", source.path = "/home/fisher/repos/tree-sitter/newsraft" },
+  { name = "zathurarc", source.path = "/home/fisher/repos/tree-sitter/zathurarc" }
 ]
 
 # TODO: fix pdf export and preview

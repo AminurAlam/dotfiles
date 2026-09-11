@@ -1,16 +1,14 @@
 theme = "custom"
 
 # TODO: search all columns in picker by default
-# TODO: :make like command
-# TODO:  https://github.com/Axlefublr/helix#scratch-buffers
 # TODO: toggle picker column: https://github.com/Axlefublr/helix#pickers
 # TODO: m. repeats last matching thing you did
 # TODO: steal chars: https://github.com/Axlefublr/helix#steal_char_above-steal_char_below
-# TODO: extend selction to node: https://github.com/Axlefublr/helix#extend_prevnext_sibling
-# TODO: ignore single char d/c
+# TODO: extend selction to sib: https://github.com/Axlefublr/helix#extend_prevnext_sibling
 # TODO: extend to next sibling: https://github.com/Axlefublr/helix#extend_prevnext_sibling
 # TODO: surround with tag name: https://github.com/Axlefublr/helix#surround_add_tag
 # TODO: retain column (kt?!??): https://github.com/Axlefublr/helix#retain_column
+# TODO: ignore single char d/c
 # TODO: change completion kind
 # TODO: C-{n,p} in prompt mode
 # TODO: shebang like vim: ft=*
@@ -80,7 +78,7 @@ o = ["flip_selections"]
 "C-v" = ["copy_selection_on_next_line"]
 "C-ret" = "@miW"
 "esc" = ["collapse_selection", "keep_primary_selection"]
-"ret" = "@miw"
+"ret" = "@miw*"
 "S-ret" = "@miW"
 0 = ["extend_to_line_start"]
 C = ["kill_to_line_end", "insert_mode"]                                                    # TODO: clear from head not end of selection
@@ -126,6 +124,7 @@ d = [
   ":toggle-option inline-diagnostics.cursor-line warning disable",
   ":toggle-option inline-diagnostics.other-lines warning disable",
 ]
+# TODO: use C-o to move back
 x = [":goto %sh{hx-state load %{buffer_name} 1} %sh{hx-state load %{buffer_name} 2}"]
 f = [":toggle-option auto-format"]
 w = [":toggle-option soft-wrap.enable"]

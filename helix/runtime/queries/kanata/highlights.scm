@@ -1,7 +1,7 @@
 ["(" ")"] @punctuation.bracket
 
 (symbol) @variable
-(boolean) @boolean
+(boolean) @constant.builtin.boolean
 [(string) (raw_string)] @string
 
 ;; functions

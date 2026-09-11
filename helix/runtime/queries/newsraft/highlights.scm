@@ -14,5 +14,5 @@
 
 ; other
 (string) @string
-(integer) @number
+(integer) @constant.numeric.integer
 (bool) @boolean

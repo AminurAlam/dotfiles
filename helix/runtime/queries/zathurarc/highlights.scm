@@ -10,7 +10,7 @@
 (function) @function.call
 (argument) @variable.parameter
 
-(int) @number
-(float) @number.float
+(int) @constant.numeric.integer
+(float) @constant.numeric.float
 (string) @string
-(bool) @boolean
+(bool) @constant.builtin.boolean
