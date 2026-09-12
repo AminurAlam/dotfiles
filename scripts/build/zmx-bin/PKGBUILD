@@ -1,13 +1,13 @@
 pkgname=zmx
 pkgdesc="Session persistence for terminal processes"
-pkgver=0.7.0 # TODO: https://github.com/neurosnap/zmx/releases/latest
+pkgver=$(curl -s "https://api.github.com/repos/neurosnap/zmx/releases/latest" | jq -r '.tag_name' | sed 's/^v//')
 pkgrel=1
 arch=(aarch64)
 url="https://github.com/neurosnap/${pkgname}"
 license=('MIT')
 options=(!strip)
 source_aarch64=("https://zmx.sh/a/${pkgname}-${pkgver}-linux-aarch64.tar.gz")
-sha256sums_aarch64=('77599f66124694fae80bbb1d2fa0eafdb8c648b427a048cad90513ecf6136fc9')
+sha256sums_aarch64=( $(curl -s "https://zmx.sh/a/${pkgname}-${pkgver}-linux-aarch64.tar.gz.sha256" | kt 1) )
 makedepends=('binutils' 'bsdtar')
 
 

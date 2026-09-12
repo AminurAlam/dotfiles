@@ -79,6 +79,12 @@ function update -d "system update with just one command"
     and ya pkg install --discard
     or ya pkg upgrade --discard
 
+    string pad -C -c= -w$COLUMNS " ZMX "
+    if set -q TERMUX_VERSION
+        cd $HOME/repos/dotfiles/scripts/build/zmx-bin/
+        makepkg -si
+    end
+
     string pad -C -c= -w$COLUMNS " MANPAGES "
     command -vq sudo
     and sudo makewhatis

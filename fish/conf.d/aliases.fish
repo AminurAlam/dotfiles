@@ -49,7 +49,7 @@ abbr rls "rclone lsf"
 # du -> dust
 abbr du "dust -Dn 25"
 abbr dud "dust -d 1"
-abbr df 'df --output=pcent,avail,target -h -x tmpfs -x efivarfs'
+abbr df 'df --output=pcent,avail,target -h -x tmpfs -x efivarfs -x devtmpfs -x vfat'
 set -q TERMUX_VERSION && abbr df 'df -h | awk \'/dev.fuse|data.media/{print $3"/"$2,$5,$4}\''
 
 # pkg: https://wiki.archlinux.org/title/Pacman/Rosetta
