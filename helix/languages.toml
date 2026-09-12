@@ -18,39 +18,52 @@ language = [
       { glob = "git/delta.conf" },
     ]
   },
-  { name = "ini", file-types = ["ini", "conf"] },
+  { name = "handlebars", scope = "source.handlebars", file-types = ["handlebars"] },
+  { name = "ini", file-types = ["ini", "cfg", "conf", "desktop"] },
+  {
+    name = "javascript",
+    file-types = [
+      "js",
+      "mjs",
+      "cjs",
+      "rules",
+      { glob = "librewolf.overrides.cfg" },
+      { glob = ".node_repl_history" },
+    ]
+  },
   { name = "kanata", scope = "source.kanata", file-types = ["kbd"], comment-tokens = [";;"] },
   {
     name = "lua",
-    # workspace-lsp-roots = [".luarc.json"],
-    roots = [
-      ".luarc.json",
-      ".luacheckrc",
-      ".stylua.toml",
-      "selene.toml",
-    ],
+    roots = [".luarc.json", ".luacheckrc", ".stylua.toml", "selene.toml"],
     auto-format = true,
-    # TODO: fix stylua giving os err 2
-    formatter = {
-      command = "stylua",
-      args = ["-f", "%sh{printenv HOME}/repos/dotfiles/other/stylua.toml", "-"],
-    }
+    formatter = { command = "stylua", args = ["-f", "%sh{printenv HOME}/repos/dotfiles/other/stylua.toml", "-"] }
   },
+  { name = "markdown", language-servers = ["codebook"] },
   { name = "newsraft", scope = "source.newsraft", file-types = [{ glob = "newsraft/feeds" }] },
-  { name = "pkgbuild", file-types = [{ glob = "build.sh" }] },
+  { name = "pkgbuild", auto-format = true, file-types = [{ glob = "PKGBUILD" }, { glob = "build.sh" }] },
   { name = "python", auto-format = true },
   # { name = "rust", language-servers = [] },
+  {
+    name = "ssh_client_config",
+    file-types = [{ glob = ".ssh/config" }, { glob = "ssh_config" }, { glob = "ssh_config.d/*.conf" }]
+  },
   { name = "toml", auto-format = true },
   {
     name = "typst",
     auto-format = true,
     injection-regex = "typ(st|c)?",
+    language-servers = ["tinymist", "codebook"]
     # code-actions-on-save = ['tinymist.exportPdf "%sh{realpath %{buffer_name}}"']
   },
   { name = "zathurarc", scope = "source.zathura", file-types = [{ glob = "zathurarc" }] }
 ]
 
 grammar = [
+  {
+    name = "handlebars",
+    source.git = "https://github.com/bennypowers/tree-sitter-handlebars",
+    source.rev = "6cf6821144efca0ba9327497f0523f5ebc04abef"
+  },
   { name = "kanata", source.path = "/home/fisher/repos/tree-sitter/kanata" },
   { name = "newsraft", source.path = "/home/fisher/repos/tree-sitter/newsraft" },
   { name = "zathurarc", source.path = "/home/fisher/repos/tree-sitter/zathurarc" }
@@ -63,7 +76,7 @@ exportPdf = "onSave"
 formatterMode = "typstyle"
 formatterPrintWidth = 85
 formatterProseWrap = true
-lint = { enabled = true }
+lint.enabled = true
 syntaxOnly = "disable"
 # preview.background.enabled = true
 # preview.background.args = ["--data-plane-host=127.0.0.1:23635", "--invert-colors=never", "--open"]
@@ -72,7 +85,7 @@ syntaxOnly = "disable"
 linkedProjects = []
 
 [language-server.ruff.config.init_options]
-settings = { configuration = ".config/ruff/ruff.toml" }
+settings.configuration = ".config/ruff/ruff.toml"
 
 [language-server.lua-language-server.config.Lua]
 format.enable = false
@@ -97,3 +110,45 @@ hint = {
   paramType = true,
   await = true
 }
+
+[language-server.rust-analyzer.config]
+assist.expressionFillDefault = "default"
+assist.importEnforceGranularity = true
+assist.importPrefix = "crate"
+cachePriming.enable = false
+cargo.extraArgs = ["--profile", "rust-analyzer"]
+cargo.extraEnv.CARGO_PROFILE_RUST_ANALYZER_CODEGEN_UNITS = "256"
+cargo.extraEnv.CARGO_PROFILE_RUST_ANALYZER_INCREMENTAL = "true"
+cargo.extraEnv.CARGO_PROFILE_RUST_ANALYZER_INHERITS = "dev"
+cargo.extraEnv.CARGO_PROFILE_RUST_ANALYZER_OPT_LEVEL = "0"
+check.command = "clippy"
+checkOnSave = false
+completion.fullFunctionSignatures.enable = true
+diagnostics.enable = true
+files.watcher = "server"                                          # TODO: this is not needed if helix supports client-side filewatching
+imports.granularity.group = "item"
+inlayHints.bindingModeHints.enable = true
+inlayHints.closingBraceHints.minLines = 11
+inlayHints.closureCaptureHints.enable = true
+inlayHints.closureReturnTypeHints.enable = "with_block"
+inlayHints.closureStyle = "rust_analyzer"
+inlayHints.discriminantHints.enable = "fieldless"
+inlayHints.expressionAdjustmentHints.enable = "reborrow"
+inlayHints.expressionAdjustmentHints.mode = "prefer_postfix"
+inlayHints.lifetimeElisionHints.enable = "skip_trivial"
+inlayHints.lifetimeElisionHints.useParameterNames = true
+inlayHints.parameterHints.enable = true
+inlayHints.rangeExclusiveHints.enable = true
+inlayHints.renderColons = false
+lens.run.enable = false
+lru.capacity = 256
+procMacro.enable = true
+semanticHighlighting.operator.specialization.enable = true
+semanticHighlighting.punctuation.enable = true
+semanticHighlighting.punctuation.separate.macro.bang = true
+signatureInfo.documentation.enable = true
+typing.autoClosingAngleBrackets.enable = true
+
+[language-server.codebook]
+command = "codebook-lsp"
+args = ["serve"]

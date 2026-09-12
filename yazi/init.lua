@@ -305,8 +305,8 @@ do
   map({ 'c', '^' }, 'rename --empty=stem --cursor=start')
   map({ 'c', '$' }, 'rename --empty=ext --cursor=end')
   -- # other
+  map('e', sh [[$EDITOR %s]])
   map('%', 'toggle_all --state=true')
-  map('<C-g>', sh [[nvim +Pick\ grep_live]])
   map('<Esc>', { 'escape', 'unyank' }, 'Exit visual mode, clear selection, or cancel search')
 end
 

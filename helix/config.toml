@@ -13,7 +13,6 @@ theme = "custom"
 # TODO: C-{n,p} in prompt mode
 # TODO: shebang like vim: ft=*
 [editor]
-default-yank-register = "+"
 auto-format = true
 completion-replace = true
 text-width = 85
@@ -50,7 +49,6 @@ file-picker = { git-ignore = true, max-depth = 5 }
 G = ["extend_to_file_end"]
 U = [":reset-diff-change"]
 V = ["extend_to_line_bounds"]
-X = ["extend_line_above"]
 # TODO: add same `m` stuff as normal mode
 # m = ["select_mode", "match_brackets"]
 v = ["extend_to_line_bounds"]
@@ -87,7 +85,6 @@ G = ["goto_file_end"]
 M = ["select_textobject_around"]
 U = [":reset-diff-change"]
 V = ["extend_to_line_bounds"]
-X = ["extend_line_above"]
 Y = ["collapse_selection", "extend_to_line_end", "yank", "flip_selections"]
 q = [
   ":noop %sh{~/.local/bin/hx-state save %{buffer_name} %{cursor_line} %{cursor_column}}",
