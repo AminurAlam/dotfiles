@@ -23,15 +23,16 @@
     --FormBG: #24283b;
     --PageBG: #24283b;
     --QTextBG: #414868;
+    --TTBGColor: #414868;
     --QTextColor: #c0caf5;
   }
 
   .navmenu-container,
   .topnav-container,
   .ad,
-  .ArticleText > form,
+  .ArticleText>form,
   .CommentReplyButton,
-  center > p {
+  center>p {
     display: none !important;
   }
 
@@ -43,6 +44,7 @@
 }
 
 @-moz-document domain("www.phoronix.com") {
+
   #sidebar,
   #menuwrap,
   #headerwrap,
@@ -121,6 +123,7 @@
 }
 
 @-moz-document domain("torrentfreak.com") {
+
   .page__sidebar.col-4_md-12,
   .header,
   .bread_cr,
@@ -166,6 +169,7 @@
 
   blockquote {
     border-left: 0.2em solid var(--accent);
+
     p {
       padding: 5px 5px 5px 30px;
     }
@@ -191,6 +195,7 @@
 }
 
 @-moz-document domain("scroll.in") {
+
   #main_navigation,
   #bottomStickyCarousel,
   #recommendedArticlesBar,
@@ -201,6 +206,7 @@
   .below-meta-app-upsell.hideOnApp.scroll-app-upsell {
     display: none !important;
   }
+
   .featured-image {
     max-width: 60% !important;
     margin: auto !important;

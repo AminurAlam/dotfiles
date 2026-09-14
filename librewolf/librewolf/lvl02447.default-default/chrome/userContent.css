@@ -4,31 +4,32 @@
 @-moz-document media-document(image) {
   @media not print {
     :root {
-      background-color: #232325 !important; /* set solid color background */
-      background-image: none !important; /* remove default background texture */
+      background-color: #232325 !important;
+      /* set solid color background */
+      background-image: none !important;
+      /* remove default background texture */
     }
 
     /* img { margin: 0 !important; } */
 
     /* Checkerboard pattern for transparent images, slight blue hue */
     img.transparent {
-      background: conic-gradient(
-          #eef 0.25turn,
+      background: conic-gradient(#eef 0.25turn,
           #bbc 0.25turn 0.5turn,
           #eef 0.5turn 0.75turn,
-          #bbc 0.75turn
-        )
-        top left / 24px 24px repeat !important;
+          #bbc 0.75turn) top left / 24px 24px repeat !important;
     }
   }
 }
 
 @-moz-document domain("lobste.rs") {
+
   .comment_form_container.comment,
   time {
     display: none;
   }
-  .links > .corner {
+
+  .links>.corner {
     font-size: 0pt;
   }
 }
@@ -47,10 +48,10 @@
     font-size: 1.5em !important;
   }
 
-  #hnmain > tbody > tr:nth-of-type(1) > td > table > tbody,
-  table.fatitem > tbody > tr:nth-of-type(5),
+  #hnmain>tbody>tr:nth-of-type(1)>td>table>tbody,
+  table.fatitem>tbody>tr:nth-of-type(5),
   .age,
-  span.navs > a:not(.togg),
+  span.navs>a:not(.togg),
   .reply {
     display: none;
   }
@@ -93,6 +94,7 @@
     --margin: 2rem;
     --radius: 0.5rem;
   }
+
   ::selection {
     color: var(--color-bg);
   }
@@ -102,29 +104,36 @@
   * {
     scrollbar-color: var(--dark-highlight) var(--dark-bg-primary) !important;
   }
+
   body {
     background-color: var(--dark-bg-secondary) !important;
     background-image: url("houndstooth_dark.png") !important;
   }
+
   body,
   #sidebar h2 {
     color: var(--dark-primary) !important;
   }
+
   img {
     filter: brightness(0.8) contrast(1.2) !important;
   }
+
   a {
     color: var(--dark-highlight) !important;
   }
+
   header,
   article,
   img {
     box-shadow: var(--dark-shadow) !important;
   }
+
   article,
   .secondary {
     background-color: var(--dark-bg-primary) !important;
   }
+
   h2,
   h2 a:hover,
   article h3,
@@ -135,6 +144,7 @@
   article .tags {
     color: var(--dark-secondary) !important;
   }
+
   article pre,
   article code {
     background: var(--dark-tertiary) !important;
@@ -191,11 +201,13 @@
 }
 
 @-moz-document domain("thedailywtf.com") {
+
   body,
   .content#article-page {
     color: #c0caf5 !important;
     background-color: #24283b !important;
   }
+
   #navigation,
   #footer,
   div.article-footer {
@@ -203,21 +215,15 @@
   }
 }
 
-@-moz-document regexp("https://(askubuntu.com|stackoverflow.com)/.*")
-{
+@-moz-document regexp("https://(askubuntu.com|stackoverflow.com)/.*") {
+
   header,
   form,
   div.ml12,
   #announcement-banner,
   #left-sidebar,
   #sidebar,
-  #answer-55244539
-    > .post-layout
-    > .post-layout--right.answercell
-    > .mt24
-    > .gsy.gs8.jc-end.ai-start.fw-wrap.d-flex
-    > .mr16.flex--item
-    > .pt2.js-post-menu,
+  #answer-55244539>.post-layout>.post-layout--right.answercell>.mt24>.gsy.gs8.jc-end.ai-start.fw-wrap.d-flex>.mr16.flex--item>.pt2.js-post-menu,
   .c-pointer.g8.ai-center.d-flex.mb8,
   .disabled-link.comments-link.js-add-link,
   .iconHistory.svg-icon.mr0.mln2,
@@ -227,8 +233,8 @@
   .mb16.pt4.ai-start.jc-end.fw-wrap.gsy.gs8.d-flex.mt16,
   .mt24,
   .mx-auto.py6.c-pointer.s-btn__unset.s-btn.flex--item.js-post-issue,
-  .post-layout--right.postcell > .js-post-body.s-prose > div,
-  .post-layout--right.postcell > .mb0,
+  .post-layout--right.postcell>.js-post-body.s-prose>div,
+  .post-layout--right.postcell>.mb0,
   .ps-relative.js-pinned-left-sidebar.left-sidebar,
   .pt2.js-post-menu,
   .py4.c-pointer.s-btn__unset.s-btn.js-saves-btn,
@@ -269,6 +275,7 @@
 
   a {
     color: var(--accent);
+
     &:hover {
       color: var(--bg);
       background: var(--accent);
@@ -285,6 +292,7 @@
     &::marker {
       color: var(--accent2);
     }
+
     &.article-item {
       div {
         display: flex;
@@ -297,6 +305,7 @@
 
   h1 {
     font-size: 1.8em;
+
     &::before {
       content: "# ";
     }
@@ -304,6 +313,7 @@
 
   h2 {
     font-size: 1.4em;
+
     &::before {
       content: "## ";
     }
@@ -311,6 +321,7 @@
 
   h3 {
     font-size: 1.2em;
+
     &::before {
       content: "### ";
     }
@@ -322,6 +333,7 @@
     &::before {
       color: var(--accent2);
     }
+
     a {
       color: var(--fg);
     }
@@ -336,6 +348,7 @@
   .spoiler {
     color: rgb(189, 181, 170) !important;
     background-color: rgb(189, 181, 170) !important;
+
     &:hover {
       color: rgb(199, 192, 181) !important;
       background-color: transparent !important;

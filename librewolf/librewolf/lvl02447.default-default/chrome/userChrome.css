@@ -1,7 +1,7 @@
 @namespace url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul");
 
-@-moz-document url("chrome://browser/content/browser.xhtml")
-{
+@-moz-document url("chrome://browser/content/browser.xhtml") {
+
   #back-button,
   #forward-button,
   #home-button,
@@ -15,49 +15,52 @@
   }
 
   #contentAreaContextMenu {
-    > #context-add-engine,
-    > #context-bookmarklink,
-    > #context-copy,
-    > #context-cut,
-    > #context-delete, /* > #context-inspect, */
-    > #context-inspect-a11y,
-    > #context-leave-dom-fullscreen,
-    > #context-media-eme-separator,
-    > #context-media-pause,
-    > #context-media-play,
-    > #context-navigation,
-    > #context-openlinkincurrent,
-    > #context-openlinkintab,
-    > #context-paste,
-    > #context-pdfjs-copy,
-    > #context-pdfjs-cut,
-    > #context-pdfjs-delete,
-    > #context-pdfjs-paste,
-    > #context-pdfjs-redo,
-    > #context-pdfjs-selectall,
-    > #context-pdfjs-undo,
-    > #context-print-selection,
-    > #context-redo,
-    > #context-savepage,
-    > #context-screenshot,
-    > #context-searchselect,
-    > #context-selectall,
-    > #context-sendaudio,
-    > #context-sendimage,
-    > #context-sendvideo,
-    > #context-sep-navigation,
-    > #context-sep-redo,
-    > #context-sep-selectall,
-    > #context-setDesktopBackground,
-    > #context-translate-selection,
-    > #context-undo,
-    > #context-video-fullscreen,
-    > #context-viewsource,
-    > #fill-login-generated-password,
-    > #frame-sep {
+
+    >#context-add-engine,
+    >#context-bookmarklink,
+    >#context-copy,
+    >#context-cut,
+    >#context-delete,
+    /* > #context-inspect, */
+    >#context-inspect-a11y,
+    >#context-leave-dom-fullscreen,
+    >#context-media-eme-separator,
+    >#context-media-pause,
+    >#context-media-play,
+    >#context-navigation,
+    >#context-openlinkincurrent,
+    >#context-openlinkintab,
+    >#context-paste,
+    >#context-pdfjs-copy,
+    >#context-pdfjs-cut,
+    >#context-pdfjs-delete,
+    >#context-pdfjs-paste,
+    >#context-pdfjs-redo,
+    >#context-pdfjs-selectall,
+    >#context-pdfjs-undo,
+    >#context-print-selection,
+    >#context-redo,
+    >#context-savepage,
+    >#context-screenshot,
+    >#context-searchselect,
+    >#context-selectall,
+    >#context-sendaudio,
+    >#context-sendimage,
+    >#context-sendvideo,
+    >#context-sep-navigation,
+    >#context-sep-redo,
+    >#context-sep-selectall,
+    >#context-setDesktopBackground,
+    >#context-translate-selection,
+    >#context-undo,
+    >#context-video-fullscreen,
+    >#context-viewsource,
+    >#fill-login-generated-password,
+    >#frame-sep {
       display: none !important;
     }
   }
+
   /* #nav-bar { margin-top: -40px !important; } */
   /* #nav-bar:focus-within { margin-top: 0 !important; } */
   /* #navigator-toolbox { border-bottom: unset !important; } */
@@ -76,108 +79,98 @@ a[href$=".pdf"]:after {
 /* Tab bar */
 toolbarbutton#scrollbutton-up,
 toolbarbutton#scrollbutton-down {
-  display: none; /* Hide tab scroll buttons */
+  display: none;
+  /* Hide tab scroll buttons */
 }
 
-.browser-toolbar > * #alltabs-button {
-  display: none; /* Hide tab drop-down list */
+.browser-toolbar>* #alltabs-button {
+  display: none;
+  /* Hide tab drop-down list */
 }
 
-.browser-toolbar > * #new-tab-button {
-  display: none; /* Hide new-tab button */
+.browser-toolbar>* #new-tab-button {
+  display: none;
+  /* Hide new-tab button */
 }
 
 /* https://github.com/MrOtherGuy/firefox-csshacks/tree/master/chrome/tab_separator_lines.css
  * Bring back tab separator lines that were removed in Proton */
 :where(.tabbrowser-tab) {
-  background-image: linear-gradient(
-    transparent 20%,
-    color-mix(in srgb, currentColor 20%, transparent) 20%,
-    color-mix(in srgb, currentColor 20%, transparent) 80%,
-    transparent 80%
-  );
+  background-image: linear-gradient(transparent 20%,
+      color-mix(in srgb, currentColor 20%, transparent) 20%,
+      color-mix(in srgb, currentColor 20%, transparent) 80%,
+      transparent 80%);
   background-repeat: no-repeat;
   background-size: 1px 100%;
 }
+
 tab-split-view-wrapper {
   background-size: 1px 100%;
 }
+
 @media -moz-pref("sidebar.verticalTabs") {
   #tabbrowser-tabs {
-    --uc-vertical-tabs-expanded-separator: linear-gradient(
-      to right,
-      transparent 10cqw,
-      color-mix(in srgb, currentColor 20%, transparent) 10cqw,
-      color-mix(in srgb, currentColor 20%, transparent) 90cqw,
-      transparent 90cqw
-    );
+    --uc-vertical-tabs-expanded-separator: linear-gradient(to right,
+        transparent 10cqw,
+        color-mix(in srgb, currentColor 20%, transparent) 10cqw,
+        color-mix(in srgb, currentColor 20%, transparent) 90cqw,
+        transparent 90cqw);
   }
+
   :where(.tabbrowser-tab) {
-    background-image: linear-gradient(
-      color-mix(in srgb, currentColor 20%, transparent)
-    );
+    background-image: linear-gradient(color-mix(in srgb, currentColor 20%, transparent));
     background-size: 60% 1px;
     background-position-x: center;
   }
+
   :where(#tabbrowser-tabs[expanded] .tabbrowser-tab) {
     background-image: var(--uc-vertical-tabs-expanded-separator);
     background-size: 90cqw 1px;
   }
-  #tabbrowser-tabs[expanded] > #pinned-tabs-container > .tabbrowser-tab {
+
+  #tabbrowser-tabs[expanded]>#pinned-tabs-container>.tabbrowser-tab {
     background-image: none;
   }
+
   tab-split-view-wrapper {
     background-size: 90cqw 1px;
   }
-  #tabbrowser-tabs[expanded]
-    tab-split-view-wrapper
-    > .tabbrowser-tab:last-child {
+
+  #tabbrowser-tabs[expanded] tab-split-view-wrapper>.tabbrowser-tab:last-child {
     background-size: 90cqw 1px;
     background-image: var(--uc-vertical-tabs-expanded-separator);
+
     @container vertical-tabs-container (min-width: 210px) {
       background-size: inherit;
     }
   }
 }
-tab-split-view-wrapper > .tabbrowser-tab {
+
+tab-split-view-wrapper>.tabbrowser-tab {
   background-size: inherit;
 }
-tab-split-view-wrapper > .tabbrowser-tab:last-child {
+
+tab-split-view-wrapper>.tabbrowser-tab:last-child {
   background-image: none;
 }
-tab-group > slot + :is(tab-split-view-wrapper, .tabbrowser-tab),
-tab-group[collapsed] + :is(tab-split-view-wrapper, .tabbrowser-tab),
-:is(tab-split-view-wrapper, .tabbrowser-tab):is(
-  [selected],
+
+tab-group>slot+ :is(tab-split-view-wrapper, .tabbrowser-tab),
+tab-group[collapsed]+ :is(tab-split-view-wrapper, .tabbrowser-tab),
+:is(tab-split-view-wrapper, .tabbrowser-tab):is([selected],
   [multiselected],
   [hasactivetab],
-  :hover
-),
-:is(tab-split-view-wrapper, .tabbrowser-tab):is(
-    [selected],
-    tab[multiselected],
-    [hasactivetab],
-    :hover
-  )
-  + :is(tab-split-view-wrapper, .tabbrowser-tab),
-tab-split-view-wrapper:has(> [multiselected]:last-child)
-  + :is(tab-split-view-wrapper, .tabbrowser-tab),
-tab-group:has(
-    > :last-of-type:is(:hover, [selected], [multiselected], [hasactivetab])
-      + vbox
-  )
-  + :is(tab-split-view-wrapper, .tabbrowser-tab),
-#pinned-tabs-container > :first-child,
-#pinned-tabs-container:empty ~ arrowscrollbox > :first-child,
-#tabbrowser-arrowscrollbox[overflowing] > :first-child,
-#pinned-tabs-container:has(
-    > :last-child:is(:hover, [selected], [multiselected])
-  )
-  ~ arrowscrollbox
-  > :first-child,
-#vertical-pinned-tabs-splitter:not([hidden])
-  ~ arrowscrollbox[orient="vertical"]
-  > :first-child {
+  :hover),
+:is(tab-split-view-wrapper, .tabbrowser-tab):is([selected],
+  tab[multiselected],
+  [hasactivetab],
+  :hover)+ :is(tab-split-view-wrapper, .tabbrowser-tab),
+tab-split-view-wrapper:has(> [multiselected]:last-child)+ :is(tab-split-view-wrapper, .tabbrowser-tab),
+tab-group:has(> :last-of-type:is(:hover, [selected], [multiselected], [hasactivetab]) + vbox)+ :is(tab-split-view-wrapper, .tabbrowser-tab),
+#pinned-tabs-container> :first-child,
+#pinned-tabs-container:empty~arrowscrollbox> :first-child,
+#tabbrowser-arrowscrollbox[overflowing]> :first-child,
+#pinned-tabs-container:has(> :last-child:is(:hover, [selected], [multiselected]))~arrowscrollbox> :first-child,
+#vertical-pinned-tabs-splitter:not([hidden])~arrowscrollbox[orient="vertical"]> :first-child {
   background-size: 0 0;
 }
 
@@ -194,6 +187,7 @@ tab-group:has(
   top: 0;
   pointer-events: none;
 }
+
 :root[customizing] #identity-box::before,
 #urlbar[focused] #identity-box::before {
   display: none;
