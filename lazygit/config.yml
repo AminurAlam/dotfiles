@@ -461,7 +461,7 @@ customCommands:
   #   description: "Ammend last commit"
   #   output: terminal
   - key: P # TODO: ask remote name
-    context: files
+    context: global
     command: "git remote | sed /upstream/d | fzf --multi --header (git rev-parse --abbrev-ref HEAD) | xargs -I% -- git push --force-with-lease %"
     description: "push a branch"
     output: terminal
