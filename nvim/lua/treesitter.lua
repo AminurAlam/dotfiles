@@ -1,7 +1,3 @@
-if vim.uv.os_uname().sysname == 'Windows_NT' then
-  return
-end
-
 local sel = require('vim.treesitter._select')
 vim.keymap.set({ 'x' }, '<c-k>', sel.select_grow_prev)
 vim.keymap.set({ 'x' }, '<c-j>', sel.select_grow_next)

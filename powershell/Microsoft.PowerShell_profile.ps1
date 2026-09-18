@@ -2,6 +2,7 @@
 
 # https://gist.github.com/eabase/dc409e95c0c3bd3168711a914a1b4c02
 $env_dict = @{
+    "CC"                                        = "gcc"
     "XDG_CONFIG_HOME"                           = "$HOME/dotfiles"
     "YAZI_CONFIG_HOME"                          = "$HOME/dotfiles/yazi"
     "YAZI_FILE_ONE"                             = "C:\Users\$env:USERNAME\scoop\apps\git\current\usr\bin\file.exe"
