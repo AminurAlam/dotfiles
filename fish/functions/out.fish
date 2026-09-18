@@ -14,7 +14,10 @@ function out -d "compile and run some code"
             latexmk -c
         case .typ
             typst c $argv[1]
-            # open (path change-extension pdf "$argv[1]")
+            set pdffile (path change-extension pdf "$argv[1]")
+            if not pgrep -fx --quiet "okular $pdffile"
+                open "$pdffile"
+            end
         case .py
             uv run "$argv[1]"
         case .kbd

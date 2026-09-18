@@ -35,6 +35,7 @@ function hentai -d "for managing literature"
     for i in "$mangadir/downloads/Doujin.io - J18 (EN)/"*
         set base (path basename $i)
         printf " - $base\n"
+        set -e artists
         # NOTE: may need to be sorted manually
         for ch in $i/*.cbz
             printf "   - %s\n" (path basename $ch)

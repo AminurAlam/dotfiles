@@ -136,5 +136,5 @@ F = ["file_picker_in_current_buffer_directory"]
 g = ["global_search"]
 h = ["command_palette"]
 w = [":w"]
-e = [":w", ":sh out %{buffer_name}"]
+e = [":w", ":sh out %{file_path_absolute}"]
 # t = { s = ":tree-sitter-scopes", h = ":tree-sitter-highlight-name" }

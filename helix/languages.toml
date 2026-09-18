@@ -38,7 +38,12 @@ language = [
     auto-format = true,
     formatter = { command = "stylua", args = ["-f", "%sh{printenv HOME}/repos/dotfiles/other/stylua.toml", "-"] }
   },
-  { name = "markdown", language-servers = ["codebook"] },
+  {
+    name = "markdown",
+    language-servers = ["codebook"],
+    auto-format = true,
+    formatter = { command = "prettier", args = ["--parser", "markdown"] }
+  },
   { name = "newsraft", scope = "source.newsraft", file-types = [{ glob = "newsraft/feeds" }] },
   { name = "pkgbuild", auto-format = true, file-types = [{ glob = "PKGBUILD" }, { glob = "build.sh" }] },
   { name = "python", auto-format = true },

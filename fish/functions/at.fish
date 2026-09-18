@@ -24,6 +24,7 @@ function at -d "torrent download helper"
         set -f outdir $XDG_DOWNLOAD_DIR
     end
 
+    clear
     printf "%s\n" "torrent: $argv[1]" "outdir: $outdir" "files: $files"
 
     [ -n "$files" ]
