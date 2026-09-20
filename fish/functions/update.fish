@@ -21,11 +21,13 @@ function update -d "system update with just one command"
 
     string pad -C -c= -w$COLUMNS " GIT REPOS "
     if set -q TERMUX_VERSION
-        cd ~/repos/dotfiles/
+        pushd ~/repos/dotfiles/
         and git pull origin
+        popd
 
-        cd ~/repos/yazi-plugins/
+        pushd ~/repos/yazi-plugins/
         and git pull origin
+        popd
     end
 
     string pad -C -c= -w$COLUMNS " CARGO "
@@ -38,20 +40,10 @@ function update -d "system update with just one command"
 
     string pad -C -c= -w$COLUMNS " HELIX "
     if [ "$(read -P "update helix? [y/N] ")" = y ]
-        if set -q TERMUX_VERSION
-            HELIX_DISABLE_AUTO_GRAMMAR_BUILD=1 cargo install \
-                --profile opt \
-                --config 'build.rustflags="-C target-cpu=native"' \
-                --git https://github.com/AminurAlam/helix helix-term \
-                --locked
-        else
-            cd ~/repos/helix-fork
-            HELIX_DISABLE_AUTO_GRAMMAR_BUILD=1 cargo install \
-                --profile opt \
-                --config 'build.rustflags="-C target-cpu=native"' \
-                --path helix-term \
-                --locked
-        end
+        pushd ~/repos/helix-fork
+        set -q TERMUX_VERSION && git pull origin
+        HELIX_DISABLE_AUTO_GRAMMAR_BUILD=1 cargo install --path helix-term --locked
+        popd
     end
     { hx -g fetch; hx -g build } | rg -v '(Fetch|Build)ing grammars '
 
@@ -60,7 +52,7 @@ function update -d "system update with just one command"
 
     string pad -C -c= -w$COLUMNS " YAZI "
     if not set -q TERMUX_VERSION
-        cd ~/repos/yazi-fork/
+        pushd ~/repos/yazi-fork/
         git fetch upstream
         git rebase upstream/main
         set changes (git rev-list --count  "origin..upstream")
@@ -72,6 +64,7 @@ function update -d "system update with just one command"
             cargo build --release --locked
             mv target/release/yazi target/release/ya $CARGO_HOME/bin/
         end
+        popd
     end
 
     string pad -C -c= -w$COLUMNS " YAZI PKGS "
@@ -81,8 +74,9 @@ function update -d "system update with just one command"
 
     string pad -C -c= -w$COLUMNS " ZMX "
     if set -q TERMUX_VERSION
-        cd $HOME/repos/dotfiles/scripts/build/zmx-bin/
+        pushd $HOME/repos/dotfiles/scripts/build/zmx-bin/
         makepkg -si
+        popd
     end
 
     string pad -C -c= -w$COLUMNS " MANPAGES "
@@ -95,7 +89,7 @@ function update -d "system update with just one command"
 
     # string pad -C -c= -w$COLUMNS " BIOME "
     if false && [ $USER = fisher ]
-        cd $HOME/.local/cache/temp/
+        pushd $HOME/.local/cache/temp/
 
         set local_version (biome -V | rg --replace '$1' '^Version: (.*)$')
         curl -o api.json -#L \
@@ -107,16 +101,18 @@ function update -d "system update with just one command"
             | rg --replace '$1' '^Biome CLI v(.*)$')
 
         if [ "$local_version" != "$latest_version" ]
-            cd ~/.local/bin/
+            pushd ~/.local/bin/
             and begin
                 rm biome
                 aria2c -o biome \
                     https://github.com/biomejs/biome/releases/download/%40biomejs%2Fbiome%40$latest_version/biome-linux-x64
                 chmod +x biome
             end
+            popd
             printf '\n'
         else
             printf "BiomeJS is already up-to-date: %s\n" $latest_version
         end
+        popd
     end
 end

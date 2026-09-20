@@ -5,9 +5,16 @@ function out -d "compile and run some code"
             and ./out
             rm -f out
         case .rs
-            rustc -oout -- $argv[1]
-            and ./out
-            rm -f out
+            set root (cargo locate-project --workspace | jq -r .root | path dirname)
+            if [ -e "$root" ]
+                pushd "$root"
+                cargo run
+                popd
+            else
+                rustc -oout -- $argv[1]
+                and ./out
+                rm -f out
+            end
         case .tex
             latexmk -pdf -interaction=nonstopmode -synctex=1 $argv[1]
             open (path change-extension pdf "$argv[1]")
