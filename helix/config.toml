@@ -16,7 +16,7 @@ theme = "custom"
 auto-format = true
 completion-replace = true
 text-width = 85
-atomic-save = true
+atomic-save = false
 jump-label-alphabet = "fjdksla;ghcnvmwi"
 cursor-shape = { insert = "bar", select = "underline" }
 whitespace = { render = { tab = "all", newline = "all" } }
@@ -119,7 +119,7 @@ M = "@mam"
 d = [
   # """:toggle-option inline-diagnostics "{'cursor-line': 'disable', 'other-line': 'disable'}" "{'cursor-line': 'warning', 'other-line': 'warning'}" """,
   ":toggle-option inline-diagnostics.cursor-line warning disable",
-  ":toggle-option inline-diagnostics.other-lines warning disable",
+  # ":toggle-option inline-diagnostics.other-lines warning disable",
 ]
 # TODO: use C-o to move back
 x = [":goto %sh{hx-state load %{buffer_name} 1} %sh{hx-state load %{buffer_name} 2}"]

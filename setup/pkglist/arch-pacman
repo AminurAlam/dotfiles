@@ -10,6 +10,7 @@ bash-language-server
 bibata-cursor-theme-bin
 btop
 clang
+codebook-lsp
 dos2unix
 dunst
 dust
@@ -126,7 +127,6 @@ swaybg
 swayidle
 swayimg
 swaylock
-taplo-cli
 testdisk
 tinymist
 tmux
