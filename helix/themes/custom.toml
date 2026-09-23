@@ -2,9 +2,9 @@
 
 "inherits" = "tokyonight"
 "comment" = { fg = "comment" }
-"diagnostic.hint" = { underline = { style = "none", color = "hint" } }
-"diagnostic.info" = { underline = { style = "none", color = "info" } }
-"diagnostic.warning" = { underline = { style = "none", color = "yellow" } }
+"diagnostic.hint" = {}
+"diagnostic.info" = {}
+"diagnostic.warning" = { underline = { style = "dashed", color = "yellow" } }
 "function" = { fg = "blue" }
 "keyword" = { fg = "purple" }
 "keyword.control.return" = { fg = "purple" }

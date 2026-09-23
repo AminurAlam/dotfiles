@@ -54,6 +54,25 @@ language = [
   },
   { name = "toml", auto-format = true },
   {
+    name = "xml",
+    scope = "source.xml",
+    auto-format = true,
+    file-types = [
+      "atom",
+      "mpd",
+      "opml",
+      "rss",
+      "svg",
+      "ttml",
+      "xaml",
+      "xml",
+      { glob = "*.tm[Ll]anguage" },
+      { glob = "*.tm[Pp]references" },
+      { glob = "*.tm[Tt]heme" },
+    ],
+    formatter = { command = "prettier", args = ["--parser", "html"] }
+  },
+  {
     name = "typst",
     auto-format = true,
     injection-regex = "typ(st|c)?",
