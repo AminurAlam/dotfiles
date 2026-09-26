@@ -3,7 +3,7 @@ mkdir -p ~/{backup,bin} ~/.local/{bin,share}
 printf "LINKING CONFIG DIRECTORIES... "
 for config in \
     alacritty aria2 \
-    biome btop \
+    bacon biome btop \
     clangd \
     dunst \
     fish foot fuzzel \

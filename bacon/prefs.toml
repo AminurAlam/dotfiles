@@ -1,0 +1,39 @@
+#:schema https://dystroy.org/bacon/.bacon.schema.json
+#:tombi schema.strict = false
+
+summary = false
+wrap = true
+reverse = false
+# grace_period = "15ms"
+help_line = false
+show_changes_count = false
+# on_change_strategy = "kill_then_restart"
+# on_change_strategy = "wait_then_restart"
+exports.locations.auto = false
+sound.enabled = false
+
+[keybindings]
+# esc = "back"
+g = "scroll-to-top"
+shift-g = "scroll-to-bottom"
+k = "scroll-lines(-1)"
+j = "scroll-lines(1)"
+# PageUp = "scroll-pages(-1)"
+# PageDown = "scroll-pages(1)"
+# Space = "scroll-pages(1)"
+# a = "job:check-all"
+# i = "job:initial"
+c = "job:clippy"
+# x = "clear-output"
+
+[jobs.clippy]
+command = ["cargo", "clippy", "--", "-D", "clippy::pedantic", "-D", "clippy::nursery"]
+need_stdout = false
+
+[skin]
+# status_fg = 1
+# status_bg = 30
+# key_fg = "rgb(255, 187, 0)"
+# status_key_fg = 11
+# project_name_badge_fg = "gray(20)"
+# project_name_badge_bg = "darkblue"
