@@ -47,9 +47,6 @@ function update -d "system update with just one command"
     end
     { hx -g fetch; hx -g build } | rg -v '(Fetch|Build)ing grammars '
 
-    # cargo install --profile opt --config 'build.rustflags="-C target-cpu=native"' --locked \
-    #     --git https://github.com/helix-editor/helix helix-term
-
     string pad -C -c= -w$COLUMNS " YAZI "
     if not set -q TERMUX_VERSION
         pushd ~/repos/yazi-fork/

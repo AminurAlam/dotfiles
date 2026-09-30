@@ -1,11 +1,6 @@
 function sy -d "sync files between phone and pc"
     set -q TERMUX_VERSION && return 1
-
     set comm --dry-run -ha --out-format "%o %n" --exclude={.thumbnails,.nomedia,.archive}
-    set tags books exib femboys flat lewd NTR
-    set artists Alp Arakure Cleanendme Esuke Herio 'Hinahara Emi' Jury 'Minami Fumika' \
-        Momoko 'Morino Bambi' Nagayori Namboku 'Nikubou Maranoshin' 'Ouchi Kaeru' Sajipen \
-        Souseki 'Wantan Meo' Yuruyakatou
 
     # exit if network is unreachable
     if not nc -w3 -q3 -z (ssh -G brick | rg --replace '' '^(hostname|port) ') 2>/dev/null
@@ -39,7 +34,7 @@ function sy -d "sync files between phone and pc"
         rsync $comm brick:/sdcard/Music/ $XDG_MUSIC_DIR/ --delete | rg -v '/$'
 
         printf "=== MANGA ===\n"
-        rsync $comm brick:/sdcard/Tachi/local/\#$tags brick:/sdcard/Tachi/local/@$artists $XDG_DOWNLOAD_DIR/manga/ --delete | rg -v '/$'
+        rsync $comm brick:/sdcard/Tachi/local/{#,@}\* $XDG_DOWNLOAD_DIR/manga/ --delete | rg -v '/$'
 
         printf "=== MISC ===\n"
         rsync $comm $XDG_DOWNLOAD_DIR/main/arch.kdbx brick:/sdcard/main/arch.kdbx

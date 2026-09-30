@@ -30,9 +30,13 @@ function lrc -d "download lrc files form links in json" -a query
             sleep 1
         end
 
-        # sed -E 's@>@&\n@g'
         jq -r '.content' "cache/$path.json" >"$path.ttml"
-        rg --only-matching 'timing=[^>]+' "$path.ttml"
+        if not rg --only-matching 'timing=[^>]+' "$path.ttml" && [ "$(cat "$path.ttml")" = null ]
+            echo removing because the file was empty
+            rm "$path.ttml"
+        else
+            prettier --parser html -w "$path.ttml"
+        end
         echo
     end
 
