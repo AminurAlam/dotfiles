@@ -125,7 +125,7 @@ raster_tools = [
   { run = "identity -d row -- %s", orphan = true, desc = "󰆊 compare images", for = "linux" },
 ]
 audio_tools = [
-  { run = "kid3-qt -- %s", orphan = true, desc = " kid3", for = "linux" },
+  { run = "QT_SCALE_FACTOR=1.2 kid3-qt -- %s", orphan = true, desc = " kid3", for = "linux" },
   { run = "picard -- %s", orphan = true, desc = "󰫅 picard", for = "linux" },
   { run = "tenacity %s", block = false, orphan = true, desc = "󰓀 tenacity", for = "linux" },
 ]

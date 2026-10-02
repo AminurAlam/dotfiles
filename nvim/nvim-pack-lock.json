@@ -13,7 +13,7 @@
       "src": "https://github.com/0xAdk/full_visual_line.nvim"
     },
     "mini.completion": {
-      "rev": "d2a2b2a2b5350b713ade3bb744df39eee7d4229b",
+      "rev": "15fb3542b11f23b20e126c873111297f41d740e5",
       "src": "https://github.com/nvim-mini/mini.completion"
     },
     "mini.diff": {
@@ -33,7 +33,7 @@
       "src": "https://github.com/kylechui/nvim-surround"
     },
     "nvim-treesitter": {
-      "rev": "f603a2f4da48728f80257fb5fbb90145fd1dc173",
+      "rev": "910fdf6f49e9dee7e7257c7d11a76b040fdfb9de",
       "src": "https://github.com/nvim-treesitter/nvim-treesitter"
     },
     "tokyonight.nvim": {
