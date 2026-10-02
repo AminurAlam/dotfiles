@@ -99,16 +99,24 @@ local ss = function()
   mp.commandv('screenshot')
 
   mp.set_property('screenshot-format', 'jpg')
+  local primary = mp.get_property('sub-visibility') or 'no'
+  local secondary = mp.get_property('secondary-sub-visibility') or 'no'
+  mp.set_property('sub-visibility', 'no')
+  mp.set_property('secondary-sub-visibility', 'no')
+
   local file = '/tmp/mpv-screenshot.jpeg'
   mp.commandv('screenshot-to-file', file)
   mp.command_native_async(
-    { 'run', 'sh', '-c', ('wl-copy -t image/jpg < %q'):format(file) },
+    { 'run', 'sh', '-c', 'wl-copy -t text/uri-list file:///tmp/mpv-screenshot.jpeg' },
     function(_, _, err)
       if err then
         mp.osd_message(err, 1)
       end
     end
   )
+
+  mp.set_property('sub-visibility', primary)
+  mp.set_property('secondary-sub-visibility', secondary)
 end
 
 mp.add_key_binding('a', 'swap-subtitles', swap_subtitles)
