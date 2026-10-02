@@ -30,6 +30,7 @@
 ### Subtitle Options:
 --write-subs
 --write-auto-subs
+--sub-langs "en(-en)?,ja"
 
 ### Post-Processing Options:
 --embed-metadata
