@@ -35,7 +35,7 @@ function lrc -d "download lrc files form links in json" -a query
             echo removing because the file was empty
             rm "$path.ttml"
         else
-            prettier --parser html -w "$path.ttml"
+            # prettier --parser html -w "$path.ttml"
         end
         echo
     end
