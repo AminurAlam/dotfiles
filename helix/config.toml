@@ -122,7 +122,7 @@ d = [
   # ":toggle-option inline-diagnostics.other-lines warning disable",
 ]
 # TODO: use C-o to move back
-x = [":goto %sh{hx-state load %{buffer_name} 1} %sh{hx-state load %{buffer_name} 2}"]
+x = [":goto %sh{hx-state load %{buffer_name} 1} %sh{hx-state load %{buffer_name} 2}", "align_view_center"]
 f = [":toggle-option auto-format"]
 w = [":toggle-option soft-wrap.enable"]
 
