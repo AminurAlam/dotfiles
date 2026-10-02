@@ -1,5 +1,5 @@
 local grid_side = {
-  [true] = 5, -- fullscreen
+  [true] = 6, -- fullscreen
   [false] = 3, -- windowed
 }
 
@@ -88,6 +88,7 @@ do -- Key bindings
   local gmap = swayimg.gallery.on_key
   local mmap = swayimg.viewer.on_mouse
 
+  -- TODO: goes back to gallery mode if possible
   vmap('q', swayimg.exit)
   vmap('space', function() swayimg.viewer.animation = not swayimg.viewer.animation end)
   vmap(',', function() swayimg.viewer.rotate(90) end)
@@ -136,10 +137,10 @@ do -- Key bindings
     end
   end)
   vmap('y', function() os.execute(string.format('wl-copy %q', swayimg.viewer.get_image().path)) end)
-  vmap(
-    'd',
-    function() os.execute(string.format('trash-put %q', swayimg.gallery.get_image().path)) end
-  )
+  -- vmap(
+  --   'd',
+  --   function() os.execute(string.format('trash-put %q', swayimg.viewer.get_image().path)) end
+  -- )
   gmap({ 'Ctrl+KP_Add', 'KP_Add', 'plus', 'equal' }, function() gsize(-1) end)
   gmap({ 'Ctrl+KP_Subtract', 'KP_Subtract', 'Shift+underscore', 'minus' }, function() gsize(1) end)
   gmap('q', swayimg.exit)
@@ -151,7 +152,10 @@ do -- Key bindings
   gmap('Shift+g', function() swayimg.gallery.select('last') end)
   gmap('u', function() swayimg.gallery.select('pgup') end)
   gmap('d', function() swayimg.gallery.select('pgdown') end)
-
+  gmap(
+    'Shift+d',
+    function() os.execute(string.format('trash-put %q', swayimg.gallery.get_image().path)) end
+  )
   -- TODO: gallery bindings for: sort change, size change, hjkl
 end
 
