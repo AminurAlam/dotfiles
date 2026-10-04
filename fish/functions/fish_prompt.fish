@@ -9,7 +9,7 @@ function fish_prompt -d 'commandline prompt'
     if [ -n "$SSH_TTY" ]
         set user (set_color $fish_color_host)  (switch $USER
             case u0_a312; echo brick
-            case u0_a430; echo slab
+            case u0_a223; echo slab
             case u0_a293; echo paper
             case '*'; echo $USER
         end)

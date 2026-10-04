@@ -3,7 +3,17 @@
 mkdir -p $HOME/{repos,backup} $HOME/.local/{share,bin,cache} $HOME/.local/share/zoxide
 
 printf "INSTALLING BASE PACKAGES...\n"
-pacman -Syu --noconfirm --needed fd git ripgrep termux-api termux-auth yazi || exit
+pacman -Syu --noconfirm --needed fd git jq ripgrep termux-api termux-auth yazi || exit
+clear
+
+printf "INSTALLING CARGO PACKAGES...\n"
+pacman -Syu --noconfirm --needed rust || exit
+cargo install --locked --git https://codeberg.org/AminurAlam/kt
+# [ -d "$HOME/repos/helix-fork" ]
+# or git clone https://github.com/AminurAlam/helix.git ~/repos/helix-fork
+# pushd ~/repos/helix-fork
+# cargo install --path helix-term --locked
+# popd
 clear
 
 printf "DOWNLOADING DOTFILES...\n"
@@ -21,7 +31,7 @@ clear
 printf "CHANGING FONT...\n"
 [ -e "$HOME/.termux/font.ttf" ]
 or curl -#Lqo "$HOME/.termux/font.ttf" \
-    "https://github.com/ryanoasis/nerd-fonts/raw/refs/heads/master/patched-fonts/JetBrainsMono/Ligatures/Medium/JetBrainsMonoNerdFont-Medium.ttf"
+    "https://github.com/ryanoasis/nerd-fonts/raw/refs/heads/master/patched-fonts/JetBrainsMono/Ligatures/JetBrainsMonoNerdFont-MediumItalic.ttf"
 clear
 
 [ -e "$HOME/.termux_authinfo" ] || begin
