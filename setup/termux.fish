@@ -3,17 +3,7 @@
 mkdir -p $HOME/{repos,backup} $HOME/.local/{share,bin,cache} $HOME/.local/share/zoxide
 
 printf "INSTALLING BASE PACKAGES...\n"
-pacman -Syu --noconfirm --needed fd git jq ripgrep termux-api termux-auth yazi || exit
-clear
-
-printf "INSTALLING CARGO PACKAGES...\n"
-pacman -Syu --noconfirm --needed rust || exit
-cargo install --locked --git https://codeberg.org/AminurAlam/kt
-# [ -d "$HOME/repos/helix-fork" ]
-# or git clone https://github.com/AminurAlam/helix.git ~/repos/helix-fork
-# pushd ~/repos/helix-fork
-# cargo install --path helix-term --locked
-# popd
+pacman -Syu --noconfirm --needed fd fzd git jq neovim-nightly ripgrep termux-api termux-auth yazi || exit
 clear
 
 printf "DOWNLOADING DOTFILES...\n"
@@ -31,7 +21,7 @@ clear
 printf "CHANGING FONT...\n"
 [ -e "$HOME/.termux/font.ttf" ]
 or curl -#Lqo "$HOME/.termux/font.ttf" \
-    "https://github.com/ryanoasis/nerd-fonts/raw/refs/heads/master/patched-fonts/JetBrainsMono/Ligatures/JetBrainsMonoNerdFont-MediumItalic.ttf"
+    "https://github.com/ryanoasis/nerd-fonts/raw/refs/heads/master/patched-fonts/JetBrainsMono/Ligatures/JetBrainsMonoNerdFont-Medium.ttf"
 clear
 
 [ -e "$HOME/.termux_authinfo" ] || begin
@@ -48,7 +38,8 @@ fd motd $PREFIX/etc/ -x truncate -s 0
     rmdir ~/storage/
 end
 
-fd -HI -tdirectory -x rmdir --ignore-fail-on-non-empty --parents
+[ -e ~/backup ]
+and fd -HI -tdirectory --search-path ~/backup -x rmdir --ignore-fail-on-non-empty --parents
 
 rm -f "$HOME/bootstrap-aarch64.zip"
 

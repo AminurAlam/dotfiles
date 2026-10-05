@@ -10,7 +10,7 @@ function fish_prompt -d 'commandline prompt'
         set user (set_color $fish_color_host)  (switch $USER
             case u0_a312; echo brick
             case u0_a223; echo slab
-            case u0_a293; echo paper
+            case u0_a315; echo paper
             case '*'; echo $USER
         end)
     end

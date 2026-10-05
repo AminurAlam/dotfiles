@@ -80,7 +80,7 @@
     "interval": 1,
     "format-disconnected": "󰤭",
     "format-disabled": "",
-    "format-wifi": "{icon} {bandwidthTotalBytes}",
+    "format-wifi": "{icon} {essid}",
     "format-icons": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"],
     "format-ethernet": "{bandwidthTotalBytes} 󰈀",
     "format-linked": "(No IP)",

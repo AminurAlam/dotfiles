@@ -1,6 +1,6 @@
 set -gx LANG ja_JP.UTF-8
-set -gx EDITOR hx
-set -gx SUDO_EDITOR (command -v "$EDITOR")
+set -gx EDITOR (command -v hx || command -v helix || command -v nvim || command -v neovim || command -v vim)
+set -gx SUDO_EDITOR "$EDITOR"
 set -gx LESS --mouse
 set -gx MANPAGER "nvim +Man!"
 set -gx COLORTERM truecolor
