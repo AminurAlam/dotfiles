@@ -23,11 +23,6 @@ whitespace = { render = { tab = "all", newline = "all" } }
 inline-diagnostics = { cursor-line = "disable", other-lines = "disable" }
 file-picker = { git-ignore = true, max-depth = 5 }
 
-# TODO: +/- toggle text
-# TODO: q -> save line:col info
-# TODO: q -> :buffer-close when #buf > 1
-# TODO: load line:col info from wrapper
-# TODO: C-n to select node
 [keys.insert]
 "C-n" = ["completion"]
 "C-j" = [":buffer-next"]
@@ -38,6 +33,8 @@ file-picker = { git-ignore = true, max-depth = 5 }
 [keys.select]
 "^" = ["extend_to_first_nonwhitespace"]
 "$" = ["extend_to_line_end"]
+"+" = ["increment"]
+"-" = ["decrement"]
 "{" = ["goto_prev_paragraph"]
 "}" = ["goto_next_paragraph"]
 "]".h = ["goto_next_change"]
@@ -62,6 +59,8 @@ o = ["flip_selections"]
 "^" = ["extend_to_first_nonwhitespace"]
 "$" = ["extend_to_line_end"]
 ";" = "@:<ret>"
+"+" = ["increment"]
+"-" = ["decrement"]
 "{" = ["goto_prev_paragraph"]
 "}" = ["goto_next_paragraph"]
 "]".h = ["goto_next_change"]
@@ -90,7 +89,7 @@ q = [
   ":noop %sh{~/.local/bin/hx-state save %{buffer_name} %{cursor_line} %{cursor_column}}",
   # ":sh echo %{cursor_line} %{cursor_column} | tee ~/.local/cache/temp/(printf '%%s' %{buffer_name} | sha256sum - | kt 1)",
   # ":sh cat ~/.local/cache/temp/(printf '%%s' %{buffer_name} | sha256sum - | kt 1)",
-  ":bc",
+  ":quit",
 ]
 r = ["redo"]
 # Q = ["copy_selection_on_next_line"]
