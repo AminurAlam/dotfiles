@@ -9,6 +9,8 @@ colocate = false
 
 [ui]
 default-command = "log"
+pager = "delta"
+diff-formatter = ":git"
 
 [templates]
 log = "pretty"
