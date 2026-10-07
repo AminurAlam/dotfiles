@@ -37,7 +37,6 @@ set -gx QT_QPA_PLATFORMTHEME qt6ct
 set -gx QT_QPA_PLATFORM wayland
 set -gx _ZO_FZF_OPTS '--ignore-case --tiebreak chunk,begin,index --no-multi --scroll-off 4 --height ~90% --layout default --border rounded --margin 0,0,0,0 --no-info --no-separator --prompt " " --preview ""'
 set -gx YAZI_ZOXIDE_OPTS $_ZO_FZF_OPTS
-set -gx ZMX_SESSION_PREFIX "$USER."
 
 # lang config
 set -gx JAVA_HOME /usr/lib/jvm/default
@@ -62,7 +61,6 @@ if set -q TERMUX_VERSION
     set -gx XDG_RUNTIME_DIR $TMPDIR
     set -gx TERMINFO $PREFIX/share/terminfo
     set -gx MANPATH $PREFIX/share/fish/man $PREFIX/share/man
-    set -gx ZMX_SESSION_PREFIX "brick."
     set -gx ZMX_DIR $XDG_DATA_HOME/zmx
     # set -gx VIMRUNTIME $PREFIX/share/nvim/runtime
 
