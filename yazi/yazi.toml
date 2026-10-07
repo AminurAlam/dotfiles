@@ -135,12 +135,7 @@ edit = [
 ]
 common = [
   # { run = "dragon-drop -x %s", orphan = true, desc = " Drag and Drop", for = "linux" },
-  {
-    run = "rsync -Pha --info PROGRESS2 -- %s brick:/sdcard/Download/",
-    block = false,
-    desc = " Send to brick",
-    for = "linux"
-  },
+  { run = "ctl send brick %s", block = false, desc = " Send to brick", for = "linux" },
   { run = "termux-open %s1", orphan = true, desc = "󰏌 Open", for = "android" },
 ]
 dir = [

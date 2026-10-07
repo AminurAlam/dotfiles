@@ -1,7 +1,7 @@
 #!/usr/bin/fish --no-config
 
 switch $argv[1]
-    case vol # (+|-)?     toggle or change vol
+    case vol # (+|-)?               toggle or change vol
         if [ -n "$argv[2]" ]
             wpctl set-volume @DEFAULT_AUDIO_SINK@ (math 2 x (printf $argv[2] | wc -c))%$(string sub -l1 -- $argv[2])
             notify-send -h string:x-canonical-private-synchronous:volume -t 500 "Volume: $(wpctl get-volume @DEFAULT_AUDIO_SINK@ | tr -dc [:digit:] | math)"
@@ -12,13 +12,13 @@ switch $argv[1]
             or notify-send -h string:x-canonical-private-synchronous:mute -t 500 "󰖀 AUDIBLE"
         end
 
-    case mic #            toggle mic on/off
+    case mic #                      toggle mic on/off
         wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle
         wpctl get-volume @DEFAULT_AUDIO_SOURCE@ | rg -q MUTED
         and notify-send -h string:x-canonical-private-synchronous:mic -t 500 "  MUTED"
         or notify-send -h string:x-canonical-private-synchronous:mic -t 500 " AUDIBLE"
 
-    case lum # <+|-> [n]  change brightness
+    case lum # <+|-> [n]            change brightness
         set a 1
         [ -z "$argv[3]" ]
         and set argv[3] 2
@@ -44,7 +44,7 @@ switch $argv[1]
         notify-send -h string:x-canonical-private-synchronous:brightness -t 500 \
             "Brightness: $(math -s0 "100 x ($new / $max)")%"
 
-    case pow #            change powerprofile
+    case pow #                      change powerprofile
         set current (powerprofilesctl get)
         if [ "$current" = balanced ]
             notify-send -h string:x-canonical-private-synchronous:power -t 500 " PERFORMANCE"
@@ -57,7 +57,7 @@ switch $argv[1]
             powerprofilesctl set power-saver
         end
 
-    case lim #            toggle battery limit
+    case lim #                      toggle battery limit
         set file /sys/bus/platform/drivers/ideapad_acpi/VPC2004:00/conservation_mode
         set bit $(math bitxor 1,(cat $file))
 
@@ -69,7 +69,7 @@ switch $argv[1]
         and notify-send -h string:x-canonical-private-synchronous:limit -t 500 " BATTERY LIMITED"
         or notify-send -h string:x-canonical-private-synchronous:limit -t 500 " BATTERY UNLOCKED"
 
-    case ss # (full|ocr)? take screenshot
+    case ss # (full|ocr)?           take screenshot
         set filename Screenshot_(date +'%Y%m%d_%H%M%S')_grim.png
 
         if [ "$argv[2]" = full ]
@@ -80,11 +80,30 @@ switch $argv[1]
             grim -g (slurp) $XDG_PICTURES_DIR/ss/$filename && notify-send "$filename taken"
         end
 
-    case ssend #          send screenshot to phone
-        fd . $XDG_PICTURES_DIR/ss/ -a --changed-within 10min -X rsync -Pha '{}' brick:/sdcard/Download/
-        fd . $XDG_PICTURES_DIR/ss/ -a --changed-within 10min -x notify-send -t 2000 -i '{}' 'sent {/}'
+    case updateip #                 update ip addr in ssh_config
+        set sed_template 's/^    Hostname .* #$1$/    Hostname $2 #$1/;'
+        set kde_parse '- (\w+): [0-f]{32} on ([\S]+) via LAN \(paired and reachable\)'
+        set sed_script (kdeconnect-cli --list-devices 2>/dev/null | rg --replace "$sed_template" -- $kde_parse)
+        set brick_default_ip (nc -w3 -q3 -z android.local 8022 2>| rg --replace 's/Hostname $1 #brick/Hostname android.local #brick/' -- 'Connection to android.local \((\d+\.\d+\.\d+\.\d+)\) 8022 port .*')
 
-    case rec #            screen record
+        # printf "%s\n" "$sed_script"
+        sed -Ei "$sed_script" ~/.ssh/config
+        [ -n "$brick_default_ip" ]
+        and sed -Ei "$brick_default_ip" ~/.ssh/config
+
+    case send # <device> [files..]  send file
+        [ -z "$argv[3..]" ] && return
+
+        if rsync -Pha $argv[3..] brick:/sdcard/Download/ || kdeconnect-cli -n brick --share $argv[3..]
+            notify-send -t 2000 "sent: $(path basename $argv[3..])"
+        else
+            notify-send -t 2000 "failed: $(path basename $argv[3..])"
+        end
+
+    case ss_send #                  send screenshot to phone
+        fd . $XDG_PICTURES_DIR/ss/ -a --changed-within 10min -x ctl send brick '{}'
+
+    case rec #                      screen record
         # niri msg -j casts
         set wfid (pidof wf-recorder)
         if [ -n "$wfid" ]
@@ -102,17 +121,17 @@ switch $argv[1]
             wf-recorder -r 30 -p "br=5M" -f (date +'%Y-%m-%d_%H%M_%S').mp4
         end
 
-    case picker #         color picker
+    case picker #                   color picker
         set hex (niri msg pick-color | string match -gr '(#[[:xdigit:]]+)')
         set size 100
         set svg '<svg viewBox="0 0 '$size' '$size'" width="'$size'pt" height="'$size'pt"> <path fill="'$hex'" fill-rule="nonzero" d="M 0 0v '$size' h '$size' v -'$size' Z " /> </svg>'
         notify-send -t 1500 -i (echo $svg | psub) $hex
         wl-copy -n $hex
 
-    case sys #            show status of user units
+    case sys #                      show status of user units
         systemctl --user status --full --no-pager -n0 (path basename  ~/.config/systemd/user/*.service)
 
-    case toggle-width #   toggle between 50% width and maximize-window-to-edges
+    case toggle_width #             toggle between 50% width and maximize-window-to-edges
         set json (niri msg -j focused-window)
         if [ (printf "%s" "$json" | jq .is_floating) = false ]
             # use this if you have goofy sizes
@@ -135,18 +154,18 @@ switch $argv[1]
                 ) x 16 / 9
             )
         end
-    case browser #        focus to existing browser instance or spawn it
+    case browser #                  focus to existing browser instance or spawn it
         set id (niri msg -j windows | jq '.[] | select(.app_id == "librewolf") | .id')
         [ -n "$id" ]
         and niri msg action focus-window --id $id
         or librewolf
 
-    case launcher #       lauch or close launcher
+    case launcher #                 lauch or close launcher
         pidof fuzzel
         and pkill fuzzel
         or fuzzel
 
-    case wp # <filepath>  set wallpaper
+    case wp # <filepath>            set wallpaper
         if [ -e "$argv[2]" ]
             killall swaybg
             if [ (math (mediainfo --Output=JSON --Output="Image;%Width% + %Height%" $argv[2])) -le 3000 ]
@@ -156,10 +175,10 @@ switch $argv[1]
             end
         end
 
-    case opacity # 0-255  set terminal opacity
+    case opacity # 0-255            set terminal opacity
         printf "\033]11;rgba:24/28/3b/$(math --base 16 $argv[2] | string replace 0x '')\007"
 
-    case '*' #            print help
+    case '*' #                      print help
         printf 'USAGE:\n'
-        rg --replace '$1' '^    case ([^\s]+) #' (status filename)
+        rg --replace '$1' '^    case (\w+) #' (status filename)
 end

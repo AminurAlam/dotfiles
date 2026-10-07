@@ -10,7 +10,7 @@ binds {
     Mod+A repeat=false { spawn "footclient"; }
     Mod+S repeat=false { spawn "ctl" "browser"; }
     Mod+D repeat=false { toggle-window-floating; }
-    Mod+F repeat=false { spawn "ctl" "toggle-width"; }
+    Mod+F repeat=false { spawn "ctl" "toggle_width"; }
     Mod+Shift+F repeat=false { fullscreen-window; }
 
     // TURNING OFF
@@ -21,7 +21,7 @@ binds {
     Mod+P       { screenshot show-pointer=false; }
     Mod+Shift+P { screenshot-screen; }
     Mod+Alt+P   { screenshot-window; }
-    Mod+o       { spawn "ctl" "ssend"; }
+    Mod+o       { spawn "ctl" "ss_send"; }
 
     // FUNC
     XF86AudioMute repeat=false    { spawn "ctl" "vol";}

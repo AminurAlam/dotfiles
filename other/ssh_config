@@ -11,10 +11,10 @@ Host brick brick/* slab paper
     AddressFamily inet
 
 Host brick
-    Hostname android.local
+    Hostname android.local #brick
 
 Host brick/*
-    Hostname android.local
+    Hostname android.local #brick
     RemoteCommand mux (string replace 'brick/' '' %k)
     RequestTTY yes
     ControlPath ~/.ssh/cm-%r@%h:%p
@@ -22,10 +22,10 @@ Host brick/*
     ControlPersist 10m
 
 Host slab
-    Hostname 192.168.43.1
+    Hostname 192.168.0.0 #slab
 
 Host paper
-    Hostname 192.168.0.0
+    Hostname 192.168.0.0 #paper
 
 Host github.com gitlab.com codeberg.org
     User git
