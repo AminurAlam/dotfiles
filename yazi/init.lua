@@ -131,6 +131,27 @@ do -- [=[ put progress in header
   --]=]
 end
 
+do -- [=[ count icons
+  function Header:count()
+    local selected = #self._tab.selected
+    local yanked = selected > 0 and 0 or #cx.yanked
+
+    local span
+    if selected > 0 then
+      span = ui.Span('󰻭 ' .. selected):style(th.mgr.count_selected)
+    elseif yanked <= 0 then
+      return ''
+    elseif cx.yanked.is_cut then
+      span = ui.Span('󰆐 ' .. yanked):style(th.mgr.count_cut)
+    else
+      span = ui.Span(' ' .. yanked):style(th.mgr.count_copied)
+    end
+
+    return ui.Line { span, ' ' }
+  end
+  --]=]
+end
+
 do --[=[ smaller progress layout
   function Progress:layout()
     self._area = ui.Rect {
