@@ -27,9 +27,9 @@ trailing-comment-space-width = 2
 
 [lint]
 [lint.rules]
-dotted-keys-out-of-order = "warn"
+dotted-keys-out-of-order = "off"
 key-empty = "warn"
-tables-out-of-order = "warn"
+tables-out-of-order = "off"
 
 [lsp]
 code-action.enabled = true

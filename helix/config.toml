@@ -15,6 +15,7 @@ theme = "custom"
 [editor]
 auto-format = true
 completion-replace = true
+completion-trigger-len = 0
 text-width = 85
 atomic-save = false
 jump-label-alphabet = "fjdksla;ghcnvmwi"
@@ -44,13 +45,25 @@ file-picker = { git-ignore = true, max-depth = 5 }
 "S-ret" = ["select_line_above"]
 0 = ["extend_to_line_start"]
 G = ["extend_to_file_end"]
+M = ["match_brackets"]
 U = [":reset-diff-change"]
 V = ["extend_to_line_bounds"]
-# TODO: add same `m` stuff as normal mode
-# m = ["select_mode", "match_brackets"]
 v = ["extend_to_line_bounds"]
 g.x = ["goto_file"]
 o = ["flip_selections"]
+
+[keys.select.m]
+m = "@mim"
+M = "@mam"
+'"' = '@mi"'
+"'" = "@mi'"
+"`" = "@mi`"
+"[" = "@mi["
+"]" = "@mi]"
+"(" = "@mi("
+")" = "@mi)"
+"{" = "@mi{"
+"}" = "@mi}"
 
 [keys.normal]
 # "*" = ["move_char_right", "move_prev_word_start", "move_next_word_end", "search_selection", "search_next"]
@@ -78,10 +91,10 @@ o = ["flip_selections"]
 "ret" = "@miw*"
 "S-ret" = "@miW"
 0 = ["extend_to_line_start"]
-C = ["kill_to_line_end", "insert_mode"]                                                    # TODO: clear from head not end of selection
-D = ["kill_to_line_end"]                                                                   # TODO: fix copy on delete
+C = ["collapse_selection", "extend_to_line_end", "change_selection"]
+D = ["collapse_selection", "extend_to_line_end", "delete_selection"]
 G = ["goto_file_end"]
-M = ["select_textobject_around"]
+M = ["match_brackets"]
 U = [":reset-diff-change"]
 V = ["extend_to_line_bounds"]
 Y = ["collapse_selection", "extend_to_line_end", "yank", "flip_selections"]
@@ -124,6 +137,7 @@ d = [
 x = [":goto %sh{hx-state load %{buffer_name} 1} %sh{hx-state load %{buffer_name} 2}", "align_view_center"]
 f = [":toggle-option auto-format"]
 w = [":toggle-option soft-wrap.enable"]
+n = [':toggle-option gutters.layout [] ["diff", "line-numbers", "spacer"]']
 
 # TODO: add macros
 [keys.normal."@"]
