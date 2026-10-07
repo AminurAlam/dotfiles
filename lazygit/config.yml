@@ -1,11 +1,6 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/jesseduffield/lazygit/master/schema/config.json# Config relating to the Lazygit UI
 # Config relating to the Lazygit UI
 gui:
-  # See https://github.com/jesseduffield/lazygit/blob/master/docs/Config.md#custom-author-color
-  authorColors:
-    "*": "#b7bdf8"
-  # See https://github.com/jesseduffield/lazygit/blob/master/docs/Config.md#custom-branch-color
-  branchColorPatterns: {}
   # Custom icons for filenames and file extensions
   # See https://github.com/jesseduffield/lazygit/blob/master/docs/Config.md#custom-files-icon--color
   customIcons:
@@ -25,14 +20,14 @@ gui:
   # view, but probably mostly relevant for diffs.
   # Note that when using a diff renderer, the renderer has its own tab width
   # setting, so you need to pass it separately in the renderer command.
-  tabWidth: 2
+  tabWidth: 4
   # If true, capture mouse events.
   # When mouse events are captured, it's a little harder to select text: e.g.
   # requiring you to hold the option key when on macOS.
   mouseEvents: true
   # If true, do not show a warning when amending a commit.
-  skipAmendWarning: true
-  # If true, do not show a warning when discarding changes in the staging view.
+  skipAmendWarning: false
+  # If true, do not show a warning when discarding changes from a focused diff.
   skipDiscardChangeWarning: false
   # If true, do not show warning when applying/popping the stash
   skipStashWarning: false
@@ -48,7 +43,7 @@ gui:
   # want to pick a small number (e.g. 0.2) if you're using a narrow screen, so
   # that you can see more of the main section.
   # Number from 0 to 1.0.
-  sidePanelWidth: 0.3
+  sidePanelWidth: 0.3333
   # If true, increase the height of the focused side window; creating an accordion
   # effect.
   expandFocusedSidePanel: false
@@ -88,13 +83,12 @@ gui:
   # the right)
   # - 'top': split the window vertically (side panel on top, main view below)
   enlargedSideViewLocation: top
-  # If true, wrap lines in the staging view to the width of the view. This makes
-  # it much easier to work with diffs that have long lines, e.g. paragraphs of
+  # If true, wrap lines in focused diffs to the width of the view. This makes it
+  # much easier to work with diffs that have long lines, e.g. paragraphs of
   # markdown text.
-  wrapLinesInStagingView: true
-  # If true, hunk selection mode will be enabled by default when entering the
-  # staging view.
-  useHunkModeInStagingView: true
+  wrapLinesInDiffView: true
+  # If true, hunk selection mode will be enabled by default when focusing a diff.
+  useHunkModeInDiffView: true
   # One of 'auto' (default) | 'en' | 'zh-CN' | 'zh-TW' | 'pl' | 'nl' | 'ja' | 'ko'
   # | 'ru' | 'pt'
   language: auto
@@ -104,19 +98,28 @@ gui:
   # Format used when displaying time if the time is less than 24 hours ago.
   # Uses Go's time format syntax: https://pkg.go.dev/time#Time.Format
   shortTimeFormat: 3:04PM
+  # Whether the terminal has a dark or a light background. This decides whether
+  # 'darkTheme' or 'lightTheme' applies, and the colors of authors are picked to
+  # stand out against it.
+  # One of: 'auto' (default) | 'dark' | 'light'
+  # With 'auto', lazygit asks the terminal, and assumes a dark background if the
+  # terminal doesn't tell.
+  colorScheme: auto
   # Config relating to colors and styles.
   # See https://github.com/jesseduffield/lazygit/blob/master/docs/Config.md#color-attributes
   theme:
     activeBorderColor:
       - "#ff9e64"
-      - "bold"
+      - bold
     inactiveBorderColor:
       - "#29a4bd"
     searchingActiveBorderColor:
       - "#ff9e64"
-      - "bold"
+      - bold
     optionsTextColor:
       - blue
+    selectedLineFgColor:
+      - bold
     selectedLineBgColor:
       - "#2e3c64"
     inactiveViewSelectedLineBgColor:
@@ -133,6 +136,19 @@ gui:
       - red
     defaultFgColor:
       - "#c0caf5"
+    # See https://github.com/jesseduffield/lazygit/blob/master/docs/Config.md#custom-author-color
+    authorColors:
+      "*": "#b7bdf8"
+    # See https://github.com/jesseduffield/lazygit/blob/master/docs/Config.md#custom-branch-color
+    branchColorPatterns: {}
+  # Colors and styles that override those in 'theme' when the terminal has a dark
+  # background. It has the same fields as 'theme'.
+  # See https://github.com/jesseduffield/lazygit/blob/master/docs/Config.md#themes-for-dark-and-light-backgrounds
+  darkTheme: {}
+  # Colors and styles that override those in 'theme' when the terminal has a light
+  # background. It has the same fields as 'theme'.
+  # See https://github.com/jesseduffield/lazygit/blob/master/docs/Config.md#themes-for-dark-and-light-backgrounds
+  lightTheme: {}
   # Config relating to the commit length indicator
   commitLength:
     # If true, show an indicator of commit message length
@@ -172,6 +188,17 @@ gui:
   # If true (default), file icons are shown in the file views. Only relevant if
   # NerdFontsVersion is not empty.
   showFileIcons: true
+  # How the commit graph is drawn.
+  # One of: 'auto' (default) | 'classic' | 'detailed'
+  # 'detailed' connects the lines to the commit circles, and shows exactly where
+  # branches fork off and merge. It draws the graph with the git branch drawing
+  # symbols (U+F5D0 to U+F60D), so it needs a terminal that draws these itself:
+  # kitty, Ghostty, WezTerm (nightly builds), Contour, or VS Code's terminal with
+  # GPU acceleration. Other terminals need a font that contains them, such as
+  # https://github.com/rbong/flog-symbols.
+  # 'auto' uses 'detailed' if lazygit recognizes the terminal as one that draws
+  # these symbols (kitty and Ghostty), and 'classic' otherwise.
+  commitGraphStyle: detailed
   # Length of author name in (non-expanded) commits view. 2 means show initials
   # only.
   commitAuthorShortLength: 0
@@ -224,7 +251,7 @@ gui:
       - ∙∙●
       - ∙●∙
     # The "speed" of the spinner in milliseconds.
-    rate: 100
+    rate: 180
   # Status panel view.
   # One of 'dashboard' (default) | 'allBranchesLog'
   statusPanelView: dashboard
@@ -271,7 +298,7 @@ git:
   # for more information.
   diffRenderers:
     - colorArg: always
-      command: "delta --dark --paging=never"
+      command: 'delta --{{colorScheme}} --paging=never --hyperlinks --hyperlinks-file-link-format="lazygit-edit://{path}:{line}"'
   # Config relating to committing
   commit:
     # If true, pass '--signoff' flag when committing
@@ -310,7 +337,9 @@ git:
   # If not "none", lazygit will automatically fast-forward local branches to match
   # their upstream after fetching. Applies to branches that are not the currently
   # checked out branch, and only to those that are strictly behind their upstream
-  # (as opposed to diverged).
+  # (as opposed to diverged). A branch that is checked out in another worktree is
+  # fast-forwarded there, unless that worktree has changes to tracked files or is
+  # in the middle of a rebase or bisect.
   # Possible values: 'none' | 'onlyMainBranches' | 'allBranches'
   autoForwardBranches: onlyMainBranches
   # If true, pass the --all arg to git fetch
@@ -398,10 +427,10 @@ update:
 refresher:
   # File/submodule refresh interval in seconds.
   # Auto-refresh can be disabled via option 'git.autoRefresh'.
-  refreshInterval: 3600
+  refreshInterval: 10
   # Re-fetch interval in seconds.
   # Auto-fetch can be disabled via option 'git.autoFetch'.
-  fetchInterval: 3600
+  fetchInterval: 60
   # Interval in seconds at which lazygit polls for external ref changes (commits,
   # branch updates, checkouts made outside lazygit).
   # Detection can be disabled via option 'git.autoDetectExternalChanges'.
@@ -490,24 +519,25 @@ keybinding:
     togglePanel: <tab>
     prevItem: [<up>, k]
     nextItem: [<down>, j]
-    prevPage: ","
+    prevPage: ','
     nextPage: .
     scrollLeft: H
     scrollRight: L
     gotoTop: [g, <, <home>]
-    gotoBottom: [G, ">", <end>]
+    gotoBottom: [G, '>', <end>]
     toggleRangeSelect: v
     rangeSelectDown: <shift+down>
     rangeSelectUp: <shift+up>
-    prevBlock: [<left>, <backtab>]
-    nextBlock: [<right>, <tab>]
+    prevBlock: [<left>, h, <backtab>]
+    nextBlock: [<right>, l, <tab>]
     jumpToBlock:
       - "1"
       - "2"
-      - <disabled>
-      - <disabled>
-      - <disabled>
+      - "3"
+      - "4"
+      - "5"
     focusMainView: "0"
+    jumpToFile: <ctrl+g>
     nextMatch: "n"
     prevMatch: "N"
     startSearch: /
@@ -519,7 +549,7 @@ keybinding:
     backspaceWord: <ctrl+backspace>
     # <alt+delete> on Mac
     forwardDeleteWord: <ctrl+delete>
-    optionMenu: "?"
+    optionMenu: '?'
     select: [<space>, x]
     goInto: [l, <enter>]
     confirm: <enter>
@@ -534,7 +564,7 @@ keybinding:
     openFile: o
     scrollUpMain: [<pgup>, K, <ctrl+u>]
     scrollDownMain: [<pgdown>, J, <ctrl+d>]
-    executeShellCommand: ":"
+    executeShellCommand: ':'
     createRebaseOptionsMenu: m
     # 'Files' appended for legacy reasons
     pushFiles: P
@@ -542,11 +572,11 @@ keybinding:
     pullFiles: p
     refresh: R
     createPatchOptionsMenu: <ctrl+p>
-    nextTab: "]"
-    prevTab: "["
+    nextTab: ']'
+    prevTab: '['
     nextScreenMode: +
     prevScreenMode: _
-    cycleDiffRenderers: "|"
+    cycleDiffRenderers: '|'
     cycleDiffRenderersReverse: \
     undo: z
     redo: Z
@@ -555,10 +585,10 @@ keybinding:
     copyToClipboard: <ctrl+o>
     openRecentRepos: <ctrl+r>
     submitEditorText: <enter>
-    extrasMenu: "@"
+    extrasMenu: '@'
     toggleWhitespaceInDiffView: <ctrl+w>
-    increaseContextInDiffView: "}"
-    decreaseContextInDiffView: "{"
+    increaseContextInDiffView: '}'
+    decreaseContextInDiffView: '{'
     increaseRenameSimilarityThreshold: )
     decreaseRenameSimilarityThreshold: (
     openDiffTool: <ctrl+t>
@@ -582,11 +612,11 @@ keybinding:
     toggleStagedAll: a
     viewResetOptions: D
     fetch: f
-    toggleTreeView: "`"
+    toggleTreeView: '`'
     openMergeOptions: M
     openStatusFilter: <ctrl+b>
     copyFileInfoToClipboard: "y"
-    collapseAll: "-"
+    collapseAll: '-'
     expandAll: =
   branches:
     createPullRequest: o
@@ -595,7 +625,7 @@ keybinding:
     copyPullRequestURL: <ctrl+y>
     checkoutBranchByName: c
     forceCheckoutBranch: F
-    checkoutPreviousBranch: "-"
+    checkoutPreviousBranch: '-'
     rebaseBranch: r
     renameBranch: R
     mergeIntoCurrentBranch: M
@@ -635,7 +665,7 @@ keybinding:
     openPullRequestInBrowser: <disabled>
     viewBisectOptions: b
     startInteractiveRebase: <disabled>
-    selectCommitsOfCurrentBranch: "*"
+    selectCommitsOfCurrentBranch: '*'
   amendAttribute:
     resetAuthor: a
     setAuthor: A
@@ -646,8 +676,10 @@ keybinding:
   commitFiles:
     checkoutCommitFile: c
   main:
-    prevHunk: [<left>]
-    nextHunk: [<right>]
+    prevHunk: [<left>, h]
+    nextHunk: [<right>, l]
+    prevFile: "N"
+    nextFile: "n"
     toggleSelectHunk: a
     pickBothHunks: b
     editSelectHunk: E

@@ -43,7 +43,6 @@ require('conform').setup({
     jsonc = { 'prettier' },
     markdown = { 'prettier' },
     mdx = { 'prettier' },
-    yaml = { 'prettier' },
     html = { 'prettier' },
   },
   format_on_save = function(bufnr)
