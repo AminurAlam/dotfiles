@@ -1,30 +1,12 @@
 // MISC
 
-window-rule {  // focus save as window
+window-rule { // focus on popups
     match title="^file_chooser$"
+    match title="^KeePassXC - (Browser Access Request|ブラウザーのアクセス要求)$"
 
     open-focused true
 }
 
-window-rule { // focus on keepass
-    match title="^KeePassXC - Browser Access Request$"
-
-    open-focused true
-}
-
-window-rule { // floating shadow
-    match is-floating=true
-
-    shadow {
-        on
-        // draw-behind-window true
-        softness 30
-        spread 5
-        offset x=0 y=5
-        color "#0007"
-    }
-
-}
 
 // SIZING
 
@@ -35,23 +17,33 @@ window-rule { // maximized
     open-maximized-to-edges true
 }
 
-window-rule { // identity
+window-rule { // fullscreen
     match app-id="^org.gnome.gitlab.YaLTeR.Identity$"
 
     open-fullscreen true
 }
 
-window-rule { // scrcpy
-    match app-id="scrcpy"
-
-    default-column-width { fixed 475;  }
-}
-
-window-rule {
+window-rule { // floating
     match app-id="^foot$" title="^float$"
 
     open-floating true
 }
+
+window-rule { // fixed size: mpv music
+    match app-id="^mpv$" title="\\.flac$"
+
+    open-floating true
+    default-floating-position x=1710 y=10
+    max-width 200
+    max-height 200
+}
+
+window-rule { // fixed size: sc mirror
+    match app-id="scrcpy"
+
+    default-column-width { fixed 475; }
+}
+
 
 // WINDOW FOCUS
 
@@ -75,7 +67,9 @@ window-rule { // focused
 
     opacity 1.0
     border
+    focus-ring { on; }
 }
+
 
 // LAYER BLUR
 
