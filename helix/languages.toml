@@ -4,7 +4,6 @@ language = [
   { name = "fish", auto-format = true },
   { name = "handlebars", scope = "source.handlebars", file-types = ["handlebars"] },
   { name = "kanata", scope = "source.kanata", file-types = ["kbd"], comment-tokens = [";;"] },
-  { name = "kdl", auto-format = true },
   { name = "lua", roots = [".luarc.json", ".luacheckrc", ".stylua.toml", "selene.toml"], auto-format = true },
   { name = "markdown", auto-format = true, formatter = { command = "prettier", args = ["--parser", "markdown"] } },
   { name = "newsraft", scope = "source.newsraft", file-types = [{ glob = "newsraft/feeds" }] },
