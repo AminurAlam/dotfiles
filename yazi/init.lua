@@ -138,13 +138,13 @@ do -- [=[ count icons
 
     local span
     if selected > 0 then
-      span = ui.Span('󰻭 ' .. selected):style(th.mgr.count_selected)
+      span = ui.Span(' 󰻭 ' .. selected .. ' '):style(th.mgr.count_selected)
     elseif yanked <= 0 then
       return ''
     elseif cx.yanked.is_cut then
-      span = ui.Span('󰆐 ' .. yanked):style(th.mgr.count_cut)
+      span = ui.Span(' 󰆐 ' .. yanked .. ' '):style(th.mgr.count_cut)
     else
-      span = ui.Span(' ' .. yanked):style(th.mgr.count_copied)
+      span = ui.Span('  ' .. yanked .. ' '):style(th.mgr.count_copied)
     end
 
     return ui.Line { span, ' ' }
