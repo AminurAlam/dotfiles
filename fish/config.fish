@@ -1,10 +1,3 @@
-set -gx LANG ja_JP.UTF-8
-set -gx EDITOR (command -v hx || command -v helix || command -v nvim || command -v neovim || command -v vim)
-set -gx SUDO_EDITOR "$EDITOR"
-set -gx LESS --mouse
-set -gx MANPAGER "nvim +Man!"
-set -gx COLORTERM truecolor
-
 # xdg
 set -gx XDG_VIDEOS_DIR $HOME/vid
 set -gx XDG_DOWNLOAD_DIR $HOME/dl
@@ -17,13 +10,25 @@ set -gx XDG_CACHE_HOME $HOME/.local/cache
 set -gx XDG_DATA_HOME $HOME/.local/share
 set -gx XDG_STATE_HOME $HOME/.local/state
 
+if set -q TERMUX_VERSION
+    set -gx XDG_RUNTIME_DIR $TMPDIR
+    set -gx TERMINFO $PREFIX/share/terminfo
+    set -gx MANPATH $PREFIX/share/fish/man $PREFIX/share/man
+    set -gx ZMX_DIR $XDG_DATA_HOME/zmx
+
+    set -gx XDG_VIDEOS_DIR /sdcard/Movies
+    set -gx XDG_DOWNLOAD_DIR /sdcard/Download
+    set -gx XDG_DOCUMENTS_DIR /sdcard/Documents
+    set -gx XDG_MUSIC_DIR /sdcard/Music
+    set -gx XDG_PICTURES_DIR /sdcard/Pictures
+    set -gx XDG_VIDEOS_DIR /sdcard/Movies
+end
+
 # command config
 set -gx TERMCMD foot
-set -gx TERMILAL foot
+set -gx TERMINAL foot
 set -gx MOZ_ENABLE_WAYLAND 1
 set -gx STARSHIP_CACHE $XDG_CACHE_HOME/starship
-set -gx ICEAUTHORITY $XDG_CACHE_HOME/ICEauthority
-set -gx XAUTHORITY $XDG_RUNTIME_DIR/Xauthority
 set -gx SSH_AUTH_SOCK $XDG_RUNTIME_DIR/ssh-agent.socket
 set -gx GNUPGHOME $XDG_DATA_HOME/gnupg
 set -gx TAPLO_CONFIG $HOME/repos/dotfiles/other/taplo.toml
@@ -51,31 +56,6 @@ set -gx GOMODCACHE $XDG_CACHE_HOME/go/mod
 set -gx RUSTUP_HOME $XDG_DATA_HOME/rustup
 set -gx CARGO_HOME $XDG_DATA_HOME/cargo
 set -gx CARGO_INSTALL_ROOT $CARGO_HOME
-set -gx R_HISTFILE $XDG_STATE_HOME/R/history
-set -gx R_HOME_USER $HOME/.config/R
-set -gx R_PROFILE_USER $HOME/.config/R/profile
-set -gx R_LIBS_USER $XDG_DATA_HOME/R/x86_64-pc-linux-gnu-library
-set -gx TYPST_FEATURES html
-
-if set -q TERMUX_VERSION
-    set -gx XDG_RUNTIME_DIR $TMPDIR
-    set -gx TERMINFO $PREFIX/share/terminfo
-    set -gx MANPATH $PREFIX/share/fish/man $PREFIX/share/man
-    set -gx ZMX_DIR $XDG_DATA_HOME/zmx
-    # set -gx VIMRUNTIME $PREFIX/share/nvim/runtime
-
-    set -gx XDG_VIDEOS_DIR /sdcard/Movies
-    set -gx XDG_DOWNLOAD_DIR /sdcard/Download
-    set -gx XDG_DOCUMENTS_DIR /sdcard/Documents
-    set -gx XDG_MUSIC_DIR /sdcard/Music
-    set -gx XDG_PICTURES_DIR /sdcard/Pictures
-    set -gx XDG_VIDEOS_DIR /sdcard/Movies
-
-    set -gxp --path PATH ~/.local/bin # sometimes before
-    set -gxp --path PATH ~/.local/share/npm/bin
-
-    pidof sshd &>/dev/null || sshd
-end
 
 fish_add_path --path "$CARGO_HOME/bin" # after declaring CARGO_HOME
 fish_add_path --path ~/.local/bin # sometimes before
@@ -84,7 +64,18 @@ fish_add_path --path $ANDROID_HOME/tools
 fish_add_path --path $ANDROID_HOME/tools/bin
 fish_add_path --path $JAVA_HOME/bin
 
+set -gx LANG ja_JP.UTF-8
+set -gx EDITOR (command -v hx || command -v helix || command -v nvim || command -v neovim || command -v vim)
+set -gx SUDO_EDITOR "$EDITOR"
+set -gx LESS --mouse
+set -gx MANPAGER "nvim +Man!"
+set -gx COLORTERM truecolor
+
 status is-interactive || exit
+
+if set -q TERMUX_VERSION && not pidof sshd &>/dev/null
+    sshd
+end
 
 function fish_mode_prompt
 end

@@ -17,24 +17,20 @@ function mux -d "zmx wrapper"
         or pushd (zoxide query "$argv[2]" 2>/dev/null) 2>/dev/null
     else
         switch "$argv[1]"
-            case conf
+            case "conf*"
                 pushd ~/repos/dotfiles/
-            case yt
+            case "yt*"
                 pushd ~/vid/yt
-            case site
+            case "site*"
                 pushd ~/repos/aminuralam.github.io
-            case lewd
+            case "lewd*"
                 pushd "/sdcard/Tachi/downloads/HentaiNexus (EN)/"
-            case tachi
+            case "tachi*"
                 pushd /sdcard/Tachi/local
         end
     end
 
-    if [ "$(zmx get "$argv[1]" ssh)" = true ]
-        ssh $argv
-    else
-        zmx attach "$argv[1]"
-    end
+    zmx attach "$argv[1]"
 
     popd 2>/dev/null
 end
