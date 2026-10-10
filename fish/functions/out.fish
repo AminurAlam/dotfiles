@@ -20,6 +20,7 @@ function out -d "compile and run some code"
             open (path change-extension pdf "$argv[1]")
             latexmk -c
         case .typ
+            # TODO: use a bacon job for typst instead
             typst c $argv[1]
             set pdffile (path change-extension pdf "$argv[1]")
             if not pgrep -fx --quiet "okular $pdffile"

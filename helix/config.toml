@@ -8,7 +8,6 @@
 # TODO: retain column (kt?!??): https://github.com/Axlefublr/helix#retain_column
 # TODO: ignore single char d/c
 # TODO: change completion kind
-# TODO: C-{n,p} in prompt mode
 # TODO: shebang like vim: ft=*
 
 theme = "custom"
@@ -39,6 +38,12 @@ theme = "custom"
 0 = "extend_to_line_start"
 C = ["collapse_selection", "extend_to_line_end", "change_selection"]
 D = ["collapse_selection", "extend_to_line_end", "delete_selection"]
+H = ":noop %sh{foot -- git -c core.pager='delta --paging always' diff %{buffer_name}}"
+# H = [
+#   ":noop %sh{git diff -U0 -- %{buffer_name} | awk -v l=%{cursor_line} '/^@@/ { if (found) exit; match($0, /\\+[0-9]+(,[0-9]+)?/); s=substr($0,RSTART+1,RLENGTH-1); split(s,a,\",\"); start=a[1]; count=(a[2] ? a[2] : 1); end=start+count-1; found=(l>=start && l<=end); if (found) print; next } found { print }' > /tmp/hx-hunk.diff}",
+#   ":insert-output sleep 0.01",
+#   ":o /tmp/hx-hunk.diff",
+# ]
 G = "goto_file_end"
 M = "match_brackets"
 U = ":reset-diff-change"
@@ -81,6 +86,7 @@ x = "@<C-s>geT[cx<esc><C-o>"
 
 [keys.normal.space]
 F = "file_picker_in_current_buffer_directory"
+# TODO: use a bacon job for typst instead
 e = [":w", ":sh out %{file_path_absolute}"]
 g = "global_search"
 h = "command_palette"

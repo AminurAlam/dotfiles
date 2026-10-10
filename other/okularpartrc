@@ -1,6 +1,5 @@
 [General]
 MaxRecentItems=0
-ShowOSD=false
 
 [Main View]
 ShowLeftPanel=false
@@ -8,7 +7,6 @@ ShowLeftPanel=false
 [PageView]
 BackgroundColor=0,0,0
 ScrollOverlap=50
-ShowScrollBars=false
 UseCustomBackgroundColor=true
 
 [Reviews]

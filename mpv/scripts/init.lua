@@ -1,7 +1,7 @@
 local mp = require('mp')
 local utils = require('mp.utils')
 
--- [[ event ]]
+-- [[ init config ]]
 
 mp.register_event('start-file', function()
   mp.set_property('resume-playback', 'no')
@@ -10,8 +10,7 @@ mp.register_event('start-file', function()
   if dir:match('^' .. os.getenv('XDG_VIDEOS_DIR') .. '/yt/$') then
     mp.set_property('speed', 1.4)
   end
-
-  if dir:match('^' .. os.getenv('XDG_VIDEOS_DIR') .. '/mv/$') or file:match('%..*$') == '.flac' then
+  if file:match('%..*$') == '.flac' then
     mp.set_property('start', 0)
   end
 end)
@@ -118,6 +117,8 @@ local ss = function()
   mp.set_property('sub-visibility', primary)
   mp.set_property('secondary-sub-visibility', secondary)
 end
+
+-- [[ bind ]]
 
 mp.add_key_binding('a', 'swap-subtitles', swap_subtitles)
 mp.add_key_binding('d', 'yank-jp-text', yank_jp_text)

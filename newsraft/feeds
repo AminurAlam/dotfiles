@@ -9,10 +9,10 @@
 @ TECH
 https://lobste.rs/rss < item-rule "title NOT LIKE 'What are you doing this week%'"; item-limit 400
 https://hnrss.org/frontpage.atom "Hacker News" < item-rule "NOT (title REGEXP '^(Show|Tell|Ask|Launch) HN: ' OR title REGEXP '\(YC .*\)' OR title REGEXP '(OpenAI|Anthropic|[Cc]laude|[Oo]pus|[Gg]emini|[Gg]rok|[Kk]imi|[Qq]wen|GPT|AI|LLM|[Aa]gent)')"; item-limit 400
-https://bearblog.dev/discover/feed/ < item-rule "NOT (link REGEXP 'blog.avas.space|blog.absurdpirate.com|rnotte.art|householderkarl.com')"; item-limit 100
+https://bearblog.dev/discover/feed/ < item-rule "NOT (link REGEXP 'blog.avas.space|blog.absurdpirate.com|rnotte.art|terminallucidity.net')"; item-limit 100
 
 https://www.phoronix.com/rss.php < item-rule "NOT (title REGEXP 'Intel|NVIDIA|driver|Mesa|Vulkan')"; 					item-limit 100
-https://lwn.net/headlines/rss < item-rule "NOT (title LIKE 'Security updates for %' OR title LIKE '% stable kernel%')"; item-limit 100
+https://lwn.net/headlines/rss < item-rule "NOT (title LIKE 'Security updates for %' OR title REGEXP '[Ss]table kernel|[Kk]ernel prepatch')"; item-limit 100
 https://torrentfreak.com/feed < item-rule "title NOT LIKE '%IPTV%'"; 													item-limit 100
 # https://gamersnexus.net/rss.xml
 # https://www.404media.co/rss < item-rule "NOT (title REGEXP '^(Podcast|Behind the Blog):' OR persons LIKE '%Becky Ferreira%' OR content LIKE '%Listen to the weekly podcast on%')"
@@ -53,7 +53,7 @@ $(feedmod https://muspy.com/feed?id=mobwjpkr95u5p1b4f2w1bjt74qc8u3) "muspy New R
 https://nyaa.si/?page=rss&c=3_1&f=0 "nyaa: english literature" < item-rule "NOT (title REGEXP '(\] \[|One Piece|Dandadan|Villain|Otome|Reincarnat|Rank|Tamer|Taming|Reborn|Another World|Isekai|Knight|Banished|Party|Dungeon|Adventure|Strongest|Guild|Oak-JXL|Audiobook|KR Web Novel)')"; item-limit 200
 https://nyaa.si/?page=rss&q=weekly+chapter+update&c=3_1&f=0					 "nyaa: weekly chapter updates" < item-limit 30
 https://nyaa.si/?page=rss&q=apothecary+diaries&c=1_2&f=0 					 "nyaa: kusuriya no hitorigoto"
-https://nyaa.si/?page=rss&q=even+the+student+council+has+its+holes&c=1_2&f=0 "nyaa: even the student council has its holes"
+https://nyaa.si/?page=rss&q=even+the+student+council+has+its+holes&c=1_2&f=0 "nyaa: even the student council has its holes" < item-rule "NOT (title REGEXP '(360|480|720)p')"
 https://sukebei.nyaa.si/?page=rss&q=%E3%81%82%E3%82%89%E3%81%8F%E3%82%8C%E3%81%9F%E8%80%85%E3%81%9F%E3%81%A1&c=1_2&f=0 "nyaa: あらくれ"
 # https://ogiuemaniax.com/feed/
 # https://xkcd.com/atom.xml

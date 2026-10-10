@@ -115,6 +115,7 @@ do -- Key bindings
   vmap('d', function() swayimg.viewer.set_fix_scale('height') end)
   vmap({ 'Ctrl+KP_Add', 'KP_Add', 'plus', 'equal' }, function() zoom(10) end)
   vmap({ 'Ctrl+KP_Subtract', 'KP_Subtract', 'Shift+underscore', 'minus' }, function() zoom(-10) end)
+  -- TODO: mov or change img based on zoom and gallery items
   vmap('h', function() mov(10, 0) end)
   vmap('j', function() mov(0, -10) end)
   vmap('k', function() mov(0, 10) end)

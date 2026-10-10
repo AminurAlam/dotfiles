@@ -4,6 +4,7 @@ amd-ucode
 android-tools
 anki
 aria2
+bacon
 base
 base-devel
 bash-language-server
@@ -14,7 +15,6 @@ codebook-lsp
 dos2unix
 dunst
 dust
-eden-bin
 efibootmgr
 faad2
 fcitx5
@@ -67,7 +67,7 @@ mandoc
 mecab-git
 mediainfo
 melonds-bin
-mpv
+mpv-git
 neovim-git
 nerdfix
 net-tools

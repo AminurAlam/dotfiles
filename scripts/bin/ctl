@@ -81,6 +81,7 @@ switch $argv[1]
         end
 
     case updateip #                 update ip addr in ssh_config
+        # TODO: diff before and after
         set sed_template 's/^    Hostname .* #$1$/    Hostname $2 #$1/;'
         set kde_parse '- (\w+): [0-f]{32} on ([\S]+) via LAN \(paired and reachable\)'
         set sed_script (kdeconnect-cli --list-devices 2>/dev/null | rg --replace "$sed_template" -- $kde_parse)
