@@ -12,7 +12,7 @@ for config in \
     jj \
     kanata keepassxc \
     lazygit librewolf \
-    mgba mpv \
+    mgba mpv MusicBrainz \
     newsraft niri npm nvim \
     pacman powershell python \
     qalculate \

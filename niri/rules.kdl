@@ -12,7 +12,8 @@ window-rule { // focus on popups
 
 window-rule { // maximized
     match app-id="librewolf|vesktop|newsraft" is-floating=false
-    match app-id="^(org|com)\\..*\\.(Picard|kdeconnect.app)$" is-floating=false
+    match app-id="org.kde.kdeconnect.app" title="KDE Connect" is-floating=false
+    match app-id="org.musicbrainz.Picard" title="MusicBrainz Picard" is-floating=false
 
     open-maximized-to-edges true
 }

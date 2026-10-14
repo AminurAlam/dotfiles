@@ -67,6 +67,8 @@
 /mgba/qt.ini
 /mgba/*.sqlite3
 
+/MusicBrainz/Picard/sessions/*
+
 /nom/nom.db
 
 /nvim/parser/
