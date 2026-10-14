@@ -4,7 +4,7 @@ printf "LINKING CONFIG DIRECTORIES... "
 for config in \
     alacritty aria2 \
     bacon biome btop \
-    clangd \
+    clangd codebook \
     dunst \
     fish foot fuzzel \
     ghostty git glow \

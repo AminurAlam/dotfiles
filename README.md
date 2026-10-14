@@ -9,6 +9,7 @@
 - [ChiPass](https://chipass.org) - password manager
 - [clang-format](https://clang.llvm.org/docs/ClangFormat.html) - c formatter
 - [clangd](https://clang.llvm.org/) - c++ lsp server
+- [codebook](https://github.com/blopker/codebook) - spell checker lsp
 - [curl](https://curl.se/) - request url
 - [delta](https://dandavison.github.io/delta/) - git diff pager
 - [dircolors](https://www.gnu.org/software/coreutils/dircolors) - $LS_COLORS generator
