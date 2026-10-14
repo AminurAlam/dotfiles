@@ -10,6 +10,7 @@ base-devel
 bash-language-server
 bibata-cursor-theme-bin
 btop
+chipass
 clang
 codebook-lsp
 dos2unix
@@ -45,7 +46,6 @@ jre8-openjdk-headless
 jujutsu
 kanata
 kdeconnect
-keepassxc
 kid3-qt
 kiwix-tools
 komga

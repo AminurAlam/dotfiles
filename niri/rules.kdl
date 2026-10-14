@@ -2,7 +2,7 @@
 
 window-rule { // focus on popups
     match title="^file_chooser$"
-    match title="^KeePassXC - (Browser Access Request|ブラウザーのアクセス要求)$"
+    match title="ChiPass - Browser Access Request"
 
     open-focused true
 }
@@ -26,6 +26,7 @@ window-rule { // fullscreen
 
 window-rule { // floating
     match app-id="^foot$" title="^float$"
+    match title="ChiPass - Browser Access Request"
 
     open-floating true
 }

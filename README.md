@@ -6,6 +6,7 @@
 - [bacon](https://dystroy.org/bacon) - A background rust code checker
 - [biome](https://biomejs.dev/) - Formatter, linter, and more for Javascript, Typescript, JSON, and CSS
 - [btop](https://github.com/aristocratos/btop) - system resource monitor
+- [ChiPass](https://chipass.org) - password manager
 - [clang-format](https://clang.llvm.org/docs/ClangFormat.html) - c formatter
 - [clangd](https://clang.llvm.org/) - c++ lsp server
 - [curl](https://curl.se/) - request url
@@ -22,7 +23,6 @@
 - [helix](https://helix-editor.com) - A post-modern modal text editor
 - [jujustu](https://github.com/jj-vcs/jj) - vcs
 - [kanata](https://github.com/jtroo/kanata) :star2: - keyboard customizer
-- [keepassxc](https://keepassxc.org/) - password manager
 - [krita](https://krita.org) - Edit and paint images
 - [lazygit](https://github.com/jesseduffield/lazygit) - ui for git
 - [librewolf](https://librewolf.net/) :star2: - Community-maintained fork of Firefox, focused on privacy, security and freedom
