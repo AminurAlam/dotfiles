@@ -1,7 +1,9 @@
 def round2:.*pow(10;2)|round/pow(10;2);
 
-def fs: 
-    if . > (1024*1024*1024) then
+def fs:
+    if . == null then
+        "-"
+    elif . > (1024*1024*1024) then
         (. / (1024*1024*1024) | round2 | tostring) + "G"
     elif . > (1024*1024) then
         (. / (1024*1024)      | floor  | tostring) + "M"
@@ -10,39 +12,31 @@ def fs:
     end;
 
 def br:
-    if . > (1024) then
+    if . == null then
+        "-"
+    elif . > (1024) then
         (./1024 | round2 | tostring) + "M"
     else
         (.      | floor  | tostring) + "K"
     end;
 
-if (.extractor == "youtube") then
-    .formats[]
-    | select(.vcodec != "none")
-    | select(.vbr)
-    | select(.format_id | startswith("sb") | not)
-    | [
-        .format_id,
-        if .format_note == null then
-            .resolution
+.formats[]
+| select(.vcodec != "none")
+# | select([.vbr, .tbr] | any)
+| select(.format_id | startswith("sb") | not)
+| [
+    .format_id,
+    if .format_note == null then
+        .resolution
+    else
+        if .format_note | startswith("1440p") then
+            "2k"
+        elif .format_note | startswith("2160p") then
+            "4k"
         else
-            if .format_note | startswith("1440p") then
-                "2k"
-            elif .format_note | startswith("2160p") then
-                "4k"
-            else
-                .format_note
-            end
-        end,
-        (.filesize | fs),
-        (.vbr | br)
-    ] | @tsv
-else
-    .formats[]
-    | [
-        .format_id,
-        ([.format_note, .resolution] | unique | join(", ")),
-        (.filesize | fs),
-        (.vbr | br)
-    ] | @tsv
-end
+            .format_note
+        end
+    end,
+    (if .filesize then .filesize else .filesize_approx end | fs),
+    (if .vbr then .vbr else .tbr end | br)
+] | @tsv
