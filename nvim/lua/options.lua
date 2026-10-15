@@ -49,14 +49,15 @@ do -- cmdline, statusline & statuscolumn
   set.laststatus = 3
   set.cmdheight = 0
   set.numberwidth = 1
-  set.shortmess = 'acCoOsSWFu'
+  set.shortmess = 'acCoOsSWF' .. (vim.fn.has('nvim-0.13') == 1 and 'u' or '')
   set.number = true
   set.relativenumber = true
   set.signcolumn = termux and 'number' or 'auto:1'
 
   set.wildmode = 'noselect:lastused,full'
   set.wildoptions = 'pum'
-  set.messagesopt = 'hit-enter,history:500,progress:c,maxheight:60'
+  set.messagesopt = 'hit-enter,history:500,progress:c'
+    .. (vim.fn.has('nvim-0.13') == 1 and ',maxheight:60' or '')
 end
 
 do -- folding

@@ -10,8 +10,10 @@ end
 local map = vim.keymap.set
 
 -- movement
-map({ '', 'i' }, { '<c-up>', '<c-k>' }, '<cmd>bp<cr>')
-map({ '', 'i' }, { '<c-down>', '<c-j>' }, '<cmd>bn<cr>')
+if vim.fn.has('nvim-0.13') == 1 then
+  map({ '', 'i' }, { '<c-up>', '<c-k>' }, '<cmd>bp<cr>')
+  map({ '', 'i' }, { '<c-down>', '<c-j>' }, '<cmd>bn<cr>')
+end
 
 -- deleting & registers
 nmap('_', '"_')
