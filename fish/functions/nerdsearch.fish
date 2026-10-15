@@ -5,6 +5,6 @@ function nerdsearch -d "better nerdfix serch"
         | "   \\\U" + .codepoint + " " + .name' - \
         | string unescape \
         | fzf --query "$argv[1]" \
-        | awk '{printf($1)}' \
+        | kt 1 \
         | fish_clipboard_copy
 end
