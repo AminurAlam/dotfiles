@@ -1,36 +1,38 @@
 function out -d "compile and run some code"
-    switch (path extension $argv[1])
-        case .c .cpp
+    switch (path resolve "$argv[1]")
+        case "*.c" "*.cpp"
             cc -lm -lGL -lGLU -lglut -oout -Wno-all $argv[1]
             and ./out
             rm -f out
-        case .rs
+        case "*.rs"
             set root (cargo locate-project --workspace | jq -r .root | path dirname)
             if [ -e "$root" ]
                 pushd "$root"
-                cargo run
+                command -vq bacon
+                and $TERM -- bacon clippy &>/dev/null & disown
+                or cargo run
                 popd
             else
                 rustc -oout -- $argv[1]
                 and ./out
                 rm -f out
             end
-        case .tex
+        case "*.tex"
             latexmk -pdf -interaction=nonstopmode -synctex=1 $argv[1]
             open (path change-extension pdf "$argv[1]")
             latexmk -c
-        case .typ
+        case "*.typ"
             # TODO: use a bacon job for typst instead
             typst c $argv[1]
             set pdffile (path change-extension pdf "$argv[1]")
             if not pgrep -fx --quiet "okular $pdffile"
                 open "$pdffile"
             end
-        case .py
+        case "*.py"
             uv run "$argv[1]"
-        case .kbd
+        case "*.kbd"
             echo '{"Reload":{}}' | nc -w 1 127.0.0.1 10002
-        case .l
+        case "*.l"
             printf "\r\n"
             cc -oout (flex -t -- $argv[1] | psub -s .c)
             and ./out <(path change-extension txt $argv[1])
