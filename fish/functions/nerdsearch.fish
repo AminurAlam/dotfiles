@@ -1,9 +1,6 @@
 function nerdsearch -d "better nerdfix serch"
-    nerdfix dump --output - 2>/dev/null \
-        | jq -r '.icons[]
-        | select(.obsolete == false)
-        | "   \\\U" + .codepoint + " " + .name' - \
-        | string unescape \
+    uv run --no-project --with nerdfont python -c \
+        "for n,i in __import__('nerdfont').icons.items():print(i,n[3:])" \
         | fzf --query "$argv[1]" \
         | kt 1 \
         | fish_clipboard_copy
