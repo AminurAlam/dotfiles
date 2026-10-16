@@ -6,11 +6,13 @@
 # TODO: extend to next sibling: https://github.com/Axlefublr/helix#extend_prevnext_sibling
 # TODO: surround with tag name: https://github.com/Axlefublr/helix#surround_add_tag
 # TODO: retain column (kt?!??): https://github.com/Axlefublr/helix#retain_column
+# TODO: pipe entire file if sel.len() == 1
 # TODO: ignore single char d/c
 # TODO: change completion kind
 # TODO: shebang like vim: ft=*
 
 theme = "custom"
+editor.whitespace = { render = { tab = "all", newline = "all" } }
 
 [keys.normal]
 # TODO: use C-o to move back instead of gx
@@ -82,7 +84,8 @@ c = "surround_replace"
 # template = "@<C-s><esc><C-o>"
 f = '@<C-s>ma"if<esc><C-o>'
 m = "@<C-s>A;<esc><C-o>"
-x = "@<C-s>geT[cx<esc><C-o>"
+v = "@cvarname<esc>Ovarname = <esc>Pxxsvarname<ret>c"
+x = "@<C-s>glT[;cx<esc><C-o>"
 
 [keys.normal.space]
 F = "file_picker_in_current_buffer_directory"
