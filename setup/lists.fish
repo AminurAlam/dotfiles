@@ -7,7 +7,7 @@ function pm
     adb shell pm $argv
 end
 
-ANDROID_USER_HOME=/home/fisher/.local/share/.android HOME=/home/fisher/.local/share/ adb connect android.local
+adb init
 
 set pkglist "$HOME/repos/dotfiles/setup/pkglist"
 

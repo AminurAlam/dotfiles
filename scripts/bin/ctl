@@ -81,17 +81,36 @@ switch $argv[1]
         end
 
     case updateip #                 update ip addr in ssh_config
-        set sed_template 's/^    Hostname .* #$1$/    Hostname $2 #$1/;'
         set kde_parse '- (\w+): [0-f]{32} on ([\S]+) via LAN \(paired and reachable\)'
-        set sed_script (kdeconnect-cli --list-devices 2>/dev/null | rg --replace "$sed_template" -- $kde_parse)
-        set brick_default_ip (nc -w3 -q3 -z android.local 8022 2>| rg --replace 's/Hostname $1 #brick/Hostname android.local #brick/' -- 'Connection to android.local \((\d+\.\d+\.\d+\.\d+)\) 8022 port .*')
+        set devices (kdeconnect-cli --list-devices 2>/dev/null | rg --replace '$1 $2' --  "$kde_parse")
+        # set alocal (resolvectl query -4 -iwlan0 -pmdns -tA  --cache false --legend false --no-pager android.local 2>/dev/null | kt 4)
 
-        # printf "%s\n" "$sed_script"
-        cp ~/.ssh/config /tmp/ssh_config.old
-        sed -Ei "$sed_script" ~/.ssh/config
-        [ -n "$brick_default_ip" ]
-        and sed -Ei "$brick_default_ip" ~/.ssh/config
-        diff -Nar -U0 /tmp/ssh_config.old ~/.ssh/config
+        for device in $devices
+            string pad -C -c= -w$COLUMNS " $device "
+            string split ' ' "$device" | read -L name ip
+
+            [ -z "$name" ] || [ -z "$ip" ]
+            and continue
+
+            # [ "$ip" = "$alocal" ]
+            # and set ip android.local
+
+            sed -Ei 's/^    Hostname .* #'$name'$/    Hostname '$ip' #'$name'/;' ~/.ssh/config
+            and echo updated ssh entry
+            or echo failed to update ssh entry
+
+            nc -w3 -q3 -z "$ip" 5555 &>/dev/null
+            and adb connect "$ip"
+        end
+
+        string pad -C -c= -w$COLUMNS ""
+
+        # nc -w3 -q3 -z android.local 5555 # &>/dev/null
+        # and adb connect "$ip"
+
+        adb devices
+
+        rmdir ~/.android 2>/dev/null
 
     case send # <device> [files..]  send file
         [ -z "$argv[3..]" ] && return
@@ -160,7 +179,7 @@ switch $argv[1]
         set id (niri msg -j windows | jq '.[] | select(.app_id == "librewolf") | .id')
         [ -n "$id" ]
         and niri msg action focus-window --id $id
-        or librewolf
+        or niri msg action spawn -- librewolf
 
     case launcher #                 lauch or close launcher
         pidof fuzzel
