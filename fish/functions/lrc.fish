@@ -25,30 +25,22 @@ function lrc -d "download lrc files form links in json" -a query
     mkdir -p "cache/$album" "$album"
 
     for track_json in (jq -rc '.tracks[]' album.json)
-        set track_data (printf "%s" "$track_json" | jq -r '(.track_num, .name, .url)')
-        set path "$album/$track_data[1..2]"
-        set url "$track_data[3]"
+        printf "%s" "$track_json" | jq -r '(.track_num, .name, .url)' | read -L track_num name url
+        set path "$album/$track_num $name"
         printf "%s\n" "$path"
-        # echo $url
 
         if not [ -e "cache/$path.json" ] || [ -e "cache/$path.json" -a (jq -r '.error' "cache/$path.json") = true ]
             curl -# -X GET -H 'accept: application/json' -o "cache/$path.json" $url
             sleep 3
         end
 
-        set lrc_data (jq -r '(.error, .message)' "cache/$path.json") # >"$path.ttml"
-        if [ "$lrc_data[1]" = true ] || [ "$lrc_data[2]" != null ]
-            echo "ERROR: $lrc_data[2]"
+        jq -r '(.error, .message)' "cache/$path.json" | read -L error message
+        if [ "$error" = true ] || [ "$message" != null ]
+            echo "ERROR: $message"
         else
             jq -r .content "cache/$path.json" >"$path.ttml"
         end
 
-        # if not rg --only-matching 'timing=[^>]+' "$path.ttml"
-        #     echo "ERROR: not properly formatted"
-        #     rm "$path.ttml"
-        # else
-        #     # prettier --parser html -w "$path.ttml"
-        # end
         echo
     end
 
