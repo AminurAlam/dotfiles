@@ -50,23 +50,23 @@ https://github.com/sxyazi/yazi/commits/main/CHANGELOG.md.atom "yazi: changelog"
 
 @ MEDIA
 $(feedmod https://muspy.com/feed?id=mobwjpkr95u5p1b4f2w1bjt74qc8u3) "muspy New Releases" < item-rule "NOT (title LIKE 'Taylor Swift%' OR title REGEXP 'Remix|live|Live|LIVE')"
-https://nyaa.si/?page=rss&c=3_1&f=0 "nyaa: english literature" < item-rule "NOT (title REGEXP '(\] \[|One Piece|Dandadan|Villain|Otome|Reincarnat|Rank|Tamer|Taming|Reborn|Another World|Isekai|Knight|Banished|Party|Dungeon|Adventure|Strongest|Guild|Oak-JXL|Audiobook|KR Web Novel)')"; item-limit 200
-https://nyaa.si/?page=rss&q=weekly+chapter+update&c=3_1&f=0					 "nyaa: weekly chapter updates" < item-limit 30
-https://nyaa.si/?page=rss&q=apothecary+diaries&c=1_2&f=0 					 "nyaa: kusuriya no hitorigoto"
-https://nyaa.si/?page=rss&q=even+the+student+council+has+its+holes&c=1_2&f=0 "nyaa: even the student council has its holes" < item-rule "NOT (title REGEXP '(360|480|720)p')"
-https://sukebei.nyaa.si/?page=rss&q=%E3%81%82%E3%82%89%E3%81%8F%E3%82%8C%E3%81%9F%E8%80%85%E3%81%9F%E3%81%A1&c=1_2&f=0 "nyaa: あらくれ"
+https://nyaa.si/?page=rss&c=3_1&f=0 "nyaa(manga): english literature" < item-rule "NOT (title REGEXP '(\] \[|One Piece|Dandadan|Villain|Otome|Reincarnat|Rank|Tamer|Taming|Reborn|Another World|Isekai|Knight|Banished|Party|Dungeon|Adventure|Strongest|Guild|Oak-JXL|Audiobook|KR Web Novel)')"; item-limit 200
+https://nyaa.si/?page=rss&q=weekly+chapter+update&c=3_1&f=0					 "nyaa(manga): weekly chapter updates" < item-limit 30
+https://nyaa.si/?page=rss&q=apothecary+diaries+S03&c=1_2&f=0 					 "nyaa(anime): kusuriya no hitorigoto" < item-rule "NOT (title REGEXP '\[(Judas|Trix)\]|(360|480|720)p|[Dd]ual.[Aa]udio|English Dub'  )"
+https://nyaa.si/?page=rss&q=even+the+student+council+has+its+holes&c=1_2&f=0 "nyaa(anime): even the student council has its holes" < item-rule "NOT (title REGEXP '(360|480|720)p')"
+https://sukebei.nyaa.si/?page=rss&q=%E3%81%82%E3%82%89%E3%81%8F%E3%82%8C%E3%81%9F%E8%80%85%E3%81%9F%E3%81%A1&c=1_2&f=0 "nyaa(doujin): あらくれ"
 # https://ogiuemaniax.com/feed/
 # https://xkcd.com/atom.xml
 
 @ NEWS
-https://feeds.feedburner.com/ScrollinArticles.rss             < item-limit 100; item-rule "NOT (title REGEXP '[Ff]iction|[Rr]eview|[Pp]odcast|Rush Hour')"
-https://indianexpress.com/section/cities/kolkata/feed/        < item-limit 100
-https://www.thehindu.com/news/national/feeder/default.rss     "National"  < item-rule "NOT (link REGEXP 'https://www.thehindu.com/news/national/(andhra-pradesh|arunachal-pradesh|chhattisgarh|goa|gujarat|himachal-pradesh|jharkhand|karnataka|kerala|madhya-pradesh|maharashtra|manipur|meghalaya|mizoram|nagaland|odisha|rajasthan|sikkim|tamil-nadu|telangana|tripura|uttarakhand)/.*')"
-https://www.thehindu.com/news/states/feeder/default.rss       "States" 	  < item-limit 50
-https://www.thehindu.com/opinion/cartoon/feeder/default.rss   "Cartoon"   < item-limit 50
-https://www.thehindu.com/opinion/columns/feeder/default.rss   "Opinion"	  < item-limit 50
-https://www.thehindu.com/opinion/op-ed/feeder/default.rss     "Expert"	  < item-limit 50
-https://www.thehindu.com/opinion/editorial/feeder/default.rss "Editorial" < item-limit 50
+https://feeds.feedburner.com/ScrollinArticles.rss             < item-limit 50; item-rule "NOT (title REGEXP '[Ff]iction|[Rr]eview|[Pp]odcast|Rush Hour')"
+https://indianexpress.com/section/cities/kolkata/feed/        < item-limit 30
+https://www.thehindu.com/news/national/feeder/default.rss     "National"  < item-limit 30; item-rule "NOT (link REGEXP 'https://www.thehindu.com/news/national/(andhra-pradesh|arunachal-pradesh|chhattisgarh|goa|gujarat|himachal-pradesh|jharkhand|karnataka|kerala|madhya-pradesh|maharashtra|manipur|meghalaya|mizoram|nagaland|odisha|rajasthan|sikkim|tamil-nadu|telangana|tripura|uttarakhand)/.*')"
+https://www.thehindu.com/news/states/feeder/default.rss       "States" 	  < item-limit 30
+https://www.thehindu.com/opinion/cartoon/feeder/default.rss   "Cartoon"   < item-limit 30
+https://www.thehindu.com/opinion/columns/feeder/default.rss   "Opinion"	  < item-limit 30
+https://www.thehindu.com/opinion/op-ed/feeder/default.rss     "Expert"	  < item-limit 30
+https://www.thehindu.com/opinion/editorial/feeder/default.rss "Editorial" < item-limit 30
 
 @ PERSONAL BLOGS 1
 https://aminuralam.github.io/atom.xml
@@ -142,6 +142,7 @@ https://devever.net/~hl/index.feed
 https://drmollytov.smol.pub/atom.xml
 https://dustycloud.org/blog/index.xml
 https://eaton-works.com/feed.atom
+https://eliasebner.com/rss.xml
 https://ersei.net/en/blog.atom
 https://blog.frost.kiwi/feed.xml
 https://blog.feld.me/feeds/all.atom.xml
