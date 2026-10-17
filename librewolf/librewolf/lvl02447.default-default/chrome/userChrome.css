@@ -21,15 +21,18 @@
     >#context-copy,
     >#context-cut,
     >#context-delete,
-    /* > #context-inspect, */
     >#context-inspect-a11y,
     >#context-leave-dom-fullscreen,
     >#context-media-eme-separator,
     >#context-media-pause,
     >#context-media-play,
     >#context-navigation,
+    >#context-openlink,
     >#context-openlinkincurrent,
+    >#context-openlinkinsplitview,
     >#context-openlinkintab,
+    >#context-openlinkinusercontext-menu,
+    >#context-openlinkprivate,
     >#context-paste,
     >#context-pdfjs-copy,
     >#context-pdfjs-cut,
@@ -40,9 +43,11 @@
     >#context-pdfjs-undo,
     >#context-print-selection,
     >#context-redo,
+    >#context-savelink,
     >#context-savepage,
     >#context-screenshot,
     >#context-searchselect,
+    >#context-searchselect-private,
     >#context-selectall,
     >#context-sendaudio,
     >#context-sendimage,
@@ -51,6 +56,7 @@
     >#context-sep-redo,
     >#context-sep-selectall,
     >#context-setDesktopBackground,
+    >#context-stripOnShareLink,
     >#context-translate-selection,
     >#context-undo,
     >#context-video-fullscreen,
@@ -58,6 +64,10 @@
     >#fill-login-generated-password,
     >#frame-sep {
       display: none !important;
+    }
+
+    * {
+      border-radius: 0px;
     }
   }
 
@@ -91,6 +101,12 @@ toolbarbutton#scrollbutton-down {
 .browser-toolbar>* #new-tab-button {
   display: none;
   /* Hide new-tab button */
+}
+
+/* https://github.com/MrOtherGuy/firefox-csshacks/tree/master/chrome/urlbar_fitts_flat_top.css */
+.urlbar-container {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
 }
 
 /* https://github.com/MrOtherGuy/firefox-csshacks/tree/master/chrome/tab_separator_lines.css
@@ -156,14 +172,8 @@ tab-split-view-wrapper>.tabbrowser-tab:last-child {
 
 tab-group>slot+ :is(tab-split-view-wrapper, .tabbrowser-tab),
 tab-group[collapsed]+ :is(tab-split-view-wrapper, .tabbrowser-tab),
-:is(tab-split-view-wrapper, .tabbrowser-tab):is([selected],
-  [multiselected],
-  [hasactivetab],
-  :hover),
-:is(tab-split-view-wrapper, .tabbrowser-tab):is([selected],
-  tab[multiselected],
-  [hasactivetab],
-  :hover)+ :is(tab-split-view-wrapper, .tabbrowser-tab),
+:is(tab-split-view-wrapper, .tabbrowser-tab):is([selected], [multiselected], [hasactivetab], :hover),
+:is(tab-split-view-wrapper, .tabbrowser-tab):is([selected], tab[multiselected], [hasactivetab], :hover)+ :is(tab-split-view-wrapper, .tabbrowser-tab),
 tab-split-view-wrapper:has(> [multiselected]:last-child)+ :is(tab-split-view-wrapper, .tabbrowser-tab),
 tab-group:has(> :last-of-type:is(:hover, [selected], [multiselected], [hasactivetab]) + vbox)+ :is(tab-split-view-wrapper, .tabbrowser-tab),
 #pinned-tabs-container> :first-child,
@@ -193,26 +203,26 @@ tab-group:has(> :last-of-type:is(:hover, [selected], [multiselected], [hasactive
   display: none;
 }
 
-/* https */
-/* #identity-box.verifiedDomain::before{ background-color: rgba(50,255,50,0.2) } */
+#identity-box {
 
-/* http: and potentially some other insecure connections like ftp: */
-#identity-box.certErrorPage::before,
-#identity-box.notSecure::before {
-  background-color: rgba(255, 50, 50, 0.3);
-}
+  /* http: and potentially some other insecure connections like ftp: */
+  &.certErrorPage::before,
+  &.notSecure::before {
+    background-color: rgba(255, 50, 50, 0.3);
+  }
 
-/* Mixed content including neterror */
-#identity-box.unknownIdentity::before {
-  background-color: rgba(255, 255, 50, 0.2);
-}
+  /* Mixed content including neterror */
+  &.unknownIdentity::before {
+    background-color: rgba(255, 255, 50, 0.2);
+  }
 
-/* Extension pages */
-#identity-box.extensionPage::before {
-  background-color: rgba(150, 50, 250, 0.2);
-}
+  /* Extension pages */
+  &.extensionPage::before {
+    background-color: rgba(150, 50, 250, 0.2);
+  }
 
-/* Internal about: and chrome:// urls (includes reader-view) */
-#identity-box.chromeUI::before {
-  background-color: rgba(50, 150, 250, 0.2);
+  /* Internal about: and chrome:// urls (includes reader-view) */
+  &.chromeUI::before {
+    background-color: rgba(50, 150, 250, 0.2);
+  }
 }
