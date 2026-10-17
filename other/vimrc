@@ -9,7 +9,7 @@ set expandtab
 set shiftround
 
 " words, searching
-set nohlsearch
+set hlsearch
 set ignorecase
 set smartcase
 set incsearch
@@ -33,9 +33,6 @@ set signcolumn=auto:1
 " folding
 set foldclose=
 set foldlevel=6
-set foldnestmax=11
-set foldtext=
-set viewoptions=cursor,folds
 
 " terminal, cursor & gui
 set pumheight=15
@@ -79,7 +76,7 @@ imap <c-j> <cmd>bn<cr>
 "nmap <del> "_x
 nmap cn *``"_cgn
 nmap <bs> X
-nmap <cr> "_ciw
+nmap <cr> viw
 nmap r <cmd>silent redo<cr>
 
 nmap q <cmd>q<cr>
@@ -102,7 +99,6 @@ vmap . :norm .<cr>
 nmap ; @:
 nmap go jA
 nmap gj @='j^"_d0kgJ'<cr>
-nmap z= 1z=
 
 " cmdline & abbreviations
 cmap <c-j> <down>

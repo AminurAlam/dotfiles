@@ -13,6 +13,11 @@ local map = vim.keymap.set
 if vim.fn.has('nvim-0.13') == 1 then
   map({ '', 'i' }, { '<c-up>', '<c-k>' }, '<cmd>bp<cr>')
   map({ '', 'i' }, { '<c-down>', '<c-j>' }, '<cmd>bn<cr>')
+else
+  map({ '', 'i' }, '<c-up>', '<cmd>bp<cr>')
+  map({ '', 'i' }, '<c-down>', '<cmd>bn<cr>')
+  map({ '', 'i' }, '<c-k>', '<cmd>bp<cr>')
+  map({ '', 'i' }, '<c-j>', '<cmd>bn<cr>')
 end
 
 -- deleting & registers
@@ -24,7 +29,7 @@ nmap('<del>', '"_x')
 nmap('y<esc>', function() end)
 nmap('cn', '*``"_cgn') -- https://www.kevinli.co/posts/2017-01-19-multiple-cursors-in-500-bytes-of-vimscript/
 nmap('<bs>', 'X')
-nmap('<cr>', '"_ciw')
+nmap('<cr>', 'viw')
 nmap('r', '<cmd>silent redo<cr>')
 
 -- write & quit
