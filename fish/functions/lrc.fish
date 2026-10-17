@@ -27,9 +27,10 @@ function lrc -d "download lrc files form links in json" -a query
     for track_json in (jq -rc '.tracks[]' album.json)
         printf "%s" "$track_json" | jq -r '(.track_num, .name, .url)' | read -L track_num name url
         set path "$album/$track_num $name"
-        printf "%s\n" "$path"
+        printf "%s\n" "$path" "$url"
 
         if not [ -e "cache/$path.json" ] || [ -e "cache/$path.json" -a (jq -r '.error' "cache/$path.json") = true ]
+            # TODO: aria2c
             curl -# -X GET -H 'accept: application/json' -o "cache/$path.json" $url
             sleep 3
         end

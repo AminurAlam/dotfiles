@@ -85,6 +85,7 @@
 #network {
   min-width: 90px;
 }
+
 #network.disconnected,
 #network.disabled {
   min-width: 0;
@@ -93,6 +94,7 @@
 #memory.warning {
   color: #ff9e64;
 }
+
 #memory.critical {
   color: #f7768e;
 }
@@ -109,8 +111,7 @@
   color: #5af79e;
 }
 
-#custom-brick.DISCHARGING {
-}
+#custom-brick.DISCHARGING {}
 
 #custom-brick.NOT_CHARGING {
   color: #8db0ff;
@@ -119,12 +120,15 @@
 #battery.warning {
   color: #ff9e64;
 }
+
 #battery.critical {
   color: #f7768e;
 }
+
 #battery.charging {
   color: #5af79e;
 }
+
 #battery.charging.full {
   color: #8db0ff;
 }
