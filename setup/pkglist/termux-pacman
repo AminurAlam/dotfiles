@@ -70,7 +70,7 @@ libxml2
 make
 mecab-git
 ncurses
-neovim-nightly
+neovim
 net-tools
 newsraft
 openssh

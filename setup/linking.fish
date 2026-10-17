@@ -7,7 +7,7 @@ for config in \
     clangd codebook \
     dunst \
     fish foot fuzzel \
-    ghostty git glow \
+    git glow \
     helix \
     jj \
     kanata keepassxc \
