@@ -9,11 +9,10 @@
 @ TECH
 https://lobste.rs/rss < item-rule "title NOT LIKE 'What are you doing this week%'"; item-limit 400
 https://hnrss.org/frontpage.atom "Hacker News" < item-rule "NOT (title REGEXP '^(Show|Tell|Ask|Launch) HN: ' OR title REGEXP '\(YC .*\)' OR title REGEXP '(OpenAI|Anthropic|[Cc]laude|[Oo]pus|[Gg]emini|[Gg]rok|[Kk]imi|[Qq]wen|GPT|AI|LLM|[Aa]gent)')"; item-limit 400
-https://bearblog.dev/discover/feed/ < item-rule "NOT (link REGEXP 'blog.avas.space|blog.absurdpirate.com|rnotte.art|terminallucidity.net')"; item-limit 100
-
-https://www.phoronix.com/rss.php < item-rule "NOT (title REGEXP 'Intel|NVIDIA|driver|Mesa|Vulkan')"; 					item-limit 100
+https://bearblog.dev/discover/feed/ < item-rule "link NOT REGEXP 'blog.avas.space|blog.absurdpirate.com|rnotte.art|terminallucidity.net'"; item-limit 100
+https://www.phoronix.com/rss.php < item-rule "title NOT REGEXP 'Intel|NVIDIA|driver|Mesa|Vulkan'"; item-limit 100
 https://lwn.net/headlines/rss < item-rule "NOT (title LIKE 'Security updates for %' OR title REGEXP '[Ss]table kernel|[Kk]ernel prepatch')"; item-limit 100
-https://torrentfreak.com/feed < item-rule "title NOT LIKE '%IPTV%'"; 													item-limit 100
+https://torrentfreak.com/feed < item-rule "title NOT LIKE '%IPTV%'"; item-limit 100
 # https://gamersnexus.net/rss.xml
 # https://www.404media.co/rss < item-rule "NOT (title REGEXP '^(Podcast|Behind the Blog):' OR persons LIKE '%Becky Ferreira%' OR content LIKE '%Listen to the weekly podcast on%')"
 # https://haveibeenpwned.com/feed/breaches/ "Have I Been Pwned"
@@ -36,7 +35,7 @@ https://fishshell.com/blog/feed.xml
 https://github.com/keiyoushi/extensions-source/commits/main/src/en/hentainexus.atom "keiyoushi: HentaiNexus commits"
 https://blog.metabrainz.org/feed/
 https://blog.nightly.mozilla.org/feed "mozilla: firefox nightly"
-https://blog.thunderbird.net/feed/ 	  "mozilla: thunderbird" < item-limit 20
+https://blog.thunderbird.net/feed/    "mozilla: thunderbird" < item-limit 20
 https://github.com/sxyazi/yazi/commits/main/CHANGELOG.md.atom "yazi: changelog"
 # https://echasnovski.com/blog.xml
 # https://nvim-mini.org/blog/index.xml
@@ -51,9 +50,9 @@ https://github.com/sxyazi/yazi/commits/main/CHANGELOG.md.atom "yazi: changelog"
 @ MEDIA
 $(feedmod https://muspy.com/feed?id=mobwjpkr95u5p1b4f2w1bjt74qc8u3) "muspy New Releases" < item-rule "NOT (title LIKE 'Taylor Swift%' OR title REGEXP 'Remix|live|Live|LIVE')"
 https://nyaa.si/?page=rss&c=3_1&f=0 "nyaa(manga): english literature" < item-rule "NOT (title REGEXP '(\] \[|One Piece|Dandadan|Villain|Otome|Reincarnat|Rank|Tamer|Taming|Reborn|Another World|Isekai|Knight|Banished|Party|Dungeon|Adventure|Strongest|Guild|Oak-JXL|Audiobook|KR Web Novel)')"; item-limit 200
-https://nyaa.si/?page=rss&q=weekly+chapter+update&c=3_1&f=0					 "nyaa(manga): weekly chapter updates" < item-limit 30
-https://nyaa.si/?page=rss&q=apothecary+diaries+S03&c=1_2&f=0 					 "nyaa(anime): kusuriya no hitorigoto" < item-rule "NOT (title REGEXP '\[(Judas|Trix)\]|(360|480|720)p|[Dd]ual.[Aa]udio|English Dub'  )"
-https://nyaa.si/?page=rss&q=even+the+student+council+has+its+holes&c=1_2&f=0 "nyaa(anime): even the student council has its holes" < item-rule "NOT (title REGEXP '(360|480|720)p')"
+https://nyaa.si/?page=rss&q=weekly+chapter+update&c=3_1&f=0                  "nyaa(manga): weekly chapter updates" < item-limit 30
+https://nyaa.si/?page=rss&q=apothecary+diaries+S03&c=1_2&f=0                 "nyaa(anime): kusuriya no hitorigoto" < item-rule "NOT (title REGEXP '\[(Judas|Trix)\]|(360|480|720)p|[Dd]ual.[Aa]udio|English Dub'  )"
+https://nyaa.si/?page=rss&q=even+the+student+council+has+its+holes&c=1_2&f=0 "nyaa(anime): even the student council has its holes" < item-rule "title NOT REGEXP '(360|480|720)p' AND TITLE REGEXP 'UNCENSORED|[Uu]ncensored'"
 https://sukebei.nyaa.si/?page=rss&q=%E3%81%82%E3%82%89%E3%81%8F%E3%82%8C%E3%81%9F%E8%80%85%E3%81%9F%E3%81%A1&c=1_2&f=0 "nyaa(doujin): あらくれ"
 # https://ogiuemaniax.com/feed/
 # https://xkcd.com/atom.xml
@@ -62,10 +61,10 @@ https://sukebei.nyaa.si/?page=rss&q=%E3%81%82%E3%82%89%E3%81%8F%E3%82%8C%E3%81%9
 https://feeds.feedburner.com/ScrollinArticles.rss             < item-limit 50; item-rule "NOT (title REGEXP '[Ff]iction|[Rr]eview|[Pp]odcast|Rush Hour')"
 https://indianexpress.com/section/cities/kolkata/feed/        < item-limit 30
 https://www.thehindu.com/news/national/feeder/default.rss     "National"  < item-limit 30; item-rule "NOT (link REGEXP 'https://www.thehindu.com/news/national/(andhra-pradesh|arunachal-pradesh|chhattisgarh|goa|gujarat|himachal-pradesh|jharkhand|karnataka|kerala|madhya-pradesh|maharashtra|manipur|meghalaya|mizoram|nagaland|odisha|rajasthan|sikkim|tamil-nadu|telangana|tripura|uttarakhand)/.*')"
-https://www.thehindu.com/news/states/feeder/default.rss       "States" 	  < item-limit 30
+https://www.thehindu.com/news/states/feeder/default.rss       "States"    < item-limit 30
 https://www.thehindu.com/opinion/cartoon/feeder/default.rss   "Cartoon"   < item-limit 30
-https://www.thehindu.com/opinion/columns/feeder/default.rss   "Opinion"	  < item-limit 30
-https://www.thehindu.com/opinion/op-ed/feeder/default.rss     "Expert"	  < item-limit 30
+https://www.thehindu.com/opinion/columns/feeder/default.rss   "Opinion"   < item-limit 30
+https://www.thehindu.com/opinion/op-ed/feeder/default.rss     "Expert"    < item-limit 30
 https://www.thehindu.com/opinion/editorial/feeder/default.rss "Editorial" < item-limit 30
 
 @ PERSONAL BLOGS 1

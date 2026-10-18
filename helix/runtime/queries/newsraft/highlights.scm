@@ -15,4 +15,4 @@
 ; other
 (string) @string
 (integer) @constant.numeric.integer
-(bool) @boolean
+(bool) @constant.builtin.boolean
