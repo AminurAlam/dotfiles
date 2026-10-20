@@ -37,7 +37,7 @@ abbr zz "cd -"
 abbr gl "git status -bs; git log --pretty=nice -n10"
 abbr gd "git diff"
 abbr pull "git pull origin"
-abbr push "git remote --verbose | rg -v ^upstream | kt 1 | uniq | fzf --multi --header (git rev-parse --abbrev-ref HEAD) | kt \t 1 | xargs -I% -- git push --force-with-lease %"
+abbr push "git remote --verbose | rg -v ^upstream | kt \t 1 | uniq | xargs -I% -- git push --force-with-lease %"
 abbr fr "git fetch upstream && git rebase upstream/(git rev-parse --abbrev-ref HEAD)"
 
 # rclone/rsync

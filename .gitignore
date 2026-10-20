@@ -56,9 +56,10 @@
 /librewolf/librewolf/*.ini
 /librewolf/librewolf/Profile Groups/
 /librewolf/librewolf/dz4v337n.default/
+/librewolf/librewolf/firefox-mpris/*
 /librewolf/librewolf/lvl02447.default-default/*
-/librewolf/librewolf/native-messaging-hosts/
 /librewolf/librewolf/lvl02447.default-default/chrome/font.woff2
+/librewolf/librewolf/native-messaging-hosts/
 
 !/librewolf/librewolf/lvl02447.default-default/chrome/
 !/librewolf/librewolf/lvl02447.default-default/chrome/userChrome.css

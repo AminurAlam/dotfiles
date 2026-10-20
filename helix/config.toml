@@ -26,6 +26,7 @@ editor.whitespace = { render = { tab = "all", newline = "all" } }
 "{" = "goto_prev_paragraph"
 "}" = "goto_next_paragraph"
 # modifier and special
+"C-c" = ":buffer-close"
 "C-n" = "expand_selection"
 "C-p" = "shrink_selection"
 "C-j" = ":buffer-next"
@@ -97,6 +98,7 @@ w = ":w"
 
 ### INSERT
 [keys.insert]
+"C-c" = ":buffer-close"
 "C-n" = "completion"
 "C-j" = ":buffer-next"
 "C-k" = ":buffer-previous"

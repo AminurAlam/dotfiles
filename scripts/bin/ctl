@@ -82,6 +82,7 @@ switch $argv[1]
 
     case updateip #                 update ip addr in ssh_config
         set kde_parse '- (\w+): [0-f]{32} on ([\S]+) via LAN \(paired and reachable\)'
+        kdeconnect-cli --refresh &>/dev/null
         set devices (kdeconnect-cli --list-devices 2>/dev/null | rg --replace '$1 $2' --  "$kde_parse")
         # set alocal (resolvectl query -4 -iwlan0 -pmdns -tA  --cache false --legend false --no-pager android.local 2>/dev/null | kt 4)
 

@@ -88,7 +88,7 @@ do -- Key bindings
   local gmap = swayimg.gallery.on_key
   local mmap = swayimg.viewer.on_mouse
 
-  -- TODO: goes back to gallery mode if possible
+  -- TODO: w sets wallpaper
   vmap('q', swayimg.exit)
   vmap('space', function() swayimg.viewer.animation = not swayimg.viewer.animation end)
   vmap(',', function() swayimg.viewer.rotate(90) end)
