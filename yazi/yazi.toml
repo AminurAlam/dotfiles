@@ -107,7 +107,7 @@ okular = [{ run = "LANG=en_US.utf-8 okular %s", block = false, orphan = true, de
 open = [{ run = "xdg-open %s1", orphan = true, desc = "󰏌 Open", for = "linux" }]
 play = [{ run = "mpv --force-window %s", orphan = true, desc = " mpv", for = "linux" }]
 png2jpg = [{ run = "magick %s1 JPG:%s1.jpg", desc = "󰧸 png -> jpg", for = "linux" }]
-swayimg = [{ run = "swayimg %s", block = false, orphan = true, desc = " swayimg", for = "linux" }]
+swayimg = [{ run = "swayimg %s ./", block = false, orphan = true, desc = " swayimg", for = "linux" }]
 torrent = [{ run = ''' foot -- fish -c "at %s" ''', block = false, orphan = true, desc = " aria2c torrent" }]
 trash = [
   { run = "ya pub trash-restore --list %S", desc = "Restore selected files" },
@@ -142,7 +142,6 @@ common = [
 ]
 dir = [
   # { run = "xdg-open %d", desc = " Reveal", for = "linux" },
-  { run = "swayimg -g %s", orphan = true, desc = " gallery", for = "linux" },
   { run = "fish -c 'dir2cbz $argv' %s", block = true, desc = " dir2cbz" },
 ]
 

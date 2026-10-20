@@ -127,16 +127,7 @@ do -- Key bindings
   vmap('Shift+j', function() swayimg.viewer.open('next') end)
   vmap('Shift+k', function() swayimg.viewer.open('prev') end)
   vmap('r', swayimg.viewer.reset)
-  vmap('Escape', function()
-    print()
-    if swayimg.imagelist.size > 1 then
-      swayimg.mode = 'gallery'
-    elseif swayimg.fullscreen then
-      swayimg.fullscreen = false
-    else
-      swayimg.exit()
-    end
-  end)
+  vmap('Escape', function() swayimg.mode = 'gallery' end)
   vmap('y', function() os.execute(string.format('wl-copy %q', swayimg.viewer.get_image().path)) end)
   -- vmap(
   --   'd',
@@ -144,7 +135,12 @@ do -- Key bindings
   -- )
   gmap({ 'Ctrl+KP_Add', 'KP_Add', 'plus', 'equal' }, function() gsize(-1) end)
   gmap({ 'Ctrl+KP_Subtract', 'KP_Subtract', 'Shift+underscore', 'minus' }, function() gsize(1) end)
-  gmap('q', swayimg.exit)
+  gmap('q', function()
+    if os.getenv('YAZI_ID') then
+      os.execute(string.format('ya emit reveal %q', swayimg.gallery.get_image().path))
+    end
+    swayimg.exit()
+  end)
   gmap('h', function() swayimg.gallery.select('left') end)
   gmap('j', function() swayimg.gallery.select('down') end)
   gmap('k', function() swayimg.gallery.select('up') end)
@@ -157,6 +153,7 @@ do -- Key bindings
     'Shift+d',
     function() os.execute(string.format('trash-put %q', swayimg.gallery.get_image().path)) end
   )
+  gmap('Escape', function() end)
   -- TODO: gallery bindings for: sort change, size change, hjkl
 end
 
