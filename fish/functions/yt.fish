@@ -1,8 +1,4 @@
 function yt -a url fmt -d "yt-dlp wrapper"
-    function tname
-        [ -n "$TMUX" ] && tmux rename-window -t $TMUX_PANE $argv[1]
-    end
-
     [ -z "$url" ] && set url (wl-paste)
 
     if not set -q TERMUX_VERSION && [ -d "$XDG_CONFIG_HOME/librewolf/librewolf/" ]
@@ -10,7 +6,7 @@ function yt -a url fmt -d "yt-dlp wrapper"
     end
 
     # strip playlist params
-    set url (printf '%s' "$url" | sed -r 's/&list=.*$//')
+    set url (string replace -r -- '&list=.*' '' "$url")
 
     # pick and choose if no fmt given
     if [ -z "$fmt" ]
@@ -21,7 +17,6 @@ function yt -a url fmt -d "yt-dlp wrapper"
             | tr -dc \[:alnum:\]_- \
             | sed -E 's/^https(wwwyoutubecomwatchv|youtubecomwatchv|youtube)(.{11}).*/\2/').json
 
-        tname fetching
         [ -e "$fmtfile" ] || yt-dlp $cookies -js "$url" >$fmtfile
 
         if [ "$(du $fmtfile | kt 1)" = 0 ]
@@ -31,7 +26,7 @@ function yt -a url fmt -d "yt-dlp wrapper"
 
         set -f title (jq -r '.filename' $fmtfile | path basename)
 
-        tname pick
+        printf \a
         set -f fmt (
             cat $fmtfile \
             | jq -rf ~/repos/dotfiles/scripts/yt.jq \
@@ -54,10 +49,8 @@ function yt -a url fmt -d "yt-dlp wrapper"
         set fmt "$fmt+$afmt"
     end
 
-    tname downloading
     clear
     echo "$title"
     yt-dlp $cookies -f "$fmt" -- "$url"
-    and tname done
-    or tname error
+    printf \a
 end
