@@ -2,6 +2,7 @@ local prefix = os.getenv('HOME') .. '/repos/dotfiles/yazi/'
 
 dofile(prefix .. 'ui.lua')
 dofile(prefix .. 'key.lua')
+dofile(prefix .. 'plugins.lua')
 
 ---@diagnostic disable-next-line: undefined-field
 if rt.args.chooser_file then

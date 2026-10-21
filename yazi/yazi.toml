@@ -1,60 +1,6 @@
 # :schema /home/fisher/repos/yazi-schemas/schemas/yazi.json
 #:schema https://yazi-rs.github.io/schemas/yazi.json
 
-## FETCH
-[plugin]
-fetchers = [
-  { group = "mime", prio = "high", url = "*/", run = "mime.dir" },
-  { group = "mime", prio = "high", url = "local://*", run = "mime-ext.local" },
-  { group = "mime", prio = "high", url = "remote://*", run = "mime-ext.remote" },
-  { group = "mime", prio = "high", url = "trash://*", run = "mime.trash" },
-  { group = "mime", prio = "high", url = "*.{!qB,part}", run = "noop" },
-  { group = "mime", prio = "high", url = "/mnt/rclone/**", run = "noop" },
-  { group = "git", url = "*", run = "git" },
-  { group = "git", url = "*/", run = "git" },
-]
-prepend_previewers = [
-  { url = "/home/fisher/pic/{.lewdp,Camera,Komikku,covers,desu,ss,wp}/", run = "preview-imgdir" },
-  # partial downloads
-  { url = "*.{!qB,part}", run = "noop" },
-  { url = "/mnt/rclone/**", run = "noop" },
-  # custom plugins
-  { url = "**/.git/", run = "preview-git" },
-  { url = "**/manga/**/*.{zip,rar}", run = "preview-cbz" },
-  { url = "**/smut/*.{zip,rar}", run = "preview-cbz" },
-  { url = "*.typ", run = "preview-typst" },
-  { url = "*.service", run = "preview-systemd" },
-  { mime = "application/apple.mpegurl", run = "code" },
-  { mime = "application/bittorrent", run = "preview-torrent" },
-  { mime = "application/cbr", run = "preview-cbz" },
-  { mime = "application/sqlite3", run = "preview-sqlite" },
-  { mime = "audio/mpegurl", run = "code" },
-  { mime = "audio/*", run = "preview-audio" },
-  { mime = "font/*", run = "font-sample" },
-]
-prepend_preloaders = [
-  { url = "/home/fisher/pic/{.lewdp,Camera,Komikku,covers,desu,ss,wp}/", run = "preview-imgdir" },
-  # partial downloads
-  { url = "*.{!qB,part}", run = "noop" },
-  { url = "/mnt/rclone/**", run = "noop" },
-  # custom plugins
-  { url = "**/manga/**/*.{zip,rar}", run = "preview-cbz" },
-  { url = "**/smut/*.{zip,rar}", run = "preview-cbz" },
-  { url = "*.typ", run = "preview-typst" },
-  { mime = "application/cbr", run = "preview-cbz" },
-  { mime = "audio/*", run = "preview-audio" },
-  { mime = "font/*", run = "font-sample" },
-]
-spotters = [
-  { mime = "multi/*", run = "multi" },
-  { mime = "folder/*", run = "spot" },
-  { mime = "application/cbr", run = "spot-cbz" },
-  { mime = "audio/*", run = "spot-audio" },
-  { mime = "image/*", run = "spot-image" },
-  { mime = "video/*", run = "spot-video" },
-  { url = "*", run = "spot" },
-]
-
 ## OPEN
 [open]
 rules = [
