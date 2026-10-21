@@ -1,5 +1,5 @@
 function lg -d "lazygit wrapper"
-    if [ "$USER" = fisher ] && not ssh-add -l &>/dev/null
+    if pidof ssh-agent &>/dev/null && not ssh-add -l &>/dev/null
         ssh-add ~/.ssh/git_ed25519
     end
 

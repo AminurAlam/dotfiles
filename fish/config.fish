@@ -73,8 +73,12 @@ set -gx COLORTERM truecolor
 
 status is-interactive || exit
 
-if set -q TERMUX_VERSION && not pidof sshd &>/dev/null
-    sshd
+if set -q TERMUX_VERSION
+    not pidof sshd &>/dev/null
+    and sshd
+
+    not pidof ssh-agent &>/dev/null
+    and ssh-agent -a $SSH_AUTH_SOCK >/dev/null
 end
 
 function fish_mode_prompt
