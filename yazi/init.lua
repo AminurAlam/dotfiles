@@ -4,9 +4,38 @@ dofile(prefix .. 'ui.lua')
 dofile(prefix .. 'key.lua')
 dofile(prefix .. 'plugins.lua')
 
----@diagnostic disable-next-line: undefined-field
 if rt.args.chooser_file then
-  ya.emit('yank', { cut = true })
+  ya.async(function()
+    ya.emit('yank', { cut = true })
+  end)
+end
+
+-- [[ previewers ]]
+
+require('preview-audio'):setup()
+require('preview-cbz'):setup {
+  urls = { '*.{cbz,cbr}' }, -- '**/manga/**/*.{zip,rar}', '**/{smut,smut/WIP}/*.zip' },
+}
+require('preview-font'):setup {
+  canvas_size = '750x800',
+  font_size = 60,
+  bg = 'white',
+  fg = 'black',
+  urls = {},
+}
+require('preview-git'):setup({})
+require('preview-imgdir'):setup {
+  patterns = { '/home/fisher/pic/{.lewdp,Camera,Komikku,covers,desu,ss,wp}/' },
+}
+require('preview-sqlite'):setup()
+require('preview-systemd'):setup()
+require('preview-torrent'):setup()
+require('preview-typst'):setup()
+
+if os.getenv('YAZI_LOG') == 'debug' then
+  for _, f in pairs(rt.plugin.previewers:match()) do
+    ya.dbg(f.url, f.mime, f.run.name)
+  end
 end
 
 require('git'):setup {}
@@ -22,13 +51,6 @@ require('session'):setup { sync_yanked = true }
 require('spot'):setup {
   metadata_section = { hash_filesize_limit = 200, relative_time = true },
   plugins_section = { enable = true },
-}
-
-require('font-sample'):setup {
-  canvas_size = '750x800',
-  font_size = 60,
-  bg = 'white',
-  fg = 'black',
 }
 
 require('mime-ext.local'):setup {

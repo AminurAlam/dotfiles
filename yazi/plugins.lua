@@ -1,15 +1,3 @@
----@diagnostic disable: undefined-field
-
-local o = rt.plugin
-ya.dbg(o)
-
-for _, f in pairs(rt.plugin.fetchers:match()) do
-  rt.plugin.fetchers:remove { id = f.id }
-end
-for _, f in pairs(rt.plugin.spotters:match()) do
-  rt.plugin.spotters:remove { id = f.id }
-end
-
 local plugin_rules = {
   fetchers = {
     { group = 'mime', url = '*/', run = 'mime.dir', prio = 'high' },
@@ -31,37 +19,43 @@ local plugin_rules = {
     { url = '*', run = 'spot' },
   },
   previewers = {
-    { url = '/home/fisher/pic/{.lewdp,Camera,Komikku,covers,desu,ss,wp}/', run = 'preview-imgdir' },
-    -- partial downloads
     { url = '*.{!qB,part}', run = 'noop' },
     { url = '/mnt/rclone/**', run = 'noop' },
-    -- custom plugins
-    { url = '**/.git/', run = 'preview-git' },
-    { url = '**/manga/**/*.{zip,rar}', run = 'preview-cbz' },
-    { url = '**/smut/*.{zip,rar}', run = 'preview-cbz' },
-    { url = '**/smut/*/*.{zip,rar}', run = 'preview-cbz' },
-    { url = '*.typ', run = 'preview-typst' },
-    { url = '*.service', run = 'preview-systemd' },
-    { mime = 'application/apple.mpegurl', run = 'code' },
-    { mime = 'application/bittorrent', run = 'preview-torrent' },
-    { mime = 'application/cbr', run = 'preview-cbz' },
-    { mime = 'application/sqlite3', run = 'preview-sqlite' },
-    { mime = 'audio/mpegurl', run = 'code' },
-    { mime = 'audio/*', run = 'preview-audio' },
-    { mime = 'font/*', run = 'font-sample' },
+    -- default
+    { mime = 'folder/*', run = 'folder' },
+    { mime = 'text/*', run = 'code' },
+    { mime = 'application/{mbox,javascript,wine-extension-ini}', run = 'code' },
+    { mime = 'application/{json,ndjson}', run = 'json' },
+    { mime = 'image/{avif,hei?,jxl}', run = 'magick' },
+    { mime = 'image/svg+xml', run = 'svg' },
+    { mime = 'image/*', run = 'image' },
+    { mime = 'video/*', run = 'video' },
+    { mime = 'application/pdf', run = 'pdf' },
+    {
+      mime = 'application/{zip,rar,7z*,tar,gzip,xz,zstd,bzip*,lzma,compress,archive,cpio,arj,'
+        .. 'xar,ms-cab*,debian*-package,redhat-package-manager,rpm,android.package-archive}',
+      run = 'archive',
+    },
+    {
+      url = '*.{AppImage,appimage,img,fat,ext,ext2,ext3,ext4,squashfs,ntfs,hfs,hfsx}',
+      run = 'archive',
+    },
+    { mime = 'inode/empty', run = 'empty' },
+    { mime = 'vfs/*', run = 'vfs' },
+    { mime = 'trash/**', run = 'trash' },
+    { mime = 'error/*', run = 'error' },
+    { url = '*', run = 'file' },
   },
   preloaders = {
-    { url = '/home/fisher/pic/{.lewdp,Camera,Komikku,covers,desu,ss,wp}/', run = 'preview-imgdir' },
-    -- partial downloads
     { url = '*.{!qB,part}', run = 'noop' },
     { url = '/mnt/rclone/**', run = 'noop' },
-    -- custom plugins
-    { url = '**/manga/**/*.{zip,rar}', run = 'preview-cbz' },
-    { url = '**/smut/*.{zip,rar}', run = 'preview-cbz' },
-    -- { url = "*.typ", run = "preview-typst" },
-    { mime = 'application/cbr', run = 'preview-cbz' },
-    { mime = 'audio/*', run = 'preview-audio' },
-    { mime = 'font/*', run = 'font-sample' },
+    -- default
+    { mime = 'image/{avif,hei?,jxl}', run = 'magick' },
+    { mime = 'image/svg+xml', run = 'svg' },
+    { mime = 'image/*', run = 'image' },
+    { mime = 'video/*', run = 'video' },
+    { mime = 'application/pdf', run = 'pdf' },
+    { mime = 'trash/**', run = 'trash' },
   },
 }
 

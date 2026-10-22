@@ -1,6 +1,12 @@
 # :schema /home/fisher/repos/yazi-schemas/schemas/yazi.json
 #:schema https://yazi-rs.github.io/schemas/yazi.json
 
+[plugin]
+fetchers = []
+previewers = []
+preloaders = []
+spotters = []
+
 ## OPEN
 [open]
 rules = [
