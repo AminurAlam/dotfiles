@@ -1,4 +1,4 @@
-set ls "ls --group-directories-first -1AXNGshF"
+set -l ls "ls --group-directories-first -1AXNGshF"
 alias l "$ls"
 alias ll "$ls -lg"
 alias tldr 'curl -qs cht.sh/$argv # '
@@ -18,7 +18,6 @@ abbr a aria2c
 abbr za _ZO_EXCLUDE_DIRS= zoxide add '$PWD'
 abbr cls clear
 abbr tar "tar xzf"
-abbr qmv "qmv -AXf do"
 abbr diff "diff -Naur"
 abbr py "python3 -q"
 abbr ru "rip url"
@@ -52,6 +51,8 @@ abbr df 'df --output=pcent,avail,target -h -x tmpfs -x efivarfs -x devtmpfs -x v
 set -q TERMUX_VERSION && abbr df 'df -h | awk \'/dev.fuse|data.media/{print $3"/"$2,$5,$4}\''
 
 # pkg: https://wiki.archlinux.org/title/Pacman/Rosetta
+set -l sudo (command -v sudo | path basename)
+
 if command -vq pacstall
     abbr pi pacstall -I
     abbr pr pacstall -R
@@ -59,16 +60,12 @@ if command -vq pacstall
     abbr pf pacstall -S
     abbr pa pacstall -Si
 
-    set sudo (command -v sudo | path basename)
-
     abbr pii $sudo apt install
     abbr prr $sudo apt remove
     abbr puu $sudo apt update "&&" $sudo apt upgrade
     abbr pff apt search
     abbr paa apt show
 else if command -vq apt
-    set sudo (command -v sudo | path basename)
-
     abbr pi $sudo apt install
     abbr pr $sudo apt remove
     abbr pu $sudo apt update "&&" $sudo apt upgrade
@@ -82,8 +79,6 @@ else if command -vq yay
     abbr pf yay -Ss
     abbr pa yay -Si
 else if command -vq pacman
-    set sudo (command -v sudo | path basename)
-
     abbr pi $sudo pacman -S
     abbr pr $sudo pacman -Rs
     abbr pu $sudo pacman -Syu
