@@ -19,14 +19,14 @@ function clean -d "cleanup storage space"
     end
 
     string pad -C -c= -w$COLUMNS " PKG FILES "
-    if command -vq sudo
-        fd -H -td -d1 -q '^download-.*' /var/cache/pacman/pkg/
-        and sudo rm -frI (fd -H -td -d1 '^download-.*' /var/cache/pacman/pkg/)
+    # bug: https://gitlab.archlinux.org/pacman/pacman/-/work_items/297
+    # fix: https://gitlab.archlinux.org/pacman/pacman/-/merge_requests/348
+    count /var/cache/pacman/pkg/download-* &>/dev/null
+    and sudo rm -fr /var/cache/pacman/pkg/download-*
 
-        command -vq pacman && yes | sudo pacman -Scc
-    else if set -q TERMUX_VERSION
-        yes | pacman -Scc
-    end
+    command -vq paccache
+    and paccache -r -k0 -v
+    or yes | pacman -Scc
 
     command -vq yay && begin
         yay -Sc --noconfirm
