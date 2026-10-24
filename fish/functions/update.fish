@@ -1,27 +1,12 @@
 function update -d "system update with just one command"
 
-    string pad -C -c= -w$COLUMNS " REFLECTOR "
-    if not set -q TERMUX_VERSION && [ "$(read -P "run reflector? [y/N] ")" = y ]
-        sudo reflector \
-            --sort rate \
-            --country India,China,Bangladesh \
-            --save /etc/pacman.d/mirrorlist \
-            -p http,https
-    end
-
-    string pad -C -c= -w$COLUMNS " PACMAN "
-    command -vq yay
-    and yay -Syu
-    or pacman -Syu
-
-    string pad -C -c= -w$COLUMNS " NVIM "
-    [ $USER = fisher ]
-    and nvim +'lua vim.pack.update()'
-    or nvim +'lua vim.pack.update(nil, {target = "lockfile"})'
-
-    string pad -C -c= -w$COLUMNS " GIT REPOS "
+    echo =================================== GIT REPOS ==================================
     if set -q TERMUX_VERSION
         pushd ~/repos/dotfiles/
+        and git pull origin
+        popd
+
+        pushd ~/repos/helix-fork
         and git pull origin
         popd
 
@@ -30,7 +15,25 @@ function update -d "system update with just one command"
         popd
     end
 
-    string pad -C -c= -w$COLUMNS " CARGO "
+    echo ==================================== MIRRORS ===================================
+    not set -q TERMUX_VERSION && set repo (printf "%s\n" core extra | fzf)
+    and curl https://archlinux.org/mirrorlist/?country={BD,CN,IN,NP}"&protocol=http&protocol=https&ip_version=4&ip_version=6" \
+        | sed '/^##/d; s/^#//' \
+        | rankmirrors -n 10 -m 5 -r $repo - \
+        | sudo tee /etc/pacman.d/mirrorlist
+
+    echo ==================================== PACMAN ====================================
+    command -vq yay
+    and yay -Syu
+    or pacman -Syu
+
+    echo ===================================== NVIM =====================================
+    [ $USER = fisher ]
+    and nvim +'lua vim.pack.update(nil, {force = true})' +q
+    or nvim +'lua vim.pack.update(nil, {force = true, target = "lockfile"})' +q
+    # nvim +'require("nvim-treesitter").update():wait(300000)' +q
+
+    echo ===================================== CARGO ====================================
 
     set -q TERMUX_VERSION
     or cargo install --locked --git https://git.gay/stella/niri-ipc-windowlayout
@@ -38,7 +41,7 @@ function update -d "system update with just one command"
     set -q TERMUX_VERSION
     and cargo install --locked --git https://codeberg.org/AminurAlam/kt
 
-    string pad -C -c= -w$COLUMNS " HELIX "
+    echo ===================================== HELIX ====================================
     if [ "$(read -P "update helix? [y/N] ")" = y ]
         pushd ~/repos/helix-fork
         set -q TERMUX_VERSION && git pull origin
@@ -47,7 +50,7 @@ function update -d "system update with just one command"
     end
     { hx -g fetch; hx -g build } | rg -v '(Fetch|Build)ing grammars '
 
-    string pad -C -c= -w$COLUMNS " YAZI "
+    echo ===================================== YAZI =====================================
     if not set -q TERMUX_VERSION
         pushd ~/repos/yazi-fork/
         git fetch upstream
@@ -64,24 +67,24 @@ function update -d "system update with just one command"
         popd
     end
 
-    string pad -C -c= -w$COLUMNS " YAZI PKGS "
+    echo =================================== YAZI PKGS ==================================
     set -q TERMUX_VERSION
     and ya pkg install --discard
     or ya pkg upgrade --discard
 
-    string pad -C -c= -w$COLUMNS " ZMX "
+    echo ====================================== ZMX =====================================
     if set -q TERMUX_VERSION
         pushd $HOME/repos/dotfiles/scripts/build/zmx-bin/
-        makepkg -si
+        makepkg -si --needed
         popd
     end
 
-    string pad -C -c= -w$COLUMNS " MANPAGES "
+    echo =================================== MANPAGES ===================================
     command -vq sudo
     and sudo makewhatis
     or makewhatis
 
-    string pad -C -c= -w$COLUMNS " FISH COMPLETIONS "
+    echo =============================== FISH COMPLETIONS ===============================
     fish_update_completions
 
     # string pad -C -c= -w$COLUMNS " BIOME "

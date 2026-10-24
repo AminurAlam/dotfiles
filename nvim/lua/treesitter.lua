@@ -77,9 +77,7 @@ vim.api.nvim_create_autocmd({ 'PackChanged' }, {
           tier = 2,
         }
       end
-      vim.schedule(function()
-        vim.cmd('TSUpdate')
-      end)
+      require('nvim-treesitter').update():wait(300000)
     end
   end,
 })
