@@ -1,3 +1,5 @@
+---@diagnostic disable: duplicate-set-field
+
 do -- [=[ shorter header cwd or tabs
   function Header:cwd()
     local max = self._area.w - self._right_width

@@ -5,16 +5,29 @@ dofile(prefix .. 'key.lua')
 dofile(prefix .. 'plugins.lua')
 
 if rt.args.chooser_file then
-  ya.async(function()
-    ya.emit('yank', { cut = true })
+  ps.sub('hover', function()
+    if cx.active.current.hovered then
+      ya.emit('yank', { cut = true })
+      ps.unsub('hover')
+    end
   end)
 end
 
 -- [[ previewers ]]
 
 require('preview-audio'):setup()
+require('preview-git'):setup()
+require('preview-sqlite'):setup()
+require('preview-systemd'):setup()
+require('preview-torrent'):setup()
+require('preview-typst'):setup()
+
 require('preview-cbz'):setup {
-  urls = { '*.{cbz,cbr}' }, -- '**/manga/**/*.{zip,rar}', '**/{smut,smut/WIP}/*.zip' },
+  urls = {
+    '*.{cbz,cbr}',
+    '**/manga/**/*.{zip,rar}',
+    '**/{smut,smut/WIP}/*.zip',
+  },
 }
 require('preview-font'):setup {
   canvas_size = '750x800',
@@ -23,20 +36,18 @@ require('preview-font'):setup {
   fg = 'black',
   urls = {},
 }
-require('preview-git'):setup({})
+
 require('preview-imgdir'):setup {
   patterns = { '/home/fisher/pic/{.lewdp,Camera,Komikku,covers,desu,ss,wp}/' },
 }
-require('preview-sqlite'):setup()
-require('preview-systemd'):setup()
-require('preview-torrent'):setup()
-require('preview-typst'):setup()
 
 if os.getenv('YAZI_LOG') == 'debug' then
   for _, f in pairs(rt.plugin.previewers:match()) do
     ya.dbg(f.url, f.mime, f.run.name)
   end
 end
+
+-- [[ other ]]
 
 require('git'):setup {}
 
