@@ -94,10 +94,10 @@ function __zoxide_hook --on-variable PWD
     string match -q "$HOME*" "$dirname" || return
     [ -z "$fish_private_mode" ] || return
 
-    set root (string match -r -- (string join '|' \
+    set -f root (string match -r -- (string join '|' \
         {$HOME/repos,$XDG_VIDEOS_DIR,$XDG_STATE_HOME,$XDG_DATA_HOME}"/[^/]+/" \
         $XDG_DOWNLOAD_DIR/main/torrents \
-        $XDG_DOWNLOAD_DIR/{art,lrc,main,manga} \
+        $XDG_DOWNLOAD_DIR/{art,lrc,main,manga,music,smut} \
         $XDG_CACHE_HOME/yay \
         $XDG_CACHE_HOME \
         $XDG_CONFIG_HOME \
@@ -105,14 +105,8 @@ function __zoxide_hook --on-variable PWD
         $XDG_MUSIC_DIR/albums \
         $XDG_PICTURES_DIR/{.archive,WhatsApp Images,clothes}
     ) "$dirname")
-    if [ -n "$root" ]
-        echo $dirname | rg -F --color always $root >>~/.local/cache/temp/root
-        set dirname "$root"
-    else
-        echo $dirname >>~/.local/cache/temp/root
-    end
-
-    command zoxide add -- "$dirname"
+    and command zoxide add -- "$root"
+    or command zoxide add -- "$dirname"
 end
 
 fish_config theme choose tokyo-night
