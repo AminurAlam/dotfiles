@@ -80,9 +80,7 @@ function update -d "system update with just one command"
     end
 
     echo =================================== MANPAGES ===================================
-    command -vq sudo
-    and sudo makewhatis
-    or makewhatis
+    makewhatis -D 2>| pv -ls(man -k . | count) >/dev/null
 
     echo =============================== FISH COMPLETIONS ===============================
     fish_update_completions
