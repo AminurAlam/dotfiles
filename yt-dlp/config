@@ -29,7 +29,7 @@
 
 ### Subtitle Options:
 --write-subs
---write-auto-subs
+# --write-auto-subs # dogshit AI subs
 --sub-langs "en(-en)?,ja"
 
 ### Post-Processing Options:

@@ -20,9 +20,10 @@ def br:
         (.      | floor  | tostring) + "K"
     end;
 
-.formats[]
+.extractor as $extractor
+| .formats[]
 | select(.vcodec != "none")
-# | select([.vbr, .tbr] | any)
+| select($extractor == "youtube" and (.vbr | not) | not)
 | select(.format_id | startswith("sb") | not)
 | [
     .format_id,
