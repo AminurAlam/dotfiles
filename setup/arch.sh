@@ -5,9 +5,12 @@ setup_live_boot() {
 }
 
 setup_post_install() {
-    sudo pacman -Syu --needed reflector
-    sudo reflector --sort rate --country India,China,Bangladesh --save /etc/pacman.d/mirrorlist
-    sudo pacman -Syu --needed base-devel fd fish foot git power-profiles-daemon ripgrep yazi
+    sudo pacman -Syu --needed pacman-contrib
+    curl https://archlinux.org/mirrorlist/?country={BD,CN,IN,NP}"&protocol=http&protocol=https&ip_version=4&ip_version=6" \
+        | sed '/^##/d; s/^#//' \
+        | rankmirrors -n 10 -m 5 -r $repo - \
+        | sudo tee /etc/pacman.d/mirrorlist
+    sudo pacman -Syu --needed base-devel fd fish foot git power-profiles-daemon ripgrep
 
     systemctl enable NetworkManager.service power-profiles-daemon.service
     command -v fish &>/dev/null && sudo chsh -s "$(command -v fish)"
@@ -42,29 +45,4 @@ setup_dotfiles() {
     fi
     printf "done\n"
     [ -e ~/repos/dotfiles/setup/linking.fish ] && fish ~/repos/dotfiles/setup/linking.fish
-
-    printf "SETTING UP YAZI...\n"
-    command -v ya &>/dev/null && ya pack -u 2>/dev/null | rg Upgrading
-}
-
-setup_dev() {
-    yay -S --needed tree-sitter neovim-git librewolf-bin # anki-bin vesktop-bin
-    yay -S --needed basedpyright bash-language-server ccls clang lua-language-server \
-        ruff rust-analyzer shellcheck shfmt stylua taplo termux-language-server tinymist \
-        vscode-css-languageserver vscode-html-languageserver yaml-language-server
-    npm -g i serve
-}
-
-setup_wine() {
-    sudo pacman -S wine
-    sudo pacman -S --needed --asdeps giflib lib32-giflib gnutls lib32-gnutls v4l-utils lib32-v4l-utils libpulse \
-        lib32-libpulse alsa-plugins lib32-alsa-plugins alsa-lib lib32-alsa-lib sqlite lib32-sqlite libxcomposite \
-        lib32-libxcomposite ocl-icd lib32-ocl-icd libva lib32-libva gtk3 lib32-gtk3 gst-plugins-base-libs \
-        lib32-gst-plugins-base-libs vulkan-icd-loader lib32-vulkan-icd-loader sdl2-compat lib32-sdl2-compat
-}
-
-setup_de() {
-    yay -S anki kiwix-tools komga kanata-bin
-    yay -S xdg-desktop-portal-gnome xdg-desktop-portal-wlr # org.freedesktop.secrets
-    systemctl --user enable {anki-syncserver,kanata,swaybg,waybar,xwayland-satellite,redlib,foot-server}.service
 }
