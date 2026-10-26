@@ -5,6 +5,7 @@ language = [
   { name = "handlebars", scope = "source.handlebars", file-types = ["handlebars"] },
   { name = "kanata", scope = "source.kanata", file-types = ["kbd"], comment-tokens = [";;"] },
   { name = "lua", roots = [".luarc.json", ".luacheckrc", ".stylua.toml", "selene.toml"], auto-format = true },
+  { name = "luadoc", scope = "source.luadoc", file-types = ["luadoc"] },
   { name = "markdown", auto-format = true, formatter = { command = "prettier", args = ["--parser", "markdown"] } },
   { name = "newsraft", scope = "source.newsraft", file-types = [{ glob = "newsraft/feeds" }] },
   { name = "pkgbuild", auto-format = true, file-types = [{ glob = "PKGBUILD" }, { glob = "build.sh" }] },
@@ -18,8 +19,9 @@ language = [
 grammar = [
   { name = "handlebars", source.path = "/home/fisher/repos/tree-sitter/tree-sitter-handlebars" },
   { name = "kanata", source.path = "/home/fisher/repos/tree-sitter/kanata" },
+  { name = "luadoc", source.path = "/home/fisher/repos/tree-sitter/tree-sitter-luadoc" },
   { name = "newsraft", source.path = "/home/fisher/repos/tree-sitter/newsraft" },
-  { name = "zathurarc", source.path = "/home/fisher/repos/tree-sitter/zathurarc" }
+  { name = "zathurarc", source.path = "/home/fisher/repos/tree-sitter/zathurarc" },
 ]
 
 # TODO: fix pdf export and preview
