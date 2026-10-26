@@ -94,7 +94,6 @@ ripgrep
 rsync
 ruff
 rust
-rust-analyzer
 scrcpy
 shellcheck
 shfmt

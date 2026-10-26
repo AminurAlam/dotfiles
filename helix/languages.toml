@@ -9,7 +9,7 @@ language = [
   { name = "newsraft", scope = "source.newsraft", file-types = [{ glob = "newsraft/feeds" }] },
   { name = "pkgbuild", auto-format = true, file-types = [{ glob = "PKGBUILD" }, { glob = "build.sh" }] },
   { name = "python", auto-format = true },
-  # { name = "rust", language-servers = [] },
+  { name = "rust", language-servers = [] },
   { name = "toml", auto-format = true },
   { name = "typst", auto-format = true },
   { name = "zathurarc", scope = "source.zathura", file-types = [{ glob = "zathurarc" }] }
@@ -33,6 +33,11 @@ lint.enabled = true
 syntaxOnly = "disable"
 # preview.background.enabled = true
 # preview.background.args = ["--data-plane-host=127.0.0.1:23635", "--invert-colors=never", "--open"]
+
+[language-server.rust-glancer]
+command = "rust-glancer"
+args = ["lsp"]
+config.init_options = {}
 
 [language-server.ruff.config.init_options]
 settings.configuration = ".config/ruff/ruff.toml"
