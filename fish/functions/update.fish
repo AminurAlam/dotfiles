@@ -3,6 +3,10 @@ function update -d "system update with just one command"
     : =================================== GIT REPOS ==================================
     string pad -Cc= -w$COLUMNS " GIT REPOS "
 
+    if pidof ssh-agent &>/dev/null && not ssh-add -l &>/dev/null
+        ssh-add ~/.ssh/git_ed25519
+    end
+
     if set -q TERMUX_VERSION
         pushd ~/repos/dotfiles/
         and { git pull origin; popd }
@@ -64,8 +68,7 @@ function update -d "system update with just one command"
     string pad -Cc= -w$COLUMNS " HELIX "
 
     pushd ~/repos/helix-fork
-    cargo install --locked --path helix-term \
-        --profile opt --config 'build.rustflags="-C target-cpu=native"'
+    cargo install --locked --path helix-term
     { hx -g fetch; hx -g build } | rg -v '(Fetch|Build)ing grammars '
     popd
 

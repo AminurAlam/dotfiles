@@ -12,10 +12,8 @@ curl
 dash
 dialog
 diffutils
-dos2unix
 dust
 exiftool
-exiv2
 fd
 ffmpeg
 file
@@ -49,7 +47,6 @@ libgmp
 libgnutls
 libgpg-error
 libiconv
-libicu
 libidn2
 libksba
 liblzma
@@ -63,7 +60,6 @@ libnpth
 libsmartcols
 libsqlite
 libssh2
-libtirpc
 libunbound
 libunistring
 libxml2

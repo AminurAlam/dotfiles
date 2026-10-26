@@ -77,6 +77,9 @@ if set -q TERMUX_VERSION
     not pidof sshd &>/dev/null
     and sshd
 
+    not test -e $SSH_AUTH_SOCK
+    and pkill ssh-agent
+
     not pidof ssh-agent &>/dev/null
     and ssh-agent -a $SSH_AUTH_SOCK >/dev/null
 end

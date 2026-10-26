@@ -6,7 +6,6 @@ function pkglist -d "script for updating \$CONF/setup/list/* files"
     pacman -Qqe >"$pkglist/arch-pacman"
     uv tool list >"$pkglist/arch-uv"
     ssh brick pacman -Qqe >"$pkglist/termux-pacman"
-    ls $CARGO_HOME/bin/ >"$pkglist/arch-cargo"
     adb shell pm list packages -i -3 | kt : 2 | kt 2 1 | sort >"$pkglist/android-3rd"
     adb shell pm list packages -d | kt : 2 | sort >"$pkglist/android-disabled"
 
