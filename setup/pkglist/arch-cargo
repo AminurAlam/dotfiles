@@ -1,5 +1,6 @@
 [v1]
 "helix-term 25.7.1 (path+file:///home/fisher/repos/helix-fork/helix-term)" = ["hx"]
+"kanata 1.13.0-prerelease-2 (path+file:///home/fisher/repos/kanata)" = ["kanata"]
 "kt 0.1.0 (path+file:///home/fisher/repos/kt)" = ["kt"]
 "niri-columns 0.1.0 (path+file:///home/fisher/repos/niri-columns)" = ["niri-columns"]
 "rust-glancer 0.0.0 (path+file:///home/fisher/repos/rust-glancer/crates/rust-glancer)" = ["rust-glancer"]
