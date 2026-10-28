@@ -1,23 +1,12 @@
-/* vim:set sw=2: */
-
 * {
   font-size: 17px;
-  /* opacity: 0.99; */
-  min-height: 24px;
 }
 
 #waybar {
-  font-family:
-    "JetBrainsMono Nerd Font", "IBM Plex Mono", Arial, Helvetica, sans-serif;
+  font-family: "JetBrainsMono Nerd Font";
   background: #24283b;
   color: #c0caf5;
-  margin: 0px 0px;
-  transition-property: background-color;
-  transition-duration: 0s;
-}
-
-#waybar.hidden {
-  /* opacity: 0.2; */
+  min-height: 24px;
 }
 
 #backlight,
@@ -47,30 +36,24 @@
 }
 
 #workspaces {
-  /* font-family: "Noto Sans CJK JP"; */
   margin: 0px 20px;
 }
 
 #workspaces button {
   color: #c0caf5;
-  margin: 3px 0px 3px 0px;
-  padding: 5px 5px 5px 5px;
+  padding: 5px 5px;
 }
 
 #workspaces button.active {
   color: #000000;
   background: #8db0ff;
-  border-radius: 10px;
-  padding: 5px 10px 5px 10px;
-  margin: 3px 5px 3px 5px;
+  border-radius: 0px;
 }
 
 #workspaces button.urgent {
   color: #000000;
   background: #db4b4b;
-  border-radius: 10px;
-  padding: 5px 10px 5px 10px;
-  margin: 3px 5px 3px 5px;
+  border-radius: 0px;
 }
 
 #window {
@@ -110,8 +93,6 @@
 #custom-brick.CHARGING {
   color: #5af79e;
 }
-
-#custom-brick.DISCHARGING {}
 
 #custom-brick.NOT_CHARGING {
   color: #8db0ff;

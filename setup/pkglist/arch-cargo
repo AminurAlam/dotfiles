@@ -1,7 +1,7 @@
 [v1]
 "helix-term 25.7.1 (path+file:///home/fisher/repos/helix-fork/helix-term)" = ["hx"]
 "kt 0.1.0 (path+file:///home/fisher/repos/kt)" = ["kt"]
-"niri-ipc-windowlayout 0.1.0 (git+https://git.gay/stella/niri-ipc-windowlayout#960f866f7a6ceb844497749bc49eb6c7847439b3)" = ["niri-ipc-windowlayout"]
+"niri-columns 0.1.0 (path+file:///home/fisher/repos/niri-columns)" = ["niri-columns"]
 "rust-glancer 0.0.0 (path+file:///home/fisher/repos/rust-glancer/crates/rust-glancer)" = ["rust-glancer"]
 "yazi-cli 26.9.1 (path+file:///home/fisher/repos/yazi-fork/yazi-cli)" = ["ya"]
 "yazi-fm 26.9.1 (path+file:///home/fisher/repos/yazi-fork/yazi-fm)" = ["yazi"]

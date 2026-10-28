@@ -1,15 +1,9 @@
-// vim:ft=jsonc sw=2:
 {
   "layer": "top",
-  // "position": "bottom",
-  // "height": 25,
-  // "width": 1870,
-  "spacing": 4, // Gaps between modules (4px)
+  "spacing": 4,
   "modules-left": [
-    //
     "niri/workspaces",
-    // "niri/language",
-    "custom/colcount",
+    "custom/columns",
   ],
   "modules-center": ["tray"],
   "modules-right": [
@@ -30,15 +24,14 @@
     "clock",
   ],
   "niri/workspaces": {
-    "disable-click": true,
-    "disable-markup": true,
+    "format": " {icon} ",
   },
   "niri/window": {
     "format": "",
     "icon": true,
   },
-  "custom/colcount": {
-    "exec": ".config/waybar/niri-windows.fish",
+  "custom/columns": {
+    "exec": "niri-columns",
     "return-type": "string",
     "restart-interval": "never",
     "format": "{} ",
@@ -52,7 +45,6 @@
     "reverse-direction": true,
   },
   "pulseaudio": {
-    // "scroll-step": 1, // %, can be a float
     "format": "{icon} {format_source}",
     "format-bluetooth": "{icon} {format_source}",
     "format-bluetooth-muted": "{icon} {format_source}",
@@ -71,19 +63,21 @@
     "on-click": "pavucontrol",
   },
   "backlight": {
-    // "device": "acpi_video1",
     "format": "{icon} {percent}",
     "format-icons": ["󰃟"],
     "tooltip": false,
   },
+  // https://github.com/Alexays/Waybar/wiki/Module:-Network
   "network": {
+    "interface": "wlan0",
     "interval": 1,
     "format-disconnected": "󰤭",
     "format-disabled": "",
-    "format-wifi": "{icon} {essid}",
+    "format-wifi": " {bandwidthTotalBytes}  {icon} {essid}", // TODO: put {:i} after update
+    "tooltip-format-wifi": "{essid}: {ipaddr}/{cidr}",
     "format-icons": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"],
     "format-ethernet": "{bandwidthTotalBytes} 󰈀",
-    "format-linked": "(No IP)",
+    "format-linked": "{icon} {essid} {bandwidthTotalBytes}",
     "tooltip-format": "{essid} {gwaddr}",
   },
   "mpd": {
@@ -116,12 +110,8 @@
     "states": { "high": 30, "low": 0 },
   },
   "temperature": {
-    // "thermal-zone": 2,
-    // "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
     "critical-threshold": 55,
-    // "format-critical": "{temperatureC}°C {icon}",
-    "format": "{icon} {temperatureC}°",
-    "format-icons": ["", "", "", "", ""],
+    "format": " {temperatureC}°",
     "tooltip": false,
   },
   "custom/brick": {
@@ -138,17 +128,13 @@
     "format-charging": " {capacity}% ",
     "format-plugged": " {capacity}%",
     "format-alt": "{time} | {cycles} cycles | {power} watts",
-    // "format-good": "", // An empty format will hide the module
     "format-icons": ["", "", "", "", "", ""],
     "interval": 5,
     "states": { "critical": 20, "warning": 40, "good": 75, "full": 100 },
   },
   "power-profiles-daemon": {
     "format": "{icon}",
-    "tooltip-format": "Power profile: {profile}\nDriver: {driver}",
-    "tooltip": true,
     "format-icons": {
-      "default": "",
       "performance": "",
       "balanced": "",
       "power-saver": "",
@@ -182,23 +168,20 @@
     ],
   },
   "clock": {
-    // "timezone": "America/New_York",
     "locale": "en_GB.UTF-8",
     "interval": 30,
     "format": "{:%a %b %d %H:%M}",
     "tooltip": true,
-    "format-alt": "{:%a %B %d (%R)} 󰃰",
-    "tooltip-format": "<tt><small>{calendar}</small></tt>",
+    "tooltip-format": "<tt>{calendar}</tt>",
     "calendar": {
       "mode": "year",
       "mode-mon-col": 3,
-      // "weeks-pos": "left",
       "on-scroll": 1,
       "format": {
-        "months": "<span color='#ffead3'><b>{}</b></span>",
-        "days": "<span color='#c0caf5'><b>{}</b></span>",
-        "weekdays": "<span color='#ffcc66'><b>{}</b></span>",
-        "today": "<span background='#8db0ff' color='#1d202f'><b>{}</b></span>",
+        "months": "<span color='#ffead3'>{}</span>",
+        "days": "<span color='#c0caf5'>{}</span>",
+        "weekdays": "<span color='#ffcc66'><small>{}</small></span>",
+        "today": "<span background='#8db0ff' color='#1d202f'>{}</span>",
       },
     },
   },
