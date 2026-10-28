@@ -68,6 +68,10 @@ and sudo ln -nfs ~/repos/dotfiles/ly/config.ini /etc/ly/config.ini
 and sudo ln -nfs ~/repos/dotfiles/systemd/logind.conf /etc/systemd/logind.conf
 printf "done\n"
 
+printf "LINKING CARGO CRATES LOCKFILE... "
+ln -nfs ~/repos/dotfiles/setup/pkglist/(set -q TERMUX_VERSION && echo termux || echo arch)-cargo $HOME/.local/share/cargo/.crates.toml
+printf "done\n"
+
 printf "LINKING SOME DIRS... "
 ln -nTfs ~/repos/dotfiles/applications ~/.local/share/applications
 ln -nTfs ~/repos/yazi-plugins ~/repos/dotfiles/yazi/plugins

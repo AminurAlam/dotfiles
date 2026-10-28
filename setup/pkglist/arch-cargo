@@ -3,6 +3,7 @@
 "kanata 1.13.0-prerelease-2 (path+file:///home/fisher/repos/kanata)" = ["kanata"]
 "kt 0.1.0 (path+file:///home/fisher/repos/kt)" = ["kt"]
 "niri-columns 0.1.0 (path+file:///home/fisher/repos/niri-columns)" = ["niri-columns"]
+"redlib 0.40.0 (path+file:///home/fisher/repos/redlib)" = ["redlib"]
 "rust-glancer 0.0.0 (path+file:///home/fisher/repos/rust-glancer/crates/rust-glancer)" = ["rust-glancer"]
 "yazi-cli 26.9.1 (path+file:///home/fisher/repos/yazi-fork/yazi-cli)" = ["ya"]
 "yazi-fm 26.9.1 (path+file:///home/fisher/repos/yazi-fork/yazi-fm)" = ["yazi"]

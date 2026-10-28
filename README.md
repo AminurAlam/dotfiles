@@ -40,6 +40,7 @@
 - [python](https://python.org/) - python interpreter
 - [qalculate](https://qalculate.github.io/) - Multi-purpose desktop calculator
 - [qBittorrent](https://www.qbittorrent.org) - torrent client
+- [redlib](https://github.com/redlib-org/redlib) - front-end for reddit
 - [ripgrep](https://github.com/BurntSushi/ripgrep) - grep alternative
 - [ruff](https://docs.astral.sh/ruff/) - python linter and formatter
 - [sqlite3](https://www.sqlite.org/) - SQL database
