@@ -11,15 +11,21 @@ function update -d "system update with just one command"
         pushd ~/repos/dotfiles/
         and { git pull origin; popd }
 
+        pushd ~/repos/kt/
+        and { git pull origin; popd }
+
         pushd ~/repos/helix-fork/
         and { git pull origin; popd }
 
         pushd ~/repos/yazi-plugins/
         and { git pull origin; popd }
-
-        pushd ~/repos/kt/
-        and { git pull origin; popd }
     else
+        pushd ~/repos/rust-glancer/
+        and { git pull origin; popd }
+
+        pushd ~/repos/kanata/
+        and { git pull origin; popd }
+
         pushd ~/repos/helix-fork/
         and { git fetch upstream && git rebase upstream/master; popd }
 
@@ -40,29 +46,28 @@ function update -d "system update with just one command"
     string pad -Cc= -w$COLUMNS " PACMAN "
 
     command -vq yay
-    and yay -Syu
+    and yay -Syu --ignore bibata-cursor-theme-bin,mecab-git,mpv-git,ttf-twemoji
     or pacman -Syu
 
     : ===================================== NVIM =====================================
     string pad -Cc= -w$COLUMNS " NVIM "
 
     [ "$USER" = fisher ]
-    and nvim +'lua vim.pack.update(nil, {force = true})' +q
-    or nvim +'lua vim.pack.update(nil, {force = true, target = "lockfile"})' +q
+    and nvim --headless +'lua vim.pack.update(nil, {force = true})' +'sleep 3' +q
+    or nvim --headless +'lua vim.pack.update(nil, {force = true, target = "lockfile"})' +'sleep 3' +q
     # nvim +'require("nvim-treesitter").update():wait(300000)' +q
 
     : ===================================== CARGO ====================================
     string pad -Cc= -w$COLUMNS " CARGO "
 
-    command -vq niri
-    and cargo install --locked --git https://git.gay/stella/niri-ipc-windowlayout
+    # pushd ~/repos/rust-glancer/
+    # and { cargo install --locked --path crates/rust-glancer/; popd }
 
-    : ====================================== KT ======================================
-    string pad -Cc= -w$COLUMNS " KT "
+    pushd ~/repos/kanata/
+    and { cargo install --locked --path .; popd }
 
     pushd ~/repos/kt/
-    cargo install --locked --path .
-    popd
+    and { cargo install --locked --path .; popd }
 
     : ===================================== HELIX ====================================
     string pad -Cc= -w$COLUMNS " HELIX "
@@ -71,14 +76,6 @@ function update -d "system update with just one command"
     cargo install --locked --path helix-term
     { hx -g fetch; hx -g build } | rg -v '(Fetch|Build)ing grammars '
     popd
-
-    : ==================================== GLANCER ===================================
-    string pad -Cc= -w$COLUMNS " GLANCER "
-
-    if pushd ~/repos/yazi-fork/
-        cargo install --locked --path crates/rust-glancer/
-        popd
-    end
 
     : ===================================== YAZI =====================================
     string pad -Cc= -w$COLUMNS " YAZI "
