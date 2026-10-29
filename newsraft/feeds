@@ -8,8 +8,8 @@
 
 @ TECH
 https://lobste.rs/rss < item-rule "title NOT LIKE 'What are you doing this week%'"; item-limit 400
-https://hnrss.org/frontpage.atom "Hacker News" < item-rule "NOT (title REGEXP '^(Show|Tell|Ask|Launch) HN: ' OR title REGEXP '\(YC .*\)' OR title REGEXP '(OpenAI|Anthropic|[Cc]laude|[Oo]pus|[Gg]emini|[Gg]rok|[Kk]imi|[Qq]wen|GPT|AI|LLM|[Aa]gent)')"; item-limit 400
-https://bearblog.dev/discover/feed/ < item-rule "link NOT REGEXP 'blog.avas.space|blog.absurdpirate.com|rnotte.art|terminallucidity.net'"; item-limit 100
+https://hnrss.org/frontpage.atom "Hacker News" < item-rule "NOT (title REGEXP '^(Show|Tell|Ask|Launch) HN: ' OR title REGEXP '\(YC .*\)' OR title REGEXP '(OpenAI|Anthropic|[Cc]laude|[Oo]pus|[Gg]emini|[Gg]rok|[Kk]imi|[Qq]wen|GPT|AI|LLM|[Aa]gent)' OR link REGEXP '//(lesswrong.com|[^/]+\.ai)' )"; item-limit 400
+https://bearblog.dev/discover/feed/ < item-rule "link NOT REGEXP 'blog.avas.space|blog.absurdpirate.com|rnotte.art|hierophante.net'"; item-limit 100
 https://www.phoronix.com/rss.php < item-rule "title NOT REGEXP 'Intel|NVIDIA|driver|Mesa|Vulkan'"; item-limit 100
 https://lwn.net/headlines/rss < item-rule "NOT (title LIKE 'Security updates for %' OR title REGEXP '[Ss]table kernel|[Kk]ernel prepatch')"; item-limit 100
 https://torrentfreak.com/feed < item-rule "title NOT LIKE '%IPTV%'"; item-limit 100
@@ -32,6 +32,7 @@ https://melonds.kuribo64.net/rss.php "emu: melonDS"
 https://f-droid.org/feed.xml                "fdroid: F-Droid"
 https://android.izzysoft.de/rss/en/articles "fdroid: izzysoft"
 https://fishshell.com/blog/feed.xml
+https://blog.rust-lang.org/feed.xml
 https://github.com/keiyoushi/extensions-source/commits/main/src/en/hentainexus.atom "keiyoushi: HentaiNexus commits"
 https://blog.metabrainz.org/feed/
 https://blog.nightly.mozilla.org/feed "mozilla: firefox nightly"
@@ -49,10 +50,11 @@ https://github.com/sxyazi/yazi/commits/main/CHANGELOG.md.atom "yazi: changelog"
 
 @ MEDIA
 $(feedmod https://muspy.com/feed?id=mobwjpkr95u5p1b4f2w1bjt74qc8u3) "muspy New Releases" < item-rule "NOT (title LIKE 'Taylor Swift%' OR title REGEXP 'Remix|live|Live|LIVE')"
-https://nyaa.si/?page=rss&c=3_1&f=0 "nyaa(manga): english literature" < item-rule "NOT (title REGEXP '(\] \[|One Piece|Dandadan|Villain|Otome|Reincarnat|Rank|Tamer|Taming|Reborn|Another World|Isekai|Knight|Banished|Party|Dungeon|Adventure|Strongest|Guild|Oak-JXL|Audiobook|KR Web Novel)')"; item-limit 200
+https://nyaa.si/?page=rss&c=3_1&f=0 "nyaa(manga): english literature" < item-rule "NOT (title REGEXP '(\] \[|One Piece|Dandadan|Mikadono Sisters|Villain|Otome|Reincarnat|Sword|Next Life|Quest|Demon King|Rank|Tamer|Taming|Reborn|Another World|Isekai|Knight|Banished|Party|Dungeon|Adventure|Strongest|Guild|Oak-JXL|Audiobook|KR Web Novel)' OR title REGEXP '\(Square Enix\)' )"; item-limit 200
 https://nyaa.si/?page=rss&q=weekly+chapter+update&c=3_1&f=0                  "nyaa(manga): weekly chapter updates" < item-limit 30
 https://nyaa.si/?page=rss&q=apothecary+diaries+S03&c=1_2&f=0                 "nyaa(anime): kusuriya no hitorigoto" < item-rule "NOT (title REGEXP '\[(Judas|Trix)\]|(360|480|720)p|[Dd]ual.[Aa]udio|English Dub'  )"
 https://nyaa.si/?page=rss&q=even+the+student+council+has+its+holes&c=1_2&f=0 "nyaa(anime): even the student council has its holes" < item-rule "title NOT REGEXP '(360|480|720)p' AND TITLE REGEXP 'UNCENSORED|[Uu]ncensored'"
+https://sukebei.nyaa.si/?page=rss&q=%E7%81%AF%E5%95%8F&c=1_0&f=0             "nyaa(doujin): 灯問"
 https://sukebei.nyaa.si/?page=rss&q=%E3%81%82%E3%82%89%E3%81%8F%E3%82%8C%E3%81%9F%E8%80%85%E3%81%9F%E3%81%A1&c=1_2&f=0 "nyaa(doujin): あらくれ"
 # https://ogiuemaniax.com/feed/
 # https://xkcd.com/atom.xml
@@ -142,6 +144,7 @@ https://drmollytov.smol.pub/atom.xml
 https://dustycloud.org/blog/index.xml
 https://eaton-works.com/feed.atom
 https://eliasebner.com/rss.xml
+https://bower.sh/rss
 https://ersei.net/en/blog.atom
 https://blog.frost.kiwi/feed.xml
 https://blog.feld.me/feeds/all.atom.xml

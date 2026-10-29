@@ -21,7 +21,7 @@
       "src": "https://github.com/nvim-mini/mini.diff"
     },
     "mini.pick": {
-      "rev": "9368112b7cafb61d837bed55fc6f40e55df53fa0",
+      "rev": "32ead2c8016a68487de87f23d604135843b0196d",
       "src": "https://github.com/nvim-mini/mini.pick"
     },
     "nvim-colorizer.lua": {
