@@ -56,7 +56,7 @@ do -- Image viewer mode
   swayimg.viewer.pinch_factor = 1
 end
 
-do -- Key bindings
+do -- Key bindings / viewer
   local zoom = function(n)
     -- local pos = swayimg.get_mouse_pos()
     -- local aa = swayimg.is_antialiasing_on()
@@ -74,19 +74,8 @@ do -- Key bindings
       y == 0 and pos.y or math.floor(pos.y + wnd.width / y)
     )
   end
-  local gsize = function(n)
-    local fs = swayimg.fullscreen
-    if not fs then fs = false end
-    if grid_side[fs] == nil then return end
-    grid_side[fs] = grid_side[fs] + n ---@diagnostic disable-line: need-check-nil
-    if grid_side[fs] < 2 then grid_side[fs] = 2 end ---@diagnostic disable-line: need-check-nil
-    swayimg.gallery.thumb_size = math.floor(swayimg.get_window_size().width / grid_side[fs])
-  end
 
-  --- modewise keybind
   local vmap = swayimg.viewer.on_key
-  local gmap = swayimg.gallery.on_key
-  local mmap = swayimg.viewer.on_mouse
 
   -- TODO: w sets wallpaper
   vmap('q', swayimg.exit)
@@ -120,10 +109,6 @@ do -- Key bindings
   vmap('j', function() mov(0, -10) end)
   vmap('k', function() mov(0, 10) end)
   vmap('l', function() mov(-10, 0) end)
-  mmap('ScrollUp', function() mov(0, 100) end)
-  mmap('ScrollDown', function() mov(0, -100) end)
-  mmap('ScrollLeft', function() mov(100, 0) end)
-  mmap('ScrollRight', function() mov(-100, 0) end)
   vmap('Shift+j', function() swayimg.viewer.open('next') end)
   vmap('Shift+k', function() swayimg.viewer.open('prev') end)
   vmap('r', swayimg.viewer.reset)
@@ -133,6 +118,20 @@ do -- Key bindings
   --   'd',
   --   function() os.execute(string.format('trash-put %q', swayimg.viewer.get_image().path)) end
   -- )
+end
+
+do -- Key bindings / gallery
+  local gsize = function(n)
+    local fs = swayimg.fullscreen
+    if not fs then fs = false end
+    if grid_side[fs] == nil then return end
+    grid_side[fs] = grid_side[fs] + n ---@diagnostic disable-line: need-check-nil
+    if grid_side[fs] < 2 then grid_side[fs] = 2 end ---@diagnostic disable-line: need-check-nil
+    swayimg.gallery.thumb_size = math.floor(swayimg.get_window_size().width / grid_side[fs])
+  end
+
+  local gmap = swayimg.gallery.on_key
+
   gmap({ 'Ctrl+KP_Add', 'KP_Add', 'plus', 'equal' }, function() gsize(-1) end)
   gmap({ 'Ctrl+KP_Subtract', 'KP_Subtract', 'Shift+underscore', 'minus' }, function() gsize(1) end)
   gmap('q', function()
@@ -155,6 +154,51 @@ do -- Key bindings
   )
   gmap('Escape', function() end)
   -- TODO: gallery bindings for: sort change, size change, hjkl
+
+  -- SCROLLIG
+  swayimg.viewer.on_scroll(function(kmods, horizontal, vertical)
+    if kmods == 'Ctrl' then
+      if vertical ~= 0 then
+        local mouse = swayimg.get_mouse_pos()
+        local scale = swayimg.viewer.scale
+        swayimg.viewer.set_abs_scale(scale - scale * vertical / 5.0, mouse.x, mouse.y)
+      end
+    else
+      -- move image across the window
+      local pos = swayimg.viewer.get_position()
+      swayimg.viewer.set_abs_position(
+        pos.x - math.floor(horizontal * 100),
+        pos.y - math.floor(vertical * 100)
+      )
+    end
+  end)
+
+  local scrollacc = 0
+  swayimg.gallery.on_scroll(function(kmods, horizontal, vertical)
+    if kmods == 'Ctrl' then
+      -- zoom in/out
+      if vertical ~= 0 and math.abs(vertical) + scrollacc > 2 then
+        gsize(vertical / math.abs(vertical))
+        scrollacc = 0
+      else
+        scrollacc = scrollacc + math.abs(vertical)
+      end
+    else
+      -- select nearest thumbnail
+      if horizontal ~= 0 and math.abs(horizontal) + scrollacc > 2 then
+        swayimg.gallery.select(horizontal > 0 and 'left' or 'right')
+        scrollacc = 0
+      else
+        scrollacc = scrollacc + math.abs(horizontal)
+      end
+      if vertical ~= 0 and math.abs(vertical) + scrollacc > 2 then
+        swayimg.gallery.select(vertical > 0 and 'down' or 'up')
+        scrollacc = 0
+      else
+        scrollacc = scrollacc + math.abs(vertical)
+      end
+    end
+  end)
 end
 
 do -- Gallery mode
