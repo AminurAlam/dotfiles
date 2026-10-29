@@ -83,8 +83,15 @@ function update -d "system update with just one command"
 
     if pushd ~/repos/yazi-fork/ 2>/dev/null
         git log --pretty=nice -n(git rev-list --count "origin..upstream")
-        CARGO_BUILD_WARNINGS=allow cargo install --locked --path yazi-fm/
-        CARGO_BUILD_WARNINGS=allow cargo install --locked --path yazi-cli/
+
+        env YAZI_GEN_COMPLETIONS=1 CARGO_BUILD_WARNINGS=allow \
+            cargo install --locked --path yazi-fm/
+        cp yazi-boot/completions/yazi.fish ~/.config/fish/completions/yazi.fish
+
+        env YAZI_GEN_COMPLETIONS=1 CARGO_BUILD_WARNINGS=allow \
+            cargo install --locked --path yazi-cli/
+        cp yazi-cli/completions/ya.fish ~/.config/fish/completions/ya.fish
+
         popd
     end
 
