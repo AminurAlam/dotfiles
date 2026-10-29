@@ -8,28 +8,28 @@ function update -d "system update with just one command"
     end
 
     if set -q TERMUX_VERSION
-        pushd ~/repos/dotfiles/
+        pushd ~/repos/dotfiles/ 2>/dev/null
         and { git pull origin; popd }
 
-        pushd ~/repos/kt/
+        pushd ~/repos/kt/ 2>/dev/null
         and { git pull origin; popd }
 
-        pushd ~/repos/helix-fork/
+        pushd ~/repos/helix-fork/ 2>/dev/null
         and { git pull origin; popd }
 
-        pushd ~/repos/yazi-plugins/
+        pushd ~/repos/yazi-plugins/ 2>/dev/null
         and { git pull origin; popd }
     else
-        pushd ~/repos/rust-glancer/
+        pushd ~/repos/rust-glancer/ 2>/dev/null
         and { git pull origin; popd }
 
-        pushd ~/repos/kanata/
+        pushd ~/repos/kanata/ 2>/dev/null
         and { git pull origin; popd }
 
-        pushd ~/repos/helix-fork/
+        pushd ~/repos/helix-fork/ 2>/dev/null
         and { git fetch upstream && git rebase upstream/master; popd }
 
-        pushd ~/repos/yazi-fork/
+        pushd ~/repos/yazi-fork/ 2>/dev/null
         and { git fetch upstream && git rebase upstream/main; popd }
     end
 
@@ -56,14 +56,15 @@ function update -d "system update with just one command"
     and nvim --headless +'lua vim.pack.update(nil, {force = true})' +'sleep 3' +q
     or nvim --headless +'lua vim.pack.update(nil, {force = true, target = "lockfile"})' +'sleep 3' +q
     # nvim +'require("nvim-treesitter").update():wait(300000)' +q
+    echo
 
     : ===================================== CARGO ====================================
     string pad -Cc= -w$COLUMNS " CARGO "
 
-    # pushd ~/repos/rust-glancer/
+    # pushd ~/repos/rust-glancer/ 2>/dev/null
     # and { cargo install --locked --path crates/rust-glancer/; popd }
 
-    pushd ~/repos/kanata/
+    pushd ~/repos/kanata/ 2>/dev/null
     and { cargo install --locked --path .; popd }
 
     pushd ~/repos/kt/
@@ -72,7 +73,7 @@ function update -d "system update with just one command"
     : ===================================== HELIX ====================================
     string pad -Cc= -w$COLUMNS " HELIX "
 
-    pushd ~/repos/helix-fork
+    pushd ~/repos/helix-fork/
     cargo install --locked --path helix-term
     { hx -g fetch; hx -g build } | rg -v '(Fetch|Build)ing grammars '
     popd
@@ -80,7 +81,8 @@ function update -d "system update with just one command"
     : ===================================== YAZI =====================================
     string pad -Cc= -w$COLUMNS " YAZI "
 
-    if pushd ~/repos/yazi-fork/
+    if pushd ~/repos/yazi-fork/ 2>/dev/null
+        git log --pretty=nice -n(git rev-list --count "origin..upstream")
         CARGO_BUILD_WARNINGS=allow cargo install --locked --path yazi-fm/
         CARGO_BUILD_WARNINGS=allow cargo install --locked --path yazi-cli/
         popd
