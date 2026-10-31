@@ -5,7 +5,7 @@ function at -d "torrent download helper"
         set -f argv[1] (fd -e torrent | fzf -d3 --height 100% --preview-border line --preview-window right --preview 'aria2c -S {}')
     else if string match -q -- 'magnet:*' "$argv[1]"
         aria2c --bt-save-metadata --bt-metadata-only "$argv[1]"
-        set file (echo "$argv[1]" | rg --only-matching '[0-9a-f]{40}').torrent
+        set file (echo "$argv[1]" | rg -or '$1' 'btih:([0-9a-f]{40})').torrent
         [ -e "$file" ]
         and set argv[1] "$file"
         or return
