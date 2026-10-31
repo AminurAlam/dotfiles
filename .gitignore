@@ -47,15 +47,14 @@
 
 /librewolf/librewolf/*.ini
 /librewolf/librewolf/Profile Groups/
-/librewolf/librewolf/dz4v337n.default/
 /librewolf/librewolf/firefox-mpris/*
-/librewolf/librewolf/lvl02447.default-default/*
-/librewolf/librewolf/lvl02447.default-default/chrome/font.woff2
+/librewolf/librewolf/dz4v337n.default/*
+/librewolf/librewolf/dz4v337n.default/chrome/font.woff2
 /librewolf/librewolf/native-messaging-hosts/
 
-!/librewolf/librewolf/lvl02447.default-default/chrome/
-!/librewolf/librewolf/lvl02447.default-default/chrome/userChrome.css
-!/librewolf/librewolf/lvl02447.default-default/chrome/userContent.css
+!/librewolf/librewolf/dz4v337n.default/chrome/
+!/librewolf/librewolf/dz4v337n.default/chrome/userChrome.css
+!/librewolf/librewolf/dz4v337n.default/chrome/userContent.css
 
 /mgba/qt.ini
 /mgba/*.sqlite3
