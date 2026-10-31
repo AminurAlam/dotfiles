@@ -54,8 +54,8 @@ apkinstall = [
 ]
 bulk-rename = [{ run = "$EDITOR %s; ya exec bulk_exit %s --accept", block = true }]
 extract = [{ run = 'ya pub extract --list %s""', desc = "󱉛 Extract here", for = "unix" }]
-inkscape = [{ run = "LANG=en_US.utf-8 inkscape %s", block = false, orphan = true, desc = "󰕞 inkscape", for = "linux" }]
-okular = [{ run = "LANG=en_US.utf-8 okular %s", block = false, orphan = true, desc = " okular", for = "linux" }]
+inkscape = [{ run = "inkscape %s", block = false, orphan = true, desc = "󰕞 inkscape", for = "linux" }]
+okular = [{ run = "okular %s", block = false, orphan = true, desc = " okular", for = "linux" }]
 open = [{ run = "xdg-open %s1", orphan = true, desc = "󰏌 Open", for = "linux" }]
 play = [{ run = "mpv --force-window %s", orphan = true, desc = " mpv", for = "linux" }]
 png2jpg = [{ run = "magick %s1 JPG:%s1.jpg", desc = "󰧸 png -> jpg", for = "linux" }]
@@ -69,13 +69,7 @@ zathura = [{ run = "zathura %s", block = false, orphan = true, desc = " zathu
 # groups
 raster_tools = [
   { run = "ctl wp %s1", block = false, orphan = true, desc = " swaybg", for = "linux" },
-  {
-    run = "LANG=en_US.utf-8 krita --fullscreen %s",
-    block = false,
-    orphan = true,
-    desc = " krita",
-    for = "linux"
-  },
+  { run = "krita --fullscreen %s", block = false, orphan = true, desc = " krita", for = "linux" },
   { run = "identity -d row -- %s", orphan = true, desc = "󰆊 compare images", for = "linux" },
 ]
 audio_tools = [

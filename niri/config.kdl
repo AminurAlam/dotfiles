@@ -6,7 +6,7 @@ include "binds.kdl"
 spawn-at-startup "swaybg" "-m" "fill" "-i" "pic/wp/126278795_p0.jpg"
 spawn-at-startup "swayidle" "-w"
 spawn-at-startup "rmdir" "-p" ".cache/fish"
-// spawn-at-startup "fcitx5"
+spawn-at-startup "fcitx5"
 spawn-at-startup "ChiPass" "--minimized"
 screenshot-path "pic/ss/Screenshot_%Y%m%d_%H%M%S_niri.png"
 prefer-no-csd
@@ -14,7 +14,7 @@ prefer-no-csd
 output "eDP-1" {
     // mode "1680x1050@60.001"
     variable-refresh-rate
-    backdrop-color "#181926"
+    // backdrop-color "#181926"
 }
 
 environment {

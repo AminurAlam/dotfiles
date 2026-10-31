@@ -39,6 +39,8 @@
 !/applications/xgps.desktop
 !/applications/xgpsspeed.desktop
 
+/fcitx5/conf/cached_layouts
+
 /fish/fish_variables
 
 /helix/runtime/grammars/*

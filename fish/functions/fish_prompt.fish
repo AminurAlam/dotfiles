@@ -52,7 +52,7 @@ function fish_prompt -d 'commandline prompt'
     end
 
     # TODO: network stuff
-    # env LANG=en_US.UTF-8 nmcli general | tail -n1 | kt 4
+    # nmcli general | tail -n1 | kt 4
 
     set -l git
     set -l push

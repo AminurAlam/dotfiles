@@ -64,7 +64,6 @@ fish_add_path --path $ANDROID_HOME/tools
 fish_add_path --path $ANDROID_HOME/tools/bin
 fish_add_path --path $JAVA_HOME/bin
 
-set -gx LANG ja_JP.UTF-8
 set -gx EDITOR (command -v hx || command -v helix || command -v nvim || command -v neovim || command -v vim)
 set -gx SUDO_EDITOR "$EDITOR"
 set -gx LESS --mouse

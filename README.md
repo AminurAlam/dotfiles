@@ -13,6 +13,7 @@
 - [curl](https://curl.se/) - request url
 - [delta](https://dandavison.github.io/delta/) - git diff pager
 - [dunst](https://dunst-project.org/) - notification daemon
+- [fcitx5](https://fcitx-im.org/wiki/Fcitx_5) - generic input method framework
 - [fish](https://fishshell.com/) :star2: - shell
 - [foot](https://codeberg.org/dnkl/foot) :star2: - Fast, lightweight, and minimalistic Wayland terminal emulator
 - [fuzzel](https://codeberg.org/dnkl/fuzzel) - application launcher

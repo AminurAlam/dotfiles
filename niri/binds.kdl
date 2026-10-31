@@ -57,7 +57,7 @@ binds {
     Mod+Shift+L      { move-column-right; }
     Mod+BracketLeft  { consume-or-expel-window-left; }
     Mod+BracketRight { consume-or-expel-window-right; }
-    Mod+Space        { center-column; }
+    // Mod+Space        { center-column; }
 
     // WS
     Mod+Ctrl+J { move-workspace-down; }
