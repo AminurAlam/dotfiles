@@ -96,7 +96,7 @@
   },
   "memory": {
     "interval": 5,
-    "format": " {}%",
+    "format": " {}",
     "max-length": 10,
     "states": {
       "warning": 80,
@@ -104,14 +104,14 @@
     },
   },
   "cpu": {
-    "format": " {usage}%",
+    "format": " {usage}",
     "interval": 1,
     "tooltip": true,
     "states": { "high": 30, "low": 0 },
   },
   "temperature": {
     "critical-threshold": 55,
-    "format": " {temperatureC}°",
+    "format": " {temperatureC}",
     "tooltip": false,
   },
   "custom/brick": {
@@ -119,14 +119,14 @@
     "return-type": "json",
     "restart-interval": "never",
     "hide-empty-text": true,
-    "format": " {percentage}%",
+    "format": " {percentage}",
     "states": { "critical": 20, "warning": 40, "good": 75, "full": 100 },
   },
   "battery": {
-    "format": "{icon} {capacity}%",
-    "format-full": "{icon} {capacity}%",
-    "format-charging": " {capacity}% ",
-    "format-plugged": " {capacity}%",
+    "format": "{icon} {capacity}",
+    "format-full": "{icon} {capacity}",
+    "format-charging": " {capacity}",
+    "format-plugged": " {capacity}",
     "format-alt": "{time} | {cycles} cycles | {power} watts",
     "format-icons": ["", "", "", "", "", ""],
     "interval": 5,

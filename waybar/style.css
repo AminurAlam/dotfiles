@@ -32,7 +32,7 @@
 #wireplumber,
 #mpd {
   padding: 0.1rem 0.5rem;
-  min-width: 50px;
+  min-width: 40px;
 }
 
 #workspaces {
