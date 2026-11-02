@@ -4,6 +4,7 @@
   "modules-left": [
     "niri/workspaces",
     "custom/columns",
+    "custom/time",
   ],
   "modules-center": ["tray"],
   "modules-right": [
@@ -38,6 +39,12 @@
   },
   "niri/language": {
     "format": "{short}",
+  },
+  "custom/time": {
+    "exec": ".config/waybar/time.fish",
+    "return-type": "string",
+    "restart-interval": "never",
+    "hide-empty-text": true,
   },
   "tray": {
     "icon-size": 25,

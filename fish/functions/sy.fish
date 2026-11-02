@@ -43,4 +43,5 @@ function sy -d "sync files between phone and pc"
         or rsync $comm $XDG_DATA_HOME/newsraft/newsraft.sqlite3 brick:~/.local/share/newsraft/newsraft.sqlite3
         rsync $comm brick:/sdcard/main/backup/ $XDG_DOWNLOAD_DIR/main/backup/
     end
+    touch $XDG_CACHE_HOME/.synctime
 end

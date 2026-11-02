@@ -1,4 +1,5 @@
-#!/usr/bin/fish --no-config
+#!/usr/bin/env -S fish --no-config
+
 while true
     if not nc -w3 -q3 -z (ssh -G brick | rg --replace '' '^(hostname|port) ') 2>/dev/null
         echo '{"text": "", "class": "ERROR"}' | jq --unbuffered -Mcr .

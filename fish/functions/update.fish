@@ -143,4 +143,8 @@ function update -d "system update with just one command"
         end
         popd
     end
+
+    : ================================================================================
+    string pad -Cc= -w$COLUMNS ""
+    touch $XDG_CACHE_HOME/.updatetime
 end
