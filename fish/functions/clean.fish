@@ -10,7 +10,7 @@ function clean -d "cleanup storage space"
         (fd -H -tf -d3 'log$'     "$XDG_STATE_HOME/" "$XDG_CACHE_HOME/") \
         (fd -H -tf -d1 -epng .    "$HOME/downloads/" 2>/dev/null) \
         (path filter -d -- \
-            /sdcard/Android/media/com.whatsapp/WhatsApp/{.StickerThumbs,Media/WhatsApp Stickers}/ \
+            /sdcard/Android/media/com.whatsapp/WhatsApp/{.StickerThumbs,.Shared,Media/{WhatsApp Stickers,.udDHFY8K4Eqg,.Links}}/ \
             /sdcard/Tachi/downloads/*/*/*_tmp/ ~/.cache/ /sdcard/Download/SongSync ~/.gradle/caches/)
 
     if count $files &>/dev/null
@@ -55,4 +55,6 @@ function clean -d "cleanup storage space"
 
     echo
     command df -h | awk '/fuse|home/{print $3"/"$2,$5,$4}'
+
+    touch $XDG_STATE_HOME/time_since/clean
 end

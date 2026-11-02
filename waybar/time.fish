@@ -2,11 +2,15 @@
 
 while true
     echo
-    for stuff in update sync
-        test -e $XDG_CACHE_HOME/.{$stuff}time || continue
-        set delta (math (date +%s) - (date -r $XDG_CACHE_HOME/.{$stuff}time +%s))
-        [ "$delta" -gt (math 24 x 3600) ]
-        and printf "  $stuff:%dh " (math -s0 $delta / 3600)
+    for stuff in clean sync update
+        set file $XDG_STATE_HOME/time_since/$stuff
+        test -e $file || continue
+        set cur (date +%s)
+        set last (date -r $file +%s)
+        set delta (math -s0 "($cur - $last) / 3600")
+
+        [ "$delta" -gt (cat $file) ]
+        and printf " $stuff:%dh " $delta
     end
     sleep 30
 end
