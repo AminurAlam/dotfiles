@@ -39,7 +39,7 @@ switch $argv[1]
         [ $new -lt 0 ] && set new 0
         [ $new -gt $max ] && set new $max
 
-        echo $new >$device/brightness
+        echo $new | tee $device/brightness
 
         notify-send -h string:x-canonical-private-synchronous:brightness -t 500 \
             "Brightness: $(math -s0 "100 x ($new / $max)")%"
@@ -154,28 +154,34 @@ switch $argv[1]
         systemctl --user status --full --no-pager -n0 (path basename  ~/.config/systemd/user/*.service)
 
     case toggle_width #             toggle between 50% width and maximize-window-to-edges
-        set json (niri msg -j focused-window)
-        if [ (printf "%s" "$json" | jq .is_floating) = false ]
+        niri msg -j focused-window \
+            | jq '.id, .is_floating, .layout.window_size[]' \
+            | read -L id float width height
+
+        if not $float
             # use this if you have goofy sizes
-            # niri msg -j focused-output | jq .logical
+            # niri msg -j focused-output \
+            #     | jq '.logical | .width, .height' \
+            #     | read -L logical_width logical_height
 
             # if max-width
-            [ (printf "%s" "$json" | jq '.layout.window_size[0]') = 1920 ]
+            [ "$width" = 1920 ]
             and niri msg action set-column-width 50%
-            or niri msg action maximize-window-to-edges
+            or niri msg action maximize-window-to-edges --id "$id"
 
             # if fullscreen
-            test (niri msg -j focused-window | jq '.layout.window_size[1]') = 1080
-            and niri msg action fullscreen-window
+            [ "$height" = 1080 ]
+            and niri msg action fullscreen-window --id "$id"
 
-            true
+            true # idk why this is here
         else
-            niri msg action set-window-width (
-                math -s0 (
-                    printf "%s" "$json" | jq .layout.window_size[1]
-                ) x 16 / 9
-            )
+            set new_width (math -s0 $height x 16 / 9)
+            set shift (math $width - $new_width | string replace -r -- '^\d' '+$0')
+
+            niri msg action set-window-width --id "$id" $new_width
+            niri msg action move-floating-window --id $id -x $shift
         end
+
     case browser #                  focus to existing browser instance or spawn it
         set id (niri msg -j windows | jq '.[] | select(.app_id == "librewolf") | .id')
         [ -n "$id" ]
