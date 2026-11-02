@@ -1,4 +1,4 @@
-#!/usr/bin/fish --no-config
+#!/usr/bin/env -S fish --no-config
 
 [ -z "$argv[1]" ] && exit 1
 

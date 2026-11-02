@@ -1,4 +1,4 @@
-#!/usr/bin/fish --no-config
+#!/usr/bin/env -S fish --no-config
 
 set multiple $argv[1]
 set directory $argv[2]

@@ -1,4 +1,4 @@
-#!/usr/bin/fish --no-config
+#!/usr/bin/env -S fish --no-config
 
 switch $argv[1]
     case vol # (+|-)?               toggle or change vol
