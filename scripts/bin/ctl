@@ -167,25 +167,24 @@ switch $argv[1]
             # if max-width
             [ "$width" = 1920 ]
             and niri msg action set-column-width 50%
-            or niri msg action maximize-window-to-edges --id "$id"
+            or niri msg action maximize-window-to-edges --id=$id
 
             # if fullscreen
             [ "$height" = 1080 ]
-            and niri msg action fullscreen-window --id "$id"
+            and niri msg action fullscreen-window --id=$id
 
             true # idk why this is here
-        else
+        else if $float
             set new_width (math -s0 $height x 16 / 9)
-            set shift (math $width - $new_width | string replace -r -- '^\d' '+$0')
 
-            niri msg action set-window-width --id "$id" $new_width
-            niri msg action move-floating-window --id $id -x $shift
+            niri msg action set-window-width --id=$id $new_width
+            niri msg action move-floating-window --id=$id -x (math 1910 - $new_width) -y 10
         end
 
     case browser #                  focus to existing browser instance or spawn it
         set id (niri msg -j windows | jq '.[] | select(.app_id == "librewolf") | .id')
         [ -n "$id" ]
-        and niri msg action focus-window --id $id
+        and niri msg action focus-window --id=$id
         or niri msg action spawn -- librewolf
 
     case launcher #                 lauch or close launcher
