@@ -4,6 +4,7 @@ function clean -d "cleanup storage space"
     # remove deleted directories from zoxide
     zoxide remove (path filter -vd (zoxide query -la))
 
+    : ================================== TEMP FILES ==================================
     string pad -C -c= -w$COLUMNS " TEMP FILES "
     set files \
         (fd -H -tf -d1 '_history$' "$HOME/") \
@@ -15,9 +16,10 @@ function clean -d "cleanup storage space"
 
     if count $files &>/dev/null
         command dust -d1 $files
-        command rm -frI -- $files
+        command rm -fr -- $files
     end
 
+    : =================================== PKG FILES ==================================
     string pad -C -c= -w$COLUMNS " PKG FILES "
     # bug: https://gitlab.archlinux.org/pacman/pacman/-/work_items/297
     # fix: https://gitlab.archlinux.org/pacman/pacman/-/merge_requests/348
@@ -25,16 +27,17 @@ function clean -d "cleanup storage space"
     and sudo rm -fr /var/cache/pacman/pkg/download-*
 
     command -vq paccache
-    and paccache -r -k0 -v
+    and paccache -r -k0
     or yes | pacman -Scc
 
     command -vq yay && begin
         yay -Sc --noconfirm
-        [ (count (pacman -Qdtq)) -gt 5 ] && yay -Yc
+        yay -Yc
     end
 
     echo
 
+    : ===================================== TRASH ====================================
     string pad -C -c= -w$COLUMNS " TRASH "
     command -vq trash-list
     and trash-list \
@@ -45,6 +48,7 @@ function clean -d "cleanup storage space"
         | sort -n
     command -vq trash-empty && trash-empty
 
+    : ===================================== MISC =====================================
     string pad -C -c= -w$COLUMNS " MISC "
     command -vq pip && pip cache purge
     command -vq npm && npm cache clean --force
