@@ -2,8 +2,6 @@
 
 @-moz-document url("chrome://browser/content/browser.xhtml") {
 
-  #back-button,
-  #forward-button,
   #home-button,
   #reader-mode-button,
   #sidebar-header,
