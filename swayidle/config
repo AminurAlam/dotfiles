@@ -1,2 +1,2 @@
-timeout 150 'niri msg action power-off-monitors'
+timeout 150 'ctl dim'
 timeout 7200 'systemctl suspend'

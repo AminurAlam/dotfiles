@@ -44,6 +44,21 @@ switch $argv[1]
         notify-send -h string:x-canonical-private-synchronous:brightness -t 500 \
             "Brightness: $(math -s0 "100 x ($new / $max)")%"
 
+    case dim #                      turn off display slowly
+        set device /sys/class/backlight/amdgpu_bl1
+        set cur (cat $device/brightness)
+
+        if [ "$cur" -ge 30 ]
+            for n in (seq $cur -(math -s0 $cur / 30) 0)[2..]
+                echo $n | tee $device/brightness
+                sleep 0.03
+            end
+        end
+
+        niri msg action power-off-monitors
+        sleep 1
+        echo $cur | tee $device/brightness
+
     case pow #                      change powerprofile
         set current (powerprofilesctl get)
         if [ "$current" = balanced ]
@@ -116,7 +131,10 @@ switch $argv[1]
     case send # <device> [files..]  send file
         [ -z "$argv[3..]" ] && return
 
-        if rsync -Pha $argv[3..] brick:/sdcard/Download/ || kdeconnect-cli -n brick --share $argv[3..]
+        if nc -w3 -q3 -z (ssh -G brick | rg --replace '' '^(hostname|port) ') 2>/dev/null \
+                && rsync -Pha $argv[3..] brick:/sdcard/Download/
+            notify-send -t 2000 "sent: $(path basename $argv[3..])"
+        else if kdeconnect-cli -n brick --share $argv[3..]
             notify-send -t 2000 "sent: $(path basename $argv[3..])"
         else
             notify-send -t 2000 "failed: $(path basename $argv[3..])"
