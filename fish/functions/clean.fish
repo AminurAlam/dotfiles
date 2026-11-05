@@ -55,6 +55,8 @@ function clean -d "cleanup storage space"
     command -vq ccache && ccache --clear
     command -vq journalctl && sudo journalctl --vacuum-time 7d
     command -vq newsraft && newsraft -e purge-abandoned
+    command -vq go && go clean -cache
+    command -vq go && go clean -fuzzcache
     # command -vq cargo && fd -H -tf -d1 -F 'Cargo.toml' $HOME/repos/* -x cargo clean --manifest-path
 
     echo

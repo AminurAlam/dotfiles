@@ -86,10 +86,6 @@ end
 function fish_mode_prompt
 end
 
-function fish_title
-    prompt_pwd
-end
-
 function __zoxide_hook --on-variable PWD
     set -f dirname (builtin pwd -L)
 
