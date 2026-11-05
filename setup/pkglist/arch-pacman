@@ -1,7 +1,6 @@
 7zip
 alsa-utils
 amd-ucode
-android-tools
 anki
 aria2
 bacon
@@ -70,7 +69,6 @@ nwg-look
 okular
 openbsd-netcat
 openssh
-otf-ipafont
 pacman-contrib
 pandoc-cli
 pavucontrol
@@ -114,11 +112,6 @@ tombi
 trash-cli
 tree-sitter
 tree-sitter-cli
-ttf-bitstream-vera
-ttf-dejavu
-ttf-ibm-plex
-ttf-liberation
-ttf-opensans
 ttf-twemoji
 ty
 typst

@@ -15,6 +15,7 @@
 - [dunst](https://dunst-project.org/) - notification daemon
 - [fcitx5](https://fcitx-im.org/wiki/Fcitx_5) - generic input method framework
 - [fish](https://fishshell.com/) :star2: - shell
+- [fontconfig](https://www.freedesktop.org/wiki/Software/fontconfig/) - Library for configuring and customizing font access
 - [foot](https://codeberg.org/dnkl/foot) :star2: - Fast, lightweight, and minimalistic Wayland terminal emulator
 - [fuzzel](https://codeberg.org/dnkl/fuzzel) - application launcher
 - [fzf](https://junegunn.github.io/fzf/) - fuzzy finder

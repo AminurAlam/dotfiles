@@ -3,7 +3,7 @@
 }
 
 #waybar {
-  font-family: "JetBrainsMono Nerd Font";
+  font-family: monospace;
   background: #24283b;
   color: #c0caf5;
   min-height: 24px;

@@ -6,7 +6,7 @@ for config in \
     bacon biome btop \
     clangd codebook \
     dunst \
-    fcitx5 fish foot fuzzel \
+    fcitx5 fish fontconfig foot fuzzel \
     git glow \
     helix \
     jj \

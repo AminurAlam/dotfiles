@@ -14,10 +14,6 @@ setup_post_install() {
 
     systemctl enable NetworkManager.service power-profiles-daemon.service
     command -v fish &>/dev/null && sudo chsh -s "$(command -v fish)"
-    mkdir -p ~/.local/share/fonts/ttf/JetBrainsMono
-    curl -Lqso ~/.local/share/fonts/ttf/JetBrainsMono/JetBrainsMonoNerdFont-Medium.ttf \
-        "https://github.com/ryanoasis/nerd-fonts/raw/refs/heads/master/patched-fonts/JetBrainsMono/Ligatures/Medium/JetBrainsMonoNerdFont-Medium.ttf" &>/dev/null
-    fc-cache -f
 }
 
 setup_aur() {

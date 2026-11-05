@@ -4,13 +4,12 @@
 local mp = require('mp')
 local ov = mp.create_osd_overlay('ass-events')
 -- in Advanced SubStation - ASS format
--- http://www.tcax.org/docs/ass-specs.htm
--- stylua: ignore
-ov.data = '{\\an5}'        .. -- Align, NUMPAD style, 5 is centered
-          '{\\b1}'         .. -- Bold
-          '{\\fs192}'      .. -- Font size, 192
-          '{\\c&HFFFFFF&}' .. -- Color, #FFFFFF
-          '⏸'                 -- Actual text
+-- https://web.archive.org/web/20260523223459/http://www.tcax.org/docs/ass-specs.htm
+ov.data = '{\\an5}' -- align, numpad style
+  .. '{\\fs250}' -- font size
+  .. '{\\c&FFFFFF&}' -- color
+  .. '{\\alpha&H66&}' -- opacity
+  .. '󰏤' -- text
 
 local paused, time = nil, nil
 local function remove_on_frame_advance(_, pos)
