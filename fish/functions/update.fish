@@ -20,9 +20,6 @@ function update -d "system update with just one command"
         pushd ~/repos/yazi-plugins/ 2>/dev/null
         and { git pull origin; popd }
     else
-        pushd ~/repos/rust-glancer/ 2>/dev/null
-        and { git pull origin; popd }
-
         pushd ~/repos/kanata/ 2>/dev/null
         and { git pull origin; popd }
 
@@ -60,9 +57,6 @@ function update -d "system update with just one command"
 
     : ===================================== CARGO ====================================
     string pad -Cc= -w$COLUMNS " CARGO "
-
-    # pushd ~/repos/rust-glancer/ 2>/dev/null
-    # and { cargo install --locked --path crates/rust-glancer/; popd }
 
     pushd ~/repos/kanata/ 2>/dev/null
     and { cargo install --locked --path .; popd }
