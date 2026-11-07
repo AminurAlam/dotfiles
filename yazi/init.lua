@@ -49,6 +49,8 @@ end
 
 -- [[ other ]]
 
+require('fs-usage'):setup()
+
 require('git'):setup {}
 
 require('nextension'):setup {}

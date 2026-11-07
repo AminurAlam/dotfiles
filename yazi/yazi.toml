@@ -87,7 +87,7 @@ common = [
   { run = "termux-open %s1", orphan = true, desc = "󰏌 Open", for = "android" },
 ]
 dir = [
-  { run = "opendir %d1", desc = " opendir", for = "android" },
+  { run = "opendir %s1", desc = " opendir", for = "android" },
   { run = "fish -c 'dir2cbz $argv' %s", block = true, desc = " dir2cbz" },
 ]
 
