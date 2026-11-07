@@ -56,6 +56,7 @@ if set -q TERMUX_VERSION
     ln -nfs ~/repos/dotfiles/scripts/bin/termux-file-editor ~/bin/termux-file-editor
     ln -nfs ~/repos/dotfiles/scripts/bin/tachi ~/.local/bin/tachi
     ln -nfs ~/repos/dotfiles/scripts/bin/rat ~/.local/bin/rat
+    ln -nfs ~/repos/dotfiles/scripts/bin/opendir ~/.local/bin/opendir
     printf "done\n"
 end
 
