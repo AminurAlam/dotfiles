@@ -15,7 +15,7 @@ binds {
 
     // TURNING OFF
     Mod+M repeat=false { quit; }
-    Mod+N repeat=false { power-off-monitors; }
+    Mod+N repeat=false { spawn "ctl" "dim"; }
 
     // PRINT
     Mod+P       { screenshot show-pointer=false; }

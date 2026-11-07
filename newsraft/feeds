@@ -51,7 +51,7 @@ https://github.com/sxyazi/yazi/commits/main/CHANGELOG.md.atom "yazi: changelog"
 @ MEDIA
 $(feedmod https://muspy.com/feed?id=mobwjpkr95u5p1b4f2w1bjt74qc8u3) "muspy New Releases" < item-rule "NOT (title LIKE 'Taylor Swift%' OR title REGEXP 'Remix|live|Live|LIVE')"
 https://nyaa.si/?page=rss&c=3_1&f=0 "nyaa(manga): english literature" < item-rule "NOT (title REGEXP '(\] \[|One Piece|Dandadan|Mikadono Sisters|Villain|Otome|Reincarnat|Sword|Next Life|Quest|Demon King|Rank|Tamer|Taming|Reborn|Another World|Isekai|Knight|Banished|Party|Dungeon|Adventure|Strongest|Guild|Oak-JXL|Audiobook|KR Web Novel)' OR title REGEXP '\(Square Enix\)' )"; item-limit 200
-https://nyaa.si/?page=rss&q=weekly+chapter+update&c=3_1&f=0                  "nyaa(manga): weekly chapter updates" < item-limit 30
+https://nyaa.si/?page=rss&q=%28Chapter%7CVolume%29+Update&c=3_1&f=0          "nyaa(manga): weekly/monthly updates" < item-limit 30
 https://nyaa.si/?page=rss&q=apothecary+diaries+S03&c=1_2&f=0                 "nyaa(anime): kusuriya no hitorigoto" < item-rule "NOT (title REGEXP '\[(Judas|Trix)\]|(360|480|720)p|[Dd]ual.[Aa]udio|English Dub'  )"
 https://nyaa.si/?page=rss&q=even+the+student+council+has+its+holes&c=1_2&f=0 "nyaa(anime): even the student council has its holes" < item-rule "title NOT REGEXP '(360|480|720)p' AND TITLE REGEXP 'UNCENSORED|[Uu]ncensored'"
 https://sukebei.nyaa.si/?page=rss&q=%E7%81%AF%E5%95%8F&c=1_0&f=0             "nyaa(doujin): 灯問"
@@ -123,8 +123,8 @@ https://schneier.com/feed/atom < item-rule "title NOT LIKE 'Friday Squid Bloggin
 https://soatok.blog/feed "Soatok (Dhole Moments)"
 https://steveklabnik.com/feed.xml
 https://strongly-typed-thoughts.net/feed.xml
-# https://householderkarl.com/feed/
-https://terminallucidity.net/feed/
+# curl -Lis https://wanderingheathen.net/feed/ | rg -r '' 'location: '
+https://wanderingheathen.net/feed/
 https://thatmangahunter.com/blog-feed.xml
 https://thevaluable.dev/index.xml
 https://tonsky.me/atom.xml "tonsky (Nikita Prokopov)"
