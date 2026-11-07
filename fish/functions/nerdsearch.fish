@@ -3,5 +3,5 @@ function nerdsearch -d "better nerdfix serch"
         "for n,i in __import__('nerdfont').icons.items():print(i,n[3:])" \
         | fzf --query "$argv[1]" \
         | kt 1 \
-        | fish_clipboard_copy
+        | wl-copy -n
 end
