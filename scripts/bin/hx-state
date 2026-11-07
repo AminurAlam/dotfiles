@@ -1,23 +1,25 @@
 #!/usr/bin/env -S fish --no-config
 
-[ -z "$argv[1]" ] && exit 1
+[ -z "$argv[1]" ] && exit 1 # save|load|load_col
+[ -z "$argv[2]" ] && exit 2 # filename
+[ -f "$argv[2]" ] || exit 2
 
 set file "$HOME/.local/share/helix/cursor/$(printf '%s' "$argv[2]" | sha256sum - | kt 1)"
 
 switch "$argv[1]"
     case save
-        [ -z "$argv[2]" ] && exit 2
         [ -z "$argv[3]" ] && exit 3
         [ -z "$argv[4]" ] && exit 4
 
         printf "%d %d" "$argv[3]" "$argv[4]" | tee "$file"
     case load
-        [ -z "$argv[2]" ] && exit 2
         [ -z "$argv[3]" ] && exit 3
 
-        [ -e "$file" ] || exit 5
+        [ -f "$file" ] || exit 5
         cat "$file" | kt "$argv[3]"
-        # rm "$file"
-    case file
-        printf '%s' "$file"
+    case load_col
+        # TODO: hx-state load_col <file1> <file2> <file3> ...
+
+        [ -f "$file" ] || exit 5
+        cat "$file" | sed -E 's/^| /:/g'
 end

@@ -61,6 +61,6 @@ map({ 'c', 'o' }, 'rename --empty=stem --cursor=start')
 map({ 'c', '^' }, 'rename --empty=stem --cursor=start')
 map({ 'c', '$' }, 'rename --empty=ext --cursor=end')
 -- # other
-map('e', sh [[$EDITOR %s]])
+map('e', sh [[$EDITOR %s$(hx-state load_col %s)]])
 map('%', 'toggle_all --state=true')
 map('<Esc>', { 'escape', 'unyank' }, 'Exit visual mode, clear selection, or cancel search')

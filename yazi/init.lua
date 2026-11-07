@@ -38,7 +38,7 @@ require('preview-font'):setup {
 }
 
 require('preview-imgdir'):setup {
-  patterns = { '/home/fisher/pic/{.lewdp,Camera,Komikku,covers,desu,ss,wp}/' },
+  urls = { '/home/fisher/pic/{.lewdp,Camera,Komikku,covers,desu,ss,wp}/' },
 }
 
 if os.getenv('YAZI_LOG') == 'debug' then

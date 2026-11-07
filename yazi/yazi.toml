@@ -78,7 +78,7 @@ audio_tools = [
   { run = "tenacity %s", block = false, orphan = true, desc = "󰓀 tenacity", for = "linux" },
 ]
 edit = [
-  { run = "hx %s", desc = "󰚄 hx", block = true, for = "unix" },
+  { run = "hx %s$(hx-state load_col %s)", desc = "󰚄 hx", block = true, for = "unix" },
   { run = "nvim %s", desc = " nvim", block = true, for = "unix" },
 ]
 common = [
