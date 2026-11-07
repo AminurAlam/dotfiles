@@ -18,10 +18,5 @@ use = "yazi-rs/plugins:mime-ext"
 rev = "c0529fc"
 hash = "7d3b7f99e600fd7e77ebc5eb8423a897"
 
-[[plugin.deps]]
-use = "walldmtd/fs-usage"
-rev = "1b42083"
-hash = "28ac3655541321f006c25463419d719a"
-
 [flavor]
 deps = []

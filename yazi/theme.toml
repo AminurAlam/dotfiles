@@ -41,7 +41,7 @@ preview = { bold = true }
 
 [status]
 progress_label = { bold = true }
-progress_normal = { fg = "black", bg = "green" }
+progress_normal = { fg = "green", bg = "#454545" }
 progress_error = { fg = "black", bg = "red" }
 
 [input]
