@@ -1,4 +1,4 @@
-def round2:.*pow(10;2)|round/pow(10;2);
+def round2:.*100|round/100;
 
 def fs:
     if . == null then
