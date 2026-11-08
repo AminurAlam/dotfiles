@@ -83,7 +83,8 @@
             "closeAllFolders": false,
             "forceOpen": false,
             "sidebarAnim": false,
-            "closeOthers": true
+            "closeOthers": true,
+            "closeServerFolder": false
         },
         "BetterGifAltText": {
             "enabled": false
@@ -314,7 +315,8 @@
             "ignoreGuilds": "",
             "logEdits": true,
             "logDeletes": true,
-            "inlineEdits": true
+            "inlineEdits": true,
+            "logDeletedAttachments": true
         },
         "MoreCommands": {
             "enabled": false
@@ -669,7 +671,9 @@
             "enabled": false
         },
         "WebKeybinds": {
-            "enabled": true
+            "enabled": true,
+            "showNavigationButtons": true,
+            "overrideCommonKeybinds": true
         },
         "WebScreenShareFixes": {
             "enabled": true
@@ -711,9 +715,6 @@
         "DisableDeepLinks": {
             "enabled": true
         },
-        "ExpressionCloner": {
-            "enabled": false
-        },
         "CustomCommands": {
             "enabled": false,
             "tagsList": {}
@@ -752,7 +753,41 @@
             "username": "AminurAlam",
             "apiKey": "e4d241e8515ed22b3b680f721bc45610",
             "hideWithActivity": false,
-            "showLogo": true
+            "showLogo": true,
+            "scrobblerBackend": "lastfm",
+            "clickableLinks": true,
+            "statusDisplayType": "artist",
+            "showAlbumCover": true
+        },
+        "ExpressionManager": {
+            "enabled": false,
+            "editAndDelete": true,
+            "stickerCopyAndOpen": true,
+            "recents": true
+        },
+        "AddAttachments": {
+            "enabled": false
+        },
+        "DirectFileDownload": {
+            "enabled": false
+        },
+        "GifProviderSwitcher": {
+            "enabled": false
+        },
+        "JumpToTop": {
+            "enabled": true
+        },
+        "MutedServersActivityBadge": {
+            "enabled": false
+        },
+        "ContextMenuAPI": {
+            "enabled": true
+        },
+        "FixDiscordCss": {
+            "enabled": true
+        },
+        "NoticesAPI": {
+            "enabled": true
         }
     },
     "notifications": {
@@ -765,12 +800,13 @@
         "authenticated": true,
         "url": "https://api.vencord.dev/",
         "settingsSync": true,
-        "settingsSyncVersion": 1784377802986
+        "settingsSyncVersion": 1794114629783
     },
     "eagerPatches": false,
     "uiElements": {
         "chatBarButtons": {},
         "messagePopoverButtons": {}
     },
-    "windowsMaterial": "none"
+    "windowsMaterial": "none",
+    "nativeTitleBar": true
 }
