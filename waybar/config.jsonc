@@ -126,7 +126,7 @@
     "return-type": "json",
     "restart-interval": "never",
     "hide-empty-text": true,
-    "format": " {percentage}",
+    "format": " {percentage}",
     "states": { "critical": 20, "warning": 40, "good": 75, "full": 100 },
   },
   "battery": {
