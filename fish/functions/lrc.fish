@@ -17,8 +17,8 @@ function lrc -d "download lrc files form links in json" -a query
         or return
     end
 
-    [ "$(read -P 'edit? [y/N] ')" = y ]
-    and $EDITOR album.json
+    # [ "$(read -P 'edit? [y/N] ')" = y ]
+    # and $EDITOR album.json
     clear
 
     set album (jq -r '.album' album.json)
@@ -35,11 +35,18 @@ function lrc -d "download lrc files form links in json" -a query
             sleep 3
         end
 
+        if rg '^error code: ' "cache/$path.json"
+            rm "cache/$path.json"
+            echo
+            continue
+        end
+
         jq -r '(.error, .message)' "cache/$path.json" | read -L error message
         if [ "$error" = true ] || [ "$message" != null ]
-            echo "ERROR: $message"
+            printf "\033[38;5;1m ERROR: %s\033[0m\n" "$message"
         else
             jq -r .content "cache/$path.json" >"$path.ttml"
+            and printf "\033[38;5;2m DONE \033[0m\n"
         end
 
         echo
