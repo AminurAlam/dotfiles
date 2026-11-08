@@ -20,5 +20,5 @@ package() {
     cd "${srcdir}/" || exit
 
     install -Dm755 "${pkgname}" "${pkgdir}${prefix}/bin/${pkgname}"
-    install -D -m644 "${pkgname}.fish" "${pkgdir}${prefix}/share/fish/vendor_completions.d/${pkgname}.fish"
+    install -Dm644 "${pkgname}.fish" "${pkgdir}${prefix}/share/fish/vendor_completions.d/${pkgname}.fish"
 }

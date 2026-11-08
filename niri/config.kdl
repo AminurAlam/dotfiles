@@ -22,7 +22,6 @@ environment {
     XCURSOR_SIZE "30"
     XCURSOR_THEME "Bibata-Modern-Ice"
     MESA_SHADER_CACHE_DISABLE "true"
-    QT_SCALE_FACTOR "1.26"
     DISPLAY ":0"
 }
 
