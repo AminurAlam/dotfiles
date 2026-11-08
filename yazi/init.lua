@@ -22,24 +22,25 @@ require('preview-systemd'):setup()
 require('preview-torrent'):setup()
 require('preview-typst'):setup()
 
-require('preview-cbz'):setup {
+require('preview-cbz'):setup({
   urls = {
     '*.{cbz,cbr}',
     '**/manga/**/*.{zip,rar}',
     '**/{smut,smut/WIP}/*.zip',
   },
-}
-require('preview-font'):setup {
+})
+
+require('preview-font'):setup({
   canvas_size = '750x800',
   font_size = 60,
   bg = 'white',
   fg = 'black',
   urls = {},
-}
+})
 
-require('preview-imgdir'):setup {
+require('preview-imgdir'):setup({
   urls = { '/home/fisher/pic/{.lewdp,Camera,Komikku,covers,desu,ss,wp}/' },
-}
+})
 
 if os.getenv('YAZI_LOG') == 'debug' then
   for _, f in pairs(rt.plugin.previewers:match()) do
@@ -50,23 +51,18 @@ end
 -- [[ other ]]
 
 require('fs-usage'):setup()
+require('git'):setup()
+require('nextension'):setup()
+require('max-pane'):setup({ 's', 't' })
+require('zoxide'):setup({ update_db = false })
+require('session'):setup({ sync_yanked = true })
 
-require('git'):setup {}
-
-require('nextension'):setup {}
-
-require('max-pane'):setup { 's', 't' }
-
-require('zoxide'):setup { update_db = false }
-
-require('session'):setup { sync_yanked = true }
-
-require('spot'):setup {
+require('spot'):setup({
   metadata_section = { hash_filesize_limit = 200, relative_time = true },
   plugins_section = { enable = true },
-}
+})
 
-require('mime-ext.local'):setup {
+require('mime-ext.local'):setup({
   with_exts = {
     mmd = 'text/plain',
     scm = 'text/plain',
@@ -76,9 +72,9 @@ require('mime-ext.local'):setup {
     xml = 'text/plain',
   },
   fallback_file1 = true,
-}
+})
 
-require('sort-by-location'):setup {
+require('sort-by-location'):setup({
   default = { by = 'extension', reverse = false },
   keys = {
     mtime = { 's', 'm' },
@@ -90,9 +86,9 @@ require('sort-by-location'):setup {
   { pattern = '.*/DCIM/.*', sort = { by = 'mtime', reverse = true } },
   { pattern = '.*/#lewd$', sort = { by = 'mtime', reverse = true } },
   { pattern = '.*/yt$', sort = { by = 'natural' } },
-}
+})
 
-require('fchar'):setup {
+require('fchar'):setup({
   insensitive = true,
   skip_symbols = true,
   skip_prefix = { 'yazi-', 'spot-', 'preview-', 'dot-', 'WhatsApp ', 'helix-', 'tree-sitter-' },
@@ -120,4 +116,4 @@ require('fchar'):setup {
     y = 'やゆよヤユヨ',
     z = 'ざずぜぞザズゼゾ',
   },
-}
+})
