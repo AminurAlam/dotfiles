@@ -39,11 +39,12 @@ def eta(comp; total; speed):
     elif speed == "0" then
         "  "
     else
-        (((total|tonumber) - (comp|tonumber)) / (speed|tonumber) | round | tostring) + "s"
+        ((total|tonumber) - (comp|tonumber))
+        / (speed|tonumber)
+        | round 
+        | strftime("%H:%M:%S")
     end
 ;
-
-# TODO: ETA
 
 .result |
 ("[" + .status + "] " + (.dir | gsub("^/home/fisher"; "~")) + "/" + .bittorrent.info.name),
@@ -68,5 +69,4 @@ def eta(comp; total; speed):
     + " \u001b[38;5;1m" + pad(.index; 2) + "\u001b[0m " + .path[$dlen+1:$dlen+93]
 ),
 (if .errorMessage then .errorMessage else "" end),
-# (.), # debug
 "press `q` to exit"
