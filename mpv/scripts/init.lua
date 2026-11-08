@@ -85,8 +85,7 @@ local yank_jp_text = function()
     return
   end
 
-  -- TODO: strip spaces from text
-  text = string.gsub(text, ' ', '')
+  text = string.gsub(text, '%s+', '')
   mp.commandv('run', 'wl-copy', text)
   print(text)
 end
