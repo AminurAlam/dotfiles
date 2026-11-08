@@ -95,7 +95,7 @@ layout {
 
 
     focus-ring {
-        off
+        on
         width 3
         active-color "#7fc8ff"
         inactive-color "#505050"
@@ -104,6 +104,10 @@ layout {
 
     border {
         off
+        width 3
+        active-color "#7fc8ff"
+        inactive-color "#505050"
+        active-gradient from="#f7768e" to="#7aa2f7" angle=90
     }
 
     shadow {

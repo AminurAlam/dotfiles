@@ -1,6 +1,6 @@
 // MISC
 
-window-rule { // focus on popups
+window-rule { // popup => focus
     match title="^file_chooser$"
     match title="ChiPass - Browser Access Request"
 
@@ -10,7 +10,7 @@ window-rule { // focus on popups
 
 // SIZING
 
-window-rule { // maximized
+window-rule { // => maximized
     match app-id="librewolf|vesktop|newsraft" is-floating=false
     match app-id="org.kde.kdeconnect.app" title="KDE Connect" is-floating=false
     match app-id="org.musicbrainz.Picard" title="MusicBrainz Picard" is-floating=false
@@ -18,20 +18,20 @@ window-rule { // maximized
     open-maximized-to-edges true
 }
 
-window-rule { // fullscreen
+window-rule { // => fullscreen
     match app-id="^org.gnome.gitlab.YaLTeR.Identity$"
 
     open-fullscreen true
 }
 
-window-rule { // floating
+window-rule { // => floating
     match app-id="^foot$" title="^float$"
     match title="ChiPass - Browser Access Request"
 
     open-floating true
 }
 
-window-rule { // fixed size: mpv music
+window-rule { // mpv-music => fixed size
     match app-id="^mpv$" title="\\.flac$"
 
     open-floating true
@@ -40,7 +40,7 @@ window-rule { // fixed size: mpv music
     max-height 200
 }
 
-window-rule { // fixed size: sc mirror
+window-rule { // scrcpy => fixed size
     match app-id="scrcpy"
 
     default-column-width { fixed 475; }
@@ -49,41 +49,33 @@ window-rule { // fixed size: sc mirror
 
 // WINDOW FOCUS
 
-window-rule { // *
+window-rule { // * =>
 
     geometry-corner-radius 12
     clip-to-geometry true
     background-effect { blur true; }
 }
 
-window-rule { // unfocused
+window-rule { // unfocused => opacity
     match is-focused=false
     exclude app-id="^mpv$"
     exclude app-id="librewolf" title="Picture-in-Picture" is-floating=true
 
-    // TODO: draw border
     opacity 0.9
 }
 
-window-rule { // focused
-    match is-focused=true
+window-rule { // floating => ring->border
+    match is-floating=true
 
-    opacity 1.0
-    border
-    focus-ring { on; }
+    focus-ring { off; }
+    border { on; }
 }
 
 
 // LAYER BLUR
 
-layer-rule { // notifications
+layer-rule { // notifications|launcher
     match namespace="^notifications$"
-
-    opacity 0.9
-    background-effect { blur true; xray false; }
-}
-
-layer-rule { // launcher
     match namespace="^launcher$"
 
     opacity 0.9
