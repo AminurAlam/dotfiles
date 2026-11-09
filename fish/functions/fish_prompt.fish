@@ -49,6 +49,14 @@ function fish_prompt -d 'commandline prompt'
                 set bat (set_color red)  $capacity
             end
         end
+
+    end
+
+    set -l wifi
+    if not set -q TERMUX_VERSION \
+            && [ -z "$WAYLAND_DISPLAY" ] \
+            && nmcli connection show --active | rg -q wlan0
+        set wifi (set_color brmagenta)  (nmcli connection show --active | rg wlan0 | kt 1)
     end
 
     # TODO: network stuff
@@ -108,6 +116,7 @@ function fish_prompt -d 'commandline prompt'
         $git \
         $push \
         $bat \
+        $wifi \
         $job \
         $zmx \
         $stat \
