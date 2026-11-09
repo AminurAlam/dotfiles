@@ -1,5 +1,4 @@
 function lrc -d "download lrc files form links in json" -a query
-    # TODO: get region data
     # TODO: move ttml to destination
     # TODO: copy single ttml download to clipboard
     cd "$XDG_DOWNLOAD_DIR/lrc/" || return

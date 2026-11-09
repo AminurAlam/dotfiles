@@ -59,7 +59,6 @@ function fish_prompt -d 'commandline prompt'
         set wifi (set_color brmagenta)  (nmcli connection show --active | rg wlan0 | kt 1)
     end
 
-    # TODO: network stuff
     # nmcli general | tail -n1 | kt 4
 
     set -l git
