@@ -34,7 +34,7 @@ map('T', 'plugin trash')
 map('o', 'plugin pivot-or-open')
 map('O', 'create')
 map('d', 'remove')
-map('D', sh 'fd -HI -td -d2 -x rmdir -p')
+map('D', sh 'fd -HI -td -d2 -x rmdir -p') -- TODO: fs.prune_dir
 map({ 'y', 'y' }, 'yank', 'yank file')
 map({ 'y', 'p' }, 'copy path', 'yank ENTIRE path')
 map({ 'y', 'f' }, 'copy filename', 'yank filename')

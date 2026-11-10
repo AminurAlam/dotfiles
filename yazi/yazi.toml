@@ -104,7 +104,6 @@ max_width = 1500
 max_height = 1007
 
 [input]
-# TODO: no border
 # rename
 rename_title = ""
 rename_origin = "hovered"

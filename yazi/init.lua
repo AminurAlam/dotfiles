@@ -43,8 +43,14 @@ require('preview-imgdir'):setup({
 })
 
 if os.getenv('YAZI_LOG') == 'debug' then
-  for _, f in pairs(rt.plugin.previewers:match()) do
-    -- ya.dbg(f.url, f.mime, f.run.name)
+  if ya.iter then
+    for f in rt.plugin.previewers:match() do
+      -- ya.dbg(f.url, f.mime, f.run.name)
+    end
+  else
+    for _, f in pairs(rt.plugin.previewers:match()) do
+      -- ya.dbg(f.url, f.mime, f.run.name)
+    end
   end
 end
 
