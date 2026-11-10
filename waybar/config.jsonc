@@ -8,6 +8,7 @@
   ],
   "modules-center": ["tray"],
   "modules-right": [
+    "systemd-failed-units",
     // "mpd",
     // "keyboard-state",
     "pulseaudio",
@@ -26,6 +27,8 @@
   ],
   "niri/workspaces": {
     "format": " {icon} ",
+    // "current-only": true,
+    "hide-empty": true,
   },
   "niri/window": {
     "format": "",
@@ -49,7 +52,17 @@
   "tray": {
     "icon-size": 25,
     "spacing": 15,
-    "reverse-direction": true,
+    "reverse-direction": false,
+    "orders": {
+      "Input Method": 99,
+      "ChiPass": 99,
+      "Netowrk": 0,
+      "nm_applet": 0,
+    },
+  },
+  "systemd-failed-units": {
+    "format": "<span color='#f7768e'> {nr_failed_user}</span>",
+    "system": false,
   },
   "pulseaudio": {
     "format": "{icon} {format_source}",
@@ -80,7 +93,7 @@
     "interval": 1,
     "format-disconnected": "󰤭",
     "format-disabled": "",
-    "format-wifi": " {bandwidthTotalBytes}  {icon} {essid}", // TODO: put {:i} after update
+    "format-wifi": " {bandwidthTotalBytes:i}  {icon} {essid}",
     "tooltip-format-wifi": "{essid}: {ipaddr}/{cidr}",
     "format-icons": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"],
     "format-ethernet": "{bandwidthTotalBytes} 󰈀",
@@ -187,7 +200,7 @@
       "format": {
         "months": "<span color='#ffead3'>{}</span>",
         "days": "<span color='#c0caf5'>{}</span>",
-        "weekdays": "<span color='#ffcc66'><small>{}</small></span>",
+        "weekdays": "<span color='#ffcc66'>{}</span>",
         "today": "<span background='#8db0ff' color='#1d202f'>{}</span>",
       },
     },

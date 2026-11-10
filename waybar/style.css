@@ -18,6 +18,7 @@
 #custom-media,
 #custom-music,
 #custom-power,
+#systemd-failed-units,
 #disk,
 #idle_inhibitor,
 #memory,
@@ -58,6 +59,10 @@
 
 #window {
   margin-left: 60px;
+}
+
+#custom-columns {
+  min-width: 150px;
 }
 
 #tray menu {
