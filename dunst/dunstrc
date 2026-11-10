@@ -49,7 +49,7 @@
     frame_color = "#29a4bd"
 
 [urgency_normal]
-    background = "#24283baa"
+    background = "#1b1e2daa"
     foreground = "#c0caf5"
     frame_color = "#29a4bd"
 
