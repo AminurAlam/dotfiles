@@ -1,6 +1,6 @@
 function adb -d "adb wrapper"
-    set -f ANDROID_USER_HOME "$XDG_DATA_HOME"/.android
-    set -f HOME "$XDG_DATA_HOME"
+    set -fx ANDROID_USER_HOME "$XDG_DATA_HOME"/.android
+    set -fx HOME "$XDG_DATA_HOME"
 
     if [ "$argv[1]" = init ]
         command adb devices | rg '^[A-Z0-9]+\tdevice$'
@@ -17,6 +17,4 @@ function adb -d "adb wrapper"
     else
         command adb $argv
     end
-
-    rm -fr /home/fisher/.android/
 end
