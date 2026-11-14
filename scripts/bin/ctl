@@ -116,7 +116,6 @@ switch $argv[1]
             or echo failed to update ssh entry
         end
 
-        rmdir ~/.android 2>/dev/null
         string pad -C -c= -w$COLUMNS ""
 
     case send # <device> [files..]  send file

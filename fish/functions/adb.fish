@@ -1,4 +1,5 @@
 function adb -d "adb wrapper"
+    set OG_HOME "$HOME"
     set -fx ANDROID_USER_HOME "$XDG_DATA_HOME"/.android
     set -fx HOME "$XDG_DATA_HOME"
 
@@ -6,7 +7,7 @@ function adb -d "adb wrapper"
         command adb devices | rg '^[A-Z0-9]+\tdevice$'
         and command adb -d tcpip 5555
 
-        ctl updateip
+        env HOME=$OG_HOME ctl updateip
 
         # set -f shizuku_lib (command adb -e shell pm path moe.shizuku.privileged.api | sed -E 's#^package:(.*)/base.apk$#\1/lib/arm64/libshizuku.so#')
         # [ -n "$shizuku_lib" ] && command adb -e shell $shizuku_lib
