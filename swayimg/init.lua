@@ -213,7 +213,7 @@ do -- Gallery mode
   swayimg.gallery.window_color = 0xff000000
   swayimg.gallery.cache = 100
   swayimg.gallery.preload = false
-  swayimg.gallery.pstore = false
+  swayimg.gallery.pstore = true
   swayimg.gallery.text = {
     topleft = { '[{list.index}/{list.total}] {name}' },
     topright = {},

@@ -1,5 +1,3 @@
--- TODO: just use fzf
--- TODO: figure out live_grep
 require('mini.pick').setup({
   delay = { async = 10, busy = 50 },
   mappings = {
