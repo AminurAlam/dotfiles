@@ -264,7 +264,7 @@
   body {
     background: var(--bg);
     color: var(--fg);
-    font-family: my-font, sans-serif;
+    font-family: monospace, sans-serif;
     font-size: 1.2em;
     line-height: 1.4em;
     max-width: var(--width);

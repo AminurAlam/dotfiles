@@ -1,6 +1,7 @@
-@font-face {
-  font-family: "my-font";
-  src: url("/font.woff2");
+@-moz-document domain("aftermath.site") {
+  .blur {
+    --tw-blur: blur(0px) !important;
+  }
 }
 
 @-moz-document domain("lwn.net") {
@@ -154,7 +155,6 @@
     margin-left: auto !important;
     margin-right: auto !important;
     padding: 0 10px 0 10px !important;
-    font-family: my-font !important;
   }
 
   img {
@@ -191,6 +191,10 @@
   .print-hide.related-topics,
   #arthardpv {
     display: none !important;
+  }
+
+  * {
+    font-family: sans-serif !important;
   }
 }
 

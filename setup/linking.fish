@@ -11,7 +11,7 @@ for config in \
     helix \
     jj \
     kanata keepassxc \
-    lazygit librewolf \
+    lazygit \
     mgba mpv MusicBrainz \
     newsraft niri npm nvim \
     pacman powershell python \
@@ -58,6 +58,9 @@ if set -q TERMUX_VERSION
     ln -nfs ~/repos/dotfiles/scripts/bin/rat ~/.local/bin/rat
     ln -nfs ~/repos/dotfiles/scripts/bin/opendir ~/.local/bin/opendir
     printf "done\n"
+else if [ -d "$HOME/.config/librewolf/librewolf/dz4v337n.default" ]
+    ln -nfs ~/repos/dotfiles/librewolf/librewolf.overrides.cfg ~/.config/librewolf/librewolf/librewolf.overrides.cfg
+    ln -nfs ~/repos/dotfiles/librewolf/chrome ~/.config/librewolf/librewolf/dz4v337n.default/ # NOTE: what if *.default changes?
 end
 
 printf "LINKING ETC CONFIG FILES... "
