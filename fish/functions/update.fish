@@ -21,14 +21,26 @@ function update -d "system update with just one command"
         pushd ~/repos/yazi-plugins/ 2>/dev/null
         and { git pull origin; popd }
     else
-        pushd ~/repos/kanata/ 2>/dev/null
-        and { git pull origin; popd }
+        if pushd ~/repos/kanata/ 2>/dev/null
+            set kanata_prev_commit (git rev-parse HEAD)
+            git pull origin
+            git log --pretty=nice -n (git rev-list --count $kanata_prev_commit..)
+            popd
+        end
 
-        pushd ~/repos/helix-fork/ 2>/dev/null
-        and { git fetch upstream && git rebase upstream/master; popd }
+        if pushd ~/repos/helix-fork/ 2>/dev/null
+            git fetch upstream
+            and git rebase upstream/master
+            git log --pretty=nice -n(git rev-list --count "origin..upstream")
+            popd
+        end
 
-        pushd ~/repos/yazi-fork/ 2>/dev/null
-        and { git fetch upstream && git rebase upstream/main; popd }
+        if pushd ~/repos/yazi-fork/ 2>/dev/null
+            git fetch upstream
+            and git rebase upstream/main
+            # TODO: show logs
+            popd
+        end
     end
 
     : ==================================== MIRRORS ===================================
@@ -77,8 +89,6 @@ function update -d "system update with just one command"
     string pad -Cc= -w$COLUMNS " YAZI "
 
     if pushd ~/repos/yazi-fork/ 2>/dev/null
-        git log --pretty=nice -n(git rev-list --count "origin..upstream")
-
         env YAZI_GEN_COMPLETIONS=1 cargo install --locked --path yazi-fm/
         cp yazi-boot/completions/yazi.fish ~/.config/fish/completions/yazi.fish
 

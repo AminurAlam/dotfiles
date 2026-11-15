@@ -1,4 +1,5 @@
 function at -d "torrent download helper"
+    # TODO: -O, --index-out=<INDEX>=<PATH>
     if [ -z "$argv[1]" ]
         set -f argv[1] (fd -e torrent | fzf -d3 --height 100% --preview-border line --preview-window right --preview 'aria2c -S {}')
     else if string match -q -- 'magnet:*' "$argv[1]"
