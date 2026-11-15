@@ -32,6 +32,7 @@ function lrc -d "download lrc files form links in json"
         if rg -q '^error code: ' "cache/$path.json" \
                 || jq -e .error "cache/$path.json" >/dev/null
             printf "\033[38;5;1mERROR\033[0m\n"
+            set -f error 1
         else if [ -e "$path.ttml" ]
             printf "\033[38;5;2mCACHED\033[0m\n"
         else if jq -r .content "cache/$path.json" >"$path.ttml"
@@ -40,4 +41,5 @@ function lrc -d "download lrc files form links in json"
     end
 
     mv album.json "cache/$album/"
+    return $error
 end
