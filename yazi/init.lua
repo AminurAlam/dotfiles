@@ -97,7 +97,16 @@ require('sort-by-location'):setup({
 require('fchar'):setup({
   insensitive = true,
   skip_symbols = true,
-  skip_prefix = { 'yazi-', 'spot-', 'preview-', 'dot-', 'WhatsApp ', 'helix-', 'tree-sitter-' },
+  skip_prefix = {
+    'yazi-',
+    'spot-',
+    'preview-',
+    'dot-',
+    'WhatsApp ',
+    'helix-',
+    'tree-sitter-',
+    'temp.',
+  },
   keys = { start = 'f' },
   aliases = {
     a = 'あア',
