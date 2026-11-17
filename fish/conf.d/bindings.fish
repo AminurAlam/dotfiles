@@ -3,6 +3,7 @@ status is-interactive || exit
 fish_vi_key_bindings
 
 bind q exit # shortcuts to quit
+bind -M insert . 'commandline -i .; commandline -f repaint'
 bind -M insert ctrl-\; "history -n1 | fish -P; echo; echo; commandline -f repaint"
 bind -M insert ctrl-z 'if jobs -q; fg; else; mux; commandline -f repaint; end'
 bind -M insert ctrl-v backward-kill-bigword # delete from whitespace to cursor
@@ -39,14 +40,14 @@ set --global autopair_pairs "()" "[]" "{}" '""' "''"
 
 set --query fish_key_bindings[1] || return
 
-test $fish_key_bindings = fish_default_key_bindings &&
-    set --local mode default insert ||
-    set --local mode insert default
+test $fish_key_bindings = fish_default_key_bindings
+and set --local mode default insert
+or set --local mode insert default
 
 bind --mode $mode[-1] --erase \177 \b \t
 
-bind --mode $mode[1] \177 _autopair_backspace # macOS ⌫
-bind --mode $mode[1] \b _autopair_backspace
+bind --mode $mode[1] \177 '_autopair_backspace; commandline -f repaint' # macOS ⌫
+bind --mode $mode[1] \b '_autopair_backspace; commandline -f repaint'
 bind --mode $mode[1] \t _autopair_tab
 
 printf "%s\n" $autopair_pairs | while read --local left right --delimiter ""

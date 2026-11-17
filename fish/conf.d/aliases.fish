@@ -28,6 +28,7 @@ abbr --set-cursor ff "ffmpeg -y -hide_banner -stats -loglevel error -i % -vcodec
 # navigating
 abbr ... "cd ../.."
 abbr .... "cd ../../.."
+abbr ..... "cd ../../../.."
 abbr --set-cursor zd 'z $HOME/repos/dotfiles/%'
 abbr --set-cursor zdl 'z $XDG_DOWNLOAD_DIR/%'
 abbr zz "cd -"

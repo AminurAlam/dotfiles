@@ -15,7 +15,19 @@ function fish_prompt -d 'commandline prompt'
         end)
     end
 
-    set -l pwd (set_color $fish_color_cwd)  (prompt_pwd)
+    set -l pwd
+    switch (commandline)
+        case ..
+            set pwd (set_color $fish_color_cwd)  (prompt_pwd (path resolve ..))
+        case ...
+            set pwd (set_color $fish_color_cwd)  (prompt_pwd (path resolve ../..))
+        case ....
+            set pwd (set_color $fish_color_cwd)  (prompt_pwd (path resolve ../../..))
+        case .....
+            set pwd (set_color $fish_color_cwd)  (prompt_pwd (path resolve ../../../..))
+        case '*'
+            set pwd (set_color $fish_color_cwd)  (prompt_pwd)
+    end
 
     set -l job
     set jobcount (jobs | count)
