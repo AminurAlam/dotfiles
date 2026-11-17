@@ -9,37 +9,41 @@ function update -d "system update with just one command"
     end
 
     if set -q TERMUX_VERSION
-        pushd ~/repos/dotfiles/ 2>/dev/null
-        and { git pull origin; popd }
-
-        pushd ~/repos/kt/ 2>/dev/null
-        and { git pull origin; popd }
-
-        pushd ~/repos/helix-fork/ 2>/dev/null
-        and { git pull origin; popd }
-
-        pushd ~/repos/yazi-plugins/ 2>/dev/null
-        and { git pull origin; popd }
+        for repo in dotfiles kt helix-fork yazi-plugins
+            pushd ~/repos/$repo/ 2>/dev/null
+            and { git pull origin --rebase; popd }
+        end
     else
+        set kanata_prev_commit (git -C ~/repos/kanata/ rev-parse HEAD)
+        set helix_prev_commit (git -C ~/repos/helix-fork/ rev-parse upstream/HEAD)
+        set yazi_prev_commit (git -C ~/repos/yazi-fork/ rev-parse upstream/HEAD)
+
+        echo pulling changes...
+        begin
+            git -C ~/repos/kanata/ pull origin &>/dev/null &
+            git -C ~/repos/helix-fork/ fetch upstream &>/dev/null &
+            git -C ~/repos/yazi-fork/ fetch upstream &>/dev/null &
+            wait git
+        end
+
         if pushd ~/repos/kanata/ 2>/dev/null
-            set kanata_prev_commit (git rev-parse HEAD)
-            git pull origin
             git log --pretty=nice -n (git rev-list --count $kanata_prev_commit..)
             popd
+            printf "\033[0m"
         end
 
         if pushd ~/repos/helix-fork/ 2>/dev/null
-            git fetch upstream
-            and git rebase upstream/master
-            git log --pretty=nice -n(git rev-list --count "origin..upstream")
+            git rebase upstream/master
+            git log --pretty=nice -n (git rev-list --count $helix_prev_commit..upstream/HEAD)
             popd
+            printf "\033[0m"
         end
 
         if pushd ~/repos/yazi-fork/ 2>/dev/null
-            git fetch upstream
-            and git rebase upstream/main
-            # TODO: show logs
+            git rebase upstream/main
+            git log --pretty=nice -n (git rev-list --count $yazi_prev_commit..upstream/HEAD)
             popd
+            printf "\033[0m"
         end
     end
 
