@@ -24,9 +24,7 @@ fuzzel
 fzf
 git
 git-delta
-gst-libav
-gst-plugin-pipewire
-gst-plugin-va
+gnumeric
 hexyl
 identity
 imagemagick
@@ -36,14 +34,13 @@ intel-media-driver
 iw
 iwd
 jq
-kdeconnect
+kdeconnect-minimal
 kid3-qt
 komga
 krita
 lazygit
 less
 libappindicator
-libmpeg2
 libnotify
 libqalculate
 librewolf
@@ -56,7 +53,7 @@ lzip
 mandoc
 mecab-git
 melonds-bin
-mpv-git
+mpv
 neovim
 net-tools
 network-manager-applet
@@ -65,7 +62,6 @@ newsraft
 niri
 noto-fonts
 noto-fonts-cjk
-nwg-look
 okular
 openbsd-netcat
 openssh
@@ -141,4 +137,3 @@ zip
 zmx-bin
 zola
 zoxide
-zram-generator

@@ -1,4 +1,5 @@
 7zip
+android-tools
 aria2
 attr
 bash
@@ -94,6 +95,7 @@ ripgrep
 rsync
 ruff
 rust
+scrcpy
 sed
 tar
 termux-am
