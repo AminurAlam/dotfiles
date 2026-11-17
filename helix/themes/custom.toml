@@ -1,6 +1,7 @@
 # key = { fg = "#ffffff", bg = "#000000", underline = { color = "#ff0000", style = "curl"} }
 
 "inherits" = "tokyonight"
+
 "comment" = { fg = "comment" }
 "diagnostic.hint" = {}
 "diagnostic.info" = {}
@@ -11,6 +12,8 @@
 "markup.italic" = {}
 "punctuation.bracket" = { fg = "fg" }
 "tag" = { fg = "green" }
+"ui.bufferline" = { bg = "bg", fg = "border-highlight" }
+"ui.bufferline.active" = { fg = "bg", bg = "border-highlight", modifiers = ["bold"] }
 "ui.cursorline.primary" = { bg = "bg-darker" }
 "ui.help" = { bg = "bg", fg = "fg" }
 "ui.linenr.selected" = { fg = "fg" }
