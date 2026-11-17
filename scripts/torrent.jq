@@ -3,7 +3,7 @@ def fs:
     if . == 0 then
         "0"
     elif . > (1024*1024*1024) then
-        (10 * . / (1024*1024*1024) | round/10 | tostring) + "G"
+        (100 * . / (1024*1024*1024) | round/100 | tostring) + "G"
     elif . > (1024*1024) then
         (. / (1024*1024)      | floor  | tostring) + "M"
     else
@@ -19,17 +19,14 @@ def pad(str; count):
     end
 ;
 
-def fs_percent(comp; total):
+def fs_percent(comp; total; all):
     if (comp == total) then
         pad((total | fs) + " \u001b[38;5;2m100%\u001b[0m"; 23)
     else
-        pad(
-            (total | fs)
+            pad(if all then total else comp end | fs; 6)
             + " "
-            + (100 * (comp | tonumber) / (total | tonumber) | round | tostring)
+            + pad(100 * (comp | tonumber) / (total | tonumber) | round | tostring; 3)
             + "%"
-            ; 10
-        )
     end
 ;
 
@@ -50,7 +47,7 @@ def eta(comp; total; speed):
 ("[" + .status + "] " + (.dir | gsub("^/home/fisher"; "~")) + "/" + .bittorrent.info.name),
 ("DL: "
     + pad(.downloadSpeed | fs; 5) + "B/s "
-    + fs_percent(.completedLength; .totalLength) + " "
+    + fs_percent(.completedLength; .totalLength; true) + " "
     + eta(.completedLength; .totalLength; .downloadSpeed)),
 ("UP: "
     + pad(.uploadSpeed | fs; 5) + "B/s "
@@ -59,14 +56,14 @@ def eta(comp; total; speed):
 (
     .files[]
     | select(.selected == "true")
-    | fs_percent(.completedLength; .length)
-    + " \u001b[38;5;4m" + pad(.index; 2) + "\u001b[0m " + .path[$dlen+1:$dlen+93]
+    | fs_percent(.completedLength; .length; false)
+    + " \u001b[38;5;4m" + pad(.index; 2) + "\u001b[0m " + .path[$dlen+1:$dlen+92]
 ),
 (
     .files[]
     | select(.selected == "false")
-    | fs_percent(.completedLength; .length)
-    + " \u001b[38;5;1m" + pad(.index; 2) + "\u001b[0m " + .path[$dlen+1:$dlen+93]
+    | fs_percent(.completedLength; .length; false)
+    + " \u001b[38;5;1m" + pad(.index; 2) + "\u001b[0m " + .path[$dlen+1:$dlen+92]
 ),
 (if .errorMessage then .errorMessage else "" end),
 "press `q` to exit"
