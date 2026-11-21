@@ -40,7 +40,7 @@ set -gx HELIX_RUNTIME $HOME/repos/helix-fork/runtime
 set -gx HELIX_DISABLE_AUTO_GRAMMAR_BUILD 1
 set -gx QT_QPA_PLATFORMTHEME qt6ct
 set -gx QT_QPA_PLATFORM wayland
-set -gx _ZO_FZF_OPTS '--ignore-case --tiebreak chunk,begin,index --no-multi --scroll-off 4 --height ~90% --layout default --border rounded --margin 0,0,0,0 --no-info --no-separator --prompt " " --preview ""'
+set -gx _ZO_FZF_OPTS '+e --ignore-case --tiebreak chunk,begin,index --no-multi --scroll-off 4 --height ~90% --layout default --border rounded --margin 0,0,0,0 --no-info --no-separator --prompt " " --preview ""'
 set -gx YAZI_ZOXIDE_OPTS $_ZO_FZF_OPTS
 
 # lang config
