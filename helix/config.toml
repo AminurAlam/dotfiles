@@ -10,6 +10,9 @@
 # TODO: ignore single char d/c
 # TODO: change completion kind
 # TODO: shebang like vim: ft=*
+# TODO: fix completion dropping selected stuff
+# TODO: user snippets
+# TODO: g<C-a> like binding
 
 theme = "custom"
 editor.whitespace = { render = { tab = "all", newline = "all" } }

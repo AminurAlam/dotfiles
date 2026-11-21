@@ -56,7 +56,7 @@ end
 
 -- [[ other ]]
 
-require('fs-usage'):setup()
+require('fs-usage'):setup({ warning_threshold = 95 }) -- show storage instead
 require('git'):setup()
 require('nextension'):setup()
 require('max-pane'):setup({ 's', 't' })

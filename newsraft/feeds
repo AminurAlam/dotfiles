@@ -34,9 +34,11 @@ https://android.izzysoft.de/rss/en/articles "fdroid: izzysoft"
 https://fishshell.com/blog/feed.xml
 https://blog.rust-lang.org/feed.xml
 https://github.com/keiyoushi/extensions-source/commits/main/src/en/hentainexus.atom "keiyoushi: HentaiNexus commits"
+https://ladybird.org/posts.rss
 https://blog.metabrainz.org/feed/
 https://blog.nightly.mozilla.org/feed "mozilla: firefox nightly"
 https://blog.thunderbird.net/feed/    "mozilla: thunderbird" < item-limit 20
+https://servo.org/blog/feed.xml
 https://github.com/sxyazi/yazi/commits/main/CHANGELOG.md.atom "yazi: changelog"
 # https://echasnovski.com/blog.xml
 # https://nvim-mini.org/blog/index.xml
